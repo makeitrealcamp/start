@@ -3,6 +3,8 @@
 @import "bootstrap";
 @import "pages";
 
+.expand { height: 100%; }
+
 .navbar-brand {
   position: relative;
   margin-top: -6px;
@@ -27,4 +29,12 @@
   }
 }
 
-.expand { height: 100%; }
+.navbar-nav > li > a.avatar {
+  padding-top: 9px;
+  padding-bottom: 5px;
+
+  img {
+    width: 55px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+  }
+}

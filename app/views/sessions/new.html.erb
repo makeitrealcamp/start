@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <%= form_tag controller: :sessions, action: :create do %>
+        <div class="form-group">
+          <%= label_tag(:email, "Email") %>
+          <%= email_field_tag(:email, nil, class: 'form-control') %>
+        </div>
+        <div class="form-group">
+          <%= label_tag(:password, "Password") %>
+          <%= password_field_tag(:password, nil, class: 'form-control') %>
+        </div>
+
+        <div class="text-right"><%= submit_tag("Login", class: 'btn btn-default') %></div>
+      <% end %>
+    </div>
+  </div>
+</div>
