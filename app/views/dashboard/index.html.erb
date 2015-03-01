@@ -1,2 +1,32 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
+<div class="container dashboard">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <blockquote><%= @quote[:text] %> <span class="author">&nbsp; <%= @quote[:author] %></span></blockquote>
+    </div>
+  </div>
+  <div class="row">
+    <% @courses.each do |course| %>
+      <div class="col-sm-4">
+        <div class="course">
+          <div class="title"><%= course.name %></div>
+          <p><%= course.abstract %></p>
+          <div class="row info">
+            <div class="col-xs-4 info-item">
+              <span class="info-item-value"><%= course.resources.count %></span>
+              <span class="info-item-label">Recursos</span>
+            </div>
+            <div class="col-xs-4 info-item">
+              <span class="info-item-value"><%= course.challenges.count %></span>
+              <span class="info-item-label">Retos</span>
+            </div>
+            <div class="col-xs-4 info-item">
+              <span class="info-item-value"><%= course.estimated %></span>
+              <span class="info-item-label">Estimado</span>
+            </div>
+          </div>
+          <div class="text-center"><%= link_to "Entrar", course, class: "btn btn-primary btn-block" %></div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

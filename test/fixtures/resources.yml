@@ -1,0 +1,35 @@
+# == Schema Information
+#
+# Table name: resources
+#
+#  id          :integer          not null, primary key
+#  course_id   :integer
+#  title       :string(100)
+#  description :string
+#  row         :integer
+#  type        :integer
+#  url         :string
+#  estimated   :string(70)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course_id: 
+  title: MyString
+  description: MyString
+  row: 1
+  type: 1
+  url: MyString
+  estimated: MyString
+
+two:
+  course_id: 
+  title: MyString
+  description: MyString
+  row: 1
+  type: 1
+  url: MyString
+  estimated: MyString

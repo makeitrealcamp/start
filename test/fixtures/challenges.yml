@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: challenges
+#
+#  id           :integer          not null, primary key
+#  course_id    :integer
+#  name         :string(100)
+#  instructions :text
+#  evaluation   :text
+#  row          :integer
+#  published    :boolean
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course_id: 
+  name: MyString
+  instructions: MyText
+  evaluation: MyText
+  row: 1
+  published: false
+
+two:
+  course_id: 
+  name: MyString
+  instructions: MyText
+  evaluation: MyText
+  row: 1
+  published: false

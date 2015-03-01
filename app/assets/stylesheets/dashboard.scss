@@ -1,3 +1,47 @@
-// Place all the styles related to the dashboard controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.dashboard {
+  blockquote {
+    font-size: 18px;
+    font-style: italic;
+    text-align: center;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 50px;
+
+    .author {
+      color: #999;
+      font-size: 16px;
+    }
+  }
+
+  .course {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px; 
+
+    .title {
+      color: #333;
+      font-size: 21px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .info {
+      margin-bottom: 20px;
+
+      color: #999;
+
+      span {
+        display: block;
+        font-size: 14px;  
+        text-align: center;
+      } 
+      
+      .info-item-value {
+        font-size: 18px;
+        font-weight: bold; 
+      }
+    }
+  }
+}

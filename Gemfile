@@ -35,6 +35,9 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 
 gem 'gravatar-ultimate'
+gem 'ranked-model'
+gem 'paper_trail', '~> 4.0.0.beta'
+
 gem 'rails_12factor', group: :production
 
 group :development, :test do
