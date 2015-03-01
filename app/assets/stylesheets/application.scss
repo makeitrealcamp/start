@@ -1,2 +1,30 @@
 @import "bootstrap-sprockets";
+@import "theme";
 @import "bootstrap";
+@import "pages";
+
+.navbar-brand {
+  position: relative;
+  margin-top: -6px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  span.camp {
+    display: block;
+    font-size: 13px;
+    line-height: 0.5;
+    text-align: right;
+  }
+
+  span.start {
+    display: inline-block;
+    position: absolute;
+    font: 24px/1 "Open Sans Condensed", sans-serif;
+    opacity: 0.8;
+    border-left: 2px solid white;
+    padding: 2px 12px;
+    top: 28px;
+    left: 125px;
+  }
+}
+
+.expand { height: 100%; }
