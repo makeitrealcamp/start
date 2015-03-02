@@ -37,6 +37,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'gravatar-ultimate'
 gem 'ranked-model'
 gem 'paper_trail', '~> 4.0.0.beta'
+gem 'redcarpet'
+gem 'pygments.rb'
 
 gem 'rails_12factor', group: :production
 

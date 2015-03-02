@@ -9,6 +9,8 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  time_estimate :string(50)
+#  excerpt       :string
+#  description   :string
 #
 
 class Course < ActiveRecord::Base

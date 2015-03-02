@@ -2,14 +2,14 @@
   <div class="row">
     <div class="col-sm-12 header">
       <h1><%= @course.name %></h1>
-      <p>HTML es un lenguaje que nos permite definir la estructura de un documento que los navegadores interpretan y muestran en la pantalla. Un archivo CSS es un lenguaje que nos permite definir el formato (los estilos) de los elementos HTML.</p>
+      <p><%= markdown @course.excerpt %></p>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-5" style="margin-bottom: 40px;">
       <h2>Retos</h2>
-      <% @course.challenges.each do |challenge| %>
+      <% @course.challenges.rank(:row).each do |challenge| %>
         <div class="challenge clearfix">
           <div class="challenge-status"><span class="glyphicon glyphicon-ok"></span></div>
           <div class="challenge-title"><a href="#"><%= challenge.name %></a></div>
@@ -20,7 +20,7 @@
     <div class="col-md-7">
       <h2>Recursos</h2>
       <table class="table resources">
-      <% @course.resources.each do |resource| %>
+      <% @course.resources.rank(:row).each do |resource| %>
         <tr>
           <td class="resource-info">
             <a href="<%= resource.url %>" target="_blank"><%= resource.title %> &nbsp;<span class="glyphicon glyphicon-new-window"></span></a>
