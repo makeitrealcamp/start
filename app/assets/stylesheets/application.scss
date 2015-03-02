@@ -2,6 +2,7 @@
 @import "theme";
 @import "bootstrap";
 @import "pages";
+@import "sessions";
 @import "dashboard";
 @import "courses";
 
@@ -39,4 +40,17 @@
     width: 55px;
     border: 2px solid rgba(255, 255, 255, 0.6);
   }
+}
+
+.action {
+  color: white;
+  font-size: 13px;
+  padding: 4px;
+  border-radius: 5px;
+  opacity: 0.4;
+
+  &:hover { opacity: 1; }
+  &.action-add { background: #2A79A6; }
+  &.action-edit { background: #2A79A6; }
+  &.action-remove { background: #C74238; }
 }

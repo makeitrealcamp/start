@@ -23,6 +23,14 @@ class User < ActiveRecord::Base
 
   after_initialize :default_values
 
+  def has_role?(role)
+    roles && roles.include?(role)
+  end
+
+  def is_admin?
+    has_role?("admin")
+  end
+
   private
     def default_values
       self.roles ||= ["user"]

@@ -1,5 +1,6 @@
 .course-page {
   .header {
+    position: relative;
     margin-bottom: 30px;
 
     h1 {
@@ -15,6 +16,12 @@
 
       strong { font-weight: normal; }
     }
+
+    .actions {
+      position: absolute;
+      top: 20px;
+      right: 7px;
+    }
   }
 
   h2 {
@@ -23,74 +30,89 @@
   }
 
   .resources {
-    font-weight: 300;
-    line-height: 1.6;
-    margin-top: -15px;
 
-    td {
-      padding: 15px 0px 20px;
-      margin-bottom: 20px;
-      border-top: none;
-      border-bottom: 1px solid #eee;
-    }
+    table {
+      font-weight: 300;
+      line-height: 1.6;
+      margin-top: -15px;
 
-    td.resource-info {
-      a {
-        font-size: 18px;
-        text-decoration: none;
+      td {
+        padding: 15px 0px 20px;
+        margin-bottom: 20px;
+        border-top: none;
+        border-bottom: 1px solid #eee;
       }
 
-      span {
-        font-size: 13px;
-        text-decoration: none;
-        margin-top: -2px;
-        opacity: 0.8;
+      td.resource-info {
+        a {
+          font-size: 18px;
+          font-weight: normal;
+          text-decoration: none;
+        }
+
+        span.glyphicon-new-window {
+          font-size: 13px;
+          text-decoration: none;
+          margin-top: -2px;
+          opacity: 0.8;
+        }
+
+        .description {  color: #999; }
       }
 
-      .description {  color: #999; }
-    }
+      td.resource-additional {
+        width: 60px;
+        text-align: right;
 
-    td.resource-additional {
-      width: 60px;
-      text-align: right;
+        span { display: block; }
+        .glyphicon {
+          color: #ddd;
+          font-size: 18px;
+          cursor: pointer;
 
-      span { display: block; }
-      .glyphicon {
-        color: #ddd;
-        font-size: 18px;
-        cursor: pointer;
+          &:hover { color: green; }
+        }
 
-        &:hover { color: green; }
+        .time-estimate {
+          color: #666;
+          font-size: 13px;
+          margin-top: 10px;
+        }
+
       }
-
-      .time-estimate {
-        color: #666;
-        font-size: 13px;
-        margin-top: 10px;
-      }
-
     }
   }
 
-  .challenge {
-    background: #fafafa;
-    border: 1px solid #eee;
-    border-radius: 5px;
-    margin-bottom: 20px;
+  .challenges {
+    margin-bottom: 40px;
 
-    .challenge-title {
-      font-size: 18px;
-      padding: 15px 20px;
+    .challenge {
+      position: relative;
+      background: #fafafa;
+      border: 1px solid #eee;
+      border-radius: 5px;
+      margin-bottom: 20px;
 
-      a { text-decoration: none; }
-    }
+      .actions {
+        position: absolute;
+        top: 5px;
+        right: 63px;
+      }
 
-    .challenge-status {
-      float: right;
-      padding: 10px 15px;
-      color: #ddd;
-      font-size: 24px;
-      border-left: 1px solid #eee;
+      .challenge-title {
+        font-size: 18px;
+        padding: 15px 20px;
+
+        a { text-decoration: none; }
+      }
+
+      .challenge-status {
+        float: right;
+        padding: 10px 15px;
+        color: #ddd;
+        font-size: 24px;
+        border-left: 1px solid #eee;
+      }
     }
   }
 }

@@ -1,29 +1,51 @@
 <div class="container course-page">
   <div class="row">
     <div class="col-sm-12 header">
+      <% if current_user.is_admin? %>
+      <div class="actions">
+        <a href="#"><span class="glyphicon glyphicon-pencil action action-edit"></span></a>
+        <a href="#"><span class="glyphicon glyphicon-remove action action-remove"></span></a>
+      </div>
+      <% end %>
       <h1><%= @course.name %></h1>
       <p><%= markdown @course.excerpt %></p>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-5" style="margin-bottom: 40px;">
-      <h2>Retos</h2>
+    <div class="col-md-5 challenges">
+      <h2>
+        Retos
+        <% if current_user.is_admin? %>&nbsp;<a href="#"><span class="glyphicon glyphicon-plus action action-add"></span></a><% end %>
+      </h2>
       <% @course.challenges.rank(:row).each do |challenge| %>
         <div class="challenge clearfix">
+          <% if current_user.is_admin? %>
+          <div class="actions">
+            <a href="#"><span class="glyphicon glyphicon-pencil action action-edit"></span></a>
+            <a href="#"><span class="glyphicon glyphicon-remove action action-remove"></span></a>
+          </div>
+          <% end %>
           <div class="challenge-status"><span class="glyphicon glyphicon-ok"></span></div>
           <div class="challenge-title"><a href="#"><%= challenge.name %></a></div>
         </div>
       <% end %>
     </div>
 
-    <div class="col-md-7">
-      <h2>Recursos</h2>
-      <table class="table resources">
+    <div class="col-md-7 resources">
+      <h2>
+        Recursos
+        <% if current_user.is_admin? %>&nbsp;<a href="#"><span class="glyphicon glyphicon-plus action action-add"></span></a><% end %>
+      </h2>
+      <table class="table">
       <% @course.resources.rank(:row).each do |resource| %>
         <tr>
           <td class="resource-info">
             <a href="<%= resource.url %>" target="_blank"><%= resource.title %> &nbsp;<span class="glyphicon glyphicon-new-window"></span></a>
+            <% if current_user.is_admin? %>
+              &nbsp; &nbsp;<a href="#"><span class="glyphicon glyphicon-pencil action action-edit"></span></a>
+              <a href="#"><span class="glyphicon glyphicon-remove action action-remove"></span></a>
+            <% end %>
             <div class="description"><%= resource.description %></div>
           </td>
           <td class="resource-additional">
