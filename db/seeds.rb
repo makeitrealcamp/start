@@ -1,7 +1,29 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+intro = Course.create(name: "Una nueva mentalidad", 
+  time_estimate: "2 horas",
+  row_position: 1,
+  description: "Para poder aprender cualquier habilidad, primero debemos cambiar nuestra mentalidad. La barrera no es intelectual, es emocional.",
+  excerpt: "Aprender a programar es difícil. Difícil como aprender un nuevo idioma o un instrumento. Se requiere práctica y paciencia.")
+
+html = Course.create(name: "HTML y CSS",
+  time_estimate: "40 horas",
+  row_position: 2,
+  description: "Aprende el lenguaje de marcado que define la estructura de las páginas Web, y el lenguaje de estilos que les da formato.",
+  excerpt: "**HTML** es un lenguaje que nos permite definir **la estructura** de las páginas Web. **CSS** es un lenguaje que nos permite definir **el formato (los estilos)** de los elementos HTML.")
+
+ruby = Course.create(name: "Ruby básico",
+  time_estimate: "58 horas",
+  row_position: 3,
+  description: "Aprende las bases de este lenguaje de programación que es usado para crear aplicaciones Web como Twitter, Groupon, o Make it Real Start.",
+  excerpt: "Ruby es un lenguaje de programación flexible y expresivo, ideal para principiantes que quieren aprender a programar.")
+
+Resource.create(course: html, title: "General Assembly - Dash", time_estimate: "4 horas", url: "https://dash.generalassemb.ly/", row_position: 1,
+  description: "Crea un landing page usando HTML y CSS. Completa los proyectos 1 (Build a Personal Website) y 2 (Build a Responsive Blog Theme)")
+
+Resource.create(course: html, title: "W3Schools - HTML", time_estimate: "2 horas", url: "http://www.w3schools.com/html/html_intro.asp", row_position: 2,
+  description: "Un recurso puntual y claro. A veces un poco difícil de navegar por la publicidad. Ha sido criticado porque, a pesar de su nombre, no tiene afiliación con la W3C (la entidad encargada de definir los estándares de la Web).")
+
+Resource.create(course: html, title: "W3Schools - CSS", time_estimate: "2 horas", url: "http://www.w3schools.com/css/css_intro.asp", row_position: 3,
+  description: "Un recurso puntual y claro. A veces un poco difícil de navegar por la publicidad. Ha sido criticado porque, a pesar de su nombre, no tiene afiliación con la W3C (la entidad encargada de definir los estándares de la Web).")
+
+Resource.create(course: html, title: "Codecademy - HTML & CSS", time_estimate: "7 horas", url: "http://www.codecademy.com/tracks/web", row_position: 4,
+  description: "Refuerza tus conocimientos de HTML y CSS con este tutorial interactivo.")
