@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150301231928) do
+ActiveRecord::Schema.define(version: 20150302115948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,12 +30,12 @@ ActiveRecord::Schema.define(version: 20150301231928) do
   add_index "challenges", ["course_id"], name: "index_challenges_on_course_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
-    t.string   "name",       limit: 50
+    t.string   "name",          limit: 50
     t.integer  "row"
     t.text     "abstract"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.string   "estimated",  limit: 50
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "time_estimate", limit: 50
   end
 
   create_table "documents", force: :cascade do |t|
@@ -51,14 +51,14 @@ ActiveRecord::Schema.define(version: 20150301231928) do
 
   create_table "resources", force: :cascade do |t|
     t.integer  "course_id"
-    t.string   "title",       limit: 100
+    t.string   "title",         limit: 100
     t.string   "description"
     t.integer  "row"
     t.integer  "type"
     t.string   "url"
-    t.string   "estimated",   limit: 70
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "time_estimate", limit: 50
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "resources", ["course_id"], name: "index_resources_on_course_id", using: :btree
