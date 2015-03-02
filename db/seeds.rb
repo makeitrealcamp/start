@@ -17,7 +17,7 @@ ruby = Course.create(name: "Ruby básico",
   excerpt: "Ruby es un lenguaje de programación flexible y expresivo, ideal para principiantes que quieren aprender a programar.")
 
 Resource.create(course: html, title: "General Assembly - Dash", time_estimate: "4 horas", url: "https://dash.generalassemb.ly/", row_position: 1,
-  description: "Crea un landing page usando HTML y CSS. Completa los proyectos 1 (Build a Personal Website) y 2 (Build a Responsive Blog Theme)")
+  description: "Abre una cuenta y crea un landing page usando HTML y CSS. Completa los proyectos 1 (Build a Personal Website) y 2 (Build a Responsive Blog Theme)")
 
 Resource.create(course: html, title: "W3Schools - HTML", time_estimate: "2 horas", url: "http://www.w3schools.com/html/html_intro.asp", row_position: 2,
   description: "Un recurso puntual y claro. A veces un poco difícil de navegar por la publicidad. Ha sido criticado porque, a pesar de su nombre, no tiene afiliación con la W3C (la entidad encargada de definir los estándares de la Web).")
