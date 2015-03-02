@@ -1,17 +1,17 @@
-<div class="container">
+<div class="container login">
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
       <%= form_tag controller: :sessions, action: :create do %>
         <div class="form-group">
           <%= label_tag(:email, "Email") %>
-          <%= email_field_tag(:email, nil, class: 'form-control') %>
+          <%= email_field_tag(:email, nil, class: 'form-control input-lg') %>
         </div>
         <div class="form-group">
           <%= label_tag(:password, "Password") %>
-          <%= password_field_tag(:password, nil, class: 'form-control') %>
+          <%= password_field_tag(:password, nil, class: 'form-control input-lg') %>
         </div>
 
-        <div class="text-right"><%= submit_tag("Login", class: 'btn btn-default') %></div>
+        <div class="text-right"><%= submit_tag("Ingresar", class: 'btn btn-primary btn-lg btn-block') %></div>
       <% end %>
     </div>
   </div>
