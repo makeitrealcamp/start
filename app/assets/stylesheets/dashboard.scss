@@ -14,33 +14,38 @@
   }
 
   .course {
-    background: white;
-    border: 1px solid #ddd;
+    background: #fafafa;
+    border: 1px solid #eee;
     border-radius: 5px;
-    padding: 20px; 
+    padding: 20px;
 
     .title {
       color: #333;
       font-size: 21px;
-      font-weight: bold;
+      font-weight: normal;
       text-align: center;
       margin-bottom: 20px;
     }
 
+    p {
+      font-weight: 300;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
     .info {
       margin-bottom: 20px;
-
       color: #999;
 
       span {
         display: block;
-        font-size: 14px;  
+        font-size: 14px;
         text-align: center;
-      } 
-      
+      }
+
       .info-item-value {
         font-size: 18px;
-        font-weight: bold; 
+        font-weight: bold;
       }
     }
   }

@@ -18,5 +18,9 @@ class Resource < ActiveRecord::Base
   include RankedModel
   ranks :row, with_same: :course_id
 
+  self.inheritance_column = nil
+
+  enum type: [:post, :video, :course, :tutorial, :book]
+
   belongs_to :course
 end
