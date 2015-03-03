@@ -14,6 +14,8 @@
 #
 
 class Challenge < ActiveRecord::Base
+  has_paper_trail on: [:update, :destroy]
+
   include RankedModel
   ranks :row, with_same: :course_id
 

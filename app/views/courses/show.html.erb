@@ -20,7 +20,7 @@
         <% if current_user.is_admin? %>&nbsp;<a href="#"><span class="glyphicon glyphicon-plus action action-add"></span></a><% end %>
       </h2>
       <% @course.challenges.for(current_user).each do |challenge| %>
-        <div class="challenge clearfix">
+        <div class="challenge clearfix <%= challenge_class(challenge) %>">
           <% if current_user.is_admin? %>
           <div class="actions">
             <a href="#"><span class="glyphicon glyphicon-pencil action action-edit"></span></a>
@@ -57,5 +57,6 @@
       <% end %>
       </table>
     </div>
+
   </div>
 </div>

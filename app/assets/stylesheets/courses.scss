@@ -70,7 +70,7 @@
           font-size: 18px;
           cursor: pointer;
 
-          &:hover { color: green; }
+          &:hover { color: #28B038; }
         }
 
         .time-estimate {
@@ -88,7 +88,7 @@
 
     .challenge {
       position: relative;
-      background: #fafafa;
+      background: #fafafc;
       border: 1px solid #eee;
       border-radius: 5px;
       margin-bottom: 20px;
@@ -101,6 +101,7 @@
 
       .challenge-title {
         font-size: 18px;
+        opacity: 0.6;
         padding: 15px 20px;
 
         a { text-decoration: none; }
@@ -112,6 +113,14 @@
         color: #ddd;
         font-size: 24px;
         border-left: 1px solid #eee;
+      }
+
+      &.completed {
+        .challenge-title { opacity: 1; }
+        .challenge-status {
+          background: #28B038;
+          color: white;
+        }
       }
     }
   }
