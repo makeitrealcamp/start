@@ -19,4 +19,8 @@ class Challenge < ActiveRecord::Base
 
   belongs_to :course
   has_many :documents, as: :folder
+
+  scope :for, -> user { published unless user.is_admin? } 
+  scope :published, -> { where(published: true) }
+  default_scope { rank(:row) }
 end

@@ -1,0 +1,39 @@
+.challenge-page {
+  h1 {
+    font-family: "Open Sans Condensed", sans-serif;
+    font-size: 32px;
+    margin-bottom: 25px;
+  }
+
+  // form#submit-solution {
+  //   padding-bottom: 50px;
+  // }
+
+  .solution {
+    .nav-tabs {
+      margin-left: -1px;
+
+      li.active a {
+        color: #839496;
+        background: #002b36;
+      }
+    }
+
+    .tab-content {
+      margin-top: -44px;
+      padding-top: 44px;
+      margin-bottom: -60px;
+      padding-bottom: 60px;
+    }
+  }
+
+  .CodeMirror {
+    height: 100%;
+    padding: 10px;
+    box-shadow: none !important;
+  }
+
+  .solution-buttons {
+    margin-top: 10px;
+  }
+}

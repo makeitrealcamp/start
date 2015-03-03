@@ -1,0 +1,53 @@
+<div class="container expand challenge-page">
+  <div class="row expand">
+    <div class="col-md-5 expand overflow instructions">
+      <%= link_to "<span class='glyphicon glyphicon-arrow-left'></span> Volver a #{@challenge.course.name}".html_safe, @challenge.course %>
+      <h1><%= @challenge.name %></h1>
+
+      <%= markdown @challenge.instructions %>
+    </div>
+
+    <div class="col-md-7 expand solution">
+      <%= form_tag submit_solution_path(@solution.id), id: 'submit-solution', class: 'expand', remote: true do %>
+        <!-- file tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <% @solution.documents.each_with_index do |document, index| %> 
+            <li class='<%= "active" if index == 0 %> file-tab'>
+              <a href="#file-<%= document.id %>" role="tab" data-toggle="tab"><span class="name"><%= document.name %></span></a>
+            </li>
+          <% end %>
+        </ul>
+
+        <!-- file content -->
+        <div class="tab-content expand" id="file-content" data-solution-id="<%= @solution.id %>">
+          <% @solution.documents.each_with_index do |document, index| %>
+            <div class="tab-pane expand <%= "active" if index == 0 %> instructions" id="file-<%= document.id %>">
+              <%= text_area_tag "content-#{document.id}", document.content, class: "content-file", data: { id: "#{document.id}"} %>
+
+              <script>
+                editors.configure(<%= document.id %>, { mode: '<%= codemirror_mode(document.name) %>' });
+              </script>
+            </div>
+          <% end %>
+        </div>
+
+        <!-- preview and submit button -->
+        <div class="solution-buttons">
+          <div class="text-right">
+            <a href="#" class="btn btn-default btn-preview" target="_blank">Preview</a>
+            <%= submit_tag "Enviar Solución", class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>  
+  </div>
+</div>
+
+<!-- Modal to zoom images -->
+<div id="zoom-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body"></div>
+    </div>
+  </div>
+</div>

@@ -11,8 +11,8 @@
 #  updated_at  :datetime         not null
 #
 
-class Document < ActiveRecord::Base
-  has_paper_trail on: [:update, :destroy]
-  
+class Document < ActiveRecord::Base  
   belongs_to :folder, polymorphic: true
+
+  default_scope { order('created_at') }
 end

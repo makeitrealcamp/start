@@ -1,12 +1,18 @@
 @import "bootstrap-sprockets";
 @import "theme";
 @import "bootstrap";
+@import "codemirror";
+@import "solarized";
 @import "pages";
 @import "sessions";
 @import "dashboard";
 @import "courses";
+@import "challenges";
 
 .expand { height: 100%; }
+.overflow { overflow-y: scroll; }
+
+.navbar { margin-bottom: 0; }
 
 .navbar-brand {
   position: relative;
@@ -40,6 +46,11 @@
     width: 55px;
     border: 2px solid rgba(255, 255, 255, 0.6);
   }
+}
+
+.content-wrapper {
+  margin-top: -70px;
+  padding-top: 90px;
 }
 
 .action {

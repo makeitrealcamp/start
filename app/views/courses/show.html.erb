@@ -1,6 +1,7 @@
 <div class="container course-page">
   <div class="row">
     <div class="col-sm-12 header">
+      <%= link_to "<span class='glyphicon glyphicon-arrow-left'></span> Volver al Inicio".html_safe, root_path %>
       <% if current_user.is_admin? %>
       <div class="actions">
         <a href="#"><span class="glyphicon glyphicon-pencil action action-edit"></span></a>
@@ -18,7 +19,7 @@
         Retos
         <% if current_user.is_admin? %>&nbsp;<a href="#"><span class="glyphicon glyphicon-plus action action-add"></span></a><% end %>
       </h2>
-      <% @course.challenges.rank(:row).each do |challenge| %>
+      <% @course.challenges.for(current_user).each do |challenge| %>
         <div class="challenge clearfix">
           <% if current_user.is_admin? %>
           <div class="actions">
@@ -27,7 +28,7 @@
           </div>
           <% end %>
           <div class="challenge-status"><span class="glyphicon glyphicon-ok"></span></div>
-          <div class="challenge-title"><a href="#"><%= challenge.name %></a></div>
+          <div class="challenge-title"><%= link_to challenge.name, course_challenge_path(@course, challenge) %></div>
         </div>
       <% end %>
     </div>
@@ -38,7 +39,7 @@
         <% if current_user.is_admin? %>&nbsp;<a href="#"><span class="glyphicon glyphicon-plus action action-add"></span></a><% end %>
       </h2>
       <table class="table">
-      <% @course.resources.rank(:row).each do |resource| %>
+      <% @course.resources.each do |resource| %>
         <tr>
           <td class="resource-info">
             <a href="<%= resource.url %>" target="_blank"><%= resource.title %> &nbsp;<span class="glyphicon glyphicon-new-window"></span></a>

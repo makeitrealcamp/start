@@ -23,4 +23,6 @@ class Resource < ActiveRecord::Base
   enum type: [:post, :video, :course, :tutorial, :book]
 
   belongs_to :course
+
+  default_scope { rank(:row) }
 end
