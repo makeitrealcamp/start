@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :public_access, only: [:create]
+
   def create
     user = User.create(user_params)
     sign_in(user)

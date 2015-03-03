@@ -1,8 +1,10 @@
 class SolutionsController < ApplicationController
+  before_action :private_access
+
   def submit
     @solution = Solution.find(params[:id])
     update_documents
-    evaluate_solution    
+    evaluate_solution
   end
 
   private

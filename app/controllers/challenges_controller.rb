@@ -1,4 +1,6 @@
 class ChallengesController < ApplicationController
+  before_action :private_access
+
   def show
     @challenge = Challenge.find(params[:id])
     @solution = find_or_create_solution
