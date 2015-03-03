@@ -20,6 +20,7 @@ class Solution < ActiveRecord::Base
 
   enum status: [:created, :completed, :failed]
 
+  after_initialize :default_values
   after_create :create_documents
 
   def evaluate
@@ -43,6 +44,10 @@ class Solution < ActiveRecord::Base
   end
 
   private
+    def default_values
+      self.status ||= :created
+    end
+
     def create_documents
       challenge.documents.each do |document|
         documents.create(name: document.name, content: document.content)

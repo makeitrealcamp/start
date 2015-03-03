@@ -36,7 +36,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'gravatar-ultimate'
 gem 'ranked-model'
-gem 'paper_trail', '~> 4.0.0.beta'
+gem 'paper_trail', github: 'germanescobar/paper_trail'
 gem 'redcarpet'
 gem 'pygments.rb'
 
