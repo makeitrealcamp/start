@@ -28,8 +28,10 @@ Resource.create(course: html, title: "W3Schools - CSS", time_estimate: "2 horas"
 Resource.create(course: html, title: "Codecademy - HTML & CSS", time_estimate: "7 horas", url: "http://www.codecademy.com/tracks/web", row_position: 4,
   description: "Refuerza tus conocimientos de HTML y CSS con este tutorial interactivo.")
 
-Challenge.create(course: html, name: "Hola Mundo", row_position: 1, published: true,
-  instructions: "Estas son las instrucciones del challenge.", evaluation: "def solve; end")
+c1 = Challenge.create(course: html, name: "Hola Mundo", row_position: 1, published: true,
+  instructions: "Estas son las instrucciones del challenge.", evaluation: "def evaluate(files); end")
+Document.create(folder: c1, name: "index.html", content: "")
 
-Challenge.create(course: html, name: "Ordenando el desorden", row_position: 1, published: true,
-  instructions: "Estas son las instrucciones del challenge.", evaluation: "def solve; return 'Siempre mal'; end")
+c2 = Challenge.create(course: html, name: "Ordenando el desorden", row_position: 1, published: true,
+  instructions: "Estas son las instrucciones del challenge.", evaluation: "def evaluate(files); return 'Siempre mal'; end")
+Document.create(folder: c2, name: "index.html", content: "")
