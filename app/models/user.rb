@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_secure_password validations: false
 
   has_many :solutions, dependent: :destroy
+  has_and_belongs_to_many :resources
 
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }

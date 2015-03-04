@@ -65,12 +65,14 @@
         text-align: right;
 
         span { display: block; }
-        .glyphicon {
+        .resource-status {
           color: #ddd;
           font-size: 18px;
+          text-decoration: none;
           cursor: pointer;
 
           &:hover { color: #28B038; }
+          &.completed { color: #28B038; }
         }
 
         .time-estimate {

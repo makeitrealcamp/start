@@ -15,4 +15,8 @@ Rails.application.routes.draw do
   resources :solutions, only: [] do
     post 'submit', on: :member
   end
+
+  resources :resources, only: [] do
+    resource :completion, controller: 'resource_completion', only: [:create, :destroy]
+  end
 end

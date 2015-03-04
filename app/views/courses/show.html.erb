@@ -50,7 +50,7 @@
             <div class="description"><%= resource.description %></div>
           </td>
           <td class="resource-additional">
-            <span class="glyphicon glyphicon-ok-circle"></span>
+            <%= link_to_toggle_completed resource %>
             <span class="time-estimate"><%= resource.time_estimate %></span>
           </td>
         </div>
