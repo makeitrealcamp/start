@@ -24,8 +24,6 @@ class Solution < ActiveRecord::Base
   after_create :create_documents
 
   def evaluate
-    self.attempts += 1 # new attempt
-
     begin
       eval "module Evaluator#{id}; end"
       eval "Evaluator#{id}.instance_eval('#{challenge.evaluation}')" # this creates an evaluate method used below
@@ -37,8 +35,6 @@ class Solution < ActiveRecord::Base
       save!
       return error
     rescue Exception => e
-      puts e.message
-      puts e.backtrace
       return "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp: #{e.message}"
     end
   end
