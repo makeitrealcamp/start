@@ -9,6 +9,11 @@
 @import "courses";
 @import "challenges";
 
+html.turbolinks-progress-bar::before {
+  background-color: #C74238 !important;
+  height: 5px !important;
+}
+
 .expand { height: 100%; }
 .overflow { overflow-y: scroll; }
 

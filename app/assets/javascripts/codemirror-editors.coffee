@@ -1,6 +1,6 @@
 class Editors
   constructor: ->
-    @_editors = []
+    @_editors = {}
 
   configure: (id, opts) =>
     defaults =
@@ -17,10 +17,13 @@ class Editors
     editor = CodeMirror.fromTextArea(document.getElementById('content-' + id), $.extend(defaults, opts))
     editor.setValue($('#content-' + id).val())
     editor.on("change", ->
-      $('.btn-preview').addClass('disabled')
+      Events.emit("editors:change")
     )
 
     # add the editor to the collection of editors
     @_editors[id] = editor;
+
+  get: (id) ->
+    @_editors[id]
 
 window.editors = new Editors()

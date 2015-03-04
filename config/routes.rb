@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   end
 
   resources :solutions, only: [] do
+    put 'update_documents', on: :member
     post 'submit', on: :member
+    get  'preview/:file', action: 'preview', on: :member, constraints: { file: /[0-z\.]+/ }, as: :preview
   end
 
   resources :resources, only: [] do

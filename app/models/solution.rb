@@ -26,7 +26,7 @@ class Solution < ActiveRecord::Base
   def evaluate
     begin
       eval "module Evaluator#{id}; end"
-      eval "Evaluator#{id}.instance_eval('#{challenge.evaluation}')" # this creates an evaluate method used below
+      eval "Evaluator#{id}.instance_eval(%q{#{challenge.evaluation}})" # this creates an evaluate method used below
       files = documents.each_with_object({}) { |document, f| f[document.name] = document }
       error = eval "Evaluator#{id}.evaluate(files)"
 
@@ -35,6 +35,8 @@ class Solution < ActiveRecord::Base
       save!
       return error
     rescue Exception => e
+      puts e.message
+      puts e.backtrace
       return "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp: #{e.message}"
     end
   end

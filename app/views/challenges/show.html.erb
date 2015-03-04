@@ -19,10 +19,10 @@
         </ul>
 
         <!-- file content -->
-        <div class="tab-content expand" id="file-content" data-solution-id="<%= @solution.id %>">
+        <div class="tab-content expand editors" data-solution-id="<%= @solution.id %>">
           <% @solution.documents.each_with_index do |document, index| %>
-            <div class="tab-pane expand <%= "active" if index == 0 %> instructions" id="file-<%= document.id %>">
-              <%= text_area_tag "content-#{document.id}", document.content, class: "content-file", data: { id: "#{document.id}"} %>
+            <div class="tab-pane expand <%= "active" if index == 0 %> instructions" id="editor-<%= document.id %>">
+              <%= text_area_tag "content-#{document.id}", document.content, class: "editor-content", data: { id: "#{document.id}"} %>
 
               <script>
                 editors.configure(<%= document.id %>, { mode: '<%= codemirror_mode(document.name) %>' });
@@ -51,3 +51,7 @@
     </div>
   </div>
 </div>
+
+<script>
+  new ChallengeView();
+</script>

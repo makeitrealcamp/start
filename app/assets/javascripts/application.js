@@ -21,3 +21,10 @@
 //= require codemirror/javascript
 //= require codemirror/htmlmixed
 //= require_tree .
+
+
+Turbolinks.enableProgressBar();
+
+$(document).on("page:fetch", function() {
+  save_files_timer.stop();
+});
