@@ -48,6 +48,12 @@
   </nav>
 
   <div class="content-wrapper expand">
+  <% flash.each do |name, msg| -%>
+    <div class="alert-top alert-top-<%= name %> fade in">
+      <%= msg.html_safe %>
+    </div>
+  <% end -%>
+  
   <%= yield %>
   </div>
 

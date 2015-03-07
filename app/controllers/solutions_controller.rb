@@ -24,13 +24,13 @@ class SolutionsController < ApplicationController
 
   private
     def save_documents
-      @solution.documents.each { |doc| doc.update(content: params["editor-#{doc.id}"]) }
+      @solution.documents.each { |doc| doc.update(content: params["content-#{doc.id}"]) }
     end
 
     def save_documents_with_no_versioning
       @solution.documents.each do |doc|
         doc.without_versioning do
-          doc.update(content: params["editor-#{doc.id}"])
+          doc.update(content: params["content-#{doc.id}"])
         end
       end
     end

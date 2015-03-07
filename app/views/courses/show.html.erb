@@ -4,8 +4,7 @@
       <%= link_to "<span class='glyphicon glyphicon-arrow-left'></span> Volver al Inicio".html_safe, root_path %>
       <% if current_user.is_admin? %>
       <div class="actions">
-        <a href="#"><span class="glyphicon glyphicon-pencil action action-edit"></span></a>
-        <a href="#"><span class="glyphicon glyphicon-remove action action-remove"></span></a>
+        <a href="#" class="btn btn-success btn-xs edit-course-btn"><span class="glyphicon glyphicon-pencil"></span> &nbsp;Editar Curso</a>
       </div>
       <% end %>
       <h1><%= @course.name %></h1>
@@ -15,29 +14,35 @@
 
   <div class="row">
     <div class="col-md-5 challenges">
-      <h2>
-        Retos
-        <% if current_user.is_admin? %>&nbsp;<a href="#"><span class="glyphicon glyphicon-plus action action-add"></span></a><% end %>
-      </h2>
+      <header class="section-header">
+        <h2>
+          Retos
+          <% if current_user.is_admin? %>&nbsp;<%= link_to "<span class='glyphicon glyphicon-plus action action-add'></span>".html_safe, new_course_challenge_path(@course) %><% end %>
+        </h2>
+        <p>Usa los recursos y Google si es necesario para intentar solucionar estos retos.</p>
+      </header>
       <% @course.challenges.for(current_user).each do |challenge| %>
         <div class="challenge clearfix <%= challenge_class(challenge) %>">
+          <div class="challenge-status"><span class="glyphicon glyphicon-ok"></span></div>
+          <div class="challenge-title"><%= link_to challenge.name, course_challenge_path(@course, challenge) %></div>
           <% if current_user.is_admin? %>
           <div class="actions">
-            <a href="#"><span class="glyphicon glyphicon-pencil action action-edit"></span></a>
+            <%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_course_challenge_path(@course, challenge) %>
             <a href="#"><span class="glyphicon glyphicon-remove action action-remove"></span></a>
           </div>
           <% end %>
-          <div class="challenge-status"><span class="glyphicon glyphicon-ok"></span></div>
-          <div class="challenge-title"><%= link_to challenge.name, course_challenge_path(@course, challenge) %></div>
         </div>
       <% end %>
     </div>
 
     <div class="col-md-7 resources">
-      <h2>
-        Recursos
-        <% if current_user.is_admin? %>&nbsp;<a href="#"><span class="glyphicon glyphicon-plus action action-add"></span></a><% end %>
-      </h2>
+      <header class="section-header">
+        <h2>
+          Recursos
+          <% if current_user.is_admin? %>&nbsp;<a href="#"><span class="glyphicon glyphicon-plus action action-add"></span></a><% end %>
+        </h2>
+        <p>Los recursos te dan el conocimiento, míralos como entrenamiento para enfrentar los retos.</p>
+      </header>
       <table class="table">
       <% @course.resources.each do |resource| %>
         <tr>

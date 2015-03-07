@@ -1,6 +1,25 @@
 class ChallengesController < ApplicationController
   before_action :private_access
 
+  def new
+    course = Course.find(params[:course_id])
+    @challenge = course.challenges.new
+  end
+
+  def create
+    @challenge = Challenge.create(challenge_params)
+    redirect_to course_path(@challenge.course), notice: "El reto <strong>#{@challenge.name}</strong> ha sido creado"
+  end
+
+  def edit
+    @challenge = Challenge.find(params[:id])
+  end
+
+  def update
+    @challenge = Challenge.update(params[:id], challenge_params)
+    redirect_to course_path(@challenge.course), notice: "El reto <strong>#{@challenge.name}</strong> ha sido actualizado"
+  end
+
   def show
     @challenge = Challenge.find(params[:id])
     @solution = find_or_create_solution
@@ -17,5 +36,9 @@ class ChallengesController < ApplicationController
 
     def create_solution
       current_user.solutions.create(challenge: @challenge)
+    end
+
+    def challenge_params
+      params.require(:challenge).permit(:course_id, :name, :instructions, :published, :evaluation, documents_attributes: [:id, :name, :content, :_destroy])
     end
 end
