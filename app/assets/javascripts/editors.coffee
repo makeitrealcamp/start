@@ -2,7 +2,7 @@ class Editors
   constructor: ->
     @_editors = {}
 
-  configure: (id, opts) =>
+  configure: (options) =>
     defaults =
       mode: 'html'
       theme: 'solarized dark'
@@ -14,16 +14,17 @@ class Editors
         Tab: (cm) ->
           cm.replaceSelection("  " , "end")
 
-    editor = CodeMirror.fromTextArea(document.getElementById('content-' + id), $.extend(defaults, opts))
-    editor.setValue($('#content-' + id).val())
-    editor.on("change", ->
-      Events.emit("editors:change")
-    )
+    editor = CodeMirror.fromTextArea(document.getElementById(options.el), $.extend(defaults, options.opts))
+    return editor
+    
 
-    # add the editor to the collection of editors
+  add: (id, editor) ->
     @_editors[id] = editor;
 
   get: (id) ->
     @_editors[id]
+
+  remove: (id) ->
+    delete @_editors[id]
 
 window.editors = new Editors()

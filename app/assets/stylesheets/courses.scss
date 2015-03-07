@@ -19,14 +19,24 @@
 
     .actions {
       position: absolute;
-      top: 20px;
+      top: 10px;
       right: 7px;
+
+      .edit-course-btn {
+        opacity: 0.4;
+        &:hover { opacity: 1; }
+      }
     }
   }
 
-  h2 {
-    font-size: 24px;
-    margin-bottom: 25px;
+  .section-header {
+    margin-bottom: 20px; 
+    h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    p { color: #333; }
   }
 
   .resources {

@@ -20,11 +20,18 @@
 //= require codemirror/css
 //= require codemirror/javascript
 //= require codemirror/htmlmixed
+//= require underscore-1.8.2
+//= require backbone-1.1.2
 //= require_tree .
-
 
 Turbolinks.enableProgressBar();
 
 $(document).on("page:fetch", function() {
-  save_files_timer.stop();
+  Dispatcher.stopListening();
+  save_files_timer.cancel();
 });
+
+_.templateSettings = {
+  interpolate: /\{\{=(.+?)\}\}/g,
+  evaluate: /\{\{(.+?)\}\}/g,
+};

@@ -25,4 +25,16 @@ class Challenge < ActiveRecord::Base
   scope :for, -> user { published unless user.is_admin? } 
   scope :published, -> { where(published: true) }
   default_scope { rank(:row) }
+
+  after_initialize :default_values
+
+  accepts_nested_attributes_for :documents, allow_destroy: true
+
+  private
+    def default_values
+      self.published ||= false
+      self.evaluation ||= "def evaluate(files)\n  \nend"
+    rescue ActiveModel::MissingAttributeError => e
+      # ranked_model makes partial selects and this error is thrown
+    end
 end

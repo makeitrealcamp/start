@@ -1,0 +1,144 @@
+<div class="container expand">
+  <div class="row expand new-challenge-page">
+    <%= form_for [@challenge.course, @challenge], html: { class: "expand" } do |f| %>
+
+      <!-- left side -->
+      <div class="col-md-5 expand overflow">
+        <h1><%= @challenge.new_record? ? "Crear Reto" : "Editar Reto" %></h1>
+
+        <div class="form-group">
+          <%= f.label :course %>
+          <%= f.collection_select :course_id, Course.all, :id, :name, { prompt: true }, {class: 'form-control'} %>
+        </div>
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control', placeholder: 'Title' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :instructions %>
+          <%= f.text_area :instructions, class: 'form-control', rows: 15, placeholder: 'Instructions' %>
+        </div>
+        <div class="form-group">
+          <%= f.check_box :published %>
+          <%= f.label :published %>
+        </div>
+      </div>
+
+      <!-- right-side -->
+      <div class="col-md-7 expand">
+        <div class="right expand">
+          <div class="right-content expand">
+
+            <!-- evaluation and files tabs -->
+            <ul class="nav nav-tabs nav-justified">
+              <li role="presentation" class="evaluation-tab active"><a href="#evaluation-panel" aria-controls="evaluation-panel" role="tab" data-toggle="tab">Evaluation</a></li>
+              <li role="presentation"><a href="#files-panel" aria-controls="files-panel" role="tab" data-toggle="tab">Initial Files</a></li>
+            </ul>
+
+            <!-- evaluation panel -->
+            <div class="tab-content expand">
+              <div role="tabpanel" class="tab-pane active expand" id="evaluation-panel">
+                <div class="evaluation-wrapper expand">
+                  <%= f.text_area :evaluation, class: 'form-control' %>
+                </div>
+              </div>
+
+              <!-- files panel -->
+              <div role="tabpanel" class="tab-pane expand" id="files-panel">
+                <div class="files-wrapper expand"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="action-buttons text-right">
+            <%= link_to "Volver", @challenge.course, class: "btn btn-default" %>
+            <%= f.submit @challenge.new_record? ? "Crear Reto" : "Editar Reto", class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+      <!-- a div to place destroyed files -->
+      <div class="destroyed"></div>
+    <% end %>
+  </div>
+</div>
+
+<!-- new file modal -->
+<div class="modal fade" id="new-file-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Agregar Archivo</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Nombre del archivo" id="file-name">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-success add-btn">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- the files container template -->
+<script type="x/template" id="files-template">
+  <div class="files expand">
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="new-file">
+        <a href="#" data-toggle="modal" data-target="#new-file-modal"><span class="glyphicon glyphicon-plus-sign"></span></a>
+      </li>
+    </ul>
+
+    <div class="tab-content expand" id="editors-panel"></div>
+  </div>
+</script>
+
+<!-- the new file button template -->
+<script type="x/template" id="new-file-btn-template">
+  <div class="new-file-btn">
+    <a href="#" class="btn btn-success" data-toggle="modal" data-target="#new-file-modal"><span class="glyphicon glyphicon-plus-sign"></span> Agregar Archivo</a>
+  </div>
+</script>
+
+<!-- the (file) tab template -->
+<script type="x/template" id="file-tab-template">
+  <li class="active file-tab" data-editor-id="{{= index }}">
+    <a href="#editor-{{= index }}" role="tab" data-toggle="tab">
+      <span class="name">{{= name }}</span>
+      <span href="#" class="remove-file-btn">&times;</span>
+    </a>
+  </li>
+</script>
+
+<!-- the (file) editor template -->
+<script type="x/template" id="editor-template">
+  <div role="tabpanel" class="tab-pane active expand" id="editor-{{= index }}">
+    <textarea name="challenge[documents_attributes][{{= index }}][content]" id="editor-content-{{= index }}"></textarea>
+    <input type="hidden" name="challenge[documents_attributes][{{= index }}][name]" value="{{= name }}">
+    {{ if (id != null) { }}
+      <input type="hidden" name="challenge[documents_attributes][{{= index }}][id]" value="{{= id }}" class="has-id">
+    {{ } }}
+  </div>
+</script>
+
+<!-- the markup needed to destroy a file in the DB -->
+<script type="x/template" id="destroy-template">
+  <input type="hidden" name="challenge[documents_attributes][{{= editor_index }}][id]" value="{{= document_id }}">
+  <input type="hidden" name="challenge[documents_attributes][{{= editor_index }}][_destroy]" value="1">
+</script>
+
+<script>
+  (function() {
+    var form = new ChallengeFormView({ editor_modes: <%= codemirror_modes.to_json.html_safe %> });
+    <% @challenge.documents.each do |document| %>
+      form.add_editor(<%= document.id %>, '<%= j document.name.html_safe %>', '<%= j document.content.html_safe %>');
+    <% end %>
+
+    if (!$('.files').length) {
+      $('.files-wrapper').append($('#new-file-btn-template').html());
+    }
+  })();
+</script>

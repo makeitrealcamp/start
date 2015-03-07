@@ -70,3 +70,20 @@ html.turbolinks-progress-bar::before {
   &.action-edit { background: #2A79A6; }
   &.action-remove { background: #C74238; }
 }
+
+.alert-top {
+  @extend .alert;
+  
+  text-align: center;
+  border-radius: 0;
+  padding: 7px 15px;
+  margin-top: -20px;
+}
+
+.alert-top-notice {
+  @extend .alert-success;
+}
+
+.alert-top-error {
+  @extend .alert-danger;
+}

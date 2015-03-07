@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create]
   resources :courses, only: [:show] do
-    resources :challenges, only: [:show]
+    resources :challenges, only: [:new, :create, :edit, :update, :show]
   end
 
   resources :solutions, only: [] do
