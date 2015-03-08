@@ -11,10 +11,14 @@
 
     p {
       color: #333;
-      font-size: 21px;
+      font-size: 18px;
       font-weight: 300;
 
       strong { font-weight: normal; }
+
+      @media (min-width: $screen-sm-min) {
+        font-size: 21px;
+      }
     }
 
     .actions {
@@ -55,9 +59,13 @@
 
       td.resource-info {
         a {
-          font-size: 18px;
+          font-size: 16px;
           font-weight: normal;
           text-decoration: none;
+
+          @media (min-width: $screen-sm-min) {
+            font-size: 18px;
+          }
         }
 
         span.glyphicon-new-window {
@@ -67,7 +75,12 @@
           opacity: 0.8;
         }
 
-        .description {  color: #999; }
+        .description {  
+          color: #999;
+          font-size: 14px;
+
+          @media (min-width: $screen-sm-min) { font-size: 16px; }
+        }
       }
 
       td.resource-additional {
@@ -112,9 +125,14 @@
       }
 
       .challenge-title {
-        font-size: 18px;
+        font-size: 16px;
         opacity: 0.6;
-        padding: 15px 20px;
+        padding: 15px 10px;
+
+        @media (min-width: $screen-sm-min) { 
+          font-size: 18px; 
+          padding: 15px 20px;
+        }
 
         a { text-decoration: none; }
       }
