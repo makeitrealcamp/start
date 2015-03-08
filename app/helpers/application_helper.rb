@@ -1,5 +1,5 @@
 module ApplicationHelper
-  class HTMLwithPygments < Redcarpet::Render::HTML
+  class HtmlWithPygments < Redcarpet::Render::HTML
     def block_code(code, language)
       sha = Digest::SHA1.hexdigest(code)
       Rails.cache.fetch ["code", language, sha].join('-') do
@@ -9,7 +9,7 @@ module ApplicationHelper
   end
   
   def markdown(text)
-    renderer = HTMLwithPygments.new(hard_wrap: true, filter_html: true)
+    renderer = HtmlWithPygments.new(hard_wrap: true, filter_html: true)
     options = {
       autolink: true,
       no_intra_emphasis: true,

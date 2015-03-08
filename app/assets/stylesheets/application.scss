@@ -3,6 +3,7 @@
 @import "bootstrap";
 @import "codemirror";
 @import "solarized";
+@import "pygments";
 @import "pages";
 @import "sessions";
 @import "dashboard";
@@ -86,4 +87,8 @@ html.turbolinks-progress-bar::before {
 
 .alert-top-error {
   @extend .alert-danger;
+}
+
+.CodeMirror pre {
+  font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
 }
