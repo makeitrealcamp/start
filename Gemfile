@@ -39,6 +39,7 @@ gem 'ranked-model'
 gem 'paper_trail', github: 'germanescobar/paper_trail'
 gem 'redcarpet'
 gem 'pygments.rb'
+gem 'nokogiri'
 
 gem 'rails_12factor', group: :production
 

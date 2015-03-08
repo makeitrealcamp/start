@@ -190,6 +190,7 @@ DEPENDENCIES
   gravatar-ultimate
   jbuilder (~> 2.0)
   jquery-rails
+  nokogiri
   paper_trail!
   pg
   pygments.rb
