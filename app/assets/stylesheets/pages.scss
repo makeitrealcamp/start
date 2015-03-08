@@ -3,26 +3,46 @@
   .jumbo  {
     background: #2A79A6;
     color: white;
-    padding-top: 90px;
+    padding-top: 30px;
     margin-top: -22px;
+    margin-bottom: 50px;
+
+    @media (min-width: $screen-sm-min) { 
+      padding-top: 90px;
+      padding-bottom: 80px; 
+    }
 
     h1 {
       font-family: "Open Sans Condensed", sans-serif; 
-      font-size: 56px;
-      line-height: 1.1;
+      font-size: 38px;
+      line-height: 1.2;
       font-weight: bold; 
       margin-bottom: 20px;
+
+      @media (min-width: $screen-sm-min) { 
+        font-size: 56px;
+        line-height: 1.1; 
+      }
     }
 
     .lead {
-      font-size: 21px;
-      line-height: 1.6;
+      font-size: 18px;
+      line-height: 1.4;
       font-weight: 300;
       margin-top: 30px;
-      margin-bottom: 100px;
+      margin-bottom: 60px;
+
+      @media (min-width: $screen-sm-min) { 
+        font-size: 21px; 
+        margin-bottom: 100px;
+      }
     }
 
-    .start-form { margin-bottom: 150px; }
+    .start-form { 
+      margin-bottom: 100px; 
+
+      @media (min-width: $screen-sm-min) { margin-bottom: 150px; }
+    }
 
     .more {
       color: white; 
@@ -36,5 +56,22 @@
     font-size: 18px;
     line-height: 1.4;
     font-weight: 300;
+  }
+
+  .q {
+    margin-bottom: 60px;
+
+    header { 
+      color: #BF2626;
+      font-size: 21px; 
+      margin-bottom: 20px;
+    }
+
+    p {
+      line-height: 1.6;
+
+      strong { font-weight: normal; }
+    }
+
   }
 }

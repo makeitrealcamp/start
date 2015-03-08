@@ -1,11 +1,17 @@
 .dashboard {
   blockquote {
-    font-size: 18px;
+    font-size: 16px;
     font-style: italic;
     text-align: center;
     border: none;
-    margin-top: 10px;
-    margin-bottom: 50px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+
+    @media (min-width: $screen-sm-min) { 
+      font-size: 18px;
+      margin-top: 10px;
+      margin-bottom: 50px;
+    }
 
     .author {
       color: #999;
@@ -19,6 +25,7 @@
     border: 1px solid #eee;
     border-radius: 5px;
     padding: 20px;
+    margin-bottom: 30px;
 
     .actions {
       position: absolute;
@@ -52,8 +59,12 @@
 
     p {
       font-weight: 300;
-      line-height: 1.6;
-      margin-bottom: 30px;
+      margin-bottom: 15px;
+
+      @media (min-width: $screen-sm-min) {
+        line-height: 1.6;
+        margin-bottom: 30px;
+      }
     }
 
     .info {
@@ -67,8 +78,10 @@
       }
 
       .info-item-value {
-        font-size: 18px;
+        font-size: 16px;
         font-weight: bold;
+
+        @media (min-width: $screen-sm-min) { font-size: 18px; }
       }
     }
   }
