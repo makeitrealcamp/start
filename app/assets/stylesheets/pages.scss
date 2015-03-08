@@ -7,10 +7,7 @@
     margin-top: -22px;
     margin-bottom: 50px;
 
-    @media (min-width: $screen-sm-min) { 
-      padding-top: 90px;
-      padding-bottom: 80px; 
-    }
+    @media (min-width: $screen-sm-min) { padding-top: 90px; }
 
     h1 {
       font-family: "Open Sans Condensed", sans-serif; 
@@ -59,7 +56,9 @@
   }
 
   .q {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
+
+    @media (min-width: $screen-sm-min) { margin-bottom: 60px; }
 
     header { 
       color: #BF2626;
