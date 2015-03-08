@@ -17,4 +17,8 @@ class Document < ActiveRecord::Base
   belongs_to :folder, polymorphic: true
 
   default_scope { order('created_at') }
+
+  def as_html
+    Nokogiri::HTML(content)
+  end
 end
