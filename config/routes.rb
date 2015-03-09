@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#index'
 
   resources :users, only: [:create]
-  resources :courses, only: [:show] do
+  resources :courses, only: [:show, :edit, :update] do
     resources :challenges, only: [:new, :create, :edit, :update, :show]
   end
 
