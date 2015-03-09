@@ -10,8 +10,8 @@
         <div class="course">
           <% if current_user.is_admin? %>
           <div class="actions">
-            <a href="#"><span class="glyphicon glyphicon-pencil action action-edit"></span></a>
-            <a href="#"><span class="glyphicon glyphicon-remove action action-remove"></span></a>
+            <%= link_to "<span class='glyphicon glyphicon-pencil action action-edit'></span>".html_safe, edit_course_path(course) %>
+            <a href="#"><span class='glyphicon glyphicon-remove action action-remove'></span></a>
           </div>
           <% end %>
           <div class="title"><%= course.name %></div>
