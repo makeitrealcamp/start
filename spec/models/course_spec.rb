@@ -13,14 +13,8 @@
 #  description   :string
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+require 'rails_helper'
 
-one:
-  name: MyString
-  row: 1
-  abstract: MyText
-
-two:
-  name: MyString
-  row: 1
-  abstract: MyText
+RSpec.describe Course, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
+end

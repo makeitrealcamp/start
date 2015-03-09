@@ -10,14 +10,8 @@
 #  updated_at   :datetime         not null
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+require 'rails_helper'
 
-one:
-  user_id: 
-  challenge_id: 
-  status: 1
-
-two:
-  user_id: 
-  challenge_id: 
-  status: 1
+RSpec.describe Solution, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
+end

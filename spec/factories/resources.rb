@@ -14,22 +14,9 @@
 #  updated_at    :datetime         not null
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+FactoryGirl.define do
+  factory :resource do
+    
+  end
 
-one:
-  course_id: 
-  title: MyString
-  description: MyString
-  row: 1
-  type: 1
-  url: MyString
-  estimated: MyString
-
-two:
-  course_id: 
-  title: MyString
-  description: MyString
-  row: 1
-  type: 1
-  url: MyString
-  estimated: MyString
+end

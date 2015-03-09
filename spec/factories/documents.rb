@@ -11,14 +11,9 @@
 #  updated_at  :datetime         not null
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+FactoryGirl.define do
+  factory :document do
+    
+  end
 
-one:
-  parent_id: 
-  name: MyString
-  content: MyText
-
-two:
-  parent_id: 
-  name: MyString
-  content: MyText
+end

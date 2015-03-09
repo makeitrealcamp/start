@@ -13,10 +13,9 @@
 #  description   :string
 #
 
-require 'test_helper'
+FactoryGirl.define do
+  factory :course do
+    
+  end
 
-class CourseTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
 end

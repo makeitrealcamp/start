@@ -14,22 +14,13 @@
 #  updated_at      :datetime         not null
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  email: MyString
-  roles: 
-  password_digest: MyString
-  first_name: MyString
-  last_name: MyString
-  birthday: 2015-02-28
-  phone: MyString
-
-two:
-  email: MyString
-  roles: 
-  password_digest: MyString
-  first_name: MyString
-  last_name: MyString
-  birthday: 2015-02-28
-  phone: MyString
+FactoryGirl.define do
+  factory :user do
+    sequence (:email) { |n| "user#{n}@example.com" }
+    name { Faker::Name.name }
+    password "pass1234"
+    password_confirmation "pass1234"
+    status :active
+    roles ["user"]
+  end
+end

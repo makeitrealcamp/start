@@ -11,10 +11,8 @@
 #  updated_at  :datetime         not null
 #
 
-require 'test_helper'
+require 'rails_helper'
 
-class DocumentTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+RSpec.describe Document, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
 end

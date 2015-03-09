@@ -14,10 +14,8 @@
 #  updated_at    :datetime         not null
 #
 
-require 'test_helper'
+require 'rails_helper'
 
-class ResourceTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+RSpec.describe Resource, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
 end

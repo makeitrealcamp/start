@@ -13,10 +13,9 @@
 #  updated_at   :datetime         not null
 #
 
-require 'test_helper'
-
-class ChallengeTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+FactoryGirl.define do
+  factory :challenge do
+    name{Faker::Name.title}
+    instructions {Faker::Lorem.paragraph}
+  end
 end

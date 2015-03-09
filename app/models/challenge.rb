@@ -22,7 +22,10 @@ class Challenge < ActiveRecord::Base
   belongs_to :course
   has_many :documents, as: :folder
 
-  scope :for, -> user { published unless user.is_admin? } 
+  validates :name, presence: true
+  validates :instructions, presence: true
+
+  scope :for, -> user { published unless user.is_admin? }
   scope :published, -> { where(published: true) }
   default_scope { rank(:row) }
 

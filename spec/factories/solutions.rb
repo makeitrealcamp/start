@@ -10,10 +10,9 @@
 #  updated_at   :datetime         not null
 #
 
-require 'test_helper'
+FactoryGirl.define do
+  factory :solution do
+    
+  end
 
-class SolutionTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
 end
