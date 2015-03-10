@@ -16,7 +16,10 @@
 
 FactoryGirl.define do
   factory :resource do
-    
+    title { Faker::Name.title}
+    description { Faker::Lorem.paragraph}
+    url { Faker::Internet.url}
+    association  :course, factory: :course
   end
 
 end

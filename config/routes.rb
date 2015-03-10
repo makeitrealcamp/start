@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :users, only: [:create]
   resources :courses, only: [:show, :edit, :update] do
     resources :challenges, only: [:new, :create, :edit, :update, :show]
+    resources :resources, only: [:new, :create, :show]
   end
 
   resources :solutions, only: [] do
@@ -18,7 +19,8 @@ Rails.application.routes.draw do
     get  'preview/:file', action: 'preview', on: :member, constraints: { file: /[0-z\.]+/ }, as: :preview
   end
 
-  resources :resources, only: [] do
+
+  resources :resources, only: [:edit, :update, :destroy] do
     resource :completion, controller: 'resource_completion', only: [:create, :destroy]
   end
 end

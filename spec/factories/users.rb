@@ -17,10 +17,12 @@
 FactoryGirl.define do
   factory :user do
     sequence (:email) { |n| "user#{n}@example.com" }
-    name { Faker::Name.name }
     password "pass1234"
     password_confirmation "pass1234"
-    status :active
     roles ["user"]
+
+    factory :admin do
+      roles ["user", "admin"]
+    end
   end
 end

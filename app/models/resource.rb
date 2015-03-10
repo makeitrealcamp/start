@@ -25,5 +25,8 @@ class Resource < ActiveRecord::Base
   belongs_to :course
   has_and_belongs_to_many :users
 
+  validates :course, :title, :description, presence: :true
+  validates :url, presence: true, format: { with: URI.regexp }
+
   default_scope { rank(:row) }
 end
