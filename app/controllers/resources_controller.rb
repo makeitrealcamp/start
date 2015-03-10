@@ -18,6 +18,19 @@ class ResourcesController < ApplicationController
     end
   end
 
+  def edit
+    @resource = Resource.find(params[:id])
+  end
+
+  def update
+    @resource = Resource.find(params[:id])
+    if @resource.update(resource_params)
+      redirect_to @resource.course
+    else
+      render :edit
+    end
+  end
+
   def show
   end
 
