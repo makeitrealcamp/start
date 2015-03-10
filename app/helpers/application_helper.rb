@@ -7,7 +7,7 @@ module ApplicationHelper
       end
     end
   end
-  
+
   def markdown(text)
     renderer = HtmlWithPygments.new(hard_wrap: true, filter_html: true)
     options = {
@@ -20,4 +20,5 @@ module ApplicationHelper
     }
     Redcarpet::Markdown.new(renderer, options).render(text).html_safe
   end
+  
 end

@@ -51,7 +51,10 @@
           <td class="resource-info">
             <a href="<%= resource.url %>" target="_blank"><%= resource.title %> &nbsp;<span class="glyphicon glyphicon-new-window"></span></a>
             <% if current_user.is_admin? %>
-              &nbsp; &nbsp;<a href="#"><span class="glyphicon glyphicon-pencil action action-edit"></span></a>
+              &nbsp; &nbsp;<a href="#">
+                <%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_resource_path(resource) %>
+
+                </a>
               <a href="#"><span class="glyphicon glyphicon-remove action action-remove"></span></a>
             <% end %>
             <div class="description"><%= resource.description %></div>
