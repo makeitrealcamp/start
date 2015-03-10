@@ -14,7 +14,8 @@
 
 FactoryGirl.define do
   factory :course do
-    
+    name { Faker::Name.title}
+    excerpt {Faker::Lorem.sentence}
+    description { Faker::Lorem.paragraph}
   end
-
 end

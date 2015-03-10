@@ -39,7 +39,9 @@
       <header class="section-header">
         <h2>
           Recursos
-          <% if current_user.is_admin? %>&nbsp;<a href="#"><span class="glyphicon glyphicon-plus action action-add"></span></a><% end %>
+          <% if current_user.is_admin? %>
+            &nbsp;<%= link_to '<span class="glyphicon glyphicon-plus action action-add"></span>'.html_safe, new_course_resource_path(@course) %>
+          <% end %>
         </h2>
         <p>Los recursos te dan el conocimiento, míralos como entrenamiento para enfrentar los retos.</p>
       </header>

@@ -32,4 +32,10 @@ class ApplicationController < ActionController::Base
     def private_access
       redirect_to :login unless signed_in?
     end
+
+    def admin_access
+      unless current_user.is_admin?
+        redirect_to(:dashboard, flash: { error: "You do not have sufficient permissions to access this page." })
+      end
+    end
 end
