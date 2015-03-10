@@ -93,3 +93,7 @@ html.turbolinks-progress-bar::before {
 .CodeMirror pre {
   font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
 }
+
+.field_with_errors .form-control {
+  border-color: #a94442;
+}

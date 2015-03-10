@@ -1,7 +1,10 @@
 <div class="container resource-form-page">
   <div class="row">
     <%= form_for [@course, @resource]  do |f| %>
+
       <div class="col-sm-10 col-sm-offset-1">
+        <%= render 'shared/flash_messages_form', object: @resource  %>
+        
         <h1>Nuevo Recurso</h1>
         <div class="form-group">
           <%= f.label :title %>
@@ -22,6 +25,12 @@
           <%= f.label :url %>
           <%= f.text_field :url, class: "form-control" %>
         </div>
+
+        <div class="form-group">
+          <%= f.label :time_estimate %>
+          <%= f.text_field :time_estimate, class: "form-control" %>
+        </div>
+
 
         <div class="actions text-right">
           <%= link_to "Cancelar", @course, class: "btn btn-default" %>

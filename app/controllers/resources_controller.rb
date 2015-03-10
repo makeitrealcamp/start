@@ -9,8 +9,13 @@ class ResourcesController < ApplicationController
 
   def create
     @course = Course.find(params[:course_id])
-    @resource = @course.resources.create(resource_params)
-    redirect_to @course
+    @resource = @course.resources.new(resource_params)
+
+    if @resource.save
+      redirect_to @course
+    else
+      render :new
+    end
   end
 
   def show
