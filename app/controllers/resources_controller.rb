@@ -31,7 +31,9 @@ class ResourcesController < ApplicationController
     end
   end
 
-  def show
+  def destroy
+    @resource = Resource.find(params[:id])
+    @resource.destroy
   end
 
   private
