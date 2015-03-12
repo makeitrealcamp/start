@@ -9,7 +9,7 @@
     margin-top: 5px;
     margin-bottom: 20px;
 
-    @media (min-width: $screen-sm-min) { 
+    @media (min-width: $screen-sm-min) {
       font-size: 18px;
       margin-top: 10px;
       margin-bottom: 50px;
@@ -121,7 +121,7 @@
       margin-bottom: 10px;
     }
 
-    p { 
+    p {
       color: #333;
       font-weight: 300;
     }
@@ -236,6 +236,16 @@
           color: white;
         }
       }
+
+      &.over { border-top: 2px dashed #999; }
     }
+  }
+}
+
+.course-form-page {
+  h1 {
+    font-family: "Open Sans Condensed", sans-serif;
+    font-size: 38px;
+    margin-bottom: 15px;
   }
 }
