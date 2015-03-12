@@ -47,15 +47,16 @@
       </header>
       <table class="table">
       <% @course.resources.each do |resource| %>
-        <tr>
+        <tr id="resource-<%= resource.id %>">
           <td class="resource-info">
-            <a href="<%= resource.url %>" target="_blank"><%= resource.title %> &nbsp;<span class="glyphicon glyphicon-new-window"></span></a>
+            <a href="<%= resource.url %>" target="_blank">
+              <%= resource.title %> &nbsp;<span class="glyphicon glyphicon-new-window"></span>
+            </a>
             <% if current_user.is_admin? %>
-              &nbsp; &nbsp;<a href="#">
-                <%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_resource_path(resource) %>
-
-                </a>
-              <a href="#"><span class="glyphicon glyphicon-remove action action-remove"></span></a>
+              &nbsp; &nbsp;
+              <%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_resource_path(resource) %>
+              <%= link_to '<span class="glyphicon glyphicon-remove action action-remove"></span>'.html_safe, resource_path(resource),  remote: true, data:{ confirm: "Are you sure you want to delete this?"},
+              method: :delete %>
             <% end %>
             <div class="description"><%= resource.description %></div>
           </td>
@@ -63,6 +64,7 @@
             <%= link_to_toggle_completed resource %>
             <span class="time-estimate"><%= resource.time_estimate %></span>
           </td>
+        </tr>
         </div>
       <% end %>
       </table>

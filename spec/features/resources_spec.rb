@@ -118,5 +118,20 @@ RSpec.feature "Resources", type: :feature do
       expect(current_path).to eq resource_path(resource)
 
     end
+
+    scenario "Delete resource", js: true do
+      resource = create(:resource, course: course)
+      create(:resource, course: course)
+
+      login(admin)
+
+      all('a', text: 'Entrar').first.click
+      all('.resources span.action-remove', count: 2).first.click
+      page.driver.browser.switch_to.alert.accept
+      wait_for_ajax
+
+      expect(course.resources.count).to eq 1
+      expect(page).to have_selector('.resources tr', count: 1)
+    end
   end
 end
