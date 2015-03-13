@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   before_action :private_access
+  before_action :admin_access, only:[:edit, :update]
 
   def show
     @course = Course.find(params[:id])

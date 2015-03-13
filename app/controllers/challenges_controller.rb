@@ -1,5 +1,6 @@
 class ChallengesController < ApplicationController
   before_action :private_access
+  before_action :admin_access, only:[:new, :create, :edit, :update]
 
   def new
     course = Course.find(params[:course_id])
