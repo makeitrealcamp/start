@@ -39,6 +39,8 @@ gem 'paper_trail', github: 'germanescobar/paper_trail'
 gem 'redcarpet'
 gem 'pygments.rb'
 gem 'nokogiri'
+gem 'css_parser'
+gem 'nokogiri-styles'
 
 gem 'rails_12factor', group: :production
 
