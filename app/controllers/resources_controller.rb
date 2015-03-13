@@ -3,8 +3,8 @@ class ResourcesController < ApplicationController
   before_action :admin_access, only:[:new, :create]
 
   def new
-    @course = Course.find(params[:course_id])
-    @resource = @course.resources.new
+    course = Course.find(params[:course_id])
+    @resource = course.resources.new
   end
 
   def create
@@ -16,6 +16,10 @@ class ResourcesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @resource = Resource.find(params[:id])
   end
 
   def edit
@@ -39,7 +43,7 @@ class ResourcesController < ApplicationController
   private
 
    def resource_params
-     params.require(:resource).permit(:title, :description, :type, :url)
+     params.require(:resource).permit(:title, :description, :type, :url, :content, :time_estimate)
    end
 
 end

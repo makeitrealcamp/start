@@ -12,6 +12,7 @@
 #  time_estimate :string(50)
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  content       :text
 #
 
 require 'rails_helper'

@@ -12,16 +12,14 @@ Rails.application.routes.draw do
 
   resources :courses, only: [:show, :edit, :update] do
     resources :challenges, only: [:new, :create, :edit, :update, :show]
-    resources :resources, only: [:new, :create, :show]
+    resources :resources, only: [:new, :create, :show, :edit, :update, :destroy] do
+      resource :completion, controller: 'resource_completion', only: [:create, :destroy]
+    end
   end
 
   resources :solutions, only: [] do
     put 'update_documents', on: :member
     post 'submit', on: :member
     get  'preview/:file', action: 'preview', on: :member, constraints: { file: /[0-z\.]+/ }, as: :preview
-  end
-
-  resources :resources, only: [:edit, :update, :destroy] do
-    resource :completion, controller: 'resource_completion', only: [:create, :destroy]
   end
 end

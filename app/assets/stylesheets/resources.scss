@@ -1,7 +1,19 @@
 .resource-form-page {
+  margin-bottom: 40px;
+  
   h1 {
     font-family: "Open Sans Condensed", sans-serif;
     font-size: 38px;
     margin-bottom: 15px;
   }
+}
+
+.resource-page {
+  h1 {
+    font-family: "Open Sans Condensed", sans-serif;
+    font-size: 38px;
+    margin-bottom: 15px;
+  }
+  
+  p { font-size: 18px; } 
 }

@@ -11,7 +11,7 @@ module CoursesHelper
       method = :delete
     end
 
-    link_to "<span class='glyphicon glyphicon-ok-circle'></span>".html_safe, resource_completion_path(resource_id: resource.id), class: "resource-status #{css_class}", data: { "resource-id" => resource.id }, remote: true, method: method
+    link_to "<span class='glyphicon glyphicon-ok-circle'></span>".html_safe, course_resource_completion_path(course_id: resource.course.id, resource_id: resource.id), class: "resource-status #{css_class}", data: { "resource-id" => resource.id }, remote: true, method: method
   end
 
   private
