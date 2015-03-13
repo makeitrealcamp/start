@@ -1,0 +1,19 @@
+<div class="container signup">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <%= render 'shared/flash_messages_form', object: @user  %>
+      <%= form_for @user do |f| %>
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.email_field :email, class: 'form-control input-lg' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control input-lg' %>
+        </div>
+
+        <div class="text-right"><%= f.submit "¡Empezar ahora!", class: 'btn btn-primary btn-lg btn-block' %></div>
+      <% end %>
+    </div>
+  </div>
+</div>
