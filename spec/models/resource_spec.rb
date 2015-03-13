@@ -30,8 +30,16 @@ RSpec.describe Resource, type: :model do
 
   context 'validations' do
     it { should validate_presence_of :title }
-    it { should validate_presence_of :url }
-    it { should should_not allow_value('url.com').for(:url)}
+    context 'when type is url' do
+      before { subject.type = "url" }
+      it { should validate_presence_of :url }
+      it { should should_not allow_value('url.com').for(:url)}
+    end
+
+    context 'when type is markdown' do
+      before { subject.type = "markdown" }
+      it { should validate_presence_of :content }
+    end
   end
 
   it "has a valid factory" do

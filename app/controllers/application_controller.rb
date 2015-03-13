@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
 
     def admin_access
       unless current_user.is_admin?
-        redirect_to(:dashboard, flash: { error: "You do not have sufficient permissions to access this page." })
+        redirect_to(:dashboard, flash: { error: "Usted no tiene los permisos necesarios para acceder a esta página." })
       end
     end
 end

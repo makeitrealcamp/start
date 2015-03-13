@@ -2,8 +2,8 @@
   <div class="panel panel-danger">
     <div class="panel-heading">
       <h2 class="panel-title">
-        <%= pluralize(object.errors.count, "error") %>
-        prohibited this <%= object.class.name.downcase %> from being saved:
+        
+        <%= I18n.t('activerecord.errors.template.header', :count => object.errors.size, :model => object.class) %>
       </h2>
     </div>
     <div class="panel-body">
