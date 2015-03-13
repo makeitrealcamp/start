@@ -1,3 +1,16 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+class ResourceView extends Backbone.View
+  el: 'body'
+
+  events:
+    "change #resource_type": "change_type"
+
+  change_type: (e) ->
+    type = $(e.currentTarget).val()
+    if type == "markdown"
+      $('.url-field').hide()
+      $('.content-field').show()
+    else
+      $('.url-field').show()
+      $('.content-field').hide()
+
+window.ResourceView = ResourceView

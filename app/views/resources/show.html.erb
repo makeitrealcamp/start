@@ -1,0 +1,10 @@
+<div class="container resource-page">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <%= link_to "<span class='glyphicon glyphicon-arrow-left'></span> Volver a #{@resource.course.name}".html_safe, @resource.course %>
+      <h1><%= @resource.title %></h1>
+
+      <%= markdown @resource.content %>
+    </div>
+  </div>
+</div>

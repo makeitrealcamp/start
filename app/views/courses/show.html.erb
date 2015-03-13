@@ -49,13 +49,17 @@
       <% @course.resources.each do |resource| %>
         <tr id="resource-<%= resource.id %>">
           <td class="resource-info">
-            <a href="<%= resource.url %>" target="_blank">
-              <%= resource.title %> &nbsp;<span class="glyphicon glyphicon-new-window"></span>
-            </a>
+            <% if resource.is_url %>
+              <a href="<%= resource.url %>" target="_blank">
+                <%= resource.title %> &nbsp;<span class="glyphicon glyphicon-new-window"></span>
+              </a>
+            <% else %>
+              <%= link_to resource.title, [@course, resource] %>
+            <% end %>
             <% if current_user.is_admin? %>
               &nbsp; &nbsp;
-              <%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_resource_path(resource) %>
-              <%= link_to '<span class="glyphicon glyphicon-remove action action-remove"></span>'.html_safe, resource_path(resource),  remote: true, data:{ confirm: "Are you sure you want to delete this?"},
+              <%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_course_resource_path(@course, resource) %>
+              <%= link_to '<span class="glyphicon glyphicon-remove action action-remove"></span>'.html_safe, course_resource_path(@course, resource),  remote: true, data:{ confirm: "Are you sure you want to delete this?"},
               method: :delete %>
             <% end %>
             <div class="description"><%= resource.description %></div>
