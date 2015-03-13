@@ -22,6 +22,10 @@ class Solution < ActiveRecord::Base
   after_initialize :default_values
   after_create :create_documents
 
+  scope :is_completed, -> {where(status: self.statuses[:completed])}
+  scope :is_failed, -> {where(status: self.statuses[:failed])}
+
+
   def evaluate
     begin
       eval "module Evaluator#{id}; end"
