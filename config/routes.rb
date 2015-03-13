@@ -21,7 +21,6 @@ Rails.application.routes.draw do
     get  'preview/:file', action: 'preview', on: :member, constraints: { file: /[0-z\.]+/ }, as: :preview
   end
 
-
   resources :resources, only: [:edit, :update, :destroy] do
     resource :completion, controller: 'resource_completion', only: [:create, :destroy]
   end

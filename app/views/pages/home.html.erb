@@ -10,7 +10,7 @@
       </div>
       <div class="row">
         <div class="col-sm-12 text-center">
-          <%= form_for @user, html: { class: "form-inline start-form" } do |f| %>
+          <%= form_for @user, url: signup_path, html: { class: "form-inline start-form" } do |f| %>
             <div class="form-group">
               <%= f.email_field :email, class: "form-control input-lg", placeholder: "Email" %>
             </div>
