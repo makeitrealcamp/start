@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
       <%= render 'shared/flash_messages_form', object: @user  %>
-      <%= form_for @user do |f| %>
+      <%= form_for @user, url: signup_path do |f| %>
         <div class="form-group">
           <%= f.label :email %>
           <%= f.email_field :email, class: 'form-control input-lg' %>
