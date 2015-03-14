@@ -34,8 +34,6 @@ class ApplicationController < ActionController::Base
     end
 
     def admin_access
-      unless current_user.is_admin?
-        redirect_to(:dashboard, flash: { error: "Usted no tiene los permisos necesarios para acceder a esta página." })
-      end
+      raise ActionController::RoutingError.new('Not Found') unless current_user.is_admin?
     end
 end

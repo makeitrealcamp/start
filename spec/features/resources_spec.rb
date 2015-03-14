@@ -12,12 +12,9 @@ RSpec.feature "Resources", type: :feature do
       expect(current_path).to eq login_path
     end
 
-    scenario "should redirect to the dashboard if not admin", js: true do
+    scenario "should not allow access" do
       login(user)
-
-      visit new_course_resource_path(course)
-      expect(current_path).to eq dashboard_path
-      expect(page).to have_content
+      expect { visit new_course_resource_path(course) }.to raise_error ActionController::RoutingError
     end
   end
 
