@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'dashboard#index'
 
+  resources :users
   resources :courses, only: [:show, :edit, :update] do
     resources :challenges, only: [:new, :create, :edit, :update, :show]
     resources :resources, only: [:new, :create, :show, :edit, :update, :destroy] do

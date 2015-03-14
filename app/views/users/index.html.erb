@@ -1,0 +1,28 @@
+<div class="container users">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <table class="table users" id="table-users">
+        <thead>
+        <tr>
+          <th class="text-center">Correo</th>
+          <th class="text-center">Retos completados</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @users.each do |user| %>
+        <tr id="user-<%= user.id %>" class="text-center">
+          <td>
+            <span class="email"><%= user.email %></span>
+          </td>
+          <td>
+            <span class="challenges-completed"><%= user.solutions.is_completed.count %></span>
+          </td>
+
+        </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

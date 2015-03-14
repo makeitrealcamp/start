@@ -1,8 +1,15 @@
 class UsersController < ApplicationController
+
   before_action :public_access, only: [:new, :create]
+  before_action :private_access, only: [:index]
+  before_action :admin_access, only:[:index]
 
   def new
     @user = User.new
+  end
+
+  def index
+    @users = User.all
   end
 
   def create
