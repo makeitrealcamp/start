@@ -11,14 +11,12 @@ RSpec.feature "Users", type: :feature do
       expect(current_path).to eq login_path
     end
 
-    scenario "should redirect to the login  when is not admin" do
+    scenario "should not allow access" do
       login(user)
-      visit users_path
-      expect(current_path).to eq dashboard_path
-      expect(page).to have_selector '.alert-top-error'
+      expect { visit users_path }.to raise_error ActionController::RoutingError
     end
 
-    scenario "no show link of users", js: true do
+    scenario "should not show link of admin", js: true do
       login(user)
       wait_for_ajax
       expect(page).not_to have_content('Admin')

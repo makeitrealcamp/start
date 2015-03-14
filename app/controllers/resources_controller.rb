@@ -3,12 +3,12 @@ class ResourcesController < ApplicationController
   before_action :admin_access, only:[:new, :create]
 
   def new
-    course = Course.find(params[:course_id])
+    course = Course.friendly.find(params[:course_id])
     @resource = course.resources.new
   end
 
   def create
-    @course = Course.find(params[:course_id])
+    @course = Course.friendly.find(params[:course_id])
     @resource = @course.resources.new(resource_params)
 
     if @resource.save
@@ -19,15 +19,15 @@ class ResourcesController < ApplicationController
   end
 
   def show
-    @resource = Resource.find(params[:id])
+    @resource = Resource.friendly.find(params[:id])
   end
 
   def edit
-    @resource = Resource.find(params[:id])
+    @resource = Resource.friendly.find(params[:id])
   end
 
   def update
-    @resource = Resource.find(params[:id])
+    @resource = Resource.friendly.find(params[:id])
     if @resource.update(resource_params)
       redirect_to @resource.course
     else
@@ -36,7 +36,7 @@ class ResourcesController < ApplicationController
   end
 
   def destroy
-    @resource = Resource.find(params[:id])
+    @resource = Resource.friendly.find(params[:id])
     @resource.destroy
   end
 

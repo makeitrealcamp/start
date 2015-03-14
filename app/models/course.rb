@@ -16,6 +16,9 @@ class Course < ActiveRecord::Base
   include RankedModel
   ranks :row
 
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   has_many :resources
   has_many :challenges
 end

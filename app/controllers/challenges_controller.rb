@@ -3,7 +3,7 @@ class ChallengesController < ApplicationController
   before_action :admin_access, only:[:new, :create, :edit, :update]
 
   def new
-    course = Course.find(params[:course_id])
+    course = Course.friendly.find(params[:course_id])
     @challenge = course.challenges.new
   end
 
@@ -13,16 +13,16 @@ class ChallengesController < ApplicationController
   end
 
   def edit
-    @challenge = Challenge.find(params[:id])
+    @challenge = Challenge.friendly.find(params[:id])
   end
 
   def update
-    @challenge = Challenge.update(params[:id], challenge_params)
+    @challenge = Challenge.friendly.update(params[:id], challenge_params)
     redirect_to course_path(@challenge.course), notice: "El reto <strong>#{@challenge.name}</strong> ha sido actualizado"
   end
 
   def show
-    @challenge = Challenge.find(params[:id])
+    @challenge = Challenge.friendly.find(params[:id])
     @solution = find_or_create_solution
   end
 
