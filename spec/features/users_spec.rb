@@ -21,7 +21,7 @@ RSpec.feature "Users", type: :feature do
     scenario "no show link of users", js: true do
       login(user)
       wait_for_ajax
-      expect(page).not_to have_content('Usuarios')
+      expect(page).not_to have_content('Admin')
       expect(current_path).to eq dashboard_path
     end
   end
@@ -37,7 +37,7 @@ RSpec.feature "Users", type: :feature do
     scenario "show link of users", js: true do
       login(admin)
       wait_for_ajax
-      expect(all('a', text: 'Usuarios').count).to eq 1
+      expect(all('a', text: 'Admin').count).to eq 1
       expect(current_path).to eq dashboard_path
     end
   end
