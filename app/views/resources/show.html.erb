@@ -5,6 +5,14 @@
       <h1><%= @resource.title %></h1>
 
       <%= markdown @resource.content %>
+
+      <% if @resource.users.include?(current_user) %>
+        <div class="back"><%= link_to "<span class='glyphicon glyphicon-arrow-left'></span> Volver a #{@resource.course.name}".html_safe, @resource.course %></div>
+      <% else %>
+        <div class="finish">
+          <%= link_to "<span class='glyphicon glyphicon-ok'></span> Finalizar y Volver".html_safe, course_resource_completion_path(course_id: @resource.course.id, resource_id: @resource.id), class: "btn btn-success", method: :post %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
