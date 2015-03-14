@@ -19,6 +19,9 @@ class Resource < ActiveRecord::Base
   include RankedModel
   ranks :row, with_same: :course_id
 
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   self.inheritance_column = nil
 
   enum type: [:url, :markdown]

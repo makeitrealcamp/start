@@ -19,6 +19,9 @@ class Challenge < ActiveRecord::Base
   include RankedModel
   ranks :row, with_same: :course_id
 
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   belongs_to :course
   has_many :documents, as: :folder
 

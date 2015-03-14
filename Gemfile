@@ -41,6 +41,7 @@ gem 'pygments.rb'
 gem 'nokogiri'
 gem 'css_parser'
 gem 'nokogiri-styles'
+gem 'friendly_id', '~> 5.1.0'
 
 gem 'rails_12factor', group: :production
 
