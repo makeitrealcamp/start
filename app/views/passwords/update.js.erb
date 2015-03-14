@@ -1,0 +1,6 @@
+<% if current_user.errors.empty? %>
+  $('.alert').removeClass('alert-danger').addClass('alert-success').html('La contraseña ha sido cambiada con éxito').show();
+  $('input[type=password]').val('');
+<% else %>
+  $('.alert').removeClass('alert-success').addClass('alert-danger').html('<%= current_user.errors.full_messages[0] %>').show();
+<% end %>

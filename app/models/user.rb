@@ -16,6 +16,7 @@
 #
 
 class User < ActiveRecord::Base
+  attr_accessor :password_confirmation
   has_secure_password validations: false
 
   has_many :solutions, dependent: :destroy
@@ -25,6 +26,9 @@ class User < ActiveRecord::Base
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :password, presence: true, length: { within: 6..40 }, on: :create
   validates :password, presence: true, length: { within: 6..40 }, if: :password_digest_changed?
+  validates :password_confirmation, presence: true, on: :update, if: :password_digest_changed?
+  validates_confirmation_of :password, on: :update, if: :password_digest_changed?
+
 
   after_initialize :default_values
 
