@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       sign_in(user)
-      redirect_to dashboard_path
+      redirect_to courses_path
     else
       redirect_to login_path, flash: { error: "Credenciales Inválidas" }
     end
