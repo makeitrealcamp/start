@@ -12,6 +12,7 @@
 #  phone           :string(15)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  last_active_at  :datetime
 #
 
 require 'rails_helper'
