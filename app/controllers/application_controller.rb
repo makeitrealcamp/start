@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_action :record_user_activity
+
   def sign_in(user)
     cookies.permanent.signed[:user_id] = user.id
     @current_user = user
@@ -37,5 +39,9 @@ class ApplicationController < ActionController::Base
       unless current_user.is_admin?
         redirect_to(:dashboard, flash: { error: "You do not have sufficient permissions to access this page." })
       end
+    end
+
+    def record_user_activity
+      current_user.touch :last_active_at if current_user
     end
 end
