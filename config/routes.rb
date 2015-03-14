@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new', as: :signup
   post 'signup', to: 'users#create'
 
-  resources :users
+  resource :password, only: [:edit, :update]
+
+  resources :users, only: [:index, :new, :create]
   resources :courses, only: [:index, :show, :edit, :update] do
     resources :challenges, only: [:new, :create, :edit, :update, :show]
     resources :resources, only: [:new, :create, :show, :edit, :update, :destroy] do

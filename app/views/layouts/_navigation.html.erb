@@ -31,8 +31,7 @@
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Editar Perfil</a></li>
-                <li><a href="#">Cambiar Contraseña</a></li>
+                <li><%= link_to "Cambiar Contraseña", edit_password_path, remote: true %></li>
                 <li class="divider"></li>
                 <li><%= link_to "Salir", logout_path, method: :delete %></li>
               </ul>
