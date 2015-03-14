@@ -4,6 +4,11 @@ class ResourceCompletionController < ApplicationController
   def create
     @resource = Resource.find(params[:resource_id])
     @resource.users << current_user
+
+    respond_to do |format|
+      format.html { redirect_to @resource.course }
+      format.js
+    end
   end
 
   def destroy
