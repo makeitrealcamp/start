@@ -3,12 +3,6 @@
     position: relative;
     margin-bottom: 30px;
 
-    h1 {
-      font-family: "Open Sans Condensed", sans-serif;
-      font-size: 38px;
-      margin-bottom: 15px;
-    }
-
     p {
       color: #333;
       font-size: 18px;
@@ -40,7 +34,10 @@
       margin-bottom: 10px;
     }
 
-    p { color: #333; }
+    p { 
+      color: #333;
+      font-weight: 300;
+    }
   }
 
   .resources {
@@ -157,9 +154,4 @@
 }
 
 .course-form-page {
-  h1 {
-    font-family: "Open Sans Condensed", sans-serif;
-    font-size: 38px;
-    margin-bottom: 15px;
-  }
 }

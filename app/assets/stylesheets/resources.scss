@@ -1,32 +1,20 @@
 .resource-form-page {
   margin-bottom: 40px;
-  
-  h1 {
-    font-family: "Open Sans Condensed", sans-serif;
-    font-size: 38px;
-    margin-bottom: 15px;
-  }
 }
 
 .resource-page {
   margin-bottom: 40px;
 
-  h1 {
-    font-family: "Open Sans Condensed", sans-serif;
-    font-size: 38px;
-    margin-bottom: 30px;
-  }
-
-  h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
   p, ul { 
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 300;
-    line-height: 1.7;
+    line-height: 1.6;
     margin-bottom: 20px;
+
+    @media (min-width: $screen-sm-min) {
+      font-size: 18px;
+      line-height: 1.7;
+    }
 
     strong { font-weight: normal; }
   }
