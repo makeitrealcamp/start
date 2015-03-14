@@ -20,7 +20,7 @@ RSpec.feature "Users", type: :feature do
       login(user)
       wait_for_ajax
       expect(page).not_to have_content('Admin')
-      expect(current_path).to eq dashboard_path
+      expect(current_path).to eq courses_path
     end
   end
 
@@ -36,7 +36,7 @@ RSpec.feature "Users", type: :feature do
       login(admin)
       wait_for_ajax
       expect(all('a', text: 'Admin').count).to eq 1
-      expect(current_path).to eq dashboard_path
+      expect(current_path).to eq courses_path
     end
   end
 end

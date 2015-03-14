@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
     helper_method :current_user
 
     def public_access
-      redirect_to :dashboard if signed_in?
+      redirect_to courses_path if signed_in?
     end
 
     def private_access
