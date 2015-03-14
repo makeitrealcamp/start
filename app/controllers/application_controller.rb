@@ -36,9 +36,7 @@ class ApplicationController < ActionController::Base
     end
 
     def admin_access
-      unless current_user.is_admin?
-        redirect_to(:dashboard, flash: { error: "You do not have sufficient permissions to access this page." })
-      end
+      raise ActionController::RoutingError.new('Not Found') unless current_user.is_admin?
     end
 
     def record_user_activity
