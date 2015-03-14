@@ -19,8 +19,11 @@
           Retos
           <% if current_user.is_admin? %>&nbsp;<%= link_to "<span class='glyphicon glyphicon-plus action action-add'></span>".html_safe, new_course_challenge_path(@course) %><% end %>
         </h2>
-        <p>Usa los recursos y Google si es necesario para intentar solucionar estos retos.</p>
+        <% if @course.challenges.any? %><p>Usa los recursos y Google si es necesario para intentar solucionar estos retos.</p><% end %>
       </header>
+      <% if @course.challenges.empty? %>
+        <div class="alert alert-warning text-center">Este módulo no tiene retos</div>
+      <% end %>
       <% @course.challenges.for(current_user).each do |challenge| %>
         <div class="challenge clearfix <%= challenge_class(challenge) %>">
           <div class="challenge-status"><span class="glyphicon glyphicon-ok"></span></div>
@@ -43,7 +46,7 @@
             &nbsp;<%= link_to '<span class="glyphicon glyphicon-plus action action-add"></span>'.html_safe, new_course_resource_path(@course) %>
           <% end %>
         </h2>
-        <p>Los recursos te dan el conocimiento, míralos como entrenamiento para enfrentar los retos.</p>
+        <% if @course.challenges.any? %><p>Los recursos te dan el conocimiento, míralos como entrenamiento para enfrentar los retos.</p><% end %>
       </header>
       <table class="table">
       <% @course.resources.each do |resource| %>
