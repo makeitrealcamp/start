@@ -1,6 +1,7 @@
 @import "bootstrap-sprockets";
 @import "theme";
 @import "bootstrap";
+@import "base"; // has the standard styles
 @import "codemirror";
 @import "solarized";
 @import "pygments";
