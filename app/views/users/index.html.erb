@@ -4,21 +4,17 @@
       <table class="table users" id="table-users">
         <thead>
         <tr>
-          <th class="text-center">Correo</th>
-          <th class="text-center">Retos completados</th>
-          <th></th>
+          <th>Correo</th>
+          <th class="text-center">Fecha Registro</th>
+          <th class="text-center">Retos</th>
         </tr>
         </thead>
         <tbody>
         <% @users.each do |user| %>
-        <tr id="user-<%= user.id %>" class="text-center">
-          <td>
-            <span class="email"><%= user.email %></span>
-          </td>
-          <td>
-            <span class="challenges-completed"><%= user.solutions.is_completed.count %></span>
-          </td>
-
+        <tr id="user-<%= user.id %>">
+          <td><%= user.email %></td>
+          <td class="text-center"><%= l user.created_at, format: '%d %b %Y' %></td>
+          <td class="text-center"><%= user.solutions.is_completed.count %></td>
         </tr>
         <% end %>
         </tbody>
