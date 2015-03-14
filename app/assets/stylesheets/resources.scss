@@ -9,11 +9,25 @@
 }
 
 .resource-page {
+  margin-bottom: 40px;
+
   h1 {
     font-family: "Open Sans Condensed", sans-serif;
     font-size: 38px;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
+  }
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
   }
   
-  p { font-size: 18px; } 
+  p, ul { 
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 20px;
+
+    strong { font-weight: normal; }
+  }
 }
