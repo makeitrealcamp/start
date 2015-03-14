@@ -123,8 +123,8 @@ es:
     template:
       body: 'Se encontraron problemas con los siguientes campos:'
       header:
-        one: No se pudo guardar este/a %{model} porque se encontró 1 error
-        other: No se pudo guardar este/a %{model} porque se encontraron %{count} errores
+        one: 'Se encontró el siguiente error:'
+        other: 'Se encontraron los siguientes errores:'
   helpers:
     select:
       prompt: Por favor seleccione
