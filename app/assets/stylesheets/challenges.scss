@@ -6,6 +6,12 @@
       line-height: 1.6;
     }
     .highlight { margin: 20px 0; }
+
+    img {
+      max-width: 100%;
+      border: 1px solid #eee;
+      padding: 5px;
+    }
   }
 
   .solution {
@@ -126,4 +132,10 @@
     margin-top: 10px;
   }
 
+}
+
+#zoom-modal .modal-dialog img {
+  border: 1px solid #eee;
+  padding: 5px;
+  max-width: 100%;
 }
