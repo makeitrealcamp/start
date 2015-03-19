@@ -11,6 +11,7 @@
 #  last_active_at  :datetime
 #  profile         :hstore
 #  status          :integer
+#  settings        :hstore
 #
 
 require 'rails_helper'

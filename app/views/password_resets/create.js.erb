@@ -1,0 +1,6 @@
+<% if @errors.blank? %>
+  $('.alert').removeClass('alert-danger').addClass('alert-success').html('Se ha enviado un correo electrónico con las instrucciones para restablecer la contraseña.').show();
+  $('input[type=email]').val('');
+<% else %>
+  $('.alert').removeClass('alert-success').addClass('alert-danger').html('<%= @errors[0] %>').show();
+<% end %>

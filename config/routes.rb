@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   post 'signup', to: 'users#create'
 
   resource :password, only: [:edit, :update]
+  resource :password_resets
 
-  resources :users, only: [:new, :create] do
+  resources :users do
     patch :activate, on: :member
   end
 

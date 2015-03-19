@@ -1,0 +1,25 @@
+<div id="change-password-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Restablecer la  Contraseña</h4>
+      </div>
+
+      <div class="alert" style="display:none" role="alert">
+      </div>
+
+      <%= form_tag password_resets_path, remote: true do |f| %>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= label_tag(:email, "Correo electrónico") %>
+            <%= email_field_tag(:email, nil, class: 'form-control') %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= submit_tag("Restablecer Contraseña", class: 'btn btn-primary') %>
+        </div>
+      <% end %>
+    </div><!-- .modal-content -->
+  </div><!-- .modal-dialog -->
+</div>

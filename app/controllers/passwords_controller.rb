@@ -1,6 +1,6 @@
 # enconding: UTF-8
 class PasswordsController < ApplicationController
-  before_action :private_access
+  before_action :private_access 
 
   def edit
   end
