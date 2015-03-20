@@ -40,6 +40,11 @@ class User < ActiveRecord::Base
     has_role?("admin")
   end
 
+  def progress(course)
+    return 100 if course.resources.count == 0
+    (self.resources.where(course: course).count.to_f/course.resources.count.to_f)*100
+  end
+
   private
     def default_values
       self.roles ||= ["user"]

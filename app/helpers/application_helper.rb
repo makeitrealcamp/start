@@ -20,5 +20,20 @@ module ApplicationHelper
     }
     Redcarpet::Markdown.new(renderer, options).render(text).html_safe
   end
-  
+
+  def progress_bar(opts = {})
+    opts[:type] ||= :success
+    opts[:progress] ||= 0
+    opacity = (opts[:progress].to_i/20*2).to_f/10
+
+    %Q(
+    <div class="progress">
+      <div class="progress-bar progress-bar-#{opts[:type].to_s}"
+        role="progressbar"
+        style="width: #{opts[:progress].to_s}%;opacity:#{opacity}">
+      </div>
+    </div>).html_safe
+
+  end
+
 end
