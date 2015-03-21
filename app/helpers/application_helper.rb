@@ -22,15 +22,23 @@ module ApplicationHelper
   end
 
   def progress_bar(opts = {})
-    opts[:type] ||= :success
-    opts[:progress] ||= 0
-    opacity = (opts[:progress].to_i/20*2).to_f/10
+    type = (opts[:type] || "success").to_s
+    progress = (opts[:progress] || 1).to_f
+
+    opacity = 0.2
+    diff = 1.0
+    [0.2,0.4,0.6,0.8,1.0].each do |o|
+      if (progress-o).abs < diff
+        diff = (progress-o).abs
+        opacity = o
+      end
+    end
 
     %Q(
     <div class="progress">
-      <div class="progress-bar progress-bar-#{opts[:type].to_s}"
+      <div class="progress-bar progress-bar-#{type}"
         role="progressbar"
-        style="width: #{opts[:progress].to_s}%;opacity:#{opacity}">
+        style="width: #{(progress*100).round(2)}%;opacity:#{opacity}">
       </div>
     </div>).html_safe
 
