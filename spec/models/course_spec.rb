@@ -10,6 +10,8 @@
 #  time_estimate :string(50)
 #  excerpt       :string
 #  description   :string
+#  slug          :string
+#  published     :boolean
 #
 
 require 'rails_helper'

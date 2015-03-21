@@ -71,11 +71,12 @@ html.turbolinks-progress-bar::before {
   &.action-add { background: #2A79A6; }
   &.action-edit { background: #2A79A6; }
   &.action-remove { background: #C74238; }
+  &.action-warn { background: #E3A214; }
 }
 
 .alert-top {
   @extend .alert;
-  
+
   text-align: center;
   border-radius: 0;
   padding: 7px 15px;
@@ -96,4 +97,9 @@ html.turbolinks-progress-bar::before {
 
 .field_with_errors .form-control {
   border-color: #a94442;
+}
+
+.tooltip-inner {
+  font-size: 14px;
+  white-space: nowrap;
 }

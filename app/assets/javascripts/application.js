@@ -31,6 +31,10 @@ $(document).on("page:fetch", function() {
   save_files_timer.cancel();
 });
 
+$(document).on("page:change", function() {
+  $('[data-toggle="tooltip"]').tooltip();
+})
+
 _.templateSettings = {
   interpolate: /\{\{=(.+?)\}\}/g,
   evaluate: /\{\{(.+?)\}\}/g,
