@@ -18,6 +18,11 @@
           <%= f.text_area :excerpt, rows: 2, class: "form-control" %>
         </div>
 
+        <div class="form-group">
+          <%= f.check_box :published %>
+          <%= f.label :published %>
+        </div>
+
         <div class="actions text-right">
           <%= link_to "Cancelar", @course, class: "btn btn-default" %>
           <%= f.submit class: "btn btn-primary"%>

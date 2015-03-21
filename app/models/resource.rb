@@ -13,6 +13,8 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  content       :text
+#  slug          :string
+#  published     :boolean
 #
 
 class Resource < ActiveRecord::Base
@@ -33,6 +35,8 @@ class Resource < ActiveRecord::Base
   validates :url, presence: true, format: { with: URI.regexp }, if: :is_url
   validates :content, presence: true, if: :is_markdown
 
+  scope :for, -> user { published unless user.is_admin? }
+  scope :published, -> { where(published: true) }
   default_scope { rank(:row) }
 
   after_initialize :default_values
@@ -47,6 +51,7 @@ class Resource < ActiveRecord::Base
 
   private
     def default_values
+      self.published ||= false
       self.type ||= :url
     rescue ActiveModel::MissingAttributeError => e
       # ranked_model makes partial selects and this error is thrown

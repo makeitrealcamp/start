@@ -13,6 +13,8 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  content       :text
+#  slug          :string
+#  published     :boolean
 #
 
 require 'rails_helper'

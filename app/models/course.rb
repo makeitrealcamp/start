@@ -10,6 +10,8 @@
 #  time_estimate :string(50)
 #  excerpt       :string
 #  description   :string
+#  slug          :string
+#  published     :boolean
 #
 
 class Course < ActiveRecord::Base
@@ -21,4 +23,15 @@ class Course < ActiveRecord::Base
 
   has_many :resources
   has_many :challenges
+
+  scope :for, -> user { published unless user.is_admin? }
+  scope :published, -> { where(published: true) }
+  default_scope { rank(:row) }
+
+  after_initialize :default_values
+
+  private
+    def default_values
+      self.published ||= false
+    end
 end

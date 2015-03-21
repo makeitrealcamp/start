@@ -10,6 +10,7 @@
         <div class="course">
           <% if current_user.is_admin? %>
           <div class="actions">
+            <% if !course.published %><span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span><% end %>
             <%= link_to "<span class='glyphicon glyphicon-pencil action action-edit'></span>".html_safe, edit_course_path(course) %>
             <a href="#"><span class='glyphicon glyphicon-remove action action-remove'></span></a>
           </div>

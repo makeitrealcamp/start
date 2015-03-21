@@ -11,7 +11,7 @@ class CoursesController < ApplicationController
 
   def index
     @quote = QUOTES.sample
-    @courses = Course.all.rank(:row) 
+    @courses = Course.all.for(current_user)
   end
 
   def show
@@ -29,6 +29,6 @@ class CoursesController < ApplicationController
 
   private
     def course_params
-      params.require(:course).permit(:name, :description, :excerpt, :abstract)
+      params.require(:course).permit(:name, :description, :excerpt, :abstract, :published)
     end
 end
