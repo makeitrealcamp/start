@@ -18,6 +18,15 @@ class CoursesController < ApplicationController
     @course = Course.friendly.find(params[:id])
   end
 
+  def new
+    @course = Course.new
+  end
+
+  def create
+    @course = Course.create(course_params)
+    redirect_to @course, notice: "El curso ha sido creado"
+  end
+
   def edit
     @course = Course.friendly.find(params[:id])
   end
@@ -29,6 +38,6 @@ class CoursesController < ApplicationController
 
   private
     def course_params
-      params.require(:course).permit(:name, :description, :excerpt, :abstract, :published)
+      params.require(:course).permit(:name, :description, :excerpt, :abstract, :time_estimate, :published)
     end
 end

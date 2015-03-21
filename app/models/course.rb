@@ -33,5 +33,7 @@ class Course < ActiveRecord::Base
   private
     def default_values
       self.published ||= false
+    rescue ActiveModel::MissingAttributeError => e
+      # ranked_model makes partial selects and this error is thrown
     end
 end

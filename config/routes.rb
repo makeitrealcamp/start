@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resource :password, only: [:edit, :update]
 
   resources :users, only: [:index, :new, :create]
-  resources :courses, only: [:index, :show, :edit, :update] do
+  resources :courses, only: [:index, :show, :new, :create, :edit, :update] do
     resources :challenges, only: [:new, :create, :edit, :update, :show]
     resources :resources, only: [:new, :create, :show, :edit, :update, :destroy] do
       resource :completion, controller: 'resource_completion', only: [:create, :destroy]
