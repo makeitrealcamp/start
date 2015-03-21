@@ -40,6 +40,17 @@ class User < ActiveRecord::Base
     has_role?("admin")
   end
 
+  def progress(course)
+    resources_count = course.resources.count
+    challenges_count = course.challenges.count
+    return 1.0 if (resources_count + challenges_count == 0)
+
+    completed_resources = self.resources.where(course: course).count
+    completed_challenges = self.solutions.is_completed.where(challenge: course.challenges).count
+
+    (completed_resources+completed_challenges).to_f/(resources_count + challenges_count).to_f
+  end
+
   private
     def default_values
       self.roles ||= ["user"]
