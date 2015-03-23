@@ -21,13 +21,24 @@
     }
   }
 
+  .new-course-btn {
+    margin-top: -20px;
+    margin-bottom: 20px;
+  }
+
   .course {
     position: relative;
     background: #fafafd;
     border: 1px solid #eee;
     border-radius: 5px;
     padding: 20px;
-    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -1px;
+    width: 100%;
+    z-index: -1;
+
+    @media (min-width: $screen-sm-min) { width: 600px; }
 
     .actions {
       position: absolute;
@@ -81,6 +92,19 @@
 
         @media (min-width: $screen-sm-min) { font-size: 18px; }
       }
+    }
+  }
+
+  .course-divider {
+    position:relative;
+    margin-top: -1px;
+    div {
+      background: #fafafd;
+      width: 10px;
+      height: 30px;
+      margin: 0 auto;
+      border-right: 1px solid #eee;
+      border-left: 1px solid #eee;
     }
   }
 }

@@ -4,9 +4,16 @@
       <blockquote><%= @quote[:text] %> <span class="author">&nbsp; <%= @quote[:author] %></span></blockquote>
     </div>
   </div>
-  <div class="row">
-    <% @courses.each do |course| %>
-      <div class="col-sm-4">
+  <% if current_user.is_admin? %>
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <%= link_to "<span class='glyphicon glyphicon-plus'></span> &nbsp;Nuevo Curso".html_safe, new_course_path, class: "btn btn-success new-course-btn" %>
+      </div>
+    </div>
+  <% end %>
+  <% @courses.each_with_index do |course, i| %>
+    <div class="row">
+      <div class="col-sm-12">
         <div class="course">
           <% if current_user.is_admin? %>
           <div class="actions">
@@ -35,11 +42,9 @@
           <div class="text-center"><%= link_to "Entrar", course, class: "btn btn-primary btn-block" %></div>
         </div>
       </div>
-    <% end %>
-  </div>
-  <div class="row">
-    <div class="col-sm-12 text-center">
-      <%= link_to "<span class='glyphicon glyphicon-plus'></span> &nbsp;Nuevo Curso".html_safe, new_course_path, class: "btn btn-success" %>
     </div>
-  </div>
+    <% if i != @courses.size - 1 %>
+      <div class="course-divider"><div></div></div>
+    <% end %>
+  <% end %>
 </div>
