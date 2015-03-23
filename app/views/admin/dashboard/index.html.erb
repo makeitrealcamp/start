@@ -1,0 +1,33 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'canvasjs-1.6.1' %>
+<% end %>
+
+<div class="container admin-dashboard">
+  <div class="row metrics">
+    <div class="col-sm-4 metric">
+      <span class="value"><%= num_total_users %></span>
+      <span class="description">Usuarios Registrados</span>
+    </div>
+    <div class="col-sm-4 metric">
+      <span class="value"><%= num_active_users %></span>
+      <span class="description">Usuarios Activos</span>
+    </div>
+    <div class="col-sm-4 metric">
+      <span class="value"><%= num_challenges_solved %></span>
+      <span class="description">Retos Solucionados</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div id="registered-users-chart" style="height: 250px;" data-chart='<%= registered_users_data.to_json.html_safe %>'></div>
+    </div>
+    <div class="col-sm-6">
+      <div id="solved-challenges-chart" style="height: 250px;" data-chart='<%= solved_challenges_data.to_json.html_safe %>'></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  new AdminDashboardView();
+</script>
