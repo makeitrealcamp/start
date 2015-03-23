@@ -1,0 +1,19 @@
+.admin-dashboard {
+  .metrics {
+    margin-bottom: 60px;
+
+    .metric {
+      text-align: center;
+
+      .value {
+        color: #666;
+        font-size: 34px;  
+      }
+
+      .description {
+        display: block;
+        color: #999;
+      }
+    }
+  }
+}
