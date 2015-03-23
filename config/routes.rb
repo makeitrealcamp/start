@@ -18,6 +18,10 @@ Rails.application.routes.draw do
     end
   end
 
+    resources :challenges, only:[] do
+      patch 'update_position', on: :member
+    end
+
   resources :solutions, only: [] do
     put 'update_documents', on: :member
     post 'submit', on: :member
@@ -25,4 +29,9 @@ Rails.application.routes.draw do
   end
 
   get 'dashboard', to: redirect("/courses", status: 301)
+
+  resources :resources, only: [:edit, :update, :destroy] do
+    patch 'update_position', on: :member
+    resource :completion, controller: 'resource_completion', only: [:create, :destroy]
+  end
 end

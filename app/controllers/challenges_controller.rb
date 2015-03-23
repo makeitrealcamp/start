@@ -1,6 +1,6 @@
 class ChallengesController < ApplicationController
   before_action :private_access
-  before_action :admin_access, only:[:new, :create, :edit, :update]
+  before_action :admin_access, except:[:show]
 
   def new
     course = Course.friendly.find(params[:course_id])
@@ -19,6 +19,11 @@ class ChallengesController < ApplicationController
   def update
     @challenge = Challenge.friendly.update(params[:id], challenge_params)
     redirect_to course_path(@challenge.course), notice: "El reto <strong>#{@challenge.name}</strong> ha sido actualizado"
+  end
+
+  def update_position
+    @content = Challenge.update(params[:id], row_position: params[:position])
+    render nothing: true, status: 200
   end
 
   def show

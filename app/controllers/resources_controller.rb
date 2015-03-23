@@ -1,6 +1,6 @@
 class ResourcesController < ApplicationController
   before_action :private_access
-  before_action :admin_access, only:[:new, :create]
+  before_action :admin_access, except: [:show]
 
   def new
     course = Course.friendly.find(params[:course_id])
@@ -38,6 +38,14 @@ class ResourcesController < ApplicationController
   def destroy
     @resource = Resource.friendly.find(params[:id])
     @resource.destroy
+  end
+
+  def update_position
+    @resource = Resource.update(params[:id], row_position: params[:position])
+    render nothing: true, status: 200
+  end
+
+  def show
   end
 
   private

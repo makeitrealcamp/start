@@ -24,8 +24,8 @@
       <% if @course.challenges.for(current_user).empty? %>
         <div class="alert alert-warning text-center">Este módulo no tiene retos</div>
       <% end %>
-      <% @course.challenges.for(current_user).each do |challenge| %>
-        <div class="challenge clearfix <%= challenge_class(challenge) %>">
+      <% @course.challenges.for(current_user).each_with_index do |challenge, index| %>
+        <div id="<%= challenge.id %>" class="challenge clearfix <%= challenge_class(challenge) %>" data-index="<%= index %>">
           <div class="challenge-status"><span class="glyphicon glyphicon-ok"></span></div>
           <div class="challenge-title"><%= link_to challenge.name, course_challenge_path(@course, challenge) %></div>
           <% if current_user.is_admin? %>
@@ -50,8 +50,8 @@
         <% if @course.challenges.for(current_user).any? %><p>Los recursos te dan el conocimiento, míralos como entrenamiento para enfrentar los retos.</p><% end %>
       </header>
       <table class="table">
-      <% @course.resources.for(current_user).each do |resource| %>
-        <tr id="resource-<%= resource.id %>">
+      <% @course.resources.each_with_index do |resource, index| %>
+        <tr id="<%= resource.id %>" data-index="index">
           <td class="resource-info">
             <% if resource.is_url %>
               <a href="<%= resource.url %>" target="_blank">
@@ -81,3 +81,8 @@
 
   </div>
 </div>
+
+
+<% if current_user.is_admin? %>
+   <%= render 'courses/sortable_js' %>
+<% end %>
