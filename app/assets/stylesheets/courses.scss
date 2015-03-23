@@ -36,7 +36,7 @@
     margin-right: auto;
     margin-top: -1px;
     width: 100%;
-    z-index: -1;
+    z-index: 0;
 
     @media (min-width: $screen-sm-min) { width: 600px; }
 
@@ -98,6 +98,7 @@
   .course-divider {
     position:relative;
     margin-top: -1px;
+    z-index: 1;
     div {
       background: #fafafd;
       width: 10px;
