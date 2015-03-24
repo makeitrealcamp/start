@@ -19,5 +19,6 @@ FactoryGirl.define do
     name { Faker::Name.title}
     excerpt {Faker::Lorem.sentence}
     description { Faker::Lorem.paragraph}
+    published true
   end
 end
