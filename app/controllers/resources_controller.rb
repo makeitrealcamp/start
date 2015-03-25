@@ -45,9 +45,6 @@ class ResourcesController < ApplicationController
     render nothing: true, status: 200
   end
 
-  def show
-  end
-
   private
 
    def resource_params

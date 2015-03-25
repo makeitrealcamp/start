@@ -16,6 +16,16 @@ RSpec.feature "Resources", type: :feature do
       login(user)
       expect { visit new_course_resource_path(course) }.to raise_error ActionController::RoutingError
     end
+
+    scenario 'display resource when is type markdown Document', js: true do
+      resource = create(:resource, type: "markdown", content: Faker::Lorem.paragraph, course: course)
+      login(user)
+      all('a', text: 'Entrar').first.click
+      click_link "#{resource.title}"
+      wait_for_ajax
+      sleep(1.0)
+      expect(current_path).to eq course_resource_path(course, resource)
+    end
   end
 
   context 'when accessed as admin' do
