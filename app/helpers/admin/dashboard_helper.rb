@@ -8,7 +8,7 @@ module Admin::DashboardHelper
   end
 
   def num_challenges_solved
-    Solution.is_completed.count
+    Solution.completed.count
   end
 
   def registered_users_data(start = 30.days.ago)
@@ -24,7 +24,7 @@ module Admin::DashboardHelper
     (start.to_date..Date.today).map do |date|
       {
         label: date,
-        y: Solution.is_completed.where(updated_at: date.beginning_of_day..date.end_of_day).count
+        y: Solution.completed.where(updated_at: date.beginning_of_day..date.end_of_day).count
       }
     end
   end

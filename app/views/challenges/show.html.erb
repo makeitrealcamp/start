@@ -9,6 +9,7 @@
 
     <div class="col-md-7 expand solution">
       <%= form_tag submit_solution_path(@solution.id), id: 'submit-solution', class: 'expand', remote: true do %>
+        
         <!-- file tabs -->
         <ul class="nav nav-tabs" role="tablist">
           <% @solution.documents.each_with_index do |document, index| %>
@@ -42,7 +43,7 @@
         <div class="solution-buttons">
           <div class="text-right">
             <a href="#" class="btn btn-default btn-preview" target="_blank">Preview</a>
-            <%= submit_tag "Enviar Solución", class: "btn btn-primary" %>
+            <%= submit_tag "Evaluar Solución", class: "btn btn-primary" %>
           </div>
         </div>
       <% end %>
@@ -59,12 +60,40 @@
   </div>
 </div>
 
+<script type="x/template" id="solution-eval-template">
+  <div class="solution-eval">
+    <div class="glyphicon glyphicon-cloud"></div>
+    Estamos evaluando tu solución
+    <span>Por favor espera unos segundos (o minutos)</span>
+  </div>
+</script>
+
+<script type="x/template" id="notification-template">
+  <div class="modal notification-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title">{{= title }}</h4>
+        </div>
+        <div class="modal-body">
+          <p class="text-center icon" style="color: {{= color }}"><span class="glyphicon glyphicon-{{= icon }}" aria-hidden="true"></span></p>
+          <p class="text-center">{{= message }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+
 <script>
   (function() {
     var instructionsView = new InstructionsView();
     var solutionView = new SolutionView();
 
-    $(document).on("page:fetch", function() {
+    $(document).on("page:before-change", function() {
       instructionsView.remove();
       solutionView.remove();
     });

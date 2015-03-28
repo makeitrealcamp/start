@@ -43,7 +43,7 @@
   }
 }
 
-#notification-modal .icon {
+.notification-modal .icon {
   font-size: 62px;
   padding: 0;
   margin-bottom: 0;
@@ -138,4 +138,26 @@
   border: 1px solid #eee;
   padding: 5px;
   max-width: 100%;
+}
+
+.solution-eval {
+  position:absolute;
+  top: 20%;
+  color: white;
+  font-size: 24px;
+  width: 100%;
+  text-align: center;
+
+  .glyphicon {
+    display: block;
+    color: #26A7F0;
+    font-size: 62px;
+  }
+
+  span {
+    display: block;
+    color: #ccc;
+    font-size: 18px;
+    font-weight: 300;
+  }
 }

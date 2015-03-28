@@ -27,6 +27,7 @@
 Turbolinks.enableProgressBar();
 
 $(document).on("page:fetch", function() {
+  $(document).off("page:before-change");
   Dispatcher.stopListening();
   save_files_timer.cancel();
 });
