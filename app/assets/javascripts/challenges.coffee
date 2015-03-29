@@ -4,7 +4,8 @@ class Timer
 
   start: =>
     @timer = setTimeout (=>
-      Dispatcher.trigger(@event)), @timeout
+      Dispatcher.trigger(@event)
+    ), @timeout
     @
 
   cancel: =>
@@ -36,6 +37,7 @@ class SolutionView extends Backbone.View
 
   initialize: ->
     @files_changed = false;
+    @timer_active = true;
 
     Dispatcher.on("timer:save-files", @save_files_handler)
     Dispatcher.on("editors:change", =>
@@ -48,6 +50,8 @@ class SolutionView extends Backbone.View
 
     # persist documents on this events
     $(document).on("page:before-change", @save_files_handler)
+
+    $('#submit-solution').on("ajax:beforeSend", @evaluate);
 
   events: ->
     'click .btn-preview': 'preview'
@@ -76,12 +80,12 @@ class SolutionView extends Backbone.View
     if @files_changed and not @saving_files and @.$('.editors').length and @.$('.editor-content').length
       @save_files()
     else
-      save_files_timer.start()
+      save_files_timer.start() if @timer_active
 
   save_files: =>
     console.log("saving " + $('.editor-content').length + " files ... ")
     @saving_files = true
-    
+
     data = @get_editors_data()
     @files_changed = false
     solution_id = $('.editors').data("solution-id")
@@ -107,9 +111,52 @@ class SolutionView extends Backbone.View
       data['content-' + document_id] = editor.getValue()
     data
 
+  evaluate: =>
+    template = _.template($('#solution-eval-template').html());
+    $('.overlay').html(template()).show()
+    @check_evaluation_interval = setInterval(@check_evaluation_status, 1000)
+
+  check_evaluation_status: =>
+    solution_id = $('.editors').data("solution-id")
+    $.ajax(
+      type: "GET",
+      url: "/solutions/" + solution_id
+      dataType: "json"
+    ).done( (solution) =>
+      if (solution.status != "evaluating")
+        clearInterval(@check_evaluation_interval);
+        @display_alert(solution)
+    ).fail( =>
+      console.log("Hubo un error obteniendo el estado de la evaluación")
+    )
+
+  display_alert: (solution) =>
+    template = _.template($('#notification-template').html());
+    if solution.status == "completed"
+      data =
+        status: "completed"
+        title: "Reto Superado",
+        message: "¡Felicitaciones! Lo lograste.",
+        color: "#28B038",
+        icon: "ok-sign"
+    else if solution.status == "failed"
+      data =
+        status: "failed"
+        title: "Intenta Nuevamente",
+        message: solution.error_message,
+        color: "#DF1717",
+        icon: "exclamation-sign"
+
+    $('.overlay').hide();
+    $(template(data)).modal()
+
   remove: =>
     super()
-    $(document).off("page:before-change")
+    @timer_active = false
+    Dispatcher.off("timer:save-files")
+    Dispatcher.off("editors:change")
+    $('#submit-solution').off("ajax:beforeSend")
+
 
 # a view to handle challenge form (create and update)
 class ChallengeFormView extends Backbone.View

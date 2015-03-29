@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       patch 'update_position', on: :member
     end
 
-  resources :solutions, only: [] do
+  resources :solutions, only: [:show] do
     put 'update_documents', on: :member
     post 'submit', on: :member
     get  'preview/:file', action: 'preview', on: :member, constraints: { file: /[0-z\.]+/ }, as: :preview

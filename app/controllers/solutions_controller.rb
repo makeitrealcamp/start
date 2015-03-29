@@ -1,6 +1,11 @@
 class SolutionsController < ApplicationController
   before_action :private_access
 
+  def show
+    @solution = Solution.find(params[:id])
+    render json: @solution.to_json
+  end
+
   def update_documents
     @solution = Solution.find(params[:id])
     save_documents_with_no_versioning
@@ -10,7 +15,9 @@ class SolutionsController < ApplicationController
   def submit
     @solution = Solution.find(params[:id])
     save_documents
-    evaluate_solution
+    update_solution_without_versioning(@solution)
+    EvaluationJob.perform_later(@solution.id)
+    head :no_content
   end
 
   def preview
@@ -23,6 +30,14 @@ class SolutionsController < ApplicationController
   end
 
   private
+    def update_solution_without_versioning(solution)
+      solution.without_versioning do
+        solution.status = :evaluating 
+        solution.attempts = solution.attempts + 1 if solution.completed_at.nil?
+        solution.save!
+      end
+    end
+
     def save_documents
       @solution.documents.each { |doc| doc.update(content: params["content-#{doc.id}"]) }
     end

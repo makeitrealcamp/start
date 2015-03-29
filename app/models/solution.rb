@@ -2,12 +2,15 @@
 #
 # Table name: solutions
 #
-#  id           :integer          not null, primary key
-#  user_id      :integer
-#  challenge_id :integer
-#  status       :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id            :integer          not null, primary key
+#  user_id       :integer
+#  challenge_id  :integer
+#  status        :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  attempts      :integer
+#  error_message :string
+#  completed_at  :datetime
 #
 
 class Solution < ActiveRecord::Base
@@ -17,14 +20,10 @@ class Solution < ActiveRecord::Base
   belongs_to :challenge
   has_many :documents, as: :folder
 
-  enum status: [:created, :completed, :failed]
+  enum status: [:created, :completed, :failed, :evaluating]
 
   after_initialize :default_values
   after_create :create_documents
-
-  scope :is_completed, -> {where(status: self.statuses[:completed])}
-  scope :is_failed, -> {where(status: self.statuses[:failed])}
-
 
   def evaluate
     begin
@@ -34,9 +33,10 @@ class Solution < ActiveRecord::Base
       error = eval "Evaluator#{id}.evaluate(files)"
 
       self.status = error ? :failed : :completed
+      self.error_message = error ? error : nil
+      self.completed_at = DateTime.current if self.completed?
 
       save!
-      return error
     rescue Exception => e
       puts e.message
       puts e.backtrace
@@ -47,6 +47,7 @@ class Solution < ActiveRecord::Base
   private
     def default_values
       self.status ||= :created
+      self.attempts ||= 0
     end
 
     def create_documents
