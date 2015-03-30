@@ -1,5 +1,5 @@
 class SolutionsController < ApplicationController
-  before_action :private_access
+  before_action :private_access, except: [:preview] # we need the preview action to be public for evaluation
 
   def show
     @solution = Solution.find(params[:id])

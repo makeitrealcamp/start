@@ -11,21 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150329032257) do
+ActiveRecord::Schema.define(version: 20150329224529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "challenges", force: :cascade do |t|
     t.integer  "course_id"
-    t.string   "name",         limit: 100
+    t.string   "name",                limit: 100
     t.text     "instructions"
     t.text     "evaluation"
     t.integer  "row"
     t.boolean  "published"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "slug"
+    t.integer  "evaluation_strategy"
   end
 
   add_index "challenges", ["course_id"], name: "index_challenges_on_course_id", using: :btree

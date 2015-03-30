@@ -26,21 +26,14 @@ class Solution < ActiveRecord::Base
   after_create :create_documents
 
   def evaluate
-    begin
-      eval "module Evaluator#{id}; end"
-      eval "Evaluator#{id}.instance_eval(%q{#{challenge.evaluation}})" # this creates an evaluate method used below
-      files = documents.each_with_object({}) { |document, f| f[document.name] = document }
-      error = eval "Evaluator#{id}.evaluate(files)"
-
-      self.status = error ? :failed : :completed
-      self.error_message = error ? error : nil
-      self.completed_at = DateTime.current if self.completed?
-
-      save!
-    rescue Exception => e
-      puts e.message
-      puts e.backtrace
-      return "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp: #{e.message}"
+    if self.challenge.ruby_embedded?
+      RubyEvaluator.new.evaluate(self)
+    elsif self.challenge.phantomjs_embedded?
+      PhantomEvaluator.new.evaluate(self)
+    else
+      self.status = :failed
+      self.error_message = "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp"
+      self.save!
     end
   end
 
