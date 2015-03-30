@@ -2,16 +2,17 @@
 #
 # Table name: challenges
 #
-#  id           :integer          not null, primary key
-#  course_id    :integer
-#  name         :string(100)
-#  instructions :text
-#  evaluation   :text
-#  row          :integer
-#  published    :boolean
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  slug         :string
+#  id                  :integer          not null, primary key
+#  course_id           :integer
+#  name                :string(100)
+#  instructions        :text
+#  evaluation          :text
+#  row                 :integer
+#  published           :boolean
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  slug                :string
+#  evaluation_strategy :integer
 #
 
 class Challenge < ActiveRecord::Base
@@ -22,6 +23,8 @@ class Challenge < ActiveRecord::Base
 
   extend FriendlyId
   friendly_id :name, use: :slugged
+
+  enum evaluation_strategy: [:ruby_embedded, :phantomjs_embedded]
 
   belongs_to :course
   has_many :documents, as: :folder
@@ -41,6 +44,7 @@ class Challenge < ActiveRecord::Base
     def default_values
       self.published ||= false
       self.evaluation ||= "def evaluate(files)\n  \nend"
+      self.evaluation_strategy ||= :ruby_embedded
     rescue ActiveModel::MissingAttributeError => e
       # ranked_model makes partial selects and this error is thrown
     end

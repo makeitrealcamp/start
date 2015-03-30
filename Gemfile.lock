@@ -130,6 +130,7 @@ GEM
     nokogiri-styles (0.1.2)
       nokogiri
     pg (0.18.1)
+    phantomjs (1.9.8.0)
     posix-spawn (0.3.10)
     pygments.rb (0.6.2)
       posix-spawn (~> 0.3.6)
@@ -277,6 +278,7 @@ DEPENDENCIES
   nokogiri-styles
   paper_trail!
   pg
+  phantomjs
   pygments.rb
   rails (= 4.2.0)
   rails_12factor

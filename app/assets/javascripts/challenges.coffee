@@ -171,11 +171,13 @@ class ChallengeFormView extends Backbone.View
     @destroy_template = _.template($('#destroy-template').html())
 
     # configure evaluation editor
-    editors.configure  el: 'challenge_evaluation', opts: mode: 'ruby'
+    mode = if @.$('#challenge_evaluation_strategy').val() == "ruby_embedded" then "ruby" else "javascript"
+    @evaluation_editor = editors.configure  el: 'challenge_evaluation', opts: mode: mode
 
   events:
     'click .remove-file-btn': 'remove_file'
     'click #new-file-modal .add-btn': 'add_file'
+    'change #challenge_evaluation_strategy': 'change_evaluation_strategy'
 
   add_editor: (id, name, content) ->
     mode = @editor_mode(name)
@@ -242,6 +244,15 @@ class ChallengeFormView extends Backbone.View
     if editor_div.find(".has-id").length
       name_prefix = 'challenge[documents_attributes][' + editor_index + ']'
       $('.destroyed').append(@destroy_template(editor_index: editor_index, document_id: document_id))
+
+  change_evaluation_strategy: =>
+    evaluation_strategy = @.$('#challenge_evaluation_strategy').val()
+    if evaluation_strategy == "ruby_embedded"
+      @evaluation_editor.setOption("mode", "ruby")
+      @evaluation_editor.setValue("def evaluate(files)\n\nend")
+    else if evaluation_strategy == "phantomjs_embedded"
+      @evaluation_editor.setOption("mode", "javascript")
+      @evaluation_editor.setValue("open('index.html', function(status) {\n\n});")
 
 window.InstructionsView = InstructionsView
 window.SolutionView = SolutionView

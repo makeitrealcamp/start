@@ -45,6 +45,6 @@ class ChallengesController < ApplicationController
     end
 
     def challenge_params
-      params.require(:challenge).permit(:course_id, :name, :instructions, :published, :evaluation, documents_attributes: [:id, :name, :content, :_destroy])
+      params.require(:challenge).permit(:course_id, :name, :instructions, :evaluation_strategy, :published, :evaluation, documents_attributes: [:id, :name, :content, :_destroy])
     end
 end
