@@ -62,7 +62,7 @@ class SolutionView extends Backbone.View
       alert("No se puede ver la solución, no existe un archivo HTML")
       return false
 
-    solution_id = @.$('.editors').data("solution-id")
+    solution_id = @.$('.solution').data("solution-id")
     $(e.currentTarget).attr("href", '/solutions/' + solution_id + '/preview/' + file.html())
 
   find_html_file: =>
@@ -88,7 +88,7 @@ class SolutionView extends Backbone.View
 
     data = @get_editors_data()
     @files_changed = false
-    solution_id = $('.editors').data("solution-id")
+    solution_id = $('.solution').data("solution-id")
     $.ajax(
       type: "PUT"
       url: "/solutions/" + solution_id + "/update_documents"
@@ -114,18 +114,19 @@ class SolutionView extends Backbone.View
   evaluate: =>
     template = _.template($('#solution-eval-template').html());
     $('.overlay').html(template()).show()
-    @check_evaluation_interval = setInterval(@check_evaluation_status, 1000)
+    @check_evaluation_interval = setTimeout(@check_evaluation_status, 1000)
 
   check_evaluation_status: =>
-    solution_id = $('.editors').data("solution-id")
+    solution_id = $('.solution').data("solution-id")
     $.ajax(
       type: "GET",
       url: "/solutions/" + solution_id
       dataType: "json"
     ).done( (solution) =>
       if (solution.status != "evaluating")
-        clearInterval(@check_evaluation_interval);
         @display_alert(solution)
+      else
+        @check_evaluation_interval = setTimeout(@check_evaluation_status, 1000)
     ).fail( =>
       console.log("Hubo un error obteniendo el estado de la evaluación")
     )
@@ -171,7 +172,8 @@ class ChallengeFormView extends Backbone.View
     @destroy_template = _.template($('#destroy-template').html())
 
     # configure evaluation editor
-    mode = if @.$('#challenge_evaluation_strategy').val() == "ruby_embedded" then "ruby" else "javascript"
+    es = @.$('#challenge_evaluation_strategy').val()
+    mode = if es == "ruby_embedded" or es == "ruby_git" then "ruby" else "javascript"
     @evaluation_editor = editors.configure  el: 'challenge_evaluation', opts: mode: mode
 
   events:
@@ -253,6 +255,9 @@ class ChallengeFormView extends Backbone.View
     else if evaluation_strategy == "phantomjs_embedded"
       @evaluation_editor.setOption("mode", "javascript")
       @evaluation_editor.setValue("open('index.html', function(status) {\n\n});")
+    else if evaluation_strategy == "ruby_git"
+      @evaluation_editor.setOption("mode", "ruby")
+      @evaluation_editor.setValue("def evaluate(repo)\n\nend")
 
 window.InstructionsView = InstructionsView
 window.SolutionView = SolutionView

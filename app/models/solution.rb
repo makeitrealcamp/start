@@ -2,15 +2,14 @@
 #
 # Table name: solutions
 #
-#  id            :integer          not null, primary key
-#  user_id       :integer
-#  challenge_id  :integer
-#  status        :integer
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  attempts      :integer
-#  error_message :string
-#  completed_at  :datetime
+#  id           :integer          not null, primary key
+#  user_id      :integer
+#  challenge_id :integer
+#  status       :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  attempts     :integer
+#  properties   :hstore
 #
 
 class Solution < ActiveRecord::Base
@@ -22,6 +21,11 @@ class Solution < ActiveRecord::Base
 
   enum status: [:created, :completed, :failed, :evaluating]
 
+  hstore_accessor :properties,
+    completed_at: :datetime,
+    error_message: :string,
+    url: :string
+
   after_initialize :default_values
   after_create :create_documents
 
@@ -30,11 +34,17 @@ class Solution < ActiveRecord::Base
       RubyEvaluator.new.evaluate(self)
     elsif self.challenge.phantomjs_embedded?
       PhantomEvaluator.new.evaluate(self)
+    elsif self.challenge.ruby_git?
+      GitEvaluator.new.evaluate(self)
     else
       self.status = :failed
       self.error_message = "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp"
       self.save!
     end
+  end
+
+  def as_json(options)
+    super(options.merge(methods: [:error_message, :url, :completed_at]))
   end
 
   private

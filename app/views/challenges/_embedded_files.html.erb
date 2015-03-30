@@ -1,0 +1,28 @@
+<!-- file tabs -->
+<ul class="nav nav-tabs" role="tablist">
+  <% @solution.documents.each_with_index do |document, index| %>
+    <li class='<%= "active" if index == 0 %> file-tab'>
+      <a href="#file-<%= document.id %>" role="tab" data-toggle="tab"><span class="name"><%= document.name %></span></a>
+    </li>
+  <% end %>
+</ul>
+
+<!-- file content -->
+<div class="tab-content expand editors">
+  <% @solution.documents.each_with_index do |document, index| %>
+    <div class="tab-pane expand <%= "active" if index == 0 %> instructions" id="editor-<%= document.id %>">
+      <%= text_area_tag "content-#{document.id}", document.content, class: "editor-content", data: { id: "#{document.id}"} %>
+
+      <script>
+        var id = '<%= document.id %>';
+        var editor = editors.configure({
+          el: 'content-' + id,
+          value: $('#content-' + id).val(),
+          opts: { mode: '<%= codemirror_mode(document.name) %>' }
+        });
+        editors.add(id, editor);
+        editor.on("change", function() { Dispatcher.trigger("editors:change"); });
+      </script>
+    </div>
+  <% end %>
+</div>

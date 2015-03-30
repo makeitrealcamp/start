@@ -24,7 +24,7 @@ class Challenge < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  enum evaluation_strategy: [:ruby_embedded, :phantomjs_embedded]
+  enum evaluation_strategy: [:ruby_embedded, :phantomjs_embedded, :ruby_git]
 
   belongs_to :course
   has_many :documents, as: :folder
@@ -39,6 +39,10 @@ class Challenge < ActiveRecord::Base
   after_initialize :default_values
 
   accepts_nested_attributes_for :documents, allow_destroy: true
+
+  def preview?
+    !self.ruby_git?
+  end
 
   private
     def default_values

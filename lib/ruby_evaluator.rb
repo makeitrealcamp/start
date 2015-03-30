@@ -16,7 +16,7 @@ class RubyEvaluator
       puts e.message
       puts e.backtrace
 
-      solution.status = "Failed"
+      solution.status = :failed
       solution.error_message = "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp: #{e.message}"
       solution.save!
     end
