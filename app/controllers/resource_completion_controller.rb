@@ -3,7 +3,7 @@ class ResourceCompletionController < ApplicationController
 
   def create
     @resource = Resource.friendly.find(params[:resource_id])
-    @resource.users << current_user
+    @resource.users << current_user unless @resource.users.include? current_user
 
     respond_to do |format|
       format.html { redirect_to [@resource.course, @resource.next] }

@@ -24,7 +24,7 @@ class Solution < ActiveRecord::Base
   hstore_accessor :properties,
     completed_at: :datetime,
     error_message: :string,
-    url: :string
+    repository: :string
 
   after_initialize :default_values
   after_create :create_documents

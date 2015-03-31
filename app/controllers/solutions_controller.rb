@@ -14,7 +14,7 @@ class SolutionsController < ApplicationController
 
   def submit
     @solution = Solution.find(params[:id])
-    @solution.update(url: params[:url]) if params[:url]
+    @solution.update(repository: params[:repository]) if params[:repository]
     save_documents
     update_solution_without_versioning(@solution)
     EvaluationJob.perform_later(@solution.id)

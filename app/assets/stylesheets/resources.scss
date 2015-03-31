@@ -3,6 +3,9 @@
 }
 
 .resource-page {
+  margin-top: -60px;
+  padding-top: 50px;
+
   h1 {
     margin-top: 40px;
     margin-bottom: 60px;
@@ -21,6 +24,8 @@
 
     strong { font-weight: normal; }
   }
+
+  .external p { margin-bottom: 60px; }
 
   .finish  {
     margin-top: 40px;
