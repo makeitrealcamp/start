@@ -34,6 +34,9 @@ $(document).on("page:fetch", function() {
 
 $(document).on("page:change", function() {
   $('[data-toggle="tooltip"]').tooltip();
+  $('body').on('click', '.close-overlay', function() {
+    $('.overlay').hide();
+  });
 })
 
 _.templateSettings = {

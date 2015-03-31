@@ -138,18 +138,17 @@ class SolutionView extends Backbone.View
         status: "completed"
         title: "Reto Superado",
         message: "¡Felicitaciones! Lo lograste.",
-        color: "#28B038",
+        color: "#4DFF62",
         icon: "ok-sign"
     else if solution.status == "failed"
       data =
         status: "failed"
         title: "Intenta Nuevamente",
         message: solution.error_message,
-        color: "#DF1717",
+        color: "#FF4242",
         icon: "exclamation-sign"
 
-    $('.overlay').hide();
-    $(template(data)).modal()
+    $('.overlay').html($(template(data)));
 
   remove: =>
     super()

@@ -142,22 +142,53 @@
 
 .solution-eval {
   position:absolute;
-  top: 20%;
+  top: 50px;
+  left: 50%;
   color: white;
-  font-size: 24px;
-  width: 100%;
-  text-align: center;
+  width: 600px;
+  margin-left: -300px;
+  border: 1px solid #999;
+  border-radius: 10px;
+  background: rgba(35, 43, 51, 0.2);
 
-  .glyphicon {
-    display: block;
-    color: #26A7F0;
-    font-size: 62px;
+  .solution-eval-header {
+    font-size: 21px;
+    text-align: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #999;
   }
 
-  span {
-    display: block;
-    color: #ccc;
+  .solution-eval-body {
     font-size: 18px;
     font-weight: 300;
+    padding: 30px 20px 40px;;
+    text-align: center;
+
+    h3 {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+    p { margin-bottom: 0; }
+    p.em { font-size: 21px; }
+  }
+
+  .solution-eval-footer {
+    text-align: center;
+    padding: 0px 20px 25px;
+  }
+
+  .icon {
+    display: block;
+    color: #42C0FF;
+    font-size: 68px;
+    margin-bottom: 20px;
+  }
+
+  .btn-transparent {
+    color: white;
+    background: transparent;
+    border: 1px solid #ccc;
+
+    &:hover { background: #232B33; }
   }
 }

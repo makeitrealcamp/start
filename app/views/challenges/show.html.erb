@@ -38,28 +38,27 @@
 
 <script type="x/template" id="solution-eval-template">
   <div class="solution-eval">
-    <div class="glyphicon glyphicon-cloud"></div>
-    Estamos evaluando tu solución
-    <span>Por favor espera unos segundos (o minutos)</span>
+    <div class="solution-eval-body">
+      <span class="glyphicon glyphicon-cloud icon"></span>
+      <h3>Estamos evaluando tu solución</h3>
+      <p>Por favor espera unos segundos (o minutos)</p>
+    </div>
   </div>
 </script>
 
 <script type="x/template" id="notification-template">
-  <div class="modal notification-modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-          <h4 class="modal-title">{{= title }}</h4>
-        </div>
-        <div class="modal-body">
-          <p class="text-center icon" style="color: {{= color }}"><span class="glyphicon glyphicon-{{= icon }}" aria-hidden="true"></span></p>
-          <p class="text-center">{{= message }}</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
-      </div>
+  <div class="solution-eval">
+    <div class="solution-eval-body">
+      <span class="glyphicon glyphicon-{{= icon }} icon" style="color: {{= color }}" aria-hidden="true"></span>
+      <h3>{{= title }}</h3>
+      <p class="em">{{= message }}</p>
+    </div>
+
+    <div class="solution-eval-footer">
+      <button type="button" class="btn btn-transparent close-overlay" data-dismiss="modal">Cerrar</button>
+      {{ if (status == "completed") { }}
+      <%= link_to "Siguiente Reto <span class='glyphicon glyphicon-chevron-right'></span>".html_safe, [@challenge.course, @challenge.next], class: "btn btn-success" %>
+      {{ } }}
     </div>
   </div>
 </script>
