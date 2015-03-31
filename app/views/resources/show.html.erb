@@ -1,10 +1,10 @@
-<div class="resource-page expand" style="margin-top: -60px; padding-top: 50px;">
+<div class="resource-page expand">
   <div class="container expand overflow">
     <div class="row expand">
       <% if @resource.url? %>
-        <div class="col-sm-10 col-sm-offset-1 expand text-center">
+        <div class="col-sm-10 col-sm-offset-1 expand text-center external">
           <h1><%= @resource.title %></h1>
-          <p>Este es un recurso externo.</p>
+          <p><%= @resource.description %></p>
           <a href="<%= @resource.url %>" target="_blank" class="btn btn-default btn-lg">Haz click acá para abrirlo &nbsp;<span class="glyphicon glyphicon-new-window"></span></a>
         </div>
       <% else %>

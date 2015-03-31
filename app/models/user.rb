@@ -41,14 +41,14 @@ class User < ActiveRecord::Base
   end
 
   def progress(course)
-    resources_count = course.resources.count
-    challenges_count = course.challenges.count
+    resources_count = course.resources.published.count
+    challenges_count = course.challenges.published.count
     return 1.0 if (resources_count + challenges_count == 0)
 
-    completed_resources = self.resources.where(course: course).count
-    completed_challenges = self.solutions.completed.where(challenge: course.challenges).count
+    completed_resources = self.resources.published.where(course_id: course.id).count
+    completed_challenges = self.solutions.completed.joins(:challenge).where('challenges.course_id = ?', course.id).count
 
-    (completed_resources+completed_challenges).to_f/(resources_count + challenges_count).to_f
+    (completed_resources + completed_challenges).to_f/(resources_count + challenges_count).to_f
   end
 
   private

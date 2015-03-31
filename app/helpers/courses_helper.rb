@@ -1,4 +1,26 @@
 module CoursesHelper
+  def progress_bar(opts = {})
+    type = (opts[:type] || "success").to_s
+    progress = (opts[:progress] || 1).to_f
+
+    opacity = 0.2
+    diff = 1.0
+    [0.2,0.4,0.6,0.8,1.0].each do |o|
+      if (progress-o).abs < diff
+        diff = (progress-o).abs
+        opacity = o
+      end
+    end
+
+    %Q(
+    <div class="progress">
+      <div class="progress-bar progress-bar-#{type}"
+        role="progressbar"
+        style="width: #{(progress*100).round(2)}%;opacity:#{opacity}">
+      </div>
+    </div>).html_safe
+  end
+
   def challenge_class(challenge)
     challenge_completed?(challenge) ? "completed" : "not-completed"
   end
