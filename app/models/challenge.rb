@@ -44,6 +44,14 @@ class Challenge < ActiveRecord::Base
     !self.ruby_git?
   end
 
+  def next
+    next_challenge = self.course.challenges.published.where('row > ?', self.row).first
+  end
+
+  def last?
+    self.next.nil?
+  end
+
   private
     def default_values
       self.published ||= false
