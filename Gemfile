@@ -44,6 +44,8 @@ gem 'nokogiri-styles'
 gem 'friendly_id', '~> 5.1.0'
 gem 'sidekiq'
 gem 'phantomjs'
+gem 'hstore_accessor'
+gem 'octokit'
 
 gem 'rails_12factor', group: :production
 

@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150329224529) do
+ActiveRecord::Schema.define(version: 20150330193808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "challenges", force: :cascade do |t|
     t.integer  "course_id"
@@ -96,14 +97,14 @@ ActiveRecord::Schema.define(version: 20150329224529) do
     t.integer  "user_id"
     t.integer  "challenge_id"
     t.integer  "status"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "attempts"
-    t.string   "error_message"
-    t.datetime "completed_at"
+    t.hstore   "properties"
   end
 
   add_index "solutions", ["challenge_id"], name: "index_solutions_on_challenge_id", using: :btree
+  add_index "solutions", ["properties"], name: "solutions_gin_properties", using: :gin
   add_index "solutions", ["user_id"], name: "index_solutions_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
