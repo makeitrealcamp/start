@@ -6,7 +6,7 @@ class ResourceCompletionController < ApplicationController
     @resource.users << current_user
 
     respond_to do |format|
-      format.html { redirect_to @resource.course }
+      format.html { redirect_to [@resource.course, @resource.next] }
       format.js
     end
   end

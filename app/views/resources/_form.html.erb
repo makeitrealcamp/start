@@ -20,12 +20,12 @@
           <%= f.select :type, types_resources, {}, { class: 'form-control' } %>
         </div>
 
-        <div class="form-group url-field" <%= 'style="display: none;"'.html_safe if @resource.is_markdown %> >
+        <div class="form-group url-field" <%= 'style="display: none;"'.html_safe if @resource.markdown? %> >
           <%= f.label :url %>
           <%= f.text_field :url, class: "form-control" %>
         </div>
 
-        <div class="form-group content-field" <%= 'style="display: none;"'.html_safe if @resource.is_url %> >
+        <div class="form-group content-field" <%= 'style="display: none;"'.html_safe if @resource.url? %> >
           <%= f.label :content %>
           <%= f.text_area :content, rows: 25, class: "form-control" %>
         </div>
