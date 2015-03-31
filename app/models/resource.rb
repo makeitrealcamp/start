@@ -32,8 +32,8 @@ class Resource < ActiveRecord::Base
   has_and_belongs_to_many :users
 
   validates :course, :title, :description, presence: :true
-  validates :url, presence: true, format: { with: URI.regexp }, if: :is_url
-  validates :content, presence: true, if: :is_markdown
+  validates :url, presence: true, format: { with: URI.regexp }, if: :url?
+  validates :content, presence: true, if: :markdown?
 
   scope :for, -> user { published unless user.is_admin? }
   scope :published, -> { where(published: true) }
