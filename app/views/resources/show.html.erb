@@ -1,18 +1,54 @@
-<div class="container resource-page">
-  <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
-      <%= link_to "<span class='glyphicon glyphicon-arrow-left'></span> Volver a #{@resource.course.name}".html_safe, @resource.course %>
-      <h1><%= @resource.title %></h1>
-
-      <%= markdown @resource.content %>
-
-      <% if @resource.users.include?(current_user) %>
-        <div class="back"><%= link_to "<span class='glyphicon glyphicon-arrow-left'></span> Volver a #{@resource.course.name}".html_safe, @resource.course %></div>
+<div class="resource-page expand" style="margin-top: -60px; padding-top: 50px;">
+  <div class="container expand overflow">
+    <div class="row expand">
+      <% if @resource.url? %>
+        <div class="col-sm-10 col-sm-offset-1 expand text-center">
+          <h1><%= @resource.title %></h1>
+          <p>Este es un recurso externo.</p>
+          <a href="<%= @resource.url %>" target="_blank" class="btn btn-default btn-lg">Haz click acá para abrirlo &nbsp;<span class="glyphicon glyphicon-new-window"></span></a>
+        </div>
       <% else %>
-        <div class="finish">
-          <%= link_to "<span class='glyphicon glyphicon-ok'></span> Finalizar y Volver".html_safe, course_resource_completion_path(course_id: @resource.course.id, resource_id: @resource.id), class: "btn btn-success", method: :post %>
+        <div class="col-sm-8 col-sm-offset-2 expand">
+          <h1 class="text-center"><%= @resource.title %></h1>
+          <%= markdown @resource.content %>
         </div>
       <% end %>
+    </div>
+  </div>
+</div>
+
+<div id="finished-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Recursos finalizados</h4>
+      </div>
+      <div class="modal-body">
+        Este es el último recurso.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="resource-page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <%= link_to "<span class='glyphicon glyphicon-arrow-left'></span> <span class='hidden-xs'>Volver a #{@resource.course.name}</span>".html_safe, @resource.course, class: "btn btn-link" %>
+      </div>
+      <div class="col-xs-6 text-right">
+        <div class="finish">
+          <% if @resource.last? %>
+            <%= link_to "<span class='glyphicon glyphicon-ok'></span> <span class='hidden-xs'>Completar y Volver</span>".html_safe, @resource.course, class: "btn btn-primary" %>
+          <% else %>
+            <%= link_to "<span class='glyphicon glyphicon-ok'></span> <span class='hidden-xs'>Completar y Continuar</span>".html_safe, course_resource_completion_path(course_id: @resource.course.id, resource_id: @resource.id), class: "btn btn-primary", method: :post %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

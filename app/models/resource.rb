@@ -41,12 +41,12 @@ class Resource < ActiveRecord::Base
 
   after_initialize :default_values
 
-  def is_url
-    self.type == "url"
+  def next
+    next_resource = self.course.resources.where('row > ?', self.row).first
   end
 
-  def is_markdown
-    self.type == "markdown"
+  def last?
+    self.next.nil?
   end
 
   private

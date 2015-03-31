@@ -53,13 +53,7 @@
       <% @course.resources.each_with_index do |resource, index| %>
         <tr id="<%= resource.id %>" data-index="index">
           <td class="resource-info">
-            <% if resource.is_url %>
-              <a href="<%= resource.url %>" target="_blank">
-                <%= resource.title %> &nbsp;<span class="glyphicon glyphicon-new-window"></span>
-              </a>
-            <% else %>
-              <%= link_to resource.title, [@course, resource] %>
-            <% end %>
+            <%= link_to (resource.title + (resource.url? ? '&nbsp;<span class="glyphicon glyphicon-new-window"></span>' : '')).html_safe, [@course, resource] %>
             <% if current_user.is_admin? %>
               &nbsp; &nbsp;
               <% if !resource.published %><span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span><% end %>
