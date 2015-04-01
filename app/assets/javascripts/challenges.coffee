@@ -137,7 +137,7 @@ class SolutionView extends Backbone.View
       data =
         status: "completed"
         title: "Reto Superado",
-        message: "¡Felicitaciones! Lo lograste.",
+        message: "<strong>¡Felicitaciones!</strong> Lo lograste.",
         color: "#4DFF62",
         icon: "ok-sign"
     else if solution.status == "failed"
