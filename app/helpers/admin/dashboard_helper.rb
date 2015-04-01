@@ -24,7 +24,7 @@ module Admin::DashboardHelper
     (start.to_date..Date.today).map do |date|
       {
         label: date,
-        y: Solution.completed.where(completed_at: date.beginning_of_day..date.end_of_day).count
+        y: Solution.completed_at_after(date.beginning_of_day).completed_at_before(date.end_of_day).count
       }
     end
   end
