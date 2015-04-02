@@ -1,5 +1,5 @@
 # encoding: UTF-8
-class PhantomEvaluator
+class PhantomEvaluator < Evaluator
   def evaluate(solution)
     host = ENV['HOSTNAME'] || "http://localhost:3000"
     filename = 'tmp/eval-' + solution.id.to_s + '.js'
@@ -23,21 +23,12 @@ class PhantomEvaluator
     end
 
     output = Phantomjs.run(filename)
-    if output.blank?
-      solution.status = :completed
-      solution.completed_at = DateTime.current
-    else
-      solution.status = :failed
-      solution.error_message = output
-    end
-    solution.save!
+    output.blank? ? complete(solution) : fail(solution, output)
 
   rescue Exception => e
     puts e.message
     puts e.backtrace
 
-    solution.status = "Failed"
-    solution.error_message = "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp: #{e.message}"
-    solution.save!
+    fail(solution, "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp: #{e.message}")
   end
 end

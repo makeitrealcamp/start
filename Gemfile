@@ -48,6 +48,8 @@ gem 'hstore_accessor'
 gem 'octokit'
 gem 'kmts', '~> 2.0.0'
 gem 'gendered'
+gem 'docker-api', :require => 'docker'
+gem 'subprocess'
 
 gem 'rails_12factor', group: :production
 

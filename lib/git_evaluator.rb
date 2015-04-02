@@ -1,11 +1,9 @@
-class GitEvaluator
+class GitEvaluator < Evaluator
   def evaluate(solution)
     challenge = solution.challenge
     
     if !Octokit.repository?(solution.repository)
-      solution.status = :failed
-      solution.error_message = "No se encontró el repositorio #{solution.repository}"
-      solution.save!
+      fail(solution, "No se encontró el repositorio #{solution.repository}")
       return
     end
 
@@ -14,16 +12,11 @@ class GitEvaluator
 
     error = eval "Evaluator#{solution.id}.evaluate(solution.repository)"
 
-    solution.status = error ? :failed : :completed
-    solution.error_message = error ? error : nil
-    solution.completed_at = DateTime.current if solution.completed?
-    solution.save!
+    error ? fail(solution, solution.error) : complete(solution)
   rescue Exception => e
     puts e.message
     puts e.backtrace
 
-    solution.status = :failed
-    solution.error_message = "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp: #{e.message}"
-    solution.save!
+    fail(solution, "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp: #{e.message}")
   end
 end

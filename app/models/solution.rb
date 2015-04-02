@@ -38,6 +38,8 @@ class Solution < ActiveRecord::Base
       PhantomEvaluator.new.evaluate(self)
     elsif self.challenge.ruby_git?
       GitEvaluator.new.evaluate(self)
+    elsif self.challenge.rails_git?
+      RailsEvaluator.new.evaluate(self)
     else
       self.status = :failed
       self.error_message = "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp"
