@@ -41,6 +41,8 @@ class Solution < ActiveRecord::Base
       self.error_message = "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp"
       self.save!
     end
+
+    KMTS.record(self.user.email, 'Completed Challenge', { id: self.challenge.id, name: self.challenge.name }) if self.completed?
   end
 
   def as_json(options)

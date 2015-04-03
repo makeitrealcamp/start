@@ -22,7 +22,8 @@ class UsersController < ApplicationController
   end
 
   def activate
-    User.update(params[:id], activate_params)
+    current_user.update(activate_params)
+    KMTS.record(current_user.email, 'Activated')
   end
 
   private

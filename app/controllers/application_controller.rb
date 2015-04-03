@@ -40,6 +40,9 @@ class ApplicationController < ActionController::Base
     end
 
     def record_user_activity
-      current_user.touch :last_active_at if current_user
+      if current_user
+        @first_use = true if current_user.last_active_at.nil?
+        current_user.touch :last_active_at
+      end
     end
 end

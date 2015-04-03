@@ -119,6 +119,7 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.2)
     kgio (2.9.3)
+    kmts (2.0.1)
     launchy (2.4.3)
       addressable (~> 2.3)
     loofah (2.0.1)
@@ -284,6 +285,7 @@ DEPENDENCIES
   hstore_accessor
   jbuilder (~> 2.0)
   jquery-rails
+  kmts (~> 2.0.0)
   launchy
   nokogiri
   nokogiri-styles
