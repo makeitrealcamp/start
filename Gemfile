@@ -46,6 +46,7 @@ gem 'sidekiq'
 gem 'phantomjs'
 gem 'hstore_accessor'
 gem 'octokit'
+gem 'kmts', '~> 2.0.0'
 
 gem 'rails_12factor', group: :production
 
