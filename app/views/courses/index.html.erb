@@ -48,3 +48,5 @@
     <% end %>
   <% end %>
 </div>
+
+<%= render 'profile_questions' if current_user.first_name.nil? %>

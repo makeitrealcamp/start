@@ -274,3 +274,52 @@
     margin-bottom: 15px;
   }
 }
+
+#questions-modal {
+  .option-alert { 
+    border-radius: 0;
+    margin-bottom: 0;
+  }
+
+  p { 
+    font-size: 21px;
+    font-weight: 300;
+    margin: 20px 0 40px;
+  }
+
+  .part-1 {
+    text-align: center;
+
+    .form-group {
+      margin: 15px 0 30px;
+      padding: 0 10px;
+      text-align: center;
+
+      .form-control {
+        display: inline-block;
+        max-width: 300px; 
+      }
+    }
+  }
+
+  .multiple-option {
+    text-align: center;
+
+    .answers {
+      display: inline-block;
+      text-align: left;
+      margin-bottom: 30px;
+    }
+    .form-group {
+      padding-left: 20px;
+
+      label {
+        font-size: 18px; 
+        font-weight: 300; 
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .back { float: left; }
+}

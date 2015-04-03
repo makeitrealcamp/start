@@ -6,13 +6,10 @@
 #  email           :string(100)
 #  roles           :string           is an Array
 #  password_digest :string
-#  first_name      :string(50)
-#  last_name       :string(50)
-#  birthday        :date
-#  phone           :string(15)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  last_active_at  :datetime
+#  profile         :hstore
 #
 
 class User < ActiveRecord::Base
@@ -21,6 +18,15 @@ class User < ActiveRecord::Base
 
   has_many :solutions, dependent: :destroy
   has_and_belongs_to_many :resources
+
+  hstore_accessor :profile,
+    first_name: :string,
+    gender: :string,
+    birthday: :date,
+    mobile_number: :string,
+    optimism: :string,
+    growth_mindset: :string,
+    motivation: :string
 
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }

@@ -6,13 +6,10 @@
 #  email           :string(100)
 #  roles           :string           is an Array
 #  password_digest :string
-#  first_name      :string(50)
-#  last_name       :string(50)
-#  birthday        :date
-#  phone           :string(15)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  last_active_at  :datetime
+#  profile         :hstore
 #
 
 require 'rails_helper'

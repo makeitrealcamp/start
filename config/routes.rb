@@ -10,7 +10,10 @@ Rails.application.routes.draw do
 
   resource :password, only: [:edit, :update]
 
-  resources :users, only: [:index, :new, :create]
+  resources :users, only: [:index, :new, :create] do
+    patch :activate, on: :member
+  end
+
   resources :courses, only: [:index, :show, :new, :create, :edit, :update] do
     resources :challenges, only: [:new, :create, :edit, :update, :show]
     resources :resources, only: [:new, :create, :show, :edit, :update, :destroy] do

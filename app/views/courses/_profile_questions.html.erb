@@ -1,0 +1,74 @@
+<div id="questions-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <%= form_for current_user, url: activate_user_path(current_user), remote: true do |f| %>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Ayúdanos a conocerte mejor</h4>
+        </div>
+        <div class="alert alert-danger option-alert" role="alert" style="display:none;">Selecciona una opción</div>
+        <div class="modal-body">
+          <div class="part-1">
+            <p>Tu primer nombre es</p>
+            <div class="form-group">
+              <%= f.text_field :first_name, class: "form-control input-lg", autofocus: true %>
+            </div>
+          </div>
+          
+          <div class="part-2 multiple-option" style="display: none;">
+            <p class="text-center">¿Con cuál de las siguientes frases te identificas mejor?</p>
+            <div class="answers">
+              <div class="form-group">
+                <%= f.radio_button :growth_mindset, "low" %> <%= f.label :growth_mindset_low, 'Mi inteligencia y talentos son limitados.' %>
+              </div>
+              <div class="form-group">
+                <%= f.radio_button :growth_mindset, "high" %> <%= f.label :growth_mindset_high, 'Puedo aprender cualquier cosa si me lo propongo.' %>
+              </div>
+            </div>
+          </div>
+
+          <div class="part-3 multiple-option" style="display: none;">
+            <p>Ante los obstáculos y las dificultades:</p>
+            <div class="answers">
+              <div class="form-group">
+                <%= f.radio_button :optimism, "high" %> <%= f.label :optimism_high, 'Soy optimista y persistente.' %>
+              </div>
+              <div class="form-group">
+                <%= f.radio_button :optimism, "low" %> <%= f.label :optimism_low, 'Me desmotivo fácilmente.' %>
+              </div>
+            </div>
+          </div>
+
+          <div class="part-4 multiple-option" style="display: none;">
+            <p>Tu <strong>principal</strong> motivación para aprender a programar es:</p>
+            <div class="answers">
+              <div class="form-group">
+                <%= f.radio_button :motivation, "job" %> <%= f.label :motivation_job, 'Conseguir un [mejor] empleo.' %>
+              </div>
+              <div class="form-group">
+                <%= f.radio_button :motivation, "challenge" %> <%= f.label :motivation_challenge, 'Un reto personal.' %>
+              </div>
+              <div class="form-group">
+                <%= f.radio_button :motivation, "idea" %> <%= f.label :motivation_idea, 'Implementar una idea que tengo.' %>
+              </div>
+              <div class="form-group">
+                <%= f.radio_button :motivation, "impress" %> <%= f.label :motivation_impress, 'Impresionar a los demás.' %>
+              </div>
+              <div class="form-group">
+                <%= f.radio_button :motivation, "curiosity" %> <%= f.label :motivation_curiosity, 'Curiosidad, me llama la atención.' %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-default back" style="display: none;" tabindex="-1">Atrás</a>
+          <button class="btn btn-success next">Siguiente</button>
+          <%= f.submit "Finalizar", class: "btn btn-primary finish", style: "display: none;" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  new ProfileQuestionsView();
+</script>
