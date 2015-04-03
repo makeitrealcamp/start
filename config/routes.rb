@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resource :password, only: [:edit, :update]
 
-  resources :users, only: [:index, :new, :create] do
+  resources :users, only: [:new, :create] do
     patch :activate, on: :member
   end
 
@@ -40,5 +40,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'dashboard', to: 'dashboard#index'
+    resources :users, only: [:index, :show]
   end
 end

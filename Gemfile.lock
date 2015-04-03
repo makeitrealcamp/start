@@ -100,6 +100,8 @@ GEM
     ffi (1.9.6)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
+    gendered (0.0.7)
+      http (>= 0.6.2)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
     gravatar-ultimate (2.0.0)
@@ -109,6 +111,12 @@ GEM
     hitimes (1.2.2)
     hstore_accessor (1.0.2)
       activerecord (>= 4.0.0)
+    http (0.8.1)
+      addressable (~> 2.3)
+      http-form_data (~> 1.0.1)
+      http_parser.rb (~> 0.6.0)
+    http-form_data (1.0.1)
+    http_parser.rb (0.6.0)
     i18n (0.7.0)
     jbuilder (2.2.11)
       activesupport (>= 3.0.0, < 5)
@@ -281,6 +289,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.5.0)
   faker (~> 1.4.3)
   friendly_id (~> 5.1.0)
+  gendered
   gravatar-ultimate
   hstore_accessor
   jbuilder (~> 2.0)
