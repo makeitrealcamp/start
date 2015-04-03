@@ -10,6 +10,7 @@
 #  updated_at      :datetime         not null
 #  last_active_at  :datetime
 #  profile         :hstore
+#  status          :integer
 #
 
 FactoryGirl.define do
