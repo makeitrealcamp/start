@@ -21,4 +21,8 @@ class Document < ActiveRecord::Base
   def as_html
     Nokogiri::HTML(content)
   end
+
+  def as_json(options)
+    super(options.merge(only: [:id, :name, :content]))
+  end
 end

@@ -26,8 +26,9 @@ class User < ActiveRecord::Base
     birthday: :date,
     mobile_number: :string,
     optimism: :string,
-    growth_mindset: :string,
-    motivation: :string
+    mindset: :string,
+    motivation: :string,
+    activated_at: :datetime
 
   enum status: [:created, :active]
 

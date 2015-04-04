@@ -1,2 +1,123 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container profile-page">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="img-wrapper"><img src="<%= Gravatar.new("#{@user.email}").image_url(s: 300) %>" class="gravatar" /></div>
+      <div class="info">
+        <div><%= @user.email %></div>
+        <div><%= @user.first_name %></div>
+        <div>Se unió el <%= l @user.created_at, format: '%d %b, %Y' %></div>
+      </div>
+      <% if @user.active? && current_user.is_admin? %>
+      <div class="details">
+        <div>Optimism: <%= @user.optimism %></div>
+        <div>Motivation: <%= @user.motivation %></div>
+        <div>Mindset: <%= @user.mindset %></div>
+      </div>
+      <% end %>
+    </div>
+    <div class="col-sm-9">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="status">
+            <div class="status-value"><%= @user.status %></div>
+            <div class="status-label">Estado</div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="status">
+            <div class="status-value"><%= @user.solutions.completed.count %></div>
+            <div class="status-label">Retos</div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="status">
+            <div class="status-value"><%= @user.resources.published.count %></div>
+            <div class="status-label">Recursos</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row solutions">
+        <div class="col-sm-12">
+          <hr>
+          <h3>Solutions</h3>
+          <div id="solved-challenges-chart" style="height: 250px;" data-chart='<%= user_solved_challenges_data(@user).to_json.html_safe %>'></div>
+          <table class="table table-bordered">
+            <tr>
+              <th>Reto</th>
+              <th class="text-center">Fecha</th>
+              <th class="text-center">Intentos</th>
+              <th></th>
+            </tr>
+            <% @user.solutions.completed.each do |solution| %>
+              <tr>
+                <td><%= solution.challenge.name %></td>
+                <td class="text-center"><%= l solution.completed_at, format: '%d %h, %Y %H:%m' %></td>
+                <td class="text-center"><%= solution.attempts %></td>
+                <td class="text-center">
+                  <% if solution.challenge.ruby_git? %>
+                    <a href="<%= solution.repository %>" target="_blank">Show</a>
+                  <% else %>
+                    <a href="#" class="solution-files" data-id="<%= solution.id %>">Show</a>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="x/template" id="files-template">
+<div id="files-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <ul class="nav nav-tabs" role="tablist">
+          {{ _.each(documents, function(document) { }}
+            <li class="active file-tab">
+              <a href="editor-{{= document.id }}" role="tab" data-toggle="tab">{{= document.name }}</a>
+            <li>
+          {{ }); }}
+        </ul>
+        {{ _.each(documents, function(document) { }}
+          <div role="tabpanel" class="tab-pane active expand">
+            <textarea id="editor-{{= document.id }}">{{= document.content }}</textarea>
+          </div>
+        {{ }); }}
+      </div>
+    </div>
+  </div>
+</div>
+</script>
+
+<%= javascript_include_tag 'canvasjs-1.6.1' %>
+<script>
+  var editorModes = <%= codemirror_modes.to_json.html_safe %>;
+  $('.solution-files').click(function() {
+    $.ajax({
+      url: "/solutions/" + $(this).data("id"),
+      contentType: "application/json",
+      dataType: "json"
+    }).done(function(data) {
+      var template = _.template($('#files-template').html());
+      $(template(data)).on('shown.bs.modal', function() {
+        _.each(data.documents, function(document) {
+          var ext = /(?:\.([^.]+))?$/.exec(document.name)[1];
+          editors.configure({ el: 'editor-' + document.id, opts: { mode: editorModes[ext] } });
+        });
+      }).on('hidden.bs.modal', function() {
+        $('#files-modal').remove();
+      }).modal();
+    });
+  });
+
+  new CanvasJS.Chart('solved-challenges-chart', {
+    data: [{
+      type: "line",
+      dataPoints: $('#solved-challenges-chart').data('chart')
+    }]
+  }).render();
+</script>

@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def activate
     gender = Gendered::Name.new(activate_params[:first_name]).guess!
-    current_user.update(activate_params.merge(gender: gender, status: User.statuses[:active]))
+    current_user.update(activate_params.merge(gender: gender, status: User.statuses[:active], activated_at: Time.current))
     KMTS.record(current_user.email, 'Activated')
   end
 

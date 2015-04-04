@@ -5,14 +5,14 @@ class AdminDashboardView
   generate_charts: ->
     new CanvasJS.Chart('registered-users-chart',
       data: [
-        type: "column",
+        type: "line",
         dataPoints: $('#registered-users-chart').data('chart')
       ]
     ).render()
 
     new CanvasJS.Chart('solved-challenges-chart',
       data: [
-        type: "column",
+        type: "line",
         dataPoints: $('#solved-challenges-chart').data('chart')
       ]
     ).render()
