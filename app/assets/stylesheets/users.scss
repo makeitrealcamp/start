@@ -8,15 +8,91 @@
     }
   }
 
-  .status {
-    color: #666;
-    text-align: center;
-    .status-value { font-size: 38px; }
+  .first-name {
+    font-size: 32px;
+    font-family: "Open Sans Condensed", sans-serif;
+    margin-bottom: 15px;
+  }
+
+  .info-value {
+    color: #999;
+    margin-bottom: 7px;
+  }
+
+  .info-status {
+    color: #999;
+    font-size: 21px;
+    margin-top: 20px;
+  }
+
+  .details {
+    margin-top: 60px;
+    .detail-value {
+      color: #666;
+      margin-bottom: 7px;
+    }
+  }
+
+  .work {
+    margin-bottom: 15px;
+    .work-box {
+      color: #999;
+      text-align: center;
+      .work-value { font-size: 28px; }
+    }
   }
 
   h3 {
     font-size: 32px;
     font-family: "Open Sans Condensed", sans-serif;
+    margin-top: 30px;
+    margin-bottom: 40px;
+  }
+
+  .course {
+    background: #fafafd;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -1px;
+    width: 100%;
+
+    .title {
+      color: #333;
+      font-size: 18px;
+      font-weight: normal;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .info {
+      color: #999;
+
+      span {
+        display: block;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      .info-item-value { font-size: 16px; }
+    }
+  }
+
+  .course-divider {
+    position:relative;
+    margin-top: -1px;
+    z-index: 1;
+
+    div {
+      background: #fafafd;
+      width: 10px;
+      height: 30px;
+      margin: 0 auto;
+      border-right: 1px solid #eee;
+      border-left: 1px solid #eee;
+    }
   }
 }
 

@@ -50,6 +50,15 @@ class User < ActiveRecord::Base
     has_role?("admin")
   end
 
+  def str_status
+    active? ? "Activo" : "Sin Activar"
+  end
+
+  def str_optimism
+    return "" if optimism.nil?
+    optimism == "high" ? "alto" : "bajo"
+  end
+
   def progress(course)
     resources_count = course.resources.published.count
     challenges_count = course.challenges.published.count

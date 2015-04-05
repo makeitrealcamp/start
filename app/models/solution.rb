@@ -29,6 +29,8 @@ class Solution < ActiveRecord::Base
   after_initialize :default_values
   after_create :create_documents
 
+  scope :evaluated, -> { where(status: [Solution.statuses[:completed], Solution.statuses[:failed] ]) }
+
   def evaluate
     if self.challenge.ruby_embedded?
       RubyEvaluator.new.evaluate(self)
