@@ -144,11 +144,19 @@ class SolutionView extends Backbone.View
       data =
         status: "failed"
         title: "Intenta Nuevamente",
-        message: solution.error_message,
+        message: @html_escape(solution.error_message),
         color: "#FF4242",
         icon: "exclamation-sign"
 
     $('.overlay').html($(template(data)));
+
+  html_escape: (str) ->
+    return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
 
   remove: =>
     super()
