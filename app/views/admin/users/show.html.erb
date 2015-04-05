@@ -1,58 +1,45 @@
 <div class="container profile-page">
   <div class="row">
-    <div class="col-sm-3">
-      <div class="img-wrapper"><img src="<%= Gravatar.new("#{@user.email}").image_url(s: 300) %>" class="gravatar" /></div>
-      <div class="info">
-        <div><%= @user.email %></div>
-        <div><%= @user.first_name %></div>
-        <div>Se unió el <%= l @user.created_at, format: '%d %b, %Y' %></div>
-      </div>
-      <% if @user.active? && current_user.is_admin? %>
-      <div class="details">
-        <div>Optimism: <%= @user.optimism %></div>
-        <div>Motivation: <%= @user.motivation %></div>
-        <div>Mindset: <%= @user.mindset %></div>
-      </div>
-      <% end %>
-    </div>
     <div class="col-sm-9">
       <div class="row">
-        <div class="col-sm-4">
-          <div class="status">
-            <div class="status-value"><%= @user.status %></div>
-            <div class="status-label">Estado</div>
+        <div class="col-sm-3">
+          <div class="img-wrapper"><img src="<%= Gravatar.new("#{@user.email}").image_url(s: 200) %>" class="gravatar" /></div>
+        </div>
+        <div class="col-sm-5">
+          <div class="info">
+            <div class="first-name"><%= @user.first_name %></div>
+            <div class="info-value"><span class="glyphicon glyphicon-envelope"></span> <%= @user.email %></div>
+            <div class="info-value"><span class="glyphicon glyphicon-time"></span> Se unió el <%= l @user.created_at, format: '%d %b, %Y' %></div>
+            <div class="info-status"><%= @user.str_status %></div>
           </div>
         </div>
         <div class="col-sm-4">
-          <div class="status">
-            <div class="status-value"><%= @user.solutions.completed.count %></div>
-            <div class="status-label">Retos</div>
+          <% if @user.active? && current_user.is_admin? %>
+          <div class="details">
+            <div class="detail-value"><strong>Optimismo:</strong> <%= @user.str_optimism %></div>
+            <div class="detail-value"><strong>Motivación:</strong> <%= @user.motivation %></div>
+            <div class="detail-value"><strong>Mentalidad:</strong> <%= @user.mindset %></div>
           </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="status">
-            <div class="status-value"><%= @user.resources.published.count %></div>
-            <div class="status-label">Recursos</div>
-          </div>
+          <% end %>
         </div>
       </div>
 
       <div class="row solutions">
         <div class="col-sm-12">
           <hr>
-          <h3>Solutions</h3>
-          <div id="solved-challenges-chart" style="height: 250px;" data-chart='<%= user_solved_challenges_data(@user).to_json.html_safe %>'></div>
+          <h3>Soluciones</h3>
+          <div id="solved-challenges-chart" style="height: 250px; margin-bottom: 40px;" data-chart='<%= user_solved_challenges_data(@user).to_json.html_safe %>'></div>
           <table class="table table-bordered">
             <tr>
               <th>Reto</th>
-              <th class="text-center">Fecha</th>
+              <th class="text-center">Completado</th>
               <th class="text-center">Intentos</th>
               <th></th>
             </tr>
-            <% @user.solutions.completed.each do |solution| %>
+            <% @user.solutions.evaluated.order('updated_at DESC').each do |solution| %>
               <tr>
                 <td><%= solution.challenge.name %></td>
-                <td class="text-center"><%= l solution.completed_at, format: '%d %h, %Y %H:%m' %></td>
+                <td class="text-center"><%= solution.completed_at.nil? ? "" : l(solution.completed_at, format: '%d %h, %Y %H:%m') %></td>
                 <td class="text-center"><%= solution.attempts %></td>
                 <td class="text-center">
                   <% if solution.challenge.ruby_git? %>
@@ -66,6 +53,46 @@
           </table>
         </div>
       </div>
+    </div>
+
+    <div class="col-sm-3">
+      <div class="row work">
+        <div class="col-xs-6">
+          <div class="work-box">
+            <div class="work-value"><%= @user.solutions.completed.count %></div>
+            <div class="work-label">Retos</div>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <div class="work-box">
+            <div class="work-value"><%= @user.resources.published.count %></div>
+            <div class="work-label">Recursos</div>
+          </div>
+        </div>
+      </div>
+      <% @courses.each_with_index do |course, i| %>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="course">
+              <div class="title"><%= course.name %></div>
+              <%= progress_bar(progress: @user.progress(course)) %>
+              <div class="row info">
+                <div class="col-xs-6 info-item">
+                  <span class="info-item-value"><%= @user.solutions.completed.joins(:challenge).where('challenges.course_id = ?', course.id).count %>/<%= course.challenges.published.count %></span>
+                  <span class="info-item-label">Retos</span>
+                </div>
+                <div class="col-xs-6 info-item">
+                  <span class="info-item-value"><%= course.resources.published.count %></span>
+                  <span class="info-item-label">Recursos</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% if i != @courses.size - 1 %>
+          <div class="course-divider"><div></div></div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
