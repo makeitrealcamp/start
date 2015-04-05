@@ -28,6 +28,6 @@ class UsersController < ApplicationController
     end
 
     def activate_params
-      params.require(:user).permit(:first_name, :optimism, :motivation, :growth_mindset)
+      params.require(:user).permit(:first_name, :optimism, :motivation, :mindset)
     end
 end
