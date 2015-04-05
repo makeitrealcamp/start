@@ -62,7 +62,7 @@ class SolutionView extends Backbone.View
       alert("No se puede ver la solución, no existe un archivo HTML")
       return false
 
-    solution_id = @.$('.solution').data("solution-id")
+    solution_id = $(@el).data("solution-id")
     $(e.currentTarget).attr("href", '/solutions/' + solution_id + '/preview/' + file.html())
 
   find_html_file: =>
@@ -88,7 +88,7 @@ class SolutionView extends Backbone.View
 
     data = @get_editors_data()
     @files_changed = false
-    solution_id = $('.solution').data("solution-id")
+    solution_id = $(@el).data("solution-id")
     $.ajax(
       type: "PUT"
       url: "/solutions/" + solution_id + "/update_documents"
@@ -117,7 +117,7 @@ class SolutionView extends Backbone.View
     @check_evaluation_interval = setTimeout(@check_evaluation_status, 1000)
 
   check_evaluation_status: =>
-    solution_id = $('.solution').data("solution-id")
+    solution_id = $(@el).data("solution-id")
     $.ajax(
       type: "GET",
       url: "/solutions/" + solution_id
