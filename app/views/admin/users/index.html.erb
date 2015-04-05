@@ -1,22 +1,33 @@
 <div class="container users">
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1">
+      <h1>Estudiantes</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
       <table class="table users" id="table-users">
         <thead>
         <tr>
-          <th>Correo</th>
+          <th><span class="glyphicon glyphicon-user"></span></th>
+          <th class="text-center">Estado</th>
           <th class="text-center">Fecha Registro</th>
           <th class="text-center">Última Actividad</th>
           <th class="text-center">Retos</th>
+          <th class="text-center">Recursos</th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
         <% @users.each do |user| %>
         <tr id="user-<%= user.id %>">
-          <td><%= user.email %></td>
+          <td><%= name(user) %></td>
+          <td class="text-center"><%= user.status %></td>
           <td class="text-center"><%= l user.created_at, format: '%d %b %Y' %></td>
           <td class="text-center"><%= distance_of_time_in_words_to_now(user.last_active_at) unless user.last_active_at.nil? %></td>
           <td class="text-center"><%= user.solutions.completed.count %></td>
+          <td class="text-center"><%= user.resources.count %></td>
+          <td class="text-right"><%= link_to "Show", admin_user_path(user) %></td>
         </tr>
         <% end %>
         </tbody>

@@ -49,7 +49,7 @@
   <% end %>
 </div>
 
-<%= render 'profile_questions' if current_user.first_name.nil? %>
+<%= render 'profile_questions' unless current_user.active? %>
 
 <script>
   _kmq.push(['identify', '<%= current_user.email %>']);

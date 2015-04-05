@@ -1,11 +1,6 @@
 class UsersController < ApplicationController
   before_action :public_access, only: [:new, :create]
-  before_action :private_access, only: [:index]
-  before_action :admin_access, only:[:index]
 
-  def index
-    @users = User.order('created_at DESC')
-  end
 
   def new
     @user = User.new
@@ -22,7 +17,8 @@ class UsersController < ApplicationController
   end
 
   def activate
-    current_user.update(activate_params)
+    gender = Gendered::Name.new(activate_params[:first_name]).guess!
+    current_user.update(activate_params.merge(gender: gender, status: User.statuses[:active], activated_at: Time.current))
     KMTS.record(current_user.email, 'Activated')
   end
 
@@ -32,6 +28,6 @@ class UsersController < ApplicationController
     end
 
     def activate_params
-      params.require(:user).permit(:first_name, :gender, :optimism, :motivation, :growth_mindset)
+      params.require(:user).permit(:first_name, :optimism, :motivation, :growth_mindset)
     end
 end

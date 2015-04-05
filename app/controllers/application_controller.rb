@@ -36,12 +36,11 @@ class ApplicationController < ActionController::Base
     end
 
     def admin_access
-      raise ActionController::RoutingError.new('Not Found') unless current_user.is_admin?
+      raise ActionController::RoutingError.new('Not Found') unless signed_in? && current_user.is_admin?
     end
 
     def record_user_activity
       if current_user
-        @first_use = true if current_user.last_active_at.nil?
         current_user.touch :last_active_at
       end
     end

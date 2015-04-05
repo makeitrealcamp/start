@@ -1,0 +1,32 @@
+.profile-page {
+  .img-wrapper {
+    padding: 0 10px 10px 0;
+
+    .gravatar {
+      max-width: 100%;
+      border-radius: 5px;
+    }
+  }
+
+  .status {
+    color: #666;
+    text-align: center;
+    .status-value { font-size: 38px; }
+  }
+
+  h3 {
+    font-size: 32px;
+    font-family: "Open Sans Condensed", sans-serif;
+  }
+}
+
+#files-modal {
+  .nav-tabs {
+    margin-left: -1px;
+
+    li.active a {
+      color: #839496;
+      background: #002b36;
+    }
+  }
+}

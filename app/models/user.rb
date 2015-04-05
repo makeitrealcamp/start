@@ -10,6 +10,7 @@
 #  updated_at      :datetime         not null
 #  last_active_at  :datetime
 #  profile         :hstore
+#  status          :integer
 #
 
 class User < ActiveRecord::Base
@@ -25,8 +26,11 @@ class User < ActiveRecord::Base
     birthday: :date,
     mobile_number: :string,
     optimism: :string,
-    growth_mindset: :string,
-    motivation: :string
+    mindset: :string,
+    motivation: :string,
+    activated_at: :datetime
+
+  enum status: [:created, :active]
 
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
