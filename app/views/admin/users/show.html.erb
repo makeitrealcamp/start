@@ -39,7 +39,7 @@
             <% @user.solutions.evaluated.order('updated_at DESC').each do |solution| %>
               <tr>
                 <td><%= solution.challenge.name %></td>
-                <td class="text-center"><%= solution.completed_at.nil? ? "" : l(solution.completed_at, format: '%d %h, %Y %H:%m') %></td>
+                <td class="text-center"><%= solution.completed_at.nil? ? "" : l(solution.completed_at, format: '%d %h, %Y %H:%M') %></td>
                 <td class="text-center"><%= solution.attempts %></td>
                 <td class="text-center">
                   <% if solution.challenge.ruby_git? %>
