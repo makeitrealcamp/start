@@ -11,6 +11,7 @@
 #  last_active_at  :datetime
 #  profile         :hstore
 #  status          :integer
+#  settings        :hstore
 #
 
 class User < ActiveRecord::Base
@@ -29,6 +30,10 @@ class User < ActiveRecord::Base
     mindset: :string,
     motivation: :string,
     activated_at: :datetime
+
+  hstore_accessor :settings,
+    password_reset_token: :string,
+    password_reset_sent_at: :datetime
 
   enum status: [:created, :active]
 
@@ -70,8 +75,21 @@ class User < ActiveRecord::Base
     (completed_resources + completed_challenges).to_f/(resources_count + challenges_count).to_f
   end
 
+  def send_password_reset
+    generate_token
+    self.password_reset_sent_at = Time.current
+    save!
+    UserMailer.password_reset(self).deliver_now
+  end
+
   private
     def default_values
       self.roles ||= ["user"]
+    end
+
+    def generate_token
+      begin
+        self.settings = { password_reset_token: SecureRandom.urlsafe_base64 }
+      end while  User.exists?(["settings -> 'password_reset_token' = '#{self.settings['password_reset_token']}'"])
     end
 end

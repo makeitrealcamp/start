@@ -11,16 +11,44 @@
 #  last_active_at  :datetime
 #  profile         :hstore
 #  status          :integer
+#  settings        :hstore
 #
 
 FactoryGirl.define do
   factory :user do
     sequence (:email) { |n| "user#{n}@example.com" }
-    password "pass1234"
+    password { Faker::Internet.password}
     first_name{ Faker::Name.first_name }
 
+    sequence(:gender) do |n|
+      items = {male: "male", female: "female"}
+      items.values[rand(items.size)]
+    end
+
+    birthday { Faker::Time.between(2.days.ago, Time.now)}
+    mobile_number { Faker::PhoneNumber.cell_phone}
+
+    sequence(:optimism) do |n|
+      items = {high: "high", low: "low"}
+      items.values[rand(items.size)]
+    end
+
+    sequence(:mindset) do |n|
+      items = {growth: "growth", fixed: "fixed"}
+      items.values[rand(items.size)]
+    end
+
+    sequence(:motivation) do |n|
+      items = {job: "job", challenge: "challenge", idea: "idea", impress: "impress", curiosity: "curiosity"}
+      items.values[rand(items.size)]
+    end
+
+    activated_at { Faker::Time.between(2.days.ago, Time.now)}
+    roles ["user"]
     factory :admin do
       roles ["user", "admin"]
     end
+
+    status {User.statuses[:active]}
   end
 end

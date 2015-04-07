@@ -9,14 +9,15 @@ Rails.application.routes.draw do
   post 'signup', to: 'users#create'
 
   resource :password, only: [:edit, :update]
+  resource :password_reset, except: [:index, :show]
 
-  resources :users, only: [:new, :create] do
+  resources :users do
     patch :activate, on: :member
   end
 
-  resources :courses, only: [:index, :show, :new, :create, :edit, :update] do
-    resources :challenges, only: [:new, :create, :edit, :update, :show]
-    resources :resources, only: [:new, :create, :show, :edit, :update, :destroy] do
+  resources :courses, except: [:destroy] do
+    resources :challenges, except: [:index, :destroy]
+    resources :resources, except: [:index] do
       resource :completion, controller: 'resource_completion', only: [:create, :destroy]
     end
   end

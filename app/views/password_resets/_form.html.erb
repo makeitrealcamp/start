@@ -3,25 +3,21 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title">Cambiar Contraseña</h4>
+        <h4 class="modal-title">Restablecer Contraseña</h4>
       </div>
 
       <div class="alert" style="display:none" role="alert">
       </div>
 
-      <%= form_tag url_for(controller: :passwords, action: :update), method: 'PATCH', remote: true do |f| %>
+      <%= form_tag password_reset_path, remote: true do |f| %>
         <div class="modal-body">
           <div class="form-group">
-            <%= label_tag(:password, "Nueva Contraseña") %>
-            <%= password_field_tag(:password, nil, class: 'form-control input-lg') %>
-          </div>
-          <div class="form-group">
-            <%= label_tag(:password_confirmation, "Confirma Contraseña") %>
-            <%= password_field_tag(:password_confirmation, nil, class: 'form-control input-lg') %>
+            <%= label_tag(:email, "Correo electrónico") %>
+            <%= email_field_tag(:email, nil, class: 'form-control input-lg') %>
           </div>
         </div>
         <div class="modal-footer">
-          <%= submit_tag("Cambiar Contraseña", class: 'btn btn-primary') %>
+          <%= submit_tag("Restablecer Contraseña", class: 'btn btn-primary') %>
         </div>
       <% end %>
     </div><!-- .modal-content -->
