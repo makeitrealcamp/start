@@ -90,7 +90,7 @@ class User < ActiveRecord::Base
 
     def generate_token
       begin
-        self.settings = { password_reset_token: SecureRandom.urlsafe_base64 }
-      end while  User.exists?(["settings -> 'password_reset_token' = '#{self.settings['password_reset_token']}'"])
+        self.password_reset_token = SecureRandom.urlsafe_base64
+      end while User.exists?(["settings -> 'password_reset_token' = '#{self.settings['password_reset_token']}'"])
     end
 end
