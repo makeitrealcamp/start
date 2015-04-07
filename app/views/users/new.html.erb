@@ -1,6 +1,11 @@
 <div class="container signup">
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
+      <h1>Crear tu cuenta</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
       <%= render 'shared/flash_messages_form', object: @user  %>
       <%= form_for @user, url: signup_path do |f| %>
         <div class="form-group">

@@ -1,7 +1,7 @@
 <div class="container login">
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
-      <%= form_for @user, url: password_resets_path(t: params[:t]), method: 'PATCH' do |f| %>
+      <%= form_for @user, url: password_reset_path(t: params[:t]), method: 'PATCH' do |f| %>
         <%= render 'shared/flash_messages_form', object: @user  %>
         <h1>Restablecer Contraseña</h1>
         <div class="form-group">

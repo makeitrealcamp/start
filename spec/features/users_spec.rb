@@ -2,17 +2,17 @@ require 'rails_helper'
 
 RSpec.feature "Users", type: :feature do
 
-  let!(:user){create(:user)}
-  let!(:admin){create(:admin)}
+  let!(:user) { create(:user) }
+  let!(:admin) { create(:admin) }
 
   context 'when accessed as user' do
     scenario "when is not logged in" do
-     expect {visit admin_users_path}.to raise_error
+     expect { visit admin_users_path }.to raise_error
     end
 
     scenario "when not allow access" do
       login(user)
-      expect {visit admin_users_path}.to raise_error
+      expect { visit admin_users_path }.to raise_error
     end
 
     scenario "should not show link of admin", js: true do
@@ -56,22 +56,6 @@ RSpec.feature "Users", type: :feature do
         expect(user.mobile_number).to eq mobile_number
         expect(user.birthday.strftime('%F')).to eq '2015-01-01'
         expect(current_path).to eq courses_path
-      end
-
-      scenario "edit profile without valid input", js: true do
-
-        login(user)
-        find('.avatar').click
-        click_link 'Editar Perfil'
-
-        fill_in "user_email", with: ""
-
-        click_button 'Actualizar Perfil'
-
-        wait_for_ajax
-        user.reload
-        expect(page).to have_selector ".panel-danger"
-        expect(current_path).to eq user_path(user)
       end
     end
   end

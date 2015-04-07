@@ -6,7 +6,7 @@ class PasswordResetsController < ApplicationController
 
   def create
     @errors = []
-    @errors << "Por favor digite un correo electrónico" if params[:email].blank?
+    @errors << "Por favor digita un correo electrónico" if params[:email].blank?
     user = User.find_by_email(params[:email]) unless params[:email].blank?
 
     if user
@@ -18,19 +18,23 @@ class PasswordResetsController < ApplicationController
 
 
   def edit
-    @user = User.where(["settings -> 'password_reset_token' = '#{params[:t]}'"]).first
-    if @user.settings['password_reset_sent_at'] < 2.hours.ago
-      redirect_to login_path, flash:{error: "La página ya no se encuentra disponible"}
+    @user = User.where(["settings -> 'password_reset_token' = '#{params[:t]}'"]).take
+    raise ActionController::RoutingError.new('Not Found') unless @user
+
+    if @user.password_reset_sent_at < 2.hours.ago
+      redirect_to login_path, flash: { error: "La página ya no se encuentra disponible" }
     end
   end
 
   def update
-    @user = User.where(["settings -> 'password_reset_token' = '#{params[:t]}'"]).first
-    @user.errors[:password] << "Por favor ingresa una contraseña" if params[:user][:password].blank?
-    if @user.settings['password_reset_sent_at'] < 2.hours.ago
-      redirect_to new_password_resets_path, flash:{error: "La página ya no se encuentra disponible"}
+    @user = User.where("settings -> 'password_reset_token' = '#{params[:t]}'").take
+    @user.errors[:password] << "Por favor ingresa una contraseña" if user_params[:password].blank?
+
+    if @user.password_reset_sent_at < 2.hours.ago
+      redirect_to new_password_reset_path, flash: { error: "La página ya no se encuentra disponible" }
     elsif @user.errors.empty? && @user.update(user_params)
-      redirect_to login_path, flash: {notice: "la contraseña se ha restablecido correctamente"}
+      @user.update(password_reset_token: nil, password_reset_sent_at: nil)
+      redirect_to login_path, flash: { notice: "la contraseña se ha restablecido correctamente" }
     else
       render :edit
     end

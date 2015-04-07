@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :private_access, except: [:new, :create]
-  before_action :admin_access, only:[:index]
 
   def new
     @user = User.new
@@ -29,7 +28,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to root_path, flash:{notice: "Su perfil se ha actualizado"}
+      redirect_to root_path, flash: { notice: "Tu perfil se ha actualizado" }
     else
       render :edit
     end
@@ -37,7 +36,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:first_name, :mobile_number, :birthday, :email)
+      params.require(:user).permit(:email, :password, :first_name, :mobile_number, :birthday)
     end
 
     def activate_params

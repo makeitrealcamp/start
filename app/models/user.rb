@@ -77,7 +77,7 @@ class User < ActiveRecord::Base
 
   def send_password_reset
     generate_token
-    self.settings[:password_reset_sent_at] = Time.now
+    self.password_reset_sent_at = Time.current
     save!
     UserMailer.password_reset(self).deliver_now
   end
