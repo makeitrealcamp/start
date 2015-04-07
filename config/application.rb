@@ -28,6 +28,7 @@ module Prework
     config.generators do |generator|
       generator.view_specs false
       generator.helper_specs false
+      generator.controller_specs false
     end
   end
 end
