@@ -85,6 +85,7 @@ class User < ActiveRecord::Base
   private
     def default_values
       self.roles ||= ["user"]
+      self.status ||= :created
     end
 
     def generate_token
