@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.valid?
       sign_in(@user)
+      KMTS.record(current_user.email, 'Signed Up')
       redirect_to courses_path
     else
       render :new

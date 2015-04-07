@@ -40,8 +40,6 @@ class ApplicationController < ActionController::Base
     end
 
     def record_user_activity
-      if current_user
-        current_user.touch :last_active_at
-      end
+      current_user.touch :last_active_at if current_user
     end
 end
