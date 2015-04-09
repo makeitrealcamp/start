@@ -6,6 +6,7 @@ class PhantomEvaluator
     File.open(filename, 'w') do |f|
       f.write "function open(path, callback) {"
       f.write "  var page = require('webpage').create();"
+      f.write "  page.viewportSize = { width: 1024, height: 800 };"
       f.write "  var url = '#{host}/solutions/#{solution.id}/preview/' + path;"
       f.write "  page.open(url, function(status) {"
       f.write "    if (status != 'success') {"
