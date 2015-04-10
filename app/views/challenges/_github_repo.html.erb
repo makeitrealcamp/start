@@ -1,6 +1,6 @@
-<div class="form-group">
-  <%= label_tag :url, "Repositorio Github:" %>
-  <div class="input-group">
+<div class="form-group git-repo">
+  <p>Ingresa la ruta al repositorio de Github con tu solución:</p>
+  <div class="input-group input-group-lg">
     <span class="input-group-addon" id="basic-addon1">https://github.com/</span>
     <%= text_field_tag :repository, @solution.repository, class: "form-control", placeholder: "usuario/repositorio" %>
   </div>
