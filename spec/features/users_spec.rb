@@ -7,7 +7,7 @@ RSpec.feature "Users", type: :feature do
 
   context 'when accessed as user' do
     scenario "when is not logged in" do
-     expect { visit admin_users_path }.to raise_error
+      expect { visit admin_users_path }.to raise_error
     end
 
     scenario "when not allow access" do

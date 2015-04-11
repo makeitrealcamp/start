@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406193727) do
+ActiveRecord::Schema.define(version: 20150410183021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20150406193727) do
     t.string   "description"
     t.string   "slug"
     t.boolean  "published"
+    t.integer  "visibility"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -116,6 +117,7 @@ ActiveRecord::Schema.define(version: 20150406193727) do
     t.hstore   "profile"
     t.integer  "status"
     t.hstore   "settings"
+    t.integer  "account_type"
   end
 
   create_table "version_associations", force: :cascade do |t|

@@ -12,6 +12,8 @@
 #  profile         :hstore
 #  status          :integer
 #  settings        :hstore
+#  batch_id        :integer
+#  account_type    :integer
 #
 
 class User < ActiveRecord::Base
@@ -35,8 +37,6 @@ class User < ActiveRecord::Base
     password_reset_token: :string,
     password_reset_sent_at: :datetime
 
-  enum status: [:created, :active]
-
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :password, presence: true, length: { within: 6..40 }, on: :create
@@ -45,6 +45,9 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, on: :update, if: :password_digest_changed?
 
 
+  enum status: [:created, :active]
+  enum account_type: [:free_account, :paid_account, :admin_account]
+
   after_initialize :default_values
 
   def has_role?(role)
@@ -52,7 +55,7 @@ class User < ActiveRecord::Base
   end
 
   def is_admin?
-    has_role?("admin")
+    admin_account?
   end
 
   def str_status
@@ -62,6 +65,16 @@ class User < ActiveRecord::Base
   def str_optimism
     return "" if optimism.nil?
     optimism == "high" ? "alto" : "bajo"
+  end
+
+  def str_account_type
+    if free_account?
+      "Usuario Free"
+    elsif paid_account?
+      "Usuario Pago"
+    elsif admin_account?
+      "Administrador"
+    end
   end
 
   def progress(course)
@@ -86,6 +99,7 @@ class User < ActiveRecord::Base
     def default_values
       self.roles ||= ["user"]
       self.status ||= :created
+      self.account_type ||= User.account_types[:free_account]
     end
 
     def generate_token

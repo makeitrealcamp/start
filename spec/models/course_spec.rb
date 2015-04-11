@@ -12,10 +12,30 @@
 #  description   :string
 #  slug          :string
 #  published     :boolean
+#  visibility    :integer
 #
 
 require 'rails_helper'
 
 RSpec.describe Course, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  context 'associations' do
+    it { should have_many(:resources) }
+    it { should have_many(:challenges) }
+  end
+
+  context 'validations' do
+    it { should validate_presence_of :name }
+  end
+
+
+  it "has a valid factory" do
+    expect(build(:course)).to be_valid
+  end
+
+  describe '#visibility' do
+    it 'return true when visibility is free' do
+      expect(build(:course).everyone?).to be true
+    end
+  end
 end
