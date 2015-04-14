@@ -13,10 +13,11 @@ class RailsEvaluator < Evaluator
     FileUtils.cp("lib/rails_template.rb", dirname)
 
     repo = "https://github.com/#{solution.repository}"
-    container = Docker::Container.create('Image' => 'germanescobar/ruby-evaluator', 'Cmd' => ['/bin/bash', '-l', '-c', "/root/run.sh #{repo}"], 'Volumes' => { "/ukku/data" => {}, "/ukku/bundler-cache" => {} }, 'HostConfig' => { "Binds" => ["#{dirname}:/ukku/data", "#{ENV['HOME']}/.ukku/shared/bundler-cache:/ukku/bundler-cache"] })
-    container.start
-    status_code = container.wait(300)["StatusCode"]
-    if status_code == 0
+    # container = Docker::Container.create('Image' => 'germanescobar/ruby-evaluator', 'Cmd' => ['/bin/bash', '-l', '-c', "/root/run.sh #{repo}"], 'Volumes' => { "/ukku/data" => {}, "/ukku/bundler-cache" => {} }, 'HostConfig' => { "Binds" => ["#{dirname}:/ukku/data", "#{ENV['HOME']}/.ukku/shared/bundler-cache:/ukku/bundler-cache"] })
+    # container.start
+    # status_code = container.wait(300)["StatusCode"]
+    status = Subprocess.call(["docker", "run", "-v", "#{dirname}:/ukku/data", "-v", "#{ENV['HOME']}/.ukku/shared/bundler-cache:/ukku/bundler-cache", "germanescobar/ruby-evaluator", "/bin/bash", "-c", "-l", "/root/run.sh #{repo}"])
+    if status.success?
       complete(solution)
     else
       result_file = File.read("#{dirname}/result.json")
