@@ -2,12 +2,17 @@
 git clone $1 /app
 
 cd /app
-bundle install --path=/ukku/bundler-cache
+
+if [ ! -f Gemfile ]; then
+    echo "No se encontró el archivo Gemfile en la raiz del proyecto." >> /ukku/data/error.txt
+fi
+
+bundle install #--path=/ukku/bundler-cache
 rake db:migrate
 
 # run template
 rake rails:template LOCATION=/ukku/data/rails_template.rb
-bundle install --path=/ukku/bundler-cache
+bundle install #--path=/ukku/bundler-cache
 
 # setup spec
 if [ -d "spec" ]; then
