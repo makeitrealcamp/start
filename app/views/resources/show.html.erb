@@ -10,7 +10,7 @@
       <% else %>
         <div class="col-sm-8 col-sm-offset-2 expand">
           <h1 class="text-center"><%= @resource.title %></h1>
-          <%= markdown @resource.content %>
+          <%= markdown ERB.new(@resource.content).result(binding) %>
         </div>
       <% end %>
     </div>
