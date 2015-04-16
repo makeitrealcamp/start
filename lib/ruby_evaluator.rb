@@ -2,7 +2,13 @@ class RubyEvaluator
   def evaluate(solution)
     challenge = solution.challenge
     begin
-      eval "module Evaluator#{solution.id}; end"
+      eval %Q(
+        module Evaluator#{solution.id}
+          def self.format_exception(message)
+            message.gsub(/for #<Context:.*>/i, '').gsub(/\\(eval\\)\\:/i, '')
+          end
+        end
+      )
       eval "Evaluator#{solution.id}.instance_eval(%q{#{challenge.evaluation}})" # this creates an evaluate method used below
       files = solution.documents.each_with_object({}) { |document, f| f[document.name] = document }
       error = eval "Evaluator#{solution.id}.evaluate(files)"
