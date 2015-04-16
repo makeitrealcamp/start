@@ -1,7 +1,20 @@
-<div class="container users">
+<div id="users-list" class="container users">
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1">
       <h1>Estudiantes</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-5">
+      <div id="account-type-filter" class="btn-group">
+        <% @account_types.each do |a| %>
+          <%= account_type_filter_link(a) %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-sm-5">
+      <%= will_paginate @users, previous_label: "< Anterior", next_label: "Siguiente >" %>
     </div>
   </div>
   <div class="row">
@@ -32,6 +45,19 @@
         <% end %>
         </tbody>
       </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-5">
+      <div id="account-type-filter" class="btn-group">
+        <% @account_types.each do |a| %>
+          <%= account_type_filter_link(a) %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-sm-5">
+      <%= will_paginate @users, previous_label: "< Anterior", next_label: "Siguiente >" %>
     </div>
   </div>
 </div>
