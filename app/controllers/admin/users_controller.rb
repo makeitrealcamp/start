@@ -4,6 +4,11 @@ class Admin::UsersController < ApplicationController
   def index
     @users ||= User.all
 
+    if params[:q]
+      @q = params[:q]
+      @users = @users.where("email like ?","%#{params[:q]}%")
+    end
+
     if params[:account_type]
       @users = @users.where(account_type: params[:account_type])
     end
@@ -42,7 +47,7 @@ class Admin::UsersController < ApplicationController
     params_clone = params.clone.reject { |k| ['action','controller'].include? k }
 
     params_clone[:account_type] = account_types
-
+    params_clone[:page] = 1
     Rails.application.routes.url_helpers.admin_users_path(params_clone)
   end
 end

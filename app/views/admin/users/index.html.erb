@@ -1,7 +1,18 @@
 <div id="users-list" class="container users">
   <div class="row">
-    <div class="col-sm-10 col-sm-offset-1">
+    <div class="col-sm-5 col-sm-offset-1">
       <h1>Estudiantes</h1>
+    </div>
+    <div class="col-sm-5">
+      <%= form_tag(admin_users_path, method: "get",
+        class: "form-inline pull-right user-search-form") do %>
+        <div class="form-group">
+          <%= text_field_tag(:q, @q, class: "form-control", placeholder: "Email") %>
+        </div>
+        <%= button_tag(nil, class: "btn btn-primary", name: nil) do %>
+          <span class="glyphicon glyphicon-search"></span>
+        <% end %>
+      <% end %>
     </div>
   </div>
   <div class="row">
@@ -14,7 +25,8 @@
     </div>
 
     <div class="col-sm-5">
-      <%= will_paginate @users, previous_label: "< Anterior", next_label: "Siguiente >" %>
+      <%= will_paginate @users, previous_label: "< Anterior",
+        next_label: "Siguiente >", class:"pull-right pagination" %>
     </div>
   </div>
   <div class="row">
@@ -57,7 +69,8 @@
     </div>
 
     <div class="col-sm-5">
-      <%= will_paginate @users, previous_label: "< Anterior", next_label: "Siguiente >" %>
+      <%= will_paginate @users, previous_label: "< Anterior",
+        next_label: "Siguiente >", class:"pull-right pagination" %>
     </div>
   </div>
 </div>
