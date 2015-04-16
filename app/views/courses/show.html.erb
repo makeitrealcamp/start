@@ -50,7 +50,7 @@
         <% if @course.challenges.for(current_user).any? %><p>Los recursos te dan el conocimiento, míralos como entrenamiento para enfrentar los retos.</p><% end %>
       </header>
       <table class="table">
-      <% @course.resources.each_with_index do |resource, index| %>
+      <% @course.resources.for(current_user).each_with_index do |resource, index| %>
         <tr id="<%= resource.id %>" data-index="index">
           <td class="resource-info">
             <%= link_to (resource.title + (resource.url? ? '&nbsp;<span class="glyphicon glyphicon-new-window"></span>' : '')).html_safe, [@course, resource] %>
