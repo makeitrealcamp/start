@@ -12,6 +12,7 @@
 #  description   :string
 #  slug          :string
 #  published     :boolean
+#  visibility    :integer
 #
 
 FactoryGirl.define do

@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :private_access
-  before_action :admin_access, only:[:edit, :update]
+  before_action :admin_access, except:[:index, :show]
 
   QUOTES = [
     { text: "Nuestra mayor debilidad radica en darnos por vencidos. La forma más segura de triunfar es siempre intentarlo una vez más.", author: "Thomas A. Edison" },
@@ -11,7 +11,7 @@ class CoursesController < ApplicationController
 
   def index
     @quote = QUOTES.sample
-    @courses = Course.all.for(current_user)
+    @courses = Course.for(current_user)
   end
 
   def show
@@ -23,8 +23,13 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = Course.create(course_params)
-    redirect_to @course, notice: "El curso ha sido creado"
+    @course = Course.new(course_params)
+
+    if @course.save
+      redirect_to @course, notice: "El curso ha sido creado"
+    elsif
+      render :new
+    end
   end
 
   def edit
@@ -32,12 +37,16 @@ class CoursesController < ApplicationController
   end
 
   def update
-    @course = Course.friendly.update(params[:id], course_params)
-    redirect_to @course, notice: "El curso ha sido actualizado"
+    @course = Course.friendly.find(params[:id])
+    if @course && @course.update(course_params)
+      redirect_to @course, notice: "El curso ha sido actualizado"
+    else
+      render :edit
+    end
   end
 
   private
     def course_params
-      params.require(:course).permit(:name, :description, :excerpt, :abstract, :time_estimate, :published)
+      params.require(:course).permit(:name, :description, :excerpt, :abstract, :time_estimate, :published, :visibility)
     end
 end

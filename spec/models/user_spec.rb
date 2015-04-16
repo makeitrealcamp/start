@@ -12,12 +12,13 @@
 #  profile         :hstore
 #  status          :integer
 #  settings        :hstore
+#  account_type    :integer
 #
 
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user){create(:user)}
+  let!(:user){ create(:user) }
   subject { User.new }
 
   context 'associations' do
@@ -31,5 +32,15 @@ RSpec.describe User, type: :model do
     it { should should_not allow_value("email.example").for(:email) }
     it { should have_secure_password }
     it { should validate_length_of(:password).is_at_least(6).is_at_most(40) }
+  end
+
+  it "has a valid factory" do
+    expect(build(:user)).to be_valid
+  end
+
+  describe '#type_student' do
+    it 'return true when type is free' do
+      expect(build(:user).free_account?).to be true
+    end
   end
 end

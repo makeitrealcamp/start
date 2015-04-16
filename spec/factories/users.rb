@@ -12,6 +12,7 @@
 #  profile         :hstore
 #  status          :integer
 #  settings        :hstore
+#  account_type    :integer
 #
 
 FactoryGirl.define do
@@ -26,15 +27,15 @@ FactoryGirl.define do
     end
 
     birthday { Faker::Time.between(2.days.ago, Time.now)}
-    mobile_number { Faker::PhoneNumber.cell_phone}
+    mobile_number { Faker::PhoneNumber.cell_phone }
 
     sequence(:optimism) do |n|
-      items = {high: "high", low: "low"}
+      items = { high: "high", low: "low" }
       items.values[rand(items.size)]
     end
 
     sequence(:mindset) do |n|
-      items = {growth: "growth", fixed: "fixed"}
+      items = { growth: "growth", fixed: "fixed" }
       items.values[rand(items.size)]
     end
 
@@ -43,12 +44,12 @@ FactoryGirl.define do
       items.values[rand(items.size)]
     end
 
-    activated_at { Faker::Time.between(2.days.ago, Time.now)}
-    roles ["user"]
+    activated_at { Faker::Time.between(2.days.ago, Time.now) }
+    account_type  User.account_types[:free_account]
     factory :admin do
-      roles ["user", "admin"]
+      account_type  User.account_types[:admin_account]
     end
 
-    status {User.statuses[:active]}
+    status { User.statuses[:active] }
   end
 end
