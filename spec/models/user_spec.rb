@@ -12,7 +12,6 @@
 #  profile         :hstore
 #  status          :integer
 #  settings        :hstore
-#  batch_id        :integer
 #  account_type    :integer
 #
 
