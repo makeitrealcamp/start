@@ -25,6 +25,7 @@ FactoryGirl.define do
     url { Faker::Internet.url}
     time_estimate {"#{Faker::Number.digit} days"}
     association  :course, factory: :course
+    published true
   end
 
 end

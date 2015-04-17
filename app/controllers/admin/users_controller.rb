@@ -14,7 +14,7 @@ class Admin::UsersController < ApplicationController
     end
 
     @users = @users.order('created_at DESC')
-      .paginate(page: params[:page], per_page: 15)
+      .paginate(page: params[:page], per_page: 200)
 
     @account_types = User.account_types.map do |type,id|
       account_type = {
