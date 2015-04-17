@@ -13,7 +13,7 @@ class RailsEvaluator < Evaluator
     FileUtils.cp("lib/rails_template.rb", tmp_path)
 
     repo = "https://github.com/#{solution.repository}"
-    status = Subprocess.call(["docker", "run", "-v", "#{tmp_path}:/ukku/data", "-v", "/tmp/ukku/bundler-cache:/ukku/bundler-cache", "germanescobar/ruby-evaluator", "/bin/bash", "-c", "-l", "/root/run.sh #{repo}"])
+    status = Subprocess.call(["docker", "run", "-v", "#{tmp_path}:/ukku/data", "-v", "#{prefix_path}/bundler-cache:/ukku/bundler-cache", "germanescobar/ruby-evaluator", "/bin/bash", "-c", "-l", "/root/run.sh #{repo}"])
     if status.success?
       complete(solution)
     else
@@ -32,10 +32,13 @@ class RailsEvaluator < Evaluator
     fail(solution, "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp: #{e.message}".truncate(250))
   end
 
-  def create_tmp_path(solution)
+  def prefix_path
     # we need change the prefix in development because boot2docker only shares de /Users path, not /tmp
-    prefix = Rails.env.production? ? "/tmp/ukku" : File.expand_path('~/.ukku')
-    path = "#{prefix}/rails/user-#{solution.user_id}/solution-#{solution.id}"
+    Rails.env.production? ? "/tmp/ukku" : File.expand_path('~/.ukku')
+  end
+
+  def create_tmp_path(solution)
+    path = "#{prefix_path}/rails/user-#{solution.user_id}/solution-#{solution.id}"
 
     FileUtils.rm_rf(path)
     FileUtils.mkdir_p(path)
