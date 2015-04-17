@@ -50,6 +50,7 @@ gem 'kmts', '~> 2.0.0'
 gem 'gendered'
 gem 'docker-api', :require => 'docker'
 gem 'subprocess'
+gem 'will_paginate'
 
 gem 'rails_12factor', group: :production
 

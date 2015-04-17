@@ -110,3 +110,23 @@
     }
   }
 }
+
+.pagination {
+  margin-top: 0px;
+  margin-bottom: 15px;
+  @extend .btn-group;
+  a, .previous_page, .current, .next_page {
+    @extend .btn;
+    @extend .btn-default;
+  }
+  .current {
+    @extend .active;
+    @extend .btn-primary;
+  }
+}
+#account-type-filter {
+  margin-bottom: 15px;
+}
+.user-search-form {
+  padding-top: 30px;
+}
