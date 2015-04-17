@@ -7,12 +7,12 @@ if [ ! -f Gemfile ]; then
     echo "No se encontró el archivo Gemfile en la raiz del proyecto." >> /ukku/data/error.txt
 fi
 
-bundle install #--path=/ukku/bundler-cache
+bundle install --path=/ukku/bundler-cache -j4 --binstubs=vendor/bundle/bin
 rake db:migrate
 
 # run template
 rake rails:template LOCATION=/ukku/data/rails_template.rb
-bundle install #--path=/ukku/bundler-cache
+bundle install --path=/ukku/bundler-cache -j4 --binstubs=vendor/bundle/bin
 
 # setup spec
 if [ -d "spec" ]; then
