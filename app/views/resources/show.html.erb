@@ -8,7 +8,7 @@
           <a href="<%= @resource.url %>" target="_blank" class="btn btn-default btn-lg">Haz click acá para abrirlo &nbsp;<span class="glyphicon glyphicon-new-window"></span></a>
         </div>
       <% else %>
-        <div class="col-sm-8 col-sm-offset-2 expand">
+        <div class="col-sm-8 col-sm-offset-2 expand internal">
           <h1 class="text-center"><%= @resource.title %></h1>
           <%= markdown ERB.new(@resource.content).result(binding) %>
         </div>
