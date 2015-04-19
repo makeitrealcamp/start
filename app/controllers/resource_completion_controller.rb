@@ -22,8 +22,16 @@ class ResourceCompletionController < ApplicationController
   private
     def next_path(resource)
       course = resource.course
-      if current_user.finished?(course)
-        course.next || course
+      if current_user.finished?(course) && resource.last?
+        next_course = course.next 
+        if next_course
+          if current_user.progress(next_course) == 0
+            flash[:notice] = "<strong>¡Felicitaciones!</strong> Has terminado #{course.name}. Esta aventura continúa con #{next_course.name}"
+          end
+          course.next
+        else
+          course
+        end
       else
         next_resource = resource.next
         next_resource ? [course, next_resource] : course

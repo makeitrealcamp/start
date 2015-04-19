@@ -31,7 +31,7 @@ RSpec.feature "Resource completion", type: :feature do
     end
   end
 
-  context "when a user completes course and there are more courses" do
+  context "when user completes last resource (and course) and there are more courses" do
     scenario "should be redirected to next course" do
       resource = create(:resource)
       next_course = create(:course, row_position: :last)
@@ -44,7 +44,7 @@ RSpec.feature "Resource completion", type: :feature do
     end
   end
 
-  context "when a user completes course and there are no more courses" do
+  context "when user completes last resource (and course) and there are no more courses" do
     scenario "should be redirected to same course" do
       resource = create(:resource)
 
@@ -53,6 +53,21 @@ RSpec.feature "Resource completion", type: :feature do
       visit course_resource_path(resource.course, resource)
       click_link 'Completar y Continuar'
       expect(current_path).to eq course_path(resource.course)     
+    end
+  end
+
+  context "when user completes a course but it's not the last resource" do
+    scenario "should be redirected to next resource" do
+      course = create(:course)
+      resource = create(:resource, course: course)
+      next_resource = create(:resource, course: course, row_position: :last)
+      user.resources << next_resource # user has already completed next resource
+
+      login(user)
+
+      visit course_resource_path(course, resource)
+      click_link 'Completar y Continuar'
+      expect(current_path).to eq course_resource_path(course, next_resource)
     end
   end
 end
