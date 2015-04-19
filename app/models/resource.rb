@@ -42,7 +42,7 @@ class Resource < ActiveRecord::Base
   after_initialize :default_values
 
   def next
-    next_resource = self.course.resources.published.where('row > ?', self.row).first
+    self.course.resources.published.where('row > ?', self.row).first
   end
 
   def last?

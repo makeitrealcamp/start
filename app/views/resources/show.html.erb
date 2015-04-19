@@ -42,11 +42,7 @@
       </div>
       <div class="col-xs-6 text-right">
         <div class="finish">
-          <% if @resource.last? %>
-            <%= link_to "<span class='glyphicon glyphicon-ok'></span> <span class='hidden-xs'>Completar y Volver</span>".html_safe, @resource.course, class: "btn btn-primary" %>
-          <% else %>
-            <%= link_to "<span class='glyphicon glyphicon-ok'></span> <span class='hidden-xs'>Completar y Continuar</span>".html_safe, course_resource_completion_path(course_id: @resource.course.id, resource_id: @resource.id), class: "btn btn-primary", method: :post %>
-          <% end %>
+          <%= link_to "<span class='glyphicon glyphicon-ok'></span> <span class='hidden-xs'>Completar y Continuar</span>".html_safe, course_resource_completion_path(course_id: @resource.course.id, resource_id: @resource.id), class: "btn btn-primary", method: :post %>
         </div>
       </div>
     </div>

@@ -87,6 +87,10 @@ class User < ActiveRecord::Base
     (completed_resources + completed_challenges).to_f/(resources_count + challenges_count).to_f
   end
 
+  def finished?(course)
+    progress(course) == 1.0
+  end
+
   def send_password_reset
     generate_token
     self.password_reset_sent_at = Time.current
