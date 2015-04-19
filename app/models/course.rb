@@ -34,7 +34,7 @@ class Course < ActiveRecord::Base
 
   after_initialize :default_values
 
-   def self.for(user)
+  def self.for(user)
     if user.free_account?
       everyone.published
     elsif user.paid_account?
@@ -42,6 +42,10 @@ class Course < ActiveRecord::Base
     elsif user.admin_account?
       all
     end
+  end
+
+  def next
+    Course.published.where('row > ?', self.row).first
   end
 
   private

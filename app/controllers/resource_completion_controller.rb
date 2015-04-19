@@ -9,7 +9,7 @@ class ResourceCompletionController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to [@resource.course, @resource.next] }
+      format.html { redirect_to next_path(@resource) }
       format.js
     end
   end
@@ -18,5 +18,16 @@ class ResourceCompletionController < ApplicationController
     @resource = Resource.friendly.find(params[:resource_id])
     @resource.users.delete(current_user)
   end
+
+  private
+    def next_path(resource)
+      course = resource.course
+      if current_user.finished?(course)
+        course.next || course
+      else
+        next_resource = resource.next
+        next_resource ? [course, next_resource] : course
+      end
+    end
 
 end
