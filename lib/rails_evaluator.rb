@@ -24,6 +24,9 @@ class RailsEvaluator < Evaluator
       else
         fail(solution, "La evaluación falló por un problema desconocido :S. Repórtalo a info@makeitreal.camp enviando el URL con tu solución.")
       end
+
+      # File.delete("#{tmp_path}/error.txt") if File.exist?("#{tmp_path}/error.txt")
+      # File.delete("#{tmp_path}/result.json") if File.exist?("#{tmp_path}/result.json")
     end
   rescue Exception => e
     puts e.message
@@ -38,17 +41,22 @@ class RailsEvaluator < Evaluator
   end
 
   def create_tmp_path(solution)
-    path = "#{prefix_path}/rails/user-#{solution.user_id}/solution-#{solution.id}"
+    if !File.exist?("#{prefix_path}/rails")
+      FileUtils.mkdir_p("#{prefix_path}/rails")  
+      FileUtils.chmod_R(0777, "#{prefix_path}/rails")
+    end
+
+    path = "#{prefix_path}/rails/user#{solution.user_id}-solution#{solution.id}"
 
     FileUtils.rm_rf(path)
-    FileUtils.mkdir_p(path)
-
+    FileUtils.mkdir(path)
+    FileUtils.chmod(0777, path)
+    
     path
   end
 
   def handle_error(solution, error_path)
-    fail(solution, File.read(error_path))
-    File.delete(error_path)
+    fail(solution, File.read(error_path).truncate(255))
   end
 
   def handle_test_failure(solution, result_path)
@@ -59,7 +67,5 @@ class RailsEvaluator < Evaluator
     test = tests[0]
     message = "#{test['exception']['message']}"
     fail(solution, message)
-
-    File.delete(result_path)
   end
 end

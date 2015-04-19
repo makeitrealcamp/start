@@ -157,6 +157,7 @@ class SolutionView extends Backbone.View
             .replace(/'/g, '&#39;')
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;')
+            .replace(/(?:\r\n|\r|\n)/g, '<br />')
 
   remove: =>
     super()
