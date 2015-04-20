@@ -17,6 +17,17 @@ ActiveRecord::Schema.define(version: 20150421182420) do
   enable_extension "plpgsql"
   enable_extension "hstore"
 
+  create_table "auth_providers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "auth_providers", ["user_id"], name: "index_auth_providers_on_user_id", using: :btree
+
   create_table "challenges", force: :cascade do |t|
     t.integer  "course_id"
     t.string   "name",                limit: 100
@@ -158,6 +169,7 @@ ActiveRecord::Schema.define(version: 20150421182420) do
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
   add_index "versions", ["transaction_id"], name: "index_versions_on_transaction_id", using: :btree
 
+  add_foreign_key "auth_providers", "users"
   add_foreign_key "challenges", "courses"
   add_foreign_key "comments", "users"
   add_foreign_key "resources", "courses"
