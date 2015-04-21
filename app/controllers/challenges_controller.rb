@@ -31,6 +31,10 @@ class ChallengesController < ApplicationController
     @solution = find_or_create_solution
   end
 
+  def discussion
+    @challenge = Challenge.friendly.find(params[:id])
+  end
+
   private
     def find_or_create_solution
       find_solution || create_solution

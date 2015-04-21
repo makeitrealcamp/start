@@ -136,10 +136,11 @@ class SolutionView extends Backbone.View
     if solution.status == "completed"
       data =
         status: "completed"
-        title: "Reto Superado",
-        message: "<strong>¡Felicitaciones!</strong> Lo lograste.",
-        color: "#4DFF62",
+        title: "Reto Superado"
+        message: "<strong>¡Felicitaciones!</strong> Lo lograste."
+        color: "#4DFF62"
         icon: "ok-sign"
+
     else if solution.status == "failed"
       data =
         status: "failed"
@@ -147,8 +148,8 @@ class SolutionView extends Backbone.View
         message: @html_escape(solution.error_message),
         color: "#FF4242",
         icon: "exclamation-sign"
-
-    $('.overlay').html($(template(data)));
+    $template = $(template(data))
+    $('.overlay').html($template);
 
   html_escape: (str) ->
     return String(str)

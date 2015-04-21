@@ -1,0 +1,233 @@
+//Source: http://bootsnipp.com/snippets/featured/single-column-discussion-dotted
+//Transpiled to Sass using: http://sebastianpontow.de/css2compass/
+
+//colors
+$color_wild_sand_approx: #f5f5f6;
+$white: #fff;
+$color_pale_sky_approx: #737881;
+$color_tuna_approx: #303641;
+$color_sunset_orange_approx: #ee4749;
+$color_green_haze_approx: #00a651;
+$color_curious_blue_approx: #21a9e1;
+$color_bright_sun_approx: #fad839;
+$color_thunderbird_approx: #cc2424;
+
+
+%comment_text {
+  color: $color_pale_sky_approx;
+  font-size: 12px;
+  margin: 0;
+  line-height: 1.428571429;
+}
+
+
+.discussion {
+  position: relative;
+  margin-bottom: 30px;
+  &:before {
+    content: " ";
+    display: table;
+    content: '';
+    position: absolute;
+    display: block;
+    width: 4px;
+    background: $color_wild_sand_approx;
+    top: 20px;
+    bottom: 20px;
+    margin-left: 30px;
+  }
+  &:after {
+    content: " ";
+    display: table;
+    clear: both;
+  }
+  .discussion-entry {
+    position: relative;
+    margin-top: 5px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+    clear: both;
+    &:before {
+      content: " ";
+      display: table;
+    }
+    &:after {
+      content: " ";
+      display: table;
+      clear: both;
+    }
+    &.begin {
+      margin-bottom: 0;
+    }
+    &.left-aligned {
+      float: left;
+      .discussion-entry-inner {
+        margin-left: 0;
+        margin-right: -18px;
+        .discussion-time {
+          left: auto;
+          right: -100px;
+          text-align: left;
+        }
+        .discussion-icon {
+          float: right;
+        }
+        .discussion-label {
+          margin-left: 0;
+          margin-right: 70px;
+          &:after {
+            left: auto;
+            right: 0;
+            margin-left: 0;
+            margin-right: -9px;
+            -moz-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            //Instead of the line below you could use @includetransform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+    .discussion-entry-inner {
+      position: relative;
+      margin-left: -20px;
+      &:before {
+        content: " ";
+        display: table;
+      }
+      &:after {
+        content: " ";
+        display: table;
+        clear: both;
+      }
+      .discussion-time {
+        position: absolute;
+        left: -100px;
+        text-align: right;
+        padding: 10px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        //Instead of the line below you could use @includebox-sizing($bs)
+        box-sizing: border-box;
+        > span {
+          display: block;
+          &:first-child {
+            font-size: 15px;
+            font-weight: bold;
+          }
+          &:last-child {
+            font-size: 12px;
+          }
+        }
+      }
+      .discussion-icon {
+        background: $white;
+        color: $color_pale_sky_approx;
+        display: block;
+        width: 40px;
+        height: 40px;
+        -webkit-background-clip: padding-box;
+        -moz-background-clip: padding;
+        //Instead of the line below you could use @includebackground-clip($clip)
+        background-clip: padding-box;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+        border-radius: 20px;
+        text-align: center;
+        -moz-box-shadow: 0 0 0 5px $color_wild_sand_approx;
+        -webkit-box-shadow: 0 0 0 5px $color_wild_sand_approx;
+        //Instead of the line below you could use @includebox-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+        box-shadow: 0 0 0 5px $color_wild_sand_approx;
+        line-height: 40px;
+        font-size: 15px;
+        float: left;
+        &.bg-primary {
+          background-color: $color_tuna_approx;
+          color: $white;
+        }
+        &.bg-secondary {
+          background-color: $color_sunset_orange_approx;
+          color: $white;
+        }
+        &.bg-success {
+          background-color: $color_green_haze_approx;
+          color: $white;
+        }
+        &.bg-info {
+          background-color: $color_curious_blue_approx;
+          color: $white;
+        }
+        &.bg-warning {
+          background-color: $color_bright_sun_approx;
+          color: $white;
+        }
+        &.bg-danger {
+          background-color: $color_thunderbird_approx;
+          color: $white;
+        }
+      }
+      .discussion-label {
+        position: relative;
+        background: $color_wild_sand_approx;
+        padding: 1em;
+        margin-left: 60px;
+        -webkit-background-clip: padding-box;
+        -moz-background-clip: padding;
+        //Instead of the line below you could use @includebackground-clip($clip)
+        background-clip: padding-box;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+        border-radius: 10px;
+        &:after {
+          content: '';
+          display: block;
+          position: absolute;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 9px 9px 9px 0;
+          border-color: transparent $color_wild_sand_approx transparent transparent;
+          left: 0;
+          top: 10px;
+          margin-left: -9px;
+        }
+        h2 {
+          @extend %comment_text;
+          font-size: 16px;
+          margin-bottom: 10px;
+          a {
+            color: $color_tuna_approx;
+          }
+          span {
+            -webkit-opacity: .6;
+            -moz-opacity: .6;
+            opacity: .6;
+            -ms-filter: alpha(opacity=60);
+            filter: alpha(opacity=60);
+          }
+        }
+        p {
+          @extend %comment_text;
+          + p {
+            margin-top: 15px;
+          }
+        }
+      }
+    }
+  }
+}
+.comment-form {
+  padding-left:10px;
+  margin-bottom:10px;
+  .comment-form-avatar {
+    width: 40px;
+    height:40px;
+  }
+  .comment-input-wrapper {
+    padding-left:10px;
+  }
+}
