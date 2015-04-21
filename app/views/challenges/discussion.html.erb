@@ -1,0 +1,16 @@
+<div class="container challenge-discussion">
+  <div class="row">
+    <div class="col-xs-12 col-md-7 expand">
+    <% unless @challenge.solution_video_url.nil? %>
+      <div class="video-wrapper">
+        <%= embedded_video(@challenge.solution_video_url)%>
+      </div>
+    <% end %>
+    <%= markdown(@challenge.solution_text) unless @challenge.solution_text.nil? %>
+    </div>
+    <div class="col-xs-12
+      <%= 'col-md-5' unless @challenge.solution_video_url.nil? && @challenge.solution_text.nil? %>">
+      <%= render "discussions/embedded", discussion: @challenge.discussion %>
+    </div>
+  </div>
+</div>
