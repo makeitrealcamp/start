@@ -35,15 +35,16 @@ ActiveRecord::Schema.define(version: 20150421182420) do
   add_index "challenges", ["course_id"], name: "index_challenges_on_course_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "discussion_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
     t.text     "text"
     t.integer  "response_to_id"
     t.integer  "user_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
-  add_index "comments", ["discussion_id"], name: "index_comments_on_discussion_id", using: :btree
+  add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
@@ -58,15 +59,6 @@ ActiveRecord::Schema.define(version: 20150421182420) do
     t.boolean  "published"
     t.integer  "visibility"
   end
-
-  create_table "discussions", force: :cascade do |t|
-    t.integer  "challenge_id"
-    t.string   "title"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "discussions", ["challenge_id"], name: "index_discussions_on_challenge_id", using: :btree
 
   create_table "documents", force: :cascade do |t|
     t.integer  "folder_id"
@@ -167,9 +159,7 @@ ActiveRecord::Schema.define(version: 20150421182420) do
   add_index "versions", ["transaction_id"], name: "index_versions_on_transaction_id", using: :btree
 
   add_foreign_key "challenges", "courses"
-  add_foreign_key "comments", "discussions"
   add_foreign_key "comments", "users"
-  add_foreign_key "discussions", "challenges"
   add_foreign_key "resources", "courses"
   add_foreign_key "solutions", "challenges"
   add_foreign_key "solutions", "users"
