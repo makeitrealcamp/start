@@ -52,6 +52,7 @@ gem 'docker-api', :require => 'docker'
 gem 'subprocess'
 gem 'will_paginate'
 gem 'table_print'
+gem 'momentjs-rails'
 
 gem 'rails_12factor', group: :production
 

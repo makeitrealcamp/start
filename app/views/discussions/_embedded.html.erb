@@ -35,8 +35,8 @@
       </div>
 
       <div class="discussion-label">
-          <h2>{{= author }}</h2>
-          <p>{{= text.replace(/\n\r?/g, '<br />') }}</p>
+        <h2><strong>{{= author }}</strong> <span class="date">hace {{= moment(date).fromNow({locale: "es"}) }}</span></h2>
+        <p>{{= text.replace(/\n\r?/g, '<br />') }}</p>
       </div>
     </div>
 
