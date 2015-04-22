@@ -1,38 +1,54 @@
 <%# required: discussion %>
-<%= form_tag comments_discussion_path(discussion), remote: true, class: "comment-form" do |f| %>
-  <div class="media">
-    <div class="media-left">
-      <img src="<%= Gravatar.new("#{current_user.email}").image_url %>"
-        class="img-circle media-object comment-form-avatar"/>
-    </div>
-    <div class="media-body" class="comment-input-wrapper">
-      <%= text_area_tag(:text, nil ,id: "comment-input",class: "form-control", autofocus: true,
-        placeholder: [
-          "¿Qué aprendiste de este challenge?",
-          "¿Qué fue lo más retador de este challenge?",
-          "¿Qué fue lo que más te gustó de este challenge?",
-          "¿Qué fue lo más divertido de este challenge?"
-          ].shuffle.first
-      ) %>
-    </div>
-  </div>
-<% end %>
 <div class="discussion">
-  <% discussion.comments.each do |c| %>
-    <article class="discussion-entry">
+  <%= form_tag comments_discussion_path(discussion), remote: true, class: "comment-form" do |f| %>
+    <div class="media">
+      <div class="media-left">
+        <img src="<%= Gravatar.new("#{current_user.email}").image_url %>"
+          class="img-circle media-object comment-form-avatar"/>
+      </div>
+      <div class="media-body" class="comment-input-wrapper">
+        <%= text_area_tag(:text, nil ,id: "comment-input",class: "form-control", required: true, autofocus: true,
+          placeholder: [
+            "¿Qué aprendiste de este challenge?",
+            "¿Qué fue lo más retador de este challenge?",
+            "¿Qué fue lo que más te gustó de este challenge?",
+            "¿Qué fue lo más divertido de este challenge?"
+            ].shuffle.first
+        ) %>
+      </div>
+      <button class="btn btn-primary pull-right btn-send-comment hidden" type="submit">
+        Comentar
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </button>
+    </div>
+  <% end %>
+  <div class="comments">
+  </div>
+</div>
 
-      <div class="discussion-entry-inner">
-        <div class="discussion-icon">
-          <img src="<%= Gravatar.new("#{c.user.email}").image_url %>" class="img-circle img-responsive" />
-        </div>
+<script type="x/template" id="comment-template">
+  <article class="discussion-entry">
 
-        <div class="discussion-label">
-            <h2><%= c.user.first_name || c.user.email %></h2>
-            <p><%= c.text %></p>
-        </div>
+    <div class="discussion-entry-inner">
+      <div class="discussion-icon">
+        <img src="{{= avatar_url }}" class="img-circle img-responsive" />
       </div>
 
-    </article>
+      <div class="discussion-label">
+          <h2>{{= author }}</h2>
+          <p>{{= text.replace(/\n\r?/g, '<br />') }}</p>
+      </div>
+    </div>
 
-  <% end %>
-</div>
+  </article>
+</script>
+
+<script>
+  (function() {
+    var discussionView = new DiscussionView("<%= discussion.id %>",{first_name: "<%=current_user.first_name%>",avatar_url:"<%= current_user.avatar_url%>"});
+
+    $(document).on("page:before-change", function() {
+      discussionView.remove();
+    });
+  })();
+</script>

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   #TODO: check if there's a better way to define the comment route
   resources :discussions, only: [] do
     member do
+      get :comments
       post :comments, to: :create_comment
     end
   end

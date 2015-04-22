@@ -98,6 +98,10 @@ class User < ActiveRecord::Base
     UserMailer.password_reset(self).deliver_now
   end
 
+  def avatar_url
+    Gravatar.new(self.email).image_url
+  end
+
   private
     def default_values
       self.roles ||= ["user"]

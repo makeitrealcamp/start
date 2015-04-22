@@ -18,6 +18,12 @@ class Comment < ActiveRecord::Base
 
   validates :discussion, presence: true
   validates :user, presence: true
-  validates :text, presence: true  
+  validates :text, presence: true
+
+  def as_json(options)
+    json = super(options.merge(
+      include: [{user: { methods: [:first_name, :avatar_url], only: [] }}]
+    ))
+  end
 
 end

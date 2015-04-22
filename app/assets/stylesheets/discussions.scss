@@ -21,7 +21,7 @@ $color_thunderbird_approx: #cc2424;
 }
 
 
-.discussion {
+.comments {
   position: relative;
   margin-bottom: 30px;
   &:before {
@@ -221,13 +221,20 @@ $color_thunderbird_approx: #cc2424;
   }
 }
 .comment-form {
-  padding-left:10px;
-  margin-bottom:10px;
+  padding-left: 10px;
+  margin-bottom: 10px;
   .comment-form-avatar {
     width: 40px;
-    height:40px;
+    height: 40px;
   }
   .comment-input-wrapper {
-    padding-left:10px;
+    padding-left: 10px;
+
+  }
+  textarea {
+    resize: none;
+  }
+  .btn-send-comment {
+    margin-top: 10px;
   }
 }
