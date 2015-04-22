@@ -1,4 +1,14 @@
-class ChallengesController < ApplicationController
+class DiscussionsController < ApplicationController
+  before_action :private_access
+
+  # GET /discussion/:id/comments
+  def comments
+    discussion = Discussion.find(params[:id])
+    comments = discussion.comments.order("created_at DESC")
+    render json: comments.to_json
+  end
+
+  # POST /discussion/:id/comments
   def create_comment
     discussion = Discussion.find(params[:id])
     comment = Comment.new(create_comment_params.merge(
