@@ -1,6 +1,6 @@
 class ChallengesController < ApplicationController
   before_action :private_access
-  before_action :admin_access, except:[:show]
+  before_action :admin_access, except:[:show, :discussion]
 
   def new
     course = Course.friendly.find(params[:course_id])
@@ -33,6 +33,10 @@ class ChallengesController < ApplicationController
 
   def discussion
     @challenge = Challenge.friendly.find(params[:id])
+    if(!current_user.already_solved?(@challenge) && !current_user.is_admin?)
+      flash[:error] = "Debes completar el reto para poder ver la discusión"
+      redirect_to course_challenge_path(@challenge.course,@challenge)
+    end
   end
 
   private

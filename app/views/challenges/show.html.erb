@@ -19,6 +19,9 @@
         <div class="solution-buttons">
           <div class="text-right">
             <% if @challenge.preview? %><a href="#" class="btn btn-default btn-preview" target="_blank">Preview</a><% end %>
+            <% if  current_user.is_admin? || current_user.already_solved?(@challenge) %>
+              <%= link_to "Ir a la discusión",discussion_course_challenge_path(@challenge.course, @challenge), class: "btn btn-success" %>
+            <% end %>
             <%= submit_tag "Evaluar Solución", class: "btn btn-primary" %>
           </div>
         </div>
@@ -57,7 +60,8 @@
     <div class="solution-eval-footer">
       <button type="button" class="btn btn-transparent close-overlay" data-dismiss="modal">Cerrar</button>
       {{ if (status == "completed") { }}
-      <%= link_to "Siguiente Reto <span class='glyphicon glyphicon-chevron-right'></span>".html_safe, [@challenge.course, @challenge.next], class: "btn btn-success" %>
+      <%= link_to "Continuar <span class='glyphicon glyphicon-chevron-right'></span>".html_safe,
+        discussion_course_challenge_path(@challenge.course, @challenge), class: "btn btn-success" %>
       {{ } }}
     </div>
   </div>

@@ -9,16 +9,15 @@
       <div class="media-body" class="comment-input-wrapper">
         <%= text_area_tag(:text, nil ,id: "comment-input",class: "form-control", required: true, autofocus: true,
           placeholder: [
-            "¿Qué aprendiste de este challenge?",
-            "¿Qué fue lo más retador de este challenge?",
-            "¿Qué fue lo que más te gustó de este challenge?",
-            "¿Qué fue lo más divertido de este challenge?"
+            "¿Qué aprendiste de este reto?",
+            "¿Qué fue lo más retador de este reto?",
+            "¿Qué fue lo que más te gustó de este reto?",
+            "¿Qué fue lo más divertido de este reto?"
             ].shuffle.first
         ) %>
       </div>
-      <button class="btn btn-primary pull-right btn-send-comment hidden" type="submit">
+      <button class="btn btn-warning pull-right btn-send-comment hidden" type="submit">
         Comentar
-        <span class="glyphicon glyphicon-chevron-right"></span>
       </button>
     </div>
   <% end %>
