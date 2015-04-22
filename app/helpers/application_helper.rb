@@ -21,4 +21,17 @@ module ApplicationHelper
     Redcarpet::Markdown.new(renderer, options).render(text).html_safe
   end
 
+  def embedded_video(src,opts = {})
+    opts[:src] ||= src
+    opts[:allowtransparency] ||= true
+    opts[:frameborder] ||= "0"
+    opts[:scrolling] ||= "no"
+    opts[:allowfullscreen] ||= true
+    opts[:mozallowfullscreen] ||= true
+    opts[:webkitallowfullscreen] ||= true
+    opts[:oallowfullscreen] ||= true
+    opts[:msallowfullscreen] ||= true
+    content_tag(:iframe,nil,opts)
+  end
+
 end

@@ -33,7 +33,7 @@ class SolutionsController < ApplicationController
   private
     def update_solution_without_versioning(solution)
       solution.without_versioning do
-        solution.status = :evaluating 
+        solution.status = :evaluating
         solution.attempts = solution.attempts + 1 if solution.completed_at.nil?
         solution.save!
       end

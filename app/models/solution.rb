@@ -50,7 +50,10 @@ class Solution < ActiveRecord::Base
   end
 
   def as_json(options)
-    json = super(options.merge(methods: [:error_message, :url, :completed_at], include: [:documents]))
+    json = super(options.merge(
+      methods: [:error_message, :url, :completed_at],
+      include: [:documents]
+      ))
   end
 
   private

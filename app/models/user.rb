@@ -98,6 +98,14 @@ class User < ActiveRecord::Base
     UserMailer.password_reset(self).deliver_now
   end
 
+  def avatar_url
+    Gravatar.new(self.email).image_url
+  end
+
+  def already_solved?(challenge)
+    self.solutions.evaluated.where(challenge: challenge).count > 0
+  end
+
   private
     def default_values
       self.roles ||= ["user"]

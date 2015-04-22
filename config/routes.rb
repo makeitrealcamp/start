@@ -16,15 +16,25 @@ Rails.application.routes.draw do
   end
 
   resources :courses, except: [:destroy] do
-    resources :challenges, except: [:index, :destroy]
+    resources :challenges, except: [:index, :destroy] do
+      member do
+        get :discussion
+      end
+    end
     resources :resources, except: [:index] do
       resource :completion, controller: 'resource_completion', only: [:create, :destroy]
     end
   end
 
-    resources :challenges, only:[] do
-      patch 'update_position', on: :member
+  resources :challenges, only:[] do
+    patch 'update_position', on: :member
+  end
+
+  scope "/:commentable_resource" do
+    scope "/:id" do
+      resources :comments, only: [:index,:create]
     end
+  end
 
   resources :solutions, only: [:show] do
     put 'update_documents', on: :member

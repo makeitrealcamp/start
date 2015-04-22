@@ -13,6 +13,8 @@
 #  updated_at          :datetime         not null
 #  slug                :string
 #  evaluation_strategy :integer
+#  solution_video_url  :string
+#  solution_text       :text
 #
 
 require 'rails_helper'
