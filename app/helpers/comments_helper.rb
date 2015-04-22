@@ -4,7 +4,7 @@ module CommentsHelper
     klass = commentable_instance.class
     resource_name = klass.to_s.underscore
     if klass.is_a? FriendlyId
-      id = commentable_instance.friendly_id
+      id = commentable_instance.friendly_id || commentable_instance.id
     else
       id = commentable_instance.id
     end
