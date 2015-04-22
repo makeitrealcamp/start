@@ -27,6 +27,7 @@ class DiscussionView extends Backbone.View
       author: @current_user.first_name
       text: text
       avatar_url: @current_user.avatar_url
+      date: Date.now()
     ))
     @$comments_container.prepend($comment)
     @$comments_input.val("")
@@ -56,6 +57,7 @@ class DiscussionView extends Backbone.View
           author: comment.user.first_name
           text: comment.text
           avatar_url: comment.user.avatar_url
+          date: comment.created_at
         )
       @$comments_container.append comments
 
