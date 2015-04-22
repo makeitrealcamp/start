@@ -30,7 +30,7 @@ class Challenge < ActiveRecord::Base
 
   belongs_to :course
   has_many :documents, as: :folder
-  has_one :discussion
+  has_many :comments, as: :commentable
 
   validates :name, presence: true
   validates :instructions, presence: true
@@ -40,7 +40,6 @@ class Challenge < ActiveRecord::Base
   default_scope { rank(:row) }
 
   after_initialize :default_values
-  after_create :create_discussion, if: -> { self.disussion.nil? }
 
   accepts_nested_attributes_for :documents, allow_destroy: true
 
@@ -56,11 +55,6 @@ class Challenge < ActiveRecord::Base
     self.next.nil?
   end
 
-  def discussion
-    create_discussion if super.nil?
-    super
-  end
-
   private
     def default_values
       self.published ||= false
@@ -68,8 +62,5 @@ class Challenge < ActiveRecord::Base
       self.evaluation_strategy ||= :ruby_embedded
     rescue ActiveModel::MissingAttributeError => e
       # ranked_model makes partial selects and this error is thrown
-    end
-    def create_discussion
-      self.discussion = Discussion.create(title: self.name, challenge: self)
     end
 end

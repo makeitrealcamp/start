@@ -15,14 +15,6 @@ Rails.application.routes.draw do
     patch :activate, on: :member
   end
 
-  #TODO: check if there's a better way to define the comment route
-  resources :discussions, only: [] do
-    member do
-      get :comments
-      post :comments, to: :create_comment
-    end
-  end
-
   resources :courses, except: [:destroy] do
     resources :challenges, except: [:index, :destroy] do
       member do
@@ -36,6 +28,12 @@ Rails.application.routes.draw do
 
   resources :challenges, only:[] do
     patch 'update_position', on: :member
+  end
+
+  scope "/:commentable_resource" do
+    scope "/:id" do
+      resources :comments, only: [:index,:create]
+    end
   end
 
   resources :solutions, only: [:show] do

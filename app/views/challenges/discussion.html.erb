@@ -13,7 +13,7 @@
     </div>
     <div class="col-xs-12
       <%= 'col-md-5' unless @challenge.solution_video_url.nil? && @challenge.solution_text.nil? %>">
-      <%= render "discussions/embedded", discussion: @challenge.discussion %>
+      <%= render "comments/embedded", commentable: @challenge %>
     </div>
   </div>
 </div>

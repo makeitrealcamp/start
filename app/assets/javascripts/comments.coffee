@@ -1,9 +1,8 @@
-class DiscussionView extends Backbone.View
+class CommentsView extends Backbone.View
   el: '.discussion'
 
-  initialize: (id, current_user)->
-    @id = id
-    @resource_url = "/discussions/#{@id}/comments"
+  initialize: (commentable_url, current_user)->
+    @resource_url = commentable_url
     @current_user = current_user
     @comment_template = _.template($("#comment-template").html())
     @$comments_container = @$(".comments")
@@ -62,4 +61,4 @@ class DiscussionView extends Backbone.View
       @$comments_container.append comments
 
 
-window.DiscussionView = DiscussionView
+window.CommentsView = CommentsView
