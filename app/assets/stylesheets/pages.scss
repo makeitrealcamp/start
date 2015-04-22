@@ -10,15 +10,15 @@
     @media (min-width: $screen-sm-min) { padding-top: 90px; }
 
     h1 {
-      font-family: "Open Sans Condensed", sans-serif; 
+      font-family: "Open Sans Condensed", sans-serif;
       font-size: 38px;
       line-height: 1.2;
-      font-weight: bold; 
+      font-weight: bold;
       margin-bottom: 20px;
 
-      @media (min-width: $screen-sm-min) { 
+      @media (min-width: $screen-sm-min) {
         font-size: 56px;
-        line-height: 1.1; 
+        line-height: 1.1;
       }
     }
 
@@ -29,23 +29,32 @@
       margin-top: 30px;
       margin-bottom: 60px;
 
-      @media (min-width: $screen-sm-min) { 
-        font-size: 21px; 
+      @media (min-width: $screen-sm-min) {
+        font-size: 21px;
         margin-bottom: 100px;
       }
     }
 
-    .start-form { 
-      margin-bottom: 100px; 
+    .create-account {
+      display: block;
+      margin-top: 10px;
 
-      @media (min-width: $screen-sm-min) { margin-bottom: 150px; }
+      a { color: #B5D7EB; }
+    }
+
+    .btn-primary {
+      width: 260px;
+      margin-right: 10px;
     }
 
     .more {
-      color: white; 
-      font-size: 38px; 
+      margin-top: 80px;
+      color: white;
+      font-size: 38px;
       opacity: 0.5;
       margin-bottom: 20px;
+
+      @media (min-width: $screen-sm-min) { margin-top: 130px; }
     }
   }
 
@@ -60,9 +69,9 @@
 
     @media (min-width: $screen-sm-min) { margin-bottom: 60px; }
 
-    header { 
+    header {
       color: #BF2626;
-      font-size: 21px; 
+      font-size: 21px;
       margin-bottom: 20px;
     }
 
