@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :private_access
   before_action :set_instance, only: [:index, :create]
+
   # GET /:commentable_resource/:id/comments
   def index
     comments = @instance.comments.order("created_at DESC")
@@ -9,15 +10,10 @@ class CommentsController < ApplicationController
 
   # POST /:commentable_resource/:id/comments
   def create
-
-    comment = Comment.new(comment_params.merge(
+    @comment = Comment.new(comment_params.merge(
       commentable: @instance, user: current_user
     ))
-    if comment.save
-      render json: comment.to_json
-    else
-      render json: {errors: comment.errors }, status: :bad_request
-    end
+    @comment.save
   end
 
   protected

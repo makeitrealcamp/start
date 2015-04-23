@@ -1,6 +1,6 @@
 <%# required: commentable %>
 <div class="discussion">
-  <%= form_tag '#', remote: true, class: "comment-form" do |f| %>
+  <%= form_tag generate_comments_path(@challenge), remote: true, class: "comment-form" do |f| %>
     <div class="media">
       <div class="media-left">
         <img src="<%= Gravatar.new("#{current_user.email}").image_url %>"
@@ -16,38 +16,21 @@
             ].shuffle.first
         ) %>
       </div>
-      <button class="btn btn-warning pull-right btn-send-comment" type="submit">
+      <button class="btn btn-success pull-right btn-send-comment" type="submit">
         Comentar
       </button>
     </div>
   <% end %>
   <div class="comments">
+    <% commentable.comments.each do |comment| %>
+      <%= render '/comments/comment', comment: comment %>
+    <% end %>
   </div>
 </div>
 
-<script type="x/template" id="comment-template">
-  <article class="discussion-entry">
-
-    <div class="discussion-entry-inner">
-      <div class="discussion-icon">
-        <img src="{{= avatar_url }}" class="img-circle img-responsive" />
-      </div>
-
-      <div class="discussion-label">
-        <h2><strong>{{= author }}</strong> <span class="date">hace {{= moment(date).fromNow({locale: "es"}) }}</span></h2>
-        <p>{{= text.replace(/\n\r?/g, '<br />') }}</p>
-      </div>
-    </div>
-
-  </article>
-</script>
-
 <script>
   (function() {
-    var commentsView = new CommentsView(
-      "<%= generate_comments_path(commentable) %>",
-      {first_name: "<%=current_user.first_name%>",avatar_url:"<%= current_user.avatar_url%>"}
-    );
+    var commentsView = new CommentsView();
 
     $(document).on("page:before-change", function() {
       commentsView.remove();
