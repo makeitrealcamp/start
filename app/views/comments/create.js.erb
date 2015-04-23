@@ -1,0 +1,6 @@
+<% if @comment.valid? %>
+  $('.comments').prepend('<%= j render("/comments/comment", comment: @comment) %>');
+  $('#comment-input').val('');
+<% else %>
+  // todo - mostrar error
+<% end %>

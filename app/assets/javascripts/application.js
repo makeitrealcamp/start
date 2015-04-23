@@ -22,6 +22,8 @@
 //= require codemirror/htmlmixed
 //= require underscore-1.8.2
 //= require backbone-1.1.2
+//= require moment
+//= require moment/es.js
 //= require_tree .
 
 Turbolinks.enableProgressBar();

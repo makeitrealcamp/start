@@ -1,0 +1,39 @@
+<%# required: commentable %>
+<div class="discussion">
+  <%= form_tag generate_comments_path(@challenge), remote: true, class: "comment-form" do |f| %>
+    <div class="media">
+      <div class="media-left">
+        <img src="<%= Gravatar.new("#{current_user.email}").image_url %>"
+          class="img-circle media-object comment-form-avatar"/>
+      </div>
+      <div class="media-body" class="comment-input-wrapper">
+        <%= text_area_tag(:text, nil ,id: "comment-input",class: "form-control", required: true, autofocus: true,
+          placeholder: [
+            "¿Qué aprendiste de este reto?",
+            "¿Qué fue lo más retador de este reto?",
+            "¿Qué fue lo que más te gustó de este reto?",
+            "¿Qué fue lo más divertido de este reto?"
+            ].shuffle.first
+        ) %>
+      </div>
+      <button class="btn btn-success pull-right btn-send-comment" type="submit">
+        Comentar
+      </button>
+    </div>
+  <% end %>
+  <div class="comments">
+    <% commentable.comments.each do |comment| %>
+      <%= render '/comments/comment', comment: comment %>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var commentsView = new CommentsView();
+
+    $(document).on("page:before-change", function() {
+      commentsView.remove();
+    });
+  })();
+</script>

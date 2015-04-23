@@ -1,0 +1,29 @@
+<div class="container challenge-discussion">
+  <div class="row">
+    <div class="col-xs-6 text-left">
+      <%= link_to "<span class='glyphicon glyphicon-chevron-left'></span> Volver al reto ".html_safe,
+        [@challenge.course, @challenge], class: "btn btn-link" %>
+    </div>
+    <div class="col-xs-6 text-right">
+      <%= link_to "Siguiente reto <span class='glyphicon glyphicon-chevron-right'></span>".html_safe,
+        [@challenge.course, @challenge.next], class: "btn btn-primary" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-7 expand">
+      <h1>Solución: <%= @challenge.name %></h1>
+    <% unless @challenge.solution_video_url.nil? %>
+      <div class="video-wrapper">
+        <%= embedded_video(@challenge.solution_video_url)%>
+      </div>
+    <% end %>
+    <% unless @challenge.solution_text.nil? %>
+      <%= markdown(@challenge.solution_text) unless @challenge.solution_text.nil? %>
+    <% end %>
+    </div>
+    <div class="col-xs-12
+      <%= 'col-md-5' unless @challenge.solution_video_url.nil? && @challenge.solution_text.nil? %>">
+      <%= render "comments/embedded", commentable: @challenge %>
+    </div>
+  </div>
+</div>

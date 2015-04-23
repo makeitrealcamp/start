@@ -13,6 +13,8 @@
 #  updated_at          :datetime         not null
 #  slug                :string
 #  evaluation_strategy :integer
+#  solution_video_url  :string
+#  solution_text       :text
 #
 
 class Challenge < ActiveRecord::Base
@@ -28,6 +30,7 @@ class Challenge < ActiveRecord::Base
 
   belongs_to :course
   has_many :documents, as: :folder
+  has_many :comments, as: :commentable
 
   validates :name, presence: true
   validates :instructions, presence: true
