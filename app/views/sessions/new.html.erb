@@ -14,7 +14,7 @@
         <div class="text-right"><%= submit_tag("Ingresar", class: 'btn btn-primary btn-lg btn-block') %></div>
 
         <div class="form-group btn-social">
-          <%= link_to '<i class="fa fa-github"></i> Ingresa con Github'. html_safe, '/auth/github', class: "btn btn-default" %>
+          <%= link_to '<i class="fa fa-github"></i> Ingresa con Github'. html_safe, '/auth/github', class: "btn btn-default", id: "sign-in-github" %>
           <%= link_to '<i class="fa fa-facebook-square"></i> Ingresa con Facebook'.html_safe, '/auth/facebook', class: "btn btn-info", id: "sign-in-facebook" %>
         </div>
 

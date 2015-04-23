@@ -75,4 +75,42 @@ RSpec.feature "Users", type: :feature do
       expect(current_path).to eq courses_path
     end
   end
+
+  context 'with Facebook account', js: true do
+    scenario "can sign in user" do
+      mock_auth_hash_facebook
+      visit login_path
+      find('#sign-in-facebook').click
+      sleep(1.0)
+      expect(current_path).to eq courses_path
+    end
+
+    scenario 'can handle authentication error ' do
+      OmniAuth.config.mock_auth[:facebook] = :invalid_credentials
+      visit login_path
+      find('#sign-in-facebook').click
+      wait_for_ajax
+      expect(page).to have_content 'Necesitamos que nos de los permisos para acceder a la aplicación'
+      expect(current_path).to eq login_path
+    end
+  end
+
+  context 'with github account', js: true do
+    scenario "can sign in user" do
+      mock_auth_hash_github
+      visit login_path
+      find('#sign-in-github').click
+      sleep(1.0)
+      expect(current_path).to eq courses_path
+    end
+
+    scenario 'can handle authentication error' do
+      OmniAuth.config.mock_auth[:github] = :invalid_credentials
+      visit login_path
+      find('#sign-in-github').click
+      wait_for_ajax
+      expect(page).to have_content 'Necesitamos que nos de los permisos para acceder a la aplicación'
+      expect(current_path).to eq login_path
+    end
+  end
 end

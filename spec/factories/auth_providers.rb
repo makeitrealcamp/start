@@ -13,10 +13,8 @@
 
 FactoryGirl.define do
   factory :auth_provider do
-    user nil
-provider "MyString"
-uid "MyString"
-image "MyString"
+    uid "12345"
+    association  :user, factory: :user
   end
 
 end
