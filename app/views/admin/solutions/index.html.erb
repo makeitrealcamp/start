@@ -1,0 +1,100 @@
+<div class="container admin-solutions">
+  <div class="row">
+    <div class="col-sm-5 col-sm-offset-1">
+      <h1>Soluciones</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <%= form_tag admin_solutions_path, method: :get do %>
+        <div class="row">
+          <div class="col-sm-5">
+            <div class="form-group">
+              <%= select_tag :challenge_id, options_from_collection_for_select(Challenge.by_course, "id", "name_with_course", params[:challenge_id]), prompt: "<<Todos los retos>>", class: "form-control", onchange: "$('form').submit()" %>
+            </div>
+          </div> 
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <table class="table" id="solutions-table">
+        <thead>
+          <tr>
+            <th>Reto</th>
+            <th>Usuario</th>
+            <th>Completado</th>
+            <th class="text-center">Intentos</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @solutions.each do |solution| %>
+            <tr>
+              <td><%= solution.challenge.name %> <span class="secondary"><%= solution.challenge.course.name %></span></td>
+              <td><%= solution.user.email %> <span class="secondary"><%= solution.user.first_name %></span></td>
+              <td><%= solution.completed_at.nil? ? "" : l(solution.completed_at, format: '%d %h, %Y %H:%M') %></td>
+              <td class="text-center"><%= solution.attempts %></td>
+              <td><%= solution.status %></td>
+              <td>
+                <% if solution.challenge.ruby_git? %>
+                  <a href="<%= solution.repository %>" target="_blank">Show</a>
+                <% else %>
+                  <a href="#" class="solution-files" data-id="<%= solution.id %>">Show</a>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script type="x/template" id="files-template">
+<div id="files-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <ul class="nav nav-tabs" role="tablist">
+          {{ _.each(documents, function(document) { }}
+            <li class="active file-tab">
+              <a href="editor-{{= document.id }}" role="tab" data-toggle="tab">{{= document.name }}</a>
+            <li>
+          {{ }); }}
+        </ul>
+        {{ _.each(documents, function(document) { }}
+          <div role="tabpanel" class="tab-pane active expand">
+            <textarea id="editor-{{= document.id }}">{{= document.content }}</textarea>
+          </div>
+        {{ }); }}
+      </div>
+    </div>
+  </div>
+</div>
+</script>
+
+<script>
+  var editorModes = <%= codemirror_modes.to_json.html_safe %>;
+  $('.solution-files').click(function() {
+    $.ajax({
+      url: "/solutions/" + $(this).data("id"),
+      contentType: "application/json",
+      dataType: "json"
+    }).done(function(data) {
+      var template = _.template($('#files-template').html());
+      $(template(data)).on('shown.bs.modal', function() {
+        _.each(data.documents, function(document) {
+          var ext = /(?:\.([^.]+))?$/.exec(document.name)[1];
+          editors.configure({ el: 'editor-' + document.id, opts: { mode: editorModes[ext] } });
+        });
+      }).on('hidden.bs.modal', function() {
+        $('#files-modal').remove();
+      }).modal();
+    });
+  });
+</script>

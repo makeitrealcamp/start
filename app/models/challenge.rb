@@ -55,6 +55,14 @@ class Challenge < ActiveRecord::Base
     self.next.nil?
   end
 
+  def name_with_course
+    "#{course.name} - #{name}"
+  end
+
+  def self.by_course
+    Course.all.inject([]) { |memo, course| memo += where(course: course) }
+  end
+
   private
     def default_values
       self.published ||= false
