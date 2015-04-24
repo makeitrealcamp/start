@@ -1,5 +1,13 @@
 .signup {
   margin-top: 20px;
+
+  .btn-social{
+    padding: 20px 0;
+    a { width: 100%; }
+    #sign-in-facebook {
+      background: $btn-facebook;
+    }
+  }
 }
 
 .profile-page {

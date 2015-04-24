@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
 
   has_many :solutions, dependent: :destroy
   has_and_belongs_to_many :resources
+  has_many :auth_providers, dependent: :destroy
 
   hstore_accessor :profile,
     first_name: :string,

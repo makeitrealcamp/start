@@ -10,15 +10,9 @@
       </div>
       <div class="row">
         <div class="col-sm-12 text-center">
-          <%= form_for @user, url: signup_path, html: { class: "form-inline start-form" } do |f| %>
-            <div class="form-group">
-              <%= f.email_field :email, class: "form-control input-lg", placeholder: "Email" %>
-            </div>
-            <div class="form-group">
-              <%= f.password_field :password, class: "form-control input-lg", placeholder: "Contraseña" %>
-            </div>
-            <%= f.submit "Empieza ahora!", class: "btn btn-primary btn-lg" %>
-          <% end %>
+          <%= link_to '<i class="fa fa-github"></i> Ingresa con Github'. html_safe, '/auth/github', class: "btn btn-primary btn-lg" %>
+          <%= link_to '<i class="fa fa-facebook-square"></i> Ingresa con Facebook'.html_safe, '/auth/facebook', class: "btn btn-primary btn-lg", id: "sign-in-facebook" %>
+          <span class="create-account"><%= link_to "¿No tienes ninguno de los dos?", signup_path %></span>
         </div>
       </div>
       <div class="row">
@@ -42,7 +36,7 @@
           <header>¿Qué voy a aprender en Make it Real Start?</header>
           <p>Primero, aprenderás sobre la mentalidad que se requiere para aprender a programar. Luego aprenderás <strong>HTML</strong> (el lenguaje de marcado que se utiliza para crear páginas Web) y <strong>CSS</strong> (el lenguaje que les da el formato). Por último aprenderás <strong>Ruby</strong>, un lenguaje de programación flexible y expresivo (ideal para aprender a programar) que está siendo usado para crear aplicaciones como Twitter, Groupon, y Make it Real Start ;)</p>
         </div>
-        
+
         <div class="q">
           <header>¿En qué se diferencia de otras iniciativas similares?</header>
           <p>En este curso encontrarás embebida la filosofía <a href="http://makeitreal.camp">Make it Real</a>: <strong>aprender haciendo</strong>. La mayoría de cursos de programación fracasan porque se enfocan en el contenido y en guiar a los estudiantes a la solución de los problemas que plantean. En Make it Real Start hemos seleccionado el mejor contenido online para que aprendas a programar y lo combinamos con retos para que maximices tu aprendizaje.</p>

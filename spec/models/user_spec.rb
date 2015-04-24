@@ -23,7 +23,8 @@ RSpec.describe User, type: :model do
 
   context 'associations' do
     it { should have_many(:solutions).dependent(:destroy) }
-    it { should  have_and_belong_to_many(:resources)}
+    it { should have_and_belong_to_many(:resources) }
+    it { should have_many(:auth_providers).dependent(:destroy) }
   end
 
   context 'validations ' do
