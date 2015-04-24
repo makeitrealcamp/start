@@ -27,13 +27,3 @@
     <% end %>
   </div>
 </div>
-
-<script>
-  (function() {
-    var commentsView = new CommentsView();
-
-    $(document).on("page:before-change", function() {
-      commentsView.remove();
-    });
-  })();
-</script>
