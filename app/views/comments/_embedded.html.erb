@@ -10,13 +10,13 @@
         <%= text_area_tag(:text, nil ,id: "comment-input",class: "form-control", required: true, autofocus: true,
           placeholder: [
             "¿Qué aprendiste de este reto?",
-            "¿Qué fue lo más retador de este reto?",
+            "¿Qué fue lo más difícil de este reto?",
             "¿Qué fue lo que más te gustó de este reto?",
             "¿Qué fue lo más divertido de este reto?"
             ].shuffle.first
         ) %>
       </div>
-      <button class="btn btn-success pull-right btn-send-comment" type="submit">
+      <button class="btn btn-primary pull-right btn-send-comment" type="submit">
         Comentar
       </button>
     </div>

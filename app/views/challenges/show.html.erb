@@ -17,11 +17,13 @@
 
         <!-- preview and submit button -->
         <div class="solution-buttons">
+          <div style="float: left;">
+            <% if  current_user.is_admin? || current_user.already_solved?(@challenge) %>
+              <%= link_to "<span class='glyphicon glyphicon-blackboard'></span> Ir a la discusión".html_safe, discussion_course_challenge_path(@challenge.course, @challenge), class: "btn btn-success" %>
+            <% end %>
+          </div>
           <div class="text-right">
             <% if @challenge.preview? %><a href="#" class="btn btn-default btn-preview" target="_blank">Preview</a><% end %>
-            <% if  current_user.is_admin? || current_user.already_solved?(@challenge) %>
-              <%= link_to "Ir a la discusión",discussion_course_challenge_path(@challenge.course, @challenge), class: "btn btn-success" %>
-            <% end %>
             <%= submit_tag "Evaluar Solución", class: "btn btn-primary" %>
           </div>
         </div>
