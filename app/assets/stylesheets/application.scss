@@ -13,8 +13,9 @@
 @import "courses";
 @import "challenges";
 @import "resources";
-@import "admin/dashboard";
 @import "comments";
+@import "admin/dashboard";
+@import "admin/solutions";
 
 html.turbolinks-progress-bar::before {
   background-color: #C74238 !important;
