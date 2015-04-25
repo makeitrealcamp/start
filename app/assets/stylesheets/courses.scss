@@ -302,6 +302,16 @@
     }
   }
 
+  .radio-group {
+    position: relative;
+    input[type="radio"] {
+      position: absolute;
+      top: 0;
+      left: 20px;
+    }
+    label { padding-left: 20px; }
+  }
+
   .multiple-option {
     text-align: center;
 

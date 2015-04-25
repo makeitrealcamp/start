@@ -15,22 +15,19 @@
           </div>
 
           <div class="part-2 multiple-option" style="display: none;">
-            <p>Tu <strong>principal</strong> motivación para aprender a programar es:</p>
+            <p>Tu nivel de experiencia programando es:</p>
             <div class="answers">
-              <div class="form-group">
-                <%= f.radio_button :motivation, "job" %> <%= f.label :motivation_job, 'Conseguir un [mejor] empleo.' %>
+              <div class="form-group radio-group">
+                <%= f.radio_button :experience, "none" %> <%= f.label :experience_none, '<strong>Nula:</strong> este es tu primer acercamiento con la programación.'.html_safe %>
               </div>
-              <div class="form-group">
-                <%= f.radio_button :motivation, "challenge" %> <%= f.label :motivation_challenge, 'Cumplir un reto personal.' %>
+              <div class="form-group radio-group">
+                <%= f.radio_button :experience, "beginner" %> <%= f.label :experience_beginner, '<strong>Principiante:</strong> ya empezaste de alguna forma por tu cuenta.'.html_safe %>
               </div>
-              <div class="form-group">
-                <%= f.radio_button :motivation, "idea" %> <%= f.label :motivation_idea, 'Implementar una idea que tengo.' %>
+              <div class="form-group radio-group">
+                <%= f.radio_button :experience, "intermediate" %> <%= f.label :experience_intermediate, '<strong>Intermedio</strong>.'.html_safe %>
               </div>
-              <div class="form-group">
-                <%= f.radio_button :motivation, "impress" %> <%= f.label :motivation_impress, 'Impresionar a los demás.' %>
-              </div>
-              <div class="form-group">
-                <%= f.radio_button :motivation, "curiosity" %> <%= f.label :motivation_curiosity, 'Curiosidad, me llama la atención.' %>
+              <div class="form-group radio-group">
+                <%= f.radio_button :experience, "advanced" %> <%= f.label :experience_advanced, '<strong>Avanzado:</strong> Has tenido experiencia laboral como programador (en cualquier lenguaje).'.html_safe %>
               </div>
             </div>
           </div>

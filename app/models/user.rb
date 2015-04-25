@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
     optimism: :string,
     mindset: :string,
     motivation: :string,
+    experience: :string,
     activated_at: :datetime
 
   hstore_accessor :settings,
