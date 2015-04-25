@@ -24,6 +24,7 @@
 //= require backbone-1.1.2
 //= require moment
 //= require moment/es.js
+//= require nested_form_fields
 //= require_tree .
 
 Turbolinks.enableProgressBar();

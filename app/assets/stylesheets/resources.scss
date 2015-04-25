@@ -45,3 +45,32 @@
   padding: 10px;
   border-top: 1px solid #ccc;
 }
+
+.sections {
+  input.section-title {
+    display: inline-block;
+    max-width: 90%;
+  }
+  .lessons {
+    .lessons-label {
+      margin-left: 30px;
+    }
+    fieldset {
+      padding: 10px;
+      border-radius: 3px;
+      border-style: solid;
+      border-width: 2px;
+      margin-left: 30px;
+      margin-bottom: 7px;
+      border-color: rgb(194, 194, 194);
+
+      .lesson-name {
+        display: inline-block;
+        max-width: 90%;
+      }
+    }
+    .add-lesson {
+      margin-left: 30px;
+    }
+  }
+}

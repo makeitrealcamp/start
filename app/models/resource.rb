@@ -15,6 +15,7 @@
 #  content       :text
 #  slug          :string
 #  published     :boolean
+#  price         :decimal(, )
 #
 
 class Resource < ActiveRecord::Base
@@ -26,10 +27,13 @@ class Resource < ActiveRecord::Base
 
   self.inheritance_column = nil
 
-  enum type: [:url, :markdown]
+  enum type: [:url, :markdown, :course]
 
   belongs_to :course
+  has_many :sections, dependent: :delete_all
   has_and_belongs_to_many :users
+
+  accepts_nested_attributes_for :sections, allow_destroy: true
 
   validates :course, :title, :description, presence: :true
   validates :url, presence: true, format: { with: URI.regexp }, if: :url?
