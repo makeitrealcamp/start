@@ -6,7 +6,18 @@
     </div>
 
     <div class="discussion-label">
-      <h2><strong><%= comment.user.first_name %></strong> <span class="date"><%= distance_of_time_in_words_to_now(comment.created_at) %></span></h2>
+      <h2>
+        <strong>
+          <% if current_user.is_admin? %>
+            <%= link_to comment.user.first_name, admin_user_path(comment.user) %>
+          <% else %>
+            <%= comment.user.first_name %>
+          <% end %>
+        </strong>
+          <span class="date">
+            <%= distance_of_time_in_words_to_now(comment.created_at) %>
+          </span>
+      </h2>
       <p><%= markdown comment.text %></p>
     </div>
   </div>
