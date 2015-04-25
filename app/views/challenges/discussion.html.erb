@@ -20,7 +20,9 @@
       </div>
     <% end %>
     <% unless @challenge.solution_text.nil? %>
-      <%= markdown(@challenge.solution_text) unless @challenge.solution_text.nil? %>
+      <div class="text-wrapper">
+        <%= markdown(@challenge.solution_text) unless @challenge.solution_text.nil? %>
+      </div>
     <% end %>
     </div>
     <div class="col-xs-12
