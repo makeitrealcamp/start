@@ -53,6 +53,10 @@ class Resource < ActiveRecord::Base
     self.next.nil?
   end
 
+  def self_completable?
+    ["markdown","url"].include? self.type
+  end
+
   private
     def default_values
       self.published ||= false

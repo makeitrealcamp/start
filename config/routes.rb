@@ -22,8 +22,12 @@ Rails.application.routes.draw do
         get :discussion
       end
     end
+
     resources :resources, except: [:index] do
       resource :completion, controller: 'resource_completion', only: [:create, :destroy]
+      resources :sections, only: [] do
+        resources :lessons, only: [:show]
+      end
     end
   end
 

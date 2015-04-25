@@ -38,13 +38,13 @@
           ) %>
 
           <div class="form-group sections">
-
+            <!-- Section form -->
             <%= f.nested_fields_for :sections do |ff| %>
               <%= ff.remove_nested_fields_link(
                 content_tag(:span,nil,class:"glyphicon glyphicon-remove action action-remove")) %>
               <%= ff.text_field :title, class: "form-control section-title", placeholder: "Section Title" %>
 
-
+              <!-- Lesson form -->
               <div class="form-group lessons">
                 <%= ff.label :lessons, class:"lessons-label" %>
                 <%= ff.add_nested_fields_link :lessons, content_tag(
@@ -60,17 +60,19 @@
                   <%= fff.text_field :video_url, class: "form-control" %>
                   <%= fff.label :description %>
                   <%= fff.text_area :description, class: "form-control" %>
+                  <%= fff.label :free_preview %>
+                  <%= fff.check_box :free_preview %>
                 <% end %>
                 <%= ff.add_nested_fields_link :lessons, content_tag(
                   :span,"Lesson",class:"glyphicon glyphicon-plus action action-add add-lesson"
                 ) %>
-              </div>
+              </div> <!-- /Lesson form -->
             <% end %>
 
             <%= f.add_nested_fields_link :sections, content_tag(
               :span,"Section",class:"glyphicon glyphicon-plus action action-add"
             ) %>
-          </div>
+          </div><!-- /Section form -->
         </div>
 
         <div class="form-group">

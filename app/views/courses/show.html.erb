@@ -78,7 +78,7 @@
                       <div class="description"><%= resource.description %></div>
                     </td>
                     <td class="resource-additional">
-                      <%= link_to_toggle_completed resource %>
+                      <%= link_to_toggle_completed resource if resource.self_completable? %>
                       <span class="time-estimate"><%= resource.time_estimate %></span>
                     </td>
                   </tr>

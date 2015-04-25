@@ -1,0 +1,5 @@
+<%# require: resource %>
+<div class="col-sm-8 col-sm-offset-2 expand internal">
+  <h1 class="text-center"><%= resource.title %></h1>
+  <%= markdown ERB.new(resource.content).result(binding) %>
+</div>

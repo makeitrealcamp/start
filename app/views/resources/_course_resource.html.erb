@@ -1,0 +1,19 @@
+<%# require: resource %>
+<div class="col-sm-8 expand text-left">
+  <h1><%= resource.title %></h1>
+  <p><%= resource.description %></p>
+  <% resource.sections.each_with_index do |section,i| %>
+    <div class="list-group">
+      <div href="#" class="list-group-item disabled">
+        <%= "Sección #{i} - #{section.title}" %>
+      </div>
+
+      <% section.lessons.each_with_index do |lesson,j| %>
+        <%= link_to "Lección #{j} - #{lesson.name}",
+          course_resource_section_lesson_path(resource.course,resource,section,lesson),
+          class: "list-group-item" %>
+      <% end %>
+    </div>
+  <% end %>
+  </a>
+</div>
