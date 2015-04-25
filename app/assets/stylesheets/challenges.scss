@@ -225,4 +225,18 @@
       height: 100%;
     }
   }
+
+  .text-wrapper {
+    p, li {
+      font-weight: 300;
+      line-height: 1.6;
+    }
+    .highlight { margin: 20px 0; }
+
+    img {
+      max-width: 100%;
+      border: 1px solid #eee;
+      padding: 5px;
+    }
+  }
 }
