@@ -1,10 +1,20 @@
 <%# require: resource %>
-<div class="col-sm-8 expand text-left">
-  <h1><%= resource.title %></h1>
+<div class="col-sm-6 col-md-8 text-left">
+  <h1>
+    <%= resource.title %>
+    <% if current_user.is_admin? %>
+      <%= link_to edit_course_resource_path(resource.course,resource), nil do %>
+        <%= content_tag(
+          :span,nil,class:"glyphicon glyphicon-pencil action action-edit"
+          )%>
+      <% end %>
+    <% end %>
+  </h1>
+
   <p><%= resource.description %></p>
   <% resource.sections.each_with_index do |section,i| %>
     <div class="list-group">
-      <div href="#" class="list-group-item disabled">
+      <div href="#" class="list-group-item list-group-item-info">
         <%= "Sección #{i} - #{section.title}" %>
       </div>
 
@@ -16,4 +26,20 @@
     </div>
   <% end %>
   </a>
+</div>
+<div class="col-sm-6 col-md-4 text-center sidebar-outer">
+  <div class="fixed-container">
+    <div class="course-info text-center fixed">
+      <button class="btn btn-default btn-buy btn-buy-course btn-lg btn-block btn-info">
+        Toma este curso
+        por <h2><%= number_to_currency(resource.price,unit: "$COP")%></h2>
+      </button>
+      <p>o adquiere la suscripción anual con acceso a <strong><u>todos los cursos</u></strong>,
+         <strong><u>retos adicionales</u></strong> y <strong><u>material exclusivo</u></strong>.</p>
+      <button class="btn btn-default btn-buy btn-buy-anual-subscription btn-lg btn-block btn-primary">
+        Suscripción anual
+      </button>
+    </div>
+
+  </div>
 </div>

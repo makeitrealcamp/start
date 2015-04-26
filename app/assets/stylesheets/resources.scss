@@ -74,3 +74,27 @@
     }
   }
 }
+.course-info {
+  border-style: solid;
+  border-radius: 10px;
+  border-color: #ABABAB;
+  padding: 20px;
+  background-color: #ECECEC;
+}
+.btn-buy-course {
+  background-color: #31B0D5;
+}
+.fixed-container {
+  width: 100%;
+  content: " ";
+  .fixed {
+    @media (min-width: $screen-sm) {
+      position: fixed;
+      margin-top: $navbar-height + 50px;
+      margin-right: 70px;
+    }
+    @media (min-width: 1600px) {
+      margin-right: 255px;
+    }
+  }
+}
