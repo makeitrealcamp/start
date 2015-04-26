@@ -11,8 +11,8 @@
 
 FactoryGirl.define do
   factory :section do
-    course_id 1
-title "MyString"
+    resource { create(:resource,type: :course) }
+    title { Faker::Name.title }
   end
 
 end

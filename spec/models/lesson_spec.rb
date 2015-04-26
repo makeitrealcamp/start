@@ -15,5 +15,19 @@
 require 'rails_helper'
 
 RSpec.describe Lesson, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'associations' do
+    it { should belong_to(:section) }
+    it { should have_many(:comments) }
+  end
+
+  context 'validations' do
+    it { should validate_presence_of :name }
+    it { should validate_presence_of :section }
+    it { should validate_presence_of :video_url }
+    it { should_not allow_value("pepe perez").for(:video_url) }
+  end
+
+  it "has a valid factory" do
+    expect(build(:lesson)).to be_valid
+  end
 end
