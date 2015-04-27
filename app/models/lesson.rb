@@ -20,6 +20,5 @@ class Lesson < ActiveRecord::Base
   validates :name, presence: true
   validates :video_url, presence: true
   validates :video_url, format: { with: URI.regexp }, if: :video_url?
-  validates :section, presence: true
 
 end
