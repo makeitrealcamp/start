@@ -44,6 +44,7 @@
   width: 100%;
   padding: 10px;
   border-top: 1px solid #ccc;
+  background-color: white;
 }
 
 .sections {
@@ -74,27 +75,66 @@
     }
   }
 }
+.resource-section-title {
+  background-color: #34495D;
+  color: white;
+  font-weight: 600;
+}
 .course-info {
   border-style: solid;
-  border-radius: 10px;
-  border-color: #ABABAB;
-  padding: 20px;
-  background-color: #ECECEC;
-}
-.btn-buy-course {
-  background-color: #31B0D5;
-}
-.fixed-container {
-  width: 100%;
-  content: " ";
-  .fixed {
-    @media (min-width: $screen-sm) {
-      position: fixed;
-      margin-top: $navbar-height + 50px;
-      margin-right: 70px;
+  border-width: 1px;
+  border-color: #ECF0F1;
+  border-radius: 0;
+  padding: 50px;
+  background-color: #ECF0F1;
+  margin-bottom: 25px;
+  color: black;
+  @media (max-width: $screen-xs-max) {
+    max-width: 348px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+  }
+  p {
+    font-size: 18px;
+  }
+  .btn-buy-course {
+    $b: #2ECC71;
+    background-color: $b;
+    border-color: darken($b,10%);
+    border-radius: 0;
+    color: white;
+    &:hover {
+      background-color: lighten($b,15%);
+      border-color: $b;
     }
-    @media (min-width: 1600px) {
-      margin-right: 255px;
+  }
+  .btn-buy-anual-subscription {
+    $b: #379ADC;
+    background-color: $b;
+    border-color: darken($b,10%);
+    border-radius: 0;
+    color: white;
+    &:hover {
+      background-color: lighten($b,15%);
+      border-color: $b;
     }
+  }
+}
+
+.price-box-container {
+  @media (min-width: $screen-sm-min) {
+    position: fixed;
+    padding-left: $grid-gutter-width/2;
+    padding-right: $grid-gutter-width/2;
+  }
+  @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+    margin-top: 25px;
+    width: $container-sm*0.5;
+  }
+  @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+    width: $container-md*0.33;
+  }
+  @media (min-width: $screen-lg-min) {
+    width: $container-lg*0.33;
   }
 }

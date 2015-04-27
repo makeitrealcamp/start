@@ -14,7 +14,7 @@
   <p><%= resource.description %></p>
   <% resource.sections.each_with_index do |section,i| %>
     <div class="list-group">
-      <div href="#" class="list-group-item list-group-item-info">
+      <div href="#" class="list-group-item resource-section-title">
         <%= "Sección #{i} - #{section.title}" %>
       </div>
 
@@ -27,19 +27,22 @@
   <% end %>
   </a>
 </div>
-<div class="col-sm-6 col-md-4 text-center sidebar-outer">
-  <div class="fixed-container">
-    <div class="course-info text-center fixed">
-      <button class="btn btn-default btn-buy btn-buy-course btn-lg btn-block btn-info">
-        Toma este curso
-        por <h2><%= number_to_currency(resource.price,unit: "$COP")%></h2>
-      </button>
-      <p>o adquiere la suscripción anual con acceso a <strong><u>todos los cursos</u></strong>,
-         <strong><u>retos adicionales</u></strong> y <strong><u>material exclusivo</u></strong>.</p>
-      <button class="btn btn-default btn-buy btn-buy-anual-subscription btn-lg btn-block btn-primary">
-        Suscripción anual
-      </button>
-    </div>
+<div class="col-sm-6 col-md-4 text-center">
+  <%# if current_user. %>
+  <div class="price-box-container">
+      <div class="course-info text-center">
+        <p>Acceso a este curso de por vida</p>
+        <button class="btn btn-default btn-buy btn-buy-course btn-lg btn-block">
+          <%= number_to_currency(resource.price,unit: "$COP")%>
+        </button>
+      </div>
 
+      <div class="course-info text-center">
+        <p>O adquiere la suscripción anual con acceso a <strong><u>todos los cursos</u></strong>,
+           <strong><u>retos adicionales</u></strong> y <strong><u>material exclusivo</u></strong>.</p>
+        <button class="btn btn-default btn-buy btn-buy-anual-subscription btn-lg btn-block">
+          Suscripción anual
+        </button>
+      </div>
   </div>
 </div>
