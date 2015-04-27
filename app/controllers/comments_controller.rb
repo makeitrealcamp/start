@@ -16,6 +16,11 @@ class CommentsController < ApplicationController
     @comment.save
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+  end
+
   protected
   def comment_params
     params.permit(:text,:response_to_id)

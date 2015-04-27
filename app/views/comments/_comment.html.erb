@@ -1,4 +1,4 @@
-<article class="discussion-entry">
+<article class="discussion-entry" id="<%= comment.id %>">
 
   <div class="discussion-entry-inner">
     <div class="discussion-icon">
@@ -18,6 +18,9 @@
             <%= distance_of_time_in_words_to_now(comment.created_at) %>
           </span>
       </h2>
+
+      <%= button_delete(comment) if current_user.is_admin? %>
+
       <p><%= markdown comment.text %></p>
     </div>
   </div>

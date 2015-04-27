@@ -11,4 +11,8 @@ module CommentsHelper
     Rails.application.routes.url_helpers.comments_path(commentable_resource: resource_name, id: id)
   end
 
+  def button_delete(comment)
+    link_to "x" , comment_path(comment), remote: true, data: {confirm: "¿Esta seguro que quiere eliminar esto?"}, method: :delete, class: "close pull-right remove-comment", id:"remove-coment-#{comment.id}", title: "Eliminar Comentario"
+  end
+
 end
