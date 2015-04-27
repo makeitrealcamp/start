@@ -16,6 +16,18 @@ class CommentsController < ApplicationController
     @comment.save
   end
 
+  def edit
+    @comment = Comment.find(params[:id])
+  end
+
+  def update
+    @comment =  Comment.find(params[:id])
+    if params[:commit] == "Actualizar comentario"
+      @comment.update(comment_params)
+    end
+
+  end
+
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy

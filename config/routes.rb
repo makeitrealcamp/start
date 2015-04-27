@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :comments, only: [:destroy]
+  resources :comments, except: [:index, :create, :new]
 
   resources :solutions, only: [:show] do
     put 'update_documents', on: :member

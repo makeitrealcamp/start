@@ -218,8 +218,22 @@ $color_thunderbird_approx: #cc2424;
         }
       }
     }
+
+    //Styles for edit form
+    .edit-comment{
+      .actions{
+        padding-top: 20px;
+      }
+    }
+  }
+
+  .comment-actions{
+    .action{
+      font-size: 16px;
+    }
   }
 }
+
 .comment-form {
   padding-left: 10px;
   margin-bottom: 10px;
