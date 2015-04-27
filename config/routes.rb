@@ -56,5 +56,6 @@ Rails.application.routes.draw do
     get 'dashboard', to: 'dashboard#index'
     resources :users, only: [:index, :show]
     resources :solutions, only: [:index]
+    resources :comments, only: [:index]
   end
 end

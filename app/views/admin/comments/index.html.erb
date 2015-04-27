@@ -1,0 +1,14 @@
+<%# required: commentable %>
+<div class="row">
+  <div class="col-sm-5 col-sm-offset-1">
+    <h1>Soluciones</h1>
+  </div>
+</div>
+
+<div class="discussion">
+  <div class="comments">
+    <% @comments.each do |comment| %>
+      <%= render '/comments/comment', comment: comment %>
+    <% end %>
+  </div>
+</div>
