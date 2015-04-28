@@ -5,7 +5,7 @@
 @import "bootstrap";
 @import "base"; // has the standard styles
 @import "codemirror";
-@import "solarized";
+@import "monokai";
 @import "pygments";
 @import "pages";
 @import "sessions";
@@ -29,7 +29,7 @@ html.turbolinks-progress-bar::before {
 
 .navbar-brand {
   position: relative;
-  margin-top: -6px;
+  margin-top: -15px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   span.camp {

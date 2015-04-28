@@ -28,8 +28,8 @@
 
   .course {
     position: relative;
-    background: #fafafd;
-    border: 1px solid #eee;
+    background: white;
+    border: 1px solid #ddd;
     border-radius: 5px;
     padding: 20px;
     margin-left: auto;
@@ -100,17 +100,19 @@
     z-index: 1;
 
     div {
-      background: #fafafd;
+      background: white;
       width: 10px;
       height: 30px;
       margin: 0 auto;
-      border-right: 1px solid #eee;
-      border-left: 1px solid #eee;
+      border-right: 1px solid #ddd;
+      border-left: 1px solid #ddd;
     }
   }
 }
 
 .course-page {
+  margin-bottom: 60px;
+
   .header {
     position: relative;
     margin-bottom: 30px;
@@ -137,6 +139,34 @@
         &:hover { opacity: 1; }
       }
     }
+
+    .course-header {
+      padding: 10px 30px;
+      border: 1px solid #ddd;
+      background: white;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+  }
+
+  .nav-tabs > li {
+    &.active > a { background: white; }
+    > a { font-size: 21px; }
+  }
+
+  .tab-content {
+    background: white;
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  .tab-exp {
+    color: #999;
+    font-size: 21px;
+    font-weight: 300;
+    margin-bottom: 30px;
   }
 
   .section-header {
@@ -153,27 +183,30 @@
   }
 
   .resources {
+    margin-bottom: 40px;
+
+    .new-resource-btn { margin-top: 20px; }
+    .resources-list { padding-top: 40px; }
 
     table {
       font-weight: 300;
       line-height: 1.6;
-      margin-top: -15px;
 
       td {
-        padding: 15px 0px 20px;
+        padding: 15px 20px 20px;
         margin-bottom: 20px;
-        border-top: none;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid #ddd;
+        background: white;
       }
 
       td.resource-info {
         a {
-          font-size: 16px;
+          font-size: 18px;
           font-weight: normal;
           text-decoration: none;
 
           @media (min-width: $screen-sm-min) {
-            font-size: 18px;
+            font-size: 21px;
           }
         }
 
@@ -185,15 +218,17 @@
         }
 
         .description {
-          color: #999;
-          font-size: 14px;
+          color: #666;
+          font-size: 16px;
+          line-height: 1.6;
+          margin-top: 10px;
 
-          @media (min-width: $screen-sm-min) { font-size: 16px; }
+          @media (min-width: $screen-sm-min) { font-size: 18px; }
         }
       }
 
       td.resource-additional {
-        width: 60px;
+        width: 110px;
         text-align: right;
 
         span { display: block; }
@@ -220,42 +255,54 @@
   .challenges {
     margin-bottom: 40px;
 
+    .new-challenge-btn { margin-top: 20px; }
+
+    .challenges-list { padding: 40px 0; }
+
     .challenge {
       position: relative;
-      background: #fafafc;
+      background: #fafafa;
       border: 1px solid #eee;
       border-radius: 5px;
       margin-bottom: 20px;
+      cursor: pointer;
 
       .actions {
         position: absolute;
         top: 5px;
-        right: 63px;
+        right: 72px;
       }
 
       .challenge-title {
-        font-size: 16px;
-        opacity: 0.6;
+        font-size: 21px;
+        font-weight: 300;
         padding: 15px 10px;
 
         @media (min-width: $screen-sm-min) {
-          font-size: 18px;
+          font-size: 28px;
           padding: 15px 20px;
         }
 
-        a { text-decoration: none; }
+        a {
+          color: #ccc;
+          text-decoration: none;
+        }
+
+        &:hover {
+          .challenge-title a { color: #303030; }
+        }
       }
 
       .challenge-status {
         float: right;
-        padding: 10px 15px;
+        padding: 15px 20px;
         color: #ddd;
-        font-size: 24px;
+        font-size: 28px;
         border-left: 1px solid #eee;
       }
 
       &.completed {
-        .challenge-title { opacity: 1; }
+        .challenge-title a { color: #303030; }
         .challenge-status {
           background: #28B038;
           color: white;
@@ -276,12 +323,12 @@
 }
 
 #questions-modal {
-  .option-alert { 
+  .option-alert {
     border-radius: 0;
     margin-bottom: 0;
   }
 
-  p { 
+  p {
     font-size: 21px;
     font-weight: 300;
     margin: 20px 0 40px;
@@ -297,7 +344,7 @@
 
       .form-control {
         display: inline-block;
-        max-width: 300px; 
+        max-width: 300px;
       }
     }
   }
@@ -324,8 +371,8 @@
       padding-left: 20px;
 
       label {
-        font-size: 18px; 
-        font-weight: 300; 
+        font-size: 18px;
+        font-weight: 300;
         margin-left: 10px;
       }
     }

@@ -7,72 +7,91 @@
         <%= link_to "<span class='glyphicon glyphicon-pencil'></span> &nbsp;Editar Curso".html_safe, edit_course_path(@course), class: "btn btn-success btn-xs edit-course-btn" %>
       </div>
       <% end %>
-      <h1><%= @course.name %></h1>
-      <p><%= markdown @course.excerpt %></p>
+      <div class="course-header">
+        <h1><%= @course.name %></h1>
+        <div style="margin-bottom: 20px;"><%= markdown @course.excerpt %></div>
+        <%= progress_bar(progress: current_user.progress(@course)) %>
+      </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-5 challenges">
-      <header class="section-header">
-        <h2>
-          Retos
-          <% if current_user.is_admin? %>&nbsp;<%= link_to "<span class='glyphicon glyphicon-plus action action-add'></span>".html_safe, new_course_challenge_path(@course) %><% end %>
-        </h2>
-        <% if @course.challenges.for(current_user).any? %><p>Usa los recursos y Google si es necesario para intentar solucionar estos retos.</p><% end %>
-      </header>
-      <% if @course.challenges.for(current_user).empty? %>
-        <div class="alert alert-warning text-center">Este módulo no tiene retos</div>
-      <% end %>
-      <% @course.challenges.for(current_user).each_with_index do |challenge, index| %>
-        <div id="<%= challenge.id %>" class="challenge clearfix <%= challenge_class(challenge) %>" data-index="<%= index %>">
-          <div class="challenge-status"><span class="glyphicon glyphicon-ok"></span></div>
-          <div class="challenge-title"><%= link_to challenge.name, course_challenge_path(@course, challenge) %></div>
-          <% if current_user.is_admin? %>
-          <div class="actions">
-            <% if !challenge.published %><span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span><% end %>
-            <%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_course_challenge_path(@course, challenge) %>
-            <a href="#"><span class="glyphicon glyphicon-remove action action-remove"></span></a>
-          </div>
+    <div class="col-md-12">
+      <div role="tabpanel">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <% if @course.challenges.count > 0 %>
+          <li role="presentation" class="<%= "active" if @tab == :challenges %>"><a href="#challenges" aria-controls="challenges" role="tab" data-toggle="tab">Retos</a></li>
           <% end %>
-        </div>
-      <% end %>
-    </div>
+          <li role="presentation" class="<%= "active" if @tab == :resources %>"><a href="#resources" aria-controls="resources" role="tab" data-toggle="tab">Recursos</a></li>
+        </ul>
 
-    <div class="col-md-7 resources">
-      <header class="section-header">
-        <h2>
-          Recursos
-          <% if current_user.is_admin? %>
-            &nbsp;<%= link_to '<span class="glyphicon glyphicon-plus action action-add"></span>'.html_safe, new_course_resource_path(@course) %>
-          <% end %>
-        </h2>
-        <% if @course.challenges.for(current_user).any? %><p>Los recursos te dan el conocimiento, míralos como entrenamiento para enfrentar los retos.</p><% end %>
-      </header>
-      <table class="table">
-      <% @course.resources.for(current_user).each_with_index do |resource, index| %>
-        <tr id="<%= resource.id %>" data-index="index">
-          <td class="resource-info">
-            <%= link_to (resource.title + (resource.url? ? '&nbsp;<span class="glyphicon glyphicon-new-window"></span>' : '')).html_safe, [@course, resource] %>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane <%= "active" if @tab == :challenges %> challenges" id="challenges">
             <% if current_user.is_admin? %>
-              &nbsp; &nbsp;
-              <% if !resource.published %><span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span><% end %>
-              <%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_course_resource_path(@course, resource) %>
-              <%= link_to '<span class="glyphicon glyphicon-remove action action-remove"></span>'.html_safe, course_resource_path(@course, resource),  remote: true, data:{ confirm: "Are you sure you want to delete this?"},
-              method: :delete %>
+              <div class="row ">
+                <div class="col-sm-12 text-center new-challenge-btn">
+                  <%= link_to "<span class='glyphicon glyphicon-plus'></span> Nuevo Reto".html_safe, new_course_challenge_path(@course), class: "btn btn-success" %>
+                </div>
+              </div>
             <% end %>
-            <div class="description"><%= resource.description %></div>
-          </td>
-          <td class="resource-additional">
-            <%= link_to_toggle_completed resource %>
-            <span class="time-estimate"><%= resource.time_estimate %></span>
-          </td>
-        </tr>
-        </div>
-      <% end %>
-      </table>
-    </div>
 
+            <% if @course.challenges.count > 0 %>
+            <div class="row challenges-list">
+              <div class="col-sm-8 col-sm-offset-2">
+                <p class="text-center tab-exp"><%= challenges_msg(@course) %></p>
+                <% @course.challenges.for(current_user).each_with_index do |challenge, index| %>
+                  <div id="<%= challenge.id %>" class="challenge clearfix <%= challenge_class(challenge) %>" data-index="<%= index %>" data-location="<%= url_for([@course, challenge]) %>">
+                    <div class="challenge-status"><span class="glyphicon glyphicon-ok"></span></div>
+                    <div class="challenge-title"><%= link_to challenge.name, [@course, challenge] %></div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <% end %>
+          </div>
+          <div role="tabpanel" class="tab-pane resources <%= "active" if @tab == :resources %>" id="resources">
+            <% if current_user.is_admin? %>
+            <div class="row">
+              <div class="col-sm-12 text-center new-resource-btn">
+                <%= link_to '<span class="glyphicon glyphicon-plus"></span> Nuevo Recurso'.html_safe, new_course_resource_path(@course), class: "btn btn-success" %>
+              </div>
+            </div>
+            <% end %>
+
+            <div class="row resources-list">
+              <div class="col-sm-8 col-sm-offset-2">
+                <p class="tab-exp text-center">Todo el conocimiento está en Internet. Es por eso que hemos seleccionado los mejores recursos para tu aprendizaje.</p>
+                <table class="table">
+                <% @course.resources.for(current_user).each_with_index do |resource, index| %>
+                  <tr id="<%= resource.id %>" data-index="index">
+                    <td class="resource-info">
+                      <%= link_to (resource.title + (resource.url? ? '&nbsp;<span class="glyphicon glyphicon-new-window"></span>' : '')).html_safe, [@course, resource] %>
+                      <% if current_user.is_admin? %>
+                        &nbsp; &nbsp;
+                        <% if !resource.published %><span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span><% end %>
+                        <%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_course_resource_path(@course, resource) %>
+                        <%= link_to '<span class="glyphicon glyphicon-remove action action-remove"></span>'.html_safe, course_resource_path(@course, resource),  remote: true, data:{ confirm: "Are you sure you want to delete this?"},
+                        method: :delete %>
+                      <% end %>
+                      <div class="description"><%= resource.description %></div>
+                    </td>
+                    <td class="resource-additional">
+                      <%= link_to_toggle_completed resource %>
+                      <span class="time-estimate"><%= resource.time_estimate %></span>
+                    </td>
+                  </tr>
+                  </div>
+                <% end %>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 </div>
 
@@ -80,3 +99,22 @@
 <% if current_user.is_admin? %>
    <%= render 'courses/sortable_js' %>
 <% end %>
+
+<script>
+  $('.challenge').click(function(e) {
+    e.preventDefault();
+    window.location = $(this).data('location');
+  });
+
+  $(function(){
+    var hash = window.location.hash;
+    hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+
+    $('.nav-tabs a').click(function (e) {
+      $(this).tab('show');
+      var scrollmem = $('body').scrollTop();
+      window.location.hash = this.hash;
+      $('html,body').scrollTop(scrollmem);
+    });
+  });
+</script>

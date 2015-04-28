@@ -16,6 +16,7 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.friendly.find(params[:id])
+    @tab = @course.challenges.count > 0 ? :challenges : :resources
   end
 
   def new
