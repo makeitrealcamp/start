@@ -16,7 +16,7 @@ module CommentsHelper
   end
 
   def button_delete(comment)
-    link_to "x" , comment_path(comment), remote: true, data: {confirm: "¿Esta seguro que quiere eliminar esto?"}, method: :delete, class: "close pull-right action", id:"remove-coment-#{comment.id}", title: "Eliminar Comentario"
+    link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe  , comment_path(comment), remote: true, data: {confirm: "¿Esta seguro que quiere eliminar esto?"}, method: :delete, class: "close pull-right action", id:"remove-coment-#{comment.id}", title: "Eliminar Comentario"
   end
 
 end

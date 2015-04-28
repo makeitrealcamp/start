@@ -14,7 +14,7 @@
 
 FactoryGirl.define do
   factory :solution do
-    
+    association  :user, factory: :user
+    association  :challenge, factory: :challenge
   end
-
 end

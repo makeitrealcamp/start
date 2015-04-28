@@ -1,1 +1,3 @@
-$('article#' + '<%= @comment.id %>').replaceWith('<%= j render partial: "comment", locals: { comment: @comment }  %>');
+<% if @comment.valid? %>
+  $('article#' + '<%= @comment.id %>').replaceWith('<%= j render partial: "comment", locals: { comment: @comment }  %>');
+<% end %>

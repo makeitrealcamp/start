@@ -18,8 +18,8 @@ class SessionsController < ApplicationController
   def create_with_omniauth
     user = AuthProvider.omniauth(env['omniauth.auth'])
     if user
-    sign_in(user)
-     redirect_to courses_path
+      sign_in(user)
+      redirect_to courses_path
     else
      redirect_to login_path, flash: { error: "Credenciales Inválidas" }
     end

@@ -14,10 +14,8 @@
 
 FactoryGirl.define do
   factory :comment do
-    discussion nil
-text "MyText"
-response_to 1
-user nil
+    text { Faker::Lorem.paragraph }
+    association  :user, factory: :user
+    association  :commentable, factory: :challenge
   end
-
 end
