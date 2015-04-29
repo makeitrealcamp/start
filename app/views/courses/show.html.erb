@@ -20,7 +20,7 @@
       <div role="tabpanel">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-          <% if @course.challenges.count > 0 %>
+          <% if @course.challenges.for(current_user).count > 0 %>
           <li role="presentation" class="<%= "active" if @tab == :challenges %>"><a href="#challenges" aria-controls="challenges" role="tab" data-toggle="tab">Retos</a></li>
           <% end %>
           <li role="presentation" class="<%= "active" if @tab == :resources %>"><a href="#resources" aria-controls="resources" role="tab" data-toggle="tab">Recursos</a></li>
@@ -37,7 +37,7 @@
               </div>
             <% end %>
 
-            <% if @course.challenges.count > 0 %>
+            <% if @course.challenges.for(current_user).count > 0 %>
             <div class="row challenges-list">
               <div class="col-sm-8 col-sm-offset-2">
                 <p class="text-center tab-exp"><%= challenges_msg(@course) %></p>
