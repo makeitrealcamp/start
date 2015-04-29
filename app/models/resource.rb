@@ -31,6 +31,7 @@ class Resource < ActiveRecord::Base
 
   belongs_to :course
   has_many :sections, dependent: :delete_all
+  has_many :comments, as: :commentable # TODO: change to reviews
   has_and_belongs_to_many :users
 
   accepts_nested_attributes_for :sections, allow_destroy: true

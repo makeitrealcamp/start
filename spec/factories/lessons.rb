@@ -19,7 +19,7 @@ FactoryGirl.define do
     section { create(:section) }
     name "Just another lesson"
     video_url { Faker::Internet.url }
-    description Faker::Lorem.paragraph
+    description { Faker::Lorem.paragraph }
     row 1
     free_preview false
   end

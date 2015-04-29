@@ -20,8 +20,9 @@ class User < ActiveRecord::Base
   has_secure_password validations: false
 
   has_many :solutions, dependent: :destroy
-  has_and_belongs_to_many :resources
   has_many :auth_providers, dependent: :destroy
+  has_many :enrollments
+  has_and_belongs_to_many :resources
 
   hstore_accessor :profile,
     first_name: :string,
@@ -81,16 +82,31 @@ class User < ActiveRecord::Base
   def progress(course)
     resources_count = course.resources.published.count
     challenges_count = course.challenges.published.count
-    return 1.0 if (resources_count + challenges_count == 0)
+    total = resources_count + challenges_count
+    return 1.0 if total == 0
 
-    completed_resources = self.resources.published.where(course_id: course.id).count
-    completed_challenges = self.solutions.completed.joins(:challenge).where('challenges.course_id = ?', course.id).count
+    user_completed = self.completed_resources(course).count + self.completed_challenges(course).count
+    user_completed.to_f/total.to_f
+  end
 
-    (completed_resources + completed_challenges).to_f/(resources_count + challenges_count).to_f
+  def completed_resources(course)
+    self.resources.published.where(course_id: course.id)
+  end
+
+  def completed_challenges(course)
+    self.solutions.completed.joins(:challenge).where('challenges.course_id = ?', course.id)
   end
 
   def finished?(course)
     progress(course) == 1.0
+  end
+
+  def has_access_to?(resource)
+    self.is_admin? || self.paid_account? || self.is_enrolled_in?(resource)
+  end
+
+  def is_enrolled_in?(resource)
+    !!self.enrollments.active.find_by_resource_id(resource.id)
   end
 
   def send_password_reset

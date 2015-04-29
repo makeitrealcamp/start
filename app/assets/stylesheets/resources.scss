@@ -119,8 +119,18 @@
       border-color: $b;
     }
   }
+  .btn-start-course {
+    $b: #2ECC71;
+    background-color: $b;
+    border-color: darken($b,10%);
+    border-radius: 0;
+    color: white;
+    &:hover {
+      background-color: lighten($b,15%);
+      border-color: $b;
+    }
+  }
 }
-
 .price-box-container {
   @media (min-width: $screen-sm-min) {
     position: fixed;
@@ -136,5 +146,21 @@
   }
   @media (min-width: $screen-lg-min) {
     width: $container-lg*0.33;
+  }
+}
+.start-course-container {
+  @extend .price-box-container;
+  @media (min-width: $screen-sm-min) {
+    transform: translateY(150%);
+  }
+}
+.label-free {
+  @extend .label;
+  @extend .label-success;
+  @media (max-width: $screen-xs-max) {
+    display: block;
+  }
+  @media (min-width: $screen-sm-min) {
+    float: right !important;
   }
 }

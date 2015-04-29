@@ -17,19 +17,50 @@
       <div href="#" class="list-group-item resource-section-title">
         <%= "Sección #{i} - #{section.title}" %>
       </div>
+      <% if current_user.is_enrolled_in?(resource) %>
 
-      <% section.lessons.each_with_index do |lesson,j| %>
-        <%= link_to "Lección #{j} - #{lesson.name}",
-          course_resource_section_lesson_path(resource.course,resource,section,lesson),
-          class: "list-group-item" %>
+        <% section.lessons.each_with_index do |lesson,j| %>
+          <%= link_to(course_resource_section_lesson_path(resource.course,resource,section,lesson),
+            class: "list-group-item") do %>
+            <%="Lección #{j} - #{lesson.name}"%>
+          <% end %>
+        <% end %>
+
+      <% else %>
+
+        <% section.lessons.each_with_index do |lesson,j| %>
+          <% if lesson.free_preview? %>
+            <%= link_to(course_resource_section_lesson_path(resource.course,resource,section,lesson),
+              class: "list-group-item") do %>
+              <%="Lección #{j} - #{lesson.name}"%>
+              <span class="label-free">¡Gratis!</span>
+            <% end %>
+          <% else %>
+            <div class="list-group-item disabled">
+              <%="Lección #{j} - #{lesson.name}"%>
+              <span class="glyphicon glyphicon-lock pull-right"></span>
+            </div>
+          <% end %>
+        <% end %>
+
       <% end %>
     </div>
   <% end %>
   </a>
 </div>
-<div class="col-sm-6 col-md-4 text-center">
-  <%# if current_user. %>
-  <div class="price-box-container">
+<div class="col-sm-6 col-md-4">
+  <% if current_user.is_enrolled_in?(resource) %>
+    <%= render "comments/embedded", commentable: resource, questions:["Déjanos saber tu opinion"] %>
+  <% elsif current_user.has_access_to?(resource) %>
+    <div class="start-course-container text-center">
+      <div class="course-info text-center">
+        <%= form_for :enrollment, url: course_resource_enrollments_path(resource.course,resource) do |f| %>
+          <%= f.submit "Inicia este curso", class: "btn btn-default btn-start-course btn-lg btn-block" %>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <div class="price-box-container text-center">
       <div class="course-info text-center">
         <p>Acceso a este curso de por vida</p>
         <button class="btn btn-default btn-buy btn-buy-course btn-lg btn-block">
@@ -44,5 +75,6 @@
           Suscripción anual
         </button>
       </div>
-  </div>
+    </div>
+  <% end %>
 </div>
