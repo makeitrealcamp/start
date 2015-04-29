@@ -14,12 +14,17 @@
 #
 
 class Lesson < ActiveRecord::Base
+  include RankedModel
+  ranks :row, with_same: :section_id
+
   belongs_to :section
   has_many :comments, as: :commentable
 
   validates :name, presence: true
   validates :video_url, presence: true
   validates :video_url, format: { with: URI.regexp }, if: :video_url?
+
+  scope :published, -> { where(section_id: Resource.published.map(&:sections).flatten.map(&:id)) }
 
   def resource
     self.section.resource
