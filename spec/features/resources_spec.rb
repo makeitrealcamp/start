@@ -17,33 +17,35 @@ RSpec.feature "Resources", type: :feature do
       expect { visit new_course_resource_path(course) }.to raise_error ActionController::RoutingError
     end
 
-    scenario 'display resource when is type markdown Document', js: true do
+    scenario 'display resource when is type markdown Document' do
       resource = create(:resource, type: "markdown", content: Faker::Lorem.paragraph, course: course)
       login(user)
-      all('a', text: 'Entrar').first.click
+      
+      visit course_path(course)
+
       click_link "#{resource.title}"
-      wait_for_ajax
-      sleep(1.0)
+
       expect(current_path).to eq course_resource_path(course, resource)
     end
   end
 
   context 'when accessed as admin' do
-    scenario "show form new resource", js: true do
+    scenario "show form new resource" do
       login(admin)
 
-      all('a', text: 'Entrar').first.click
-      find('.resources span.action-add').click
-
+      visit course_path(course)
       expect(page).to have_content "Nuevo Recurso"
+
+      click_link "Nuevo Recurso"
+
       expect(page.current_path).to eq new_course_resource_path(course)
     end
 
-    scenario "create resource with valid input when is url type", js: true do
+    scenario "create resource with valid input when is url type" do
       login(admin)
 
-      all('a', text: 'Entrar').first.click
-      find('.resources span.action-add').click
+      visit course_path(course)
+      click_link "Nuevo Recurso"
 
       expect{
         fill_in 'resource_title', with: Faker::Name.title
@@ -61,8 +63,8 @@ RSpec.feature "Resources", type: :feature do
     scenario "create resource with valid input when is markdown document type", js: true do
       login(admin)
 
-      all('a', text: 'Entrar').first.click
-      find('.resources span.action-add').click
+      visit course_path(course)
+      click_link "Nuevo Recurso"
 
       expect{
         fill_in 'resource_title', with: Faker::Name.title
@@ -77,10 +79,12 @@ RSpec.feature "Resources", type: :feature do
       expect(current_path).to eq course_path(course)
     end
 
-    scenario "create resource without valid input when is url", js: true do
+    scenario "create resource without valid input when is url" do
       login(admin)
-      all('a', text: 'Entrar').first.click
-      find('.resources span.action-add').click
+
+      visit course_path(course)
+      click_link "Nuevo Recurso"
+
       expect{
         fill_in 'resource_title', with: Faker::Name.title
         fill_in 'resource_url', with: Faker::Internet.url
@@ -88,15 +92,15 @@ RSpec.feature "Resources", type: :feature do
         click_button  'Crear Resource'
       }.not_to change(Resource, :count)
 
-      wait_for_ajax
       expect(page).to have_selector ".panel-danger"
       expect(current_path).to eq course_resources_path(course)
     end
 
     scenario "create resource without valid input when is content", js: true do
       login(admin)
-      all('a', text: 'Entrar').first.click
-      find('.resources span.action-add').click
+
+      visit new_course_resource_path(course_id: course.id)
+
       expect{
         fill_in 'resource_title', with: Faker::Name.title
         select "Markdown Document", from: 'resource_type'
@@ -105,7 +109,6 @@ RSpec.feature "Resources", type: :feature do
         click_button  'Crear Resource'
       }.not_to change(Resource, :count)
 
-      wait_for_ajax
       expect(page).to have_selector ".panel-danger"
       expect(current_path).to eq course_resources_path(course)
     end
@@ -116,7 +119,7 @@ RSpec.feature "Resources", type: :feature do
 
       login(admin)
 
-      all('a', text: 'Entrar').first.click
+      visit course_path(course)
       all('.resources span.action-edit', count: 2).first.click
 
       expect(page).to have_content "Editar Recurso"
@@ -129,8 +132,8 @@ RSpec.feature "Resources", type: :feature do
 
       login(admin)
 
-      all('a', text: 'Entrar').first.click
-      all('.resources span.action-edit', count: 2).first.click
+      visit edit_course_resource_path(course, resource)
+      
       title = Faker::Name.title
       description =  Faker::Lorem.paragraph
       url = Faker::Internet.url
@@ -152,14 +155,14 @@ RSpec.feature "Resources", type: :feature do
       expect(current_path).to eq course_path(course)
     end
 
-    scenario "edit resource without valid input", js: true do
+    scenario "edit resource without invalid input", js: true do
       resource = create(:resource, course: course)
       create(:resource, course: course)
 
       login(admin)
 
-      all('a', text: 'Entrar').first.click
-      all('.resources span.action-edit', count: 2).first.click
+      visit edit_course_resource_path(course, resource)
+      
       title = Faker::Name.title
       description =  Faker::Lorem.paragraph
       url = Faker::Internet.url
@@ -170,6 +173,7 @@ RSpec.feature "Resources", type: :feature do
       fill_in 'resource_url', with: url
       fill_in 'resource_time_estimate', with: "#{Faker::Number.digit} days"
       click_button  'Actualizar Resource'
+      
       wait_for_ajax
       expect(page).to have_selector ".panel-danger"
       expect(current_path).to eq course_resource_path( course, resource)
