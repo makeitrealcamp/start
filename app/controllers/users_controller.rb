@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :private_access, except: [:new, :create]
+  before_action :public_access, only: [:new, :create]
 
   def new
     @user = User.new
