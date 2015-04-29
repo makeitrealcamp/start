@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
   has_many :solutions, dependent: :destroy
   has_many :auth_providers, dependent: :destroy
-  has_many :enrollments
+  has_many :lesson_completions
   has_and_belongs_to_many :resources
 
   hstore_accessor :profile,
@@ -103,6 +103,10 @@ class User < ActiveRecord::Base
 
   def has_access_to?(resource)
     self.is_admin? || self.paid_account?
+  end
+
+  def has_completed_lesson?(lesson)
+    !!self.lesson_completions.find_by_lesson_id(lesson.id)
   end
 
   def send_password_reset

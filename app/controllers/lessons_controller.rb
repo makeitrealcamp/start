@@ -6,6 +6,9 @@ class LessonsController < ApplicationController
   def show
     @lesson = Lesson.find(params[:id])
     if @lesson.free_preview? || current_user.has_access_to?(@lesson.resource)
+      unless current_user.has_completed_lesson?(@lesson)
+        LessonCompletion.create(user: current_user,lesson: @lesson)
+      end
       render :show
     else
       flash[:error] = "Debes suscribirte para tener acceso a todas las lecciones"

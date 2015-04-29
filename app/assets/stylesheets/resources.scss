@@ -169,3 +169,11 @@
     float: right !important;
   }
 }
+.lesson-status {
+  float: right;
+  color: #ddd;
+  font-size: 24px;
+  &.completed {
+    color: #28B038;
+  }
+}

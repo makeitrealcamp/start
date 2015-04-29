@@ -18,11 +18,11 @@
         <%= "Sección #{i} - #{section.title}" %>
       </div>
       <% if current_user.has_access_to?(resource) %>
-
         <% section.lessons.each_with_index do |lesson,j| %>
           <%= link_to(course_resource_section_lesson_path(resource.course,resource,section,lesson),
             class: "list-group-item") do %>
             <%="Lección #{j} - #{lesson.name}"%>
+            <span class="pull-right lesson-status glyphicon glyphicon-ok <%= 'completed' if current_user.has_completed_lesson?(lesson)%> "></span>
           <% end %>
         <% end %>
 
