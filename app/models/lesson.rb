@@ -19,6 +19,7 @@ class Lesson < ActiveRecord::Base
 
   belongs_to :section
   has_many :comments, as: :commentable
+  has_many :lesson_completions, dependent: :delete_all
 
   validates :name, presence: true
   validates :video_url, presence: true
