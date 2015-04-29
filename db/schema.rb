@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426182832) do
+ActiveRecord::Schema.define(version: 20150425202417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,18 +81,6 @@ ActiveRecord::Schema.define(version: 20150426182832) do
   end
 
   add_index "documents", ["folder_type", "folder_id"], name: "index_documents_on_folder_type_and_folder_id", using: :btree
-
-  create_table "enrollments", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "resource_id"
-    t.decimal  "price"
-    t.datetime "valid_through"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "enrollments", ["resource_id"], name: "index_enrollments_on_resource_id", using: :btree
-  add_index "enrollments", ["user_id"], name: "index_enrollments_on_user_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -206,8 +194,6 @@ ActiveRecord::Schema.define(version: 20150426182832) do
   add_foreign_key "auth_providers", "users"
   add_foreign_key "challenges", "courses"
   add_foreign_key "comments", "users"
-  add_foreign_key "enrollments", "resources"
-  add_foreign_key "enrollments", "users"
   add_foreign_key "lessons", "sections"
   add_foreign_key "resources", "courses"
   add_foreign_key "solutions", "challenges"

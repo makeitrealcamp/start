@@ -17,7 +17,7 @@
       <div href="#" class="list-group-item resource-section-title">
         <%= "Sección #{i} - #{section.title}" %>
       </div>
-      <% if current_user.is_enrolled_in?(resource) %>
+      <% if current_user.has_access_to?(resource) %>
 
         <% section.lessons.each_with_index do |lesson,j| %>
           <%= link_to(course_resource_section_lesson_path(resource.course,resource,section,lesson),
@@ -49,28 +49,19 @@
   </a>
 </div>
 <div class="col-sm-6 col-md-4">
-  <% if current_user.is_enrolled_in?(resource) %>
+  <% if current_user.has_access_to?(resource) %>
     <%= render "comments/embedded", commentable: resource, questions:["Déjanos saber tu opinion"] %>
-  <% elsif current_user.has_access_to?(resource) %>
-    <div class="start-course-container text-center">
-      <div class="course-info text-center">
-        <%= form_for :enrollment, url: course_resource_enrollments_path(resource.course,resource) do |f| %>
-          <%= f.submit "Inicia este curso", class: "btn btn-default btn-start-course btn-lg btn-block" %>
-        <% end %>
-      </div>
-    </div>
   <% else %>
     <div class="price-box-container text-center">
       <div class="course-info text-center">
-        <p>Acceso a este curso de por vida</p>
-        <button class="btn btn-default btn-buy btn-buy-course btn-lg btn-block">
-          <%= number_to_currency(resource.price,unit: "$COP")%>
-        </button>
-      </div>
+        <p>Adquiere la suscripción anual con acceso a:</p>
+        <ul class="benefits">
+          <li>Chat con mentores</li>
+          <li>+ <%= Lesson.published.count %> lecciones</li> <%# Add count of paid challenges %>
+          <li>+ <%= Challenge.published.count %> retos</li> <%# Add count of paid challenges %>
+          <li>Material exclusivo</li>
+        </ul>
 
-      <div class="course-info text-center">
-        <p>O adquiere la suscripción anual con acceso a <strong><u>todos los cursos</u></strong>,
-           <strong><u>retos adicionales</u></strong> y <strong><u>material exclusivo</u></strong>.</p>
         <button class="btn btn-default btn-buy btn-buy-anual-subscription btn-lg btn-block">
           Suscripción anual
         </button>

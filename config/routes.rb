@@ -29,7 +29,6 @@ Rails.application.routes.draw do
       resources :sections, only: [] do
         resources :lessons, only: [:show]
       end
-      resource :enrollments, only: [:create]
     end
   end
 

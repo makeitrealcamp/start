@@ -102,11 +102,7 @@ class User < ActiveRecord::Base
   end
 
   def has_access_to?(resource)
-    self.is_admin? || self.paid_account? || self.is_enrolled_in?(resource)
-  end
-
-  def is_enrolled_in?(resource)
-    !!self.enrollments.active.find_by_resource_id(resource.id)
+    self.is_admin? || self.paid_account?
   end
 
   def send_password_reset
