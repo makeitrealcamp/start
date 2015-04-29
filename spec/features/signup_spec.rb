@@ -2,6 +2,13 @@
 require "rails_helper"
 
 RSpec.feature "Sign Up", type: :feature do
+  scenario "when user is logged in" do
+    login(create(:user))
+
+    visit signup_path
+    expect(current_path).to eq courses_path
+  end
+
   scenario "with valid attributes" do
     visit signup_path
     fill_in 'user_email', with: Faker::Internet.email
