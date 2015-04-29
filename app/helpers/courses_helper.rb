@@ -36,6 +36,20 @@ module CoursesHelper
     link_to "<span class='glyphicon glyphicon-ok-circle'></span>".html_safe, course_resource_completion_path(course_id: resource.course.id, resource_id: resource.id), class: "resource-status #{css_class}", data: { "resource-id" => resource.id }, remote: true, method: method
   end
 
+  def challenges_msg(course)
+    evaluated = current_user.solutions.evaluated.joins(:challenge).where('challenges.course_id = ?', course.id).count
+    failed = current_user.solutions.failed.joins(:challenge).where('challenges.course_id = ?', course.id).count
+    if evaluated == 0
+      "Los retos. ¿Te animas a intentar el primero?"
+    elsif failed > 0
+      "Recuerda que si no estás luchando con los retos no estás aprendiendo nada nuevo."
+    elsif evaluated == course.challenges.published.count
+      "Has completado todos los retos de este curso. ¡Felicitaciones"
+    else
+      "¿Estás #{current_user.gender == "female" ? "preparada" : "preparado"} para el siguiente reto?"
+    end
+  end
+
   private
     def challenge_completed?(challenge)
       solution = current_user.solutions.where(challenge_id: challenge.id).take

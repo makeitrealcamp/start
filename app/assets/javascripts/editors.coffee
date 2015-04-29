@@ -5,7 +5,7 @@ class Editors
   configure: (options) =>
     defaults =
       mode: 'html'
-      theme: 'solarized dark'
+      theme: 'monokai'
       lineNumbers: true
       styleActiveLine: false
       matchBrackets: false

@@ -1,6 +1,14 @@
 .challenge-page {
 
   .instructions {
+    position: relative;
+
+    .actions {
+      position: absolute;
+      top: 0px;
+      right: 5px;
+    }
+
     p, li {
       font-weight: 300;
       line-height: 1.6;
@@ -20,7 +28,7 @@
 
       li.active a {
         color: #839496;
-        background: #002b36;
+        background: #272822;
       }
     }
 
@@ -65,7 +73,7 @@
     .right-content {
       .evaluation-tab.active a {
         color: white;
-        background: #002b36;
+        background: #272822;
       }
 
       .evaluation-wrapper {
@@ -93,7 +101,7 @@
 
             &.active a {
               color: #839496;
-              background: #002b36;
+              background: #272822;
             }
 
             .remove-file-btn {
