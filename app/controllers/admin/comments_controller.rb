@@ -4,4 +4,9 @@ class Admin::CommentsController < ApplicationController
   def index
     @comments = Comment.order("created_at DESC").limit(100)
   end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+  end
 end

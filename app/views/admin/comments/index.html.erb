@@ -1,14 +1,33 @@
 <%# required: commentable %>
-<div class="row">
-  <div class="col-sm-5 col-sm-offset-1">
-    <h1>Comentarios</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <h1>Comentarios</h1>
+    </div>
   </div>
-</div>
 
-<div class="discussion">
-  <div class="comments">
-    <% @comments.each do |comment| %>
-      <%= render '/comments/comment', comment: comment %>
-    <% end %>
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Reto</th>
+            <th>Comentario</th>
+            <th></th>
+          </tr>
+        </thead>
+        <% @comments.each do |comment| %>
+          <tr id="comment-<%= comment.id %>">
+            <td><%= comment.user.email %> (<%= comment.user.first_name %>)</td>
+            <td><%= comment.commentable.name %></td>
+            <td><%= comment.text %></td>
+            <td class="text-center">
+              <%= link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe, admin_comment_path(comment), remote: true, data: { confirm: "¿Estás seguro de eliminar este comentario?" }, method: :delete, title: "Eliminar Comentario" %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
   </div>
 </div>
