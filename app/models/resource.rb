@@ -15,7 +15,6 @@
 #  content       :text
 #  slug          :string
 #  published     :boolean
-#  price         :decimal(, )
 #
 
 class Resource < ActiveRecord::Base

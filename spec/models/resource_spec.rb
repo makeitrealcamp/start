@@ -15,7 +15,6 @@
 #  content       :text
 #  slug          :string
 #  published     :boolean
-#  price         :decimal(, )
 #
 
 require 'rails_helper'

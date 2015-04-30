@@ -12,7 +12,6 @@
 #  description   :string
 #  slug          :string
 #  published     :boolean
-#  visibility    :integer
 #
 
 require 'rails_helper'
@@ -31,11 +30,5 @@ RSpec.describe Course, type: :model do
 
   it "has a valid factory" do
     expect(build(:course)).to be_valid
-  end
-
-  describe '#visibility' do
-    it 'return true when visibility is free' do
-      expect(build(:course).everyone?).to be true
-    end
   end
 end
