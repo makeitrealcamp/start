@@ -40,7 +40,7 @@ module CoursesHelper
     evaluated = current_user.solutions.evaluated.joins(:challenge).where('challenges.course_id = ?', course.id).count
     failed = current_user.solutions.failed.joins(:challenge).where('challenges.course_id = ?', course.id).count
     if evaluated == 0
-      "Los retos. ¿Te animas a intentar el primero?"
+      "Los retos. ¿#{current_user.gender == "female" ? "Curiosa" : "Curioso"} por conocer el primero? Inténtalo."
     elsif failed > 0
       "Recuerda que si no estás luchando con los retos no estás aprendiendo nada nuevo."
     elsif evaluated == course.challenges.published.count
