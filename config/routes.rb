@@ -37,6 +37,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :comments, except: [:index, :create, :new]
+
   resources :solutions, only: [:show] do
     put 'update_documents', on: :member
     post 'submit', on: :member
@@ -54,5 +56,6 @@ Rails.application.routes.draw do
     get 'dashboard', to: 'dashboard#index'
     resources :users, only: [:index, :show]
     resources :solutions, only: [:index]
+    resources :comments, only: [:index, :destroy]
   end
 end
