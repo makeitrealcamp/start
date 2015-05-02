@@ -224,6 +224,7 @@
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
     padding-top: 15px;
+    margin-bottom: 40px;
     height: 0;
     iframe {
       position: absolute;
@@ -240,6 +241,8 @@
     p, li {
       font-weight: 300;
       line-height: 1.6;
+
+      @media (min-width: $screen-sm-min) { font-size: 18px; }
     }
     .highlight { margin: 20px 0; }
 
