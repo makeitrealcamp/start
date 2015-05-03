@@ -70,6 +70,7 @@
       margin-bottom: 15px;
 
       @media (min-width: $screen-sm-min) {
+        font-size: 18px;
         line-height: 1.6;
         margin-bottom: 30px;
       }
@@ -86,10 +87,9 @@
       }
 
       .info-item-value {
-        font-size: 16px;
-        font-weight: bold;
+        font-size: 21px;
 
-        @media (min-width: $screen-sm-min) { font-size: 18px; }
+        @media (min-width: $screen-sm-min) { font-size: 24px; }
       }
     }
   }
