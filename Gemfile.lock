@@ -146,6 +146,8 @@ GEM
     multi_json (1.11.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    nested_form_fields (0.6.3)
+      rails (>= 3.2.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     nokogiri-styles (0.1.2)
@@ -324,6 +326,7 @@ DEPENDENCIES
   kmts (~> 2.0.0)
   launchy
   momentjs-rails
+  nested_form_fields
   nokogiri
   nokogiri-styles
   octokit

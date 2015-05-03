@@ -12,7 +12,6 @@
 #  description   :string
 #  slug          :string
 #  published     :boolean
-#  visibility    :integer
 #
 
 class Course < ActiveRecord::Base
@@ -26,23 +25,11 @@ class Course < ActiveRecord::Base
   has_many :challenges
 
   validates :name, presence: true
-
+  scope :for, -> user { published unless user.is_admin? }
   scope :published, -> { where(published: true) }
   default_scope { rank(:row) }
 
-  enum visibility: [:everyone, :paid_students]
-
   after_initialize :default_values
-
-  def self.for(user)
-    if user.free_account?
-      everyone.published
-    elsif user.paid_account?
-      published
-    elsif user.admin_account?
-      all
-    end
-  end
 
   def next
     Course.published.where('row > ?', self.row).first
@@ -51,7 +38,6 @@ class Course < ActiveRecord::Base
   private
     def default_values
       self.published ||= false
-      self.visibility ||= :everyone
     rescue ActiveModel::MissingAttributeError => e
       # ranked_model makes partial selects and this error is thrown
     end

@@ -1,6 +1,7 @@
-<%# required: commentable %>
+<%# required: commentable, questions %>
+<% questions ||= ["Déjanos tu opinion"]%>
 <div class="discussion">
-  <%= form_tag generate_comments_path(@challenge), remote: true, class: "comment-form" do |f| %>
+  <%= form_tag generate_comments_path(commentable), remote: true, class: "comment-form" do |f| %>
     <div class="media">
       <div class="media-left">
         <img src="<%= Gravatar.new("#{current_user.email}").image_url %>"
@@ -8,12 +9,7 @@
       </div>
       <div class="media-body" class="comment-input-wrapper">
         <%= text_area_tag(:text, nil ,id: "comment-input",class: "form-control", required: true, autofocus: true,
-          placeholder: [
-            "¿Qué aprendiste de este reto?",
-            "¿Qué fue lo más difícil de este reto?",
-            "¿Qué fue lo que más te gustó de este reto?",
-            "¿Qué fue lo más divertido de este reto?"
-            ].shuffle.first
+          placeholder: questions.shuffle.first
         ) %>
       </div>
       <button class="btn btn-primary pull-right btn-send-comment" type="submit">

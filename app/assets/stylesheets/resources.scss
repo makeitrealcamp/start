@@ -44,4 +44,136 @@
   width: 100%;
   padding: 10px;
   border-top: 1px solid #ccc;
+  background-color: white;
+}
+
+.sections {
+  input.section-title {
+    display: inline-block;
+    max-width: 90%;
+  }
+  .lessons {
+    .lessons-label {
+      margin-left: 30px;
+    }
+    fieldset {
+      padding: 10px;
+      border-radius: 3px;
+      border-style: solid;
+      border-width: 2px;
+      margin-left: 30px;
+      margin-bottom: 7px;
+      border-color: rgb(194, 194, 194);
+
+      .lesson-name {
+        display: inline-block;
+        max-width: 90%;
+      }
+    }
+    .add-lesson {
+      margin-left: 30px;
+    }
+  }
+}
+.resource-section-title {
+  background-color: $btn-success-bg;
+  color: white;
+  font-weight: 600;
+}
+.course-info {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ECF0F1;
+  border-radius: 0;
+  padding: 50px;
+  background-color: #ECF0F1;
+  margin-bottom: 25px;
+  color: black;
+  @media (max-width: $screen-xs-max) {
+    max-width: 348px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+  }
+  p {
+    font-size: 20px;
+  }
+  .btn-buy-course {
+    $b: #2ECC71;
+    background-color: $b;
+    border-color: darken($b,10%);
+    border-radius: 0;
+    color: white;
+    &:hover {
+      background-color: lighten($b,15%);
+      border-color: $b;
+    }
+  }
+  .btn-buy-anual-subscription {
+    $b: #2ECC71;
+    background-color: $b;
+    border-color: darken($b,10%);
+    border-radius: 0;
+    color: white;
+    &:hover {
+      background-color: lighten($b,15%);
+      border-color: $b;
+    }
+  }
+  .btn-start-course {
+    $b: #2ECC71;
+    background-color: $b;
+    border-color: darken($b,10%);
+    border-radius: 0;
+    color: white;
+    &:hover {
+      background-color: lighten($b,15%);
+      border-color: $b;
+    }
+  }
+  .benefits {
+    text-align: left;
+    list-style: none;
+    padding-left: 0;
+    li:before {
+      content: "•";
+      font-size: 90%; /* or whatever */
+      padding-right: 20px;
+    }
+  }
+}
+.price-box-container {
+  @media (min-width: $screen-sm-min) {
+    margin-top: 25px;
+    position: fixed;
+    padding-left: $grid-gutter-width/2;
+    padding-right: $grid-gutter-width/2;
+  }
+  @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+    width: $container-sm*0.5;
+  }
+  @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+    width: $container-md*0.33;
+  }
+  @media (min-width: $screen-lg-min) {
+    width: $container-lg*0.33;
+  }
+}
+
+.label-free {
+  @extend .label;
+  @extend .label-success;
+  @media (max-width: $screen-xs-max) {
+    display: block;
+  }
+  @media (min-width: $screen-sm-min) {
+    float: right !important;
+  }
+}
+.lesson-status {
+  float: right;
+  color: #ddd;
+  font-size: 24px;
+  &.completed {
+    color: #28B038;
+  }
 }

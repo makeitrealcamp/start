@@ -1,0 +1,71 @@
+<%# require: resource %>
+<div class="col-sm-6 col-md-8 text-left">
+  <h1>
+    <%= resource.title %>
+    <% if current_user.is_admin? %>
+      <%= link_to edit_course_resource_path(resource.course,resource), nil do %>
+        <%= content_tag(
+          :span,nil,class:"glyphicon glyphicon-pencil action action-edit"
+          )%>
+      <% end %>
+    <% end %>
+  </h1>
+
+  <p><%= resource.description %></p>
+  <% resource.sections.each_with_index do |section,i| %>
+    <div class="list-group">
+      <div href="#" class="list-group-item resource-section-title">
+        <%= "Sección #{i} - #{section.title}" %>
+      </div>
+      <% if current_user.has_access_to?(resource) %>
+        <% section.lessons.each_with_index do |lesson,j| %>
+          <%= link_to(course_resource_section_lesson_path(resource.course,resource,section,lesson),
+            class: "list-group-item") do %>
+            <%="Lección #{j} - #{lesson.name}"%>
+            <span class="pull-right lesson-status glyphicon glyphicon-ok <%= 'completed' if current_user.has_completed_lesson?(lesson)%> "></span>
+          <% end %>
+        <% end %>
+
+      <% else %>
+
+        <% section.lessons.each_with_index do |lesson,j| %>
+          <% if lesson.free_preview? %>
+            <%= link_to(course_resource_section_lesson_path(resource.course,resource,section,lesson),
+              class: "list-group-item") do %>
+              <%="Lección #{j} - #{lesson.name}"%>
+              <span class="label-free">¡Gratis!</span>
+            <% end %>
+          <% else %>
+            <div class="list-group-item disabled">
+              <%="Lección #{j} - #{lesson.name}"%>
+              <span class="glyphicon glyphicon-lock pull-right"></span>
+            </div>
+          <% end %>
+        <% end %>
+
+      <% end %>
+    </div>
+  <% end %>
+  </a>
+</div>
+<div class="col-sm-6 col-md-4">
+  <% if current_user.has_access_to?(resource) %>
+    <%= render "comments/embedded", commentable: resource, questions:["Déjanos saber tu opinion"] %>
+  <% else %>
+    <div class="price-box-container text-center">
+      <div class="course-info text-center">
+        <p>Adquiere la suscripción anual con acceso a:</p>
+        <ul class="benefits">
+          <li>Chat con mentores</li>
+          <li>+ <%= Lesson.published.count %> lecciones</li> <%# Add count of paid challenges %>
+          <li>+ <%= Challenge.published.count %> retos</li> <%# Add count of paid challenges %>
+          <li>Material exclusivo</li>
+        </ul>
+
+        <button class="btn btn-default btn-buy btn-buy-anual-subscription btn-lg btn-block">
+          Suscripción anual
+        </button>
+      </div>
+    </div>
+  <% end %>
+</div>

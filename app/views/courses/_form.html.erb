@@ -29,11 +29,6 @@
           <%= f.label :published %>
         </div>
 
-        <div class="form-group">
-          <%= f.label :visibility %>
-          <%= f.select(:visibility, Course.visibilities.keys.to_a,  { include_blank:  'Por favor seleccione la visibilidad' }, class: "form-control") %>
-        </div>
-
         <div class="actions text-right">
           <%= link_to "Cancelar", @course, class: "btn btn-default" %>
           <%= f.submit class: "btn btn-primary"%>

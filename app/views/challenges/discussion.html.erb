@@ -27,7 +27,12 @@
     </div>
     <div class="col-xs-12
       <%= 'col-md-5' unless @challenge.solution_video_url.nil? && @challenge.solution_text.nil? %>">
-      <%= render "comments/embedded", commentable: @challenge %>
+      <%= render "comments/embedded", commentable: @challenge, questions: [
+        "¿Qué aprendiste de este reto?",
+        "¿Qué fue lo más difícil de este reto?",
+        "¿Qué fue lo que más te gustó de este reto?",
+        "¿Qué fue lo más divertido de este reto?"
+        ] %>
     </div>
   </div>
 </div>

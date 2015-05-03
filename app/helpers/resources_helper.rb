@@ -5,6 +5,6 @@ module ResourcesHelper
   end
 
   def types_resources
-    [["External URL", "url"], ["Markdown Document", "markdown"]]
+    [["External URL", "url"], ["Markdown Document", "markdown"],["Course","course"]]
   end
 end

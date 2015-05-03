@@ -48,7 +48,14 @@ class ResourcesController < ApplicationController
   private
 
    def resource_params
-     params.require(:resource).permit(:title, :description, :type, :url, :content, :time_estimate, :published)
+     params.require(:resource).permit(
+      :title, :description, :type, :url, :content, :time_estimate, :published,
+      sections_attributes: [
+        :title, :_destroy, :id, lessons_attributes: [
+          :name,:video_url,:description,:row_position, :free_preview, :_destroy, :id
+        ]
+      ]
+     )
    end
 
 end

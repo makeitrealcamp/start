@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421182420) do
+ActiveRecord::Schema.define(version: 20150430192420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 20150421182420) do
     t.string   "description"
     t.string   "slug"
     t.boolean  "published"
-    t.integer  "visibility"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -95,6 +94,29 @@ ActiveRecord::Schema.define(version: 20150421182420) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
+  create_table "lesson_completions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "lesson_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "lesson_completions", ["lesson_id"], name: "index_lesson_completions_on_lesson_id", using: :btree
+  add_index "lesson_completions", ["user_id"], name: "index_lesson_completions_on_user_id", using: :btree
+
+  create_table "lessons", force: :cascade do |t|
+    t.integer  "section_id"
+    t.string   "name"
+    t.string   "video_url"
+    t.text     "description"
+    t.integer  "row"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "free_preview", default: false
+  end
+
+  add_index "lessons", ["section_id"], name: "index_lessons_on_section_id", using: :btree
+
   create_table "resources", force: :cascade do |t|
     t.integer  "course_id"
     t.string   "title",         limit: 100
@@ -118,6 +140,15 @@ ActiveRecord::Schema.define(version: 20150421182420) do
   end
 
   add_index "resources_users", ["resource_id", "user_id"], name: "index_resources_users_on_resource_id_and_user_id", unique: true, using: :btree
+
+  create_table "sections", force: :cascade do |t|
+    t.integer  "resource_id"
+    t.string   "title"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "sections", ["resource_id"], name: "index_sections_on_resource_id", using: :btree
 
   create_table "solutions", force: :cascade do |t|
     t.integer  "user_id"
@@ -171,6 +202,9 @@ ActiveRecord::Schema.define(version: 20150421182420) do
   add_foreign_key "auth_providers", "users"
   add_foreign_key "challenges", "courses"
   add_foreign_key "comments", "users"
+  add_foreign_key "lesson_completions", "lessons"
+  add_foreign_key "lesson_completions", "users"
+  add_foreign_key "lessons", "sections"
   add_foreign_key "resources", "courses"
   add_foreign_key "solutions", "challenges"
   add_foreign_key "solutions", "users"

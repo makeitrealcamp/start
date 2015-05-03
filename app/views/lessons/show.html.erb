@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-8 expand">
+      <%= link_to course_resource_path(@lesson.section.resource.course,@lesson.section.resource), class: "btn btn-link" do %>
+        <span class='glyphicon glyphicon-arrow-left'></span>
+        <span class='hidden-xs'>Volver al curso <strong><%= @lesson.section.resource.title %></strong></span>
+      <% end %>
+      <h2><%= @lesson.name %></h2>
+      <p><%= @lesson.description %></p>
+      <div class="video-wrapper">
+        <%= embedded_video(@lesson.video_url) %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-4 expand">
+      <%= render "comments/embedded", commentable: @lesson %>
+    </div>
+  </div>
+</div>
+
+<!-- TODO: add link to mark as completed -->
+
+<%# link_to "<span class='glyphicon glyphicon-ok'></span> <span class='hidden-xs'>Completar y Continuar</span>".html_safe, course_resource_completion_path(course_id: @resource.course.id, resource_id: @resource.id), class: "btn btn-primary", method: :post %>
