@@ -26,17 +26,13 @@
           <%= progress_bar(progress: current_user.progress(course)) %>
           <p><%= course.description %></p>
           <div class="row info">
-            <div class="col-xs-4 info-item">
+            <div class="col-xs-6 info-item">
               <span class="info-item-value"><%= course.challenges.published.count %></span>
               <span class="info-item-label">Retos</span>
             </div>
-            <div class="col-xs-4 info-item">
+            <div class="col-xs-6 info-item">
               <span class="info-item-value"><%= course.resources.published.count %></span>
               <span class="info-item-label">Recursos</span>
-            </div>
-            <div class="col-xs-4 info-item">
-              <span class="info-item-value"><%= course.time_estimate %></span>
-              <span class="info-item-label">Estimado</span>
             </div>
           </div>
           <div class="text-center"><%= link_to "Entrar", course, class: "btn btn-primary btn-block" %></div>
