@@ -1,18 +1,19 @@
 <%# required: commentable %>
 <div class="container">
   <div class="row">
-    <div class="col-sm-10 col-sm-offset-1">
+    <div class="col-sm-12">
       <h1>Comentarios</h1>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-sm-10 col-sm-offset-1">
+    <div class="col-sm-12">
       <table class="table">
         <thead>
           <tr>
             <th>Usuario</th>
-            <th>Reto</th>
+            <th></th>
+            <th>Fecha</th>
             <th>Comentario</th>
             <th></th>
           </tr>
@@ -20,7 +21,8 @@
         <% @comments.each do |comment| %>
           <tr id="comment-<%= comment.id %>">
             <td><%= comment.user.email %> (<%= comment.user.first_name %>)</td>
-            <td><%= comment.commentable.name %></td>
+            <td><%= comment.commentable.to_s %> (<%= comment.commentable.class %>)</td>
+            <td><%= distance_of_time_in_words_to_now(comment.created_at) %></td>
             <td><%= comment.text %></td>
             <td class="text-center">
               <%= link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe, admin_comment_path(comment), remote: true, data: { confirm: "¿Estás seguro de eliminar este comentario?" }, method: :delete, title: "Eliminar Comentario" %>

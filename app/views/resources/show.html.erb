@@ -1,5 +1,5 @@
 <div class="resource-page expand">
-  <div class="container expand overflow">
+  <div class="container-fluid expand overflow">
     <div class="row expand">
       <%= render "resources/#{@resource.type}_resource", resource: @resource %>
     </div>
@@ -24,7 +24,7 @@
 </div>
 
 <div class="resource-page-footer">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-xs-6">
         <%= link_to "<span class='glyphicon glyphicon-arrow-left'></span> <span class='hidden-xs'>Volver a #{@resource.course.name}</span>".html_safe, @resource.course, class: "btn btn-link" %>

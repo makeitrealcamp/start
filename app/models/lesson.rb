@@ -30,4 +30,8 @@ class Lesson < ActiveRecord::Base
   def resource
     self.section.resource
   end
+
+  def to_s
+    name
+  end
 end

@@ -23,7 +23,7 @@ html.turbolinks-progress-bar::before {
 }
 
 .expand { height: 100%; }
-.overflow { overflow-y: scroll; }
+.overflow { overflow-y: auto; }
 
 .navbar { margin-bottom: 0; }
 
@@ -43,7 +43,7 @@ html.turbolinks-progress-bar::before {
 }
 
 .content-wrapper {
-  margin-top: -70px;
+  margin-top: -71px;
   padding-top: 90px;
 }
 
