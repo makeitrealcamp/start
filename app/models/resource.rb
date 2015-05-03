@@ -57,6 +57,10 @@ class Resource < ActiveRecord::Base
     ["markdown","url"].include? self.type
   end
 
+  def to_s
+    title
+  end
+
   private
     def default_values
       self.published ||= false

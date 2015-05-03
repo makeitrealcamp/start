@@ -63,6 +63,10 @@ class Challenge < ActiveRecord::Base
     Course.all.inject([]) { |memo, course| memo += where(course: course) }
   end
 
+  def to_s
+    name
+  end
+
   private
     def default_values
       self.published ||= false
