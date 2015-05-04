@@ -131,7 +131,6 @@ GEM
     json (1.8.2)
     jwt (1.4.1)
     kgio (2.9.3)
-    kmts (2.0.1)
     launchy (2.4.3)
       addressable (~> 2.3)
     loofah (2.0.1)
@@ -323,7 +322,6 @@ DEPENDENCIES
   hstore_accessor
   jbuilder (~> 2.0)
   jquery-rails
-  kmts (~> 2.0.0)
   launchy
   momentjs-rails
   nested_form_fields
