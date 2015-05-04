@@ -8,6 +8,7 @@
           class="img-circle media-object comment-form-avatar"/>
       </div>
       <div class="media-body" class="comment-input-wrapper">
+        <span class="label label-danger" style="display:none">Este campo es requerido.</span>
         <%= text_area_tag(:text, nil ,id: "comment-input",class: "form-control", required: true, autofocus: true,
           placeholder: questions.shuffle.first
         ) %>

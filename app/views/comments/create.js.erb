@@ -1,6 +1,10 @@
+var form = $(".comment-form");
 <% if @comment.valid? %>
   $('.comments').prepend('<%= j render("/comments/comment", comment: @comment) %>');
   $('#comment-input').val('');
+  form.find('.label-danger').hide();
+  form.find('#comment-input').removeAttr('style');
 <% else %>
-  // todo - mostrar error
+  form.find('.label-danger').show();
+  form.find('#comment-input').css("border", "1px solid red");
 <% end %>
