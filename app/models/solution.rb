@@ -46,7 +46,6 @@ class Solution < ActiveRecord::Base
       self.save!
     end
 
-    KMTS.record(self.user.email, 'Completed Challenge', { id: self.challenge.id, name: self.challenge.name }) if self.completed?
   end
 
   def as_json(options)

@@ -10,7 +10,6 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.valid?
       sign_in(@user)
-      KMTS.record(current_user.email, 'Signed Up')
       redirect_to courses_path
     else
       render :new
@@ -20,7 +19,6 @@ class UsersController < ApplicationController
   def activate
     gender = Gendered::Name.new(activate_params[:first_name]).guess!
     current_user.update(activate_params.merge(gender: gender, status: User.statuses[:active], activated_at: Time.current))
-    KMTS.record(current_user.email, 'Activated')
   end
 
   def edit
