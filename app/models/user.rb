@@ -120,10 +120,6 @@ class User < ActiveRecord::Base
     Gravatar.new(self.email).image_url
   end
 
-  def already_solved?(challenge)
-    self.solutions.evaluated.where(challenge: challenge).count > 0
-  end
-
   private
     def default_values
       self.roles ||= ["user"]

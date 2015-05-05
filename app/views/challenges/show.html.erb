@@ -26,7 +26,7 @@
         <!-- preview and submit button -->
         <div class="solution-buttons">
           <div style="float: left;">
-            <% if  current_user.is_admin? || current_user.already_solved?(@challenge) %>
+            <% if  current_user.is_admin? || @solution.completed_at.present? %>
               <%= link_to "<span class='glyphicon glyphicon-blackboard'></span> Ir a la discusión".html_safe, discussion_course_challenge_path(@challenge.course, @challenge), class: "btn btn-success" %>
             <% end %>
           </div>
