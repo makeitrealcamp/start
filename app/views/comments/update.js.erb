@@ -1,3 +1,9 @@
+var field = $('article#' + '<%= @comment.id %>');
 <% if @comment.valid? %>
-  $('article#' + '<%= @comment.id %>').replaceWith('<%= j render partial: "comment", locals: { comment: @comment }  %>');
+  field.replaceWith('<%= j render partial: "comment", locals: { comment: @comment }  %>');
+  field.find('.label-danger').hide();
+  field.find('#comment-input').removeAttr('style');
+<% else %>
+  field.find('.label-danger').show()
+  field.find('#comment-input').css("border", "1px solid red");
 <% end %>

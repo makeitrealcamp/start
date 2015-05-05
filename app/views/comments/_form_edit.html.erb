@@ -5,8 +5,9 @@
     </div>
 
     <div class="discussion-label">
+      <span class="label label-danger" style="display:none">Este campo es requerido.</span>
       <%= form_tag comment_path(@comment), method: :put, remote: true, class: "edit-comment" do   %>
-        <%= text_area_tag :text, @comment.text, class: "form-control", rows: 2, placeholder: "Texto"  %>
+        <%= text_area_tag :text, @comment.text, id: "comment-input", class: "form-control", rows: 2, placeholder: "Texto"  %>
         <div class="text-right actions">
           <%= submit_tag "Cancelar", class: "btn btn-default", id: "btn-cancel" %>
           <%= submit_tag "Actualizar comentario", class: "btn btn-success", id: "btn-update" %>
