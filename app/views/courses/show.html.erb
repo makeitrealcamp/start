@@ -43,14 +43,25 @@
                 <p class="text-center tab-exp"><%= challenges_msg(@course) %></p>
                 <% @course.challenges.for(current_user).each_with_index do |challenge, index| %>
                   <div id="<%= challenge.id %>" class="challenge clearfix <%= challenge_class(challenge) %>" data-index="<%= index %>" data-location="<%= url_for([@course, challenge]) %>">
-                    <div class="challenge-status"><span class="glyphicon glyphicon-ok"></span></div>
-                    <div class="challenge-title"><%= link_to challenge.name, [@course, challenge] %></div>
+                    <div class="challenge-status">
+                      <span class="glyphicon glyphicon-ok"></span>
+                    </div>
+                    <div class="challenge-title">
+                      <%= link_to challenge.name, [@course, challenge] %>
+                    </div>
                   </div>
                 <% end %>
               </div>
             </div>
             <% end %>
+            <% if @course.challenges.where(restricted: true).count > 0 && current_user.free_account?  %>
+              <div class="alert alert-info" role="alert">
+                Este curso contiene <span class="badge"><%= @course.challenges.where(restricted: true).count  %></span>
+                retos adicionales. si lo quiere ver pásate a la cuenta pago.
+              </div>
+            <% end %>
           </div>
+
           <div role="tabpanel" class="tab-pane resources <%= "active" if @tab == :resources %>" id="resources">
             <% if current_user.is_admin? %>
             <div class="row">
@@ -64,26 +75,25 @@
               <div class="col-sm-8 col-sm-offset-2">
                 <p class="tab-exp text-center">Todo el conocimiento está en Internet. Es por eso que hemos seleccionado los mejores recursos para tu aprendizaje.</p>
                 <table class="table">
-                <% @course.resources.for(current_user).each_with_index do |resource, index| %>
-                  <tr id="<%= resource.id %>" data-index="index">
-                    <td class="resource-info">
-                      <%= link_to (resource.title + (resource.url? ? '&nbsp;<span class="glyphicon glyphicon-new-window"></span>' : '')).html_safe, [@course, resource] %>
-                      <% if current_user.is_admin? %>
-                        &nbsp; &nbsp;
-                        <% if !resource.published %><span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span><% end %>
-                        <%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_course_resource_path(@course, resource) %>
-                        <%= link_to '<span class="glyphicon glyphicon-remove action action-remove"></span>'.html_safe, course_resource_path(@course, resource),  remote: true, data:{ confirm: "Are you sure you want to delete this?"},
-                        method: :delete %>
-                      <% end %>
-                      <div class="description"><%= resource.description %></div>
-                    </td>
-                    <td class="resource-additional">
-                      <%= link_to_toggle_completed resource if resource.self_completable? %>
-                      <span class="time-estimate"><%= resource.time_estimate %></span>
-                    </td>
-                  </tr>
-                  </div>
-                <% end %>
+                  <% @course.resources.for(current_user).each_with_index do |resource, index| %>
+                    <tr id="<%= resource.id %>" data-index="index">
+                      <td class="resource-info">
+                        <%= link_to (resource.title + (resource.url? ? '&nbsp;<span class="glyphicon glyphicon-new-window"></span>' : '')).html_safe, [@course, resource] %>
+                        <% if current_user.is_admin? %>
+                          &nbsp; &nbsp;
+                          <% if !resource.published %><span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span><% end %>
+                          <%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_course_resource_path(@course, resource) %>
+                          <%= link_to '<span class="glyphicon glyphicon-remove action action-remove"></span>'.html_safe, course_resource_path(@course, resource),  remote: true, data:{ confirm: "Are you sure you want to delete this?"},
+                          method: :delete %>
+                        <% end %>
+                        <div class="description"><%= resource.description %></div>
+                      </td>
+                      <td class="resource-additional">
+                        <%= link_to_toggle_completed resource if resource.self_completable? %>
+                        <span class="time-estimate"><%= resource.time_estimate %></span>
+                      </td>
+                    </tr>
+                  <% end %>
                 </table>
               </div>
             </div>
@@ -97,13 +107,15 @@
 
 
 <% if current_user.is_admin? %>
-   <%= render 'courses/sortable_js' %>
+  <%= render 'courses/sortable_js' %>
 <% end %>
 
 <script>
   $('.challenge').click(function(e) {
     e.preventDefault();
-    window.location = $(this).data('location');
+    if ($(this).attr('data-location')) {
+      window.location = $(this).data('location');
+    }
   });
 
   $(function(){
