@@ -33,9 +33,10 @@ class ChallengesController < ApplicationController
 
   def discussion
     @challenge = Challenge.friendly.find(params[:id])
-    if(!current_user.already_solved?(@challenge) && !current_user.is_admin?)
+    solution = find_or_create_solution
+    if solution.completed_at.blank? && !current_user.is_admin?
       flash[:error] = "Debes completar el reto para poder ver la discusión"
-      redirect_to course_challenge_path(@challenge.course,@challenge)
+      redirect_to course_challenge_path(@challenge.course, @challenge)
     end
   end
 

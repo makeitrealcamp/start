@@ -6,18 +6,18 @@ RSpec.feature "Comments", type: :feature do
   let!(:admin )    { create(:admin) }
   let!(:course)    { create(:course) }
   let!(:challenge) { create(:challenge, course: course) }
-  let!(:solution)  { create(:solution, user: user, challenge: challenge, status: :completed) }
+  let!(:solution)  { create(:solution, user: user, challenge: challenge, status: :completed, completed_at: 1.week.ago) }
   let!(:comment)   { create(:comment, user: user, commentable: challenge) }
 
   context 'as user not logged in' do
     scenario 'should not allow access' do
-      expect{visit admin_comments_path}.to  raise_error ActionController::RoutingError
+      expect { visit admin_comments_path }.to raise_error ActionController::RoutingError
     end
   end
 
   context 'when accessed as user' do
     scenario 'should not allow access' do
-      expect{visit admin_comments_path}.to  raise_error ActionController::RoutingError
+      expect { visit admin_comments_path }.to raise_error ActionController::RoutingError
     end
 
     context 'when el challenge is completed' do
@@ -99,12 +99,14 @@ RSpec.feature "Comments", type: :feature do
       end
     end
 
-    context 'when el challenge is not completed' do
-      scenario 'Display form comments', js: true do
+    context 'when the challenge is not completed' do
+      scenario 'display form comments', js: true do
         challenge = create(:challenge, course: course)
         solution = create(:solution, user: user, challenge: challenge)
         login(user)
+
         visit discussion_course_challenge_path(challenge.course, challenge)
+
         wait_for_ajax
         expect(page).to have_content 'Debes completar el reto para poder ver la discusión'
       end
