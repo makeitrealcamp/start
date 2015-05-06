@@ -23,6 +23,7 @@ class Course < ActiveRecord::Base
 
   has_many :resources
   has_many :challenges
+  has_many :projects
 
   validates :name, presence: true
   scope :for, -> user { published unless user.is_admin? }

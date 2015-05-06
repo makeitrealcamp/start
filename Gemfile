@@ -70,6 +70,7 @@ group :development, :test do
 
   gem 'rspec-rails', '~> 3.2.1'
   gem 'factory_girl_rails', '~> 4.5.0'
+  gem 'faker', '~> 1.4.3'
 end
 
 group :test do
@@ -78,5 +79,4 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem "selenium-webdriver", '~>2.45.0'
-  gem 'faker', '~> 1.4.3'
 end

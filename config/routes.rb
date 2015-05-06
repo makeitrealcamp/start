@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root 'sessions#new'
 
   get  'login', to: 'sessions#new', as: :login
@@ -23,6 +23,8 @@ Rails.application.routes.draw do
         get :discussion
       end
     end
+
+    resources :projects, only: [:create,:new,:show]
 
     resources :resources, except: [:index] do
       resource :completion, controller: 'resource_completion', only: [:create, :destroy]

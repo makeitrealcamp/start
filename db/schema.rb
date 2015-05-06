@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150430192420) do
+ActiveRecord::Schema.define(version: 20150506182326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,19 @@ ActiveRecord::Schema.define(version: 20150430192420) do
 
   add_index "lessons", ["section_id"], name: "index_lessons_on_section_id", using: :btree
 
+  create_table "projects", force: :cascade do |t|
+    t.integer  "course_id"
+    t.string   "name"
+    t.text     "explanation_text"
+    t.string   "explanation_video_url"
+    t.boolean  "published"
+    t.integer  "row"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "projects", ["course_id"], name: "index_projects_on_course_id", using: :btree
+
   create_table "resources", force: :cascade do |t|
     t.integer  "course_id"
     t.string   "title",         limit: 100
@@ -139,7 +152,8 @@ ActiveRecord::Schema.define(version: 20150430192420) do
     t.integer "resource_id", null: false
   end
 
-  add_index "resources_users", ["resource_id", "user_id"], name: "index_resources_users_on_resource_id_and_user_id", unique: true, using: :btree
+  add_index "resources_users", ["resource_id", "user_id"], name: "index_resources_users_on_resource_id_and_user_id", using: :btree
+  add_index "resources_users", ["user_id", "resource_id"], name: "index_resources_users_on_user_id_and_resource_id", using: :btree
 
   create_table "sections", force: :cascade do |t|
     t.integer  "resource_id"
@@ -205,6 +219,7 @@ ActiveRecord::Schema.define(version: 20150430192420) do
   add_foreign_key "lesson_completions", "lessons"
   add_foreign_key "lesson_completions", "users"
   add_foreign_key "lessons", "sections"
+  add_foreign_key "projects", "courses"
   add_foreign_key "resources", "courses"
   add_foreign_key "solutions", "challenges"
   add_foreign_key "solutions", "users"

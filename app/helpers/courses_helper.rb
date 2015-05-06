@@ -50,6 +50,17 @@ module CoursesHelper
     end
   end
 
+  def projects_msg(course)
+    phrases = [
+      "Vas a aprender nuevas habilidades que te van a convertir en un profesional más competitivo.",
+      "Vas a tener algo de que hablar en entrevistas de trabajo... o en fiestas.",
+      "Hay 2 tipos de personas: Las que hacen y las que ven hacer ¿Tú cuál quieres ser? ;)",
+      "Vas a tener algo que hacer cuando estés aburrido con tu trabajo.",
+      "Es lo que las personas exitosas hacen."
+    ]
+    "¿Por qué hacer un proyecto? <br /> #{phrases[rand(phrases.length)]}".html_safe
+  end
+
   private
     def challenge_completed?(challenge)
       solution = current_user.solutions.where(challenge_id: challenge.id).take
