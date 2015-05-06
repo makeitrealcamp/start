@@ -8,4 +8,8 @@ class ProjectsController < ApplicationController
   def create
   end
 
+  # GET /courses/:course_id/projects/:id
+  def show
+    @project = Project.find(params[:id])
+  end
 end

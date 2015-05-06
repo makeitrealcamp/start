@@ -54,9 +54,8 @@ module CoursesHelper
     phrases = [
       "Vas a aprender nuevas habilidades que te van a convertir en un profesional más competitivo.",
       "Vas a tener algo de que hablar en entrevistas de trabajo... o en fiestas.",
-      "Hay 2 tipos de personas: Las que hacen y las que ven hacer ¿Tú cuál quieres ser? ;)",
+      "Hay 2 tipos de personas: Las que hacen y las que ven hacer ¿Cuál quieres ser tú? ;)",
       "Vas a tener algo que hacer cuando estés aburrido con tu trabajo.",
-      "Es lo que las personas exitosas hacen."
     ]
     "¿Por qué hacer un proyecto? <br /> #{phrases[rand(phrases.length)]}".html_safe
   end
