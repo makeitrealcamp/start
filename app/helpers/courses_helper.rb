@@ -57,7 +57,7 @@ module CoursesHelper
       "Hay 2 tipos de personas: Las que hacen y las que ven hacer ¿Cuál quieres ser tú? ;)",
       "Vas a tener algo que hacer cuando estés aburrido con tu trabajo.",
     ]
-    "¿Por qué hacer un proyecto? <br /> #{phrases[rand(phrases.length)]}".html_safe
+    "¿Por qué hacer un proyecto? <br /> #{phrases.sample}".html_safe
   end
 
   private
