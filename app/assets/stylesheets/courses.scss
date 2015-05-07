@@ -252,6 +252,74 @@
     }
   }
 
+  .projects {
+    margin-bottom: 40px;
+    .new-project-btn { margin-top: 20px; }
+    .projects-list { padding-top: 40px; }
+    .project-locked {
+      .project-title { color: #A1A1A1; }
+    }
+    .project {
+      position: relative;
+      background: #fafafa;
+      border: 1px solid #eee;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      cursor: pointer;
+
+      .actions {
+        position: absolute;
+        top: 5px;
+        right: 72px;
+      }
+
+      .project-title {
+        font-size: 21px;
+        font-weight: 300;
+        padding: 15px 10px;
+
+        @media (min-width: $screen-sm-min) {
+          font-size: 28px;
+          padding: 15px 20px;
+        }
+
+        a {
+          color: #ccc;
+          text-decoration: none;
+        }
+
+        &:hover {
+          .project-title a { color: #303030; }
+        }
+      }
+
+      .btn-project-go {
+        float: right;
+        padding: 15px 20px;
+        color: #ddd;
+        font-size: 28px;
+        border-left: 1px solid #eee;
+        background: #427A9E;
+        color: white;
+      }
+
+      .btn-project-locked {
+        float: right;
+        padding: 15px 20px;
+        color: #ddd;
+        font-size: 28px;
+        border-left: 1px solid #eee;
+        background: #f5f5f5;
+        color: #c8c8c8;
+      }
+
+
+      .project-title a { color: #303030; }
+
+      &.over { border-top: 2px dashed #999; }
+    }
+  }
+
   .challenges {
     margin-bottom: 40px;
 

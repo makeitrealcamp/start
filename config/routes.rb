@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root 'sessions#new'
 
   get  'login', to: 'sessions#new', as: :login
@@ -24,12 +24,18 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :projects, except: [:index]
+
     resources :resources, except: [:index] do
       resource :completion, controller: 'resource_completion', only: [:create, :destroy]
       resources :sections, only: [] do
         resources :lessons, only: [:show]
       end
     end
+  end
+
+  resources :projects, only:[] do
+    patch 'update_position', on: :member
   end
 
   resources :challenges, only:[] do
