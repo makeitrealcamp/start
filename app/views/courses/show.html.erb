@@ -156,9 +156,18 @@
 
 <% if current_user.is_admin? %>
   <script>
-    new SortableView({el: ".challenges",resource:"challenges"})
-    new SortableView({el: ".resources",resource:"resources"})
-    new SortableView({el: ".projects",resource:"projects"})
+    (function() {
+      var sortables = [
+        new SortableView({el: ".challenges",resource:"challenges"}),
+        new SortableView({el: ".resources",resource:"resources"}),
+        new SortableView({el: ".projects",resource:"projects"})
+      ];
+      $(document).on("page:before-change", function() {
+        _.each(sortables, function(sortable) {
+          sortable.remove();
+        })
+      });
+    })()
   </script>
 <% end %>
 
