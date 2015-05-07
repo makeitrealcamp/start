@@ -15,6 +15,7 @@
 #  evaluation_strategy :integer
 #  solution_video_url  :string
 #  solution_text       :text
+#  restricted          :boolean          default("false")
 #
 
 FactoryGirl.define do

@@ -15,6 +15,7 @@
 #  evaluation_strategy :integer
 #  solution_video_url  :string
 #  solution_text       :text
+#  restricted          :boolean          default("false")
 #
 
 class Challenge < ActiveRecord::Base
@@ -35,13 +36,22 @@ class Challenge < ActiveRecord::Base
   validates :name, presence: true
   validates :instructions, presence: true
 
-  scope :for, -> user { published unless user.is_admin? }
   scope :published, -> { where(published: true) }
   default_scope { rank(:row) }
 
   after_initialize :default_values
 
   accepts_nested_attributes_for :documents, allow_destroy: true
+
+  def self.for(user)
+    if user.free_account?
+      where(restricted: false).published
+    elsif user.paid_account?
+      published
+    elsif user.admin_account?
+      all
+    end
+  end
 
   def preview?
     !self.ruby_git?

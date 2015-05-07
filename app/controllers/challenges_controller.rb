@@ -28,6 +28,10 @@ class ChallengesController < ApplicationController
 
   def show
     @challenge = Challenge.friendly.find(params[:id])
+    if @challenge.restricted? && current_user.free_account?
+      return raise ActionController::RoutingError.new('Not Found')
+    end
+
     @solution = find_or_create_solution
   end
 
@@ -56,7 +60,7 @@ class ChallengesController < ApplicationController
     def challenge_params
       params.require(:challenge).permit(
         :course_id, :name, :instructions, :evaluation_strategy, :published,
-        :evaluation, :solution_text, :solution_video_url,
+        :evaluation, :solution_text, :solution_video_url, :restricted,
         documents_attributes: [:id, :name, :content, :_destroy])
     end
 end

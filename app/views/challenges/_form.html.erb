@@ -23,16 +23,21 @@
           <%= f.select :evaluation_strategy, evaluation_strategies, {}, { class: 'form-control' } %>
         </div>
         <div class="form-group">
-          <%= f.check_box :published %>
-          <%= f.label :published %>
-        </div>
-        <div class="form-group">
           <%= f.label :solution_video_url %>
           <%= f.text_field :solution_video_url, class: 'form-control', placeholder: 'Solution video URL(embeddable in iframe)' %>
         </div>
         <div class="form-group">
           <%= f.label :solution_text %>
           <%= f.text_area :solution_text, class: 'form-control', rows: 15, placeholder: 'Solution text' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.check_box :published %>
+          <%= f.label :published %>
+        </div>
+        <div class="form-group">
+          <%= f.check_box :restricted %>
+          <%= f.label :restricted %>
         </div>
       </div>
 
