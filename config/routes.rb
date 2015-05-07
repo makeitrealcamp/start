@@ -24,7 +24,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :projects, only: [:create,:new,:show]
+    resources :projects, except: [:index]
 
     resources :resources, except: [:index] do
       resource :completion, controller: 'resource_completion', only: [:create, :destroy]

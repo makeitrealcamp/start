@@ -107,8 +107,8 @@
                   <%= projects_msg(@course) %>
                 </p>
 
-                <% if current_user.is_admin? || @course.projects.published.count > 0 %>
-                  <% @course.projects.published.each_with_index do |project, index| %>
+                <% if current_user.is_admin? || @course.projects.for(current_user).count > 0 %>
+                  <% @course.projects.for(current_user).each_with_index do |project, index| %>
                     <% if current_user.has_access_to?(project) %>
                       <div id="project_<%= project.id %>" class="project clearfix">
                         <%= link_to [@course, project] do %>
@@ -116,7 +116,19 @@
                             <span class="glyphicon glyphicon-chevron-right"></span>
                           </div>
                         <% end %>
-                        <div class="project-title"><%= link_to project.name, [@course, project] %></div>
+                        <div class="project-title">
+                          <%= link_to project.name, [@course, project] %>
+                          <% if current_user.is_admin? %>
+                            <div class="actions">
+                              <% unless project.published %>
+                                <span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span>
+                              <% end %>
+                              <%= link_to "<span class='glyphicon glyphicon-pencil action action-edit'></span>".html_safe, edit_course_project_path(@course,project) %>
+                              <%= link_to "<span class='glyphicon glyphicon-remove action action-remove'></span>".html_safe, course_project_path(@course,project), method: :delete, remote: true %>
+                            </div>
+                          <% end %>
+                        </div>
+
                       </div>
                     <% else %>
                       <div id="project_<%= project.id %>" class="project project-locked clearfix">

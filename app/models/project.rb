@@ -14,6 +14,8 @@
 #
 
 class Project < ActiveRecord::Base
+  include RankedModel
+  ranks :row, with_same: :course_id
 
   validates :name, presence: true
   validates :explanation_text, presence: true
@@ -22,14 +24,7 @@ class Project < ActiveRecord::Base
   belongs_to :course
   has_many :comments, as: :commentable
 
-
-  after_initialize :defaults
-
+  scope :for, -> user { published unless user.is_admin? }
   scope :published, -> { where(published: true) }
-
-  protected
-
-  def defaults
-    self.published ||= false
-  end
+  
 end

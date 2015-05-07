@@ -1,12 +1,15 @@
 <div class="container-fluid">
   <div class="row">
+    <div class="col-xs-12">
+      <%= link_to course_path(@project.course, anchor: "projects"), class: "btn btn-link" do %>
+        <span class='glyphicon glyphicon-arrow-left'></span>
+        <span class='hidden-xs'>Volver a <strong><%= @project.course.name %></strong></span>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
     <% unless @project.explanation_video_url.blank? %>
       <div class="col-xs-12 col-md-6 expand">
-        <%= link_to course_path(@project.course), class: "btn btn-link" do %>
-          <span class='glyphicon glyphicon-arrow-left'></span>
-          <span class='hidden-xs'>Volver a <strong><%= @project.course.name %></strong></span>
-        <% end %>
-
         <div class="video-wrapper">
           <%= embedded_video(@project.explanation_video_url) %>
         </div>
