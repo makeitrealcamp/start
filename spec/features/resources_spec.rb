@@ -20,7 +20,7 @@ RSpec.feature "Resources", type: :feature do
     scenario 'display resource when is type markdown Document' do
       resource = create(:resource, type: "markdown", content: Faker::Lorem.paragraph, course: course)
       login(user)
-      
+
       visit course_path(course)
 
       click_link "#{resource.title}"
@@ -133,7 +133,7 @@ RSpec.feature "Resources", type: :feature do
       login(admin)
 
       visit edit_course_resource_path(course, resource)
-      
+
       title = Faker::Name.title
       description =  Faker::Lorem.paragraph
       url = Faker::Internet.url
@@ -162,7 +162,7 @@ RSpec.feature "Resources", type: :feature do
       login(admin)
 
       visit edit_course_resource_path(course, resource)
-      
+
       title = Faker::Name.title
       description =  Faker::Lorem.paragraph
       url = Faker::Internet.url
@@ -173,7 +173,7 @@ RSpec.feature "Resources", type: :feature do
       fill_in 'resource_url', with: url
       fill_in 'resource_time_estimate', with: "#{Faker::Number.digit} days"
       click_button  'Actualizar Resource'
-      
+
       wait_for_ajax
       expect(page).to have_selector ".panel-danger"
       expect(current_path).to eq course_resource_path( course, resource)

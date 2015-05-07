@@ -35,12 +35,13 @@ ActiveRecord::Schema.define(version: 20150506182326) do
     t.text     "evaluation"
     t.integer  "row"
     t.boolean  "published"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.string   "slug"
     t.integer  "evaluation_strategy"
     t.string   "solution_video_url"
     t.text     "solution_text"
+    t.boolean  "restricted",                      default: false
   end
 
   add_index "challenges", ["course_id"], name: "index_challenges_on_course_id", using: :btree
