@@ -61,7 +61,7 @@ RSpec.feature "Comments", type: :feature do
         all(:css, '.comment-actions a .glyphicon.glyphicon-pencil').first.click
         text = Faker::Lorem.paragraph
 
-        find(:css, 'form.edit-comment textarea#text').set(text)
+        find(:css, 'form.edit-comment textarea#comment-input').set(text)
         click_button "Actualizar comentario"
         wait_for_ajax
         expect(Comment.last.text).to eq text
@@ -72,7 +72,7 @@ RSpec.feature "Comments", type: :feature do
         login(user)
         visit discussion_course_challenge_path(challenge.course, challenge)
         all(:css, '.comment-actions a .glyphicon.glyphicon-pencil').first.click
-        find(:css, 'form.edit-comment textarea#text').set('')
+        find(:css, 'form.edit-comment textarea#comment-input').set('')
         click_button "Actualizar comentario"
         wait_for_ajax
         expect(page).to have_selector 'form.edit-comment'
