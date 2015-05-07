@@ -44,7 +44,7 @@
               <div class="col-sm-8 col-sm-offset-2">
                 <p class="text-center tab-exp"><%= challenges_msg(@course) %></p>
                 <% @course.challenges.for(current_user).each_with_index do |challenge, index| %>
-                  <div id="<%= challenge.id %>" class="challenge clearfix <%= challenge_class(challenge) %>" data-index="<%= index %>" data-location="<%= url_for([@course, challenge]) %>">
+                  <div id="challenge_<%= challenge.id %>" class="challenge clearfix <%= challenge_class(challenge) %>" data-index="<%= index %>" data-location="<%= url_for([@course, challenge]) %>" data-sortable="true" data-resource-id="<%=challenge.id%>">
                     <div class="challenge-status"><span class="glyphicon glyphicon-ok"></span></div>
                     <div class="challenge-title"><%= link_to challenge.name, [@course, challenge] %></div>
                   </div>
@@ -68,7 +68,7 @@
                 <p class="tab-exp text-center">Todo el conocimiento está en Internet. Es por eso que hemos seleccionado los mejores recursos para tu aprendizaje.</p>
                 <table class="table">
                 <% @course.resources.for(current_user).each_with_index do |resource, index| %>
-                  <tr id="<%= resource.id %>" data-index="index">
+                  <tr id="resource_<%= resource.id %>" data-index="index" data-sortable="true" data-resource-id="<%= resource.id %>">
                     <td class="resource-info">
                       <%= link_to (resource.title + (resource.url? ? '&nbsp;<span class="glyphicon glyphicon-new-window"></span>' : '')).html_safe, [@course, resource] %>
                       <% if current_user.is_admin? %>
@@ -155,7 +155,10 @@
 
 
 <% if current_user.is_admin? %>
-   <%= render 'courses/sortable_js' %>
+  <script>
+    new SortableView({el: ".challenges",resource:"challenges"})
+    new SortableView({el: ".resources",resource:"resources"})
+  </script>
 <% end %>
 
 <script>
