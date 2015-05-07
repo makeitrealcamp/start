@@ -21,10 +21,12 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
           <% if current_user.is_admin? || @course.challenges.for(current_user).count > 0 %>
-          <li role="presentation" class="<%= "active" if @tab == :challenges %>"><a href="#challenges" aria-controls="challenges" role="tab" data-toggle="tab">Retos</a></li>
+            <li role="presentation" class="<%= "active" if @tab == :challenges %>"><a href="#challenges" aria-controls="challenges" role="tab" data-toggle="tab">Retos</a></li>
           <% end %>
           <li role="presentation" class="<%= "active" if @tab == :resources %>"><a href="#resources" aria-controls="resources" role="tab" data-toggle="tab">Recursos</a></li>
-          <li role="presentation" class="<%= "active" if @tab == :projects %>"><a href="#projects" aria-controls="resources" role="tab" data-toggle="tab">Proyectos</a></li>
+          <% if current_user.is_admin? || @course.projects.for(current_user).count > 0 %>
+            <li role="presentation" class="<%= "active" if @tab == :projects %>"><a href="#projects" aria-controls="resources" role="tab" data-toggle="tab">Proyectos</a></li>
+          <% end %>
         </ul>
 
         <!-- Tab panes -->
@@ -101,60 +103,60 @@
               </div>
             </div>
           </div><!-- /resources tab -->
-
-          <div role="tabpanel" class="tab-pane projects <%= "active" if @tab == :projects %>" id="projects">
-            <% if current_user.is_admin? %>
-            <div class="row">
-              <div class="col-sm-12 text-center new-project-btn">
-                <%= link_to '<span class="glyphicon glyphicon-plus"></span> Nuevo Proyecto'.html_safe, new_course_project_path(@course), class: "btn btn-success" %>
+          <% if current_user.is_admin? || @course.projects.for(current_user).count > 0 %>
+            <div role="tabpanel" class="tab-pane projects <%= "active" if @tab == :projects %>" id="projects">
+              <% if current_user.is_admin? %>
+              <div class="row">
+                <div class="col-sm-12 text-center new-project-btn">
+                  <%= link_to '<span class="glyphicon glyphicon-plus"></span> Nuevo Proyecto'.html_safe, new_course_project_path(@course), class: "btn btn-success" %>
+                </div>
               </div>
-            </div>
-            <% end %>
+              <% end %>
 
-            <div class="row projects-list projects">
-              <div class="col-sm-8 col-sm-offset-2">
-                <p class="tab-exp text-center">
-                  <%= projects_msg(@course) %>
-                </p>
+              <div class="row projects-list projects">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <p class="tab-exp text-center">
+                    <%= projects_msg(@course) %>
+                  </p>
 
-                <% if current_user.is_admin? || @course.projects.for(current_user).count > 0 %>
-                  <% @course.projects.for(current_user).each_with_index do |project, index| %>
-                    <% if current_user.has_access_to?(project) %>
-                      <div id="project_<%= project.id %>" class="project clearfix" data-sortable="true" data-resource-id="<%= project.id %>">
-                        <%= link_to [@course, project] do %>
-                          <div class="btn-project-go">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                          </div>
-                        <% end %>
-                        <div class="project-title">
-                          <%= link_to project.name, [@course, project] %>
-                          <% if current_user.is_admin? %>
-                            <div class="actions">
-                              <% unless project.published %>
-                                <span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span>
-                              <% end %>
-                              <%= link_to "<span class='glyphicon glyphicon-pencil action action-edit'></span>".html_safe, edit_course_project_path(@course,project) %>
-                              <%= link_to "<span class='glyphicon glyphicon-remove action action-remove'></span>".html_safe, course_project_path(@course,project), method: :delete, remote: true %>
+                  <% if current_user.is_admin? || @course.projects.for(current_user).count > 0 %>
+                    <% @course.projects.for(current_user).each_with_index do |project, index| %>
+                      <% if current_user.has_access_to?(project) %>
+                        <div id="project_<%= project.id %>" class="project clearfix" data-sortable="true" data-resource-id="<%= project.id %>">
+                          <%= link_to [@course, project] do %>
+                            <div class="btn-project-go">
+                              <span class="glyphicon glyphicon-chevron-right"></span>
                             </div>
                           <% end %>
-                        </div>
+                          <div class="project-title">
+                            <%= link_to project.name, [@course, project] %>
+                            <% if current_user.is_admin? %>
+                              <div class="actions">
+                                <% unless project.published %>
+                                  <span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span>
+                                <% end %>
+                                <%= link_to "<span class='glyphicon glyphicon-pencil action action-edit'></span>".html_safe, edit_course_project_path(@course,project) %>
+                                <%= link_to "<span class='glyphicon glyphicon-remove action action-remove'></span>".html_safe, course_project_path(@course,project), method: :delete, remote: true %>
+                              </div>
+                            <% end %>
+                          </div>
 
-                      </div>
-                    <% else %>
-                      <div id="project_<%= project.id %>" class="project project-locked clearfix">
-                        <div class="btn-project-locked">
-                          <span class="glyphicon glyphicon-lock"></span>
                         </div>
-                        <div class="project-title"><%= project.name %></div>
-                      </div>
+                      <% else %>
+                        <div id="project_<%= project.id %>" class="project project-locked clearfix">
+                          <div class="btn-project-locked">
+                            <span class="glyphicon glyphicon-lock"></span>
+                          </div>
+                          <div class="project-title"><%= project.name %></div>
+                        </div>
+                      <% end %>
                     <% end %>
                   <% end %>
-                <% end %>
+                </div>
+
               </div>
-
-            </div>
-          </div><!-- /projects tab -->
-
+            </div><!-- /projects tab -->
+          <% end %>
 
         </div>
 
