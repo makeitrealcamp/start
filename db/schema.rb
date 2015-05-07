@@ -153,8 +153,7 @@ ActiveRecord::Schema.define(version: 20150506182326) do
     t.integer "resource_id", null: false
   end
 
-  add_index "resources_users", ["resource_id", "user_id"], name: "index_resources_users_on_resource_id_and_user_id", using: :btree
-  add_index "resources_users", ["user_id", "resource_id"], name: "index_resources_users_on_user_id_and_resource_id", using: :btree
+  add_index "resources_users", ["resource_id", "user_id"], name: "index_resources_users_on_resource_id_and_user_id", unique: true, using: :btree
 
   create_table "sections", force: :cascade do |t|
     t.integer  "resource_id"
