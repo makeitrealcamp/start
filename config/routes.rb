@@ -34,6 +34,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :projects, only:[] do
+    patch 'update_position', on: :member
+  end
+
   resources :challenges, only:[] do
     patch 'update_position', on: :member
   end

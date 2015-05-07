@@ -46,6 +46,11 @@ class ProjectsController < ApplicationController
     @project.destroy
   end
 
+  def update_position
+    @resource = Project.update(params[:id], row_position: params[:position])
+    head :ok
+  end
+
   protected
 
   def set_project

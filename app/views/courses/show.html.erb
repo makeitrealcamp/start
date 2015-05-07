@@ -101,7 +101,7 @@
             </div>
             <% end %>
 
-            <div class="row projects-list">
+            <div class="row projects-list projects">
               <div class="col-sm-8 col-sm-offset-2">
                 <p class="tab-exp text-center">
                   <%= projects_msg(@course) %>
@@ -110,7 +110,7 @@
                 <% if current_user.is_admin? || @course.projects.for(current_user).count > 0 %>
                   <% @course.projects.for(current_user).each_with_index do |project, index| %>
                     <% if current_user.has_access_to?(project) %>
-                      <div id="project_<%= project.id %>" class="project clearfix">
+                      <div id="project_<%= project.id %>" class="project clearfix" data-sortable="true" data-resource-id="<%= project.id %>">
                         <%= link_to [@course, project] do %>
                           <div class="btn-project-go">
                             <span class="glyphicon glyphicon-chevron-right"></span>
@@ -158,6 +158,7 @@
   <script>
     new SortableView({el: ".challenges",resource:"challenges"})
     new SortableView({el: ".resources",resource:"resources"})
+    new SortableView({el: ".projects",resource:"projects"})
   </script>
 <% end %>
 
