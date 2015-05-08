@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new', as: :signup
   post 'signup', to: 'users#create'
 
+  post 'inscription_info', to: 'users#send_inscription_info', as: :inscription_info
+
   resource :password, only: [:edit, :update]
   resource :password_reset, except: [:index, :show]
 

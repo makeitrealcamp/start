@@ -53,19 +53,7 @@
     <%= render "comments/embedded", commentable: resource, questions:["Déjanos saber tu opinion"] %>
   <% else %>
     <div class="price-box-container text-center">
-      <div class="course-info text-center">
-        <p>Adquiere la suscripción anual con acceso a:</p>
-        <ul class="benefits">
-          <li>Chat con mentores</li>
-          <li>+ <%= Lesson.published.count %> lecciones</li> <%# Add count of paid challenges %>
-          <li>+ <%= Challenge.published.count %> retos</li> <%# Add count of paid challenges %>
-          <li>Material exclusivo</li>
-        </ul>
-
-        <button class="btn btn-default btn-buy btn-buy-anual-subscription btn-lg btn-block">
-          Suscripción anual
-        </button>
-      </div>
+      <%= render '/shared/banner' if current_user.free_account? %>
     </div>
   <% end %>
 </div>

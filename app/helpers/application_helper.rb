@@ -34,4 +34,8 @@ module ApplicationHelper
     content_tag(:iframe,nil,opts)
   end
 
+  def genderize(male, female, user=current_user)
+    user.gender == "female" ? female : male
+  end
+
 end

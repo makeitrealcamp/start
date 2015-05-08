@@ -37,7 +37,8 @@ class User < ActiveRecord::Base
 
   hstore_accessor :settings,
     password_reset_token: :string,
-    password_reset_sent_at: :datetime
+    password_reset_sent_at: :datetime,
+    info_requested_at: :datetime
 
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
@@ -118,6 +119,12 @@ class User < ActiveRecord::Base
 
   def avatar_url
     Gravatar.new(self.email).image_url
+  end
+
+  def send_inscription_info
+    UserMailer.inscription_info(self).deliver_now
+    self.info_requested_at = Time.current
+    save!
   end
 
   private

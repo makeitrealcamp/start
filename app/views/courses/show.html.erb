@@ -58,11 +58,12 @@
               </div>
             </div>
             <% end %>
-            <% if @course.challenges.where(restricted: true).count > 0 && current_user.free_account?  %>
-              <div class="alert alert-info" role="alert">
-                Este curso contiene <span class="badge"><%= @course.challenges.where(restricted: true).count  %></span>
-                retos adicionales. si lo quiere ver pásate a la cuenta pago.
+            <% if current_user.free_account? %>
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3 text-center">
+                <%= render '/shared/banner' %>
               </div>
+            </div>
             <% end %>
           </div><!-- /challenges tab -->
 
@@ -153,8 +154,14 @@
                     <% end %>
                   <% end %>
                 </div>
-
               </div>
+              <% if current_user.free_account? %>
+              <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 text-center">
+                  <%= render '/shared/banner' %>
+                </div>
+              </div>
+              <% end %>
             </div><!-- /projects tab -->
           <% end %>
 
