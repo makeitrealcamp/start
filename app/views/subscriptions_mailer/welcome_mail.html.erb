@@ -1,0 +1,23 @@
+<p>Hola<%= @user.first_name? ? " #{@user.first_name}" : "" %>, </p>
+
+<p>
+  ¡Estamos muy contentos de que te unas a Make it Real NOW!<br/>
+  Vamos a hacer todo lo posible para que tengas la mejor experiencia de aprendizaje
+  y para ayudarte a cumplir tu sueño de convertirte en <%= genderize("desarrollador", "desarrolladora",@user) %>
+  web.
+</p>
+
+<p>
+  Hemos creado una guía detallada en la que podrás encontrar los pasos a seguir
+  para iniciar este camino de la mano de nuestros mentores y la comunidad.
+  ¿Estás <%= genderize("listo", "lista",@user) %>? <br />
+  Ingresa a <%= link_to handbook_url, handbook_url %>
+</p>
+
+
+<p>Cualquier pregunta o inquietud no dudes en hacérmela saber y con gusto te responderé.</p>
+
+<p>Cordial Saludo,</p>
+
+<p style="margin-left: 30px;">Diana Vanegas<br>
+makeitreal.camp</p>

@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root 'sessions#new'
 
+  get 'handbook', to: 'pages#handbook', as: :handbook
+
   get  'login', to: 'sessions#new', as: :login
   post 'login', to: 'sessions#create'
   get  'auth/:provider/callback', to: 'sessions#create_with_omniauth', as: :login_omniauth

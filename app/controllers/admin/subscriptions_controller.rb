@@ -5,6 +5,7 @@ class Admin::SubscriptionsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @user.subscriptions.create
+    SubscriptionsMailer.welcome_mail(@user).deliver_now
   end
 
   # PATCH /admin/users/:user_id/subscriptions/:id/cancel
