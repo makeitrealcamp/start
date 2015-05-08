@@ -1,13 +1,7 @@
 <div class="container-fluid expand challenge-page">
   <div class="row expand">
     <div class="col-md-5 expand overflow instructions">
-      <% if current_user.is_admin? %>
-      <div class="actions">
-        <% if !@challenge.published %><span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span><% end %>
-        <%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_course_challenge_path(@challenge.course, @challenge) %>
-        <a href="#"><span class="glyphicon glyphicon-remove action action-remove"></span></a>
-      </div>
-      <% end %>
+      <%= render '/shared/challenge_actions', challenge: @challenge if current_user.is_admin? %>
 
       <%= link_to "<span class='glyphicon glyphicon-arrow-left'></span> Volver a #{@challenge.course.name}".html_safe, @challenge.course %>
       <h1><%= @challenge.name %></h1>
