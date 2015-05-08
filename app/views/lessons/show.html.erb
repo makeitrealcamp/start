@@ -1,10 +1,6 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-12 col-md-8 expand">
-      <%= link_to course_resource_path(@lesson.section.resource.course,@lesson.section.resource), class: "btn btn-link" do %>
-        <span class='glyphicon glyphicon-arrow-left'></span>
-        <span class='hidden-xs'>Volver al curso <strong><%= @lesson.section.resource.title %></strong></span>
-      <% end %>
       <h2><%= @lesson.name %></h2>
       <p><%= @lesson.description %></p>
       <div class="video-wrapper">
@@ -17,6 +13,22 @@
   </div>
 </div>
 
-<!-- TODO: add link to mark as completed -->
 
-<%# link_to "<span class='glyphicon glyphicon-ok'></span> <span class='hidden-xs'>Completar y Continuar</span>".html_safe, course_resource_completion_path(course_id: @resource.course.id, resource_id: @resource.id), class: "btn btn-primary", method: :post %>
+<%= link_to "<span class='glyphicon glyphicon-ok'></span> <span class='hidden-xs'>Completar y Continuar</span>".html_safe,"#", class: "btn btn-primary", method: :post %>
+
+<div class="resource-page-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-6">
+        <%= link_to "<span class='glyphicon glyphicon-arrow-left'></span> <span class='hidden-xs'>Volver a  curso #{@lesson.resource.title}</span>".html_safe, course_resource_path(@course, @resource) , class: "btn btn-link" %>
+      </div>
+
+      <div class="col-xs-6 text-right">
+        <div class="finish">
+          <%= link_to "<span class='glyphicon glyphicon-ok'></span> <span class='hidden-xs'>Completar y Continuar</span>".html_safe, complete_course_resource_section_lesson_path(@course, @resource, @lesson.section, @lesson), class: "btn btn-primary", method: :post %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
