@@ -1,6 +1,6 @@
 <div class="alert alert-warning banner">
   <% if current_user.info_requested_at.nil? %>
-    <p>¿Quieres aprender a crear tus propias aplicaciones Web, con <strong>mentores en línea</strong> que resolverán tus dudas, y una comunidad que comparte tu mismo objetivo?</p>
+    <p>¿Quieres aprender a crear tus propias aplicaciones Web, con <strong>mentores en línea</strong> que resuelvan tus dudas, y una comunidad que comparta tu mismo objetivo?</p>
 
     <%= link_to "Quiero recibir más información", inscription_info_path, method: :post, remote: true, class: "btn btn-primary" %>
   <% else %>
