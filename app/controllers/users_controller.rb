@@ -34,6 +34,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def send_inscription_info
+    @first_request = true if current_user.info_requested_at.nil?
+    current_user.send_inscription_info
+  end
+
   private
     def user_params
       params.require(:user).permit(:email, :password, :first_name, :mobile_number, :birthday)

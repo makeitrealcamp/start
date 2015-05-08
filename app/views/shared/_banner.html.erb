@@ -1,0 +1,11 @@
+<div class="alert alert-warning banner">
+  <p>En Make it Real aprenderás a crear tus propias aplicaciones Web, con <strong>mentores en línea</strong> que resolverán tus dudas, y una comunidad que comparte tu mismo objetivo.</p>
+
+  <% if current_user.info_requested_at.nil? %>
+    <%= link_to "Quiero recibir más información", inscription_info_path, method: :post, remote: true, class: "btn btn-primary" %>
+  <% else %>
+    <%= link_to "Enviar información nuevamente", inscription_info_path, method: :post, remote: true, class: "btn btn-link", onclick: "$('.banner-loading').show()" %>
+  <% end %>
+
+  <div class="banner-loading"><%= image_tag "loading.gif" %></div>
+</div>
