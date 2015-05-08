@@ -59,6 +59,7 @@ html.turbolinks-progress-bar::before {
   &.action-edit { background: #2A79A6; }
   &.action-remove { background: #C74238; }
   &.action-warn { background: #E3A214; }
+  &.action-love { background: #AF38C7;}
 }
 
 .alert-top {
@@ -113,8 +114,11 @@ html.turbolinks-progress-bar::before {
   padding: 25px;
 
   p {
-    margin-bottom: 30px;
     font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 30px;
+
+    strong { font-weight: normal; }
   }
 
   .banner-loading {
