@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506182326) do
+ActiveRecord::Schema.define(version: 20150508193552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -178,6 +178,16 @@ ActiveRecord::Schema.define(version: 20150506182326) do
   add_index "solutions", ["properties"], name: "solutions_gin_properties", using: :gin
   add_index "solutions", ["user_id"], name: "index_solutions_on_user_id", using: :btree
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "status"
+    t.text     "cancellation_reason"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",           limit: 100
     t.string   "roles",                                    array: true
@@ -223,4 +233,5 @@ ActiveRecord::Schema.define(version: 20150506182326) do
   add_foreign_key "resources", "courses"
   add_foreign_key "solutions", "challenges"
   add_foreign_key "solutions", "users"
+  add_foreign_key "subscriptions", "users"
 end
