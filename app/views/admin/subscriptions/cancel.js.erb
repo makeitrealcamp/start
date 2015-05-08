@@ -1,0 +1,6 @@
+//TODO: Check if there's a better way to remove the modal
+// $("#canel-subscription-modal").modal("hide") doesn't work
+$(".modal-backdrop.fade.in").remove()
+
+$(".susbcription-container")
+  .html("<%= j render 'admin/subscriptions/create_button' %>");

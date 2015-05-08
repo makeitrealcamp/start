@@ -127,6 +127,10 @@ class User < ActiveRecord::Base
     save!
   end
 
+  def active_subscription
+    self.subscriptions.active.first
+  end
+
   private
     def default_values
       self.roles ||= ["user"]

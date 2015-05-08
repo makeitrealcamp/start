@@ -1,0 +1,22 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-lg btn-danger" data-toggle="modal" data-target="#cancel-subscription-modal">
+  Cancelar suscripción
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="cancel-subscription-modal" tabindex="-1" role="dialog" aria-labelledby="cancel-subscription-modal-title" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="cancel-subscription-modal-title">Cancelar suscripción</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for :subscription, url: cancel_admin_user_subscription_path(@user,@user.active_subscription), method: :patch, remote: true do |f| %>
+          <%= f.text_area :cancellation_reason, required: true, class: "form-control" %>
+          <%= f.button "Cancelar suscripción", class: "btn btn-lg btn-danger" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

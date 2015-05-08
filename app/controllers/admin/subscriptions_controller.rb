@@ -1,0 +1,23 @@
+class Admin::SubscriptionsController < ApplicationController
+  before_action :admin_access
+
+  # POST /admin/users/:user_id/subscriptions
+  def create
+    @user = User.find(params[:user_id])
+    @user.subscriptions.create
+  end
+
+  # PATCH /admin/users/:user_id/subscriptions/:id/cancel
+  def cancel
+    @user = User.find(params[:user_id])
+    @subscription = Subscription.find(params[:id])
+    @subscription.cancel
+  end
+
+  protected
+
+  def subscription_cancellation_params
+    params.require(:subscription).permit(:cancellation_reason)
+  end
+
+end
