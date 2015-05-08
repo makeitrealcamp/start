@@ -2,9 +2,9 @@
   <% if current_user.info_requested_at.nil? %>
     <p>¿Quieres aprender a crear tus propias aplicaciones Web, con <strong>mentores en línea</strong> que resuelvan tus dudas, y una comunidad que comparta tu mismo objetivo?</p>
 
-    <%= link_to "Quiero recibir más información", inscription_info_path, method: :post, remote: true, class: "btn btn-primary" %>
+    <%= link_to "Sí, deseo recibir más información", inscription_info_path, method: :post, remote: true, class: "btn btn-primary", onclick: "$('.banner-loading').show()" %>
   <% else %>
-    <p>En Make it Real aprenderás a crear tus propias aplicaciones Web, con <strong>mentores en línea</strong> que resolverán tus dudas, y una comunidad que comparte tu mismo objetivo.</p>
+    <p>En Make it Real aprenderás a crear tus propias aplicaciones Web, con <strong>mentores en línea</strong> que resolverán tus dudas, trabajando con más alumnos en retos y proyectos.</p>
 
     <%= link_to "Enviar información nuevamente", inscription_info_path, method: :post, remote: true, onclick: "$('.banner-loading').show()" %>
   <% end %>
