@@ -31,7 +31,9 @@ Rails.application.routes.draw do
     resources :resources, except: [:index] do
       resource :completion, controller: 'resource_completion', only: [:create, :destroy]
       resources :sections, only: [] do
-        resources :lessons, only: [:show]
+        resources :lessons, only: [:show] do
+          post :complete, on: :member
+        end
       end
     end
   end
