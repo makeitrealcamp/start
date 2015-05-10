@@ -17,7 +17,7 @@ class RailsEvaluator < Evaluator
     if status.success?
       complete(solution)
     else
-      if File.exist?("#{tmp_path}/error.txt")
+      if File.exist?("#{tmp_path}/error.txt") && !File.read("#{tmp_path}/error.txt").empty?
         handle_error(solution, "#{tmp_path}/error.txt")
       elsif File.exist?("#{tmp_path}/result.json")
         handle_test_failure(solution, "#{tmp_path}/result.json")
@@ -25,14 +25,15 @@ class RailsEvaluator < Evaluator
         fail(solution, "La evaluación falló por un problema desconocido :S. Repórtalo a info@makeitreal.camp enviando el URL con tu solución.")
       end
 
-      # File.delete("#{tmp_path}/error.txt") if File.exist?("#{tmp_path}/error.txt")
-      # File.delete("#{tmp_path}/result.json") if File.exist?("#{tmp_path}/result.json")
     end
   rescue Exception => e
     puts e.message
     puts e.backtrace
 
     fail(solution, "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp: #{e.message}".truncate(250))
+  ensure
+    File.delete("#{tmp_path}/error.txt") if File.exist?("#{tmp_path}/error.txt")
+    File.delete("#{tmp_path}/result.json") if File.exist?("#{tmp_path}/result.json")
   end
 
   def prefix_path
