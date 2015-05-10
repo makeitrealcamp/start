@@ -53,6 +53,7 @@
                     <div class="challenge-title">
                       <%= link_to challenge.name, [@course, challenge] %>
                     </div>
+                    <%= render '/shared/challenge_actions', challenge: challenge if current_user.is_admin? %>
                   </div>
                 <% end %>
               </div>
@@ -192,6 +193,11 @@
 
 <script>
   $('.challenge').click(function(e) {
+    var target = $(e.target);
+    if (target.closest('.actions').length > 0) {
+      return;
+    }
+
     e.preventDefault();
     if ($(this).attr('data-location')) {
       window.location = $(this).data('location');
