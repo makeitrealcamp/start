@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   has_many :solutions, dependent: :destroy
   has_many :auth_providers, dependent: :destroy
   has_many :lesson_completions
+  has_many :subscriptions
   has_and_belongs_to_many :resources
 
   hstore_accessor :profile,
@@ -46,7 +47,6 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { within: 6..40 }, if: :password_digest_changed?
   validates :password_confirmation, presence: true, on: :update, if: :password_digest_changed?
   validates_confirmation_of :password, on: :update, if: :password_digest_changed?
-
 
   enum status: [:created, :active]
   enum account_type: [:free_account, :paid_account, :admin_account]
@@ -125,6 +125,10 @@ class User < ActiveRecord::Base
     UserMailer.inscription_info(self).deliver_now
     self.info_requested_at = Time.current
     save!
+  end
+
+  def active_subscription
+    self.subscriptions.active.first
   end
 
   private

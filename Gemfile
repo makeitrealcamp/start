@@ -73,6 +73,10 @@ group :development, :test do
   gem 'faker', '~> 1.4.3'
 end
 
+group :development do
+  gem 'letter_opener'
+end
+
 group :test do
   gem 'shoulda-matchers', require: false
   gem 'capybara', '~> 2.4.4'
