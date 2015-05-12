@@ -16,7 +16,7 @@
 #  solution_video_url  :string
 #  solution_text       :text
 #  restricted          :boolean          default("false")
-#  preview             :boolean          default("true")
+#  preview             :boolean          default("false")
 #
 
 class Challenge < ActiveRecord::Base
@@ -54,9 +54,6 @@ class Challenge < ActiveRecord::Base
     end
   end
 
-  def preview?
-    !self.ruby_git?
-  end
 
   def next
     next_challenge = self.course.challenges.published.where('row > ?', self.row).first
