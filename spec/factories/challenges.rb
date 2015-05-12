@@ -16,6 +16,7 @@
 #  solution_video_url  :string
 #  solution_text       :text
 #  restricted          :boolean          default("false")
+#  preview             :boolean          default("true")
 #
 
 FactoryGirl.define do

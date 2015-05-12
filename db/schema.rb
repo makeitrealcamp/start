@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150508193552) do
+ActiveRecord::Schema.define(version: 20150512190449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20150508193552) do
     t.string   "solution_video_url"
     t.text     "solution_text"
     t.boolean  "restricted",                      default: false
+    t.boolean  "preview",                         default: true
   end
 
   add_index "challenges", ["course_id"], name: "index_challenges_on_course_id", using: :btree
