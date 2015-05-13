@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20150512190449) do
     t.string   "solution_video_url"
     t.text     "solution_text"
     t.boolean  "restricted",                      default: false
-    t.boolean  "preview",                         default: true
+    t.boolean  "preview",                         default: false
   end
 
   add_index "challenges", ["course_id"], name: "index_challenges_on_course_id", using: :btree

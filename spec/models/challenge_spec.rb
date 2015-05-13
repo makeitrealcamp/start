@@ -16,7 +16,7 @@
 #  solution_video_url  :string
 #  solution_text       :text
 #  restricted          :boolean          default("false")
-#  preview             :boolean          default("true")
+#  preview             :boolean          default("false")
 #
 
 require 'rails_helper'

@@ -7,7 +7,6 @@ class AddFieldsToModels < ActiveRecord::Migration
     reversible do |dir|
       dir.up do
         User.update_all(account_type: User.account_types[:free_account])
-        Course.update_all(visibility: Course.visibilities[:everyone])
       end
     end
   end
