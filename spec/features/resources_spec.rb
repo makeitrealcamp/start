@@ -41,77 +41,84 @@ RSpec.feature "Resources", type: :feature do
       expect(page.current_path).to eq new_course_resource_path(course)
     end
 
-    scenario "create resource with valid input when is url type" do
-      login(admin)
+    context 'when is url type' do
+      scenario "create resource with valid input" do
+        login(admin)
 
-      visit course_path(course)
-      click_link "Nuevo Recurso"
+        visit course_path(course)
+        click_link "Nuevo Recurso"
 
-      expect{
-        fill_in 'resource_title', with: Faker::Name.title
-        fill_in 'resource_description', with: Faker::Lorem.paragraph
-        select "External URL", from: 'resource_type'
-        fill_in 'resource_url', with: Faker::Internet.url
-        fill_in 'resource_time_estimate', with: "#{Faker::Number.digit} days"
-        click_button  'Crear Resource'
-      }.to change(Resource, :count).by 1
+        expect{
+          fill_in 'resource_title', with: Faker::Name.title
+          fill_in 'resource_description', with: Faker::Lorem.paragraph
+          select "External URL", from: 'resource_type'
+          fill_in 'resource_url', with: Faker::Internet.url
+          fill_in 'resource_time_estimate', with: "#{Faker::Number.digit} days"
+          click_button  'Crear Resource'
+        }.to change(Resource, :count).by 1
 
-      expect(Resource.last).not_to be_nil
-      expect(current_path).to eq course_path(course)
+        expect(Resource.last).not_to be_nil
+        expect(current_path).to eq course_path(course)
+      end
+
+      scenario "create resource without valid input" do
+        login(admin)
+
+        visit course_path(course)
+        click_link "Nuevo Recurso"
+
+        expect{
+          fill_in 'resource_title', with: Faker::Name.title
+          fill_in 'resource_url', with: Faker::Internet.url
+          fill_in 'resource_time_estimate', with: "#{Faker::Number.digit} days"
+          click_button  'Crear Resource'
+        }.not_to change(Resource, :count)
+
+        expect(page).to have_selector ".panel-danger"
+        expect(current_path).to eq course_resources_path(course)
+      end
     end
 
-    scenario "create resource with valid input when is markdown document type", js: true do
-      login(admin)
 
-      visit course_path(course)
-      click_link "Nuevo Recurso"
+    context 'when is markdown document type' do
+      scenario "create resource with valid input", js: true do
+        login(admin)
 
-      expect{
-        fill_in 'resource_title', with: Faker::Name.title
-        fill_in 'resource_description', with: Faker::Lorem.paragraph
-        select "Markdown Document", from: 'resource_type'
-        fill_in 'resource_content', with: Faker::Lorem.paragraph
-        fill_in 'resource_time_estimate', with: "#{Faker::Number.digit} days"
-        click_button  'Crear Resource'
-      }.to change(Resource, :count).by 1
+        visit course_path(course)
+        click_link "Nuevo Recurso"
 
-      expect(Resource.last).not_to be_nil
-      expect(current_path).to eq course_path(course)
+        expect{
+          fill_in 'resource_title', with: Faker::Name.title
+          fill_in 'resource_description', with: Faker::Lorem.paragraph
+          select "Markdown Document", from: 'resource_type'
+          fill_in 'resource_content', with: Faker::Lorem.paragraph
+          fill_in 'resource_time_estimate', with: "#{Faker::Number.digit} days"
+          click_button  'Crear Resource'
+        }.to change(Resource, :count).by 1
+
+        expect(Resource.last).not_to be_nil
+        expect(current_path).to eq course_path(course)
+      end
+
+      scenario "create resource without valid input", js: true do
+        login(admin)
+
+        visit new_course_resource_path(course_id: course.id)
+
+        expect{
+          fill_in 'resource_title', with: Faker::Name.title
+          select "Markdown Document", from: 'resource_type'
+          fill_in 'resource_content', with: Faker::Lorem.paragraph
+          fill_in 'resource_time_estimate', with: "#{Faker::Number.digit} days"
+          click_button  'Crear Resource'
+        }.not_to change(Resource, :count)
+
+        expect(page).to have_selector ".panel-danger"
+        expect(current_path).to eq course_resources_path(course)
+      end
     end
 
-    scenario "create resource without valid input when is url" do
-      login(admin)
 
-      visit course_path(course)
-      click_link "Nuevo Recurso"
-
-      expect{
-        fill_in 'resource_title', with: Faker::Name.title
-        fill_in 'resource_url', with: Faker::Internet.url
-        fill_in 'resource_time_estimate', with: "#{Faker::Number.digit} days"
-        click_button  'Crear Resource'
-      }.not_to change(Resource, :count)
-
-      expect(page).to have_selector ".panel-danger"
-      expect(current_path).to eq course_resources_path(course)
-    end
-
-    scenario "create resource without valid input when is content", js: true do
-      login(admin)
-
-      visit new_course_resource_path(course_id: course.id)
-
-      expect{
-        fill_in 'resource_title', with: Faker::Name.title
-        select "Markdown Document", from: 'resource_type'
-        fill_in 'resource_content', with: Faker::Lorem.paragraph
-        fill_in 'resource_time_estimate', with: "#{Faker::Number.digit} days"
-        click_button  'Crear Resource'
-      }.not_to change(Resource, :count)
-
-      expect(page).to have_selector ".panel-danger"
-      expect(current_path).to eq course_resources_path(course)
-    end
 
     scenario "show form edit resource", js: true do
       resource = create(:resource, course: course)
