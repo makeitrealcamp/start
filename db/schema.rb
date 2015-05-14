@@ -163,6 +163,7 @@ ActiveRecord::Schema.define(version: 20150514174715) do
     t.string   "title"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "row"
   end
 
   add_index "sections", ["resource_id"], name: "index_sections_on_resource_id", using: :btree
