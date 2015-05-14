@@ -4,7 +4,7 @@
       <div class="col-sm-10 col-sm-offset-1">
         <%= render 'shared/flash_messages_form', object: @project  %>
 
-        <h1><%= @project.new_record? ? "Nuevo Proyect" : "Editar Proyecto - #{@project.name}" %></h1>
+        <h1><%= @project.new_record? ? "Nuevo Proyecto" : "Editar Proyecto - #{@project.name}" %></h1>
         <div class="form-group">
           <%= f.label :name %>
           <%= f.text_field :name, class: "form-control" %>
