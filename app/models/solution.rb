@@ -40,6 +40,8 @@ class Solution < ActiveRecord::Base
       GitEvaluator.new.evaluate(self)
     elsif self.challenge.rails_git?
       RailsEvaluator.new.evaluate(self)
+    elsif self.challenge.sinatra_git?
+      SinatraEvaluator.new.evaluate(self)
     else
       self.status = :failed
       self.error_message = "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp"

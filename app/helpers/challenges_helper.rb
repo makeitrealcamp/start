@@ -8,6 +8,6 @@ module ChallengesHelper
   end
 
   def evaluation_strategies
-    [["Ruby (Embedded Files)", "ruby_embedded"], ["PhantomJS (Embedded Files)", "phantomjs_embedded"], ["Ruby (Git)", "ruby_git"], ["Rails (Git)", "rails_git"]]
+    [["Ruby (Embedded Files)", "ruby_embedded"], ["PhantomJS (Embedded Files)", "phantomjs_embedded"], ["Ruby (Git)", "ruby_git"], ["Rails (Git)", "rails_git"], ["Sinatra (Git)", "sinatra_git"]]
   end
 end
