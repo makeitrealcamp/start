@@ -270,6 +270,9 @@ class ChallengeFormView extends Backbone.View
     else if evaluation_strategy == "rails_git"
       @evaluation_editor.setOption("mode", "ruby")
       @evaluation_editor.setValue("require 'rails_helper'")
+    else if evaluation_strategy == "sinatra_git"
+      @evaluation_editor.setOption("mode", "ruby")
+      @evaluation_editor.setValue("require_relative 'spec_helper'\n\ndescribe \"...\" do\nend")
 
 window.InstructionsView = InstructionsView
 window.SolutionView = SolutionView

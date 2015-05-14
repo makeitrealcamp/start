@@ -7,5 +7,8 @@ ADD ./setup.sh /tmp/setup.sh
 RUN chmod 755 /tmp/setup.sh
 RUN LC_ALL=C DEBIAN_FRONTEND=noninteractive /tmp/setup.sh
 
-ADD ./run.sh /root/
-RUN chmod 755 ~/run.sh
+ADD ./rails.sh /root/
+RUN chmod 755 ~/rails.sh
+
+ADD ./sinatra.sh /root/
+RUN chmod 755 ~/sinatra.sh
