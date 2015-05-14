@@ -1,0 +1,18 @@
+<p>Hola<%= @user.first_name? ? " #{@user.first_name}" : "" %>,</p>
+
+<p>Esta semana completaste: </p>
+
+<div class="row work">
+  <div class="col-xs-6">
+    <div class="work-box">
+      <div class="work-value"><%= @challenges %></div>
+      <div class="work-label">Retos</div>
+    </div>
+  </div>
+  <div class="col-xs-6">
+    <div class="work-box">
+      <div class="work-value"><%= @resources %></div>
+      <div class="work-label">Recursos</div>
+    </div>
+  </div>
+</div>
