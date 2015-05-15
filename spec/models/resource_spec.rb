@@ -15,6 +15,7 @@
 #  content       :text
 #  slug          :string
 #  published     :boolean
+#  video_url     :string
 #
 
 require 'rails_helper'
