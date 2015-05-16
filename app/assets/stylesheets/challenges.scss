@@ -147,6 +147,19 @@
   .action-buttons {
     margin-top: 10px;
   }
+
+  .checkbox {
+    margin-bottom: 20px;
+    label {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    input[type=checkbox] {
+      transform: scale(1.5);
+      -webkit-transform: scale(1.5);
+    }
+  }
 }
 
 #zoom-modal .modal-dialog img {

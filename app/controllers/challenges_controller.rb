@@ -60,7 +60,7 @@ class ChallengesController < ApplicationController
     def challenge_params
       params.require(:challenge).permit(
         :course_id, :name, :instructions, :evaluation_strategy, :published,
-        :evaluation, :solution_text, :solution_video_url, :restricted, :preview,
+        :evaluation, :solution_text, :solution_video_url, :restricted, :preview, :pair_programming,
         documents_attributes: [:id, :name, :content, :_destroy])
     end
 end

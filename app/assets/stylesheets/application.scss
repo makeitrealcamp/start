@@ -60,6 +60,7 @@ html.turbolinks-progress-bar::before {
   &.action-remove { background: #C74238; }
   &.action-warn { background: #E3A214; }
   &.action-love { background: #AF38C7;}
+  &.action-blue { background: #2A79A6; }
 }
 
 .alert-top {
@@ -89,7 +90,6 @@ html.turbolinks-progress-bar::before {
 
 .tooltip-inner {
   font-size: 14px;
-  white-space: nowrap;
 }
 
 // Source: https://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php

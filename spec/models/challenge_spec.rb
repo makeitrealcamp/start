@@ -17,6 +17,7 @@
 #  solution_text       :text
 #  restricted          :boolean          default("false")
 #  preview             :boolean          default("false")
+#  pair_programming    :boolean          default("false")
 #
 
 require 'rails_helper'
