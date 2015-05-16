@@ -90,8 +90,8 @@ RSpec.feature "Users", type: :feature do
       visit login_path
       find('#sign-in-facebook').click
       wait_for_ajax
-      expect(page).to have_content 'Necesitamos que nos de los permisos para acceder a la aplicación'
-      expect(current_path).to eq login_path
+      expect(page).to have_content 'Es necesario que autorices los permisos para poder ingresar a Make it Real. También puedes regístrate con email y contraseña.'
+      expect(current_path).to eq signup_path
     end
   end
 
@@ -109,8 +109,8 @@ RSpec.feature "Users", type: :feature do
       visit login_path
       find('#sign-in-github').click
       wait_for_ajax
-      expect(page).to have_content 'Necesitamos que nos de los permisos para acceder a la aplicación'
-      expect(current_path).to eq login_path
+      expect(page).to have_content 'Es necesario que autorices los permisos para poder ingresar a Make it Real. También puedes regístrate con email y contraseña.'
+      expect(current_path).to eq signup_path
     end
   end
 end
