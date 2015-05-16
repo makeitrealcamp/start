@@ -33,24 +33,28 @@
 
         <hr>
 
-        <div class="form-group">
-          <%= f.check_box :restricted %>
-          <%= f.label :restricted %>
+        <div class="checkbox">
+          <label>
+            <%= f.check_box :restricted %> Visible to paid users only
+          </label>
         </div>
 
-        <div class="form-group">
-          <%= f.check_box :pair_programming %>
-          <%= f.label :pair_programming, "Suggest pair-programming" %>
+        <div class="checkbox">
+          <label>
+            <%= f.check_box :pair_programming %> Suggest pair-programming
+          </label>
         </div>
 
-        <div class="form-group">
-          <%= f.check_box :published %>
-          <%= f.label :published %>
+        <div class="checkbox">
+          <label>
+            <%= f.check_box :published %> Published
+          </label>
         </div>
 
-        <div class="form-group">
-          <%= f.check_box :preview %>
-          <%= f.label :preview %>
+        <div class="checkbox">
+          <label>
+            <%= f.check_box :preview %> Preview (for HTML and jQuery challenges)
+          </label>
         </div>
       </div>
 
