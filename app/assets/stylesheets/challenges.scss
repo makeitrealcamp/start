@@ -2,6 +2,7 @@
 
   .instructions {
     position: relative;
+    margin-bottom: 60px;
 
     .actions {
       position: absolute;
@@ -10,6 +11,7 @@
     }
 
     p, li {
+      font-size: 18px;
       font-weight: 300;
       line-height: 1.6;
     }
@@ -19,6 +21,8 @@
       max-width: 100%;
       border: 1px solid #eee;
       padding: 5px;
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
   }
 
