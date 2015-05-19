@@ -3,10 +3,12 @@
     <div class="col-xs-12 col-md-8 expand">
       <h2><%= @lesson.name %></h2>
       <p><%= @lesson.description %></p>
+      <p><%= markdown @lesson.info %></p>
       <div class="video-wrapper">
         <%= embedded_video(@lesson.video_url) %>
       </div>
     </div>
+
     <div class="col-xs-12 col-md-4 expand">
       <%= render "comments/embedded", commentable: @lesson %>
     </div>
