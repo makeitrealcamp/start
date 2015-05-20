@@ -177,3 +177,31 @@
     color: #28B038;
   }
 }
+
+.lesson-page {
+  margin-top: -20px;
+
+  .lesson-details {
+    margin-top: 20px;
+    margin-bottom: 100px;
+
+    h1 {
+      font-size: 38px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-weight: 300;
+      line-height: 1.6;
+
+      strong { font-weight: 600; }
+
+      @media (min-width: $screen-sm-min) { font-size: 18px; }
+    }
+
+    .lesson-info { 
+      margin-top: 40px; 
+    }
+  }
+}
