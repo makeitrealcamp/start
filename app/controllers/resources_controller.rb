@@ -42,7 +42,7 @@ class ResourcesController < ApplicationController
 
   def update_position
     @resource = Resource.update(params[:id], row_position: params[:position])
-    render nothing: true, status: 200
+    head :ok
   end
 
   private

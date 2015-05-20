@@ -46,6 +46,11 @@ class CoursesController < ApplicationController
     end
   end
 
+  def update_position
+    @course = Course.update(params[:id], row_position: params[:position])
+    head :ok
+  end
+
   private
     def course_params
       params.require(:course).permit(:name, :description, :excerpt, :abstract, :time_estimate, :published, :visibility)

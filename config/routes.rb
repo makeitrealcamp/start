@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   end
 
   resources :courses, except: [:destroy] do
+    patch 'update_position', on: :member
+
     resources :challenges, except: [:index, :destroy] do
       member do
         get :discussion
