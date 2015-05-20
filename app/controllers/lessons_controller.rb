@@ -27,6 +27,12 @@ class LessonsController < ApplicationController
     redirect_to next_path(@lesson)
   end
 
+
+  def update_position
+    lesson = Lesson.update(params[:id], row_position: params[:position])
+    head :ok
+  end
+
   private
     def next_path(lesson)
       next_lesson = lesson.next(current_user)

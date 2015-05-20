@@ -27,6 +27,7 @@ class Lesson < ActiveRecord::Base
   validates :video_url, format: { with: URI.regexp }, if: :video_url?
 
   scope :published, -> { where(section_id: Resource.published.map(&:sections).flatten.map(&:id)) }
+  default_scope { rank(:row) }
 
   def resource
     self.section.resource
