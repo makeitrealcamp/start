@@ -53,7 +53,7 @@
                     <div class="challenge-title">
                       <%= link_to challenge.name, [@course, challenge] %>
                     </div>
-                    <%= render '/shared/challenge_actions', challenge: challenge if current_user.is_admin? %>
+                    <%= render '/shared/challenge_actions', challenge: challenge %>
                   </div>
                 <% end %>
               </div>
