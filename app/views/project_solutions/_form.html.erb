@@ -27,7 +27,7 @@
     <div class="pull-right">
       <%= f.submit "Publicar", class: "btn btn-primary" %>
     </div>
-    <% if  current_user.is_admin? || !@project_soluction.new_record? %>
+    <% if  current_user.is_admin? || !@project_solution.new_record? %>
       <%= link_to course_project_project_solutions_path(@project.course,@project), class: "btn btn-success" do %>
         <span class='glyphicon glyphicon-blackboard'></span> Ver otras soluciones
       <% end %>

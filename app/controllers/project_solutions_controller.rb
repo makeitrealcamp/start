@@ -1,5 +1,6 @@
 class ProjectSolutionsController < ApplicationController
-
+  before_action :private_access
+  before_action :paid_access
   before_action :set_project
 
   # GET /courses/:course_id/projects/:project_id/project_solutions/:id
@@ -7,7 +8,7 @@ class ProjectSolutionsController < ApplicationController
     @project_solution = ProjectSolution.find(params[:id])
     if !current_user.is_admin? && !current_user.has_completed_project?(@project)
       flash[:notice] = "Debes publicar tu solución para ver las soluciones de la comunidad."
-      redirect_to course_project_path(@project)
+      redirect_to course_project_path(@project.course,@project)
     end
   end
 
@@ -17,7 +18,7 @@ class ProjectSolutionsController < ApplicationController
       @project_solutions = @project.project_solutions.where.not(user_id: current_user.id)
     else
       flash[:notice] = "Debes publicar tu solución para ver las soluciones de la comunidad."
-      redirect_to course_project_path(@project)
+      redirect_to course_project_path(@project.course,@project)
     end
   end
 

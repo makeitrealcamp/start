@@ -40,8 +40,7 @@ class ApplicationController < ActionController::Base
     end
 
     def paid_access
-      #TODO: redirect_to price page
-      unless current_user.paid_account? || current_user.is_admin?
+      if(!current_user.paid_account? && !current_user.is_admin?)
         redirect_to "/", notice: "Debes estar inscrito al programa para acceder a este recurso"
       end
     end
