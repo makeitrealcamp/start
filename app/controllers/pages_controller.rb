@@ -6,7 +6,8 @@ class PagesController < ApplicationController
   end
 
   def handbook
-    @content = Octokit.contents("makeitrealcamp/handbook", path: "README.md", accept: "application/vnd.github.VERSION.raw").encode("ASCII-8BIT").force_encoding("utf-8")
+    client = Octokit::Client.new(client_id: ENV['GITHUB_KEY'], client_secret: ENV['GITHUB_SECRET'])
+    @content = client.contents("makeitrealcamp/handbook", path: "README.md", accept: "application/vnd.github.VERSION.raw").encode("ASCII-8BIT").force_encoding("utf-8")
   end
 
 end
