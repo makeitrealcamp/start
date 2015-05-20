@@ -1,7 +1,7 @@
 <div class="container-fluid expand challenge-page">
   <div class="row expand">
     <div class="col-md-5 expand overflow instructions">
-      <%= render '/shared/challenge_actions', challenge: @challenge if current_user.is_admin? %>
+      <%= render '/shared/challenge_actions', challenge: @challenge %>
 
       <%= link_to "<span class='glyphicon glyphicon-arrow-left'></span> Volver a #{@challenge.course.name}".html_safe, @challenge.course %>
       <h1><%= @challenge.name %></h1>
