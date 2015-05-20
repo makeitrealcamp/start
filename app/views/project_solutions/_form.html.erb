@@ -1,0 +1,37 @@
+<%= form_for @project_solution, url: project_solution_form_url, method: project_solution_form_method do |f| %>
+  <%= render 'shared/flash_messages_form', object: @project_solution %>
+
+  <div class="form-group git-repo">
+    <p>Ingresa la ruta al repositorio de Github con tu solución:</p>
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon" id="basic-addon1">https://github.com/</span>
+      <%= f.text_field :repository, class: "form-control", placeholder: "usuario/repositorio" %>
+    </div>
+  </div>
+
+  <div class="form-group git-repo">
+    <p>Si publicaste tu proyecto en algún sitio, comparte la url con la comunidad:</p>
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon" id="basic-addon1">http://</span>
+      <%= f.text_field :url, class: "form-control", placeholder: "miproyecto.herokuapp.com" %>
+    </div>
+  </div>
+  <div class="form-group summary">
+    <p>Cuéntanos un poco sobre la solución que implementaste:</p>
+    <div class="input-group input-group-lg">
+      <%= f.text_area :summary, class: "form-control", placeholder: "..." %>
+    </div>
+  </div>
+
+  <div>
+    <div class="pull-right">
+      <%= f.submit "Publicar", class: "btn btn-primary" %>
+    </div>
+    <% if  current_user.is_admin? || !@project_soluction.new_record? %>
+      <%= link_to course_project_project_solutions_path(@project.course,@project), class: "btn btn-success" do %>
+        <span class='glyphicon glyphicon-blackboard'></span> Ver otras soluciones
+      <% end %>
+    <% end %>
+  </div>
+
+<% end %>

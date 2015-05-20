@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid project">
   <div class="row">
     <div class="col-xs-12">
       <%= link_to course_path(@project.course, anchor: "projects"), class: "btn btn-link" do %>
@@ -8,21 +8,27 @@
     </div>
   </div>
   <div class="row">
-    <% unless @project.explanation_video_url.blank? %>
-      <div class="col-xs-12 col-md-6 expand">
+    <div class="col-xs-12 col-md-6 expand">
+      <h2><%= @project.name %></h2>
+      <% unless @project.explanation_video_url.blank? %>
         <div class="video-wrapper">
           <%= embedded_video(@project.explanation_video_url) %>
         </div>
-      </div>
-    <% end %>
-    <div class="col-xs-12 col-md-<%= @project.explanation_video_url.blank? ? "6" : "3" %> expand">
-      <h2><%= @project.name %></h2>
+      <% end %>
       <div class="project-explanation">
         <%= markdown @project.explanation_text %>
       </div>
     </div>
-    <div class="col-xs-12 col-md-<%= @project.explanation_video_url.blank? ? "6" : "3" %> expand">
-      <%= render "comments/embedded", commentable: @project %>
+
+    <div class="col-xs-12 col-md-6 expand">
+      <%= render "project_solutions/form" %>
+      <% unless @project_solution.new_record? %>
+        <hr />
+        <div class="comments-title">
+          <h4>Aquí podrás discutir con la comunidad acerca de tu solución:</h4>
+        </div>
+        <%= render "comments/embedded", commentable: @project_solution, questions: [""] %>
+      <% end %>
     </div>
   </div>
 </div>

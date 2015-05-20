@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
 
   # GET /courses/:course_id/projects/:id
   def show
+    @project_solution = @project.project_solutions.find_or_initialize_by(user_id: current_user.id)
   end
 
   # GET /courses/:course_id/projects/new

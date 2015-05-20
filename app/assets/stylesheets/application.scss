@@ -14,6 +14,8 @@
 @import "challenges";
 @import "resources";
 @import "comments";
+@import "projects";
+@import "project_solutions";
 @import "admin/dashboard";
 @import "admin/solutions";
 
@@ -139,4 +141,23 @@ html.turbolinks-progress-bar::before {
       margin-left: -27px;
     }
   }
+}
+
+.fixed-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  background-color: white;
+}
+
+img.avatar {
+  width: 40px;
+}
+
+.title-wrapper {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 40px;
 }

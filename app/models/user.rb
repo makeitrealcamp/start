@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   has_many :auth_providers, dependent: :destroy
   has_many :lesson_completions
   has_many :subscriptions
+  has_many :project_solutions
   has_and_belongs_to_many :resources
 
   hstore_accessor :profile,
@@ -108,6 +109,10 @@ class User < ActiveRecord::Base
 
   def has_completed_lesson?(lesson)
     !!self.lesson_completions.find_by_lesson_id(lesson.id)
+  end
+
+  def has_completed_project?(project)
+    !!project.project_solutions.find_by_user_id(self.id)
   end
 
   def send_password_reset
