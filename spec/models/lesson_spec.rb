@@ -11,6 +11,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  free_preview :boolean          default(FALSE)
+#  info         :text
 #
 
 require 'rails_helper'

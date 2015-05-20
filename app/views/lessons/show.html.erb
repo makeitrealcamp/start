@@ -1,12 +1,18 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-12 col-md-8 expand">
-      <h2><%= @lesson.name %></h2>
-      <p><%= @lesson.description %></p>
+<div class="container-fluid lesson-page">
+  <div class="row" style="background: black;">
+    <div class="col-sm-10 col-sm-offset-1">
       <div class="video-wrapper">
         <%= embedded_video(@lesson.video_url) %>
       </div>
     </div>
+  </div>
+  <div class="row lesson-details">
+    <div class="col-md-8">
+      <h1><%= @lesson.name %></h1>
+      <p><%= @lesson.description %></p>
+      <div class="lesson-info"><%= markdown @lesson.info if @lesson.info %></div>
+    </div>
+
     <div class="col-xs-12 col-md-4 expand">
       <%= render "comments/embedded", commentable: @lesson %>
     </div>
