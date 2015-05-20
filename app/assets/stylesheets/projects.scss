@@ -1,0 +1,27 @@
+.project {
+  .project-explanation {
+    padding-top: 40px;
+  }
+
+  .new_project_solution, .edit_project_solution {
+    .summary {
+      width: 100%;
+      .input-group {
+        width: 100%;
+      }
+    }
+  }
+
+  hr {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border: 10px;
+    border-top: 3px solid;
+    margin-left: 20px;
+    border-color: rgba(48, 48, 48, 0.09);
+    margin-right: 20px;
+  }
+  .comments-title {
+    margin-bottom: 30px;
+  }
+}

@@ -22,9 +22,9 @@ class Project < ActiveRecord::Base
   validates :course, presence: true
 
   belongs_to :course
-  has_many :comments, as: :commentable
+  has_many :project_solutions
 
   scope :for, -> user { published unless user.is_admin? }
   scope :published, -> { where(published: true) }
-  
+
 end

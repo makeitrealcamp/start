@@ -1,0 +1,53 @@
+<div class="container-fluid project_solutions">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= link_to course_project_path(@project.course,@project), class: "btn btn-link push-left" do %>
+        <span class='glyphicon glyphicon-arrow-left'></span>
+        <span class='hidden-xs'>Volver a <strong><%= @project.name %></strong></span>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="text-center">
+        <h2>Soluciones para <%= @project.name %></h2>
+        <p>Ayúdale a los demás a mejorar sus soluciones dándoles tu opinión</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <% @project_solutions.each do |solution| %>
+      <div class="col-xs-12 col-md-4">
+        <div class="project-solution-box">
+          <div class="media">
+            <div class="media-left">
+              <img src="<%= Gravatar.new("#{solution.user.email}").image_url %>" class="img-circle" />
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">Solución de <%= solution.user.first_name %></h4>
+              <p>
+                <%= truncate(solution.summary) %>
+              </p>
+              <%= link_to "https://github.com/#{solution.repository}", class: "link" do %>
+                <i class="fa fa-github"></i>
+                <%= solution.repository %>
+              <% end %>
+              <br>
+              <% unless solution.url.blank? %>
+                <%= link_to "http://#{solution.url}", class: "link" do %>
+                  <i class="fa fa-globe"></i>
+                  <%= solution.url %>
+                <% end %>
+              <% end %>
+              <%= link_to course_project_project_solution_path(@project.course,@project,solution), class: "btn btn-primary btn-comment" do %>
+                Comentar
+                <span class="glyphicon glyphicon-chevron-right"></span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>

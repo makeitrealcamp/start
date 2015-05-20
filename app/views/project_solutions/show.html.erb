@@ -1,0 +1,55 @@
+<div class="container-fluid project-solution">
+  <div class="row">
+    <div class="col-xs-6">
+
+      <%= link_to course_project_path(@project.course, @project), class: "btn btn-link" do %>
+        <span class='glyphicon glyphicon-arrow-left'></span>
+        <span class='hidden-xs'>Volver a <strong><%= @project.name %></strong></span>
+      <% end %>
+
+    </div>
+
+    <div class="col-xs-6">
+      <div class="text-right">
+        <%= link_to course_project_project_solutions_path(@project.course,@project), class: "btn btn-success" do %>
+          <span class='glyphicon glyphicon-blackboard'></span> Ver otras soluciones
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-7 expand">
+      <div class="media title-wrapper">
+        <div class="media-left">
+          <img src="<%= Gravatar.new("#{@project_solution.user.email}").image_url %>" class="img-circle avatar" />
+        </div>
+        <div class="media-body">
+          <h1 class="media-heading">Solución de <%= @project_solution.user.first_name %></h1>
+        </div>
+      </div>
+
+      <div class="links-box">
+        <%= link_to "https://github.com/#{@project_solution.repository}", class: "link" do %>
+          <i class="fa fa-github"></i>
+          <%= @project_solution.repository %>
+        <% end %>
+        <br>
+        <% unless @project_solution.url.blank? %>
+          <%= link_to "http://#{@project_solution.url}", class: "link" do %>
+            <i class="fa fa-globe"></i>
+            <%= @project_solution.url %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <p>
+        <%= @project_solution.summary %>
+      </p>
+
+    </div>
+
+    <div class="col-xs-12 col-md-5 expand">
+      <%= render "comments/embedded", commentable: @project_solution, questions: ["¿Qué opinas de la solución implementada por #{@project_solution.user.first_name}?"] %>
+    </div>
+  </div>
+</div>

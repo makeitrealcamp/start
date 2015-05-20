@@ -31,7 +31,7 @@ $color_thunderbird_approx: #cc2424;
     position: absolute;
     display: block;
     width: 4px;
-    background: $color_wild_sand_approx;
+    background: white;
     top: 20px;
     bottom: 20px;
     margin-left: 30px;
@@ -137,10 +137,10 @@ $color_thunderbird_approx: #cc2424;
         //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
         border-radius: 20px;
         text-align: center;
-        -moz-box-shadow: 0 0 0 5px $color_wild_sand_approx;
-        -webkit-box-shadow: 0 0 0 5px $color_wild_sand_approx;
+        -moz-box-shadow: 0 0 0 5px white;
+        -webkit-box-shadow: 0 0 0 5px white;
         //Instead of the line below you could use @includebox-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-        box-shadow: 0 0 0 5px $color_wild_sand_approx;
+        box-shadow: 0 0 0 5px white;
         line-height: 40px;
         font-size: 15px;
         float: left;
@@ -171,7 +171,7 @@ $color_thunderbird_approx: #cc2424;
       }
       .discussion-label {
         position: relative;
-        background: $color_wild_sand_approx;
+        background: white;
         padding: 1em;
         margin-left: 60px;
         -webkit-background-clip: padding-box;

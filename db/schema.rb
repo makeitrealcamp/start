@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150514174715) do
+ActiveRecord::Schema.define(version: 20150515170316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,6 +119,19 @@ ActiveRecord::Schema.define(version: 20150514174715) do
   end
 
   add_index "lessons", ["section_id"], name: "index_lessons_on_section_id", using: :btree
+
+  create_table "project_solutions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.string   "repository"
+    t.string   "url"
+    t.text     "summary"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "project_solutions", ["project_id"], name: "index_project_solutions_on_project_id", using: :btree
+  add_index "project_solutions", ["user_id"], name: "index_project_solutions_on_user_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
     t.integer  "course_id"
@@ -232,6 +245,8 @@ ActiveRecord::Schema.define(version: 20150514174715) do
   add_foreign_key "lesson_completions", "lessons"
   add_foreign_key "lesson_completions", "users"
   add_foreign_key "lessons", "sections"
+  add_foreign_key "project_solutions", "projects"
+  add_foreign_key "project_solutions", "users"
   add_foreign_key "projects", "courses"
   add_foreign_key "resources", "courses"
   add_foreign_key "solutions", "challenges"
