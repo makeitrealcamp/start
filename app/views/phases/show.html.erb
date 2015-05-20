@@ -67,9 +67,7 @@
 <% if current_user.is_admin? %>
   <script>
     (function() {
-
       sortable_courses =  new SortableView({el: ".phase-page",resource:"courses"})
-
       $(document).on("page:before-change", function() {
         sortable_courses.remove();
       });
