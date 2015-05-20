@@ -1,7 +1,9 @@
 <div class="actions">
-  <% if challenge.pair_programming %><span class="glyphicon glyphicon-star action action-blue" data-toggle="tooltip" data-placement="bottom" title="Ideal para hacer pair-programming"></span><% end %>
-  <% if !challenge.restricted %><span class="glyphicon glyphicon-heart action action-love" data-toggle="tooltip" data-placement="bottom" title="Gratis"></span><% end %>
-  <% if !challenge.published %><span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span><% end %>
-  <%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_course_challenge_path(challenge.course, challenge) %>
-  <a href="#"><span class="glyphicon glyphicon-remove action action-remove"></span></a>
+  <% if challenge.pair_programming %><span class="icon-users action action-blue" data-toggle="tooltip" data-placement="bottom" title="Ideal para hacer pair-programming"></span><% end %>
+  <% if current_user.is_admin? %>
+    <% if !challenge.restricted %><span class="glyphicon glyphicon-heart action action-love" data-toggle="tooltip" data-placement="bottom" title="Gratis"></span><% end %>
+    <% if !challenge.published %><span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span><% end %>
+    <%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_course_challenge_path(challenge.course, challenge) %>
+    <a href="#"><span class="glyphicon glyphicon-remove action action-remove"></span></a>
+  <% end %>
 </div>

@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def markdown(text)
-    renderer = HtmlWithPygments.new(hard_wrap: true, filter_html: true)
+    renderer = HtmlWithPygments.new(hard_wrap: true, filter_html: false)
     options = {
       autolink: true,
       no_intra_emphasis: true,
