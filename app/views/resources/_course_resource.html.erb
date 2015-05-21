@@ -12,23 +12,25 @@
   </h1>
 
   <p><%= resource.description %></p>
-  <% resource.sections.each_with_index do |section,i| %>
-    <div class="list-group">
+  <% resource.sections.each_with_index do |section, i| %>
+    <div class="list-group lessons" id="section_<%= section.id %>">
       <div href="#" class="list-group-item resource-section-title">
         <%= "Sección #{i} - #{section.title}" %>
       </div>
       <% if current_user.has_access_to?(resource) %>
-        <% section.lessons.each_with_index do |lesson,j| %>
-          <%= link_to(course_resource_section_lesson_path(resource.course,resource,section,lesson),
-            class: "list-group-item") do %>
-            <%="Lección #{j} - #{lesson.name}"%>
-            <span class="pull-right lesson-status glyphicon glyphicon-ok <%= 'completed' if current_user.has_completed_lesson?(lesson)%> "></span>
-          <% end %>
+        <% section.lessons.each_with_index do |lesson, j| %>
+          <div class="lesson" id="lesson_<%=lesson.id %>" data-sortable="true" data-resource-id="<%= lesson.id %>">
+            <%= link_to(course_resource_section_lesson_path(resource.course,resource,section,lesson),
+              class: "list-group-item") do %>
+              <%="Lección #{j} - #{lesson.name}"%>
+              <span class="pull-right lesson-status glyphicon glyphicon-ok <%= 'completed' if current_user.has_completed_lesson?(lesson)%> "></span>
+            <% end %>
+          </div>
         <% end %>
 
       <% else %>
 
-        <% section.lessons.each_with_index do |lesson,j| %>
+        <% section.lessons.each_with_index do |lesson, j| %>
           <% if lesson.free_preview? %>
             <%= link_to(course_resource_section_lesson_path(resource.course,resource,section,lesson),
               class: "list-group-item") do %>
@@ -57,3 +59,19 @@
     </div>
   <% end %>
 </div>
+
+<% if current_user.is_admin? %>
+  <script>
+    (function() {
+      var sortables = [];
+      <% resource.sections.each do |section| %>
+        sortables.push(new SortableView({el: "#section_<%= section.id %>", resource:"lessons"}))
+      <% end %>
+      $(document).on("page:before-change", function() {
+        _.each(sortables, function(sortable) {
+          sortable.remove();
+        })
+      });
+    })()
+  </script>
+<% end %>

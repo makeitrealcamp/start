@@ -46,7 +46,7 @@
               <div class="col-sm-8 col-sm-offset-2">
                 <p class="text-center tab-exp"><%= challenges_msg(@course) %></p>
                 <% @course.challenges.for(current_user).each_with_index do |challenge, index| %>
-                  <div id="challenge_<%= challenge.id %>" class="challenge clearfix <%= challenge_class(challenge) %>" data-index="<%= index %>" data-location="<%= url_for([@course, challenge]) %>" data-sortable="true" data-resource-id="<%=challenge.id%>">
+                  <div id="challenge_<%= challenge.id %>" class="challenge clearfix <%= challenge_class(challenge) %>" data-index="<%= index %>" data-location="<%= url_for([@course, challenge]) %>" data-sortable="true" data-resource-id="<%=challenge.id %>">
                     <div class="challenge-status">
                       <span class="glyphicon glyphicon-ok"></span>
                     </div>
@@ -70,11 +70,11 @@
 
           <div role="tabpanel" class="tab-pane resources <%= "active" if @tab == :resources %>" id="resources">
             <% if current_user.is_admin? %>
-            <div class="row">
-              <div class="col-sm-12 text-center new-resource-btn">
-                <%= link_to '<span class="glyphicon glyphicon-plus"></span> Nuevo Recurso'.html_safe, new_course_resource_path(@course), class: "btn btn-success" %>
+              <div class="row">
+                <div class="col-sm-12 text-center new-resource-btn">
+                  <%= link_to '<span class="glyphicon glyphicon-plus"></span> Nuevo Recurso'.html_safe, new_course_resource_path(@course), class: "btn btn-success" %>
+                </div>
               </div>
-            </div>
             <% end %>
 
             <div class="row resources-list">

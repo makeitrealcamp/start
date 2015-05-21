@@ -13,7 +13,7 @@ class SortableView extends Backbone.View
     "dragend [data-sortable]": "handle_drag_end"
 
   handle_drag_start: (e)->
-    $target = $(e.target)
+    $target = $(e.currentTarget)
     $target.css("opacity",0.4)
     e.originalEvent.dataTransfer.setData("source_id", $target.attr("id"))
 
@@ -21,14 +21,15 @@ class SortableView extends Backbone.View
     e.preventDefault()
 
   handle_drag_enter: (e)->
-    $(event.target).addClass("over")
+    $(e.currentTarget).addClass("over")
 
   handle_drag_leave: (e)->
-    $(event.target).removeClass("over")
+    $(e.currentTarget).removeClass("over")
 
   handle_drag_end: (e)->
-    $target = $(event.target)
+    $target = $(e.currentTarget)
     $target.css("opacity",1)
+
     @$el.find("[data-sortable]").removeClass("over");
 
   handle_drop: (e)->
@@ -40,7 +41,6 @@ class SortableView extends Backbone.View
     $(e.currentTarget).before($source_el);
     @$el.find("[data-sortable]").each (index, el)->
       $(el).data("index", index);
-
 
     $.ajax({
       url: "/#{@resource}/#{resource_id}/update_position",
