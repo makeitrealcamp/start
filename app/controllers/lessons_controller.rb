@@ -31,8 +31,7 @@ class LessonsController < ApplicationController
     def next_path(lesson)
       next_lesson = lesson.next(current_user)
       if next_lesson
-        course_resource_section_lesson_path(next_lesson.section.resource.course, next_lesson.section.resource,
-        next_lesson.section, next_lesson)
+        course_resource_section_lesson_path(next_lesson.section.resource.course, next_lesson.section.resource, next_lesson.section, next_lesson)
       else
         course_resource_path(lesson.resource.course, lesson.resource)
       end

@@ -38,9 +38,25 @@ class Lesson < ActiveRecord::Base
 
   def next(user)
     if user.has_access_to?(self.resource)
-      self.section.lessons.where('row > ?', self.row).first
+      lesson = self.section.lessons.where('row > ?', self.row).first
+
+      if lesson.nil?
+        section = Section.where('row > ? ', self.section.row).first
+        if section &&  !section.lessons.blank?
+          lesson = section.lessons.first
+        end
+      end
     else
-      self.section.lessons.where('row > ? AND free_preview = ?', self.row, true).first
+      lesson = self.section.lessons.where('row > ? AND free_preview = ?', self.row, true).first
+      if lesson.nil?
+        section = Section.where('row > ? ', self.section.row).first
+        if section &&  !section.lessons.blank?
+          lesson = section.lessons.where('free_preview = ?', true).first
+        end
+      end
     end
+
+    #return
+    lesson
   end
 end
