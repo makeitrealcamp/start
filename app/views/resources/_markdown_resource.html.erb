@@ -2,9 +2,14 @@
 <div class="col-sm-8 col-sm-offset-2 expand internal">
   <h1 class="text-center"><%= resource.title %></h1>
   <% if resource.video_url? %>
-    <div class="embed-responsive embed-responsive-16by9">
-      <%= embedded_video(resource.video_url) %>
+  <div class="row" style="margin-bottom: 60px;">
+    <div class="col-sm-12">
+      <div class="embed-responsive embed-responsive-16by9">
+        <%= embedded_video(resource.video_url) %>
+      </div>
     </div>
+  </div>
+
   <% end %>
   <%= markdown ERB.new(resource.content).result(binding) %>
 </div>
