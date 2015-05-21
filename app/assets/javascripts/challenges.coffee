@@ -25,10 +25,12 @@ class InstructionsView extends Backbone.View
     'click img': 'display_images'
 
   display_images: (e) ->
-    img = $(e.currentTarget).clone()
+    $img = $(e.currentTarget).clone()
+    modal_padding = 30
+    modal_width = Math.min(e.currentTarget.naturalWidth+modal_padding,800)
+    $('.modal-dialog').width("#{modal_width}px")
     $('.modal-body').empty()
-    $('.modal-dialog').width(e.currentTarget.naturalWidth)
-    $('.modal-body').append(img)
+    $('.modal-body').append($img)
     $('#zoom-modal').modal({show:true})
 
 # a view to handle solution configuration and events
