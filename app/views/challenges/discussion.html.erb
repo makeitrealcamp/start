@@ -6,7 +6,7 @@
     </div>
     <div class="col-xs-6 text-right">
       <%= link_to "Siguiente reto <span class='glyphicon glyphicon-chevron-right'></span>".html_safe,
-        [@challenge.course, @challenge.next], class: "btn btn-success" %>
+        [@challenge.course, @challenge.next_for(current_user)], class: "btn btn-success" %>
     </div>
   </div>
   <div class="row">

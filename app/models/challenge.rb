@@ -55,9 +55,8 @@ class Challenge < ActiveRecord::Base
     end
   end
 
-
-  def next
-    next_challenge = self.course.challenges.published.where('row > ?', self.row).first
+  def next_for(user)
+    self.course.challenges.for(user).where('row > ?', self.row).first
   end
 
   def last?
