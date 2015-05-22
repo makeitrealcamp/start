@@ -13,6 +13,8 @@
       <%= form_tag submit_solution_path(@solution.id), id: 'submit-solution', class: 'expand', remote: true do %>
         <% if @challenge.ruby_embedded? || @challenge.phantomjs_embedded? %>
           <%= render 'embedded_files' %>
+        <% elsif @challenge.ruby_git_pr? %>
+          <%= render 'github_pr' %>
         <% else %>
           <%= render 'github_repo' %>
         <% end %>

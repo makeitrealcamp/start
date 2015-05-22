@@ -24,7 +24,8 @@ class Solution < ActiveRecord::Base
   hstore_accessor :properties,
     completed_at: :datetime,
     error_message: :string,
-    repository: :string
+    repository: :string,
+    pull_request: :integer
 
   after_initialize :default_values
   after_create :create_documents
@@ -42,6 +43,8 @@ class Solution < ActiveRecord::Base
       RailsEvaluator.new.evaluate(self)
     elsif self.challenge.sinatra_git?
       SinatraEvaluator.new.evaluate(self)
+    elsif self.challenge.ruby_git_pr?
+      GitPREvaluator.new.evaluate(self)
     else
       self.status = :failed
       self.error_message = "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp"

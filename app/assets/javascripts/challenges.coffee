@@ -184,7 +184,7 @@ class ChallengeFormView extends Backbone.View
 
     # configure evaluation editor
     es = @.$('#challenge_evaluation_strategy').val()
-    mode = if es == "ruby_embedded" or es == "ruby_git" or es == "rails_git" then "ruby" else "javascript"
+    mode = if es == "ruby_embedded" or es == "ruby_git" or es == "rails_git" or es == "ruby_git_pr" then "ruby" else "javascript"
     @evaluation_editor = editors.configure  el: 'challenge_evaluation', opts: mode: mode
 
   events:
@@ -275,6 +275,9 @@ class ChallengeFormView extends Backbone.View
     else if evaluation_strategy == "sinatra_git"
       @evaluation_editor.setOption("mode", "ruby")
       @evaluation_editor.setValue("require_relative 'spec_helper'\n\ndescribe \"...\" do\nend")
+    else if evaluation_strategy == "ruby_git_pr"
+      @evaluation_editor.setOption("mode", "ruby")
+      @evaluation_editor.setValue("def evaluate(client, repo, pr_number)\n\nend")
 
 window.InstructionsView = InstructionsView
 window.SolutionView = SolutionView
