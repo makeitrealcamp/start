@@ -31,6 +31,17 @@ RSpec.describe Resource, type: :model do
     it { should  have_and_belong_to_many(:users)}
   end
 
+  context "friendly_id" do
+    it "should update the slug after updating the name" do
+      resource = create(:resource)
+      old_slug = resource.slug
+      resource.title = resource.title+" un nombre random"
+      resource.save
+      expect(resource.slug).to eq("#{old_slug}-un-nombre-random")
+      expect(resource.slug).to eq(resource.friendly_id)
+    end
+  end
+
   context 'validations' do
     it { should validate_presence_of :title }
     context 'when type is url' do

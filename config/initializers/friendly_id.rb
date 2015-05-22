@@ -45,7 +45,7 @@ FriendlyId.defaults do |config|
   # Most applications will use the :slugged module everywhere. If you wish
   # to do so, uncomment the following line.
   #
-  # config.use :slugged
+  config.use [:slugged,:always_update]
   #
   # By default, FriendlyId's :slugged addon expects the slug column to be named
   # 'slug', but you can change it if you wish.
