@@ -27,6 +27,16 @@ RSpec.describe Course, type: :model do
     it { should validate_presence_of :name }
   end
 
+  context "friendly_id" do
+    it "should update the slug after updating the name" do
+      course = create(:course)
+      old_slug = course.slug
+      course.name = course.name+" un nombre random"
+      course.save
+      expect(course.slug).to eq("#{old_slug}-un-nombre-random")
+      expect(course.slug).to eq(course.friendly_id)
+    end
+  end
 
   it "has a valid factory" do
     expect(build(:course)).to be_valid

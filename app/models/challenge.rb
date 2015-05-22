@@ -27,7 +27,7 @@ class Challenge < ActiveRecord::Base
   ranks :row, with_same: :course_id
 
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :name
 
   enum evaluation_strategy: [:ruby_embedded, :phantomjs_embedded, :ruby_git, :rails_git, :sinatra_git]
 

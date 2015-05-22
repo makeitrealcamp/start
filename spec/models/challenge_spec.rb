@@ -31,6 +31,17 @@ RSpec.describe Challenge, type: :model do
     it { should have_many(:documents) }
   end
 
+  context "friendly_id" do
+    it "should update the slug after updating the name" do
+      challenge = create(:challenge)
+      old_slug = challenge.slug
+      challenge.name = challenge.name+" un nombre random"
+      challenge.save
+      expect(challenge.slug).to eq("#{old_slug}-un-nombre-random")
+      expect(challenge.slug).to eq(challenge.friendly_id)
+    end
+  end
+
   context 'validations ' do
     it { should validate_presence_of :name }
     it { should validate_presence_of :instructions}

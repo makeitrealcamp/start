@@ -19,7 +19,7 @@ class Course < ActiveRecord::Base
   ranks :row
 
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :name
 
   has_many :resources
   has_many :challenges
