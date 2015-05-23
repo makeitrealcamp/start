@@ -2,13 +2,14 @@
 
   .instructions {
     position: relative;
-    margin-bottom: 60px;
 
     .actions {
       position: absolute;
       top: 0px;
       right: 10px;
     }
+
+    .instructions-text { padding-bottom: 60px; }
 
     p, li {
       font-size: 18px;
