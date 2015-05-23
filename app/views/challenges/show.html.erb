@@ -6,7 +6,7 @@
       <%= link_to "<span class='glyphicon glyphicon-arrow-left'></span> Volver a #{@challenge.course.name}".html_safe, @challenge.course %>
       <h1><%= @challenge.name %></h1>
 
-      <%= markdown @challenge.instructions %>
+      <div class="instructions-text"><%= markdown @challenge.instructions %></div>
     </div>
 
     <div class="col-md-7 expand solution" data-solution-id="<%= @solution.id %>">
