@@ -1,5 +1,6 @@
 class LessonsController < ApplicationController
   before_action :private_access
+  before_action :admin_access, only: [:edit]
 
   # GET /courses/:course_id/resources/:resource_id/sections/:section_id/lessons/:id
   def show
@@ -11,6 +12,19 @@ class LessonsController < ApplicationController
     else
       flash[:error] = "Debes suscribirte para tener acceso a todas las lecciones"
       redirect_to course_resource_path(@lesson.resource.course,@lesson.resource)
+    end
+  end
+
+  def edit
+    @lesson = Lesson.find(params[:id])
+  end
+
+  def update
+    @lesson = Lesson.find(params[:id])
+    if @lesson && @lesson.update(lesson_params)
+      redirect_to course_resource_path(@lesson.resource.course, @lesson.resource), notice: "La Lección  <strong>#{@lesson.name}</strong> ha sido actualizado"
+    else
+      render :edit
     end
   end
 
@@ -33,7 +47,18 @@ class LessonsController < ApplicationController
     head :ok
   end
 
+
+  def destroy
+    @lesson = Lesson.find(params[:id])
+    @lesson.destroy
+  end
+
   private
+
+  def lesson_params
+    params.require(:lesson).permit(:name, :video_url, :description, :info)
+  end
+
     def next_path(lesson)
       next_lesson = lesson.next(current_user)
       if next_lesson

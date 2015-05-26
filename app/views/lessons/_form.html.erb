@@ -1,0 +1,37 @@
+<div class="container resource-form-page">
+  <div class="row">
+    <%= form_for  @lesson do |f| %>
+      <div class="col-sm-10 col-sm-offset-1">
+        <%= render 'shared/flash_messages_form', object: @lesson  %>
+
+        <h1><%= @lesson.new_record? ? "Nuevo Lección" : "Editar Lección" %></h1>
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+
+         <div class="form-group">
+          <%= f.label :video_url %>
+          <%= f.text_field :video_url, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :description %>
+          <%= f.text_area :description, rows: 2, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :info %>
+          <%= f.text_area :info, rows: 2, class: "form-control" %>
+        </div>
+
+
+        <div class="actions text-right">
+          <%= link_to "Cancelar", course_resource_path(@lesson.resource.course, @lesson.resource), class: "btn btn-default" %>
+          <%= f.submit class: "btn btn-primary"%>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+</div>
