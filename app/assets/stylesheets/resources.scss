@@ -90,6 +90,9 @@
   background-color: $btn-success-bg;
   color: white;
   font-weight: 600;
+  input{
+    color: #000;
+  }
 }
 .course-info {
   border-style: solid;
@@ -211,8 +214,8 @@
       @media (min-width: $screen-sm-min) { font-size: 18px; }
     }
 
-    .lesson-info { 
-      margin-top: 40px; 
+    .lesson-info {
+      margin-top: 40px;
     }
   }
 }

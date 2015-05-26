@@ -1,0 +1,5 @@
+var field = $('#section_<%= @section.id %>').find('.resource-section-title')
+
+<% if @section.valid? %>
+  field.html('<%= j render partial: "sections/section_title", locals: { section: @section, i: @index }  %>');
+<% end %>

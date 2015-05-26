@@ -1,0 +1,2 @@
+$('.sections').append(' <%= j render partial: "sections/section_row", locals: { resource: @resource, section: @section, i: @resource.sections.count - 1 } %>');
+$('#title').val('')

@@ -1,6 +1,6 @@
 class LessonsController < ApplicationController
   before_action :private_access
-  before_action :admin_access, only: [:edit]
+  before_action :admin_access, only: [:edit, :destroy]
 
   # GET /courses/:course_id/resources/:resource_id/sections/:section_id/lessons/:id
   def show

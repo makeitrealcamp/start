@@ -83,7 +83,10 @@ Rails.application.routes.draw do
   resources :resources, only: [:edit, :update, :destroy] do
     patch 'update_position', on: :member
     resource :completion, controller: 'resource_completion', only: [:create, :destroy]
+    resources :sections, only:[:create]
   end
+
+  resources :sections, only: [:destroy, :edit, :update]
 
   namespace :admin do
     get 'dashboard', to: 'dashboard#index'
