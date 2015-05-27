@@ -12,7 +12,7 @@ class ResourcesController < ApplicationController
     @resource = @course.resources.new(resource_params)
 
     if @resource.save
-      redirect_to @course
+      redirect_to course_resource_path(@resource.course, @resource)
     else
       render :new
     end
@@ -50,11 +50,6 @@ class ResourcesController < ApplicationController
    def resource_params
      params.require(:resource).permit(
       :title, :description, :type, :url, :content, :time_estimate, :published, :video_url,
-      sections_attributes: [
-        :title, :_destroy, :id, lessons_attributes: [
-          :name,:video_url, :description, :info, :row_position, :free_preview, :_destroy, :id
-        ]
-      ]
      )
    end
 

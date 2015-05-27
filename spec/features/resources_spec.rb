@@ -57,8 +57,9 @@ RSpec.feature "Resources", type: :feature do
           click_button  'Crear Resource'
         }.to change(Resource, :count).by 1
 
-        expect(Resource.last).not_to be_nil
-        expect(current_path).to eq course_path(course)
+        resource = Resource.last
+        expect(resource).not_to be_nil
+        expect(current_path).to eq course_resource_path(course, resource)
       end
 
       scenario "create resource without valid input" do
@@ -96,8 +97,9 @@ RSpec.feature "Resources", type: :feature do
           click_button  'Crear Resource'
         }.to change(Resource, :count).by 1
 
-        expect(Resource.last).not_to be_nil
-        expect(current_path).to eq course_path(course)
+        resource = Resource.last
+        expect(resource).not_to be_nil
+        expect(current_path).to eq course_resource_path(course, resource)
       end
 
       scenario "create resource without valid input", js: true do
@@ -157,7 +159,6 @@ RSpec.feature "Resources", type: :feature do
       expect(resource.description).to eq description
       expect(resource.url).to eq url
       expect(resource.type).to eq Resource.types.keys.first
-
       wait_for_ajax
       expect(current_path).to eq course_resource_path(course,resource)
     end
