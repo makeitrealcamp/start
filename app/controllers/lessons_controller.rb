@@ -1,6 +1,22 @@
 class LessonsController < ApplicationController
   before_action :private_access
-  before_action :admin_access, only: [:edit, :destroy]
+  before_action :admin_access, except: [:show, :update]
+
+  def new
+    @section = Section.find(params[:section_id])
+    @lesson = @section.lessons.new
+  end
+
+  def create
+    @section = Section.find(params[:section_id])
+    @lesson = @section.lessons.new(lesson_params)
+    if @lesson.save
+      redirect_to course_resource_path(@lesson.resource.course, @lesson.resource), notice: "La Lección  <strong>#{@lesson.name}</strong> ha sido creado"
+    else
+      render :new
+    end
+
+  end
 
   # GET /courses/:course_id/resources/:resource_id/sections/:section_id/lessons/:id
   def show

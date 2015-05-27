@@ -2,6 +2,16 @@
   <div href="#" class="list-group-item resource-section-title">
     <%= render partial: 'sections/section_title', locals: { section: section, i: i }  %>
   </div>
+
+  <% if current_user.is_admin? %>
+  <div class="row">
+    <div class="col-sm-12 text-center new-lesson-btn">
+      <%= link_to '<span class="glyphicon glyphicon-plus"></span> Nueva Lección'.html_safe, new_section_lesson_path(section), class: "btn btn-success" %>
+    </div>
+  </div>
+<% end %>
+
+
   <% if current_user.has_access_to?(resource) %>
     <% section.lessons.each_with_index do |lesson, j| %>
       <div class="lesson" id="lesson_<%=lesson.id %>" data-sortable="true" data-resource-id="<%= lesson.id %>">

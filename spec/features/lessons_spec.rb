@@ -11,69 +11,132 @@ RSpec.feature "Lessons", type: :feature do
 
   context 'when accessed as user' do
     scenario 'should not allow acess to edit lessons' do
-      resource = create(:resource, type: "course", content: Faker::Lorem.paragraph, course: course)
-      section = create(:section, resource: resource)
-      lesson = create(:lesson, section: section)
       login(user)
       expect { visit edit_lesson_path(lesson) }.to raise_error ActionController::RoutingError
+    end
+
+    scenario 'should not allow acess to create lessons' do
+      login(user)
+      expect { visit  new_section_lesson_path(section) }.to raise_error ActionController::RoutingError
     end
   end
 
   context 'when accessed as admin', js: true do
-    scenario 'display form edit lesson' do
-      login(admin)
-      visit course_resource_path(course, resource)
-      all(:css, '.lesson-actions a .glyphicon.glyphicon-pencil').first.click
-      sleep(1.0)
-      expect(current_path).to eq edit_lesson_path(lesson)
+
+    context 'create lesson' do
+      scenario 'display form' do
+        login(admin)
+        visit course_resource_path(course, resource)
+        click_link 'Nueva Lección'
+        sleep(1.0)
+        expect(current_path).to eq new_section_lesson_path(section)
+      end
+
+      scenario 'with valid input' do
+        login(admin)
+        visit course_resource_path(course, resource)
+        click_link 'Nueva Lección'
+        sleep(1.0)
+        name = Faker::Lorem.word
+        video_url = Faker::Internet.url
+        description = Faker::Lorem.paragraph
+        info = Faker::Lorem.paragraph
+        expect {
+          fill_in 'lesson_name', with: name
+          fill_in 'lesson_video_url', with: video_url
+          fill_in 'lesson_description', with: description
+          fill_in 'lesson_info', with: info
+          click_button 'Crear Lesson'
+        }.to change(Lesson, :count).by 1
+
+        lesson = section.lessons.last
+        expect(lesson.name).to eq name
+        expect(video_url).to eq video_url
+        expect(description).to eq description
+        expect(info).to eq info
+
+        expect(page).to have_selector('.lesson', count: 2)
+        expect(current_path).to eq course_resource_path(course, resource)
+      end
+
+      scenario 'without valid input' do
+        login(admin)
+        visit course_resource_path(course, resource)
+        click_link 'Nueva Lección'
+        sleep(1.0)
+        name = Faker::Lorem.word
+        video_url = Faker::Internet.url
+        description = Faker::Lorem.paragraph
+        info = Faker::Lorem.paragraph
+        expect {
+          fill_in 'lesson_name', with: nil
+          fill_in 'lesson_video_url', with: 'lorem'
+          fill_in 'lesson_description', with: description
+          fill_in 'lesson_info', with: info
+          click_button 'Crear Lesson'
+        }.not_to change(Lesson, :count)
+
+        expect(page).to have_selector '.panel-danger'
+        expect(current_path).to eq section_lessons_path(section)
+      end
     end
 
-    scenario 'when click on cancel button' do
-      login(admin)
-      visit course_resource_path(course, resource)
-      all(:css, '.lesson-actions a .glyphicon.glyphicon-pencil').first.click
-      sleep(1.0)
-      click_link 'Cancelar'
-      sleep(1.0)
-      expect(current_path).to eq course_resource_path(course, resource)
-    end
+    context 'update lesson' do
+      scenario 'display form' do
+        login(admin)
+        visit course_resource_path(course, resource)
+        all(:css, '.lesson-actions a .glyphicon.glyphicon-pencil').first.click
+        sleep(1.0)
+        expect(current_path).to eq edit_lesson_path(lesson)
+      end
 
-    scenario 'update form with valid input' do
-      login(admin)
-      visit edit_lesson_path(lesson)
-      name = Faker::Lorem.word
-      video_url = Faker::Internet.url
-      description = Faker::Lorem.paragraph
-      info = Faker::Lorem.paragraph
+      scenario 'when click on cancel button' do
+        login(admin)
+        visit course_resource_path(course, resource)
+        all(:css, '.lesson-actions a .glyphicon.glyphicon-pencil').first.click
+        sleep(1.0)
+        click_link 'Cancelar'
+        sleep(1.0)
+        expect(current_path).to eq course_resource_path(course, resource)
+      end
 
-      fill_in 'lesson_name', with: name
-      fill_in 'lesson_video_url', with: video_url
-      fill_in 'lesson_description', with: description
-      fill_in 'lesson_info', with: info
-      click_button 'Actualizar Lesson'
+      scenario 'update form with valid input' do
+        login(admin)
+        visit edit_lesson_path(lesson)
+        name = Faker::Lorem.word
+        video_url = Faker::Internet.url
+        description = Faker::Lorem.paragraph
+        info = Faker::Lorem.paragraph
 
-      lesson.reload
-      expect(lesson.name).to eq name
-      expect(video_url).to eq video_url
-      expect(description).to eq description
-      expect(info).to eq info
-      expect(current_path).to eq course_resource_path(course, resource)
-    end
+        fill_in 'lesson_name', with: name
+        fill_in 'lesson_video_url', with: video_url
+        fill_in 'lesson_description', with: description
+        fill_in 'lesson_info', with: info
+        click_button 'Actualizar Lesson'
 
-    scenario 'update form without valid input' do
-      login(admin)
-      visit edit_lesson_path(lesson)
-      video_url = Faker::Internet.url
-      description = Faker::Lorem.paragraph
-      info = Faker::Lorem.paragraph
+        lesson.reload
+        expect(lesson.name).to eq name
+        expect(video_url).to eq video_url
+        expect(description).to eq description
+        expect(info).to eq info
+        expect(current_path).to eq course_resource_path(course, resource)
+      end
 
-      fill_in 'lesson_name', with: nil
-      fill_in 'lesson_video_url', with: video_url
-      fill_in 'lesson_description', with: description
-      fill_in 'lesson_info', with: info
-      click_button 'Actualizar Lesson'
+      scenario 'update form without valid input' do
+        login(admin)
+        visit edit_lesson_path(lesson)
+        video_url = Faker::Internet.url
+        description = Faker::Lorem.paragraph
+        info = Faker::Lorem.paragraph
 
-      expect(page).to have_selector '.panel-danger'
+        fill_in 'lesson_name', with: nil
+        fill_in 'lesson_video_url', with: video_url
+        fill_in 'lesson_description', with: description
+        fill_in 'lesson_info', with: info
+        click_button 'Actualizar Lesson'
+
+        expect(page).to have_selector '.panel-danger'
+      end
     end
 
     scenario 'delete lesson' do

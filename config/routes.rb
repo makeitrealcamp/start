@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :lessons, except: [:all] do
+  resources :lessons, except: [:new, :create] do
     patch 'update_position', on: :member
   end
 
@@ -86,7 +86,9 @@ Rails.application.routes.draw do
     resources :sections, only:[:create]
   end
 
-  resources :sections, only: [:destroy, :edit, :update]
+  resources :sections, only: [:destroy, :edit, :update] do
+    resources :lessons, only: [:new, :create]
+  end
 
   namespace :admin do
     get 'dashboard', to: 'dashboard#index'
