@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     if @project.update(project_params)
-      redirect_to @project.course, anchor: "projects"
+      redirect_to course_project_path(@project.course,@project), anchor: "projects", notice: "Proyecto actualizado"
     else
       render :edit
     end
