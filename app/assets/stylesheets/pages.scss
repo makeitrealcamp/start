@@ -85,11 +85,14 @@
 }
 
 .handbook {
+  color: #303030;
   margin-bottom: 60px;
 
   h1 {
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 40px;
+
+    @media (min-width: $screen-sm-min) { margin-bottom: 80px; }
   }
 
   h2 {
@@ -98,7 +101,8 @@
     margin-bottom: 30px;
     padding-bottom: 10px;
     border-bottom: 1px solid #ccc;
-    @media (min-width: $screen-sm-min) { font-size: 28px; font-weight: 600; }
+
+    @media (min-width: $screen-sm-min) { font-size: 28px; }
   }
 
   h3 {
@@ -109,16 +113,24 @@
     @media (min-width: $screen-sm-min) { font-size: 24px; font-weight: 600; }
   }
 
-  p, ol, ul {
-    color: #303030;
-    line-height: 1.7;
-    font-weight: 300;
-    margin-bottom: 21px;
+  blockquote p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
 
-    @media (min-width: $screen-sm-min) { font-size: 18px; }
+  p, ol, ul {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.7;
+    
+    @media (min-width: $screen-sm-min) { 
+      font-size: 18px;
+      margin-bottom: 36px;
+    }
     @media (min-width: $screen-md-min) { font-size: 21px; }
 
-    strong { font-weight: 600; }
+    strong { font-weight: normal; }
   }
 
   ol li { margin-bottom: 15px; }
