@@ -159,7 +159,7 @@ RSpec.feature "Resources", type: :feature do
       expect(resource.type).to eq Resource.types.keys.first
 
       wait_for_ajax
-      expect(current_path).to eq course_path(course)
+      expect(current_path).to eq course_resource_path(course,resource)
     end
 
     scenario "edit resource without invalid input", js: true do
