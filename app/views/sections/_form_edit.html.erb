@@ -1,9 +1,0 @@
-<%= form_tag @section, method: :put, remote: true, class: 'form-inline form-edit-section', remote: true do %>
-  <div class="form-group">
-    <%= text_field_tag :title, @section.title, class: 'form-control', placeholder:"Digite el titulo de la sección" %>
-    <%= hidden_field_tag :index, @index %>
-  </div>
-    <%= submit_tag "Guardar", class: "btn btn-primary" %>
-    <%= submit_tag "Cancelar", class: "btn btn-default" %>
-
-<% end %>

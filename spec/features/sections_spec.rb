@@ -10,7 +10,83 @@ RSpec.feature "Sections", type: :feature do
   let!(:lesson) { create(:lesson, section: section) }
 
   context 'when accessed as admin' do
-    scenario 'delete lesson', js: true do
+    context 'new section', js: true do
+      scenario 'display modal form' do
+        login(admin)
+        visit course_resource_path(course, resource)
+        click_link 'Nueva Sección'
+        wait_for_ajax
+        expect(page).to have_selector '.modal-dialog'
+        expect(page).to have_selector 'input#section_title'
+      end
+
+      scenario 'with valid input' do
+        login(admin)
+        visit course_resource_path(course, resource)
+        click_link 'Nueva Sección'
+        wait_for_ajax
+        title = Faker::Name.title
+        find(:css, '.modal-dialog input#section_title').set(title)
+        click_button 'Crear Section'
+        wait_for_ajax
+        section = resource.sections.last
+        expect(section).not_to be nil
+        expect(section.title).to eq title
+        expect(page).not_to have_selector '.modal-dialog'
+        expect(page).to have_selector('.sections .lessons', count: 2)
+      end
+
+      scenario 'without valid input' do
+        login(admin)
+        visit course_resource_path(course, resource)
+        click_link 'Nueva Sección'
+        wait_for_ajax
+        click_button 'Crear Section'
+        wait_for_ajax
+        expect(page).to have_selector '.modal-dialog'
+        expect(page).to have_selector '.alert'
+        expect(page).to have_selector('.sections .lessons', count: 1)
+      end
+    end
+
+    context 'edit Section', js: true do
+      scenario 'display form'  do
+        login(admin)
+        visit course_resource_path(course, resource)
+        all(:css, '.resource-section-title a .glyphicon.glyphicon-pencil').first.click
+        sleep(1.0)
+        expect(page).to have_selector '.modal-dialog'
+        expect(page).to have_selector 'input#section_title'
+      end
+
+      scenario 'with valid input'  do
+        login(admin)
+        visit course_resource_path(course, resource)
+        all(:css, '.resource-section-title a .glyphicon.glyphicon-pencil').first.click
+        wait_for_ajax
+        title = Faker::Name.title
+        find(:css, '.modal-dialog input#section_title').set(title)
+        click_button 'Actualizar Section'
+        wait_for_ajax
+        section.reload
+        expect(section.title).to eq title
+        expect(page).not_to have_selector '.modal-dialog'
+      end
+
+      scenario 'without valid input'  do
+        login(admin)
+        visit course_resource_path(course, resource)
+        all(:css, '.resource-section-title a .glyphicon.glyphicon-pencil').first.click
+        wait_for_ajax
+        find(:css, '.modal-dialog input#section_title').set('')
+        click_button 'Actualizar Section'
+        wait_for_ajax
+        expect(page).to have_selector '.modal-dialog'
+        expect(page).to have_selector '.alert'
+      end
+    end
+
+    scenario 'delete section', js: true do
       login(admin)
       visit course_resource_path(course, resource)
       all(:css, '.resource-section-title a .glyphicon.glyphicon-remove').first.click
@@ -19,48 +95,6 @@ RSpec.feature "Sections", type: :feature do
       expect(resource.sections.count).to eq 0
       expect(Lesson.count).to eq 0
       expect(page).to have_selector('.sections .lessons', count: 0)
-    end
-
-    context 'when edit Section', js: true do
-      scenario 'display form'  do
-        login(admin)
-        visit course_resource_path(course, resource)
-        all(:css, '.resource-section-title a .glyphicon.glyphicon-pencil').first.click
-        sleep(1.0)
-        expect(page).to have_selector '.form-edit-section'
-      end
-
-      scenario 'when click on cancel button'  do
-        login(admin)
-        visit course_resource_path(course, resource)
-        all(:css, '.resource-section-title a .glyphicon.glyphicon-pencil').first.click
-        click_button 'Cancelar'
-        sleep(1.0)
-        expect(page).not_to have_selector '.form-edit-section'
-      end
-
-      scenario 'update section with valid input'  do
-        login(admin)
-        visit course_resource_path(course, resource)
-        all(:css, '.resource-section-title a .glyphicon.glyphicon-pencil').first.click
-        title = Faker::Lorem.word
-        find(:css, '.form-edit-section input#title').set(title)
-        click_button 'Guardar'
-        wait_for_ajax
-        section.reload
-        expect(section.title).to eq title
-        expect(page).not_to have_selector '.form-edit-section'
-      end
-
-       scenario 'update section without valid input'  do
-        login(admin)
-        visit course_resource_path(course, resource)
-        all(:css, '.resource-section-title a .glyphicon.glyphicon-pencil').first.click
-        find(:css, '.form-edit-section input#title').set('')
-        click_button 'Guardar'
-        wait_for_ajax
-        expect(page).to have_selector '.form-edit-section'
-      end
     end
   end
 end

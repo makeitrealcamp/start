@@ -11,23 +11,19 @@
 
   <p><%= resource.description %></p>
   <div class="sections">
+
+    <% if current_user.is_admin? %>
+      <div class="row">
+        <div class="col-sm-12 text-center new-lesson-btn">
+          <%= link_to '<span class="glyphicon glyphicon-plus"></span> Nueva Sección'.html_safe, new_resource_section_path(resource), remote: true, class: "btn btn-success" %>
+        </div>
+      </div>
+    <% end %>
+
     <% resource.sections.each_with_index do |section, i| %>
       <%= render partial: 'sections/section_row', locals: { resource: resource, section: section, i: i } %>
     <% end %>
   </div>
-  </a>
-
-  <%if current_user.is_admin? %>
-    <%= form_tag resource_sections_path(resource), class: 'form-inline', remote: true do %>
-     <h2>Nueva Sección</h2>
-      <div class="form-group">
-        <label>Titulo</label>
-        <%= text_field_tag :title, nil, class: "form-control"  %>
-      </div>
-
-      <button type="submit" class="btn btn-primary">Crear Sección</button>
-    <% end %>
-  <% end %>
 </div>
 
 <div class="col-sm-6 col-md-4">

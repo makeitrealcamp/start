@@ -63,6 +63,10 @@
     display: inline-block;
     max-width: 90%;
   }
+
+  .section-actions{
+    float: right;
+  }
   .lessons {
     .lessons-label {
       margin-left: 30px;
@@ -90,9 +94,6 @@
   background-color: $btn-success-bg;
   color: white;
   font-weight: 600;
-  input{
-    color: #000;
-  }
 }
 .course-info {
   border-style: solid;

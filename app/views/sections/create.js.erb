@@ -1,2 +1,6 @@
-$('.sections').append(' <%= j render partial: "sections/section_row", locals: { resource: @resource, section: @section, i: @resource.sections.count - 1 } %>');
-$('#title').val('')
+<% if @section.errors.empty? %>
+  $('.sections').append(' <%= j render partial: "sections/section_row", locals: { resource: @resource, section: @section, i: @resource.sections.count - 1 } %>');
+  $('#new-section-modal').modal('hide');
+<% else %>
+  $('.alert').html('<%= @section.errors.full_messages[0] %>').show();
+<%end %>

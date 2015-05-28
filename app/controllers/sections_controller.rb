@@ -1,10 +1,14 @@
 class SectionsController < ApplicationController
   before_action :admin_access, only: [:create, :update, :destroy]
 
+  def new
+    @resource = Resource.friendly.find(params[:resource_id])
+    @section = @resource.sections.new
+  end
 
   def create
     @resource = Resource.friendly.find(params[:resource_id])
-    @section = @resource.sections.create(title: params[:title])
+    @section = @resource.sections.create(section_params)
   end
 
   def destroy
@@ -19,9 +23,13 @@ class SectionsController < ApplicationController
 
   def update
     @section = Section.find(params[:id])
-    if params[:commit] == "Guardar"
-      @section.update(title: params[:title])
-      @index = params[:index]
-    end
+    @section.update(section_params)
+    @index = params[:index]
   end
+
+  private
+
+   def section_params
+    params.require(:section).permit(:title)
+   end
 end
