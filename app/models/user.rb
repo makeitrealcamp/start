@@ -136,6 +136,12 @@ class User < ActiveRecord::Base
     self.subscriptions.active.first
   end
 
+  def reset_solution(challenge)
+    solution = solutions.where(challenge_id: challenge.id).take
+    solution.destroy
+    solution = solutions.new(challenge_id: challenge.id)
+  end
+
   private
     def default_values
       self.roles ||= ["user"]

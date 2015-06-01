@@ -68,6 +68,7 @@ Rails.application.routes.draw do
     put 'update_documents', on: :member
     post 'submit', on: :member
     get  'preview/:file', action: 'preview', on: :member, constraints: { file: /[0-z\.]+/ }, as: :preview
+    delete 'reset', on: :member
   end
 
   get 'dashboard', to: redirect("/courses", status: 301)

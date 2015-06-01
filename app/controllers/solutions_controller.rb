@@ -31,6 +31,13 @@ class SolutionsController < ApplicationController
     end
   end
 
+  #DELETE /solutions/:id/reset
+  def reset
+    challenge = Challenge.friendly.find(params[:id])
+    solution = current_user.reset_solution(challenge)
+    redirect_to  course_challenge_path(challenge.course, challenge)
+  end
+
   private
     def update_solution_without_versioning(solution)
       solution.without_versioning do
