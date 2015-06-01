@@ -1,0 +1,13 @@
+<div class="container hello-page">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <% if params[:nombre] %>
+        <h1 class="text-center">¡Hola <%= params[:nombre] %>!</h1>
+        
+        <%= markdown @content %>
+      <% else %>
+        <div class="alert alert-danger">Maker, se esperaba que el formulario enviara el <strong>nombre</strong>.</div>
+      <% end %>
+    </div>
+  </div>
+</div>

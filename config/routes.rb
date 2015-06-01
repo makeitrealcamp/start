@@ -90,4 +90,7 @@ Rails.application.routes.draw do
     resources :solutions, only: [:index]
     resources :comments, only: [:index, :destroy]
   end
+
+  # routes to evaluate forms
+  match 'forms/hello', to: 'forms#hello', via: [:get, :post]
 end
