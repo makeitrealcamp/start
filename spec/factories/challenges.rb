@@ -22,7 +22,7 @@
 
 FactoryGirl.define do
   factory :challenge do
-    name {Faker::Name.title}
-    instructions {Faker::Lorem.paragraph}
+    name { Faker::Name.title }
+    instructions { Faker::Lorem.paragraph }
   end
 end
