@@ -1,6 +1,6 @@
 class ChallengesController < ApplicationController
   before_action :private_access
-  before_action :admin_access, except:[:show, :discussion]
+  before_action :admin_access, except:[:show, :discussion, :accept]
 
   def new
     course = Course.friendly.find(params[:course_id])
@@ -28,11 +28,12 @@ class ChallengesController < ApplicationController
 
   def show
     @challenge = Challenge.friendly.find(params[:id])
+
     if @challenge.restricted? && current_user.free_account?
       return raise ActionController::RoutingError.new('Not Found')
     end
 
-    @solution = find_or_create_solution
+    @solution = find_solution
   end
 
   def discussion

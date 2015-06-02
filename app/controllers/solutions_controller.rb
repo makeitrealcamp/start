@@ -1,6 +1,12 @@
 class SolutionsController < ApplicationController
   before_action :private_access, except: [:preview] # we need the preview action to be public for evaluation
 
+  def create
+    @challenge = Challenge.friendly.find(params[:challenge_id])
+    current_user.solutions.create(challenge: @challenge)
+    redirect_to course_challenge_path(@challenge.course, @challenge)
+  end
+
   def show
     @solution = Solution.find(params[:id])
     render json: @solution.to_json

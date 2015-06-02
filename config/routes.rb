@@ -54,6 +54,7 @@ Rails.application.routes.draw do
 
   resources :challenges, only:[] do
     patch 'update_position', on: :member
+    resources :solutions, only: [:create]
   end
 
   scope "/:commentable_resource" do
