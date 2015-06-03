@@ -25,9 +25,8 @@ Rails.application.routes.draw do
     patch 'update_position', on: :member
 
     resources :challenges, except: [:index, :destroy] do
-      member do
-        get :discussion
-      end
+      get :discussion, on: :member
+      resources :solutions, only: [:create]
     end
 
     resources :projects, except: [:index] do
@@ -54,7 +53,6 @@ Rails.application.routes.draw do
 
   resources :challenges, only:[] do
     patch 'update_position', on: :member
-    resources :solutions, only: [:create]
   end
 
   scope "/:commentable_resource" do

@@ -1,19 +1,25 @@
 <div class="container-fluid expand challenge-page">
   <div class="row expand">
-    <div class=" <%=  @solution.blank? ? 'col-sm-6 col-sm-offset-3' : 'col-md-5' %> expand overflow instructions">
+    <div class="col-md-5 expand overflow instructions">
       <%= render '/shared/challenge_actions', challenge: @challenge %>
 
       <%= link_to "<span class='glyphicon glyphicon-arrow-left'></span> Volver a #{@challenge.course.name}".html_safe, @challenge.course %>
       <h1><%= @challenge.name %></h1>
 
       <div class="instructions-text"><%= markdown @challenge.instructions %></div>
-
-      <% if @solution.blank? %>
-        <%= link_to 'Acepto el Reto',challenge_solutions_path(@challenge),  method: :post, class: "btn btn-primary btn-lg" %>
-      <% end %>
     </div>
 
-    <% unless @solution.blank? %>
+    <% if @solution.blank? %>
+      <div class="col-md-7">
+        <div class="accept-text">
+          ¿Aceptas trabajar en este reto?
+        </div>
+        <div class="text-center">
+          <%= link_to '¡Sí, empezar a trabajar!', course_challenge_solutions_path(@challenge.course, @challenge),  method: :post, class: "btn btn-primary" %>
+          <a href="http://procatinator.com/" class="btn btn-default">No, volver mi zona de confort</a>
+        </div>
+      </div>
+    <% else %>
       <div class="col-md-7 expand solution" data-solution-id="<%= @solution.id %>">
         <%= form_tag submit_solution_path(@solution.id), id: 'submit-solution', class: 'expand', remote: true do %>
           <% if @challenge.ruby_embedded? || @challenge.phantomjs_embedded? %>

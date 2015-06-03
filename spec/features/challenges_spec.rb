@@ -55,17 +55,14 @@ RSpec.feature "Challenges", type: :feature do
     scenario 'when have not accepted the challenge' do
       login(user_paid)
       visit course_challenge_path(course, challenge)
-      expect(page).to have_selector '.col-sm-offset-3'
-      expect(page).to have_link 'Acepto el Reto'
+      expect(page).to have_link '¡Sí, empezar a trabajar!'
     end
 
     scenario 'when accept challenge', js: true do
       login(user_paid)
       visit course_challenge_path(course, challenge)
-      click_link 'Acepto el Reto'
-      expect(page).not_to have_selector '.col-sm-offset-3'
-      expect(page).to have_selector '.col-md-5'
-      expect(page).not_to have_link 'Acepto el Reto'
+      click_link '¡Sí, empezar a trabajar!'
+      expect(page).not_to have_link '¡Sí, empezar a trabajar!'
       solution = user_paid.solutions.where(challenge_id: challenge.id).take
       expect(solution)
     end
