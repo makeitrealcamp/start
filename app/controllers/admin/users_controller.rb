@@ -33,6 +33,7 @@ class Admin::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @courses = Course.all
+    @resources = @user.resources.group_by(&:course)
   end
 
   protected
