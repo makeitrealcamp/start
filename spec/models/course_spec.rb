@@ -31,9 +31,9 @@ RSpec.describe Course, type: :model do
     it "should update the slug after updating the name" do
       course = create(:course)
       old_slug = course.slug
-      course.name = course.name+" un nombre random"
+      course.name = "un nombre random"
       course.save
-      expect(course.slug).to eq("#{old_slug}-un-nombre-random")
+      expect(course.slug).to eq("un-nombre-random")
       expect(course.slug).to eq(course.friendly_id)
     end
   end

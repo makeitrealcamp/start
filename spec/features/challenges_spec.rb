@@ -41,12 +41,30 @@ RSpec.feature "Challenges", type: :feature do
   end
 
   scenario 'reset solution', js: true do
+    create(:solution, user: user_paid, challenge: challenge)
     login(user_paid)
     visit course_challenge_path(course, challenge)
     find('.nav-tabs .dropdown-toggle').click
-    click_link 'Resetear solución'
+    click_link 'Reiniciar Reto'
     page.driver.browser.switch_to.alert.accept
     wait_for_ajax
     course_challenge_path(course, challenge)
+  end
+
+  context 'accept challenge' do
+    scenario 'when have not accepted the challenge' do
+      login(user_paid)
+      visit course_challenge_path(course, challenge)
+      expect(page).to have_link '¡Sí, empezar a trabajar!'
+    end
+
+    scenario 'when accept challenge', js: true do
+      login(user_paid)
+      visit course_challenge_path(course, challenge)
+      click_link '¡Sí, empezar a trabajar!'
+      expect(page).not_to have_link '¡Sí, empezar a trabajar!'
+      solution = user_paid.solutions.where(challenge_id: challenge.id).take
+      expect(solution)
+    end
   end
 end

@@ -25,9 +25,8 @@ Rails.application.routes.draw do
     patch 'update_position', on: :member
 
     resources :challenges, except: [:index, :destroy] do
-      member do
-        get :discussion
-      end
+      get :discussion, on: :member
+      resources :solutions, only: [:create]
     end
 
     resources :projects, except: [:index] do

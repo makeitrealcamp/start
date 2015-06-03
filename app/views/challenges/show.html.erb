@@ -9,30 +9,42 @@
       <div class="instructions-text"><%= markdown @challenge.instructions %></div>
     </div>
 
-    <div class="col-md-7 expand solution" data-solution-id="<%= @solution.id %>">
-      <%= form_tag submit_solution_path(@solution.id), id: 'submit-solution', class: 'expand', remote: true do %>
-        <% if @challenge.ruby_embedded? || @challenge.phantomjs_embedded? %>
-          <%= render 'embedded_files' %>
-        <% elsif @challenge.ruby_git_pr? %>
-          <%= render 'github_pr' %>
-        <% else %>
-          <%= render 'github_repo' %>
-        <% end %>
-
-        <!-- preview and submit button -->
-        <div class="solution-buttons">
-          <div style="float: left;">
-            <% if  current_user.is_admin? || @solution.completed_at.present? %>
-              <%= link_to "<span class='glyphicon glyphicon-blackboard'></span> Ir a la discusión".html_safe, discussion_course_challenge_path(@challenge.course, @challenge), class: "btn btn-success" %>
-            <% end %>
-          </div>
-          <div class="text-right">
-            <% if @challenge.preview? %><a href="#" class="btn btn-default btn-preview" target="_blank">Preview</a><% end %>
-            <%= submit_tag "Evaluar Solución", class: "btn btn-primary" %>
-          </div>
+    <% if @solution.blank? %>
+      <div class="col-md-7">
+        <div class="accept-text">
+          ¿Aceptas trabajar en este reto?
         </div>
-      <% end %>
-    </div>
+        <div class="text-center">
+          <%= link_to '¡Sí, empezar a trabajar!', course_challenge_solutions_path(@challenge.course, @challenge),  method: :post, class: "btn btn-primary" %>
+          <a href="http://procatinator.com/" class="btn btn-default">No, volver mi zona de confort</a>
+        </div>
+      </div>
+    <% else %>
+      <div class="col-md-7 expand solution" data-solution-id="<%= @solution.id %>">
+        <%= form_tag submit_solution_path(@solution.id), id: 'submit-solution', class: 'expand', remote: true do %>
+          <% if @challenge.ruby_embedded? || @challenge.phantomjs_embedded? %>
+            <%= render 'embedded_files' %>
+          <% elsif @challenge.ruby_git_pr? %>
+            <%= render 'github_pr' %>
+          <% else %>
+            <%= render 'github_repo' %>
+          <% end %>
+
+          <!-- preview and submit button -->
+          <div class="solution-buttons">
+            <div style="float: left;">
+              <% if  current_user.is_admin? || @solution.completed_at.present? %>
+                <%= link_to "<span class='glyphicon glyphicon-blackboard'></span> Ir a la discusión".html_safe, discussion_course_challenge_path(@challenge.course, @challenge), class: "btn btn-success" %>
+              <% end %>
+            </div>
+            <div class="text-right">
+              <% if @challenge.preview? %><a href="#" class="btn btn-default btn-preview" target="_blank">Preview</a><% end %>
+              <%= submit_tag "Evaluar Solución", class: "btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
 
