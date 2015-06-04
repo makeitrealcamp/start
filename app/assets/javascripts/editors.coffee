@@ -27,4 +27,7 @@ class Editors
   remove: (id) ->
     delete @_editors[id]
 
+  refresh: =>
+    editor.refresh() for own _, editor of @_editors
+
 window.editors = new Editors()

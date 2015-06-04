@@ -90,6 +90,9 @@
     var instructionsView = new InstructionsView();
     var solutionView = new SolutionView();
 
+    // refresh editors when tab changes
+    $('a[data-toggle="tab"]').on('shown.bs.tab', editors.refresh);
+
     $(document).on("page:before-change", function() {
       instructionsView.remove();
       solutionView.remove();
