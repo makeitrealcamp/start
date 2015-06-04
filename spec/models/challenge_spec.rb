@@ -15,9 +15,9 @@
 #  evaluation_strategy :integer
 #  solution_video_url  :string
 #  solution_text       :text
-#  restricted          :boolean          default(FALSE)
-#  preview             :boolean          default(FALSE)
-#  pair_programming    :boolean          default(FALSE)
+#  restricted          :boolean          default("false")
+#  preview             :boolean          default("false")
+#  pair_programming    :boolean          default("false")
 #
 
 require 'rails_helper'

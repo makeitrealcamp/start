@@ -51,7 +51,7 @@
           <td class="text-center"><%= l user.created_at, format: '%d %b %Y' %></td>
           <td class="text-center"><%= distance_of_time_in_words_to_now(user.last_active_at) unless user.last_active_at.nil? %></td>
           <td class="text-center"><%= user.solutions.completed.count %></td>
-          <td class="text-center"><%= user.resources.count %></td>
+          <td class="text-center"><%= user.resource_completions.count %></td>
           <td class="text-right"><%= link_to "Show", admin_user_path(user) %></td>
         </tr>
         <% end %>

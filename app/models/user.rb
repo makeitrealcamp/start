@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   has_many :lesson_completions
   has_many :subscriptions
   has_many :project_solutions
-  has_and_belongs_to_many :resources
+  has_many :resource_completions, dependent: :delete_all
 
   hstore_accessor :profile,
     first_name: :string,
@@ -92,7 +92,12 @@ class User < ActiveRecord::Base
   end
 
   def completed_resources(course)
-    self.resources.published.where(course_id: course.id)
+    self.resource_completions.joins(:resource).where('resources.course_id = ?', course.id)
+  end
+
+  def resource_completed_at(resource)
+    complete = resource_completions.where(resource_id: resource).take
+    complete.created_at
   end
 
   def completed_challenges(course)

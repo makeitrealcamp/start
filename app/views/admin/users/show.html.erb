@@ -79,7 +79,7 @@
               <% resources.each do |resource| %>
                 <tr>
                   <td><%= resource.title %></td>
-                  <td class="text-center"><%= l(resource.created_at, format: '%d %h, %Y %H:%M') %></td>
+                  <td class="text-center"><%= l(current_user.resource_completed_at(resource), format: '%d %h, %Y %H:%M') %></td>
                 </tr>
               <% end %>
             </table>
@@ -101,7 +101,7 @@
         </div>
         <div class="col-xs-6">
           <div class="work-box">
-            <div class="work-value"><%= @user.resources.published.count %></div>
+            <div class="work-value"><%= @user.resource_completions.count %></div>
             <div class="work-label">Recursos</div>
           </div>
         </div>

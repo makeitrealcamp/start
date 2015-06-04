@@ -28,7 +28,7 @@ module CoursesHelper
   def link_to_toggle_completed(resource)
     css_class = ""
     method = :post
-    if resource.users.include?(current_user)
+    unless resource.resource_completions.where(user: current_user).blank?
       css_class = "completed"
       method = :delete
     end
