@@ -2,7 +2,7 @@
 <ul class="nav nav-tabs" role="tablist">
   <% @solution.documents.each_with_index do |document, index| %>
     <li class='<%= "active" if index == 0 %> file-tab'>
-      <a href="#file-<%= document.id %>" role="tab" data-toggle="tab"><span class="name"><%= document.name %></span></a>
+      <a href="#editor-<%= document.id %>" role="tab" data-toggle="tab"><span class="name"><%= document.name %></span></a>
     </li>
   <% end %>
     <li class="pull-right dropdown">
