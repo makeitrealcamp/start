@@ -12,6 +12,7 @@ class CoursesController < ApplicationController
   def index
     @quote = QUOTES.sample
     @courses = Course.for(current_user)
+    @courses_by_phase = @courses.group_by(&:phase)
   end
 
   def show
@@ -53,6 +54,7 @@ class CoursesController < ApplicationController
 
   private
     def course_params
-      params.require(:course).permit(:name, :description, :excerpt, :abstract, :time_estimate, :published, :visibility)
+      params.require(:course).permit(:name, :description, :excerpt, :abstract,
+        :time_estimate, :published, :visibility, :phase)
     end
 end
