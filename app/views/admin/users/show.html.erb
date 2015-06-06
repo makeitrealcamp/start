@@ -70,19 +70,23 @@
           <hr>
           <h3>Recursos completados</h3>
           <% @resources.each do |course, resources| %>
-            <span><%= course.name %></span>
-            <table class="table table-bordered">
-              <tr>
-                <th>Recurso</th>
-                <th class="text-center">Completado</th>
-              </tr>
-              <% resources.each do |resource| %>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title"><%= course.name %></h4>
+              </div>
+              <table class="table">
                 <tr>
-                  <td><%= resource.title %></td>
-                  <td class="text-center"><%= l(current_user.resource_completed_at(resource), format: '%d %h, %Y %H:%M') %></td>
+                  <th>Recurso</th>
+                  <th class="text-center">Completado</th>
                 </tr>
-              <% end %>
-            </table>
+                <% resources.each do |resource| %>
+                  <tr>
+                    <td><%= resource.title %></td>
+                    <td class="text-center"><%= l(@user.resource_completed_at(resource), format: '%d %h, %Y %H:%M') %></td>
+                  </tr>
+                <% end %>
+              </table>
+            </div>
           <% end %>
         </div>
       </div>
