@@ -28,7 +28,7 @@ RSpec.describe Resource, type: :model do
 
   context 'associations' do
     it { should belong_to(:course) }
-    it { should  have_and_belong_to_many(:users)}
+    it { should have_many(:resource_completions) }
   end
 
   context "friendly_id" do

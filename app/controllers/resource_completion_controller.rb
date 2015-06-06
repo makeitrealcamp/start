@@ -3,8 +3,8 @@ class ResourceCompletionController < ApplicationController
 
   def create
     @resource = Resource.friendly.find(params[:resource_id])
-    unless @resource.users.include? current_user
-      @resource.users << current_user
+    if @resource.resource_completions.where(user: current_user).blank?
+      @resource.resource_completions.create(user_id: current_user.id)
     end
 
     respond_to do |format|
@@ -15,14 +15,14 @@ class ResourceCompletionController < ApplicationController
 
   def destroy
     @resource = Resource.friendly.find(params[:resource_id])
-    @resource.users.delete(current_user)
+    ResourceCompletion.where(resource_id: @resource.id, user_id: current_user.id).delete_all
   end
 
   private
     def next_path(resource)
       course = resource.course
       if current_user.finished?(course) && resource.last?
-        next_course = course.next 
+        next_course = course.next
         if next_course
           if current_user.progress(next_course) == 0
             flash[:notice] = "<strong>¡Felicitaciones!</strong> Has terminado #{course.name}. Esta aventura continúa con #{next_course.name}"

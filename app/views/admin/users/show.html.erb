@@ -64,6 +64,31 @@
           </table>
         </div>
       </div>
+
+       <div class="row resources">
+        <div class="col-sm-12">
+          <hr>
+          <h3>Recursos completados</h3>
+          <% @resources.each do |course, resources| %>
+            <span><%= course.name %></span>
+            <table class="table table-bordered">
+              <tr>
+                <th>Recurso</th>
+                <th class="text-center">Completado</th>
+              </tr>
+              <% resources.each do |resource| %>
+                <tr>
+                  <td><%= resource.title %></td>
+                  <td class="text-center"><%= l(current_user.resource_completed_at(resource), format: '%d %h, %Y %H:%M') %></td>
+                </tr>
+              <% end %>
+            </table>
+          <% end %>
+        </div>
+      </div>
+
+
+
     </div>
 
     <div class="col-sm-3">
@@ -76,7 +101,7 @@
         </div>
         <div class="col-xs-6">
           <div class="work-box">
-            <div class="work-value"><%= @user.resources.published.count %></div>
+            <div class="work-value"><%= @user.resource_completions.count %></div>
             <div class="work-label">Recursos</div>
           </div>
         </div>
