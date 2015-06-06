@@ -11,6 +11,11 @@
     margin-bottom: 60px;
   }
 
+  h2 {
+    margin-top: 40px;
+    margin-bottom: 21px;
+  }
+
   p, ul {
     font-size: 18px;
     font-weight: 300;
@@ -35,6 +40,12 @@
 
   .back {
     margin-top: 40px;
+  }
+
+  img {
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 10px;
   }
 }
 
