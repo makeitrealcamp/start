@@ -3,23 +3,43 @@ class PhantomEvaluator < Evaluator
   def evaluate(solution)
     host = ENV['HOSTNAME'] || "http://localhost:3000"
     filename = 'tmp/eval-' + solution.id.to_s + '.js'
+
+    script = %Q[var evaluations = [];
+var page = require('webpage').create();
+
+function open(path, callback, viewportSize) {
+  evaluations.push({ path: path, callback: callback, viewportSize: viewportSize });
+}
+
+function evaluate(index) {
+  if (index >= evaluations.length) {
+    phantom.exit();
+  }
+
+  var evaluation = evaluations[index];
+  page.viewportSize = evaluation.viewportSize || { width: 1024, height: 800 };
+  var url = '#{host}/solutions/#{solution.id}/preview/' + evaluation.path;
+  page.open(url, function(status) {
+    if (status != 'success') {
+      console.log('No se pudo abrir ' + evaluation.path);
+      return;
+    }    
+    page.injectJs('lib/phantom-util.js');
+    var result = page.evaluate(evaluation.callback);
+    if (result) { 
+      console.log(result);
+      phantom.exit();
+    } else {
+      setTimeout(function() { evaluate(index + 1) }, 100);
+    }
+  });
+}
+    ]
+
     File.open(filename, 'w') do |f|
-      f.write "function open(path, callback, viewportSize) {"
-      f.write "  var page = require('webpage').create();"
-      f.write "  page.viewportSize = viewportSize || { width: 1024, height: 800 };"
-      f.write "  var url = '#{host}/solutions/#{solution.id}/preview/' + path;"
-      f.write "  page.open(url, function(status) {"
-      f.write "    if (status != 'success') {"
-      f.write "      console.log('No se pudo abrir ' + path);"
-      f.write "      return;"
-      f.write "    }"
-      f.write "    page.injectJs('lib/phantom-util.js');"
-      f.write "    var result = page.evaluate(callback);"
-      f.write "    if (result) { console.log(result); }"
-      f.write "    phantom.exit();"
-      f.write "  });"
-      f.write "}"
-      f.write solution.challenge.evaluation
+      f.write script + "\n"
+      f.write solution.challenge.evaluation + "\n"
+      f.write "evaluate(0);"
     end
 
     output = Phantomjs.run(filename)
