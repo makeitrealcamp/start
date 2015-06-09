@@ -39,6 +39,15 @@
           </div>
         </div>
 
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <%= f.check_box :progress_email %>
+              <%= f.label :progress_email, "Deseas recibir via email la información de su progreso mensual" %>
+            </div>
+          </div>
+        </div>
+
         <div class="actions text-right">
           <%= link_to "Cancelar", root_path, class: "btn btn-default" %>
           <%= f.submit("Actualizar Perfil", class: "btn btn-primary") %>
