@@ -19,8 +19,8 @@
           </span>
 
         <div class="comment-actions">
-          <%= button_edit(comment) if current_user == comment.user %>
-          <%= button_delete(comment) if current_user.is_admin? || current_user == comment.user %>
+          <%= button_edit(comment) if current_user.can_update_comment?(comment) %>
+          <%= button_delete(comment) if current_user.can_delete_comment?(comment) %>
         </div>
       </h2>
 
