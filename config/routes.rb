@@ -20,6 +20,10 @@ Rails.application.routes.draw do
     patch :activate, on: :member
   end
 
+  resources :phases, except: [:destroy] do
+    patch 'update_position', on: :member
+  end
+
   resources :courses, except: [:destroy] do
     patch 'update_position', on: :member
 
