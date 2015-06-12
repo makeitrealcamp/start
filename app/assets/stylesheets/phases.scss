@@ -1,11 +1,12 @@
 // Place all the styles related to the phases controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-.phases-list {
-  .col-md-4 {
-    //padding-left: 0;
-    //padding-right: 0;
+.phases-page {
+  .actions {
+    position: absolute;
+    padding: 10px;
+    right: 15px;
+    top: 0;
   }
 }
 .phase-box {

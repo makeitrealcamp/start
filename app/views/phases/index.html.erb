@@ -4,10 +4,22 @@
       <% quote = random_quote %>
       <blockquote><%= quote[:text] %> <span class="author">&nbsp; <%= quote[:author] %></span></blockquote>
     </div>
+
+
     <% @phases.each_with_index do |phase,i| %>
       <div id="phase_<%=phase.id%>" class="col-xs-12 col-md-4" data-sortable="true" data-resource-id="<%= phase.id %>">
+        <% if current_user.is_admin? %>
+          <div class="actions">
+            <% if !phase.published %>
+              <span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span>
+            <% end %>
+            <%= link_to edit_phase_path(phase) do %>
+              <span class="glyphicon glyphicon-pencil action action-edit"></span>
+            <% end %>
+          </div>
+        <% end %>
         <%= link_to phase_path(phase), class: "phase-box phase-#{i+1}" do %>
-        <span class="phase-number">Fase <%= i+1 %></span>
+          <span class="phase-number">Fase <%= i+1 %></span>
           <h2 class="phase-name">
             <%= phase.name %>
           </h2>
