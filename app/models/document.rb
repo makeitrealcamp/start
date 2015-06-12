@@ -22,6 +22,10 @@ class Document < ActiveRecord::Base
     Nokogiri::HTML(content)
   end
 
+  def as_javascript
+     ExecJS.compile(content)
+  end
+
   def as_json(options)
     super(options.merge(only: [:id, :name, :content]))
   end
