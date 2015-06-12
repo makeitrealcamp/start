@@ -35,7 +35,7 @@
         </div>
 
         <div class="actions text-right">
-          <%= link_to "Cancelar", @course, class: "btn btn-default" %>
+          <%= link_to "Cancelar", @course.phase || root_path, class: "btn btn-default" %>
           <%= f.submit class: "btn btn-primary"%>
         </div>
       </div>

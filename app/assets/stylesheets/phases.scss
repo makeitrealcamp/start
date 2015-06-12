@@ -15,6 +15,8 @@
   display: block;
   text-align: center;
   padding: 40px 20px;
+  margin-bottom: 30px;
+
   @media (min-width: $screen-md-min) {
     min-height: 320px;
   }
@@ -27,28 +29,11 @@
   background-color: #303030;
   border-bottom-style: solid;
   border-bottom-width: 10px;
-  &.phase-1 {
-    border-bottom-color: #308FC0;
-    .phase-number {
-      background-color: #308FC0;
-    }
-  }
-  &.phase-2 {
-    border-bottom-color: #4C4C9D;
-    .phase-number {
-      background-color: #4C4C9D;
-    }
-  }
-  &.phase-3 {
-    border-bottom-color: #FF101F;
-    .phase-number {
-      background-color: #FF101F;
-    }
-  }
 
   .phase-name {
     font-size: 45px;
     font-family: "Open Sans Condensed", sans-serif;
+    font-weight: 700;
     @media (min-width: $screen-md-min) {
       min-height: 110px;
     }
@@ -58,5 +43,11 @@
     top: 0;
     left: 15px;
     padding: 10px;
+  }
+  .phase-description {
+    font-size: 18px;
+    font-weight: 300;
+    font-family: 'Open Sans';
+    line-height: 1.6;
   }
 }

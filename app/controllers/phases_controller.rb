@@ -46,7 +46,7 @@ class PhasesController < ApplicationController
   protected
 
   def phase_params
-    params.require(:phase).permit(:name,:description,:published)
+    params.require(:phase).permit(:name,:description,:published,:color)
   end
 
   def set_phase

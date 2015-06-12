@@ -12,7 +12,7 @@
       <div class="course-header">
         <h1><%= @course.name %></h1>
         <div style="margin-bottom: 20px;"><%= markdown @course.excerpt %></div>
-        <%= progress_bar(progress: current_user.progress(@course)) %>
+        <%= progress_bar(progress: current_user.progress(@course),color: @course.phase.color) %>
       </div>
     </div>
   </div>

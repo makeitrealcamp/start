@@ -1,13 +1,12 @@
 <div class="container phases-page">
   <div class="row phases-list phases">
-    <div class="col-sm-10 col-sm-offset-1">
-      <% quote = random_quote %>
-      <blockquote><%= quote[:text] %> <span class="author">&nbsp; <%= quote[:author] %></span></blockquote>
+    <div class="col-md-6 col-md-offset-3">
+      <%= quote %>
     </div>
 
 
     <% @phases.each_with_index do |phase,i| %>
-      <div id="phase_<%=phase.id%>" class="col-xs-12 col-md-4" data-sortable="true" data-resource-id="<%= phase.id %>">
+      <div id="phase_<%=phase.id%>" class="col-xs-12 col-md-offset-3 col-md-6" data-sortable="true" data-resource-id="<%= phase.id %>">
         <% if current_user.is_admin? %>
           <div class="actions">
             <% if !phase.published %>
@@ -18,8 +17,8 @@
             <% end %>
           </div>
         <% end %>
-        <%= link_to phase_path(phase), class: "phase-box phase-#{i+1}" do %>
-          <span class="phase-number">Fase <%= i+1 %></span>
+        <%= link_to phase_path(phase), class: "phase-box phase-#{i+1}", style:"border-color:#{phase.color}" do %>
+          <span class="phase-number" style="background-color:<%=phase.color%>;">Fase <%= i+1 %></span>
           <h2 class="phase-name">
             <%= phase.name %>
           </h2>
@@ -28,6 +27,7 @@
           </p>
         <% end %>
       </div>
+      <div class="clearfix"></div>
     <% end %>
 
   </div>

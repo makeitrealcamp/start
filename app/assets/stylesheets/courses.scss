@@ -1,10 +1,13 @@
 blockquote {
   font-size: 16px;
   font-style: italic;
+  font-weight: lighter;
   text-align: center;
   border: none;
   margin-top: 5px;
   margin-bottom: 20px;
+  background-color: white;
+  padding: 40px;
 
   @media (min-width: $screen-sm-min) {
     font-size: 18px;
@@ -32,7 +35,6 @@ blockquote {
     position: relative;
     background: white;
     border: 1px solid #ddd;
-    border-radius: 5px;
     padding: 20px;
     margin-left: auto;
     margin-right: auto;
@@ -61,10 +63,11 @@ blockquote {
 
     .title {
       color: #333;
-      font-size: 21px;
-      font-weight: normal;
+      font-size: 30px;
+      font-weight: 300;
       text-align: center;
       margin-bottom: 20px;
+      font-family: 'Open Sans Condensed', sans-serif;
     }
 
     p {
@@ -146,14 +149,16 @@ blockquote {
       padding: 10px 30px;
       border: 1px solid #ddd;
       background: white;
-      border-radius: 5px;
       margin-top: 20px;
     }
   }
 
   .nav-tabs > li {
     &.active > a { background: white; }
-    > a { font-size: 21px; }
+    > a {
+      font-size: 25px;
+      font-family: 'Open Sans Condensed',sans-serif;
+    }
   }
 
   .tab-content {
