@@ -34,6 +34,7 @@ class Challenge < ActiveRecord::Base
   belongs_to :course
   has_many :documents, as: :folder
   has_many :comments, as: :commentable
+  has_many :solutions
 
   validates :name, presence: true
   validates :instructions, presence: true
@@ -44,6 +45,8 @@ class Challenge < ActiveRecord::Base
   after_initialize :default_values
 
   accepts_nested_attributes_for :documents, allow_destroy: true
+
+  before_destroy :check_for_solutions
 
   def self.for(user)
     if user.free_account?
@@ -82,5 +85,12 @@ class Challenge < ActiveRecord::Base
       self.evaluation_strategy ||= :ruby_embedded
     rescue ActiveModel::MissingAttributeError => e
       # ranked_model makes partial selects and this error is thrown
+    end
+
+    def check_for_solutions
+      if solutions.any?
+        errors[:base] << "Cannot delete Challenge because this have solutions associated"
+        return false
+      end
     end
 end
