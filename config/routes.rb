@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     patch 'update_position', on: :member
   end
 
-  resources :courses, except: [:destroy] do
+  resources :courses, except: [:destroy,:index] do
     patch 'update_position', on: :member
 
     resources :challenges, except: [:index, :destroy] do
@@ -58,6 +58,10 @@ Rails.application.routes.draw do
     patch 'update_position', on: :member
   end
 
+  resources :phases, only:[] do
+    patch 'update_position', on: :member
+  end
+
   scope "/:commentable_resource" do
     scope "/:id" do
       resources :comments, only: [:index,:create]
@@ -73,7 +77,7 @@ Rails.application.routes.draw do
     delete 'reset', on: :member
   end
 
-  get 'dashboard', to: redirect("/courses", status: 301)
+  get 'dashboard', to: redirect("/phases", status: 301)
 
   resources :resources, only: [:edit, :update, :destroy] do
     patch 'update_position', on: :member

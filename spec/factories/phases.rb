@@ -3,7 +3,6 @@
 # Table name: phases
 #
 #  id          :integer          not null, primary key
-#  number      :integer
 #  name        :string
 #  description :text
 #  slug        :string

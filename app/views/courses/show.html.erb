@@ -1,7 +1,9 @@
 <div class="container-fluid course-page">
   <div class="row">
     <div class="col-sm-12 header">
-      <%= link_to "<span class='glyphicon glyphicon-arrow-left'></span> Volver al Inicio".html_safe, root_path %>
+      <%= link_to @course.phase do %>
+        <span class='glyphicon glyphicon-arrow-left'></span> Volver a <strong><%= @course.phase.name %></strong>
+      <% end %>
       <% if current_user.is_admin? %>
       <div class="actions">
         <%= link_to "<span class='glyphicon glyphicon-pencil'></span> &nbsp;Editar Curso".html_safe, edit_course_path(@course), class: "btn btn-success btn-xs edit-course-btn" %>

@@ -1,25 +1,27 @@
-.courses-page {
+blockquote {
+  font-size: 16px;
+  font-style: italic;
+  text-align: center;
+  border: none;
+  margin-top: 5px;
   margin-bottom: 20px;
 
-  blockquote {
-    font-size: 16px;
-    font-style: italic;
-    text-align: center;
-    border: none;
-    margin-top: 5px;
-    margin-bottom: 20px;
-
-    @media (min-width: $screen-sm-min) {
-      font-size: 18px;
-      margin-top: 10px;
-      margin-bottom: 50px;
-    }
-
-    .author {
-      color: #999;
-      font-size: 16px;
-    }
+  @media (min-width: $screen-sm-min) {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 50px;
   }
+
+  .author {
+    color: #999;
+    font-size: 16px;
+  }
+}
+
+.courses-page, .phase-page {
+  margin-bottom: 20px;
+
+
 
   .new-course-btn {
     margin-top: -20px;
@@ -36,17 +38,8 @@
     margin-right: auto;
     margin-top: -1px;
     width: 100%;
-    margin-bottom: 35px;
 
-    @media (min-width: $screen-sm-min) {
-      min-height: 380px;
-      .title {
-        min-height: 60px;
-      }
-      p {
-        min-height: 150px;
-      }
-    }
+    @media (min-width: $screen-sm-min) { width: 600px; }
 
     .actions {
       position: absolute;
@@ -117,20 +110,6 @@
       border-left: 1px solid #ddd;
     }
   }
-
-  .phase {
-    padding-bottom: 20px;
-    h2 {
-      color: white;
-      font-family: "Open Sans Condensed", sans-serif;
-    }
-
-  }
-  .phase-title {
-    background-color: #303030;
-    margin-bottom: 20px;
-  }
-
 }
 
 .course-page {
