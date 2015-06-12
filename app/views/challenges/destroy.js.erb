@@ -1,0 +1,5 @@
+<% if @challenge.errors.blank? %>
+  $("#challenge_" + '<%=  @challenge.id %>').remove();
+<% else %>
+  alert("<%= @challenge.errors.full_messages[0] %>");
+<% end %>

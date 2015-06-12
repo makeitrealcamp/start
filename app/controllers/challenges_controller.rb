@@ -1,6 +1,6 @@
 class ChallengesController < ApplicationController
   before_action :private_access
-  before_action :admin_access, except:[:show, :discussion]
+  before_action :admin_access, except:[:show, :discussion, :destroy]
 
   def new
     course = Course.friendly.find(params[:course_id])
@@ -34,6 +34,11 @@ class ChallengesController < ApplicationController
     end
 
     @solution = load_solution
+  end
+
+  def destroy
+    @challenge = Challenge.friendly.find(params[:id])
+    @challenge.destroy
   end
 
   def discussion

@@ -67,4 +67,19 @@ RSpec.feature "Challenges", type: :feature do
       expect(solution)
     end
   end
+
+  context 'delete challenge', js: true do
+    scenario 'without solutions' do
+      create(:challenge, course: course, published: true)
+      create(:challenge, course: course, published: true)
+      login(admin)
+      visit course_path(course)
+      all(:css, '.actions a .glyphicon.glyphicon-remove').first.click
+      page.driver.browser.switch_to.alert.accept
+      wait_for_ajax
+      expect(page).to have_selector('.challenge', count: 2)
+      expect(Challenge.count).to eq 2
+    end
+  end
+
 end
