@@ -14,30 +14,21 @@
 
   <% if current_user.has_access_to?(resource) %>
     <% section.lessons.each_with_index do |lesson, j| %>
-      <div class="lesson" id="lesson_<%=lesson.id %>" data-sortable="true" data-resource-id="<%= lesson.id %>">
-        <% if current_user.is_admin? %>
-          <div class="row">
-            <div class="col-lg-10">
-              <%= link_to(course_resource_section_lesson_path(resource.course,resource,section,lesson), class: "list-group-item") do %>
-                <%=" Lección #{j} - #{lesson.name}" %>
-                <span class="pull-right lesson-status glyphicon glyphicon-ok <%= 'completed' if current_user.has_completed_lesson?(lesson)%> "></span>
-              <% end %>
-            </div>
-            <%# actions edit and remove lesson %>
-            <div class="col-lg-2 lesson-actions">
+      <div class="lesson list-group-item" id="lesson_<%=lesson.id %>" data-sortable="true" data-resource-id="<%= lesson.id %>" data-location="<%= url_for([resource.course, resource, section, lesson]) %>" >
+
+        <%= link_to "Lección #{j} - #{lesson.name}", course_resource_section_lesson_path(resource.course,resource,section,lesson) %>
+
+          <div class="pull-right actions">
+            <% if current_user.is_admin? %>
               <%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_lesson_path(lesson) %>
               <%= link_to '<span class="glyphicon glyphicon-remove action action-remove"></span>'.html_safe,lesson_path(lesson),  remote: true, data:{ confirm: "Are you sure you want to delete this?"}, method: :delete %>
-            </div>
+            <% end %>
           </div>
-        <% else %>
-          <%= link_to(course_resource_section_lesson_path(resource.course,resource,section,lesson), class: "list-group-item") do %>
-            <%=" Lección #{j} - #{lesson.name}" %>
-            <span class="pull-right lesson-status glyphicon glyphicon-ok <%= 'completed' if current_user.has_completed_lesson?(lesson)%> "></span>
-          <% end %>
-        <% end %>
+
+          <span class="lesson-status glyphicon glyphicon-ok <%= 'completed' if current_user.has_completed_lesson?(lesson)%> "></span>
+
       </div>
     <% end %>
-
   <% else %>
 
     <% section.lessons.each_with_index do |lesson, j| %>

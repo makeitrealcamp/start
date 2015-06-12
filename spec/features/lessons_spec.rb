@@ -85,7 +85,7 @@ RSpec.feature "Lessons", type: :feature do
       scenario 'display form' do
         login(admin)
         visit course_resource_path(course, resource)
-        all(:css, '.lesson-actions a .glyphicon.glyphicon-pencil').first.click
+        all(:css, '.lessons .actions a .glyphicon.glyphicon-pencil').first.click
         sleep(1.0)
         expect(current_path).to eq edit_lesson_path(lesson)
       end
@@ -93,7 +93,7 @@ RSpec.feature "Lessons", type: :feature do
       scenario 'when click on cancel button' do
         login(admin)
         visit course_resource_path(course, resource)
-        all(:css, '.lesson-actions a .glyphicon.glyphicon-pencil').first.click
+        all(:css, '.lessons .actions a .glyphicon.glyphicon-pencil').first.click
         sleep(1.0)
         click_link 'Cancelar'
         sleep(1.0)
@@ -143,7 +143,7 @@ RSpec.feature "Lessons", type: :feature do
       create(:lesson, section: section)
       login(admin)
       visit course_resource_path(course, resource)
-      all(:css, '.lesson-actions a .glyphicon.glyphicon-remove').first.click
+      all(:css, '.lessons .actions a .glyphicon.glyphicon-remove').first.click
       page.driver.browser.switch_to.alert.accept
       wait_for_ajax
       expect(Lesson.count).to eq 1

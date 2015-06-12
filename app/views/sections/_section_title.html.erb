@@ -1,6 +1,6 @@
 <%= "Sección #{i} - #{section.title}" %>
 <% if current_user.is_admin? %>
-  <div class="section-actions">
+  <div class="pull-right">
     <%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_section_path(section, index: i), remote: true %>
     <%= link_to '<span class="glyphicon glyphicon-remove action action-remove"></span>'.html_safe, section_path(section), remote: true, data:{ confirm: "Are you sure you want to delete this?"}, method: :delete %>
   </div>
