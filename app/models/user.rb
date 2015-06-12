@@ -112,6 +112,11 @@ class User < ActiveRecord::Base
     self.is_admin? || self.paid_account?
   end
 
+  def can_update_comment?(comment)
+    self.is_admin? || self == comment.user
+  end
+  alias_method :can_delete_comment?, :can_update_comment?
+
   def has_completed_lesson?(lesson)
     !!self.lesson_completions.find_by_lesson_id(lesson.id)
   end
