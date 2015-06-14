@@ -18,7 +18,7 @@
             <% if current_user.paid_account? || current_user.is_admin? %>
               <li><%= link_to "<span class='glyphicon glyphicon-book'></span> <span class='hidden-xs'>Handbook</span>".html_safe, handbook_path %></li>
             <% end %>
-            <li><a href="http://makeitreal.camp/blog" target="_blank">Blog</a></li>
+            <li><a href="http://blog.makeitreal.camp/" target="_blank">Blog</a></li>
             <% if current_user.is_admin? %>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
