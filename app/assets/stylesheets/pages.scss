@@ -286,7 +286,12 @@
   .social-proof {
     @media (min-width: $screen-md-min) { padding-bottom: 40px; }
 
-    .carousel-inner { height: 400px; }
+    .carousel-inner { 
+      height: 370px; 
+      
+      @media (min-width: $screen-sm-min) { height: 300px; }
+      @media (min-width: $screen-md-min) { height: 400px; }
+    }
 
     .carousel-control {
       color: #303030;
