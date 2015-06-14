@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-
-  root 'sessions#new'
+  root 'pages#home'
 
   get 'handbook', to: 'pages#handbook', as: :handbook
 

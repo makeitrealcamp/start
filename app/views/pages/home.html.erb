@@ -1,20 +1,52 @@
 <div class="home">
-  <div class="jumbo">
+  <div class="main">
+    <header class="main-nav">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-4">
+            <%= link_to image_tag('logo-white.png', class: "brand"), root_path %>
+          </div>
+          <div class="col-xs-8 text-right clearfix">
+            <ul class="nav">
+              <li><a href="http://blog.makeitreal.camp/">Blog</a></li>
+              <li><%= link_to "Ingresar", login_path %></li>
+              <li class="start"><%= link_to "Empezar", signup_path %></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="leading">CONVIÉRTETE EN DESARROLLADOR WEB Y CAMBIA TU VIDA PARA SIEMPRE</div>
+
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center">
-          <h1>EL <span style="color: #f8da4a">INICIO</span> QUE CAMBIARÁ TU VIDA PARA SIEMPRE</h1>
-
-          <p class="lead">Aprende los fundamentos necesarios para convertirte en desarrollador(a) Web con este <strong>curso online gratis</strong> que te guiará a través del mejor contenido y retos de programación especialmente diseñados para maximizar tu aprendizaje.</p>
+        <div class="col-xs-10 col-xs-offset-1">
+          <div class="sub-leading">Make it Real es un programa estructurado, con mentores online, para que aprendas a crear tus propias aplicaciones Web con una metodología única diseñada para maximizar tu aprendizaje.</div>
         </div>
       </div>
+
       <div class="row">
         <div class="col-sm-12 text-center">
-          <%= link_to '<i class="fa fa-github"></i> Ingresa con Github'. html_safe, '/auth/github', class: "btn btn-primary btn-lg" %>
-          <%= link_to '<i class="fa fa-facebook-square"></i> Ingresa con Facebook'.html_safe, '/auth/facebook', class: "btn btn-primary btn-lg", id: "sign-in-facebook" %>
-          <span class="create-account"><%= link_to "¿No tienes ninguno de los dos?", signup_path %></span>
+          <%= link_to signup_path, class: "btn btn-primary btn-lg btn-main" do %>
+            ¡Empieza ahora! <small>- Curso gratis de preparación -</small></a>
+            <div class="secret hidden">HcUy6Re2LLBRtj</div>
+          <% end %>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="sn">
+            <a href="https://facebook.com/makeitrealcamp" target="_blank"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/makeitrealcamp" target="_blank"><i class="fa fa-twitter"></i></a>
+            <a href="https://plus.google.com/106312898224365278368" rel="publisher" target="_blank"><i class="fa fa-google-plus"></i></a>
+            <a href="http://instagram.com/makeitrealcamp" target="_blank"><i class="fa fa-instagram"></i></a>
+            <a href="https://www.youtube.com/channel/UCcHBDdSPzOaWMsLFyO_HJYw" target="_blank"><i class="fa fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-sm-12 text-center">
           <span class="glyphicon glyphicon-menu-down more"></span>
@@ -23,48 +55,522 @@
     </div>
   </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6">
-
-        <div class="q">
-          <header>¿Qué es Make it Real Start?</header>
-          <p>Es un curso online <strong>completamente gratis</strong> para que empieces a aprender a programar por tu propia cuenta y a tu propio ritmo. Hemos seleccionado los mejores recursos online y diseñado retos de programación para que aprendas mientras los solucionas.</p>
-        </div>
-
-        <div class="q">
-          <header>¿Qué voy a aprender en Make it Real Start?</header>
-          <p>Primero, aprenderás sobre la mentalidad que se requiere para aprender a programar. Luego aprenderás <strong>HTML</strong> (el lenguaje de marcado que se utiliza para crear páginas Web) y <strong>CSS</strong> (el lenguaje que les da el formato). Por último aprenderás <strong>Ruby</strong>, un lenguaje de programación flexible y expresivo (ideal para aprender a programar) que está siendo usado para crear aplicaciones como Twitter, Groupon, y Make it Real Start ;)</p>
-        </div>
-
-        <div class="q">
-          <header>¿En qué se diferencia de otras iniciativas similares?</header>
-          <p>En este curso encontrarás embebida la filosofía <a href="http://makeitreal.camp">Make it Real</a>: <strong>aprender haciendo</strong>. La mayoría de cursos de programación fracasan porque se enfocan en el contenido y en guiar a los estudiantes a la solución de los problemas que plantean. En Make it Real Start hemos seleccionado el mejor contenido online para que aprendas a programar y lo combinamos con retos para que maximices tu aprendizaje.</p>
-        </div>
-
-        <div class="q">
-          <header>¡Existe algún requisito?</header>
-          <p>No. Pero sí una advertencia: la mayoría de recursos está en Inglés. Es preferible si al menos lo entiendes escrito. Pero si no, no te preocupes, puedes usar el traductor del navegador de ser necesario.</p>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="q">
-          <header>¿Cuánto tiempo debo dedicar para completarlo?</header>
-          <p>El que sea necesario. Especialmente si este es tu primer acercamiento con la programación, te aconsejamos empezar despacio. No importa cuánto te tome. Aprende a tu propio ritmo. Nuestra recomendación es que le dediques al menos 30 minutos al día. <strong>Pero lo más importante no es el tiempo, es que lo hagas todos los días</strong>.</p>
-        </div>
-
-        <div class="q">
-          <header>¿Quién está detrás de esto?</header>
-          <p><a href="http://makeitreal.camp/">Make it Real</a> es un Bootcamp inmersivo y presencial de programación en Bogotá y Medellín, diseñado para entrenar en 12 semanas a los desarrolladores Web que el mercado necesita ahora. Puedes encontrar más información haciendo <a href="http://makeitreal.camp/">click acá</a>.</p>
-        </div>
-
-        <div class="q">
-          <header>¿Por qué lo están haciendo?</header>
-          <p>Porque estamos comprometidos con una misión: <strong>mejorar la calidad de vida de las personas a través de la tecnología y la educación</strong>. Queremos darle, a la mayor cantidad de personas, la oportunidad de empezar a aprender a programar y conocer los fundamentos que se requieren para convertirse en desarrollador(a) Web.</p>
-
-          <p>Por otro lado, creemos que las personas deben empezar a aprender despacio para no frustrarse. Una vez se tienen ciertos conocimientos el proceso se puede acelerar en un Bootcamp como <a href="http://makeitreal.camp/">Make it Real</a>, pero no antes. Los fundamentos que aprenderás en este curso son los fundamentos mínimos con los que esperamos que apliquen los interesados en nuestro Bootcamp presencial.</p>
+  <!-- What is it -->
+  <section class="section what-is-it">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <header class="text-center title">¿Por qué Make it Real?</header>
+          <p class="p">La demanda por programadores sigue aumentando y las universidades no están preparando a los estudiantes con los conocimientos que las empresas necesitan. <strong>Make it Real</strong> es un programa diseñado para entrenar los programadores que el mercado está buscando hoy.</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- What you'll learn -->
+  <section class="section info inverted">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <header class="text-center title">¿Qué aprenderás en el programa?</header>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 technology">
+          <span class="icon icon-html5"></span>
+          <div>
+            <header>HTML5 y CSS3</header>
+            <p>Crea sitios y aplicaciones que se adaptan a la pantalla de diferentes dispositivos.</p>
+          </div>
+        </div>
+        <div class="col-sm-4 technology">
+          <span class="icon alt icon-uniF148"></span>
+          <div>
+            <header>JavaScript</header>
+            <p>Agrégale interactividad a tu aplicación con el lenguaje de programación del navegador.</p>
+          </div>
+        </div>
+        <div class="col-sm-4 technology">
+          <span class="icon alt icon-uniF13B"></span>
+          <div>
+            <header>Ruby on Rails</header>
+            <p>El framework que empresas como Twitter, Shopify y Groupon utilizan.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 technology">
+          <span class="icon icon-github"></span>
+          <div>
+            <header>Git y Github</header>
+            <p>Maneja los cambios de tu código y colabora con otros programadores.</p>
+          </div>
+        </div>
+        <div class="col-sm-4 technology">
+          <span class="icon icon-uniE603"></span>
+          <div>
+            <header>Bases de Datos</header>
+            <p>Entiende cómo funcionan y utilízalas en tus aplicaciones para almacenar información persistente.</p>
+          </div>
+        </div>
+        <div class="col-sm-4 technology">
+          <span class="icon icon-gears"></span>
+          <div>
+            <header>REST API's</header>
+            <p>Aprende a diseñar y consumir API's de integración como los de Twitter, Facebook, y Github.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 technology">
+          <span class="icon icon-code"></span>
+          <div>
+            <header>Otras tecnologías Web</header>
+            <p>Utiliza AJAX para comunicarte con el servidor. Aprende JQuery y otras librerías JavaScript.</p>
+          </div>
+        </div>
+        <div class="col-sm-4 technology">
+          <span class="icon icon-tree"></span>
+          <div>
+            <header>Metodologías Ágiles</header>
+            <p>Aprende a prototipar, implementar y desplegar una aplicación de forma iterativa.</p>
+          </div>
+        </div>
+        <div class="col-sm-4 technology">
+          <span class="icon icon-console"></span>
+          <div>
+            <header>Testing</header>
+            <p>Crea aplicaciones fáciles de mantener con pruebas automatizadas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section screenshots">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <header class="text-center title">La experiencia Make it Real</header>
+        </div>
+      </div>
+      <div class="row box">
+        <div class="col-sm-4 col-sm-offset-1">
+          <%= image_tag('now-slack.jpg', alt: "Acceso al chat de estudiantes y mentores") %>
+        </div>
+        <div class="col-sm-5 col-sm-offset-1">
+          <header>Chat de alumnos y mentores</header>
+          <p>En nuestro canal de Slack solucionamos preguntas, compartimos contenido, hablamos de programación y los estudiantes coordinan sesiones de pair programming.</p>
+        </div>
+      </div>
+
+      <div class="row box">
+        <div class="col-sm-5 col-sm-offset-1">
+          <header>Retos que se autoevalúan</header>
+          <p>Gran parte de la programación es aprender a buscar en Internet y resolver problemas. Hemos diseñado retos para que aprendas esas habilidades mientras los solucionas.</p>
+        </div>
+        <div class="col-sm-4 col-sm-offset-1">
+          <%= image_tag('now-challenge.png', alt: "Soluciona retos que se autoevaluan") %>
+        </div>
+      </div>
+
+      <div class="row box">
+        <div class="col-sm-4 col-sm-offset-1">
+          <%= image_tag('now-discussion.png', alt: "Nuestros soluciones oficiales") %>
+        </div>
+        <div class="col-sm-5 col-sm-offset-1">
+          <header>Participa en las discusiones</header>
+          <p>Después de completar un reto, ingresa a la página de discusión para conocer la solución "oficial", las mejores prácticas y los conceptos del reto que acabas de solucionar.</p>
+        </div>
+      </div>
+
+      <div class="row box">
+        <div class="col-sm-5 col-sm-offset-1">
+          <header>Material Exclusivo</header>
+          <p>Recibe acceso exclusivo a nuestros cursos y videos con temas complementarios.</p>
+        </div>
+        <div class="col-sm-4 col-sm-offset-1">
+          <%= image_tag('now-content.png', alt: "Material Exclusivo") %>
+        </div>
+      </div>
+
+      <div class="row box">
+        <div class="col-sm-4 col-sm-offset-1">
+          <%= image_tag('now-portafolio.jpg', alt: "Portafolio") %>
+        </div>
+        <div class="col-sm-5 col-sm-offset-1">
+          <header>Crea tu Portafolio</header>
+          <p>Aprende cómo crear tu blog y tu portafolio de proyectos para mostrarle al mundo lo que has aprendido.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Methodology -->
+  <section class="section method inverted">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <header class="text-center title">Las 3 Fases del Programa</header>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4 box">
+          <header><span>Fase 1</span>Programador Aprendiz</header>
+          <p>Aprenderás los fundamentos básicos del desarrollo Web. Serás capaz de crear páginas Web y solucionar problemas básicos con Ruby.</p>
+          <ul>
+            <li>HTML5 y CSS3</li>
+            <li>Responsive Design</li>
+            <li>Bootstrap</li>
+            <li>Git y Github</li>
+            <li>Ruby</li>
+          </ul>
+        </div>
+        <div class="col-sm-4 box">
+          <header><span>Fase 2</span>Web Developer</header>
+          <p>Aprenderás los detalles del protocolo HTTP (Hypertext Transfer Protocol) y a construir aplicaciones Web básicas con Ruby on Rails.</p>
+          <ul>
+            <li>HTTP</li>
+            <li>El patrón MVC (Modelo, Vista, Controlador)</li>
+            <li>Introducción a Bases de Datos</li>
+            <li>Ruby on Rails</li>
+            <ul>
+              <li>Rutas</li>
+              <li>Controladores</li>
+              <li>Vistas</li>
+              <li>Active Record</li>
+            </ul>
+            <li>Despliegue en Heroku</li>
+          </ul>
+        </div>
+        <div class="col-sm-4 box">
+          <header><span>Fase 3</span>Web Developer Profesional</header>
+          <p>Aprenderás a construir aplicaciones Web complejas, robustas, y listas para producción con Ruby on Rails.</p>
+          <ul>
+            <li>JavaScript</li>
+            <li>jQuery y AJAX</li>
+            <li>OAuth</li>
+            <li>Pruebas automatizadas</li>
+            <li>Background Jobs</li>
+            <li>Rake tasks</li>
+            <li>API's</li>
+            <li>Real Time (Web Sockets)</li>
+            <li>NoSQL (Redis, MongoDB, etc.)</li>
+            <li>Mapas y Gráficas</li>
+            <li>Despliegue en AWS y Digital Ocean</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social proof -->
+  <section class="section social-proof">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div id="quotes" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#quotes" data-slide-to="0" class="active"></li>
+              <li data-target="#quotes" data-slide-to="1"></li>
+              <li data-target="#quotes" data-slide-to="2"></li>
+              <li data-target="#quotes" data-slide-to="3"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <div class="item active">
+                <div class="quote">
+                  <div class="text"><span class="icon-quote-left"></span> En Make it Real logré cosas que nunca habría imaginado hacer. Fue una de las experiencias más intensas y desafiantes de toda mi vida <span class="icon-quote-right"></span></div>
+                  <div class="source">
+                    <div>
+                      <%= image_tag('people/sebas.jpg', class: "img-circle img-thumbnail") %>
+                      <div class="credentials">
+                        <h4>Sebastián Zapata</h4>
+                        <p>Ex-alumno y creador de <a href="http://4chef.com.co/" target="_blank">4Chef</a>. Más info en su <a href="http://mardiniii.github.io/" target="_blank">página personal.</a></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="item text-center">
+                <div class="quote">
+                  <div class="text"><span class="icon-quote-left"></span> Todas las empresas que desarrollen software deberían tener sus ojos puestos en Make it Real, el talento que sale de allí es de primera <span class="icon-quote-right"></span></div>
+                  <div class="source">
+                    <div>
+                      <%= image_tag('people/luis-hurtado.png', class: "img-circle img-thumbnail") %>
+                      <div class="credentials">
+                        <h4>Luis Hurtado</h4>
+                        <p>Tech Leader de <a href="http://kommit.co/" target="_blank">Kommit</a>, empresa de desarrollo Web y Móvil.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="item text-center">
+                <div class="quote">
+                  <div class="text"><span class="icon-quote-left"></span> Make it Real me abrió las puertas a un nuevo mundo que hasta ahora empieza a ser explorado y en el que las mujeres podemos entrar a jugar un rol muy importante <span class="icon-quote-right"></span></div>
+                  <div class="source">
+                    <div>
+                      <%= image_tag('people/sorel.jpg', class: "img-circle img-thumbnail") %>
+                      <div class="credentials">
+                        <h4>Sorel de León</h4>
+                        <p>Ex-alumna. Trabajando en <a href="http://yuxipacific.com/" target="_blank">Yuxi Pacific</a>.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="item text-center">
+                <div class="quote">
+                  <div class="text"><span class="icon-quote-left"></span> Nunca esperé aprender tanto, cambiar la visión de la programación y la orientación de mi vida en tan poco tiempo <span class="icon-quote-right"></span></div>
+                  <div class="source">
+                    <div>
+                      <%= image_tag('people/migue.jpg', class: "img-circle img-thumbnail") %>
+                      <div class="credentials">
+                        <h4>Miguel Casas</h4>
+                        <p>Ex-alumno. Web Developer en <a href="http://kommit.co/" target="_blank">Kommit</a>. Más info en su <a href="http://www.miguelcasas.co" target="_blank">página personal</a>.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="item text-center">
+                <div class="quote">
+                  <div class="text"><span class="icon-quote-left"></span> Este es de lejos el mejor programa para aprender a desarrollar productos digitales que existe en Colombia <span class="icon-quote-right"></span></div>
+                  <div class="source">
+                    <div>
+                      <%= image_tag('people/nayib.jpg', class: "img-circle img-thumbnail") %>
+                      <div class="credentials">
+                        <h4>Nayib Abdalá</h4>
+                        <p>Ex-alumno. Creador de <a href="http://www.innovationlessons.com/">Innovation Lessons</a> y asesor de Startups</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#quotes" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#quotes" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section team inverted">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <header class="text-center title inverted">Nuestro Equipo</header>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3 box text-center">
+          <%= image_tag('people/german.png', class: "img-circle img-thumbnail") %>
+          <header>Germán Escobar</header>
+          <p>Founder and Mentor</p>
+        </div>
+
+        <div class="col-sm-3 box text-center">
+          <%= image_tag('people/simon.jpg', class: "img-circle img-thumbnail") %>
+          <header>Simón Soriano</header>
+          <p>Mentor</p>
+        </div>
+
+        <div class="col-sm-3 box text-center">
+          <%= image_tag('people/juan-gomez.png', class: "img-circle img-thumbnail") %>
+          <header>Juan Gomez</header>
+          <p>Mentor</p>
+        </div>
+
+        <div class="col-sm-3 box text-center">
+          <%= image_tag('people/dianita2.jpg', class: "img-circle img-thumbnail") %>
+          <header>Diana Vanegas</header>
+          <p>Community Manager</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3 box text-center">
+          <%= image_tag('people/camilo.jpg', class: "img-circle img-thumbnail") %>
+          <header>Camilo Aguilar</header>
+          <p>Tech Advisor</p>
+        </div>
+
+        <div class="col-sm-3 box text-center">
+          <%= image_tag('people/julian.jpg', class: "img-circle img-thumbnail") %>
+          <header>Julián Duque</header>
+          <p>Tech Advisor</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section how-much">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <header class="text-center title">¿Cuánto cuesta el programa?</header>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="price inactive">COP$2'800,000</div>
+          <div class="price">COP$1'890,000</div>
+          <div class="price-exp">* El descuento aplica hasta el 31 de Julio de 2015. Solo disponible en Colombia. Precio en Pesos Colombianos</div>
+        </div>
+        <div class="col-sm-6">
+          <h4 class="text-center">Recibe</h4>
+          <ul>
+            <li>Acceso por un año a Slack (chat) para interactuar con alumnos y mentores.</li>
+            <li>Acceso por un año a la plataforma (retos, cursos, charlas, y material adicional).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq inverted inverted-remote">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <header class="text-center title">Preguntas Frecuentes</header>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="q">
+            <header>¿Qué hace a Make it Real diferente?</header>
+            <p>Make it Real es un programa muy estructurado, apoyado de mentores y una comunidad de estudiantes que trabajan de la mano, pero con la flexibilidad horaria y la dedicación que más te convenga.</p>
+            <p>Hemos diseñado cuidadosamente el programa para que aprendas las habilidades que se requieren para convertirte en Desarrollador Web y puedas construir y desplegar aplicaciones complejas y robustas.</p>
+          </div>
+
+          <div class="q">
+            <header>¿Cuánto tiempo debo dedicar?</header>
+            <p>Lo mínimo que debes dedicar para completarlo en un año es 15 a 20 horas por semana. Sin embargo, si le dedicas 80 horas a la semana podrías completarlo en 3 meses o antes. Tu decides.</p>
+          </div>
+
+          <div class="q">
+            <header>¿Me van a ayudar a encontrar empleo?</header>
+            <p>Es posible que publiquemos algunas ofertas para los alumnos más avanzados pero no hay ninguna garantía. Es cierto que la demanda de programadores sigue creciendo, así que entre más duro trabajes por crear tu portafolio, más probable es que consiguas un empleo.</p>
+          </div>
+
+          <div class="q">
+            <header>¿Por qué están haciendo esto?</header>
+            <p>Porque creemos que el sistema de educación formal no se ha adaptado a las necesidades del mundo actual. Queremos mostrar que existen mejores formas de aprender a programar que ingresar a una universidad y que los títulos no son la única forma de conseguir trabajo.</p>
+            <p>Pero nuestra mayor motivación es que más gente aprenda a programar y mejore su calidad de vida. La programación nos permite trabajar desde donde queramos y en la mayoría de casos en horarios flexibles. Eso abre muchas posibilidades para viajar, compartir en familia, y lo más importante: intentar mejorar el mundo.</p>
+          </div>
+
+          <div class="q">
+            <header>¿Por qué un programa virtual y no presencial?</header>
+            <p>Son varias las razones así que hemos escrito un <a href="http://makeitreal.camp/2015/06/12/por-que-programa-virtual/">post completo</a> explicándolas.</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="q">
+            <header>¿Cómo sé si este programa es para mi?</header>
+            <p>El primer paso es iniciar con el curso de preparación. Aunque no tendrás acceso al chat para preguntarle a los mentores e interactuar con otros estudiantes, es una buena forma de conocer la metodología.</p>
+            <p>Además, si sientes que el programa no es para ti y cancelas dentro de los primeros 15 días, recibirás un reembolso completo. Si cancelas después, recibirás un reembolso parcial según tu avance en la plataforma. Cero riesgo.</p>
+          </div>
+
+          <div class="q">
+            <header>¿Cuáles son los requerimientos?</header>
+            <p>Lo único que necesitas es un computador (con cualquier sistema operativo) y una buena conexión a Internet para ver los videos. <strong>Una advertencia</strong>: la mayoría de recursos están en Inglés. Es preferible si al menos lo entiendes escrito. Pero si no, no te preocupes, puedes usar un traductor si es necesario y buscar otros recursos por tu cuenta.</p>
+          </div>
+
+          <div class="q">
+            <header>¿Qué pasa si no lo completo durante el año?</header>
+            <p>El objetivo es que lo completes. Pero si por alguna razón no lo puedes hacer deberás pagar mensualmente para mantener activa la plataforma. Aún no hemos definido el costo.</p>
+            <p>Nuestra recomendación es que pienses bien si le puedes dedicar el tiempo antes de tomar la decisión.</p>
+          </div>
+
+          <div class="q">
+            <header>¿Por qué Ruby on Rails?</header>
+            <p>Por varias razones. La primera es que no importa con qué tecnología aprendas, el mundo de la programación se mueve muy rápido y en algunos años la mayoría de tecnologías actuales serán obsoletas. El objetivo del programa es que aprendas a aprender.</p>
+            <p>Seleccionamos Ruby on Rails porque es un framework muy expresivo, fácil de aprender y con una gran comunidad de desarrolladores en el mundo.</p>
+            <p>No tenemos nada en contra de otros lenguajes y frameworks de programación, pero creemos que Rails tiene el balance perfecto entre madurez y facilidad de aprendizaje. Además, una vez que aprendas Rails, tus conocimientos pueden ser rápidamente transferidos a otros frameworks de programación similares en otros lenguajes como Django (Python), Laravel (PHP) o Express.js (Node.js).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section footer inverted">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div>© Todos los derechos reservados. Make it Real es una marca de <a href="http://lanuevaeducacion.co" target="_blank">La Nueva Educación SAS</a>.</div>
+          <div>
+            <%= image_tag('whatsapp.png', style: "width: 25px") %> +57 (319) 227-6976
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </div>
+
+<script>
+  (function() {
+
+    var docElem = document.documentElement,
+      header = $('.main-nav'),
+      didScroll = false,
+      changeHeaderOn = 50;
+
+    function init() {
+      window.addEventListener('scroll', function(event) {
+        if(!didScroll) {
+          didScroll = true;
+          setTimeout(scrollPage, 250);
+        }
+      }, false);
+    }
+
+    function scrollPage() {
+      var sy = scrollY();
+      if (sy >= changeHeaderOn) {
+        header.addClass('navbar-shrink');
+      } else {
+        header.removeClass('navbar-shrink');
+      }
+      if (sy >= 500) {
+        $('li:not(.start) a').fadeOut(300, function() {
+          $('li.start a').fadeIn();  
+        });
+        
+      } else {
+        $('li.start a').fadeOut(300, function() {
+          $('li:not(.start) a').fadeIn();
+        });
+      }
+      didScroll = false;
+    }
+
+    function scrollY() {
+      return window.pageYOffset || docElem.scrollTop;
+    }
+
+    init();
+
+  })();
+</script>

@@ -1,86 +1,470 @@
 .home {
-
-  .jumbo  {
-    background: #2A79A6;
+  .main {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), asset-url('home.jpg') no-repeat center top;
+    background-size: cover;
     color: white;
-    padding-top: 30px;
-    margin-top: -22px;
-    margin-bottom: 50px;
+    min-height: 400px;
+  }
 
-    @media (min-width: $screen-sm-min) { padding-top: 90px; }
+  .main-nav {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    padding: 5px 0 3px;
 
-    h1 {
-      font-family: "Open Sans Condensed", sans-serif;
-      font-size: 38px;
-      line-height: 1.2;
-      font-weight: bold;
-      margin-bottom: 20px;
+    @media (min-width: $screen-md-min) { padding: 10px 0 5px; }
+  }
 
-      @media (min-width: $screen-sm-min) {
-        font-size: 56px;
-        line-height: 1.1;
+  .main-nav .brand {
+    width: 140px;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    transition: all .3s;
+
+    @media (min-width: $screen-md-min) { width: 200px; }
+  }
+
+  .main-nav .nav {
+    display: inline-block;
+    list-style-type: none;
+    padding-top: 2px;
+    margin-bottom: 0;
+
+    @media (min-width: $screen-md-min) { padding-top: 5px; }
+
+    li {
+      float: left;
+
+      a {
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+        margin: 0 5px;
+        padding: 5px;
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s;
+        transition: all .3s;
+
+        @media (min-width: $screen-md-min) {
+          font-size: 18px;
+          margin: 0 10px;
+        }
       }
     }
 
-    .lead {
-      font-size: 18px;
-      line-height: 1.4;
-      font-weight: 300;
-      margin-top: 30px;
-      margin-bottom: 60px;
-
-      @media (min-width: $screen-sm-min) {
-        font-size: 21px;
-        margin-bottom: 100px;
-      }
-    }
-
-    .create-account {
-      display: block;
-      margin-top: 10px;
-
-      a { color: #B5D7EB; }
-    }
-
-    .btn-primary {
-      width: 260px;
-      margin-right: 10px;
-    }
-
-    .more {
-      margin-top: 80px;
+    li.start a {
+      display: none;
+      background: #F04500;
       color: white;
-      font-size: 38px;
-      opacity: 0.5;
-      margin-bottom: 20px;
+      padding: 3px 8px;
 
-      @media (min-width: $screen-sm-min) { margin-top: 130px; }
+      @media (min-width: $screen-md-min) {
+        border-radius: 3px;
+        padding: 5px 15px;
+      }
+
+      &:hover { background: darken(#F04500, 5%); }
     }
   }
 
-  p {
-    font-size: 18px;
-    line-height: 1.4;
-    font-weight: 300;
+  .main-nav.navbar-shrink { 
+    background-color: rgba(28, 28, 28, 0.8);
+
+    .brand {
+      width: 120px;
+
+      @media (min-width: $screen-md-min) { width: 160px; }
+    }
   }
 
-  .q {
-    margin-bottom: 40px;
+  .main .leading {
+    font: 32px/1.1 $font-family-condensed;
+    text-align: center;
+    padding: 80px 20px 0;
+    opacity: 0.9;
 
-    @media (min-width: $screen-sm-min) { margin-bottom: 60px; }
+    @media (min-width: $screen-sm-min) {
+      font-size: 48px;
+      line-height: 1.1;
+      padding: 160px 100px 0;
+    }
 
-    header {
-      color: #BF2626;
+    @media (min-width: $screen-md-min) { font-size: 58px; }
+
+    @media (min-width: $screen-lg-min) { font-size: 64px; }
+  }
+
+  .main .sub-leading {
+    font-size: 16px;
+    line-height: 1.3;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 60px;
+
+    @media (min-width: $screen-sm-min) {
       font-size: 21px;
-      margin-bottom: 20px;
     }
 
-    p {
+    @media (min-width: $screen-md-min) {
+      font-size: 24px;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    a { color: white; }
+  }
+
+  .main .btn-main {
+    font-size: 16px;
+    padding: 7px 30px;
+    background: #F04500;
+    border-color: #F04500;
+    border-radius: 3px;
+
+    @media (min-width: $screen-sm-min) { 
+      font-size: 24px;
+      padding: 7px 30px; 
+    }
+
+    small {
+      display: block;
+      font-size: 11px;
+
+      @media (min-width: $screen-sm-min) { font-size: 16px; }
+    }
+  }
+
+  .main .sn {
+    text-align: center;
+    margin-top: 30px;
+
+    @media (min-width: $screen-md-min) { margin-top: 40px; }
+
+    i {
+      display: inline-block;
+      color: white;
+      font-size: 14px;
+      margin: 0 5px;
+      opacity: 0.8;
+      border: 2px solid white;
+      border-radius: 10px;
+      padding: 7px;
+      width: 40px;
+      weight: 40px;
+
+      @media (min-width: $screen-sm-min) {
+        font-size: 18px;
+        border: 3px solid white;
+        margin: 0 10px;
+      }
+
+      @media (min-width: $screen-md-min) { font-size: 21px; }
+
+      &:hover { opacity: 1; }
+    }
+  }
+
+  .main .more { 
+    font-size: 34px;
+    margin-top: 80px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+    cursor: pointer;
+
+    &:hover { opacity: 1; }
+  }
+
+  .section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    @media (min-width: $screen-md-min) {
+      padding-top: 60px;
+      padding-bottom: 80px;
+    }
+
+    &.inverted { background-color: #303030; }
+  }
+
+  .inverted {
+    color: white;
+    p, .title { color: white; }
+  }
+
+  .title {
+    color: #303030;
+    font: 21px bold $font-family-condensed; 
+    margin-bottom: 20px;
+
+    @media (min-width: $screen-md-min) { font-size: 28px; }
+  }
+
+  .what-is-it {
+    .p {
+      margin-top: 30px;
+      @media (min-width: $screen-md-min) { font-size: 18px; }
+    }
+  }
+
+  .info {
+    .technology {
+      margin-top: 30px;
+      @media (min-width: $screen-md-min) { margin-top: 40px; }
+
+      .icon { float: left; font-size: 42px; padding-top: 5px; }
+      .alt { line-height: 1; font-size: 48px; }
+      > div {
+        padding-left: 70px;
+      }
+
+      header {
+        font-size: 18px;
+        font-weight: 300;
+        margin-bottom: 10px;
+
+        @media (min-width: $screen-md-min) {
+          font-size: 21px;
+          margin-bottom: 14px;
+        }
+      }
+
+      p {
+        font-size: 14px;
+
+        @media (min-width: $screen-md-min) { font-size: 16px; }
+      }
+    }
+  }
+
+  .screenshots {
+    .box {
+      margin-top: 80px;
+      header {
+        color: #303030;
+        font-size: 21px;
+        margin-top: 14px;
+        margin-bottom: 14px;
+
+        @media (min-width: $screen-md-min) { font-size: 24px; }
+      }
+
+      p {
+        @media (min-width: $screen-md-min) { font-size: 18px; }
+      }
+
+      img {
+        width: 100%; 
+        border: 1px solid #ccc;
+      }
+    }
+  }
+
+  .method {
+    .box {
+      margin-top: 40px;
+      font-size: 16px;
       line-height: 1.6;
 
-      strong { font-weight: normal; }
+      @media (min-width: $screen-md-min) { font-size: 18px; }
+
+      header {
+        color: #DCEFFA;
+        font-size: 21px;
+        margin-bottom: 30px;
+        text-align: center;
+        line-height: 1.4;
+
+        span {
+          color: #52BFFA;
+          display: block;
+          font-size: 24px;
+        }
+      }
+    }
+  }
+
+  .social-proof {
+    @media (min-width: $screen-md-min) { padding-bottom: 40px; }
+
+    .carousel-inner { height: 400px; }
+
+    .carousel-control {
+      color: #303030;
+      background-image: none;
     }
 
+    .quote {
+      display: block;
+      overflow: hidden;
+      min-height: 100px;
+      padding: 20px 10px 60px;
+
+      @media (min-width: $screen-md-min) { padding: 20px 160px 100px; }
+
+      .text {
+        font-size: 18px;
+        line-height: 1.4;
+        font-weight: 300;
+        margin-bottom: 20px;
+        text-align: center;
+
+        @media (min-width: $screen-md-min) {
+          font-size: 24px;
+          margin-bottom: 60px;
+        }
+
+        span {
+          font-size: 16px;
+          margin: 0 5px;
+          @media (min-width: $screen-md-min) { font-size: 21px; }
+        }
+      }
+
+      .source {
+        text-align: center;
+        padding: 0 30px;
+
+        @media (min-width: $screen-md-min) { padding: 0; }
+
+        > div {
+          display: inline-block;
+          max-width: 400px;
+        }
+        img {
+          width: 80px;
+          height: 80px;
+
+          @media (min-width: $screen-md-min) {
+            float: left;
+            width: 120px;
+            height: 120px;
+          }
+        }
+        .credentials {
+          @media (min-width: $screen-md-min) {
+            text-align: left;
+            padding-left: 150px;
+          }
+
+          h4 {
+            font-size: 18px;
+            @media (min-width: $screen-md-min) { font-size: 21px; }
+          }
+
+          p {
+            font-size: 14px;
+            @media (min-width: $screen-md-min) { font-size: 16px; }
+          }
+        }
+      }
+    }
+  }
+
+  .team {
+    .box {
+      margin-top: 40px;
+
+      img {
+        width: 130px; height: 130px;
+      }
+
+      header {
+        font-size: 18px;
+        margin-top: 10px;
+        margin-bottom: 3px;
+
+        @media (min-width: $screen-md-min) {
+          font-size: 21px;
+        }
+      }
+
+      p {
+        margin-bottom: 0;
+        a {
+         color: #A5CCAA;
+         &:hover, &:active { color: lighten(#A5CCAA, 5%); text-decoration: underline; }
+       }
+     }
+
+      ul {
+        display: inline-block;
+        font-size: 21px;
+        padding: 0;
+        margin: 0;
+
+        li {
+          float: left;
+          list-style-type: none;
+          padding: 15px;
+
+          a { color: white; }
+        }
+      }
+    }
+  }
+
+  .how-much {
+    .price {
+      color: #303030;
+      font-size: 38px;
+      text-align: center;
+
+      &.inactive {
+        color: #ccc;
+        line-height: 1.2;
+        text-decoration: line-through;
+      }
+
+      &:first-child { margin-top: 90px;}
+    }
+
+    .price-exp {
+      color: #999;
+      font-size: 14px;
+      text-align: center;
+      padding: 0 30px;
+    }
+
+    h4 {
+      font-weight: bold;
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 30px;
+    }
+
+    ul li {
+      margin-bottom: 20px;
+      @media (min-width: $screen-md-min) { font-size: 18px; }
+    }
+  }
+
+  .faq {
+    .q {
+      margin-top: 40px;
+
+      header {
+        color: #52BFFA;
+        font-size: 18px;
+        margin-bottom: 14px;
+
+        @media (min-width: $screen-md-min) { font-size: 21px; }
+      }
+
+      p {
+        font-weight: 300;
+        @media (min-width: $screen-md-min) { font-size: 18px; }
+      }
+    }
+  }
+
+  .footer {
+    border-top: 1px solid #575757;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #B5B5B5;
+    font-size: 14px;
+
+    a { color: #B5B5B5; font-weight: bold; }
   }
 }
 
@@ -123,8 +507,8 @@
     font-size: 16px;
     font-weight: 300;
     line-height: 1.7;
-    
-    @media (min-width: $screen-sm-min) { 
+
+    @media (min-width: $screen-sm-min) {
       font-size: 18px;
       margin-bottom: 36px;
     }

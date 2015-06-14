@@ -1,45 +1,78 @@
 <!DOCTYPE html>
 <html class="expand">
 <head>
-  <title>Make it Real - Start</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <title><%= @title || "Make it Real - Transformando la educación" %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700|Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <% if Rails.env.production? %>
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    ga('create', '<%= ENV["GOOGLE_TRACKING_ID"] %>', 'auto');
-    ga('send', 'pageview');
-  </script>
+      ga('create', '<%= ENV["GOOGLE_TRACKING_ID"] %>', 'auto');
+      ga('send', 'pageview');
+    </script>
+  <% end %>
+
+  <% if Rails.env.production? && !signed_in? %>
+    <!--Start of Zopim Live Chat Script-->
+    <script type="text/javascript">
+      window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+      d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+      _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+      $.src="//v2.zopim.com/?35cxxivcgZzDYA2eL41mWE63rU5h8SkO";z.t=+new Date;$.
+      type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+    </script>
+    <!--End of Zopim Live Chat Script-->
   <% end %>
 
   <%= yield :head %>
 </head>
-<body class="expand">
-  <%= render "layouts/navigation" %>
-  <div class="content-wrapper expand">
-  <% flash.each do |name, msg| -%>
-    <div class="alert-top alert-top-<%= name %> fade in">
-      <%= msg.html_safe %>
-    </div>
-  <% end -%>
-
+<% if @home %>
   <%= yield %>
+<% else %>
+<body class="expand">
+  <%= render "layouts/navbar" %>
+  <div class="content-wrapper expand">
+    <% flash.each do |name, msg| -%>
+      <div class="alert-top alert-top-<%= name %> fade in">
+        <%= msg.html_safe %>
+      </div>
+    <% end -%>
+
+    <%= yield %>
   </div>
 
   <div class="overlay"></div>
 
-  <% if @first_activity %>
+  <% if Rails.env.production? && @first_activity %>
     <script>
       ga('send', 'event', { eventCategory: 'signup', eventAction: 'start' });
     </script>
+    <!-- Facebook Conversion Code for Registrations -->
+    <script>(function() {
+    var _fbq = window._fbq || (window._fbq = []);
+    if (!_fbq.loaded) {
+    var fbds = document.createElement('script');
+    fbds.async = true;
+    fbds.src = '//connect.facebook.net/en_US/fbds.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(fbds, s);
+    _fbq.loaded = true;
+    }
+    })();
+    window._fbq = window._fbq || [];
+    window._fbq.push(['track', '6027258078915', {'value':'0.00','currency':'USD'}]);
+    </script>
+    <noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6027258078915&amp;cd[value]=0.00&amp;cd[currency]=USD&amp;noscript=1" /></noscript>
   <% end %>
 </body>
+<% end %>
 </html>
