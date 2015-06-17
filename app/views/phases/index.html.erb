@@ -1,9 +1,23 @@
 <div class="container phases-page">
+  <% if current_user.is_admin? %>
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <%= link_to "<span class='glyphicon glyphicon-plus'></span> &nbsp;Nueva Fase".html_safe, new_phase_path, class: "btn btn-success new-course-btn" %>
+      </div>
+    </div>
+  <% end %>
+  <% if current_user.is_admin? %>
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <%= link_to "<span class='glyphicon glyphicon-plus'></span> &nbsp;Nuevo Curso".html_safe, new_course_path, class: "btn btn-success new-course-btn" %>
+      </div>
+    </div>
+  <% end %>
   <div class="row phases-list phases">
+
     <div class="col-md-6 col-md-offset-3">
       <%= quote %>
     </div>
-
 
     <% @phases.each_with_index do |phase,i| %>
       <div id="phase_<%=phase.id%>" class="col-xs-12 col-md-offset-3 col-md-6" data-sortable="true" data-resource-id="<%= phase.id %>">

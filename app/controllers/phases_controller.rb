@@ -8,7 +8,7 @@ class PhasesController < ApplicationController
   end
 
   def show
-    @courses = @phase.courses
+    @courses = @phase.courses.for(current_user)
   end
 
   def new

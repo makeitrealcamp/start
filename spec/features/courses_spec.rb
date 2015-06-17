@@ -3,16 +3,18 @@ require 'rails_helper'
 RSpec.feature "Courses", type: :feature do
   let!(:user) { create(:user) }
   let!(:admin) { create(:admin) }
-  let!(:course) { create(:course) }
+  let!(:phase) { create(:phase) }
+  let!(:course) { create(:course,phase: phase) }
 
   context 'when accessed as user' do
 
     scenario "list all courses published" do
-      create(:course)
-      create(:course)
-      create(:course, published: false)
+      create(:course,phase: phase)
+      create(:course,phase: phase)
+      create(:course,phase: phase,published: false)
       login(user)
       expect(Course.where(published: true).count).to eq 3
+      visit phase_path(phase)
       expect(page).to have_selector('.course', count: 3)
     end
 
@@ -28,15 +30,17 @@ RSpec.feature "Courses", type: :feature do
 
     scenario 'show course' do
       login(user)
+      visit phase_path(phase)
       all('a', text: 'Entrar').first.click
       expect(current_path).to eq course_path(course)
     end
 
     describe 'user is of type free' do
       scenario 'list courses' do
-        create(:course)
-        create(:course)
+        create(:course,phase: phase)
+        create(:course,phase: phase)
         login(user)
+        visit phase_path(phase)
         expect(page).to have_selector('.course', count: 3)
       end
     end
@@ -44,9 +48,10 @@ RSpec.feature "Courses", type: :feature do
     describe 'user is of type paid' do
       scenario 'list all courses' do
         user = create(:user, account_type: User.account_types[:paid_account])
-        create(:course)
-        create(:course)
+        create(:course,phase: phase)
+        create(:course,phase: phase)
         login(user)
+        visit phase_path(phase)
         expect(page).to have_selector('.course', count: 3)
       end
     end
@@ -56,10 +61,11 @@ RSpec.feature "Courses", type: :feature do
 
   context 'when accessed as admin' do
     scenario "list all  courses published" do
-      create(:course)
-      create(:course)
-      create(:course, published: false)
+      create(:course,phase: phase)
+      create(:course,phase: phase)
+      create(:course,phase: phase, published: false)
       login(admin)
+      visit phase_path(phase)
       expect(page).to have_selector('.course', count: 4)
     end
 
@@ -103,9 +109,9 @@ RSpec.feature "Courses", type: :feature do
     end
 
     scenario 'edit course with valid input', js: true do
-      course = create(:course)
+      course = create(:course,phase: phase)
       login(admin)
-
+      visit phase_path(phase)
       all(:css, '.action-edit').last.click
 
       name = Faker::Name::title
@@ -130,7 +136,7 @@ RSpec.feature "Courses", type: :feature do
     scenario 'edit course without valid input', js: true do
       course = create(:course)
       login(admin)
-
+      visit phase_path(phase)
       all(:css, '.action-edit').last.click
 
       description = Faker::Lorem.sentence

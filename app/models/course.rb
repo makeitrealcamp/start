@@ -35,7 +35,7 @@ class Course < ActiveRecord::Base
   after_initialize :default_values
 
   def next
-    Course.published.where('row > ?', self.row).first
+    self.phase.courses.published.where('row > ?', self.row).first
   end
 
   private

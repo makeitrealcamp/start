@@ -14,9 +14,10 @@
 
 FactoryGirl.define do
   factory :phase do
-    number 1
-name "MyString"
-description "MyText"
+    name { Faker::Name.title }
+    description { Faker::Lorem.sentence }
+    color "#FF0000"
+    published true
   end
 
 end
