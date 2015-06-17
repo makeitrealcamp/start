@@ -16,13 +16,16 @@
             <button class="btn btn-success btn-xs" data-toggle="collapse" data-target="#course_<%=course.id%>_children">
               <span class="caret"></span>
             </button>
-            <%= link_to course.name, course %>
+            <%= link_to "#{course.name} (#{(current_user.progress(course)*100).ceil}%)", course %>
             <ul id="course_<%=course.id%>_children" class="collapse course-children">
 
               <% if course.challenges.for(current_user).count > 0 %>
                 <li class="nav-division">Retos</li>
                 <% course.challenges.for(current_user).each do |challenge| %>
                   <li class="nav-challenge">
+                    <% if current_user.has_completed_challenge?(challenge) %>
+                      <i class="text-success fa fa-check"></i>
+                    <% end %>
                     <%= link_to challenge.name, course_challenge_path(course,challenge) %>
                   </li>
                 <% end %>
@@ -32,6 +35,9 @@
                 <li class="nav-division">Recursos</li>
                 <% course.resources.for(current_user).each do |resource| %>
                   <li class="nav-resource">
+                    <% if current_user.has_completed_resource?(resource) %>
+                      <i class="text-success fa fa-check"></i>
+                    <% end %>
                     <%= link_to resource.title, course_resource_path(course,resource) %>
                   </li>
                 <% end %>
@@ -41,6 +47,9 @@
                 <li class="nav-division">Proyectos</li>
                 <% course.projects.for(current_user).each do |project| %>
                   <li class="nav-project">
+                    <% if current_user.has_completed_project?(project) %>
+                      <i class="text-success fa fa-check"></i>
+                    <% end %>
                     <%= link_to project.name, course_project_path(course,project) %>
                   </li>
                 <% end %>

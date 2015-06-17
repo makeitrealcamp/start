@@ -125,6 +125,15 @@ class User < ActiveRecord::Base
     !!project.project_solutions.find_by_user_id(self.id)
   end
 
+  def has_completed_challenge?(challenge)
+    solution = self.solutions.where(challenge_id: challenge.id).take
+    solution && solution.status == "completed"
+  end
+
+  def has_completed_resource?(resource)
+    !!self.resources.find_by_id(resource.id)
+  end
+
   def send_password_reset
     generate_token
     self.password_reset_sent_at = Time.current

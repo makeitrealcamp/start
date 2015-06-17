@@ -53,6 +53,9 @@ $sidebar_width: 400px;
       li {
         margin-top: 10px;
         margin-bottom: 10px;
+        .fa-check {
+          margin-left: -20px;
+        }
       }
       .navbar-brand {
         margin-bottom: 20px;
