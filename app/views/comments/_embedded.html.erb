@@ -1,6 +1,7 @@
 <%# required: commentable, questions %>
 <% questions ||= ["Déjanos tu opinion"]%>
 <div class="discussion">
+
   <%= form_tag generate_comments_path(commentable), remote: true, class: "comment-form" do |f| %>
     <div class="media">
       <div class="media-left">
@@ -8,15 +9,33 @@
           class="img-circle media-object comment-form-avatar"/>
       </div>
       <div class="media-body" class="comment-input-wrapper">
-        <span class="label label-danger" style="display:none">Este campo es requerido.</span>
-        <%= text_area_tag(:text, nil ,id: "comment-input",class: "form-control", required: true, autofocus: true,
-          placeholder: questions.shuffle.first
-        ) %>
-      </div>
-      <button class="btn btn-primary pull-right btn-send-comment" type="submit">
-        Comentar
-      </button>
+
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active">
+            <a href="#comment" aria-controls="comment" role="tab" data-toggle="tab">Comentario</a>
+          </li>
+          <li>
+            <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Previsualización</a>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="comment">
+            <span class="label label-danger" style="display:none">Este campo es requerido.</span>
+            <%= text_area_tag(:text, nil ,id: "comment-input",class: "form-control", required: true, autofocus: true,
+            placeholder: questions.shuffle.first) %>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="preview">
+            <div class="content comments"></div>
+          </div>
+        </div>
+        <button type="button" data-toggle = "modal" data-target="#explain-markdown" class="btn btn-link">
+          Soporte de markdown
+        </button>
+
+      <button class="btn btn-primary pull-right btn-send-comment" type="submit">Comentar</button>
     </div>
+  </div>
   <% end %>
   <div class="comments">
     <% commentable.comments.order("created_at DESC").each do |comment| %>
@@ -24,3 +43,42 @@
     <% end %>
   </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id = "explain-markdown" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+       <h4 class="modal-title" id="myModalLabel">Markdown</h4>
+      </div>
+      <div class="modal-body">
+        <%= markdown render file: 'comments/explain_markdown.md' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function(){
+    $('.nav-tabs a[href="#preview"]').on('click', function(){
+      var  comment = $('#comment-input').val();
+      if(comment != ""){
+        request = $.ajax({
+          url: "/comments/preview",
+          data: {comment: comment },
+          method: 'GET',
+          dataType: "html"
+        });
+
+        request.done(function(data){
+          $('#preview .content').html(data);
+        });
+      }
+    });
+  });
+</script>

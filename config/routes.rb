@@ -68,7 +68,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :comments, except: [:index, :create, :new]
+  resources :comments, except: [:index, :create, :new, :show]
+  get 'comments/preview', action: 'preview', to: "comments#preview"
 
   resources :solutions, only: [:show] do
     put 'update_documents', on: :member
