@@ -1,0 +1,67 @@
+<button id="content_navigation_toggle" type="button" class="btn btn-default closed">
+  <i></i>
+</button>
+<div id="sidebar_wrapper" class="closed">
+  <nav id="content_navigation" class="sidebar">
+    <ul>
+      <li class="sidebar-brand">
+        <%= link_to image_tag("logo-dark.png", size: "150x48"), root_path %>
+      </li>
+      <% Phase.for(current_user).each do |phase| %>
+        <li class="nav-phase" style="border-bottom-color:<%=phase.color%>;">
+          <%= link_to phase.name, phase %>
+        </li>
+        <% phase.courses.for(current_user).each do |course| %>
+          <li class="nav-course">
+            <button class="btn btn-success btn-xs" data-toggle="collapse" data-target="#course_<%=course.id%>_children">
+              <span class="caret"></span>
+            </button>
+            <%= link_to course.name, course %>
+            <ul id="course_<%=course.id%>_children" class="collapse course-children">
+
+              <% if course.challenges.for(current_user).count > 0 %>
+                <li class="nav-division">Retos</li>
+                <% course.challenges.for(current_user).each do |challenge| %>
+                  <li class="nav-challenge">
+                    <%= link_to challenge.name, course_challenge_path(course,challenge) %>
+                  </li>
+                <% end %>
+              <% end %>
+
+              <% if course.resources.for(current_user).count > 0 %>
+                <li class="nav-division">Recursos</li>
+                <% course.resources.for(current_user).each do |resource| %>
+                  <li class="nav-resource">
+                    <%= link_to resource.title, course_resource_path(course,resource) %>
+                  </li>
+                <% end %>
+              <% end %>
+
+              <% if course.projects.for(current_user).count > 0 %>
+                <li class="nav-division">Proyectos</li>
+                <% course.projects.for(current_user).each do |project| %>
+                  <li class="nav-project">
+                    <%= link_to project.name, course_project_path(course,project) %>
+                  </li>
+                <% end %>
+              <% end %>
+
+            </ul>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </nav>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    var content_navigation_toggle_view = new ContentNavigationToggleView();
+
+    $(document).on("page:before-change", function() {
+      content_navigation_toggle_view.remove();
+    });
+  });
+
+
+</script>
