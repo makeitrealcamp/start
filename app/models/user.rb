@@ -131,7 +131,7 @@ class User < ActiveRecord::Base
   end
 
   def has_completed_resource?(resource)
-    !!self.resources.find_by_id(resource.id)
+    !!self.resource_completions.find_by_resource_id(resource.id)
   end
 
   def send_password_reset
