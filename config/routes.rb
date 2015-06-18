@@ -78,6 +78,7 @@ Rails.application.routes.draw do
   end
 
   get 'dashboard', to: redirect("/phases", status: 301)
+  get 'courses', to: redirect("/phases", status: 301)
 
   resources :resources, only: [:edit, :update, :destroy] do
     patch 'update_position', on: :member
