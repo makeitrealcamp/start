@@ -4,9 +4,6 @@
 <div id="sidebar_wrapper" class="closed">
   <nav id="content_navigation" class="sidebar">
     <ul>
-      <li class="sidebar-brand">
-        <%= link_to image_tag("logo-white.png", size: "150x48"), root_path %>
-      </li>
       <% Phase.for(current_user).each do |phase| %>
         <li class="nav-phase" style="border-bottom-color:<%=phase.color%>;">
           <%= link_to phase.name, phase %>

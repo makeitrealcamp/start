@@ -48,8 +48,12 @@ $sidebar_width: 400px;
     background-color: #303030;
     height: 100%;
     ul {
+      a {
+        color: white;
+      }
       list-style-type: none;
       padding-left: 15px;
+      padding-top: 20px;
       li {
         margin-top: 10px;
         margin-bottom: 10px;
@@ -57,27 +61,37 @@ $sidebar_width: 400px;
           margin-left: -20px;
         }
       }
-      .navbar-brand {
-        margin-bottom: 20px;
-      }
       li.nav-phase {
         padding: 5px;
         border-bottom-style: solid;
         border-bottom-width: 3px;
+        a {
+          font-family: "Open Sans Condensed", sans-serif;
+          font-size: 20px;
+          font-weight: 700;
+        }
       }
       li.nav-course {
         margin-left: 20px;
         padding: 10px 0;
         width: 100%;
+        a {
+          font-family: 'Open Sans Condensed', sans-serif;;
+          font-size: 20px;
+        }
         .course-children {
           .nav-challenge, .nav-resource, .nav-project {
             margin-left: 20px;
             margin-bottom: 10px;
+            a {
+              font-family: 'Open Sans', sans-serif;
+              font-size: 15px;
+            }
           }
         }
       }
       li.nav-division {
-        color: white;
+        color: grey;
       }
     }
   }
