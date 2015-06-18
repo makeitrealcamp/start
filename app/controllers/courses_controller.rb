@@ -2,18 +2,6 @@ class CoursesController < ApplicationController
   before_action :private_access
   before_action :admin_access, except:[:index, :show]
 
-  QUOTES = [
-    { text: "Nuestra mayor debilidad radica en darnos por vencidos. La forma más segura de triunfar es siempre intentarlo una vez más.", author: "Thomas A. Edison" },
-    { text: "No importa qué tan lento vayas siempre y cuando no te detengas.", author: "Confucio" },
-    { text: "Para poder triunfar, primero debemos creer que podemos.", author: "Og Mandino" },
-    { text: "Nunca estás muy viejo para trazar una nueva meta o soñar un nuevo sueño.", author: "C. S. Lewis" },
-  ]
-
-  def index
-    @quote = QUOTES.sample
-    @courses = Course.for(current_user)
-  end
-
   def show
     @course = Course.friendly.find(params[:id])
     @tab = @course.challenges.count > 0 ? :challenges : :resources
@@ -53,6 +41,7 @@ class CoursesController < ApplicationController
 
   private
     def course_params
-      params.require(:course).permit(:name, :description, :excerpt, :abstract, :time_estimate, :published, :visibility)
+      params.require(:course).permit(:name, :description, :excerpt, :abstract,
+        :time_estimate, :published, :visibility, :phase_id)
     end
 end

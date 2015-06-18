@@ -1,7 +1,20 @@
-<div class="container courses-page">
+<div class="container phase-page">
   <div class="row">
-    <div class="col-sm-10 col-sm-offset-1">
-      <blockquote><%= @quote[:text] %> <span class="author">&nbsp; <%= @quote[:author] %></span></blockquote>
+    <div class="col-xs-12 header">
+      <%= link_to root_path do %>
+        <span class='glyphicon glyphicon-arrow-left'></span> Volver al inicio
+      <% end %>
+      <% if current_user.is_admin? %>
+      <div class="actions">
+        <%= link_to edit_phase_path(@phase), class: "btn btn-success btn-xs pull-right"  do %>
+        <span class='glyphicon glyphicon-pencil'></span> &nbsp;Editar Fase
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-md-6 col-md-offset-3">
+      <%= quote %>
     </div>
   </div>
   <% if current_user.is_admin? %>
@@ -13,8 +26,8 @@
   <% end %>
   <% @courses.each_with_index do |course, i| %>
     <div class="row">
-      <div class="col-sm-12">
-        <div class="course" id="course<%= course.id %>" data-sortable="true" data-resource-id="<%= course.id %>">
+      <div class="col-sm-12" id="course_<%= course.id %>" data-sortable="true" data-resource-id="<%= course.id %>">
+        <div class="course">
           <% if current_user.is_admin? %>
           <div class="actions">
             <% if !course.published %><span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span><% end %>
@@ -23,7 +36,7 @@
           </div>
           <% end %>
           <div class="title"><%= course.name %></div>
-          <%= progress_bar(progress: current_user.progress(course)) %>
+          <%= progress_bar(progress: current_user.progress(course),color: @phase.color) %>
           <p><%= course.description %></p>
           <div class="row info">
             <div class="col-xs-4 info-item">
@@ -55,7 +68,7 @@
   <script>
     (function() {
 
-      sortable_courses =  new SortableView({el: ".courses-page",resource:"courses"})
+      sortable_courses =  new SortableView({el: ".phase-page",resource:"courses"})
 
       $(document).on("page:before-change", function() {
         sortable_courses.remove();

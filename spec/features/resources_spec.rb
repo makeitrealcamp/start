@@ -23,7 +23,7 @@ RSpec.feature "Resources", type: :feature do
 
       visit course_path(course)
 
-      click_link "#{resource.title}"
+      first(:link,"#{resource.title}").click
 
       expect(current_path).to eq course_resource_path(course, resource)
     end
@@ -191,7 +191,7 @@ RSpec.feature "Resources", type: :feature do
       create(:resource, course: course)
 
       login(admin)
-
+      visit phase_path(course.phase)
       all('a', text: 'Entrar').first.click
       all('.resources span.action-remove', count: 2).first.click
       page.driver.browser.switch_to.alert.accept

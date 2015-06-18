@@ -1,0 +1,53 @@
+// Place all the styles related to the phases controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.phases-page {
+  .actions {
+    position: absolute;
+    padding: 10px;
+    right: 15px;
+    top: 0;
+  }
+}
+.phase-box {
+  text-decoration: none;
+  color: white;
+  display: block;
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: 30px;
+
+  @media (min-width: $screen-md-min) {
+    min-height: 320px;
+  }
+  &:hover,:active,:focus,:link,:visited {
+    text-decoration: none;
+    opacity: 0.7;
+    color: white;
+  }
+
+  background-color: #303030;
+  border-bottom-style: solid;
+  border-bottom-width: 10px;
+
+  .phase-name {
+    font-size: 45px;
+    font-family: "Open Sans Condensed", sans-serif;
+    font-weight: 700;
+    @media (min-width: $screen-md-min) {
+      min-height: 110px;
+    }
+  }
+  .phase-number {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    padding: 10px;
+  }
+  .phase-description {
+    font-size: 18px;
+    font-weight: 300;
+    font-family: 'Open Sans';
+    line-height: 1.6;
+  }
+}

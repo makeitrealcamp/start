@@ -6,7 +6,7 @@ RSpec.feature "Sign Up", type: :feature do
     login(create(:user))
 
     visit signup_path
-    expect(current_path).to eq courses_path
+    expect(current_path).to eq phases_path
   end
 
   scenario "with valid attributes" do
@@ -15,7 +15,7 @@ RSpec.feature "Sign Up", type: :feature do
     fill_in 'user_password', with: Faker::Internet.password
     click_button 'Empezar'
 
-    expect(current_path).to eq courses_path
+    expect(current_path).to eq phases_path
   end
 
   scenario "with invalid email" do

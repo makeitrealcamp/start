@@ -12,6 +12,7 @@
 #  description   :string
 #  slug          :string
 #  published     :boolean
+#  phase_id      :integer
 #
 
 FactoryGirl.define do
@@ -19,6 +20,7 @@ FactoryGirl.define do
     name { Faker::Name.title }
     excerpt { Faker::Lorem.sentence }
     description { Faker::Lorem.paragraph }
+    phase { create(:phase) }
     published true
   end
 end

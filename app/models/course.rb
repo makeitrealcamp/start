@@ -12,11 +12,12 @@
 #  description   :string
 #  slug          :string
 #  published     :boolean
+#  phase_id      :integer
 #
 
 class Course < ActiveRecord::Base
   include RankedModel
-  ranks :row
+  ranks :row, with_same: :phase_id
 
   extend FriendlyId
   friendly_id :name
@@ -24,6 +25,7 @@ class Course < ActiveRecord::Base
   has_many :resources
   has_many :challenges
   has_many :projects
+  belongs_to :phase
 
   validates :name, presence: true
   scope :for, -> user { published unless user.is_admin? }
@@ -33,7 +35,7 @@ class Course < ActiveRecord::Base
   after_initialize :default_values
 
   def next
-    Course.published.where('row > ?', self.row).first
+    self.phase.courses.published.where('row > ?', self.row).first
   end
 
   private

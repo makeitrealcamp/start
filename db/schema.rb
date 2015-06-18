@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150604035452) do
+ActiveRecord::Schema.define(version: 20150612191537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,7 +71,11 @@ ActiveRecord::Schema.define(version: 20150604035452) do
     t.string   "description"
     t.string   "slug"
     t.boolean  "published"
+    t.integer  "phase_id"
+    t.integer  "phase"
   end
+
+  add_index "courses", ["phase_id"], name: "index_courses_on_phase_id", using: :btree
 
   create_table "documents", force: :cascade do |t|
     t.integer  "folder_id"
@@ -120,6 +124,17 @@ ActiveRecord::Schema.define(version: 20150604035452) do
   end
 
   add_index "lessons", ["section_id"], name: "index_lessons_on_section_id", using: :btree
+
+  create_table "phases", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "slug"
+    t.integer  "row"
+    t.boolean  "published"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "color"
+  end
 
   create_table "project_solutions", force: :cascade do |t|
     t.integer  "user_id"
@@ -246,6 +261,7 @@ ActiveRecord::Schema.define(version: 20150604035452) do
   add_foreign_key "auth_providers", "users"
   add_foreign_key "challenges", "courses"
   add_foreign_key "comments", "users"
+  add_foreign_key "courses", "phases"
   add_foreign_key "lesson_completions", "lessons"
   add_foreign_key "lesson_completions", "users"
   add_foreign_key "lessons", "sections"
