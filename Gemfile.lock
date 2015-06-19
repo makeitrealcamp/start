@@ -51,6 +51,7 @@ GEM
       execjs
       json
     bcrypt (3.1.10)
+    bcrypt (3.1.10-x86-mingw32)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.4.1)
@@ -101,6 +102,7 @@ GEM
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.8)
+    ffi (1.9.8-x86-mingw32)
     font-awesome-sass (4.3.2.1)
       sass (~> 3.2)
     friendly_id (5.1.0)
@@ -114,6 +116,7 @@ GEM
       rack
     hashie (3.4.1)
     hitimes (1.2.2)
+    hitimes (1.2.2-x86-mingw32)
     hstore_accessor (1.0.3)
       activerecord (>= 4.0.0)
     http (0.8.10)
@@ -156,6 +159,8 @@ GEM
       rails (>= 3.2.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
+    nokogiri (1.6.6.2-x86-mingw32)
+      mini_portile (~> 0.6.0)
     nokogiri-styles (0.1.2)
       nokogiri
     oauth2 (1.0.0)
@@ -178,6 +183,7 @@ GEM
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     pg (0.18.2)
+    pg (0.18.2-x86-mingw32)
     phantomjs (1.9.8.0)
     posix-spawn (0.3.11)
     pygments.rb (0.6.3)
@@ -287,12 +293,15 @@ GEM
       coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2015.5)
+      tzinfo (>= 1.0.0)
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.1)
+    unf_ext (0.0.7.1-x86-mingw32)
     unicorn (4.9.0)
       kgio (~> 2.6)
       rack
@@ -310,6 +319,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
@@ -356,6 +366,7 @@ DEPENDENCIES
   subprocess
   table_print
   turbolinks
+  tzinfo-data
   uglifier (>= 1.3.0)
   unicorn
   web-console (~> 2.0)
