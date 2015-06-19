@@ -86,7 +86,9 @@
     @media (min-width: $screen-sm-min) {
       font-size: 48px;
       line-height: 1.1;
-      padding: 160px 100px 0;
+      padding-top: 160px;
+      padding-left: 0;
+      padding-right: 0;
     }
 
     @media (min-width: $screen-md-min) { font-size: 58px; }
