@@ -71,12 +71,14 @@ RSpec.feature "Courses", type: :feature do
 
     scenario 'display form new course' do
       login(admin)
+      visit phase_path(phase)
       click_link 'Nuevo Curso'
       expect(current_path).to eq new_course_path
     end
 
     scenario 'create course with valid input', js: true do
       login(admin)
+      visit phase_path(phase)
       click_link 'Nuevo Curso'
 
       expect {
@@ -95,6 +97,7 @@ RSpec.feature "Courses", type: :feature do
 
     scenario 'create course without valid input', js: true do
       login(admin)
+      visit phase_path(phase)
       click_link 'Nuevo Curso'
 
       expect {
