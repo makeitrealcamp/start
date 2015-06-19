@@ -8,8 +8,8 @@ module ApplicationHelper
     end
   end
 
-  def markdown(text)
-    renderer = HtmlWithPygments.new(hard_wrap: true, filter_html: false)
+  def markdown(text,opts={})
+    renderer = HtmlWithPygments.new({hard_wrap: true, filter_html: false}.merge(opts))
     options = {
       autolink: true,
       no_intra_emphasis: true,
@@ -18,6 +18,7 @@ module ApplicationHelper
       strikethrough: true,
       superscript: true
     }
+
     Redcarpet::Markdown.new(renderer, options).render(text).html_safe
   end
 

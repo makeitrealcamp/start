@@ -25,7 +25,7 @@
       </h2>
 
       <div class="comment-body">
-        <p><%= markdown comment.text %></p>
+        <p><%= markdown(comment.text,filter_html: true, escape_html: true) %></p>
       </div>
     </div>
   </div>
