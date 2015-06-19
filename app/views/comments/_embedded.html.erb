@@ -19,7 +19,7 @@
     </div>
   <% end %>
   <div class="comments">
-    <% commentable.comments.each do |comment| %>
+    <% commentable.comments.order("created_at DESC").each do |comment| %>
       <%= render '/comments/comment', comment: comment %>
     <% end %>
   </div>
