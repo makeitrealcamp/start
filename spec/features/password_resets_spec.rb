@@ -6,7 +6,7 @@ RSpec.feature "PasswordResets", type: :feature do
 
   context 'as user not logged in' do
     scenario 'display form reset password', js: true do
-      visit root_path
+      visit login_path
       click_link 'Ingresar'
       click_link 'He olvidado mi contraseña'
       wait_for_ajax
@@ -15,7 +15,7 @@ RSpec.feature "PasswordResets", type: :feature do
     end
 
     scenario 'generate password reset token when the user exist', js: true do
-      visit root_path
+      visit login_path
       click_link 'Ingresar'
       click_link 'He olvidado mi contraseña'
       wait_for_ajax
@@ -29,7 +29,7 @@ RSpec.feature "PasswordResets", type: :feature do
     end
 
     scenario 'not generate password reset token when the user not exist', js: true do
-      visit root_path
+      visit login_path
       click_link 'Ingresar'
       click_link 'He olvidado mi contraseña'
       wait_for_ajax
@@ -42,7 +42,7 @@ RSpec.feature "PasswordResets", type: :feature do
     end
 
     scenario 'when email is empty', js: true do
-      visit root_path
+      visit login_path
       click_link 'Ingresar'
       click_link 'He olvidado mi contraseña'
       wait_for_ajax
@@ -54,7 +54,7 @@ RSpec.feature "PasswordResets", type: :feature do
     end
 
     scenario 'Display form change password', js: true do
-      visit root_path
+      visit login_path
       click_link 'Ingresar'
       click_link 'He olvidado mi contraseña'
       wait_for_ajax
@@ -69,7 +69,7 @@ RSpec.feature "PasswordResets", type: :feature do
     end
 
     scenario 'change password with valid input', js: true do
-      visit root_path
+      visit login_path
       click_link 'Ingresar'
       click_link 'He olvidado mi contraseña'
       wait_for_ajax
@@ -88,7 +88,7 @@ RSpec.feature "PasswordResets", type: :feature do
     end
 
     scenario 'when password is empty', js: true do
-      visit root_path
+      visit login_path
       click_link 'Ingresar'
       click_link 'He olvidado mi contraseña'
       wait_for_ajax
@@ -105,7 +105,7 @@ RSpec.feature "PasswordResets", type: :feature do
     end
 
     scenario 'when password_cofirmation is empty', js: true do
-      visit root_path
+      visit login_path
       click_link 'Ingresar'
       click_link 'He olvidado mi contraseña'
       wait_for_ajax
@@ -122,7 +122,7 @@ RSpec.feature "PasswordResets", type: :feature do
     end
 
     scenario 'when not match password', js: true do
-      visit root_path
+      visit login_path
       click_link 'Ingresar'
       click_link 'He olvidado mi contraseña'
       wait_for_ajax
