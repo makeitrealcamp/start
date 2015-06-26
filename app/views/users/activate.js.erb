@@ -1,4 +1,4 @@
-<% if current_user.solutions.count == 0 && current_user.resources.count == 0 %>
+<% if current_user.solutions.count == 0 && current_user.resource_completions.count == 0 %>
   window.location = '<%= url_for([Course.first, Course.first.resources.first]) %>';
 <% else %>
   $('#questions-modal').modal('hide');
