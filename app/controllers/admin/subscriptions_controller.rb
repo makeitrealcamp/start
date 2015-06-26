@@ -6,7 +6,7 @@ class Admin::SubscriptionsController < ApplicationController
     @user = User.find(params[:user_id])
     @user.subscriptions.create
     SubscriptionsMailer.welcome_mail(@user).deliver_now
-    SubscriptionsMailer.delay_for(24.hours.from_now).welcome_hangout(@user)
+    SubscriptionsMailer.welcome_hangout(@user).deliver_later!(wait: 24.hour)
   end
 
   # PATCH /admin/users/:user_id/subscriptions/:id/cancel
