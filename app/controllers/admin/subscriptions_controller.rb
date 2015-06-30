@@ -5,7 +5,13 @@ class Admin::SubscriptionsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @user.subscriptions.create
-    SubscriptionsMailer.welcome_mail(@user).deliver_now
+    if Rails.env.development?
+      SubscriptionsMailer.welcome_mail(@user).deliver_now
+      SubscriptionsMailer.welcome_hangout(@user).deliver_now
+    else
+      SubscriptionsMailer.welcome_mail(@user).deliver_now
+      SubscriptionsMailer.welcome_hangout(@user).deliver_later!(wait: 24.hours)
+    end
   end
 
   # PATCH /admin/users/:user_id/subscriptions/:id/cancel

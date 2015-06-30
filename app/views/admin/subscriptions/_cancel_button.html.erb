@@ -13,6 +13,7 @@
       </div>
       <div class="modal-body">
         <%= form_for :subscription, url: cancel_admin_user_subscription_path(@user,@user.active_subscription), method: :patch, remote: true do |f| %>
+          <%= f.label :cancellation_reason %>
           <%= f.text_area :cancellation_reason, required: true, class: "form-control" %>
           <%= f.button "Cancelar suscripción", class: "btn btn-lg btn-danger" %>
         <% end %>
