@@ -1,5 +1,6 @@
 class SolutionsController < ApplicationController
   before_action :private_access, except: [:preview] # we need the preview action to be public for evaluation
+  skip_before_action :verify_authenticity_token, only: [:preview]
 
   def create
     @challenge = Challenge.friendly.find(params[:challenge_id])
