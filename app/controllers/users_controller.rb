@@ -17,7 +17,12 @@ class UsersController < ApplicationController
   end
 
   def activate
-    gender = Gendered::Name.new(activate_params[:first_name]).guess!
+    begin
+      gender = Gendered::Name.new(activate_params[:first_name]).guess!
+    rescue SocketError => e
+      gender = :male
+    end
+
     current_user.update(activate_params.merge(gender: gender, status: User.statuses[:active], activated_at: Time.current))
   end
 
