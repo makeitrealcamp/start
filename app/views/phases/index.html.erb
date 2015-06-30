@@ -40,6 +40,8 @@
   </div>
 </div>
 
+<%= render 'courses/profile_questions' unless current_user.active? %>
+
 <% if current_user.is_admin? %>
   <script>
     (function() {
