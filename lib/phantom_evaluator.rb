@@ -7,8 +7,8 @@ class PhantomEvaluator < Evaluator
     script = %Q[var evaluations = [];
 var page = require('webpage').create();
 
-function open(path, callback, viewportSize) {
-  evaluations.push({ path: path, callback: callback, viewportSize: viewportSize });
+function open(path, callback, viewportSize, setup) {
+  evaluations.push({ path: path, callback: callback, viewportSize: viewportSize, setup: setup });
 }
 
 function evaluate(index) {
@@ -23,7 +23,12 @@ function evaluate(index) {
     if (status != 'success') {
       console.log('No se pudo abrir ' + evaluation.path);
       return;
-    }    
+    }
+
+    if (evaluation.setup) {
+      evaluation.setup(page);
+    }
+
     page.injectJs('lib/phantom-util.js');
     var result = page.evaluate(evaluation.callback);
     if (result) { 
