@@ -13,6 +13,11 @@
 #  slug          :string
 #  published     :boolean
 #  phase_id      :integer
+#  phase         :integer
+#
+# Indexes
+#
+#  index_courses_on_phase_id  (phase_id)
 #
 
 require 'rails_helper'

@@ -9,6 +9,10 @@
 #  updated_at  :datetime         not null
 #  row         :integer
 #
+# Indexes
+#
+#  index_sections_on_resource_id  (resource_id)
+#
 
 FactoryGirl.define do
   factory :section do

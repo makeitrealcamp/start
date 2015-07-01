@@ -11,6 +11,12 @@
 #  attempts     :integer
 #  properties   :hstore
 #
+# Indexes
+#
+#  index_solutions_on_challenge_id  (challenge_id)
+#  index_solutions_on_user_id       (user_id)
+#  solutions_gin_properties         (properties)
+#
 
 class Solution < ActiveRecord::Base
   has_paper_trail on: [:update]
