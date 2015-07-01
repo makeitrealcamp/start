@@ -1,0 +1,7 @@
+<% if @section.valid? %>
+  var field = $('#section_<%= @section.id %>').find('.resource-section-title');
+  field.html('<%= j render partial: "sections/section_title", locals: { section: @section, i: @index }  %>');
+  $('#new-section-modal').modal('hide');
+<% else %>
+  $('.alert').html('<%= @section.errors.full_messages[0] %>').show();
+<% end %>

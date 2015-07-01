@@ -1,5 +1,22 @@
 class LessonsController < ApplicationController
   before_action :private_access
+  before_action :admin_access, except: [:show]
+
+  def new
+    @section = Section.find(params[:section_id])
+    @lesson = @section.lessons.new
+  end
+
+  def create
+    @section = Section.find(params[:section_id])
+    @lesson = @section.lessons.new(lesson_params)
+    if @lesson.save
+      redirect_to course_resource_path(@lesson.resource.course, @lesson.resource), notice: "La Lección  <strong>#{@lesson.name}</strong> ha sido creado"
+    else
+      render :new
+    end
+
+  end
 
   # GET /courses/:course_id/resources/:resource_id/sections/:section_id/lessons/:id
   def show
@@ -11,6 +28,21 @@ class LessonsController < ApplicationController
     else
       flash[:error] = "Debes suscribirte para tener acceso a todas las lecciones"
       redirect_to course_resource_path(@lesson.resource.course,@lesson.resource)
+    end
+  end
+
+  def edit
+    @lesson = Lesson.find(params[:id])
+    @section = Section.find(params[:section_id])
+  end
+
+  def update
+    @lesson = Lesson.find(params[:id])
+    @section = Section.find(params[:section_id])
+    if @lesson && @lesson.update(lesson_params)
+      redirect_to course_resource_path(@lesson.resource.course, @lesson.resource), notice: "La Lección  <strong>#{@lesson.name}</strong> ha sido actualizado"
+    else
+      render :edit
     end
   end
 
@@ -33,7 +65,18 @@ class LessonsController < ApplicationController
     head :ok
   end
 
+
+  def destroy
+    @lesson = Lesson.find(params[:id])
+    @lesson.destroy
+  end
+
   private
+
+  def lesson_params
+    params.require(:lesson).permit(:name, :video_url, :description, :info,:section_id)
+  end
+
     def next_path(lesson)
       next_lesson = lesson.next(current_user)
       if next_lesson

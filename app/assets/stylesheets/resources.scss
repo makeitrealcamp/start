@@ -63,6 +63,10 @@
     display: inline-block;
     max-width: 90%;
   }
+
+  .actions {
+    padding-left: 10px;
+  }
   .lessons {
     .lessons-label {
       margin-left: 30px;
@@ -211,8 +215,8 @@
       @media (min-width: $screen-sm-min) { font-size: 18px; }
     }
 
-    .lesson-info { 
-      margin-top: 40px; 
+    .lesson-info {
+      margin-top: 40px;
     }
   }
 }

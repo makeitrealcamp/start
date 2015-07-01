@@ -1,0 +1,55 @@
+<div class="list-group lessons" id="section_<%= section.id %>">
+  <div href="#" class="list-group-item resource-section-title">
+    <%= render partial: 'sections/section_title', locals: { section: section, i: i }  %>
+  </div>
+
+  <% if current_user.is_admin? %>
+    <div class="row">
+      <div class="col-sm-12 text-center new-lesson-btn">
+        <%= link_to new_course_resource_section_lesson_path(section.resource.course,section.resource,section), class: "btn btn-success" do %>
+          <span class="glyphicon glyphicon-plus"></span> Nueva Lección
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+
+  <% if current_user.has_access_to?(resource) %>
+    <% section.lessons.each_with_index do |lesson, j| %>
+      <div class="lesson list-group-item" id="lesson_<%=lesson.id %>" data-sortable="true" data-resource-id="<%= lesson.id %>" data-location="<%= url_for([resource.course, resource, section, lesson]) %>" >
+
+        <%= link_to "Lección #{j} - #{lesson.name}", course_resource_section_lesson_path(resource.course,resource,section,lesson) %>
+
+          <div class="pull-right actions">
+            <% if current_user.is_admin? %>
+              <%= link_to edit_course_resource_section_lesson_path(resource.course,resource,section,lesson) do %>
+                <span class="glyphicon glyphicon-pencil action action-edit"></span>
+              <% end %>
+              <%= link_to course_resource_section_lesson_path(resource.course,resource,section,lesson),  remote: true, data:{ confirm: "Are you sure you want to delete this?"}, method: :delete do %>
+                <span class="glyphicon glyphicon-remove action action-remove"></span>
+              <% end %>
+            <% end %>
+          </div>
+
+          <span class="lesson-status glyphicon glyphicon-ok <%= 'completed' if current_user.has_completed_lesson?(lesson)%> "></span>
+
+      </div>
+    <% end %>
+  <% else %>
+
+    <% section.lessons.each_with_index do |lesson, j| %>
+      <% if lesson.free_preview? %>
+        <%= link_to(course_resource_section_lesson_path(resource.course,resource,section,lesson),
+          class: "list-group-item") do %>
+          <%="Lección #{j} - #{lesson.name}"%>
+          <span class="label-free">¡Gratis!</span>
+        <% end %>
+      <% else %>
+        <div class="list-group-item disabled">
+          <%="Lección #{j} - #{lesson.name}"%>
+          <span class="glyphicon glyphicon-lock pull-right"></span>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

@@ -38,15 +38,15 @@ Rails.application.routes.draw do
 
     resources :resources, except: [:index] do
       resource :completion, controller: 'resource_completion', only: [:create, :destroy]
-      resources :sections, only: [] do
-        resources :lessons, only: [:show] do
+      resources :sections, except: [:index] do
+        resources :lessons, except: [:index] do
           post :complete, on: :member
         end
       end
     end
   end
 
-  resources :lessons, except: [:all] do
+  resources :lessons, only: [] do
     patch 'update_position', on: :member
   end
 

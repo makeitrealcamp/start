@@ -18,6 +18,8 @@ class Section < ActiveRecord::Base
   has_many :lessons, dependent: :delete_all
   accepts_nested_attributes_for :lessons, allow_destroy: true
 
+  validates :title, presence: true
+
   alias_method :course, :resource
   alias_method :course=, :resource=
 
