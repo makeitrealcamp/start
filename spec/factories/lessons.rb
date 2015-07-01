@@ -2,16 +2,17 @@
 #
 # Table name: lessons
 #
-#  id           :integer          not null, primary key
-#  section_id   :integer
-#  name         :string
-#  video_url    :string
-#  description  :text
-#  row          :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  free_preview :boolean          default("false")
-#  info         :text
+#  id             :integer          not null, primary key
+#  section_id     :integer
+#  name           :string
+#  video_url      :string
+#  description    :text
+#  row            :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  free_preview   :boolean          default(FALSE)
+#  info           :text
+#  video_duration :string
 #
 
 FactoryGirl.define do

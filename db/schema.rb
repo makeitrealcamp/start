@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150612191537) do
+ActiveRecord::Schema.define(version: 20150701165659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,10 +116,11 @@ ActiveRecord::Schema.define(version: 20150612191537) do
     t.string   "video_url"
     t.text     "description"
     t.integer  "row"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.boolean  "free_preview", default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "free_preview",   default: false
     t.text     "info"
+    t.string   "video_duration"
   end
 
   add_index "lessons", ["section_id"], name: "index_lessons_on_section_id", using: :btree
