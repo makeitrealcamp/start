@@ -14,6 +14,10 @@
 #  info           :text
 #  video_duration :string
 #
+# Indexes
+#
+#  index_lessons_on_section_id  (section_id)
+#
 
 FactoryGirl.define do
 

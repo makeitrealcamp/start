@@ -11,6 +11,11 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_project_solutions_on_project_id  (project_id)
+#  index_project_solutions_on_user_id     (user_id)
+#
 
 FactoryGirl.define do
   factory :project_solution do

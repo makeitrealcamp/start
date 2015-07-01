@@ -10,6 +10,10 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
+# Indexes
+#
+#  index_documents_on_folder_type_and_folder_id  (folder_type,folder_id)
+#
 
 class Document < ActiveRecord::Base
   has_paper_trail on: [:update, :destroy]

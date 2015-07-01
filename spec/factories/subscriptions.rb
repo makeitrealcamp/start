@@ -9,6 +9,10 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #
+# Indexes
+#
+#  index_subscriptions_on_user_id  (user_id)
+#
 
 FactoryGirl.define do
   factory :subscription do

@@ -10,6 +10,7 @@
 #  published   :boolean
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  color       :string
 #
 
 class Phase < ActiveRecord::Base

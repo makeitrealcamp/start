@@ -8,6 +8,11 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_lesson_completions_on_lesson_id  (lesson_id)
+#  index_lesson_completions_on_user_id    (user_id)
+#
 
 require 'rails_helper'
 

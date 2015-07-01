@@ -17,6 +17,10 @@
 #  published     :boolean
 #  video_url     :string
 #
+# Indexes
+#
+#  index_resources_on_course_id  (course_id)
+#
 
 FactoryGirl.define do
   factory :resource do

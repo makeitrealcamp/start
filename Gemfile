@@ -56,6 +56,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-github'
 gem 'font-awesome-sass'
 gem 'nested_form_fields'
+gem 'annotate', '~> 2.6.6'
 
 #windows specific
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
