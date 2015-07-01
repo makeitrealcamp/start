@@ -25,6 +25,10 @@
           <%= f.text_area :info, rows: 2, class: "form-control" %>
         </div>
 
+        <div class="form-group">
+          <%= f.label :section %>
+          <%= f.collection_select(:section_id, @section.resource.sections, :id, :title, {},{class: "form-control"}) %>
+        </div>
 
         <div class="actions text-right">
           <%= link_to "Cancelar", course_resource_path(@lesson.resource.course, @lesson.resource), class: "btn btn-default" %>
