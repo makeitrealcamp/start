@@ -42,6 +42,7 @@
 
   <script>
     (function() {
+
       <% if current_user.is_admin? %>
         var sortables = [];
         <% resource.sections.each do |section| %>

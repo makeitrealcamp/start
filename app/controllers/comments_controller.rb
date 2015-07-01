@@ -33,6 +33,11 @@ class CommentsController < ApplicationController
     @comment.destroy
   end
 
+  def preview
+    @comment = params[:comment]
+    render layout: false
+  end
+
   protected
   def comment_params
     params.permit(:text,:response_to_id)
