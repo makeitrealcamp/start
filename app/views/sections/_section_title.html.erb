@@ -1,7 +1,11 @@
 <%= "Sección #{i} - #{section.title}" %>
 <% if current_user.is_admin? %>
   <div class="pull-right">
-    <%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_section_path(section, index: i), remote: true %>
-    <%= link_to '<span class="glyphicon glyphicon-remove action action-remove"></span>'.html_safe, section_path(section), remote: true, data:{ confirm: "Are you sure you want to delete this?"}, method: :delete %>
+    <%= link_to edit_course_resource_section_path(section.resource.course,section.resource,section, index: i), remote: true do %>
+      <span class="glyphicon glyphicon-pencil action action-edit"></span>
+    <% end %>
+    <%= link_to course_resource_section_path(section.resource.course,section.resource,section), remote: true, data:{ confirm: "Are you sure you want to delete this?"}, method: :delete do %>
+      <span class="glyphicon glyphicon-remove action action-remove"></span>
+    <% end %>
   </div>
 <% end %>

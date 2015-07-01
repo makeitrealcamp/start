@@ -6,7 +6,9 @@
   <% if current_user.is_admin? %>
     <div class="row">
       <div class="col-sm-12 text-center new-lesson-btn">
-        <%= link_to '<span class="glyphicon glyphicon-plus"></span> Nueva Lección'.html_safe, new_section_lesson_path(section), class: "btn btn-success" %>
+        <%= link_to new_course_resource_section_lesson_path(section.resource.course,section.resource,section), class: "btn btn-success" do %>
+          <span class="glyphicon glyphicon-plus"></span> Nueva Lección
+        <% end %>
       </div>
     </div>
   <% end %>
@@ -20,8 +22,12 @@
 
           <div class="pull-right actions">
             <% if current_user.is_admin? %>
-              <%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_lesson_path(lesson) %>
-              <%= link_to '<span class="glyphicon glyphicon-remove action action-remove"></span>'.html_safe,lesson_path(lesson),  remote: true, data:{ confirm: "Are you sure you want to delete this?"}, method: :delete %>
+              <%= link_to edit_course_resource_section_lesson_path(resource.course,resource,section,lesson) do %>
+                <span class="glyphicon glyphicon-pencil action action-edit"></span>
+              <% end %>
+              <%= link_to course_resource_section_lesson_path(resource.course,resource,section,lesson),  remote: true, data:{ confirm: "Are you sure you want to delete this?"}, method: :delete do %>
+                <span class="glyphicon glyphicon-remove action action-remove"></span>
+              <% end %>
             <% end %>
           </div>
 
@@ -47,4 +53,3 @@
     <% end %>
   <% end %>
 </div>
-

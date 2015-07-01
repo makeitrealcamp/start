@@ -12,12 +12,12 @@ RSpec.feature "Lessons", type: :feature do
   context 'when accessed as user' do
     scenario 'should not allow acess to edit lessons' do
       login(user)
-      expect { visit edit_lesson_path(lesson) }.to raise_error ActionController::RoutingError
+      expect { visit edit_course_resource_section_lesson_path(course,resource,section,lesson) }.to raise_error ActionController::RoutingError
     end
 
     scenario 'should not allow acess to create lessons' do
       login(user)
-      expect { visit  new_section_lesson_path(section) }.to raise_error ActionController::RoutingError
+      expect { visit  new_course_resource_section_lesson_path(course,resource,section) }.to raise_error ActionController::RoutingError
     end
   end
 
@@ -29,7 +29,7 @@ RSpec.feature "Lessons", type: :feature do
         visit course_resource_path(course, resource)
         click_link 'Nueva Lección'
         sleep(1.0)
-        expect(current_path).to eq new_section_lesson_path(section)
+        expect(current_path).to eq new_course_resource_section_lesson_path(course,resource,section)
       end
 
       scenario 'with valid input' do
@@ -77,7 +77,7 @@ RSpec.feature "Lessons", type: :feature do
         }.not_to change(Lesson, :count)
 
         expect(page).to have_selector '.panel-danger'
-        expect(current_path).to eq section_lessons_path(section)
+        expect(current_path).to eq course_resource_section_lessons_path(course,resource,section)
       end
     end
 
@@ -87,7 +87,7 @@ RSpec.feature "Lessons", type: :feature do
         visit course_resource_path(course, resource)
         all(:css, '.lessons .actions a .glyphicon.glyphicon-pencil').first.click
         sleep(1.0)
-        expect(current_path).to eq edit_lesson_path(lesson)
+        expect(current_path).to eq edit_course_resource_section_lesson_path(course,resource,section,lesson)
       end
 
       scenario 'when click on cancel button' do
@@ -102,7 +102,7 @@ RSpec.feature "Lessons", type: :feature do
 
       scenario 'update form with valid input' do
         login(admin)
-        visit edit_lesson_path(lesson)
+        visit edit_course_resource_section_lesson_path(course,resource,section,lesson)
         name = Faker::Lorem.word
         video_url = Faker::Internet.url
         description = Faker::Lorem.paragraph
@@ -124,7 +124,8 @@ RSpec.feature "Lessons", type: :feature do
 
       scenario 'update form without valid input' do
         login(admin)
-        visit edit_lesson_path(lesson)
+
+        visit edit_course_resource_section_lesson_path(lesson.section.resource.course,lesson.section.resource,lesson.section,lesson)
         video_url = Faker::Internet.url
         description = Faker::Lorem.paragraph
         info = Faker::Lorem.paragraph

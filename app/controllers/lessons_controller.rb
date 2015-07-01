@@ -1,6 +1,6 @@
 class LessonsController < ApplicationController
   before_action :private_access
-  before_action :admin_access, except: [:show, :update]
+  before_action :admin_access, except: [:show]
 
   def new
     @section = Section.find(params[:section_id])
@@ -33,10 +33,12 @@ class LessonsController < ApplicationController
 
   def edit
     @lesson = Lesson.find(params[:id])
+    @section = Section.find(params[:section_id])
   end
 
   def update
     @lesson = Lesson.find(params[:id])
+    @section = Section.find(params[:section_id])
     if @lesson && @lesson.update(lesson_params)
       redirect_to course_resource_path(@lesson.resource.course, @lesson.resource), notice: "La Lección  <strong>#{@lesson.name}</strong> ha sido actualizado"
     else
