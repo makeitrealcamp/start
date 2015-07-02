@@ -16,6 +16,8 @@
 #  slug          :string
 #  published     :boolean
 #  video_url     :string
+#  category      :integer
+#  own           :boolean
 #
 # Indexes
 #
@@ -26,7 +28,9 @@ FactoryGirl.define do
   factory :resource do
     title { Faker::Name.title}
     description { Faker::Lorem.paragraph}
-    type "url"
+    type Resource.types[:url]
+    category Resource.categories[:documentation]
+    own false
     url { Faker::Internet.url}
     time_estimate {"#{Faker::Number.digit} days"}
     association  :course, factory: :course

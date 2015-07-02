@@ -20,12 +20,25 @@
           <%= f.select :type, types_resources, {}, { class: 'form-control' } %>
         </div>
 
+        <div class="form-group">
+          <%= f.check_box :own %>
+          <%= f.label :own %>
+          <small>(Recurso creado por Make it Real)</small>
+        </div>
 
+        <div class="form-group">
+          <%= f.label :category %>
+          <%= f.select :category, resource_categories, {:include_blank => true}, { class: 'form-control' } %>
+        </div>
+
+        <!-- url form -->
         <div class="form-group resource-type-form url-field type-url-form">
           <%= f.label :url %>
           <%= f.text_field :url, class: "form-control" %>
         </div>
+        <!--/ url form -->
 
+        <!-- markdown form -->
         <div class="resource-type-form content-field type-markdown-form">
           <div class="form-group">
             <%= f.label :video_url %>
@@ -37,6 +50,7 @@
             <%= f.text_area :content, rows: 25, class: "form-control" %>
           </div>
         </div>
+        <!--/ markdown form -->
 
         <div class="form-group">
           <%= f.label :time_estimate %>

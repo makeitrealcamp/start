@@ -150,6 +150,12 @@ blockquote {
       border: 1px solid #ddd;
       background: white;
       margin-top: 20px;
+      span {
+        font-weight: bold;
+        color: #999;
+        display: block;
+        margin-bottom: 5px;
+      }
     }
   }
 
@@ -160,6 +166,17 @@ blockquote {
       font-family: 'Open Sans Condensed',sans-serif;
     }
   }
+
+  .nav-tabs {
+    li {
+      text-align: center;
+      width: 33.333%;
+    }
+    .glyphicon {
+      margin-right: 7px;
+    }
+  }
+
 
   .tab-content {
     background: white;
@@ -253,6 +270,40 @@ blockquote {
           color: #666;
           font-size: 13px;
           margin-top: 10px;
+        }
+
+        .resource-tag {
+          font-weight: normal;
+          margin-top: 10px;
+          padding: 7px 5px;
+
+          //TODO: Add styles for blog_post,video_tutorial,reading,game,tutorial,documentation
+          &.tutorial {
+            @extend .label-info;
+          }
+          &.reading {
+            @extend .label-primary;
+          }
+          &.video_tutorial {
+            @extend .label-success;
+          }
+          &.documentation {
+            @extend .label-warning;
+          }
+
+        }
+
+        .label-mir {
+          background: #272727;
+          border-radius: 50%;
+          height: 35px;
+          display: inline-block;
+          width: 35px;
+        }
+
+        .icon-container {
+          width: 14px;
+          margin: 1px auto 0;
         }
 
       }

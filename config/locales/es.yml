@@ -198,3 +198,11 @@ es:
   activerecord:
     errors:
       <<: *errors
+  resources:
+    categories:
+      blog_post: "blog post"
+      video_tutorial: "video tutorial"
+      reading: "lectura"
+      game: "juego"
+      tutorial: "tutorial"
+      documentation: "documentación"

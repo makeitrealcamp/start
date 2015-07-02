@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150701165659) do
+ActiveRecord::Schema.define(version: 20150702214823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20150701165659) do
     t.string   "slug"
     t.boolean  "published"
     t.integer  "phase_id"
+    t.integer  "phase"
   end
 
   add_index "courses", ["phase_id"], name: "index_courses_on_phase_id", using: :btree
@@ -176,6 +177,8 @@ ActiveRecord::Schema.define(version: 20150701165659) do
     t.string   "slug"
     t.boolean  "published"
     t.string   "video_url"
+    t.integer  "category"
+    t.boolean  "own"
   end
 
   add_index "resources", ["course_id"], name: "index_resources_on_course_id", using: :btree
