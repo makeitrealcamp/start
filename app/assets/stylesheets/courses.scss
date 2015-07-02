@@ -161,6 +161,17 @@ blockquote {
     }
   }
 
+  .nav-tabs {
+    li {
+      text-align: center;
+      width: 33.333%;
+    }
+    .glyphicon {
+      margin-right: 7px;
+    }
+  }
+
+
   .tab-content {
     background: white;
     border-left: 1px solid #ddd;
