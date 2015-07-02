@@ -1,6 +1,6 @@
 class LessonsController < ApplicationController
   before_action :private_access
-  before_action :admin_access, except: [:show]
+  before_action :admin_access, except: [:show,:complete]
 
   def new
     @section = Section.find(params[:section_id])
