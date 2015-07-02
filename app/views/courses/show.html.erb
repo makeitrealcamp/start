@@ -12,6 +12,7 @@
       <div class="course-header">
         <h1><%= @course.name %></h1>
         <div style="margin-bottom: 20px;"><%= markdown @course.excerpt %></div>
+        <span>Progreso:</span>
         <%= progress_bar(progress: current_user.progress(@course),color: @course.phase.color) %>
       </div>
     </div>
@@ -25,7 +26,7 @@
           <% if current_user.is_admin? || @course.challenges.for(current_user).count > 0 %>
             <li role="presentation" class="<%= "active" if @tab == :challenges %>"><a href="#challenges" aria-controls="challenges" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Retos</a></li>
           <% end %>
-          <li role="presentation" class="<%= "active" if @tab == :resources %>"><a href="#resources" aria-controls="resources" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Recursos</a></li>
+          <li role="presentation" class="<%= "active" if @tab == :resources %>"><a href="#resources" aria-controls="resources" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Recursos</a></li>
           <% if current_user.is_admin? || @course.projects.for(current_user).count > 0 %>
             <li role="presentation" class="<%= "active" if @tab == :projects %>"><a href="#projects" aria-controls="resources" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-road" aria-hidden="true"></span> Proyectos</a></li>
           <% end %>
@@ -99,6 +100,16 @@
                       <td class="resource-additional">
                         <%= link_to_toggle_completed resource if resource.self_completable? %>
                         <span class="time-estimate"><%= resource.time_estimate %></span>
+                        <span class="label label-mir resource-tag">
+                            <div class="icon-container">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 113.6 158.5" enable-background="new 0 0 113.6 158.5"><style type="text/css">.st0{fill:#FFFFFF;} .st1{fill:#F04500;}</style><g id="XMLID_1709_"><path id="XMLID_2_" class="st0" d="M44 118.7l-23.4-101.1h-.9c1.1 7.8 1.6 14.9 1.6 21.4v79.6h-21.3v-118.6h35.2l21.1 93.3h.7l20.9-93.3h35.7v118.7h-21.7v-80.5c0-6.7.4-13.5 1.2-20.5h-.7l-23.4 101h-25z"/><path class="st1" d="M.1 139.6h113.4v18.9h-113.4z" id="XMLID_1512_"/></g>
+                              </svg>
+                          </div>
+                        </span>
+                        <span class="label label-info resource-tag">Tutorial</span>
+                        <span class="label label-primary resource-tag">Blog Post</span>
+                        <span class="label label-success resource-tag">Video</span>
+                        <span class="label label-warning resource-tag">Documentación</span>
                       </td>
                     </tr>
                     </div>
