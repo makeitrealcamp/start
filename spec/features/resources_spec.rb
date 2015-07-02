@@ -27,6 +27,18 @@ RSpec.feature "Resources", type: :feature do
 
       expect(current_path).to eq course_resource_path(course, resource)
     end
+
+    context "resources tags" do
+      scenario "display Make it Real badge when resource is own" do
+        resource = create(:resource,own: true, category: Resource.categories[:video_tutorial])
+        login(user)
+        visit course_path(resource.course)
+        within("tr#resource_#{resource.id}") do
+          expect(page).to have_selector(".label-mir")
+          expect(page).to have_selector(".resource-tag.#{resource.category}")
+        end
+      end
+    end
   end
 
   context 'when accessed as admin' do

@@ -3,8 +3,8 @@ class ResourcesController < ApplicationController
   before_action :admin_access, except: [:show]
 
   def new
-    course = Course.friendly.find(params[:course_id])
-    @resource = course.resources.new
+    @course = Course.friendly.find(params[:course_id])
+    @resource = @course.resources.new
   end
 
   def create
@@ -49,7 +49,7 @@ class ResourcesController < ApplicationController
 
    def resource_params
      params.require(:resource).permit(
-      :title, :description, :type, :url, :content, :time_estimate, :published, :video_url,
+      :title, :description, :type, :url, :content, :time_estimate, :published, :video_url, :category, :own
      )
    end
 

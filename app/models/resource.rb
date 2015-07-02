@@ -16,6 +16,8 @@
 #  slug          :string
 #  published     :boolean
 #  video_url     :string
+#  category      :integer
+#  own           :boolean
 #
 # Indexes
 #
@@ -32,6 +34,7 @@ class Resource < ActiveRecord::Base
   self.inheritance_column = nil
 
   enum type: [:url, :markdown, :course]
+  enum category: [:blog_post,:video_tutorial,:reading,:game,:tutorial,:documentation]
 
   belongs_to :course
   has_many :sections, dependent: :delete_all

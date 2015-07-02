@@ -276,6 +276,21 @@ blockquote {
           font-weight: normal;
           margin-top: 10px;
           padding: 7px 5px;
+
+          //TODO: Add styles for blog_post,video_tutorial,reading,game,tutorial,documentation
+          &.tutorial {
+            @extend .label-info;
+          }
+          &.reading {
+            @extend .label-primary;
+          }
+          &.video_tutorial {
+            @extend .label-success;
+          }
+          &.documentation {
+            @extend .label-warning;
+          }
+
         }
 
         .label-mir {
