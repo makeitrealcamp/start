@@ -35,6 +35,12 @@ FactoryGirl.define do
     time_estimate {"#{Faker::Number.digit} days"}
     association  :course, factory: :course
     published true
+    factory :video_course do
+      type Resource.types[:course]
+      factory :published_video_course do
+        published true
+      end
+    end
   end
 
 end

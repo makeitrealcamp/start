@@ -27,7 +27,12 @@ FactoryGirl.define do
     video_url { Faker::Internet.url }
     description { Faker::Lorem.paragraph }
     row 1
-    free_preview false
+    factory :paid_lesson do
+      free_preview false
+    end
+    factory :free_lesson do
+      free_preview true
+    end
   end
 
 end
