@@ -32,6 +32,18 @@ class Lesson < ActiveRecord::Base
   validates :video_url, format: { with: URI.regexp }, if: :video_url?
 
   scope :published, -> { where(section_id: Resource.published.map(&:sections).flatten.map(&:id)) }
+  scope :free_preview, -> { where(free_preview: true) }
+
+  def self.for(user)
+    if user.is_admin?
+      all
+    elsif user.paid_account?
+      published
+    else
+      free_preview.published
+    end
+  end
+
   default_scope { rank(:row) }
 
   def resource
@@ -43,26 +55,16 @@ class Lesson < ActiveRecord::Base
   end
 
   def next(user)
-    if user.has_access_to?(self.resource)
-      lesson = self.section.lessons.where('row > ?', self.row).first
-
-      if lesson.nil?
-        section = Section.where('row > ? ', self.section.row).first
-        if section &&  !section.lessons.blank?
-          lesson = section.lessons.first
-        end
+    lesson = self.section.lessons.for(user).where('row > ?', self.row).first
+    if lesson.nil?
+      section = self.section
+      loop do
+        section = section.next(user)
+        break if section.nil? || !section.lessons.blank?
       end
-    else
-      lesson = self.section.lessons.where('row > ? AND free_preview = ?', self.row, true).first
-      if lesson.nil?
-        section = Section.where('row > ? ', self.section.row).first
-        if section &&  !section.lessons.blank?
-          lesson = section.lessons.where('free_preview = ?', true).first
-        end
-      end
+      lesson = section.lessons.for(user).first unless section.nil?
     end
 
-    #return
     lesson
   end
 end
