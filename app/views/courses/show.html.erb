@@ -109,7 +109,7 @@
                           </span>
                         <% end %>
                         <% if resource.category %>
-                          <span class="label label-default resource-tag <%=resource.category%>"><%= t("resources.categories.#{resource.category}") %></span>
+                          <span class="label label-default resource-tag <%=resource.category%>"><i class="fa <%=resource.category%>"></i><%= t("resources.categories.#{resource.category}") %></span>
                         <% end %>
                       </td>
                     </tr>

@@ -275,9 +275,9 @@ blockquote {
         .resource-tag {
           font-weight: normal;
           margin-top: 10px;
-          padding: 7px 5px;
+          padding: 7px;
+          display: inline-block;
 
-          //TODO: Add styles for blog_post,video_tutorial,reading,game,tutorial,documentation
           &.tutorial {
             @extend .label-info;
           }
@@ -290,7 +290,35 @@ blockquote {
           &.documentation {
             @extend .label-warning;
           }
+          &.blog_post {
+            background: #009999;
+          }
+          &.game {
+            background: #6633cc;
+          }
 
+          i {
+            font-size: 1.2em;
+            margin-right: 5px;
+            &.reading {
+              @extend .fa-book;
+            }
+            &.video_tutorial {
+              @extend .fa-file-video-o;
+            }
+            &.documentation {
+              @extend .fa-file-text-o;
+            }
+            &.game {
+              @extend .fa-gamepad;
+            }
+            &.blog_post {
+              @extend .fa-pencil-square-o;
+            }
+            &.tutorial {
+              @extend .fa-wrench;
+            }
+          }
         }
 
         .label-mir {
