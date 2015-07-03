@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.valid?
       sign_in(@user)
-      redirect_to root_path
+      redirect_to signed_in_root_path
     else
       render :new
     end
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to root_path, flash: { notice: "Tu perfil se ha actualizado" }
+      redirect_to signed_in_root_path, flash: { notice: "Tu perfil se ha actualizado" }
     else
       render :edit
     end
