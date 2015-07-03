@@ -1,33 +1,45 @@
-<article class="discussion-entry" id="<%= comment.id %>">
+<div class ="sections-comments">
+  <article class="discussion-entry" id="<%= comment.id %>">
+    <div class="discussion-entry-inner">
+      <div class="discussion-icon">
+        <img src="<%= comment.user.avatar_url %>" class="img-circle img-responsive" />
+      </div>
 
-  <div class="discussion-entry-inner">
-    <div class="discussion-icon">
-      <img src="<%= comment.user.avatar_url %>" class="img-circle img-responsive" />
-    </div>
+      <div class="discussion-label">
+        <h2>
+          <strong>
+            <% if current_user.is_admin? %>
+              <%= link_to comment.user.first_name, admin_user_path(comment.user) %>
+            <% else %>
+              <%= comment.user.first_name %>
+            <% end %>
+          </strong>
+            <span class="date">
+              <%= distance_of_time_in_words_to_now(comment.created_at) %>
+            </span>
 
-    <div class="discussion-label">
-      <h2>
-        <strong>
-          <% if current_user.is_admin? %>
-            <%= link_to comment.user.first_name, admin_user_path(comment.user) %>
-          <% else %>
-            <%= comment.user.first_name %>
-          <% end %>
-        </strong>
-          <span class="date">
-            <%= distance_of_time_in_words_to_now(comment.created_at) %>
-          </span>
+          <div class="comment-actions">
+            <%= button_edit(comment) if current_user.can_update_comment?(comment) %>
+            <%= button_delete(comment) if current_user.can_delete_comment?(comment) %>
+          </div>
+        </h2>
 
-        <div class="comment-actions">
-          <%= button_edit(comment) if current_user.can_update_comment?(comment) %>
-          <%= button_delete(comment) if current_user.can_delete_comment?(comment) %>
+        <div class="comment-body">
+          <p><%= markdown(comment.text, filter_html: true, escape_html: true) %></p>
         </div>
-      </h2>
 
-      <div class="comment-body">
-        <p><%= markdown(comment.text,filter_html: true, escape_html: true) %></p>
+        <% unless comment.response_to_id? %>
+          <div class="response">
+            <%= link_to 'Responder', response_to_comment_path(comment), remote: true, class: "add-form-response" %>
+          </div>
+        <% end %>
       </div>
     </div>
-  </div>
+  </article>
 
-</article>
+  <div class="aswers-comments comment-response" id="aswers-comments-<%= comment.id %>">
+    <% comment.responses.order("created_at DESC").each do |comment| %>
+      <%= render '/comments/comment', comment: comment %>
+    <% end %>
+  </div>
+</div>

@@ -25,7 +25,6 @@ class CommentsController < ApplicationController
     if params[:commit] == "Actualizar comentario"
       @comment.update(comment_params)
     end
-
   end
 
   def destroy
@@ -36,6 +35,10 @@ class CommentsController < ApplicationController
   def preview
     @comment = params[:comment]
     render layout: false
+  end
+
+  def response_to
+    @comment = Comment.find(params[:id])
   end
 
   protected

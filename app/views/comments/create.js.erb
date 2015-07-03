@@ -1,10 +1,27 @@
-var form = $(".comment-form");
-<% if @comment.valid? %>
-  $('.comments').prepend('<%= j render("/comments/comment", comment: @comment) %>');
-  $('#comment-input').val('');
-  form.find('.label-danger').hide();
-  form.find('#comment-input').removeAttr('style');
-<% else %>
-  form.find('.label-danger').show();
-  form.find('#comment-input').css("border", "1px solid red");
+<% if @comment %>
+  <% if @comment.response_to_id? %>
+    var field_comment = $('#aswers-comments-' + '<%= @comment.response_to_id  %>');
+    var form = field_comment.find('form');
+    var textarea = form.find('textarea');
+    form_aswer = field_comment.find('.discussion-entry').first();
+  <% else %>
+    var form = $(".comment-form");
+    var field_comment = $('.comments');
+    var textarea = form.find('#comment-input');
+  <% end %>
+
+  <% if @comment.valid? %>
+
+    if(typeof form_aswer !== 'undefined'){
+      form_aswer.remove();
+    }
+
+    field_comment.prepend('<%= j render("/comments/comment", comment: @comment) %>');
+    textarea.val('');
+    form.find('.label-danger').hide();
+    textarea.removeAttr('style');
+  <% else %>
+    form.find('.label-danger').show();
+    textarea.css("border", "1px solid red");
+  <% end %>
 <% end %>

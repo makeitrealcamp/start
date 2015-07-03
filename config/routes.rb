@@ -71,7 +71,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :comments, except: [:index, :create, :new, :show]
+  resources :comments, except: [:index, :create, :new, :show] do
+    get 'response_to', on: :member
+  end
   get 'comments/preview', action: 'preview', to: "comments#preview"
 
   resources :solutions, only: [:show] do

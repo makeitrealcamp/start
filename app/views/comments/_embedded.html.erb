@@ -38,7 +38,7 @@
   </div>
   <% end %>
   <div class="comments">
-    <% commentable.comments.order("created_at DESC").each do |comment| %>
+    <% commentable.comments.order("created_at DESC").where(response_to_id: nil).each do |comment| %>
       <%= render '/comments/comment', comment: comment %>
     <% end %>
   </div>
