@@ -20,6 +20,9 @@ Rails.application.routes.draw do
     patch :activate, on: :member
   end
 
+
+  get '/phases', to: 'phases#index', as: :signed_in_root
+
   resources :phases, except: [:destroy] do
     patch 'update_position', on: :member
   end

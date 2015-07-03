@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
     helper_method :current_user
 
     def public_access
-      redirect_to phases_path if signed_in?
+      redirect_to signed_in_root_path if signed_in?
     end
 
     def private_access

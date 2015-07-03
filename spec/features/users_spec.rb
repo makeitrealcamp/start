@@ -19,7 +19,7 @@ RSpec.feature "Users", type: :feature do
       login(user)
       wait_for_ajax
       expect(page).not_to have_content('Admin')
-      expect(current_path).to eq phases_path
+      expect(current_path).to eq signed_in_root_path
     end
 
     context 'edit profile' do
@@ -55,7 +55,7 @@ RSpec.feature "Users", type: :feature do
         expect(user.first_name).to eq first_name
         expect(user.mobile_number).to eq mobile_number
         expect(user.birthday.strftime('%F')).to eq '2015-01-01'
-        expect(current_path).to eq phases_path
+        expect(current_path).to eq signed_in_root_path
       end
     end
   end
@@ -72,7 +72,7 @@ RSpec.feature "Users", type: :feature do
       login(admin)
       wait_for_ajax
       expect(all('a', text: 'Admin').count).to eq 1
-      expect(current_path).to eq phases_path
+      expect(current_path).to eq signed_in_root_path
     end
   end
 
@@ -82,7 +82,7 @@ RSpec.feature "Users", type: :feature do
       visit login_path
       find('#sign-in-facebook').click
       sleep(1.0)
-      expect(current_path).to eq phases_path
+      expect(current_path).to eq signed_in_root_path
     end
 
     scenario 'can handle authentication error ' do
@@ -101,7 +101,7 @@ RSpec.feature "Users", type: :feature do
       visit login_path
       find('#sign-in-github').click
       sleep(1.0)
-      expect(current_path).to eq phases_path
+      expect(current_path).to eq signed_in_root_path
     end
 
     scenario 'can handle authentication error' do

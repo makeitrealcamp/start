@@ -1,7 +1,7 @@
 <div class="container phase-page">
   <div class="row">
     <div class="col-xs-12 header">
-      <%= link_to root_path do %>
+      <%= link_to signed_in_root_path do %>
         <span class='glyphicon glyphicon-arrow-left'></span> Volver al inicio
       <% end %>
       <% if current_user.is_admin? %>

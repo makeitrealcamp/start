@@ -6,7 +6,7 @@ RSpec.feature "Sign Up", type: :feature do
     login(create(:user))
 
     visit signup_path
-    expect(current_path).to eq phases_path
+    expect(current_path).to eq signed_in_root_path
   end
 
   scenario "with valid attributes" do
@@ -15,7 +15,27 @@ RSpec.feature "Sign Up", type: :feature do
     fill_in 'user_password', with: Faker::Internet.password
     click_button 'Empezar'
 
-    expect(current_path).to eq phases_path
+    expect(current_path).to eq signed_in_root_path
+  end
+
+  scenario "execute analytics script after sign up", js: true do
+    visit signup_path
+    fill_in 'user_email', with: Faker::Internet.email
+    fill_in 'user_password', with: Faker::Internet.password
+    click_button 'Empezar'
+
+    expect(current_path).to eq signed_in_root_path
+    analyticsMock = page.evaluate_script('window.analyticsMock');
+    expect(analyticsMock).to eq(true)
+  end
+
+  scenario "not execute analytics script when user is active", js: true do
+    login(create(:user,status: :active,last_active_at: Time.now))
+
+    visit signed_in_root_path
+
+    analyticsMock = page.evaluate_script('window.analyticsMock');
+    expect(analyticsMock).to eq(false)
   end
 
   scenario "with invalid email" do
