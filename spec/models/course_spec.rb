@@ -13,7 +13,6 @@
 #  slug          :string
 #  published     :boolean
 #  phase_id      :integer
-#  phase         :integer
 #
 # Indexes
 #

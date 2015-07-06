@@ -14,17 +14,6 @@ RSpec.feature "Challenges", type: :feature do
         login(user)
         expect{ visit course_challenge_path(course, challenge) }.to raise_error ActionController::RoutingError
       end
-
-      scenario 'list only the challenges free', js: true do
-        create(:challenge, course: course, published: true)
-        create(:challenge, course: course, published: true)
-        login(user)
-        visit course_path(course)
-        wait_for_ajax
-        expect(Challenge.where(restricted: false).count).to eq 2
-        expect(page).to have_selector('.challenge', count: 2)
-        expect(page).to have_selector('.banner')
-      end
     end
   end
 

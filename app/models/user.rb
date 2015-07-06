@@ -108,6 +108,7 @@ class User < ActiveRecord::Base
     progress(course) == 1.0
   end
 
+  #TODO: Remove params, are not using
   def has_access_to?(resource)
     self.is_admin? || self.paid_account?
   end

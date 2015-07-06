@@ -251,6 +251,15 @@ blockquote {
         }
       }
 
+      td.resource-own{
+        .label-mir {
+          background: #272727;
+          border-radius: 50%;
+          height: 35px;
+          display: inline-block;
+          width: 35px;
+        }
+      }
       td.resource-additional {
         width: 110px;
         text-align: right;
@@ -319,14 +328,6 @@ blockquote {
               @extend .fa-wrench;
             }
           }
-        }
-
-        .label-mir {
-          background: #272727;
-          border-radius: 50%;
-          height: 35px;
-          display: inline-block;
-          width: 35px;
         }
 
         .icon-container {
