@@ -2,12 +2,6 @@ class CommentsController < ApplicationController
   before_action :private_access
   before_action :set_instance, only: [:index, :create]
 
-  # GET /:commentable_resource/:id/comments
-  def index
-    comments = @instance.comments.order("created_at DESC")
-    render json: comments.to_json
-  end
-
   # POST /:commentable_resource/:id/comments
   def create
     @comment = Comment.new(comment_params.merge(
@@ -17,17 +11,22 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    #TODO: verify comment ownership
+    @comment = Comment.find(params[:id])
+  end
+
+  def cancel_edit
     @comment = Comment.find(params[:id])
   end
 
   def update
+    #TODO: verify comment ownership
     @comment =  Comment.find(params[:id])
-    if params[:commit] == "Actualizar comentario"
-      @comment.update(comment_params)
-    end
+    @comment.update(comment_params)
   end
 
   def destroy
+    #TODO: verify comment ownership
     @comment = Comment.find(params[:id])
     @comment.destroy
   end

@@ -38,7 +38,7 @@
   </div>
   <% end %>
   <div class="comments">
-    <% commentable.comments.order("created_at DESC").where(response_to_id: nil).each do |comment| %>
+    <% commentable.comments.all.where(response_to_id: nil).each do |comment| %>
       <%= render '/comments/comment', comment: comment %>
     <% end %>
   </div>
@@ -65,6 +65,9 @@
 
 <script>
   $(function(){
+    <%#
+      TODO: pasar esta lógica a una vista de backbone
+    %>
     $('.nav-tabs a[href="#preview"]').on('click', function(){
       var  comment = $('#comment-input').val();
       if(comment != ""){

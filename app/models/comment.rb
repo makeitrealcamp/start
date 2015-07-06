@@ -29,6 +29,8 @@ class Comment < ActiveRecord::Base
 
   validate :validate_response_to_response
 
+  default_scope { order("created_at DESC") }
+
   def as_json(options)
     json = super(options.merge(
       include: [{user: { methods: [:first_name, :avatar_url], only: [] }}]

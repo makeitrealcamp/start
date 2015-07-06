@@ -1,2 +1,2 @@
-$('article#' + '<%= @comment.id %>').remove();
-$('#aswers-comments-' + '<%= @comment.id %>').remove();
+$('#comment-<%= @comment.id %>').remove();
+$('#responses-to-comment-<%= @comment.id %>').remove();
