@@ -11,11 +11,13 @@
 }
 .phase-box {
   text-decoration: none;
-  color: white;
+  color: #333333;
   display: block;
   text-align: center;
   padding: 40px 20px;
   margin-bottom: 30px;
+  position: relative;
+  transition: all 0.5s;
 
   @media (min-width: $screen-md-min) {
     min-height: 320px;
@@ -23,25 +25,34 @@
   &:hover,:active,:focus,:link,:visited {
     text-decoration: none;
     opacity: 0.7;
-    color: white;
+    color: #333333;
   }
 
-  background-color: #303030;
+  background-color: #fff;
   border-bottom-style: solid;
   border-bottom-width: 10px;
+  border-left: 1px solid;
+  border-right: 1px solid;
 
   .phase-name {
     font-size: 45px;
     font-family: "Open Sans Condensed", sans-serif;
     font-weight: 700;
+    margin-top: 60px;
+
     @media (min-width: $screen-md-min) {
-      min-height: 110px;
+      min-height: 80px;
     }
   }
   .phase-number {
     position: absolute;
+    font-family: "Open Sans Condensed", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    width: 100%;
+    color: #fff;
     top: 0;
-    left: 15px;
+    left: 0;
     padding: 10px;
   }
   .phase-description {
