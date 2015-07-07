@@ -70,18 +70,17 @@
     %>
     $('.nav-tabs a[href="#preview"]').on('click', function(){
       var  comment = $('#comment-input').val();
-      if(comment != ""){
-        request = $.ajax({
-          url: "/comments/preview",
-          data: {comment: comment },
-          method: 'GET',
-          dataType: "html"
-        });
+      request = $.ajax({
+        url: "/comments/preview",
+        data: {comment: comment },
+        method: 'GET',
+        dataType: "html"
+      });
 
-        request.done(function(data){
-          $('#preview .content').html(data);
-        });
-      }
+      request.done(function(data){
+        $('#preview .content').html(data);
+      });
+
     });
   });
 </script>
