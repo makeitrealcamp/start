@@ -1,6 +1,6 @@
 <%# TODO: pasar esta lógica a Backbone %>
 <% if @comment %>
-  <% if @comment.response_to_id? %>
+  <% if @comment.is_response? %>
     var field_comment = $('#responses-to-comment-<%= @comment.response_to_id %>');
     var form = field_comment.find('form');
     var textarea = form.find('textarea');
@@ -9,13 +9,19 @@
     var form = $(".comment-form");
     var field_comment = $('.comments');
     var textarea = form.find('#comment-input');
+    var preview_content = $('#preview .content');
   <% end %>
 
   <% if @comment.valid? %>
 
-    if(typeof form_answer !== 'undefined'){
+    if(typeof form_answer !== 'undefined') {
       form_answer.remove();
     }
+
+    if(typeof preview_content != 'undefined' && preview_content != null) {
+      preview_content.html('');
+    }
+
 
     field_comment.prepend('<%= j render("/comments/comment", comment: @comment) %>');
     textarea.val('');
