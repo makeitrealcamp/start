@@ -1,18 +1,24 @@
-<article class="discussion-entry" id="<%= @comment.id %>">
+<article class="discussion-entry" id="comment-<%= comment.id %>">
   <div class="discussion-entry-inner">
     <div class="discussion-icon">
-      <img src="<%= @comment.user.avatar_url %>" class="img-circle img-responsive" />
+      <img src="<%= comment.user.avatar_url %>" class="img-circle img-responsive" />
     </div>
 
     <div class="discussion-label">
       <span class="label label-danger" style="display:none">Este campo es requerido.</span>
-      <%= form_tag comment_path(@comment), method: :put, remote: true, class: "edit-comment" do   %>
-        <%= text_area_tag :text, @comment.text, id: "comment-input", class: "form-control", rows: 2, placeholder: "Texto"  %>
+      <%= form_tag comment_path(comment), method: :put, remote: true, class: "edit-comment" do   %>
+        <%= text_area_tag :text, comment.text, id: "comment-input", class: "form-control", rows: 2, placeholder: "Texto"  %>
         <div class="text-right actions">
-          <%= submit_tag "Cancelar", class: "btn btn-default", id: "btn-cancel" %>
+          <%= link_to "Cancelar", cancel_edit_comment_path(comment), class: "btn btn-default btn-cancel", remote: true %>
           <%= submit_tag "Actualizar comentario", class: "btn btn-success", id: "btn-update" %>
         </div>
       <% end  %>
     </div>
   </div>
+  <div class="responses-to-comment" id="responses-to-comment-<%= comment.id %>">
+    <% comment.responses.all.each do |comment| %>
+      <%= render '/comments/comment', comment: comment %>
+    <% end %>
+  </div>
+
 </article>

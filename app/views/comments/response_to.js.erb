@@ -1,0 +1,3 @@
+
+var comment = $('#responses-to-comment-<%= @comment.id %>');
+comment.prepend('<%= j  render "/comments/response_form" %>');

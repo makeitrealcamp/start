@@ -90,6 +90,7 @@ $color_thunderbird_approx: #cc2424;
         }
       }
     }
+
     .discussion-entry-inner {
       position: relative;
       margin-left: -20px;
@@ -232,6 +233,15 @@ $color_thunderbird_approx: #cc2424;
       font-size: 16px;
     }
   }
+
+  .response{
+    font-size: 12px;
+  }
+}
+
+.responses-to-comment{
+  width: 90%;
+  float: right;
 }
 
 .comment-form {
@@ -251,4 +261,11 @@ $color_thunderbird_approx: #cc2424;
   .btn-send-comment {
     margin-top: 10px;
   }
+}
+
+.comment-preview {
+  background-color: white;
+  border-radius: 15px;
+  padding: 10px;
+  margin-top: 10px;
 }

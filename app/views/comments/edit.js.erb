@@ -1,1 +1,1 @@
-$('article#' + '<%= @comment.id %>').replaceWith('<%= j render "form_edit" %>');
+$('#comment-<%= @comment.id %>').replaceWith('<%= j render "comments/form_edit", comment: @comment %>');

@@ -1,0 +1,19 @@
+<article class="discussion-entry response-comment-form">
+  <div class="discussion-entry-inner">
+    <div class="discussion-icon">
+      <img src="<%= current_user.avatar_url %>" class="img-circle img-responsive" />
+    </div>
+
+    <div class="discussion-label">
+      <%= form_tag generate_comments_path(@comment.commentable), remote: true, class: "edit-comment"  do   %>
+        <span class="label label-danger" style="display:none">Este campo es requerido.</span>
+        <%= text_area_tag :text, nil, class: "form-control", rows: 2, required: true, placeholder: "Escribe una respuesta"  %>
+        <%= hidden_field_tag :response_to_id, @comment.id %>
+        <div class="text-right actions">
+          <%= link_to "Cancelar", cancel_edit_comment_path(@comment), class: "btn btn-default btn-cancel", remote: true %>
+          <%= submit_tag "Responder", class: "btn btn-success", id: "btn-update" %>
+        </div>
+      <% end  %>
+    </div>
+  </div>
+</article>

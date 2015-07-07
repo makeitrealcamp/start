@@ -21,12 +21,15 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, polymorphic: true
   belongs_to :user
   belongs_to :response_to, class_name: "Comment"
+  has_many :responses, class_name: 'Comment', foreign_key: 'response_to_id', dependent: :delete_all
 
   validates :commentable, presence: true
   validates :user, presence: true
   validates :text, presence: true
 
   validate :validate_response_to_response
+
+  default_scope { order("created_at DESC") }
 
   def as_json(options)
     json = super(options.merge(

@@ -1,5 +1,4 @@
-<article class="discussion-entry" id="<%= comment.id %>">
-
+<article class="discussion-entry" id="comment-<%= comment.id %>">
   <div class="discussion-entry-inner">
     <div class="discussion-icon">
       <img src="<%= comment.user.avatar_url %>" class="img-circle img-responsive" />
@@ -25,9 +24,21 @@
       </h2>
 
       <div class="comment-body">
-        <p><%= markdown(comment.text,filter_html: true, escape_html: true) %></p>
+        <p><%= markdown(comment.text, filter_html: true, escape_html: true) %></p>
       </div>
+
+      <% unless comment.is_response? %>
+        <div class="response">
+          <%= link_to 'Responder', response_to_comment_path(comment), remote: true, class: "add-form-response" %>
+        </div>
+      <% end %>
     </div>
   </div>
-
+  <% unless comment.is_response? %>
+    <div class="responses-to-comment" id="responses-to-comment-<%= comment.id %>">
+      <% comment.responses.all.each do |comment| %>
+        <%= render '/comments/comment', comment: comment %>
+      <% end %>
+    </div>
+  <% end %>
 </article>

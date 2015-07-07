@@ -20,7 +20,6 @@ Rails.application.routes.draw do
     patch :activate, on: :member
   end
 
-
   get '/phases', to: 'phases#index', as: :signed_in_root
 
   resources :phases, except: [:destroy] do
@@ -67,12 +66,19 @@ Rails.application.routes.draw do
 
   scope "/:commentable_resource" do
     scope "/:id" do
-      resources :comments, only: [:index,:create]
+      resources :comments, only: [:create]
     end
   end
 
-  resources :comments, except: [:index, :create, :new, :show]
-  get 'comments/preview', action: 'preview', to: "comments#preview"
+  resources :comments, except: [:index, :create, :new, :show] do
+    member do
+      get :response_to
+      get :cancel_edit
+    end
+    collection do
+      get :preview
+    end
+  end
 
   resources :solutions, only: [:show] do
     put 'update_documents', on: :member
