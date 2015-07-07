@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     @current_user = nil
   end
 
-  private
+  protected
     def signed_in?
       !current_user.nil?
     end
@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
 
     def paid_access
       if(!current_user.paid_account? && !current_user.is_admin?)
-        redirect_to "/", notice: "Debes estar inscrito al programa para acceder a este recurso"
+        redirect_to signed_in_root_path, notice: "Debes estar inscrito al programa para acceder a este recurso"
       end
     end
 

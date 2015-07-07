@@ -12,7 +12,10 @@ RSpec.feature "Challenges", type: :feature do
     context 'should not access challenges restricted' do
       scenario 'return not found when access by url' do
         login(user)
-        expect{ visit course_challenge_path(course, challenge) }.to raise_error ActionController::RoutingError
+        visit course_challenge_path(course, challenge)
+        expect(current_path).to eq signed_in_root_path
+        expect(page).to have_selector('.alert-top-notice', count: 1)
+        expect(page).to have_content('Debes estar inscrito al programa para acceder a este recurso')
       end
     end
 
@@ -82,8 +85,8 @@ RSpec.feature "Challenges", type: :feature do
     end
   end
 
-  context 'when user is admin' do 
-    context 'list challenges' do 
+  context 'when user is admin' do
+    context 'list challenges' do
       scenario 'list all the challenges' do
         create(:challenge, course: course, published: true)
         create(:challenge, course: course, published: false)
@@ -101,7 +104,7 @@ RSpec.feature "Challenges", type: :feature do
         expect(page).to have_selector(".challenge .actions", count: 3)
       end
     end
-  end 
+  end
 
   scenario 'reset solution', js: true do
     create(:solution, user: user_paid, challenge: challenge)

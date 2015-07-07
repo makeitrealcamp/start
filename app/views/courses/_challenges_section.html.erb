@@ -26,7 +26,7 @@
       <% else %>
         <% @course.challenges.for(current_user).each_with_index do |challenge, index| %>
           <% if challenge.restricted? %>
-            <div id="challenge_<%= challenge.id %>" class="challenge clearfix" data-index="<%= index %>"  data-sortable="true" data-resource-id="<%=challenge.id %>">
+            <div id="challenge_<%= challenge.id %>" class="challenge clearfix restricted" data-index="<%= index %>"  data-sortable="true" data-resource-id="<%=challenge.id %>">
               <div class="challenge-status">
                 <span class="glyphicon glyphicon-lock"></span>
               </div>

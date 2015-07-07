@@ -438,7 +438,7 @@ blockquote {
         }
 
         a, span {
-          color: #ccc;
+          color: #303030;
           text-decoration: none;
         }
 
@@ -456,13 +456,14 @@ blockquote {
       }
 
       &.completed {
-        .challenge-title a { color: #303030; }
         .challenge-status {
           background: #28B038;
           color: white;
         }
       }
-
+      &.restricted {
+        .challenge-title span { color: #ccc; }
+      }
       &.over { border-top: 2px dashed #999; }
     }
   }
