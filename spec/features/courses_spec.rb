@@ -35,7 +35,7 @@ RSpec.feature "Courses", type: :feature do
       expect(current_path).to eq course_path(course)
     end
 
-    describe 'user is of type free' do
+    describe 'is of type free' do
       scenario 'list courses' do
         create(:course,phase: phase)
         create(:course,phase: phase)
@@ -45,7 +45,7 @@ RSpec.feature "Courses", type: :feature do
       end
     end
 
-    describe 'user is of type paid' do
+    describe 'is of type paid' do
       scenario 'list all courses' do
         user = create(:user, account_type: User.account_types[:paid_account])
         create(:course,phase: phase)
@@ -55,8 +55,6 @@ RSpec.feature "Courses", type: :feature do
         expect(page).to have_selector('.course', count: 3)
       end
     end
-
-
   end
 
   context 'when accessed as admin' do

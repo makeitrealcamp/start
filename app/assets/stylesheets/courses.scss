@@ -259,6 +259,11 @@ blockquote {
           display: inline-block;
           width: 35px;
         }
+
+        .icon-container {
+          width: 14px;
+          margin: 5px auto 0;
+        }
       }
       td.resource-additional {
         width: 110px;
@@ -329,12 +334,6 @@ blockquote {
             }
           }
         }
-
-        .icon-container {
-          width: 14px;
-          margin: 1px auto 0;
-        }
-
       }
     }
   }

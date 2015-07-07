@@ -53,9 +53,7 @@ class Challenge < ActiveRecord::Base
   before_destroy :check_for_solutions
 
   def self.for(user)
-    if user.free_account?
-      where(restricted: false).published
-    elsif user.paid_account?
+    if user.free_account? || user.paid_account?
       published
     elsif user.admin_account?
       all

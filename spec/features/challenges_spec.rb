@@ -15,19 +15,93 @@ RSpec.feature "Challenges", type: :feature do
         expect{ visit course_challenge_path(course, challenge) }.to raise_error ActionController::RoutingError
       end
     end
+
+    context 'list challenges' do
+      scenario 'only the published' do
+        create(:challenge, course: course, published: true)
+        create(:challenge, course: course, published: false)
+        login(user)
+        visit course_path(course)
+        expect(page).to have_selector('.challenge', count: 2)
+        expect(page).to have_selector('.banner')
+      end
+
+      scenario 'view' do
+        create(:challenge, course: course, published: true, restricted: false)
+        create(:challenge, course: course, published: true, restricted: false)
+        login(user)
+        visit course_path(course)
+        expect(page).to have_selector(".glyphicon-lock", count: 1)
+        expect(page).to have_selector(".glyphicon-ok", count: 2)
+      end
+
+      scenario 'disabled challenge when is restricted' do
+        login(user)
+        visit course_path(course)
+        all(:css, '.challenge').first.click
+        expect(current_path).to eq course_path(course)
+      end
+
+      scenario 'enabled challenge when is not restricted', js: true do
+        challenge  =  create(:challenge, course: course, published: true, restricted: false)
+        login(user)
+        visit course_path(course)
+        all(:css, '.challenge').last.click
+        wait_for_ajax
+        expect(current_path).to eq course_challenge_path(course, challenge)
+      end
+    end
   end
 
   context 'when user is paid account' do
-    scenario 'list challenges published', js: true do
-      create(:challenge, course: course, published: true)
-      create(:challenge, course: course, published: true)
-      login(user_paid)
-      visit course_path(course)
-      wait_for_ajax
-      expect(page).to have_selector('.challenge', count: 3)
-      expect(page).not_to have_selector('.alert-info')
+    context 'list challenges' do
+      scenario 'only the published' do
+        create(:challenge, course: course, published: true)
+        create(:challenge, course: course, published: false)
+        login(user_paid)
+        visit course_path(course)
+        expect(page).to have_selector('.challenge', count: 2)
+        expect(page).not_to have_selector('.banner')
+      end
+
+      scenario 'view' do
+        create(:challenge, course: course, published: true, restricted: false)
+        create(:challenge, course: course, published: true, restricted: false)
+        login(user_paid)
+        visit course_path(course)
+        expect(page).to have_selector(".glyphicon-ok", count: 3)
+      end
+
+      scenario 'enabled challenge when is restricted', js: true do
+        login(user_paid)
+        visit course_path(course)
+        all(:css, '.challenge').first.click
+        wait_for_ajax
+        expect(current_path).to eq course_challenge_path(course, challenge)
+      end
     end
   end
+
+  context 'when user is admin' do 
+    context 'list challenges' do 
+      scenario 'list all the challenges' do
+        create(:challenge, course: course, published: true)
+        create(:challenge, course: course, published: false)
+        login(admin)
+        visit course_path(course)
+        expect(page).to have_selector('.challenge', count: 3)
+        expect(page).not_to have_selector('.banner')
+      end
+
+      scenario 'view' do
+        create(:challenge, course: course, published: true, restricted: false)
+        create(:challenge, course: course, published: true, restricted: true)
+        login(user_paid)
+        visit course_path(course)
+        expect(page).to have_selector(".challenge .actions", count: 3)
+      end
+    end
+  end 
 
   scenario 'reset solution', js: true do
     create(:solution, user: user_paid, challenge: challenge)
