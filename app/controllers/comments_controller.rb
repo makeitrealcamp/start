@@ -11,8 +11,8 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    #TODO: verify comment ownership
     @comment = Comment.find(params[:id])
+    owner_or_admin_access
   end
 
   def cancel_edit
@@ -20,14 +20,14 @@ class CommentsController < ApplicationController
   end
 
   def update
-    #TODO: verify comment ownership
     @comment =  Comment.find(params[:id])
+    owner_or_admin_access
     @comment.update(comment_params)
   end
 
   def destroy
-    #TODO: verify comment ownership
     @comment = Comment.find(params[:id])
+    owner_or_admin_access
     @comment.destroy
   end
 
@@ -51,6 +51,14 @@ class CommentsController < ApplicationController
       @instance = klass.friendly.find(params[:id])
     else
       @instance = klass.find(params[:id])
+    end
+  end
+
+  def owner_or_admin_access
+    is_admin = signed_in? && current_user.is_admin?
+    is_owner_of_comment = signed_in? && @comment.user.id == current_user.id
+    if(!is_admin && !is_owner_of_comment)
+      raise ActionController::RoutingError.new('Not Found') unless signed_in? && current_user.is_admin?
     end
   end
 end

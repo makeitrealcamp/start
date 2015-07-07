@@ -27,7 +27,7 @@
         <p><%= markdown(comment.text, filter_html: true, escape_html: true) %></p>
       </div>
 
-      <% unless comment.response_to_id? %>
+      <% unless comment.is_response? %>
         <div class="response">
           <%= link_to 'Responder', response_to_comment_path(comment), remote: true, class: "add-form-response" %>
         </div>
