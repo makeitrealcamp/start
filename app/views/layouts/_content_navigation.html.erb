@@ -21,7 +21,9 @@
                   <li class="nav-division">Retos</li>
                   <% course.challenges.for(current_user).each do |challenge| %>
                     <li class="nav-challenge">
-                      <% if current_user.has_completed_challenge?(challenge) %>
+                      <% if current_user.free_account? && challenge.restricted? %>
+                        <i class="text-muted fa fa-lock"></i>
+                      <% elsif current_user.has_completed_challenge?(challenge) %>
                         <i class="text-success fa fa-check"></i>
                       <% end %>
                       <%= link_to challenge.name, course_challenge_path(course,challenge) %>
@@ -45,7 +47,9 @@
                   <li class="nav-division">Proyectos</li>
                   <% course.projects.for(current_user).each do |project| %>
                     <li class="nav-project">
-                      <% if current_user.has_completed_project?(project) %>
+                      <% if current_user.free_account? %>
+                        <i class="text-muted fa fa-lock"></i>
+                      <% elsif current_user.has_completed_project?(project) %>
                         <i class="text-success fa fa-check"></i>
                       <% end %>
                       <%= link_to project.name, course_project_path(course,project) %>

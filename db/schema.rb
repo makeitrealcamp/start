@@ -72,7 +72,6 @@ ActiveRecord::Schema.define(version: 20150702214823) do
     t.string   "slug"
     t.boolean  "published"
     t.integer  "phase_id"
-    t.integer  "phase"
   end
 
   add_index "courses", ["phase_id"], name: "index_courses_on_phase_id", using: :btree
