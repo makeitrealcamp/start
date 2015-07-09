@@ -29,7 +29,18 @@
     transition: all 0.5s;
     &:hover {
       background: #e42e00;
+      color: #fff;
       text-decoration: none;
+    }
+  }
+  .col-xs-6 {
+    @media (max-width: 500px) {
+      width: 100%
+    }
+  }
+  .col-xs-4 {
+    @media (max-width: 500px) {
+      width: 100%
     }
   }
   .account-type {
@@ -50,10 +61,16 @@
       float: left;
       margin: 0;
     }
+    .status {
+      overflow: hidden;
+    }
     .status-options {
       float: left;
       margin-left: 20px;
       margin-top: 15px;
+      @media (max-width: $screen-lg-min) {
+        margin-left: 0;
+      }
     }
     .radio-caption {
       margin-right: 5px;
@@ -63,21 +80,36 @@
       border-left: solid 1px #dddddd;
       border-right: solid 1px #dddddd;
       text-align: center;
+      @media (max-width: $screen-lg-min) {
+       text-align: left;
+       padding-bottom: 30px;
+      }
     }
     .url {
       margin-right: 15px;
     }
     .share-social {
       padding: 7px 15px 7px 25px;
+      @media (max-width: $screen-lg-min) {
+        padding: 15px 15px 7px 25px;
+      }
       ul {
         list-style-type: none;
         padding-left: 0;
         display: inline-block;
         font-size: 22px;
+        @media (max-width: $screen-lg-min) {
+          display: block;
+        }
       }
       li {
         display: inline-block;
         margin-left: 10px;
+        @media (max-width: $screen-lg-min) {
+          &:first-child {
+            margin-left: 0;
+          }
+        }
       }
     }
   }
@@ -123,6 +155,17 @@
         float: left;
         width: 25%;
         text-align: center;
+        @media (max-width: $screen-lg-min) {
+          width: 33.333%;
+          margin-bottom: 15px;
+        }
+        @media (max-width: 500px) {
+          width: 50%;
+        }
+        @media (max-width: 400px) {
+          width: 100%;
+        }
+
       }
       .number-results {
         display: block;
@@ -151,6 +194,9 @@
     .course-name {
       margin-bottom: 10px;
       display: block;
+      @media (max-width: $screen-lg-min) {
+        font-size: 14px;
+      }
     }
     .course-status {
       padding: 15px;
