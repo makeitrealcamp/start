@@ -18,6 +18,9 @@ Rails.application.routes.draw do
 
   resources :users do
     patch :activate, on: :member
+    member do
+     get :profile
+    end
   end
 
   get '/phases', to: 'phases#index', as: :signed_in_root

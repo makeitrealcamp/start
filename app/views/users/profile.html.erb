@@ -1,0 +1,253 @@
+<div class="container profile-view">
+  <div class="row">
+    <div class="col-sm-12 account-type">
+      <div class="row">
+        <div class="col-sm-2">
+          Tipo de cuenta: <span class="txt-bold">gratis</span>
+        </div>
+        <div class="col-sm-7">
+          Todavía no estás inscrito en Make It Real, pero tienes acceso a nuestro contenido gratis. Únete para acceder a todos los cursos, recursos y proyectos que tenemos para tí.
+        </div>
+        <div class="col-sm-3">
+          <a href="" class="btn-cta">Unirse a Make it Real</a>
+        </div>
+      </div>
+    </div><!-- /account-type -->
+
+    <div class="col-sm-12 profile-status">
+      <div class="row">
+        <div class="col-sm-5 status">
+          <h1>Mi perfil</h1>
+          <div class="status-options">
+            <form class="form-inline">
+              <span class="radio-caption">Estado de tu perfil:</span>
+              <label class="radio-inline">
+                <input type="radio" name="status" id="publico" value="publico"> <span class="txt-bold">público</span>
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="status" id="privado" value="privado"> <span class="txt-bold">privado</span>
+              </label>
+            </form>
+          </div>
+        </div><!-- /status -->
+
+        <div class="col-sm-4 share-url">
+          <span class="url">URL: makeitreal.camp/nombreusuario</span>
+          <a href="" class="copy-url">copiar URL</a>
+        </div><!-- profile-status/ -->
+
+        <div class="col-sm-3 share-social">
+          Compartir:
+          <ul>
+            <li>
+              <a href=""><i class="fa fa-facebook-square"></i></a>
+            </li>
+            <li>
+              <a href=""><i class="fa fa-google-plus-square"></i></a>
+            </li>
+            <li>
+              <a href=""><i class="fa fa-twitter-square"></i></a>
+            </li>
+            <li>
+              <a href=""><i class="fa fa-linkedin-square"></i></a>
+            </li>
+          </ul>
+        </div><!-- /share-social -->
+
+      </div><!-- /row -->
+    </div><!-- /profile-status -->
+
+    <div class="col-sm-12 profile-data">
+      <div class="row">
+        <div class="col-sm-4 my-data">
+          <h2>Mis datos</h2>
+          <div class="profile-img"><img src="<%= Gravatar.new("#{current_user.email}").image_url %>" class="img-circle" /></div>
+          <span class="profile-name txt-bold">
+            Nombre de usuario
+          </span>
+          <span class="profile-date">
+            Se unió el 05 abr, 2015
+          </span>
+          <a href="" class="profile-github"><i class="fa fa-github"></i>github.com/usuario</a>
+        </div><!-- /my-data -->
+
+        <div class="col-sm-8 my-achievements">
+          <h2>Mis logros</h2>
+          <ul>
+            <li>
+              <span class="txt-bold">Retos Resueltos</span>
+              <span class="number-results">100</span>
+            </li>
+            <li>
+              <span class="txt-bold">Recursos Aprovechados</span>
+              <span class="number-results">35</span>
+            </li>
+            <li>
+              <span class="txt-bold">Proyectos Terminados</span>
+              <span class="number-results">6</span>
+            </li>
+            <li>
+              <span class="txt-bold">Emblemas Otorgados</span>
+              <span class="number-results">1</span>
+            </li>
+          </ul>
+        </div><!-- /my-achievements -->
+
+      </div><!-- /row -->
+    </div><!-- /profile-data -->
+
+
+    <div class="col-sm-12 profile-progress">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>Mi Progreso</h2>
+        </div>
+        <div class="col-sm-3">
+          <div class="course-status">
+            <span class="course-name">Una nueva mentalidad</span>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+                70%
+              </div>
+            </div>
+            <a href="">continuar</a>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="course-status">
+            <span class="course-name">HTML y CSS</span>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                45%
+              </div>
+            </div>
+            <a href="">continuar</a>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="course-status">
+            <span class="course-name">Ruby Básico</span>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
+                15%
+              </div>
+            </div>
+            <a href="">continuar</a>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="course-status">
+            <span class="course-name">Git y Github</span>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%">
+                85%
+              </div>
+            </div>
+            <a href="">continuar</a>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="course-status">
+            <span class="course-name">Bootstrap 3</span>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                0%
+              </div>
+            </div>
+            <a href="">iniciar</a>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="course-status">
+            <span class="course-name">Intro to Web Development</span>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                60%
+              </div>
+            </div>
+            <a href="">continuar</a>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="course-status">
+            <span class="course-name">Ruby on Rails I</span>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                100%
+              </div>
+            </div>
+            <a class="disabled" href="">finalizado</a>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="course-status">
+            <span class="course-name">Javascript</span>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
+                65%
+              </div>
+            </div>
+            <a href="">continuar</a>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="course-status">
+            <span class="course-name">Jquery y AJAX</span>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
+                15%
+              </div>
+            </div>
+            <a href="">continuar</a>
+          </div>
+        </div>
+      </div><!-- /row -->
+    </div><!-- /profile-progress -->
+
+
+
+    <div class="col-sm-12 profile-emblems">
+      <h2>Mis Emblemas</h2>
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="emblem">
+            <div class="emblem-container">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 169.7 169.7" enable-background="new 0 0 169.7 169.7"><style type="text/css">.st0{fill:#ff3000;}</style><g id="XMLID_1083_"><path id="XMLID_58_" class="st0" d="M75.6 104.3l-13.2-57.1h-.5c.6 4.4.9 8.4.9 12.1v45h-12v-67.1h19.9l11.9 52.8h.4l11.8-52.7h20.2v67.1h-12.3v-45.6c0-3.8.2-7.6.7-11.6h-.4l-13.2 57h-14.2z"/><path class="st0" d="M50.8 116.1h64.1v10.7h-64.1z" id="XMLID_1064_"/></g><path id="XMLID_37_" class="st0" d="M84.8 169.7c-46.7 0-84.8-38.1-84.8-84.9 0-46.7 38.1-84.8 84.8-84.8s84.8 38.1 84.8 84.8c.1 46.8-38 84.9-84.8 84.9zm0-166.7c-45.1 0-81.8 36.7-81.8 81.8s36.7 81.8 81.8 81.8 81.8-36.7 81.8-81.8-36.6-81.8-81.8-81.8z"/></svg>
+            </div>
+            <a href="">Hago parte de Make It Real</a>
+            <span class="emblem-date">Febrero 12, 2015</span>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="emblem">
+            segundo emblema
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="emblem">
+            tercer emblema
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="emblem">
+            cuarto emblema
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="emblem">
+            quinto emblema
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="emblem">
+            sexto emblema
+          </div>
+        </div>
+      </div><!-- /row -->
+    </div><!-- /profile-emblems -->
+
+
+
+
+  </div><!-- /row -->
+</div><!-- /profile-view -->
