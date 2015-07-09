@@ -1,0 +1,87 @@
+<div class="container pair-programming">
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="col-xs-6">
+          <h2>Tu disponibilidad</h2>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table id="own-pair-programming-times" class="table">
+          <thead>
+            <tr>
+              <th>Día</th>
+              <th>Hora Inicio</th>
+              <th>Hora fin</th>
+              <th>Huso Horario</th>
+              <th>Editar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @own_pair_programming_times.each do |pair_programming_time| %>
+              <%= render "pair_programming_times/row", pair_programming_time: pair_programming_time %>
+            <% end %>
+          </tbody>
+        </table>
+        <%= link_to new_pair_programming_time_path, class: "btn btn-primary btn-xs", remote: true do %>
+          <span class="glyphicon glyphicon-plus"></span>
+          <span class="hidden-xs">Agregar horario</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <hr>
+  
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Makers con los que puedes hacer pair programming <small>(De acuerdo a tu disponibilidad)</small></h2>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Maker</th>
+              <th>Día</th>
+              <th>Hora Inicio</th>
+              <th>Hora fin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Simón</td>
+              <td>Lunes</td>
+              <td>04:00 pm</td>
+              <td>04:00 am</td>
+            </tr>
+            <tr>
+              <td>Pepe</td>
+              <td>Martes</td>
+              <td>09:00 pm</td>
+              <td>10:00 pm</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="pair-programming-times-form-modal" class="modal fade " tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Horario de Pair programming</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2 form-container">
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

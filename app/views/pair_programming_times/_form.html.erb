@@ -1,0 +1,36 @@
+<%= form_for @pair_programming_time, remote: true do |f| %>
+  <%= render 'shared/flash_messages_form', object: @pair_programming_time %>
+  <div class="form-group">
+    <%= f.label "Día" %>
+    <%= f.select :day, days_for_select, {}, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label "¿Desde qué horas estás disponible?" %>
+    <div class="row">
+      <div class="col-xs-6">
+        <%= f.select :start_time_hour, hours_for_select,{},class: 'form-control' %>
+      </div>
+      <div class="col-xs-6">
+        <%= f.select :start_time_minute, minutes_for_select,{},class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label "¿Hasta qué horas estás disponible?" %>
+    <div class="row">
+      <div class="col-xs-6">
+        <%= f.select :end_time_hour, hours_for_select,{},class: 'form-control' %>
+      </div>
+      <div class="col-xs-6">
+        <%= f.select :end_time_minute, minutes_for_select,{},class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label "Zona horaria" %>
+    <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.all.sort, {default: "Bogota"}, class: 'form-control') %>
+  </div>
+
+  <%= f.submit "Guardar", class: "btn btn-primary btn-block" %>
+
+<% end %>
