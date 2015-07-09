@@ -23,7 +23,10 @@ module ApplicationHelper
   end
 
   def embedded_video(src,opts = {})
-    opts[:src] ||= src
+    uri = URI(src)
+    params = URI.decode_www_form(uri.query || []) << ['wemail', current_user.email]
+    uri.query = URI.encode_www_form(params)
+    opts[:src] ||= uri
     opts[:allowtransparency] ||= true
     opts[:frameborder] ||= "0"
     opts[:scrolling] ||= "no"
