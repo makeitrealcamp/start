@@ -4,7 +4,7 @@ class PairProgrammingTimesController < ApplicationController
   before_action :set_time_zone
 
   def index
-    @own_pair_programming_times = current_user.pair_programming_times
+    @own_pair_programming_times = current_user.pair_programming_times.sort{ |a,b| a.start_time <=> b.start_time }
     @all_times = PairProgrammingTime.where.not(user_id: current_user.id).sort{ |a,b| a.start_time <=> b.start_time }
     calc_matched_times
   end
@@ -64,7 +64,7 @@ class PairProgrammingTimesController < ApplicationController
   end
 
   def calc_matched_times
-    @matched_times = PairProgrammingTime.match_times_for(current_user)
+    @matched_times = PairProgrammingTime.match_times_for(current_user).sort{ |a,b| a.start_time <=> b.start_time }
   end
 
   def set_time_zone
