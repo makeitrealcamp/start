@@ -1,4 +1,4 @@
 $("#own-pair-programming-times").append("<%= j render 'pair_programming_times/row', pair_programming_time: @pair_programming_time %>")
 $("#pair-programming-times-form-modal").modal("hide");
 $("#pair-programming-times-form-modal .form-container").html("")
-$("#matched-times").replaceWith("<%= j render 'pair_programming_times/times_table', times: @matched_times %>");
+$("#matched-times").replaceWith("<%= j render 'pair_programming_times/times_table', times: @matched_times, time_zone: @time_zone %>");

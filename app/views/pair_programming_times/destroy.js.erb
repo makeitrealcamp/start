@@ -1,2 +1,2 @@
 $("#pair-programming-time-<%=@pair_programming_time.id%>").remove();
-$("#matched-times").replaceWith("<%= j render 'pair_programming_times/times_table', times: @matched_times %>");
+$("#matched-times").replaceWith("<%= j render 'pair_programming_times/times_table', times: @matched_times, time_zone: @time_zone %>");

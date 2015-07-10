@@ -35,13 +35,22 @@
 
   <div class="row">
     <div class="col-xs-12">
+      <%= form_tag(pair_programming_times_path, method: "get", class: "form-inline") do |f| %>
+        <select name="time_zone" class="form-control">
+          <%= time_zone_options_for_select(@time_zone,nil,ActiveSupport::TimeZone) %>
+        </select>
+        <%= button_tag("Cambiar zona horaria", class: "btn btn-success") %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
       <h2>Makers con los que puedes hacer pair programming <small>(De acuerdo a tu disponibilidad)</small></h2>
       <div class="table-responsive">
-        <%= render "pair_programming_times/times_table", times: @matched_times %>
+        <%= render "pair_programming_times/times_table", times: @matched_times, time_zone: @time_zone %>
       </div>
     </div>
   </div>
-
 
   <div id="pair-programming-times-form-modal" class="modal fade " tabindex="-1" role="dialog">
     <div class="modal-dialog modal-md">

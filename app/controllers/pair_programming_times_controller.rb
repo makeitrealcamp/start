@@ -1,6 +1,7 @@
 class PairProgrammingTimesController < ApplicationController
   before_action :private_access
   before_action :set_pair_programming_time, only: [:edit,:update,:destroy]
+  before_action :set_time_zone
 
   def index
     @own_pair_programming_times = current_user.pair_programming_times
@@ -65,4 +66,7 @@ class PairProgrammingTimesController < ApplicationController
     @matched_times = PairProgrammingTime.match_times_for(current_user)
   end
 
+  def set_time_zone
+    @time_zone = params[:time_zone] || "Bogota"
+  end
 end
