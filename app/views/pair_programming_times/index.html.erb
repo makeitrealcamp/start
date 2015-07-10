@@ -52,6 +52,15 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Todos los horarios</h2>
+      <div class="table-responsive">
+        <%= render "pair_programming_times/times_table", times: @all_times, time_zone: @time_zone %>
+      </div>
+    </div>
+  </div>
+
   <div id="pair-programming-times-form-modal" class="modal fade " tabindex="-1" role="dialog">
     <div class="modal-dialog modal-md">
       <div class="modal-content">

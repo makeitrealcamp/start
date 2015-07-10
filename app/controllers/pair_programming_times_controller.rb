@@ -5,6 +5,7 @@ class PairProgrammingTimesController < ApplicationController
 
   def index
     @own_pair_programming_times = current_user.pair_programming_times
+    @all_times = PairProgrammingTime.where.not(user_id: current_user.id).sort{ |a,b| a.start_time <=> b.start_time }
     calc_matched_times
   end
 
