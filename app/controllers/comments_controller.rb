@@ -58,7 +58,7 @@ class CommentsController < ApplicationController
     is_admin = signed_in? && current_user.is_admin?
     is_owner_of_comment = signed_in? && @comment.user.id == current_user.id
     if(!is_admin && !is_owner_of_comment)
-      raise ActionController::RoutingError.new('Not Found') unless signed_in? && current_user.is_admin?
+      raise ActionController::RoutingError.new('Not Found')
     end
   end
 end

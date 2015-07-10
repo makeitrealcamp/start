@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   has_many :subscriptions
   has_many :project_solutions
   has_many :resource_completions, dependent: :delete_all
+  has_many :pair_programming_times
 
   hstore_accessor :profile,
     first_name: :string,

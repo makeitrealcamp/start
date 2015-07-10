@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'pages#home'
 
   get 'handbook', to: 'pages#handbook', as: :handbook
@@ -90,10 +91,13 @@ Rails.application.routes.draw do
   get 'dashboard', to: redirect("/phases", status: 301)
   get 'courses', to: redirect("/phases", status: 301)
 
+  resources :pair_programming_times, path: :pair_programming
+
   resources :resources, only: [:edit, :update, :destroy] do
     patch 'update_position', on: :member
     resource :completion, controller: 'resource_completion', only: [:create, :destroy]
   end
+
 
   namespace :admin do
     get 'dashboard', to: 'dashboard#index'

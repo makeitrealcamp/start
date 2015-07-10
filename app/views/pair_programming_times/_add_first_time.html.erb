@@ -1,0 +1,11 @@
+<div class="row add-first-time">
+  <div class="col-md-8 col-md-offset-2">
+    <p class="text-muted text-center">
+      Todavía no tienes horarios de disponibilidad.
+    </p>
+    <%= link_to new_pair_programming_time_path, class: "btn btn-primary btn-md btn-block", remote: true do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      Agregar tu primer horario
+    <% end %>
+  </div>
+</div>

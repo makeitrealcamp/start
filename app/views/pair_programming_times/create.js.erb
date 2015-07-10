@@ -1,0 +1,9 @@
+<% if @pair_programming_time.user.pair_programming_times.count == 1 %>
+  $(".add-first-time").replaceWith("<%= j render 'pair_programming_times/own_times_table', own_times: @pair_programming_time.user.pair_programming_times, time_zone: @time_zone %>");
+<% else %>
+  $("#own-times").append("<%= j render 'pair_programming_times/row', pair_programming_time: @pair_programming_time, time_zone: @time_zone %>")
+<% end %>
+$("#pair-programming-times-form-modal").modal("hide");
+$("#pair-programming-times-form-modal .form-container").html("")
+
+$(".matched-times-container").html("<%= j render 'pair_programming_times/times_table', times: @matched_times, time_zone: @time_zone %>");

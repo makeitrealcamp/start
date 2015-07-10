@@ -16,7 +16,16 @@
         <% if signed_in? %>
           <ul class="nav navbar-nav navbar-right">
             <% if current_user.paid_account? || current_user.is_admin? %>
-              <li><%= link_to "<span class='glyphicon glyphicon-book'></span> <span class='hidden-xs'>Handbook</span>".html_safe, handbook_path %></li>
+              <li>
+                <%= link_to pair_programming_times_path do %>
+                  <span class='icon-users'></span> <span class='hidden-xs'>Pair programming</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to handbook_path do %>
+                  <span class='glyphicon glyphicon-book'></span> <span class='hidden-xs'>Handbook</span>
+                <% end %>
+              </li>
             <% end %>
             <li><a href="http://blog.makeitreal.camp/" target="_blank">Blog</a></li>
             <% if current_user.is_admin? %>

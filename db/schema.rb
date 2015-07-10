@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150702214823) do
+ActiveRecord::Schema.define(version: 20150710180429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,19 @@ ActiveRecord::Schema.define(version: 20150702214823) do
   end
 
   add_index "lessons", ["section_id"], name: "index_lessons_on_section_id", using: :btree
+
+  create_table "pair_programming_times", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "day"
+    t.integer  "start_time_hour"
+    t.integer  "start_time_minute"
+    t.string   "time_zone"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "duration_in_minutes"
+  end
+
+  add_index "pair_programming_times", ["user_id"], name: "index_pair_programming_times_on_user_id", using: :btree
 
   create_table "phases", force: :cascade do |t|
     t.string   "name"
@@ -267,6 +280,7 @@ ActiveRecord::Schema.define(version: 20150702214823) do
   add_foreign_key "lesson_completions", "lessons"
   add_foreign_key "lesson_completions", "users"
   add_foreign_key "lessons", "sections"
+  add_foreign_key "pair_programming_times", "users"
   add_foreign_key "project_solutions", "projects"
   add_foreign_key "project_solutions", "users"
   add_foreign_key "projects", "courses"

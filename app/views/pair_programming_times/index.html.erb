@@ -1,0 +1,61 @@
+<div class="container pair-programming">
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <%= form_tag(pair_programming_times_path, method: "get", class: "form-inline") do |f| %>
+        <select name="time_zone" class="form-control">
+          <%= time_zone_options_for_select(@time_zone,nil,ActiveSupport::TimeZone) %>
+        </select>
+        <%= button_tag("Cambiar zona horaria", class: "btn btn-success") %>
+      <% end %>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="text-center">Tu disponibilidad</h2>
+      <% if @own_pair_programming_times.empty? %>
+        <%= render "pair_programming_times/add_first_time" %>
+      <% else %>
+        <%= render "pair_programming_times/own_times_table", own_times: @own_pair_programming_times, time_zone: @time_zone %>
+      <% end %>
+    </div>
+  </div>
+  <hr>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="text-center">Makers con los que puedes hacer pair programming</h2>
+      <div class="table-responsive matched-times-container">
+        <%= render "pair_programming_times/times_table", times: @matched_times, time_zone: @time_zone %>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="text-center">Todos los horarios</h2>
+      <div class="table-responsive">
+        <%= render "pair_programming_times/times_table", times: @all_times, time_zone: @time_zone %>
+      </div>
+    </div>
+  </div>
+
+  <div id="pair-programming-times-form-modal" class="modal fade " tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Horario de Pair programming</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2 form-container">
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

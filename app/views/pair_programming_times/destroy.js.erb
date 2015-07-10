@@ -1,0 +1,6 @@
+<% if @pair_programming_time.user.pair_programming_times.empty? %>
+  $(".own-times-container").replaceWith("<%= j render 'pair_programming_times/add_first_time'%>");
+<% else %>
+  $("#pair-programming-time-<%=@pair_programming_time.id%>").remove();
+<% end %>
+$(".matched-times-container").html("<%= j render 'pair_programming_times/times_table', times: @matched_times, time_zone: @time_zone %>");
