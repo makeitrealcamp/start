@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709080111) do
+ActiveRecord::Schema.define(version: 20150710180429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,11 +130,10 @@ ActiveRecord::Schema.define(version: 20150709080111) do
     t.integer  "day"
     t.integer  "start_time_hour"
     t.integer  "start_time_minute"
-    t.integer  "end_time_hour"
-    t.integer  "end_time_minute"
     t.string   "time_zone"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "duration_in_minutes"
   end
 
   add_index "pair_programming_times", ["user_id"], name: "index_pair_programming_times_on_user_id", using: :btree

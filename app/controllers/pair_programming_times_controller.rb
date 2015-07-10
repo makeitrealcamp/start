@@ -47,8 +47,8 @@ class PairProgrammingTimesController < ApplicationController
 
   def pair_programming_time_params
     params.require(:pair_programming_time).permit(
-      :day,:start_time_hour,:start_time_minute,:end_time_hour,
-      :end_time_minute,:time_zone)
+      :day,:start_time_hour,:start_time_minute,:duration_in_minutes,:time_zone
+    )
   end
 
   def set_pair_programming_time

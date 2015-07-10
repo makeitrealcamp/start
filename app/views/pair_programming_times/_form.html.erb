@@ -8,7 +8,7 @@
     <%= f.label "¿Desde qué horas estás disponible?" %>
     <div class="row">
       <div class="col-xs-6">
-        <%= f.select :start_time_hour, hours_for_select,{},class: 'form-control' %>
+        <%= f.select :start_time_hour, hours_for_select,{selected: @pair_programming_time.start_time_hour || 18},class: 'form-control' %>
       </div>
       <div class="col-xs-6">
         <%= f.select :start_time_minute, minutes_for_select,{},class: 'form-control' %>
@@ -16,15 +16,8 @@
     </div>
   </div>
   <div class="form-group">
-    <%= f.label "¿Hasta qué horas estás disponible?" %>
-    <div class="row">
-      <div class="col-xs-6">
-        <%= f.select :end_time_hour, hours_for_select,{},class: 'form-control' %>
-      </div>
-      <div class="col-xs-6">
-        <%= f.select :end_time_minute, minutes_for_select,{},class: 'form-control' %>
-      </div>
-    </div>
+    <%= f.label "¿Cuánto tiempo estarás disponible?" %>
+    <%= f.select :duration_in_minutes, durations_for_select,{selected: @pair_programming_time.duration_in_minutes || 120},class: 'form-control' %>
   </div>
   <div class="form-group">
     <%= f.label "Zona horaria" %>

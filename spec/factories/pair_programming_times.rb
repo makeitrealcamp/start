@@ -2,16 +2,15 @@
 #
 # Table name: pair_programming_times
 #
-#  id                :integer          not null, primary key
-#  user_id           :integer
-#  day               :integer
-#  start_time_hour   :integer
-#  start_time_minute :integer
-#  end_time_hour     :integer
-#  end_time_minute   :integer
-#  time_zone         :string
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
+#  id                  :integer          not null, primary key
+#  user_id             :integer
+#  day                 :integer
+#  start_time_hour     :integer
+#  start_time_minute   :integer
+#  time_zone           :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  duration_in_minutes :integer
 #
 # Indexes
 #

@@ -1,18 +1,17 @@
-<%# required: own_times %>
+<%# required: own_times, time_zone %>
 <div class="table-responsive own-times-container">
   <table id="own-times" class="table">
     <thead>
       <tr>
         <th>Día</th>
-        <th>Hora Inicio</th>
-        <th>Hora fin</th>
-        <th>Zona Horaria</th>
+        <th>Disponible desde</th>
+        <th>Disponible hasta</th>
         <th>Editar</th>
       </tr>
     </thead>
     <tbody>
       <% own_times.each do |pair_programming_time| %>
-        <%= render "pair_programming_times/row", pair_programming_time: pair_programming_time %>
+        <%= render "pair_programming_times/row", pair_programming_time: pair_programming_time, time_zone: time_zone %>
       <% end %>
     </tbody>
   </table>

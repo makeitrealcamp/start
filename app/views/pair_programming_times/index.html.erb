@@ -1,17 +1,4 @@
 <div class="container pair-programming">
-
-  <div class="row">
-    <div class="col-xs-12">
-      <h2 class="text-center">Tu disponibilidad</h2>
-      <% if @own_pair_programming_times.empty? %>
-        <%= render "pair_programming_times/add_first_time" %>
-      <% else %>
-        <%= render "pair_programming_times/own_times_table", own_times: @own_pair_programming_times %>
-      <% end %>
-    </div>
-  </div>
-  <hr>
-
   <div class="row">
     <div class="col-xs-12 text-center">
       <%= form_tag(pair_programming_times_path, method: "get", class: "form-inline") do |f| %>
@@ -22,6 +9,19 @@
       <% end %>
     </div>
   </div>
+  <hr />
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="text-center">Tu disponibilidad</h2>
+      <% if @own_pair_programming_times.empty? %>
+        <%= render "pair_programming_times/add_first_time" %>
+      <% else %>
+        <%= render "pair_programming_times/own_times_table", own_times: @own_pair_programming_times, time_zone: @time_zone %>
+      <% end %>
+    </div>
+  </div>
+  <hr>
+
   <div class="row">
     <div class="col-xs-12">
       <h2 class="text-center">Makers con los que puedes hacer pair programming</h2>
@@ -30,7 +30,7 @@
       </div>
     </div>
   </div>
-
+  <hr />
   <div class="row">
     <div class="col-xs-12">
       <h2 class="text-center">Todos los horarios</h2>

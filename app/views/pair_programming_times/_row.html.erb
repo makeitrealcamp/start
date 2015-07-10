@@ -1,8 +1,8 @@
+<%# %required: pair_programming_time, time_zone %>
 <tr id="pair-programming-time-<%=pair_programming_time.id%>">
   <td><%=t("pair_programming_times.days.#{pair_programming_time.day}") %></td>
-  <td><%= pair_programming_time.formatted_start_time %></td>
-  <td><%= pair_programming_time.formatted_end_time %></td>
-  <td><%= pair_programming_time.time_zone %></td>
+  <td><%= pair_programming_time.formatted_start_time(time_zone) %></td>
+  <td><%= pair_programming_time.formatted_end_time(time_zone) %></td>
   <td>
     <%= link_to edit_pair_programming_time_path(pair_programming_time), class: "btn btn-info btn-xs", remote: true do %>
       <span class="glyphicon glyphicon-pencil"></span>
