@@ -1,0 +1,23 @@
+<%# required: own_times %>
+<div class="table-responsive own-times-container">
+  <table id="own-times" class="table">
+    <thead>
+      <tr>
+        <th>Día</th>
+        <th>Hora Inicio</th>
+        <th>Hora fin</th>
+        <th>Zona Horaria</th>
+        <th>Editar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% own_times.each do |pair_programming_time| %>
+        <%= render "pair_programming_times/row", pair_programming_time: pair_programming_time %>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to new_pair_programming_time_path, class: "btn btn-primary btn-xs", remote: true do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    <span class="hidden-xs">Agregar horario</span>
+  <% end %>
+</div>

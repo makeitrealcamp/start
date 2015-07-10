@@ -1,20 +1,26 @@
 <%# required: times, time_zone %>
-<table id="matched-times" class="table">
-  <thead>
-    <tr>
-      <th>Maker</th>
-      <th>Disponible desde</th>
-      <th>Disponible hasta</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% times.each do |time| %>
+<% if times.empty? %>
+  <p class="text-muted text-center">
+    No encontramos horarios.
+  </p>
+<% else %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= time.user.first_name %></td>
-        <td><%= time_in_time_zone(time.start_time,time_zone) %></td>
-        <td><%= time_in_time_zone(time.end_time,time_zone) %></td>
+        <th>Maker</th>
+        <th>Disponible desde</th>
+        <th>Disponible hasta</th>
       </tr>
+    </thead>
+    <tbody>
+      <% times.each do |time| %>
+        <tr>
+          <td><%= time.user.first_name %></td>
+          <td><%= time_in_time_zone(time.start_time,time_zone) %></td>
+          <td><%= time_in_time_zone(time.end_time,time_zone) %></td>
+        </tr>
 
-    <% end %>
-  </tbody>
-</table>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

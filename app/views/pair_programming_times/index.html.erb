@@ -2,39 +2,18 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <div class="row">
-        <div class="col-xs-6">
-          <h2>Tu disponibilidad</h2>
-        </div>
-      </div>
-      <div class="table-responsive">
-        <table id="own-pair-programming-times" class="table">
-          <thead>
-            <tr>
-              <th>Día</th>
-              <th>Hora Inicio</th>
-              <th>Hora fin</th>
-              <th>Zona Horaria</th>
-              <th>Editar</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @own_pair_programming_times.each do |pair_programming_time| %>
-              <%= render "pair_programming_times/row", pair_programming_time: pair_programming_time %>
-            <% end %>
-          </tbody>
-        </table>
-        <%= link_to new_pair_programming_time_path, class: "btn btn-primary btn-xs", remote: true do %>
-          <span class="glyphicon glyphicon-plus"></span>
-          <span class="hidden-xs">Agregar horario</span>
-        <% end %>
-      </div>
+      <h2 class="text-center">Tu disponibilidad</h2>
+      <% if @own_pair_programming_times.empty? %>
+        <%= render "pair_programming_times/add_first_time" %>
+      <% else %>
+        <%= render "pair_programming_times/own_times_table", own_times: @own_pair_programming_times %>
+      <% end %>
     </div>
   </div>
   <hr>
 
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-12 text-center">
       <%= form_tag(pair_programming_times_path, method: "get", class: "form-inline") do |f| %>
         <select name="time_zone" class="form-control">
           <%= time_zone_options_for_select(@time_zone,nil,ActiveSupport::TimeZone) %>
@@ -45,8 +24,8 @@
   </div>
   <div class="row">
     <div class="col-xs-12">
-      <h2>Makers con los que puedes hacer pair programming <small>(De acuerdo a tu disponibilidad)</small></h2>
-      <div class="table-responsive">
+      <h2 class="text-center">Makers con los que puedes hacer pair programming</h2>
+      <div class="table-responsive matched-times-container">
         <%= render "pair_programming_times/times_table", times: @matched_times, time_zone: @time_zone %>
       </div>
     </div>
@@ -54,7 +33,7 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <h2>Todos los horarios</h2>
+      <h2 class="text-center">Todos los horarios</h2>
       <div class="table-responsive">
         <%= render "pair_programming_times/times_table", times: @all_times, time_zone: @time_zone %>
       </div>
