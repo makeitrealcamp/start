@@ -4,6 +4,7 @@ class PairProgrammingTimesController < ApplicationController
 
   def index
     @own_pair_programming_times = current_user.pair_programming_times
+    calc_matched_times
   end
 
   def new
@@ -13,6 +14,7 @@ class PairProgrammingTimesController < ApplicationController
   def create
     @pair_programming_time = current_user.pair_programming_times.build(pair_programming_time_params)
     if @pair_programming_time.save
+      calc_matched_times
       render :create
     else
       render :new
@@ -26,6 +28,7 @@ class PairProgrammingTimesController < ApplicationController
   def update
     owner_or_admin_access
     if @pair_programming_time.update(pair_programming_time_params)
+      calc_matched_times
       render :update
     else
       render :edit
@@ -35,6 +38,7 @@ class PairProgrammingTimesController < ApplicationController
   def destroy
     owner_or_admin_access
     @pair_programming_time.destroy
+    calc_matched_times
   end
 
   protected
@@ -55,6 +59,10 @@ class PairProgrammingTimesController < ApplicationController
     if(!is_admin && !is_owner_of_time)
       raise ActionController::RoutingError.new('Not Found')
     end
+  end
+
+  def calc_matched_times
+    @matched_times = PairProgrammingTime.match_times_for(current_user)
   end
 
 end

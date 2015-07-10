@@ -14,7 +14,7 @@
               <th>Día</th>
               <th>Hora Inicio</th>
               <th>Hora fin</th>
-              <th>Huso Horario</th>
+              <th>Zona Horaria</th>
               <th>Editar</th>
             </tr>
           </thead>
@@ -32,35 +32,12 @@
     </div>
   </div>
   <hr>
-  
+
   <div class="row">
     <div class="col-xs-12">
       <h2>Makers con los que puedes hacer pair programming <small>(De acuerdo a tu disponibilidad)</small></h2>
       <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Maker</th>
-              <th>Día</th>
-              <th>Hora Inicio</th>
-              <th>Hora fin</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Simón</td>
-              <td>Lunes</td>
-              <td>04:00 pm</td>
-              <td>04:00 am</td>
-            </tr>
-            <tr>
-              <td>Pepe</td>
-              <td>Martes</td>
-              <td>09:00 pm</td>
-              <td>10:00 pm</td>
-            </tr>
-          </tbody>
-        </table>
+        <%= render "pair_programming_times/times_table", times: @matched_times %>
       </div>
     </div>
   </div>

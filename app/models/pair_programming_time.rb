@@ -33,6 +33,19 @@ class PairProgrammingTime < ActiveRecord::Base
 
   validate :start_time_before_end_time
 
+  def self.match_times_for(user)
+    overlaped_times_ids = []
+    where.not(user_id: user.id).find_each do |other|
+      overlaps = user.pair_programming_times.any? do |time|
+        wrap = other.start_time.between?(time.start_time,time.end_time)
+        inside = time.start_time.between?(other.start_time,other.end_time)
+        wrap || inside
+      end
+      overlaped_times_ids << other.id if overlaps
+    end
+    self.where(id: overlaped_times_ids)
+  end
+
   def start_time
     x_time("start")
   end
@@ -63,7 +76,12 @@ class PairProgrammingTime < ActiveRecord::Base
   end
 
   def x_time(time)
-    Time.new(1991,11,1,self.send("#{time}_time_hour"),self.send("#{time}_time_minute"),0,time_zone_offset)
+    # year, month, day and seconds are dummy data
+    # 1991-11-4 was a monday
+    day_offset = PairProgrammingTime.days[self.day]
+    hour = self.send("#{time}_time_hour")
+    minute = self.send("#{time}_time_minute")
+    Time.new(1991,11,4+day_offset,hour,minute,0,time_zone_offset)
   end
 
   def formatted_x_time(time)

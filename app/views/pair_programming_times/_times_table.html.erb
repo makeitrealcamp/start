@@ -1,0 +1,21 @@
+<table id="matched-times" class="table">
+  <thead>
+    <tr>
+      <th>Maker</th>
+      <th>Día</th>
+      <th>Hora Inicio</th>
+      <th>Hora fin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% times.each do |time| %>
+      <tr>
+        <td><%= time.user.first_name %></td>
+        <td><%=t("pair_programming_times.days.#{time.day}") %></td>
+        <td><%= time.start_time %></td>
+        <td><%= time.end_time %></td>
+      </tr>
+
+    <% end %>
+  </tbody>
+</table>
