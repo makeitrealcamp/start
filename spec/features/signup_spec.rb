@@ -14,7 +14,7 @@ RSpec.feature "Sign Up", type: :feature do
     password  = Faker::Internet.password
     fill_in 'user_password', with: password
     fill_in 'user_password_confirmation', with: password
-    click_button 'Empezar'
+    click_button 'Crear cuenta'
     expect(current_path).to eq signed_in_root_path
   end
 
@@ -24,7 +24,7 @@ RSpec.feature "Sign Up", type: :feature do
     password  = Faker::Internet.password
     fill_in 'user_password', with: password
     fill_in 'user_password_confirmation', with: password
-    click_button 'Empezar'
+    click_button 'Crear cuenta'
 
     expect(current_path).to eq signed_in_root_path
     analyticsMock = page.evaluate_script('window.analyticsMock');
@@ -44,7 +44,7 @@ RSpec.feature "Sign Up", type: :feature do
     visit signup_path
     fill_in 'user_email', with: 'invalid'
     fill_in 'user_password', with: Faker::Internet.password
-    click_button 'Empezar'
+    click_button 'Crear cuenta'
 
     expect(current_path).to eq signup_path
     expect(page).to have_content "Email no es válido"
@@ -56,7 +56,7 @@ RSpec.feature "Sign Up", type: :feature do
     visit signup_path
     fill_in 'user_email', with: user.email
     fill_in 'user_password', with: Faker::Internet.password
-    click_button 'Empezar'
+    click_button 'Crear cuenta'
 
     expect(current_path).to eq signup_path
     expect(page).to have_content "Email ya está en uso"
@@ -65,7 +65,7 @@ RSpec.feature "Sign Up", type: :feature do
   scenario "with no password" do
     visit signup_path
     fill_in 'user_email', with: Faker::Internet.email
-    click_button 'Empezar'
+    click_button 'Crear cuenta'
 
     expect(current_path).to eq signup_path
     expect(page).to have_content "Password no puede estar en blanco"
@@ -75,7 +75,7 @@ RSpec.feature "Sign Up", type: :feature do
     visit signup_path
     fill_in 'user_email', with: Faker::Internet.email
     fill_in 'user_password', with: Faker::Internet.password
-    click_button 'Empezar'
+    click_button 'Crear cuenta'
     expect(current_path).to eq signup_path
     expect(page).to have_content "Password confirmation no puede estar en blanco"
   end
@@ -86,7 +86,7 @@ RSpec.feature "Sign Up", type: :feature do
     fill_in 'user_password', with: Faker::Internet.password
     fill_in 'user_password_confirmation', with: Faker::Internet.password
 
-    click_button 'Empezar'
+    click_button 'Crear cuenta'
     expect(current_path).to eq signup_path
     expect(page).to have_content "Password confirmation no coincide"
   end
