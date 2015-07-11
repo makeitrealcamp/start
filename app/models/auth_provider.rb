@@ -22,7 +22,8 @@ class AuthProvider < ActiveRecord::Base
 
   def self.omniauth(auth)
     puts "Auth: #{auth.info}"
-    user = User.where(email: auth.info.email).first_or_create!(password: SecureRandom.urlsafe_base64)
+    password = SecureRandom.urlsafe_base64
+    user = User.where(email: auth.info.email).first_or_create!(password: password, password_confirmation: password)
     user.auth_providers.where(provider: auth.provider, uid: auth.uid).first_or_create(image: auth.info.image)
     user
   end
