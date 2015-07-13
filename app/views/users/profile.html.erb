@@ -45,8 +45,8 @@
         </div><!-- /profile visibility -->
 
         <div class="col-sm-12 col-md-4 share-url">
-          <span class="url">URL: <%= link_to profile_user_url(@user) %></span>
-          <a href="" class="copy-url">copiar URL</a>
+          <span id="profile-url" class="url">URL: <%= link_to profile_user_url(@user) %></span>
+          <button class="btn btn-xs btn-primary copy-url" data-clipboard-target='profile-url'>copiar URL</button>
         </div><!-- profile-url/ -->
 
         <div class="col-sm-12 col-md-3 share-social">

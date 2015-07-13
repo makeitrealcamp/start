@@ -25,6 +25,7 @@
 //= require moment
 //= require moment/es.js
 //= require nested_form_fields
+//= require zeroclipboard
 //= require_tree .
 
 Turbolinks.enableProgressBar();
