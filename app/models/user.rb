@@ -40,7 +40,8 @@ class User < ActiveRecord::Base
   hstore_accessor :settings,
     password_reset_token: :string,
     password_reset_sent_at: :datetime,
-    info_requested_at: :datetime
+    info_requested_at: :datetime,
+    has_public_profile: :boolean
 
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }

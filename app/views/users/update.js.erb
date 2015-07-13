@@ -1,0 +1,5 @@
+<% if @user.valid? %>
+  $(".content-wrapper").prepend("<%= j render 'shared/alert', msg: 'Perfil actualizado', type: 'notice' %>")
+<% else %>
+  $(".content-wrapper").prepend("<%= j render 'shared/alert', msg: 'Los datos del perfil son inválidos', type: 'error' %>")
+<% end %>

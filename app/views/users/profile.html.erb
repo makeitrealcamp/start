@@ -1,5 +1,6 @@
 <div class="container profile-view">
   <div class="row">
+    <!--
     <div class="col-sm-12 col-md-12 account-type">
       <div class="row">
         <div class="col-sm-4 col-md-2">
@@ -12,29 +13,41 @@
           <a href="" class="btn-cta">Unirse a Make it Real</a>
         </div>
       </div>
-    </div><!-- /account-type -->
+    </div>
+    -->
+    <!-- /account-type -->
 
     <div class="col-sm-12 col-md-12 profile-status">
       <div class="row">
+
         <div class="col-sm-12 col-md-5 status">
-          <h1>Mi perfil</h1>
-          <div class="status-options">
-            <form class="form-inline">
-              <span class="radio-caption">Estado de tu perfil:</span>
-              <label class="radio-inline">
-                <input type="radio" name="status" id="publico" value="publico"> <span class="txt-bold">público</span>
-              </label>
-              <label class="radio-inline">
-                <input type="radio" name="status" id="privado" value="privado"> <span class="txt-bold">privado</span>
-              </label>
-            </form>
-          </div>
-        </div><!-- /status -->
+          <% if @is_own_profile %>
+            <h1>Mi perfil</h1>
+          <% else %>
+            <h1>Perfil de <%= @user.first_name %></h1>
+          <% end %>
+
+          <% if @is_own_profile %>
+            <div class="status-options">
+              <%= form_for @user, html:{ class: "update-profile-visibility form-inline"} , remote: true do |f| %>
+                <span class="radio-caption">Visibilidad:</span>
+                <label class="radio-inline">
+                  <%= f.radio_button(:has_public_profile, true) %>
+                  <%= f.label(:true, "Público", class: "txt-bold") %>
+                </label>
+                <label class="radio-inline">
+                  <%= f.radio_button(:has_public_profile, false) %>
+                  <%= f.label(:false, "Privado", class: "txt-bold") %>
+                </label>
+              <% end %>
+            </div>
+          <% end %>
+        </div><!-- /profile visibility -->
 
         <div class="col-sm-12 col-md-4 share-url">
-          <span class="url">URL: makeitreal.camp/nombreusuario</span>
+          <span class="url">URL: <%= link_to profile_user_url(@user) %></span>
           <a href="" class="copy-url">copiar URL</a>
-        </div><!-- profile-status/ -->
+        </div><!-- profile-url/ -->
 
         <div class="col-sm-12 col-md-3 share-social">
           Compartir:
@@ -251,3 +264,6 @@
 
   </div><!-- /row -->
 </div><!-- /profile-view -->
+<script>
+  profile_view = new ProfileView({el: ".profile-view"})
+</script>

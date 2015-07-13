@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :private_access, except: [:new, :create]
+  before_action :private_access, except: [:new, :create, :profile]
   before_action :public_access, only: [:new, :create]
 
 #  def new
@@ -29,15 +29,22 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    owner_or_admin_access(@user,current_user)
   end
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to signed_in_root_path, flash: { notice: "Tu perfil se ha actualizado" }
-    else
-      render :edit
+    owner_or_admin_access(@user,current_user)
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to signed_in_root_path, flash: { notice: "Tu perfil se ha actualizado" } }
+        format.js { render :update }
+      else
+        format.html { render :edit }
+        format.js { render :update }
+      end
     end
+
   end
 
   def send_inscription_info
@@ -45,13 +52,15 @@ class UsersController < ApplicationController
     current_user.send_inscription_info
   end
 
+  # /users/:id/profile
   def profile
-    
+    @user = User.find(params[:id])
+    @is_own_profile = (@user == current_user)
   end
 
   private
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :mobile_number, :birthday)
+      params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :mobile_number, :birthday, :has_public_profile)
     end
 
     def activate_params
