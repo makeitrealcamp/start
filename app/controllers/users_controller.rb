@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   before_action :public_access, only: [:new, :create]
 
   def new
-    @user = User.new
+    redirect_to "https://makeitreal.typeform.com/to/eNJSyN"
+    # @user = User.new
   end
 
   def create

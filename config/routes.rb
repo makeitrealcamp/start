@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'pages#home'
+  get "thanks" => "pages#thanks"
 
   get 'handbook', to: 'pages#handbook', as: :handbook
 
