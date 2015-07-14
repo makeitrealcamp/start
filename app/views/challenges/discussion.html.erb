@@ -16,7 +16,7 @@
     <div class="col-xs-12 col-md-7 expand">
     <% unless @challenge.solution_video_url.blank? %>
       <div class="video-wrapper">
-        <%= embedded_video(@challenge.solution_video_url)%>
+        <%= embedded_video(@challenge.solution_video_url, user: current_user)%>
       </div>
     <% end %>
     <% unless @challenge.solution_text.nil? %>
