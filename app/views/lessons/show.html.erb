@@ -2,7 +2,7 @@
   <div class="row" style="background: black;">
     <div class="col-sm-10 col-sm-offset-1">
       <div class="video-wrapper">
-        <%= embedded_video(@lesson.video_url) %>
+        <%= embedded_video(@lesson.video_url, user: current_user) %>
       </div>
     </div>
   </div>

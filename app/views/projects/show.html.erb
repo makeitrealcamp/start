@@ -12,7 +12,7 @@
       <h1><%= @project.name %></h1>
       <% unless @project.explanation_video_url.blank? %>
         <div class="video-wrapper">
-          <%= embedded_video(@project.explanation_video_url) %>
+          <%= embedded_video(@project.explanation_video_url, user: current_user) %>
         </div>
       <% end %>
       <div class="project-explanation">

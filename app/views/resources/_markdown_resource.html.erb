@@ -5,7 +5,7 @@
   <div class="row" style="margin-bottom: 60px;">
     <div class="col-sm-12">
       <div class="embed-responsive embed-responsive-16by9">
-        <%= embedded_video(resource.video_url) %>
+        <%= embedded_video(resource.video_url, user: current_user) %>
       </div>
     </div>
   </div>
