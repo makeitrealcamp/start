@@ -211,6 +211,25 @@
     }
   }
 
+  .thank-you {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), asset-url('home.jpg') no-repeat center top;
+    background-size: cover;
+    color: white;
+    h1 {
+      color: #fff;
+    }
+    .p {
+      @media (min-width: $screen-md-min) { font-size: 18px; }
+    }
+    .sn {
+      margin-top: 15px;
+      a {
+        font-size: 22px;
+        margin-right: 15px;
+      }
+    }
+  }
+
   .info {
     .technology {
       margin-top: 30px;
