@@ -23,6 +23,11 @@
 @import "content_navigation";
 @import "phases";
 
+html, body{
+  overflow-y: scroll; /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;
+}
+
 html.turbolinks-progress-bar::before {
   background-color: #C74238 !important;
   height: 5px !important;
