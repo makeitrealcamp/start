@@ -1,13 +1,6 @@
 <% content_for :head do %>
   <%= render "utils/ab_testing_optimizely" %>
-  <% if Rails.env.production? %>
-  <script type="text/javascript">
-  setTimeout(function(){var a=document.createElement("script");
-  var b=document.getElementsByTagName("script")[0];
-  a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0035/3435.js?"+Math.floor(new Date().getTime()/3600000);
-  a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
-  </script>
-  <% end %>
+  <%= render "utils/crazyegg" %>
 <% end %>
 
 <div class="home">
@@ -28,7 +21,7 @@
         </div>
       </div>
     </header>
-    
+
     <div class="container">
       <div class="row">
     <div class="leading">CONVIÉRTETE EN DESARROLLADOR WEB Y CAMBIA TU VIDA PARA SIEMPRE</div>
@@ -571,9 +564,9 @@
       }
       if (sy >= 500) {
         $('li:not(.start) a').fadeOut(300, function() {
-          $('li.start a').fadeIn();  
+          $('li.start a').fadeIn();
         });
-        
+
       } else {
         $('li.start a').fadeOut(300, function() {
           $('li:not(.start) a').fadeIn();
