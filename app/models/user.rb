@@ -88,13 +88,12 @@ class User < ActiveRecord::Base
     challenges_count = course.challenges.published.count
     total = resources_count + challenges_count
     return 1.0 if total == 0
-
     user_completed = self.completed_resources(course).count + self.completed_challenges(course).count
-    user_completed.to_f/total.to_f
+    user_completed/total.to_f
   end
 
   def completed_resources(course)
-    self.resource_completions.joins(:resource).where('resources.course_id = ?', course.id)
+    self.resource_completions.joins(:resource).where('resources.course_id = ? AND resources.published = ?', course.id, true)
   end
 
   def resource_completed_at(resource)
@@ -103,7 +102,7 @@ class User < ActiveRecord::Base
   end
 
   def completed_challenges(course)
-    self.solutions.completed.joins(:challenge).where('challenges.course_id = ?', course.id)
+    self.solutions.completed.joins(:challenge).where('challenges.course_id = ? AND challenges.published = ?', course.id, true)
   end
 
   def finished?(course)
