@@ -50,21 +50,8 @@
         </div><!-- profile-url/ -->
 
         <div class="col-sm-12 col-md-3 share-social">
-          Compartir:
-          <ul>
-            <li>
-              <a href=""><i class="fa fa-facebook-square"></i></a>
-            </li>
-            <li>
-              <a href=""><i class="fa fa-google-plus-square"></i></a>
-            </li>
-            <li>
-              <a href=""><i class="fa fa-twitter-square"></i></a>
-            </li>
-            <li>
-              <a href=""><i class="fa fa-linkedin-square"></i></a>
-            </li>
-          </ul>
+          <%= render "utils/facebook_button", url: profile_user_url(@user) %>
+          <%= render "utils/twitter_button", url: profile_user_url(@user), text: "Perfil de #{@user.first_name} en Make it Real", count_url: "http://makeitreal.camp" %>
         </div><!-- /share-social -->
 
       </div><!-- /row -->
@@ -73,15 +60,20 @@
     <div class="col-sm-12 col-md-12 profile-data">
       <div class="row">
         <div class="col-sm-6 col-md-4 my-data">
-          <h2>Mis datos</h2>
-          <div class="profile-img"><img src="<%= Gravatar.new("#{current_user.email}").image_url %>" class="img-circle" /></div>
+          <h2>Datos</h2>
+          <div class="profile-img"><img src="<%= Gravatar.new("#{@user.email}").image_url %>" class="img-circle" /></div>
           <span class="profile-name txt-bold">
-            Nombre de usuario
+            <%= @user.first_name %>
           </span>
           <span class="profile-date">
-            Se unió el 05 abr, 2015
+            Se unió el <%= l(@user.created_at, format: '%d de %B de %Y') %>
           </span>
-          <a href="" class="profile-github"><i class="fa fa-github"></i>github.com/usuario</a>
+          <% if @user.github_username? %>
+            <%= link_to "http://github.com/#{@user.github_username}", class:"profile-github" do %>
+              <i class="fa fa-github"></i>
+              <%= "github.com/#{@user.github_username}" %>
+            <% end %>
+          <% end %>
         </div><!-- /my-data -->
 
         <div class="col-sm-6 col-md-8 my-achievements">

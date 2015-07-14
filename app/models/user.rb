@@ -35,7 +35,8 @@ class User < ActiveRecord::Base
     mindset: :string,
     motivation: :string,
     experience: :string,
-    activated_at: :datetime
+    activated_at: :datetime,
+    github_username: :string
 
   hstore_accessor :settings,
     password_reset_token: :string,

@@ -15,4 +15,6 @@ RSpec.feature "Profile", type: :feature do
 
   # profile by default private
 
+  # show user's gravatar
+
 end
