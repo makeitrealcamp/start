@@ -22,25 +22,25 @@ module ApplicationHelper
     Redcarpet::Markdown.new(renderer, options).render(text).html_safe
   end
 
-  def embedded_video(src,opts = {})
+  def embedded_video(src,opts = {}, html = {})
     user = opts[:user]
     uri = URI(src)
 
-    if user 
+    if user
       params = URI.decode_www_form(uri.query || []) << ['wemail', user.email ]
       uri.query = URI.encode_www_form(params)
     end
 
-    opts[:src] ||= uri
-    opts[:allowtransparency] ||= true
-    opts[:frameborder] ||= "0"
-    opts[:scrolling] ||= "no"
-    opts[:allowfullscreen] ||= true
-    opts[:mozallowfullscreen] ||= true
-    opts[:webkitallowfullscreen] ||= true
-    opts[:oallowfullscreen] ||= true
-    opts[:msallowfullscreen] ||= true
-    content_tag(:iframe,nil,opts)
+    html[:src] ||= uri
+    html[:allowtransparency] ||= true
+    html[:frameborder] ||= "0"
+    html[:scrolling] ||= "no"
+    html[:allowfullscreen] ||= true
+    html[:mozallowfullscreen] ||= true
+    html[:webkitallowfullscreen] ||= true
+    html[:oallowfullscreen] ||= true
+    html[:msallowfullscreen] ||= true
+    content_tag(:iframe,nil,html)
   end
 
   def genderize(male, female, user=current_user)
