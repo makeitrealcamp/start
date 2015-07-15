@@ -17,4 +17,7 @@ RSpec.feature "Profile", type: :feature do
 
   # show user's gravatar
 
+  # switch between public and private -> toggle visibility of share buttons
+
+  
 end

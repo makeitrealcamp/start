@@ -133,5 +133,13 @@
   </div><!-- /row -->
 </div><!-- /profile-view -->
 <script>
-  profile_view = new ProfileView({el: ".profile-view"})
+  (function() {
+    var profileView = new ProfileView({el: ".profile-view"});
+
+    $(document).on("page:before-change", function() {
+      profileView.remove();
+    });
+
+  })();
+
 </script>

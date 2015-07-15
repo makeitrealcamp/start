@@ -10,38 +10,66 @@
               <%= f.label :email, "Correo Electronico" %>
               <%= f.text_field :email, class: 'form-control input-lg', placeholder: 'email', disabled: true %>
             </div>
-          </div>
-          <div class="col-sm-6">
             <div class="form-group">
               <%= f.label :first_name, "Primer Nombre" %>
               <%= f.text_field :first_name, class: "form-control input-lg" %>
             </div>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="col-sm-6">
             <div class="form-group">
               <%= f.label :birthday %>
               <%= f.date_field(:birthday , class: "form-control input-lg") %>
             </div>
-          </div>
-
-          <div class="col-sm-6">
             <div class="form-group">
               <%= f.label :mobile_number %>
               <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="basic-addon1">+57</span>
-                <%= f.telephone_field :mobile_number, class: 'form-control', placeholder: 'Mobile Phone' %>
+                <%= f.telephone_field :mobile_number, class: 'form-control', placeholder: 'Número de celular' %>
               </div>
               <span>(p.e. 3002111111)</span>
             </div>
+
           </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <%= f.label :github_username, "Usuario de Github" %>
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon" >github.com/</span>
+                <%= f.text_field :github_username, class: 'form-control'%>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :nickname %>
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon" >makeitreal.camp/u/</span>
+                <%= f.text_field :nickname, class: 'form-control'%>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <span class="radio-caption">Visibilidad del perfil:</span>
+              <label class="radio-inline">
+                <%= f.radio_button(:has_public_profile, true) %>
+                <%= f.label(:true, "Público", class: "txt-bold") %>
+              </label>
+              <label class="radio-inline">
+                <%= f.radio_button(:has_public_profile, false) %>
+                <%= f.label(:false, "Privado", class: "txt-bold") %>
+              </label>
+            </div>
+
+          </div>
+
+
         </div>
 
-        <div class="actions text-right">
-          <%= link_to "Cancelar", signed_in_root_path, class: "btn btn-default" %>
-          <%= f.submit("Actualizar Perfil", class: "btn btn-primary") %>
+        <div class="row">
+          <div class="col-md-6 col-md-offset-6">
+            <div class="actions text-right">
+              <%= link_to "Cancelar", signed_in_root_path, class: "btn btn-default" %>
+              <%= f.submit("Actualizar Perfil", class: "btn btn-primary") %>
+            </div>
+          </div>
         </div>
       </div>
     <% end %>
