@@ -130,7 +130,7 @@
             <div class="course-status">
               <span class="course-name"><%= course.name %></span>
               <div class="progress">
-                <%= progress_bar(progress: progress) %>
+                <%= progress_bar(progress: progress, show_percentage: true) %>
               </div>
               <% if @is_own_profile %>
                 <% if progress == 0 %>
