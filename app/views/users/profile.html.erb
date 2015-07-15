@@ -142,7 +142,11 @@
 
 
     <div class="col-sm-12 col-md-12 profile-emblems">
-      <h2>Mis Emblemas</h2>
+      <% if @is_own_profile %>
+        <h2>Mis Emblemas</h2>
+      <% else %>
+        <h2>Emblemas</h2>
+      <% end %>
       <div class="row">
         <div class="col-xs-4 col-sm-3 col-md-2">
           <div class="emblem">
@@ -151,31 +155,6 @@
             </div>
             <a href="">Hago parte de Make It Real</a>
             <span class="emblem-date">Febrero 12, 2015</span>
-          </div>
-        </div>
-        <div class="col-xs-4 col-sm-3 col-md-2">
-          <div class="emblem">
-            segundo emblema
-          </div>
-        </div>
-        <div class="col-xs-4 col-sm-3 col-md-2">
-          <div class="emblem">
-            tercer emblema
-          </div>
-        </div>
-        <div class="col-xs-4 col-sm-3 col-md-2">
-          <div class="emblem">
-            cuarto emblema
-          </div>
-        </div>
-        <div class="col-xs-4 col-sm-3 col-md-2">
-          <div class="emblem">
-            quinto emblema
-          </div>
-        </div>
-        <div class="col-xs-4 col-sm-3 col-md-2">
-          <div class="emblem">
-            sexto emblema
           </div>
         </div>
       </div><!-- /row -->
