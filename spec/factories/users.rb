@@ -13,6 +13,7 @@
 #  status          :integer
 #  settings        :hstore
 #  account_type    :integer
+#  nickname        :string
 #
 
 FactoryGirl.define do

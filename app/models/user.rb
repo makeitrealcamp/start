@@ -13,6 +13,7 @@
 #  status          :integer
 #  settings        :hstore
 #  account_type    :integer
+#  nickname        :string
 #
 
 class User < ActiveRecord::Base
@@ -55,11 +56,13 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, on: :create
   validates :password_confirmation, presence: true, on: :update, if: :password_digest_changed?
   validates_confirmation_of :password, on: :update, if: :password_digest_changed?
+  validates :nickname, uniqueness: true
 
   enum status: [:created, :active]
   enum account_type: [:free_account, :paid_account, :admin_account]
 
   after_initialize :default_values
+  before_create :assign_random_nickname
 
   def completed_challenges
     self.challenges.joins(:solutions).where('solutions.status = ?',Solution.statuses[:completed])
@@ -170,5 +173,13 @@ class User < ActiveRecord::Base
       begin
         self.password_reset_token = SecureRandom.urlsafe_base64
       end while User.exists?(["settings -> 'password_reset_token' = '#{self.settings['password_reset_token']}'"])
+    end
+
+    def assign_random_nickname
+      if self.nickname.nil?
+        begin
+          self.nickname = SecureRandom.hex(8)
+        end while User.find_by_nickname(self.nickname)
+      end
     end
 end

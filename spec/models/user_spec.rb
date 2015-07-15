@@ -13,6 +13,7 @@
 #  status          :integer
 #  settings        :hstore
 #  account_type    :integer
+#  nickname        :string
 #
 
 require 'rails_helper'
