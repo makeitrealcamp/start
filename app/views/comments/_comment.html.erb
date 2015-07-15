@@ -7,8 +7,8 @@
     <div class="discussion-label">
       <h2>
         <strong>
-          <% if current_user.is_admin? %>
-            <%= link_to comment.user.first_name, admin_user_path(comment.user) %>
+          <% if comment.user.has_public_profile? %>
+            <%= link_to comment.user.first_name,user_profile_path(comment.user.nickname) %>
           <% else %>
             <%= comment.user.first_name %>
           <% end %>
