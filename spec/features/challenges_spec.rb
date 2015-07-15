@@ -46,12 +46,11 @@ RSpec.feature "Challenges", type: :feature do
       end
 
       scenario 'enabled challenge when is not restricted', js: true do
-        challenge  =  create(:challenge, course: course, published: true, restricted: false)
+        free_challenge = create(:challenge, course: course, published: true, restricted: false)
         login(user)
         visit course_path(course)
-        all(:css, '.challenge').last.click
-        wait_for_ajax
-        expect(current_path).to eq course_challenge_path(course, challenge)
+        click_on free_challenge.name
+        expect(current_path).to eq course_challenge_path(course, free_challenge)
       end
     end
   end

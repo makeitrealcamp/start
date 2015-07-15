@@ -24,8 +24,11 @@
 @import "phases";
 
 html, body{
-  overflow-y: scroll; /* has to be scroll, not auto */
-  -webkit-overflow-scrolling: touch;
+
+  @media (max-width: $screen-sm-max) {
+  //  overflow-y: scroll; /* has to be scroll, not auto */
+  //  -webkit-overflow-scrolling: touch;
+  }
 }
 
 html.turbolinks-progress-bar::before {
