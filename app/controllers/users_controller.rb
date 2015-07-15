@@ -34,6 +34,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    @is_own_profile = (@user == current_user)
     owner_or_admin_access(@user,@user)
     respond_to do |format|
       if @user.update(user_params)

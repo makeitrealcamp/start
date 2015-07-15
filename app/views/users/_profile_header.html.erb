@@ -1,0 +1,43 @@
+<%# required: is_own_profile, user %>
+<div class="row">
+
+  <div class="col-sm-12 col-md-5 status">
+    <div class="row">
+      <div class="col-xs-12">
+        <% if is_own_profile %>
+          <h1>Mi perfil</h1>
+        <% else %>
+          <h1>Perfil de <%= user.first_name %></h1>
+        <% end %>
+        <% unless user.has_public_profile? %>
+          <span class="label-private label label-danger">privado</span>
+        <% end %>
+      </div>
+      <div class="col-xs-12">
+        <% if is_own_profile %>
+          <div class="status-options">
+            <%= form_for user, html:{ class: "update-profile-visibility form-inline"} , remote: true do |f| %>
+              <span class="radio-caption">Visibilidad:</span>
+              <label class="radio-inline">
+                <%= f.radio_button(:has_public_profile, true) %>
+                <%= f.label(:true, "Público", class: "txt-bold") %>
+              </label>
+              <label class="radio-inline">
+                <%= f.radio_button(:has_public_profile, false) %>
+                <%= f.label(:false, "Privado", class: "txt-bold") %>
+              </label>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div><!-- /profile visibility -->
+  <% if user.has_public_profile? %>
+    <div class="col-sm-12 col-md-7 share-url">
+      <span>URL:&nbsp;</span><span id="profile-url" class="url"><%= link_to user_profile_url(user.nickname) %></span>
+      <button class="btn btn-xs btn-primary copy-url" data-clipboard-target='profile-url'>copiar URL</button>
+      <%= facebook_button turbolinks: true, layout: "button_count"%>
+      <%= twitter_button turbolinks: true , title: "Perfil de #{user.first_name} en Make it Real"%>
+    </div><!-- profile-url/ -->
+  <% end %>
+</div><!-- /row -->
