@@ -44,15 +44,12 @@
           <% end %>
         </div><!-- /profile visibility -->
 
-        <div class="col-sm-12 col-md-4 share-url">
-          <span id="profile-url" class="url">URL: <%= link_to profile_user_url(@user) %></span>
+        <div class="col-sm-12 col-md-7 share-url">
+          <span id="profile-url" class="url">URL: <%= link_to user_profile_url(@user.nickname) %></span>
           <button class="btn btn-xs btn-primary copy-url" data-clipboard-target='profile-url'>copiar URL</button>
+          <%= render "utils/facebook_button", url: user_profile_url(@user.nickname) %>
+          <%= render "utils/twitter_button", url: user_profile_url(@user.nickname), text: "Perfil de #{@user.first_name} en Make it Real", count_url: "http://makeitreal.camp" %>
         </div><!-- profile-url/ -->
-
-        <div class="col-sm-12 col-md-3 share-social">
-          <%= render "utils/facebook_button", url: profile_user_url(@user) %>
-          <%= render "utils/twitter_button", url: profile_user_url(@user), text: "Perfil de #{@user.first_name} en Make it Real", count_url: "http://makeitreal.camp" %>
-        </div><!-- /share-social -->
 
       </div><!-- /row -->
     </div><!-- /profile-status -->

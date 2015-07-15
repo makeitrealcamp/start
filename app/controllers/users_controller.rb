@@ -52,9 +52,9 @@ class UsersController < ApplicationController
     current_user.send_inscription_info
   end
 
-  # /users/:id/profile
+  # /u/:nickname
   def profile
-    @user = User.find(params[:id])
+    @user = User.find_by_nickname!(params[:nickname])
     @is_own_profile = (@user == current_user)
   end
 
