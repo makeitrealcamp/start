@@ -65,6 +65,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'unicorn', platforms: [:ruby]
 
 gem 'zeroclipboard-rails'
+gem 'shareable', github: "simon0191/shareable"
 
 
 group :development, :test do

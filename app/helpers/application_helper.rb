@@ -63,4 +63,12 @@ module ApplicationHelper
     end
 
   end
+  def facebook_button(opts={})
+    if Rails.env == "development"
+      # In development, we will share always the MIR page
+      # because Facebook needs to crawl data from a public website
+      opts[:url] = "http://makeitreal.camp"
+    end
+    super(opts)
+  end
 end

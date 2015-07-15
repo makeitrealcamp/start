@@ -7,6 +7,14 @@ GIT
       activesupport (>= 3.0, < 6.0)
       request_store (~> 1.1.0)
 
+GIT
+  remote: git://github.com/simon0191/shareable.git
+  revision: fe5f7454b66ea09513005c7d24a7e7aa6cc70731
+  specs:
+    shareable (1.1.4)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -367,6 +375,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   selenium-webdriver (~> 2.45.0)
+  shareable!
   shoulda-matchers
   sidekiq
   spring
