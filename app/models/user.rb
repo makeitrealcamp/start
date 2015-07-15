@@ -166,6 +166,7 @@ class User < ActiveRecord::Base
     def default_values
       self.roles ||= ["user"]
       self.status ||= :created
+      self.has_public_profile ||= false
       self.account_type ||= User.account_types[:free_account]
     end
 

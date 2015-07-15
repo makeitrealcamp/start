@@ -37,6 +37,16 @@ RSpec.describe User, type: :model do
     it { should validate_length_of(:password).is_at_least(6).is_at_most(40) }
   end
 
+  context 'default_values' do
+    it "should be initialized with default values" do
+      user = User.new
+      expect(user.roles).to eq(["user"])
+      expect(user.status).to eq("created")
+      expect(user.has_public_profile).to eq(false)
+      expect(user.account_type).to eq("free_account")
+    end
+  end
+
   it "has a valid factory" do
     expect(build(:user)).to be_valid
   end
