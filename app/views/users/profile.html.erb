@@ -77,23 +77,27 @@
         </div><!-- /my-data -->
 
         <div class="col-sm-6 col-md-8 my-achievements">
-          <h2>Mis logros</h2>
+          <% if @is_own_profile %>
+            <h2>Mis logros</h2>
+          <% else %>
+            <h2>Logros</h2>
+          <% end %>
           <ul>
             <li>
               <span class="txt-bold">Retos Resueltos</span>
-              <span class="number-results">100</span>
+              <span class="number-results"><%= @user.stats.completed_challenges_count %></span>
             </li>
             <li>
               <span class="txt-bold">Recursos Aprovechados</span>
-              <span class="number-results">35</span>
+              <span class="number-results"><%= @user.stats.completed_resources_count %></span>
             </li>
             <li>
               <span class="txt-bold">Proyectos Terminados</span>
-              <span class="number-results">6</span>
+              <span class="number-results"><%= @user.stats.completed_projects_count %></span>
             </li>
             <li>
               <span class="txt-bold">Emblemas Otorgados</span>
-              <span class="number-results">1</span>
+              <span class="number-results"><%= @user.stats.badges_count %></span>
             </li>
           </ul>
         </div><!-- /my-achievements -->
@@ -105,107 +109,36 @@
     <div class="col-sm-12 col-md-12 profile-progress">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
-          <h2>Mi Progreso</h2>
+          <% if @is_own_profile %>
+            <h2>Mi progreso</h2>
+          <% else %>
+            <h2>Progreso</h2>
+          <% end %>
         </div>
-        <div class="col-xs-6 col-sm-4 col-md-3">
-          <div class="course-status">
-            <span class="course-name">Una nueva mentalidad</span>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
-                70%
+
+        <% Course.published.all.each_with_index do |course,i| %>
+          <% progress = @user.stats.progress_by_course(course)%>
+          <% if i % 2 == 0 %><div class="clearfix visible-xs"></div><% end %>
+          <% if i % 3 == 0 %><div class="clearfix visible-sm"></div><% end %>
+          <% if i % 4 == 0 %><div class="clearfix visible-md visible-lg"></div><% end %>
+          <div class="col-xs-6 col-sm-4 col-md-3">
+            <div class="course-status">
+              <span class="course-name"><%= course.name %></span>
+              <div class="progress">
+                <%= progress_bar(progress: progress) %>
               </div>
+              <% if @is_own_profile %>
+                <% if progress == 0 %>
+                  <%= link_to "iniciar", course_path(course) %>
+                <% elsif progress == 1 %>
+                  <p class="text-muted">finalizado</p>
+                <% else %>
+                  <%= link_to "continuar", course_path(course) %>
+                <% end %>
+              <% end %>
             </div>
-            <a href="">continuar</a>
           </div>
-        </div>
-        <div class="col-xs-6 col-sm-4 col-md-3">
-          <div class="course-status">
-            <span class="course-name">HTML y CSS</span>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-                45%
-              </div>
-            </div>
-            <a href="">continuar</a>
-          </div>
-        </div>
-        <div class="col-xs-6 col-sm-4 col-md-3">
-          <div class="course-status">
-            <span class="course-name">Ruby Básico</span>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
-                15%
-              </div>
-            </div>
-            <a href="">continuar</a>
-          </div>
-        </div>
-        <div class="col-xs-6 col-sm-4 col-md-3">
-          <div class="course-status">
-            <span class="course-name">Git y Github</span>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%">
-                85%
-              </div>
-            </div>
-            <a href="">continuar</a>
-          </div>
-        </div>
-        <div class="col-xs-6 col-sm-4 col-md-3">
-          <div class="course-status">
-            <span class="course-name">Bootstrap 3</span>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-                0%
-              </div>
-            </div>
-            <a href="">iniciar</a>
-          </div>
-        </div>
-        <div class="col-xs-6 col-sm-4 col-md-3">
-          <div class="course-status">
-            <span class="course-name">Intro to Web Development</span>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                60%
-              </div>
-            </div>
-            <a href="">continuar</a>
-          </div>
-        </div>
-        <div class="col-xs-6 col-sm-4 col-md-3">
-          <div class="course-status">
-            <span class="course-name">Ruby on Rails I</span>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                100%
-              </div>
-            </div>
-            <a class="disabled" href="">finalizado</a>
-          </div>
-        </div>
-        <div class="col-xs-6 col-sm-4 col-md-3">
-          <div class="course-status">
-            <span class="course-name">Javascript</span>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
-                65%
-              </div>
-            </div>
-            <a href="">continuar</a>
-          </div>
-        </div>
-        <div class="col-xs-6 col-sm-4 col-md-3">
-          <div class="course-status">
-            <span class="course-name">Jquery y AJAX</span>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
-                15%
-              </div>
-            </div>
-            <a href="">continuar</a>
-          </div>
-        </div>
+        <% end %>
       </div><!-- /row -->
     </div><!-- /profile-progress -->
 
