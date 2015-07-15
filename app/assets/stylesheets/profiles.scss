@@ -259,4 +259,10 @@
       margin: 0 auto;
     }
   }
+
+  .fb-share-button {
+    &>span {
+      height: 24px !important; 
+    }
+  }
 }

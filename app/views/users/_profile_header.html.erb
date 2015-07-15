@@ -34,10 +34,18 @@
   </div><!-- /profile visibility -->
   <% if user.has_public_profile? %>
     <div class="col-sm-12 col-md-7 share-url">
-      <span>URL:&nbsp;</span><span id="profile-url" class="url"><%= link_to user_profile_url(user.nickname) %></span>
-      <button class="btn btn-xs btn-primary copy-url" data-clipboard-target='profile-url'>copiar URL</button>
-      <%= facebook_button turbolinks: true, layout: "button_count"%>
-      <%= twitter_button turbolinks: true , title: "Perfil de #{user.first_name} en Make it Real"%>
+      <div class="row">
+        <div class="col-xs-12">
+          <span>URL:&nbsp;</span><span id="profile-url" class="url"><%= link_to user_profile_url(user.nickname) %></span>
+          <button class="btn btn-xs btn-primary copy-url" data-clipboard-target='profile-url'>copiar URL</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <%= facebook_button turbolinks: true, layout: "button_count"%>
+          <%= twitter_button turbolinks: true , title: "Perfil de #{user.first_name} en Make it Real"%>
+        </div>
+      </div>
     </div><!-- profile-url/ -->
   <% end %>
 </div><!-- /row -->
