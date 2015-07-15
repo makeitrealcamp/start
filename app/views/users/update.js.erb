@@ -1,5 +1,10 @@
 <% if @user.valid? %>
   $(".content-wrapper").prepend("<%= j render 'shared/alert', msg: 'Perfil actualizado', type: 'notice' %>")
+  <% if @user.has_public_profile? %>
+    $(".label-private").remove();
+  <% else %>
+    $(".status h1").after('<span class="label-private label label-danger">privado</span>');
+  <% end %>
 <% else %>
   $(".content-wrapper").prepend("<%= j render 'shared/alert', msg: 'Los datos del perfil son inválidos', type: 'error' %>")
 <% end %>

@@ -63,10 +63,12 @@
     }
     .status {
       overflow: hidden;
+      .label-private {
+        position: absolute;
+        bottom: 0;
+      }
     }
     .status-options {
-      float: left;
-      margin-left: 20px;
       margin-top: 15px;
       @media (max-width: $screen-lg-min) {
         margin-left: 0;

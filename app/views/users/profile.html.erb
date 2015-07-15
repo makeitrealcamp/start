@@ -21,27 +21,35 @@
       <div class="row">
 
         <div class="col-sm-12 col-md-5 status">
-          <% if @is_own_profile %>
-            <h1>Mi perfil</h1>
-          <% else %>
-            <h1>Perfil de <%= @user.first_name %></h1>
-          <% end %>
-
-          <% if @is_own_profile %>
-            <div class="status-options">
-              <%= form_for @user, html:{ class: "update-profile-visibility form-inline"} , remote: true do |f| %>
-                <span class="radio-caption">Visibilidad:</span>
-                <label class="radio-inline">
-                  <%= f.radio_button(:has_public_profile, true) %>
-                  <%= f.label(:true, "Público", class: "txt-bold") %>
-                </label>
-                <label class="radio-inline">
-                  <%= f.radio_button(:has_public_profile, false) %>
-                  <%= f.label(:false, "Privado", class: "txt-bold") %>
-                </label>
+          <div class="row">
+            <div class="col-xs-12">
+              <% if @is_own_profile %>
+                <h1>Mi perfil</h1>
+              <% else %>
+                <h1>Perfil de <%= @user.first_name %></h1>
+              <% end %>
+              <% unless @user.has_public_profile? %>
+                <span class="label-private label label-danger">privado</span>
               <% end %>
             </div>
-          <% end %>
+            <div class="col-xs-12">
+              <% if @is_own_profile %>
+                <div class="status-options">
+                  <%= form_for @user, html:{ class: "update-profile-visibility form-inline"} , remote: true do |f| %>
+                    <span class="radio-caption">Visibilidad:</span>
+                    <label class="radio-inline">
+                      <%= f.radio_button(:has_public_profile, true) %>
+                      <%= f.label(:true, "Público", class: "txt-bold") %>
+                    </label>
+                    <label class="radio-inline">
+                      <%= f.radio_button(:has_public_profile, false) %>
+                      <%= f.label(:false, "Privado", class: "txt-bold") %>
+                    </label>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
         </div><!-- /profile visibility -->
 
         <div class="col-sm-12 col-md-7 share-url">

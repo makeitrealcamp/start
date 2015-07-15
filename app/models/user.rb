@@ -64,6 +64,10 @@ class User < ActiveRecord::Base
   after_initialize :default_values
   before_create :assign_random_nickname
 
+  def self.with_public_profile
+    self.is_has_public_profile
+  end
+
   def completed_challenges
     self.challenges.joins(:solutions).where('solutions.status = ?',Solution.statuses[:completed])
   end
