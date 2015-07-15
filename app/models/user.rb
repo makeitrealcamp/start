@@ -20,11 +20,14 @@ class User < ActiveRecord::Base
   has_secure_password validations: false
 
   has_many :solutions, dependent: :destroy
+  has_many :challenges, through: :solutions
   has_many :auth_providers, dependent: :destroy
   has_many :lesson_completions
   has_many :subscriptions
   has_many :project_solutions
+  has_many :projects, through: :project_solutions
   has_many :resource_completions, dependent: :delete_all
+  has_many :resources, through: :resource_completions
 
   hstore_accessor :profile,
     first_name: :string,
@@ -58,6 +61,14 @@ class User < ActiveRecord::Base
 
   after_initialize :default_values
 
+  def completed_challenges
+    self.challenges.joins(:solutions).where('solutions.status = ?',Solution.statuses[:completed])
+  end
+
+  def stats
+    @stats ||= UserStats.new(self)
+  end
+
   def has_role?(role)
     roles && roles.include?(role)
   end
@@ -85,30 +96,13 @@ class User < ActiveRecord::Base
     end
   end
 
-  def progress(course)
-    resources_count = course.resources.published.count
-    challenges_count = course.challenges.published.count
-    total = resources_count + challenges_count
-    return 1.0 if total == 0
-    user_completed = self.completed_resources(course).count + self.completed_challenges(course).count
-    user_completed/total.to_f
-  end
-
-  def completed_resources(course)
-    self.resource_completions.joins(:resource).where('resources.course_id = ? AND resources.published = ?', course.id, true)
-  end
-
   def resource_completed_at(resource)
     complete = resource_completions.where(resource_id: resource).take
     complete.created_at
   end
 
-  def completed_challenges(course)
-    self.solutions.completed.joins(:challenge).where('challenges.course_id = ? AND challenges.published = ?', course.id, true)
-  end
-
   def finished?(course)
-    progress(course) == 1.0
+    self.stats.progress_by_course(course) == 1.0
   end
 
   #TODO: Remove params, are not using

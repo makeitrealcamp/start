@@ -14,7 +14,7 @@
               <button class="btn btn-success btn-xs" data-toggle="collapse" data-target="#course_<%=course.id%>_children">
                 <span class="caret"></span>
               </button>
-              <%= link_to "#{course.name} (#{(current_user.progress(course)*100).ceil}%)", course %>
+              <%= link_to "#{course.name} (#{(current_user.stats.progress_by_course(course)*100).ceil}%)", course %>
               <ul id="course_<%=course.id%>_children" class="collapse course-children">
 
                 <% if course.challenges.for(current_user).count > 0 %>

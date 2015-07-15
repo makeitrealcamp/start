@@ -24,7 +24,7 @@ class ResourceCompletionController < ApplicationController
       if current_user.finished?(course) && resource.last?
         next_course = course.next
         if next_course
-          if current_user.progress(next_course) == 0
+          if current_user.stats.progress_by_course(next_course) == 0
             flash[:notice] = "<strong>¡Felicitaciones!</strong> Has terminado #{course.name}. Esta aventura continúa con #{next_course.name}"
           end
           course.next
