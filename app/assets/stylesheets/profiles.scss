@@ -1,0 +1,268 @@
+.profile-view {
+  .txt-bold {
+    font-weight: 700;
+  }
+  a {
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    color: #ff3300;
+    &:hover {
+      text-decoration: none;
+      color: #e42e00;
+    }
+  }
+  h2 {
+    font-family: "Open Sans Condensed", sans-serif;
+    font-weight: 700;
+    margin-top: 0;
+    border-bottom: solid 1px #ff3300;
+    padding-bottom: 10px;
+  }
+  .btn-cta {
+    border-radius: 4px;
+    background: #ff3300;
+    color: #fff;
+    font-weight: 700;
+    padding: 5px 10px;
+    display: inline-block;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    &:hover {
+      background: #e42e00;
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+  .col-xs-6 {
+    @media (max-width: 500px) {
+      width: 100%
+    }
+  }
+  .col-xs-4 {
+    @media (max-width: 500px) {
+      width: 100%
+    }
+  }
+  .account-type {
+    font-size: 14px;
+    border-bottom: solid 1px #dddddd;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    .btn-cta {
+      margin-top: 5px;
+    }
+  }
+  .profile-status {
+    font-size: 14px;
+    overflow: hidden;
+    padding-bottom: 25px;
+    h1 {
+      float: left;
+      margin: 0;
+    }
+    .status {
+      overflow: hidden;
+      .label-private {
+        position: absolute;
+        bottom: 0;
+      }
+    }
+    .status-options {
+      margin-top: 15px;
+      @media (max-width: $screen-lg-min) {
+        margin-left: 0;
+      }
+    }
+    .radio-caption {
+      margin-right: 5px;
+    }
+    .share-url {
+      padding: 15px;
+      border-left: solid 1px #dddddd;
+      border-right: solid 1px #dddddd;
+      text-align: center;
+      @media (max-width: $screen-lg-min) {
+       text-align: left;
+       padding-bottom: 30px;
+      }
+    }
+    .url {
+      margin-right: 15px;
+    }
+    .share-social {
+      padding: 7px 15px 7px 25px;
+      @media (max-width: $screen-lg-min) {
+        padding: 15px 15px 7px 25px;
+      }
+      ul {
+        list-style-type: none;
+        padding-left: 0;
+        display: inline-block;
+        font-size: 22px;
+        @media (max-width: $screen-lg-min) {
+          display: block;
+        }
+      }
+      li {
+        display: inline-block;
+        margin-left: 10px;
+        @media (max-width: $screen-lg-min) {
+          &:first-child {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .profile-data {
+    background: #fff;
+    border: solid 1px #dddddd;
+    padding: 15px;
+    .my-data {
+      overflow: hidden;
+      padding-right: 30px;
+      .profile-img {
+        float: left;
+        margin-right: 15px;
+      }
+      span {
+        display: block;
+      }
+      .profile-date {
+        font-size: 14px;
+        color: #999999;
+      }
+      .profile-github {
+        font-size: 14px;
+        margin-top: 10px;
+        display: block;
+        i {
+          margin-right: 10px;
+          font-size: 20px;
+        }
+      }
+    }
+    .my-achievements {
+      padding-left: 30px;
+      border-left: solid 1px #dddddd;
+      ul {
+        list-style-type: none;
+        padding-left: 0;
+        overflow: hidden;
+        font-size: 14px;
+      }
+      li {
+        float: left;
+        width: 25%;
+        text-align: center;
+        @media (max-width: $screen-lg-min) {
+          width: 33.333%;
+          margin-bottom: 15px;
+        }
+        @media (max-width: 500px) {
+          width: 50%;
+        }
+        @media (max-width: 400px) {
+          width: 100%;
+        }
+
+      }
+      .number-results {
+        display: block;
+        width: 60px;
+        height: 60px;
+        border: solid 2px #ff3000;
+        border-radius: 50%;
+        text-align: center;
+        margin: 10px auto;
+        font-size: 28px;
+        font-family: "Open Sans Condensed", sans-serif;
+        font-weight: 700;
+        line-height: 55px;
+        color: #ff3000;
+      }
+    }
+  }
+
+  .profile-progress {
+    background: #fff;
+    border: solid 1px #dddddd;
+    padding: 15px;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    box-shadow: none;
+    .course-name {
+      margin-bottom: 10px;
+      display: block;
+      @media (max-width: $screen-lg-min) {
+        font-size: 14px;
+      }
+    }
+    .course-status {
+      padding: 15px;
+      border: solid 1px #dddddd;
+      border-radius: 4px;
+      margin-bottom: 30px;
+      a {
+        font-size: 14px;
+      }
+    }
+    .col-sm-3 {
+      &:last-child {
+        .course-status {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .progress {
+      margin-bottom: 5px;
+      background: #dddddd;
+      box-shadow: none;
+    }
+    .progress-bar {
+      padding-left: 3px;
+      background: #ff3000;
+    }
+    .disabled {
+      color: #c8c6c6;
+      pointer-events: none;
+      cursor: default;
+    }
+  }
+
+  .profile-emblems {
+    background: #fff;
+    border: solid 1px #dddddd;
+    padding: 15px;
+    margin-bottom: 35px;
+    font-size: 14px;
+    .col-sm-2 {
+      border-right: solid 1px #dddddd;
+      &:last-child {
+        border-right: 0;
+      }
+    }
+    .emblem {
+      text-align: center;
+      a {
+        display: block;
+      }
+    }
+    .emblem-date {
+      color: #a9a9a9;
+      font-size: 12px;
+    }
+    .emblem-container {
+      width: 90px;
+      margin: 0 auto;
+    }
+  }
+
+  .fb-share-button {
+    &>span {
+      height: 24px !important; 
+    }
+  }
+}

@@ -46,7 +46,7 @@
         <tbody>
         <% @users.each do |user| %>
         <tr id="user-<%= user.id %>">
-          <td><%= name(user) %></td>
+          <td><%= link_to name(user), user_profile_path(user.nickname) %></td>
           <td><%= user.str_account_type %> (<%= user.str_status %>)</td>
           <td class="text-center"><%= l user.created_at, format: '%d %b %Y' %></td>
           <td class="text-center"><%= distance_of_time_in_words_to_now(user.last_active_at) unless user.last_active_at.nil? %></td>

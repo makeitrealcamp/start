@@ -13,6 +13,7 @@
 #  status          :integer
 #  settings        :hstore
 #  account_type    :integer
+#  nickname        :string
 #
 
 require 'rails_helper'
@@ -36,6 +37,16 @@ RSpec.describe User, type: :model do
     it { should validate_length_of(:password).is_at_least(6).is_at_most(40) }
   end
 
+  context 'default_values' do
+    it "should be initialized with default values" do
+      user = User.new
+      expect(user.roles).to eq(["user"])
+      expect(user.status).to eq("created")
+      expect(user.has_public_profile).to eq(false)
+      expect(user.account_type).to eq("free_account")
+    end
+  end
+
   it "has a valid factory" do
     expect(build(:user)).to be_valid
   end
@@ -50,7 +61,7 @@ RSpec.describe User, type: :model do
     it 'without challenges completed' do
       create(:challenge, course: course, published: false, restricted: true)
       create(:challenge, course: course, published: true, restricted: true)
-      expect(user.completed_challenges(course).count).to eq 0
+      expect(user.stats.completed_challenges_by_course_count(course)).to eq 0
     end
 
     it 'return only the challenges completed and published'  do
@@ -58,14 +69,14 @@ RSpec.describe User, type: :model do
       challenge = create(:challenge, course: course, published: true, restricted: true)
       challenge1 = create(:challenge, course: course, published: false, restricted: true)
       challenge2 = create(:challenge, course: course, published: true, restricted: true)
-      #when the challenge s published does count as completed
+      #when the challenge is published does count as completed
       create(:solution, user: user, challenge: challenge, status: :completed)
-      #when el challenge is unpublished does not count as completed
+      #when the challenge is not published does not count as completed
       create(:solution, user: user, challenge: challenge1, status: :completed)
-      #when el challenge is published and the solution have status different to completed
+      #when the challenge is published and the solution have status different to completed
       #does not count as completed
       create(:solution, user: user, challenge: challenge2, status: :created)
-      expect(user.completed_challenges(course).count).to eq 1
+      expect(user.stats.completed_challenges_by_course_count(course)).to eq 1
     end
   end
 
@@ -74,7 +85,7 @@ RSpec.describe User, type: :model do
       resource  = create(:resource, course: course, published: true)
       resource1 = create(:resource, course: course, published: false)
       resource2 = create(:resource, course: course, published: true)
-      expect(user.completed_resources(course).count).to eq 0
+      expect(user.stats.completed_resources_by_course_count(course)).to eq 0
     end
 
     it 'return only the resources completed and published' do
@@ -85,13 +96,13 @@ RSpec.describe User, type: :model do
       create(:resource_completion, user: user, resource: resource)
       create(:resource_completion, user: user, resource: resource1)
       create(:resource_completion, user: user, resource: resource2)
-      expect(user.completed_resources(course).count).to eq 2
+      expect(user.stats.completed_resources_by_course_count(course)).to eq 2
     end
   end
 
   describe '#progress' do
     it 'return 1.0 when the total is 0' do
-      expect(user.progress(course)).to eq 1.0
+      expect(user.stats.progress_by_course(course)).to eq 1.0
     end
 
     it 'return percentage ' do
@@ -105,7 +116,34 @@ RSpec.describe User, type: :model do
 
       create(:resource_completion, user: user, resource: resource)
       create(:resource_completion, user: user, resource: resource1)
-      expect(user.progress(course)).to be < 1.0
+      expect(user.stats.progress_by_course(course)).to be < 1.0
+    end
+  end
+
+  describe "#stats" do
+    describe "#completed_challenges" do
+      it "should return completed and published challenges count" do
+        challenge = create(:challenge, course: course, published: true, restricted: true)
+        challenge1 = create(:challenge, course: course, published: false, restricted: true)
+        challenge2 = create(:challenge, course: course, published: true, restricted: true)
+        #when the challenge is published does count as completed
+        create(:solution, user: user, challenge: challenge, status: :completed)
+        #when the challenge is not published does not count as completed
+        create(:solution, user: user, challenge: challenge1, status: :completed)
+        #when the challenge is published and the solution have status different to completed
+        #does not count as completed
+        create(:solution, user: user, challenge: challenge2, status: :created)
+        expect(user.stats.completed_challenges_count).to eq 1
+      end
+    end
+  end
+
+  describe "#nickname" do
+    it "should assign a nickname before_create" do
+      user = build(:user,nickname: "")
+      user.save
+      expect(user.reload.nickname).not_to eq(nil)
+      expect(user.reload.nickname).not_to eq("")
     end
   end
 end

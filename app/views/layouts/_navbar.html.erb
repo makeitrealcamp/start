@@ -37,6 +37,7 @@
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
+                <li><%= link_to "Mi Perfil", user_profile_path(current_user.nickname) %></li>
                 <li><%= link_to "Editar Perfil", edit_user_path(current_user) %></li>
                 <li><%= link_to "Cambiar Contraseña", edit_password_path, remote: true %></li>
                 <li class="divider"></li>

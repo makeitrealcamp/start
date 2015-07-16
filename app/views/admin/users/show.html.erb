@@ -115,7 +115,7 @@
           <div class="col-sm-12">
             <div class="course">
               <div class="title"><%= course.name %></div>
-              <%= progress_bar(progress: @user.progress(course)) %>
+              <%= progress_bar(progress: @user.stats.progress_by_course(course)) %>
               <div class="row info">
                 <div class="col-xs-6 info-item">
                   <span class="info-item-value"><%= @user.solutions.completed.joins(:challenge).where('challenges.course_id = ?', course.id).count %>/<%= course.challenges.published.count %></span>

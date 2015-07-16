@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
 
   def edit
     @comment = Comment.find(params[:id])
-    owner_or_admin_access
+    owner_or_admin_access(@comment)
   end
 
   def cancel_edit
@@ -21,13 +21,13 @@ class CommentsController < ApplicationController
 
   def update
     @comment =  Comment.find(params[:id])
-    owner_or_admin_access
+    owner_or_admin_access(@comment)
     @comment.update(comment_params)
   end
 
   def destroy
     @comment = Comment.find(params[:id])
-    owner_or_admin_access
+    owner_or_admin_access(@comment)
     @comment.destroy
   end
 
@@ -54,11 +54,4 @@ class CommentsController < ApplicationController
     end
   end
 
-  def owner_or_admin_access
-    is_admin = signed_in? && current_user.is_admin?
-    is_owner_of_comment = signed_in? && @comment.user.id == current_user.id
-    if(!is_admin && !is_owner_of_comment)
-      raise ActionController::RoutingError.new('Not Found') unless signed_in? && current_user.is_admin?
-    end
-  end
 end

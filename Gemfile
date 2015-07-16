@@ -64,6 +64,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 # Use Unicorn as the app server
 gem 'unicorn', platforms: [:ruby]
 
+gem 'zeroclipboard-rails'
+gem 'shareable', github: "simon0191/shareable"
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

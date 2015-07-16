@@ -36,7 +36,7 @@
           </div>
           <% end %>
           <div class="title"><%= course.name %></div>
-          <%= progress_bar(progress: current_user.progress(course),color: @phase.color) %>
+          <%= progress_bar(progress: current_user.stats.progress_by_course(course),color: @phase.color) %>
           <p><%= course.description %></p>
           <div class="row info">
             <div class="col-xs-4 info-item">

@@ -1,0 +1,145 @@
+<div class="container profile-view">
+  <div class="row">
+    <!--
+    <div class="col-sm-12 col-md-12 account-type">
+      <div class="row">
+        <div class="col-sm-4 col-md-2">
+          Tipo de cuenta: <span class="txt-bold">gratis</span>
+        </div>
+        <div class="col-sm-8 col-md-7">
+          Todavía no estás inscrito en Make It Real, pero tienes acceso a nuestro contenido gratis. Únete para acceder a todos los cursos, recursos y proyectos que tenemos para tí.
+        </div>
+        <div class="col-sm-12 col-md-3">
+          <a href="" class="btn-cta">Unirse a Make it Real</a>
+        </div>
+      </div>
+    </div>
+    -->
+    <!-- /account-type -->
+
+    <div class="col-sm-12 col-md-12 profile-status profile-header">
+      <%= render "users/profile_header", user: @user, is_own_profile: @is_own_profile %>
+    </div><!-- /profile-status -->
+
+    <div class="col-sm-12 col-md-12 profile-data">
+      <div class="row">
+        <div class="col-sm-6 col-md-4 my-data">
+          <h2>Datos</h2>
+          <div class="profile-img"><img src="<%= Gravatar.new("#{@user.email}").image_url %>" class="img-circle" /></div>
+          <span class="profile-name txt-bold">
+            <%= @user.first_name %>
+          </span>
+          <span class="profile-date">
+            Se unió el <%= l(@user.created_at, format: '%d de %B de %Y') %>
+          </span>
+          <% if @user.github_username? %>
+            <%= link_to "http://github.com/#{@user.github_username}", class:"profile-github" do %>
+              <i class="fa fa-github"></i>
+              <%= "github.com/#{@user.github_username}" %>
+            <% end %>
+          <% end %>
+        </div><!-- /my-data -->
+
+        <div class="col-sm-6 col-md-8 my-achievements">
+          <% if @is_own_profile %>
+            <h2>Mis logros</h2>
+          <% else %>
+            <h2>Logros</h2>
+          <% end %>
+          <ul>
+            <li>
+              <span class="txt-bold">Retos Resueltos</span>
+              <span class="number-results"><%= @user.stats.completed_challenges_count %></span>
+            </li>
+            <li>
+              <span class="txt-bold">Recursos Aprovechados</span>
+              <span class="number-results"><%= @user.stats.completed_resources_count %></span>
+            </li>
+            <li>
+              <span class="txt-bold">Proyectos Terminados</span>
+              <span class="number-results"><%= @user.stats.completed_projects_count %></span>
+            </li>
+            <li>
+              <span class="txt-bold">Medallas Recibidas</span>
+              <span class="number-results"><%= @user.stats.badges_count %></span>
+            </li>
+          </ul>
+        </div><!-- /my-achievements -->
+
+      </div><!-- /row -->
+    </div><!-- /profile-data -->
+
+
+    <div class="col-sm-12 col-md-12 profile-progress">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <% if @is_own_profile %>
+            <h2>Mi progreso</h2>
+          <% else %>
+            <h2>Progreso</h2>
+          <% end %>
+        </div>
+
+        <% Course.published.all.each_with_index do |course,i| %>
+          <% progress = @user.stats.progress_by_course(course)%>
+          <% if i % 2 == 0 %><div class="clearfix visible-xs"></div><% end %>
+          <% if i % 3 == 0 %><div class="clearfix visible-sm"></div><% end %>
+          <% if i % 4 == 0 %><div class="clearfix visible-md visible-lg"></div><% end %>
+          <div class="col-xs-6 col-sm-4 col-md-3">
+            <div class="course-status">
+              <span class="course-name"><%= course.name %></span>
+              <div class="progress">
+                <%= progress_bar(progress: progress, show_percentage: true) %>
+              </div>
+              <% if @is_own_profile %>
+                <% if progress == 0 %>
+                  <%= link_to "iniciar", course_path(course) %>
+                <% elsif progress == 1 %>
+                  <p class="text-muted">finalizado</p>
+                <% else %>
+                  <%= link_to "continuar", course_path(course) %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div><!-- /row -->
+    </div><!-- /profile-progress -->
+
+
+
+    <div class="col-sm-12 col-md-12 profile-emblems">
+      <% if @is_own_profile %>
+        <h2>Mis Emblemas</h2>
+      <% else %>
+        <h2>Emblemas</h2>
+      <% end %>
+      <div class="row">
+        <div class="col-xs-4 col-sm-3 col-md-2">
+          <div class="emblem">
+            <div class="emblem-container">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 169.7 169.7" enable-background="new 0 0 169.7 169.7"><style type="text/css">.st0{fill:#ff3000;}</style><g id="XMLID_1083_"><path id="XMLID_58_" class="st0" d="M75.6 104.3l-13.2-57.1h-.5c.6 4.4.9 8.4.9 12.1v45h-12v-67.1h19.9l11.9 52.8h.4l11.8-52.7h20.2v67.1h-12.3v-45.6c0-3.8.2-7.6.7-11.6h-.4l-13.2 57h-14.2z"/><path class="st0" d="M50.8 116.1h64.1v10.7h-64.1z" id="XMLID_1064_"/></g><path id="XMLID_37_" class="st0" d="M84.8 169.7c-46.7 0-84.8-38.1-84.8-84.9 0-46.7 38.1-84.8 84.8-84.8s84.8 38.1 84.8 84.8c.1 46.8-38 84.9-84.8 84.9zm0-166.7c-45.1 0-81.8 36.7-81.8 81.8s36.7 81.8 81.8 81.8 81.8-36.7 81.8-81.8-36.6-81.8-81.8-81.8z"/></svg>
+            </div>
+            <a href="">Hago parte de Make It Real</a>
+            <span class="emblem-date"><%= l(@user.created_at, format: '%d de %B de %Y') %></span>
+          </div>
+        </div>
+      </div><!-- /row -->
+    </div><!-- /profile-emblems -->
+
+
+
+
+  </div><!-- /row -->
+</div><!-- /profile-view -->
+<script>
+  (function() {
+    var profileView = new ProfileView({el: ".profile-view"});
+
+    $(document).on("page:before-change", function() {
+      profileView.remove();
+    });
+
+  })();
+
+</script>

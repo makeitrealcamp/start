@@ -45,10 +45,23 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def owner_or_admin_access(obj,user=nil)
+      if current_user.nil?
+        raise ActionController::RoutingError.new('Not Found')
+      end
+      user ||= obj.user
+      is_admin = signed_in? && current_user.is_admin?
+      is_owner_of_obj = signed_in? && user.id == current_user.id
+      if(!is_admin && !is_owner_of_obj)
+        raise ActionController::RoutingError.new('Not Found')
+      end
+    end
+
     def record_user_activity
       if current_user
         @first_activity = true if current_user.last_active_at.nil?
         current_user.touch :last_active_at
       end
     end
+
 end

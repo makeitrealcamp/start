@@ -23,10 +23,8 @@
 <body class="expand">
   <%= render "layouts/navbar" %>
   <div class="content-wrapper expand">
-    <% flash.each do |name, msg| -%>
-      <div class="alert-top alert-top-<%= name %> fade in">
-        <%= msg.html_safe %>
-      </div>
+    <% flash.each do |type, msg| -%>
+      <%= render "shared/alert", msg: msg, type: type %>
     <% end -%>
 
     <%= yield %>
@@ -36,7 +34,6 @@
 
   <%= render "layouts/content_navigation" %>
   <%= render "utils/sign_up_analytics" %>
-
 </body>
 <% end %>
 </html>

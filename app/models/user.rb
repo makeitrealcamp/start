@@ -13,6 +13,7 @@
 #  status          :integer
 #  settings        :hstore
 #  account_type    :integer
+#  nickname        :string
 #
 
 class User < ActiveRecord::Base
@@ -20,11 +21,14 @@ class User < ActiveRecord::Base
   has_secure_password validations: false
 
   has_many :solutions, dependent: :destroy
+  has_many :challenges, through: :solutions
   has_many :auth_providers, dependent: :destroy
   has_many :lesson_completions
   has_many :subscriptions
   has_many :project_solutions
+  has_many :projects, through: :project_solutions
   has_many :resource_completions, dependent: :delete_all
+  has_many :resources, through: :resource_completions
 
   hstore_accessor :profile,
     first_name: :string,
@@ -35,12 +39,14 @@ class User < ActiveRecord::Base
     mindset: :string,
     motivation: :string,
     experience: :string,
-    activated_at: :datetime
+    activated_at: :datetime,
+    github_username: :string
 
   hstore_accessor :settings,
     password_reset_token: :string,
     password_reset_sent_at: :datetime,
-    info_requested_at: :datetime
+    info_requested_at: :datetime,
+    has_public_profile: :boolean
 
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
@@ -50,11 +56,25 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, on: :create
   validates :password_confirmation, presence: true, on: :update, if: :password_digest_changed?
   validates_confirmation_of :password, on: :update, if: :password_digest_changed?
+  validates :nickname, uniqueness: true
 
   enum status: [:created, :active]
   enum account_type: [:free_account, :paid_account, :admin_account]
 
   after_initialize :default_values
+  before_create :assign_random_nickname
+
+  def self.with_public_profile
+    self.is_has_public_profile
+  end
+
+  def completed_challenges
+    self.challenges.joins(:solutions).where('solutions.status = ?',Solution.statuses[:completed])
+  end
+
+  def stats
+    @stats ||= UserStats.new(self)
+  end
 
   def has_role?(role)
     roles && roles.include?(role)
@@ -83,30 +103,13 @@ class User < ActiveRecord::Base
     end
   end
 
-  def progress(course)
-    resources_count = course.resources.published.count
-    challenges_count = course.challenges.published.count
-    total = resources_count + challenges_count
-    return 1.0 if total == 0
-    user_completed = self.completed_resources(course).count + self.completed_challenges(course).count
-    user_completed/total.to_f
-  end
-
-  def completed_resources(course)
-    self.resource_completions.joins(:resource).where('resources.course_id = ? AND resources.published = ?', course.id, true)
-  end
-
   def resource_completed_at(resource)
     complete = resource_completions.where(resource_id: resource).take
     complete.created_at
   end
 
-  def completed_challenges(course)
-    self.solutions.completed.joins(:challenge).where('challenges.course_id = ? AND challenges.published = ?', course.id, true)
-  end
-
   def finished?(course)
-    progress(course) == 1.0
+    self.stats.progress_by_course(course) == 1.0
   end
 
   #TODO: Remove params, are not using
@@ -167,6 +170,7 @@ class User < ActiveRecord::Base
     def default_values
       self.roles ||= ["user"]
       self.status ||= :created
+      self.has_public_profile ||= false
       self.account_type ||= User.account_types[:free_account]
     end
 
@@ -174,5 +178,13 @@ class User < ActiveRecord::Base
       begin
         self.password_reset_token = SecureRandom.urlsafe_base64
       end while User.exists?(["settings -> 'password_reset_token' = '#{self.settings['password_reset_token']}'"])
+    end
+
+    def assign_random_nickname
+      if self.nickname.blank?
+        begin
+          self.nickname = SecureRandom.hex(8)
+        end while User.find_by_nickname(self.nickname)
+      end
     end
 end

@@ -13,11 +13,15 @@ module CoursesHelper
       end
     end
 
+    percentage_text = ""
+    percentage_text = "#{ (progress*100).round(0) }%" if opts[:show_percentage]
+
     %Q(
     <div class="progress">
       <div class="progress-bar progress-bar-#{type}"
         role="progressbar"
         style="width: #{(progress*100).round(2)}%;opacity:#{opacity};background-color:#{color}">
+        #{ percentage_text }
       </div>
     </div>).html_safe
   end
