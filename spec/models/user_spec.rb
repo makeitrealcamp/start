@@ -135,6 +135,15 @@ RSpec.describe User, type: :model do
         create(:solution, user: user, challenge: challenge2, status: :created)
         expect(user.stats.completed_challenges_count).to eq 1
       end
+
+      it "should return UNIQ completed challenges count" do
+        challenge = create(:challenge, course: course, published: true, restricted: true)
+        create(:solution, user: user, challenge: challenge, status: :completed)
+        create(:solution, user: user, challenge: challenge, status: :completed)
+        create(:solution, user: user, challenge: challenge, status: :completed)
+
+        expect(user.stats.completed_challenges_count).to eq 1
+      end
     end
   end
 

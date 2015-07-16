@@ -21,14 +21,14 @@ class User < ActiveRecord::Base
   has_secure_password validations: false
 
   has_many :solutions, dependent: :destroy
-  has_many :challenges, through: :solutions
+  has_many :challenges, -> { uniq }, through: :solutions
   has_many :auth_providers, dependent: :destroy
   has_many :lesson_completions
   has_many :subscriptions
   has_many :project_solutions
-  has_many :projects, through: :project_solutions
+  has_many :projects, -> { uniq }, through: :project_solutions
   has_many :resource_completions, dependent: :delete_all
-  has_many :resources, through: :resource_completions
+  has_many :resources, -> { uniq }, through: :resource_completions
 
   hstore_accessor :profile,
     first_name: :string,
@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
   end
 
   def completed_challenges
-    self.challenges.joins(:solutions).where('solutions.status = ?',Solution.statuses[:completed])
+    self.challenges.joins(:solutions).where('solutions.status = ?',Solution.statuses[:completed]).uniq
   end
 
   def stats
