@@ -26,8 +26,8 @@
 html, body{
 
   @media (max-width: $screen-sm-max) {
-  //  overflow-y: scroll; /* has to be scroll, not auto */
-  //  -webkit-overflow-scrolling: touch;
+    overflow-y: scroll; /* has to be scroll, not auto */
+    -webkit-overflow-scrolling: touch;
   }
 }
 
