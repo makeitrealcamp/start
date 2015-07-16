@@ -18,28 +18,6 @@ RSpec.feature "Sign Up", type: :feature do
     expect(current_path).to eq signed_in_root_path
   end
 
-  xscenario "execute analytics script after sign up", js: true do
-    visit signup_path
-    fill_in 'user_email', with: Faker::Internet.email
-    password  = Faker::Internet.password
-    fill_in 'user_password', with: password
-    fill_in 'user_password_confirmation', with: password
-    click_button 'Crear cuenta'
-
-    expect(current_path).to eq signed_in_root_path
-    analyticsMock = page.evaluate_script('window.analyticsMock');
-    expect(analyticsMock).to eq(true)
-  end
-
-  xscenario "not execute analytics script when user is active", js: true do
-    login(create(:user,status: :active,last_active_at: Time.now))
-
-    visit signed_in_root_path
-
-    analyticsMock = page.evaluate_script('window.analyticsMock');
-    expect(analyticsMock).to eq(false)
-  end
-
   xscenario "with invalid email" do
     visit signup_path
     fill_in 'user_email', with: 'invalid'

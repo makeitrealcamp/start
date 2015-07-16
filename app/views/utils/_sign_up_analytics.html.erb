@@ -1,11 +1,6 @@
 <% if Rails.env.test?%>
   <script>
-    window.analyticsMock = false;
-  </script>
-<% end %>
-<% if Rails.env.test? %>
-  <script>
-    window.analyticsMock = true;
+    window.signUpAnalyticsMock = true;
   </script>
 <% end %>
 <% if Rails.env.production? %>
