@@ -2,13 +2,13 @@
 require "rails_helper"
 
 RSpec.feature "Sign Up", type: :feature do
-  scenario "when user is logged in" do
+  xscenario "when user is logged in" do
     login(create(:user))
     visit signup_path
     expect(current_path).to eq signed_in_root_path
   end
 
-  scenario "with valid attributes" do
+  xscenario "with valid attributes" do
     visit signup_path
     fill_in 'user_email', with: Faker::Internet.email
     password  = Faker::Internet.password
@@ -18,7 +18,7 @@ RSpec.feature "Sign Up", type: :feature do
     expect(current_path).to eq signed_in_root_path
   end
 
-  scenario "execute analytics script after sign up", js: true do
+  xscenario "execute analytics script after sign up", js: true do
     visit signup_path
     fill_in 'user_email', with: Faker::Internet.email
     password  = Faker::Internet.password
@@ -31,7 +31,7 @@ RSpec.feature "Sign Up", type: :feature do
     expect(analyticsMock).to eq(true)
   end
 
-  scenario "not execute analytics script when user is active", js: true do
+  xscenario "not execute analytics script when user is active", js: true do
     login(create(:user,status: :active,last_active_at: Time.now))
 
     visit signed_in_root_path
@@ -40,7 +40,7 @@ RSpec.feature "Sign Up", type: :feature do
     expect(analyticsMock).to eq(false)
   end
 
-  scenario "with invalid email" do
+  xscenario "with invalid email" do
     visit signup_path
     fill_in 'user_email', with: 'invalid'
     fill_in 'user_password', with: Faker::Internet.password
@@ -50,7 +50,7 @@ RSpec.feature "Sign Up", type: :feature do
     expect(page).to have_content "Email no es válido"
   end
 
-  scenario "with existing email" do
+  xscenario "with existing email" do
     user = create(:user)
 
     visit signup_path
@@ -62,7 +62,7 @@ RSpec.feature "Sign Up", type: :feature do
     expect(page).to have_content "Email ya está en uso"
   end
 
-  scenario "with no password" do
+  xscenario "with no password" do
     visit signup_path
     fill_in 'user_email', with: Faker::Internet.email
     click_button 'Crear cuenta'
@@ -71,7 +71,7 @@ RSpec.feature "Sign Up", type: :feature do
     expect(page).to have_content "Password no puede estar en blanco"
   end
 
-  scenario "with no password confirmation" do
+  xscenario "with no password confirmation" do
     visit signup_path
     fill_in 'user_email', with: Faker::Internet.email
     fill_in 'user_password', with: Faker::Internet.password
@@ -80,7 +80,7 @@ RSpec.feature "Sign Up", type: :feature do
     expect(page).to have_content "Password confirmation no puede estar en blanco"
   end
 
-  scenario "when password  is not match" do
+  xscenario "when password  is not match" do
     visit signup_path
     fill_in 'user_email', with: Faker::Internet.email
     fill_in 'user_password', with: Faker::Internet.password

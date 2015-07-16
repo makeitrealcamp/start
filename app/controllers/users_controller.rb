@@ -2,19 +2,20 @@ class UsersController < ApplicationController
   before_action :private_access, except: [:new, :create]
   before_action :public_access, only: [:new, :create]
 
-  def new
-    @user = User.new
-  end
-
-  def create
-    @user = User.create(user_params)
-    if @user.valid?
-      sign_in(@user)
-      redirect_to signed_in_root_path
-    else
-      render :new
-    end
-  end
+#  def new
+#    redirect_to application_form_path
+#    # @user = User.new
+#  end
+#
+#  def create
+#    @user = User.create(user_params)
+#    if @user.valid?
+#      sign_in(@user)
+#      redirect_to signed_in_root_path
+#    else
+#      render :new
+#    end
+#  end
 
   def activate
     begin
