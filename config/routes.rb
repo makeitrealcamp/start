@@ -9,8 +9,7 @@ Rails.application.routes.draw do
   get  'auth/:provider/callback', to: 'sessions#create_with_omniauth', as: :login_omniauth
   delete 'logout', to: 'sessions#destroy'
 
-  get 'signup', to: 'users#new', as: :signup
-  post 'signup', to: 'users#create'
+  get "/signup" => redirect(Prework::Application::APPLICATION_FORM_URL)
 
   post 'inscription_info', to: 'users#send_inscription_info', as: :inscription_info
 
