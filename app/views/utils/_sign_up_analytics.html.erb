@@ -1,14 +1,9 @@
 <% if Rails.env.test?%>
   <script>
-    window.analyticsMock = false;
+    window.signUpAnalyticsMock = true;
   </script>
 <% end %>
-<% if Rails.env.test? && @first_activity %>
-  <script>
-    window.analyticsMock = true;
-  </script>
-<% end %>
-<% if Rails.env.production? && @first_activity %>
+<% if Rails.env.production? %>
   <script>
     ga('send', 'event', { eventCategory: 'signup', eventAction: 'start' });
   </script>
@@ -35,4 +30,9 @@
   <img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=l6chg&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0" />
   <img height="1" width="1" style="display:none;" alt="" src="//t.co/i/adsct?txn_id=l6chg&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0" />
   </noscript>
+
+  <script>
+    window['optimizely'] = window['optimizely'] || [];
+    window.optimizely.push(["trackEvent", "signup"]);
+  </script>
 <% end %>

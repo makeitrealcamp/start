@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'pages#home'
-  get "thanks" => "pages#thanks"
+  get "thanks", to: "pages#thanks", as: :thanks
 
   get 'handbook', to: 'pages#handbook', as: :handbook
 
