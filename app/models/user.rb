@@ -181,7 +181,7 @@ class User < ActiveRecord::Base
     end
 
     def assign_random_nickname
-      if self.nickname.nil?
+      if self.nickname.blank?
         begin
           self.nickname = SecureRandom.hex(8)
         end while User.find_by_nickname(self.nickname)

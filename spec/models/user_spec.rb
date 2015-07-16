@@ -137,4 +137,13 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe "#nickname" do
+    it "should assign a nickname before_create" do
+      user = build(:user,nickname: "")
+      user.save
+      expect(user.reload.nickname).not_to eq(nil)
+      expect(user.reload.nickname).not_to eq("")
+    end
+  end
 end
