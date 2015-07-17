@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-sm-6">
       <h1>Estudiantes</h1>
+      <%= link_to "Nuevo usuario", new_admin_user_path, class: "btn btn-primary" %>
     </div>
     <div class="col-sm-6">
       <%= form_tag(admin_users_path, method: "get",
@@ -23,7 +24,6 @@
         <% end %>
       </div>
     </div>
-
     <div class="col-sm-6">
       <%= will_paginate @users, previous_label: "< Anterior",
         next_label: "Siguiente >", class:"pull-right pagination" %>
@@ -67,7 +67,6 @@
         <% end %>
       </div>
     </div>
-
     <div class="col-sm-6">
       <%= will_paginate @users, previous_label: "< Anterior",
         next_label: "Siguiente >", class:"pull-right pagination" %>

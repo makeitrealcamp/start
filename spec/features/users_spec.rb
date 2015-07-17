@@ -61,6 +61,41 @@ RSpec.feature "Users", type: :feature do
   end
 
   context 'when accessed as admin' do
+    context 'create user' do
+      scenario 'display form' do
+        login(admin)
+        visit admin_users_path
+        click_link 'Nuevo usuario'
+        expect(current_path).to eq new_admin_user_path
+      end
+
+      scenario 'with valid input ' do
+        login(admin)
+        visit admin_users_path
+        click_link 'Nuevo usuario'
+
+        expect {
+          fill_in 'user_first_name', with: Faker::Name.first_name
+          fill_in 'user_email', with: Faker::Internet.email
+          fill_in 'user_nickname', with: Faker::Internet.user_name
+          click_button 'Crear Usuario'
+        }.to change(User, :count).by 1
+
+        expect(User.last).not_to be_nil
+        expect(current_path).to eq admin_users_path
+      end
+
+      scenario 'without valid input' do
+        login(admin)
+        visit admin_users_path
+        click_link 'Nuevo usuario'
+        expect {
+          click_button 'Crear Usuario'
+        }.to change(User, :count).by 0
+        expect(page).to have_selector '.panel-danger'
+      end
+    end
+
     scenario "show list users", js: true do
       login(admin)
       visit admin_users_path

@@ -1,6 +1,23 @@
 class Admin::UsersController < ApplicationController
   before_action :admin_access
 
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+    password = SecureRandom.urlsafe_base64
+    @user.password = password
+    @user.password_confirmation = password
+
+    if @user.save
+      redirect_to admin_users_path
+    else
+      render :new
+    end
+  end
+
   def index
     @users ||= User.all
 
@@ -52,4 +69,9 @@ class Admin::UsersController < ApplicationController
     params_clone[:page] = 1
     Rails.application.routes.url_helpers.admin_users_path(params_clone)
   end
+
+  private
+    def user_params
+      params.require(:user).permit(:first_name, :email, :nickname)
+    end
 end
