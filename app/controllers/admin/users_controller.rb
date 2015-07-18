@@ -12,6 +12,7 @@ class Admin::UsersController < ApplicationController
     @user.password_confirmation = password
 
     if @user.save
+      @user.send_password_reset
       redirect_to admin_users_path
     else
       render :new
