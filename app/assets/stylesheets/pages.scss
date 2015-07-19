@@ -1,4 +1,6 @@
 .home {
+  line-height: 1.6;
+
   .main {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), asset-url('home.jpg') no-repeat center top;
     background-size: cover;
@@ -198,7 +200,7 @@
 
   .title {
     color: #303030;
-    font: 21px bold $font-family-condensed; 
+    font: bold 21px $font-family-condensed;
     margin-bottom: 20px;
 
     @media (min-width: $screen-md-min) { font-size: 28px; }
