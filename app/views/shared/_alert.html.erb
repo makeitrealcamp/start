@@ -1,13 +1,6 @@
 <%# required: msg %>
 <%# optional: type %>
-<% alert_unique_id = "alert-#{SecureRandom.hex}" %>
-<div class='alert alert-top  fade in <%= "alert-top-#{type}" if defined? type %> <%= alert_unique_id %>'>
+<div class='alert alert-top  fade in <%= "alert-top-#{type}" if defined? type %>'>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <%= msg.html_safe %>
 </div>
-<script>
-setTimeout(function() {
-  $('.<%=alert_unique_id%>').alert('close');
-}, 2000, false);
-
-</script>
