@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
   enum account_type: [:free_account, :paid_account, :admin_account]
 
   after_initialize :default_values
-  before_create :assign_random_nickname, :assign_password
+  before_create :assign_random_nickname
 
   def self.with_public_profile
     self.is_has_public_profile
