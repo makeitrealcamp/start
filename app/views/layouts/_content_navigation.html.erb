@@ -1,8 +1,8 @@
 <% if signed_in? %>
-  <button id="content_navigation_toggle" type="button" class="btn btn-default closed">
-    <i></i>
-  </button>
   <div id="sidebar_wrapper" class="closed">
+    <button id="content_navigation_toggle" type="button" class="btn btn-default closed">
+      <i></i>
+    </button>
     <nav id="content_navigation" class="sidebar">
       <ul>
         <% Phase.for(current_user).each do |phase| %>
