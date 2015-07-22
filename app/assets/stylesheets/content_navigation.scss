@@ -1,10 +1,9 @@
-$sidebar_width: 400px;
+$sidebar_width: 500px;
 
 #content_navigation_toggle {
   position: absolute;
   z-index: $zindex-navbar+2;
   top: 15px;
-  left: 10px;
   transition: all .3s ease-in;
   color: grey;
   background-color: #303030;
@@ -20,10 +19,11 @@ $sidebar_width: 400px;
     i {
       @extend .fa-times;
     }
-    transform: translateX($sidebar_width);
-    -webkit-transform: translateX($sidebar_width);
+    right: 10px;
   }
   &.closed {
+
+    right: - 50px;
     i {
       @extend .fa-bars;
     }
@@ -35,6 +35,7 @@ $sidebar_width: 400px;
   bottom: 0;
   left: 0;
   width: $sidebar_width;
+  max-width: 90%;
   height: 100%;
   transition: all .3s ease-in;
   position: fixed;
