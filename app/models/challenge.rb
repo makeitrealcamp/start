@@ -18,6 +18,7 @@
 #  restricted          :boolean          default(FALSE)
 #  preview             :boolean          default(FALSE)
 #  pair_programming    :boolean          default(FALSE)
+#  difficulty_bonus    :integer
 #
 # Indexes
 #
@@ -25,6 +26,7 @@
 #
 
 class Challenge < ActiveRecord::Base
+  BASE_POINTS = 100
   has_paper_trail on: [:update, :destroy]
 
   include RankedModel
