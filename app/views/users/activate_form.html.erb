@@ -1,0 +1,83 @@
+<div class="container course-form-page">
+  <div class="row">
+    <%= form_for @user, url: url_for(:controller => 'users', :action => 'activate') do |f| %>
+       <%= hidden_field_tag :v, @user.password_reset_token %>
+      <div class="col-sm-10 col-sm-offset-1">
+        <%= render 'shared/flash_messages_form', object: @user %>
+        <h1>Activar Cuenta</h1>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <%= f.label :email, "Correo Electrónico" %>
+              <%= f.text_field :email, class: 'form-control input-lg', placeholder: 'email', disabled: true %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :birthday, "Fecha de cumpleaños" %>
+              <%= f.date_field(:birthday , class: "form-control input-lg") %>
+            </div>
+            <div class="form-group">
+              <%= f.label :mobile_number, "Celular"%>
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon" id="basic-addon1">+57</span>
+                <%= f.telephone_field :mobile_number, class: 'form-control', placeholder: 'Número de celular' %>
+              </div>
+              <span>(p.e. 3002111111)</span>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <%= f.label :nickname %>
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon" >makeitreal.camp/u/</span>
+                <%= f.text_field :nickname, class: 'form-control'%>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <span class="radio-caption">Visibilidad del perfil:</span>
+              <label class="radio-inline">
+                <%= f.radio_button(:has_public_profile, true) %>
+                <%= f.label(:true, "Público", class: "txt-bold") %>
+              </label>
+              <label class="radio-inline">
+                <%= f.radio_button(:has_public_profile, false) %>
+                <%= f.label(:false, "Privado", class: "txt-bold") %>
+              </label>
+            </div>
+
+            <div class="form-group">
+              <span class="radio-caption">Sexo:</span>
+              <label class="radio-inline">
+                <%= f.radio_button(:gender, :male) %>
+                <%= f.label(:true, "Masculino", class: "txt-bold") %>
+              </label>
+              <label class="radio-inline">
+                <%= f.radio_button(:gender, :female) %>
+                <%= f.label(:false, "Femenino", class: "txt-bold") %>
+              </label>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :password, "Contraseña" %>
+              <%= f.password_field :password, class: 'form-control'%>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :password_confirmation, "Cofirmar contraseña" %>
+              <%= f.password_field :password_confirmation, class: 'form-control'%>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-md-offset-6">
+            <div class="actions text-right">
+              <%= f.submit("Activar Cuenta", class: "btn btn-primary") %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

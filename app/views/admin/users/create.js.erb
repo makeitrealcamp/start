@@ -1,0 +1,7 @@
+<% if @user.errors.empty? %>
+  $('.alert').removeClass('alert-danger').addClass('alert-success').html('se ha enviado el correo de activación al correo <%= @user.email %>' ).show();
+  $('input#user_first_name').val('');
+  $('input#user_email').val('');
+<% else %>
+  $('.alert').removeClass('alert-success').addClass('alert-danger').html('<%= @user.errors.full_messages[0] %>').show();
+<% end %>

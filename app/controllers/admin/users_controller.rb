@@ -7,15 +7,9 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    password = SecureRandom.urlsafe_base64
-    @user.password = password
-    @user.password_confirmation = password
-
+    @user.generate_password
     if @user.save
-      @user.send_password_reset
-      redirect_to admin_users_path
-    else
-      render :new
+      @user.send_activate_mail
     end
   end
 
@@ -73,6 +67,6 @@ class Admin::UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:first_name, :email, :nickname)
+      params.require(:user).permit(:first_name, :last_name, :email, :gender, :nickname)
     end
 end

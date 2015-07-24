@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resource :password_reset, except: [:index, :show]
 
   resources :users do
+    get 'activate', action: 'activate_form', on: :member
     patch :activate, on: :member
   end
   # profile

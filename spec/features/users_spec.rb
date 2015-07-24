@@ -61,45 +61,55 @@ RSpec.feature "Users", type: :feature do
   end
 
   context 'when accessed as admin' do
-    context 'create user' do
+    context 'create user', js: true do
       scenario 'display form' do
         login(admin)
+        wait_for_ajax
         visit admin_users_path
         click_link 'Nuevo usuario'
-        expect(current_path).to eq new_admin_user_path
+        expect(page).to have_selector "#create-user-modal"
       end
 
       scenario 'with valid input ' do
         login(admin)
+        wait_for_ajax
         visit admin_users_path
         click_link 'Nuevo usuario'
+        wait_for_ajax
 
-        expect {
-          fill_in 'user_first_name', with: Faker::Name.first_name
-          fill_in 'user_email', with: Faker::Internet.email
-          fill_in 'user_nickname', with: Faker::Internet.user_name
-          click_button 'Crear Usuario'
-        }.to change(User, :count).by 1
+        first_name = Faker::Name.first_name
+        last_name = Faker::Name.last_name
+        email = Faker::Internet.email
 
-        expect(User.last).not_to be_nil
-        expect(current_path).to eq admin_users_path
+        find(:css, '.modal-dialog input#user_first_name').set(first_name)
+        find(:css, '.modal-dialog input#user_last_name').set(last_name)
+        find(:css, '.modal-dialog input#user_email').set(email)
+        find(:css, '.modal-dialog #user_gender_male').set(true)
+        click_button "Crear Usuario"
+        wait_for_ajax
+        user = User.last
+        expect(user).not_to be_nil
+        expect(user.first_name).to eq first_name
+        expect(user.last_name).to eq last_name
+        expect(user.email).to eq  email
+        expect(user.gender).to eq "male"
+        expect(page).to have_selector '.alert-success'
       end
 
       scenario 'without valid input' do
         login(admin)
+        wait_for_ajax
         visit admin_users_path
         click_link 'Nuevo usuario'
-        expect {
-          click_button 'Crear Usuario'
-        }.to change(User, :count).by 0
-        expect(page).to have_selector '.panel-danger'
+        wait_for_ajax
+        click_button "Crear Usuario"
+        expect(page).to have_selector '.alert-danger'
       end
     end
 
-    scenario "show list users", js: true do
+    scenario "show list users" do
       login(admin)
       visit admin_users_path
-      wait_for_ajax
       expect(current_path).to eq admin_users_path
     end
 
@@ -108,6 +118,65 @@ RSpec.feature "Users", type: :feature do
       wait_for_ajax
       expect(all('a', text: 'Admin').count).to eq 1
       expect(current_path).to eq signed_in_root_path
+    end
+  end
+
+  context 'when activate the account' do
+    scenario 'display form' do
+      user = create(:user, status: "created")
+      user.send_activate_mail
+      visit url_for(only_path: false, controller: 'users', action: 'activate_form', id: user.id, v: user.password_reset_token)
+      expect(page).to have_selector ".edit_user"
+    end
+
+    scenario 'with valid input' do
+      user = create(:user, status: "created")
+      user.send_activate_mail
+      visit url_for(only_path: false, controller: 'users', action: 'activate_form', id: user.id, v: user.password_reset_token)
+
+      mobile_number = Faker::Number.number(10)
+      birthday =  '01-01-2015'
+      nickname = Faker::Internet.user_name
+      password = Faker::Internet.password(8)
+      password_confirmation = password
+
+      fill_in "user_mobile_number", with: mobile_number
+      fill_in "user_birthday", with: birthday
+      fill_in "user_nickname", with: nickname
+      find(:css, '.edit_user #user_has_public_profile_true').set(true)
+      find(:css, '.edit_user #user_gender_male').set(true)
+      fill_in "user_password", with: password
+      fill_in "user_password_confirmation", with: password_confirmation
+      click_button 'Activar Cuenta'
+      user.reload
+      expect(user.mobile_number).to eq mobile_number
+      expect(user.birthday.strftime('%F')).to eq '2015-01-01'
+      expect(user.nickname).to eq nickname
+      expect(user.gender).to eq "male"
+      expect(user.has_public_profile).to eq true
+      expect(user.status).to eq "active"
+      expect(page).to have_selector '.alert-top-notice'
+      expect(current_path).to eq login_path
+    end
+
+
+    scenario 'without valid input' do
+      user = create(:user, status: "created")
+      user.send_activate_mail
+      visit url_for(only_path: false, controller: 'users', action: 'activate_form', id: user.id, v: user.password_reset_token)
+      mobile_number = Faker::Number.number(10)
+      birthday =  '01-01-2015'
+      nickname = Faker::Internet.user_name
+      password = Faker::Internet.password(8)
+      password_confirmation = password
+
+      fill_in "user_mobile_number", with: mobile_number
+      fill_in "user_birthday", with: birthday
+      find(:css, '.edit_user #user_has_public_profile_true').set(true)
+      find(:css, '.edit_user #user_gender_male').set(true)
+      click_button 'Activar Cuenta'
+      expect(page).to have_selector ".panel-danger"
+      expect(current_path).to eq activate_user_path(user)
     end
   end
 end

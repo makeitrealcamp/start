@@ -17,7 +17,6 @@ RSpec.feature "Sign In", type: :feature do
       OmniAuth.config.mock_auth[:facebook] = :invalid_credentials
       visit login_path
       find('#sign-in-facebook').click
-      wait_for_ajax
       sleep(0.5)
       expect(current_url).to eq(Prework::Application::APPLICATION_FORM_URL)
     end

@@ -42,6 +42,7 @@ class User < ActiveRecord::Base
 
   hstore_accessor :profile,
     first_name: :string,
+    last_name: :string,
     gender: :string,
     birthday: :date,
     mobile_number: :string,
@@ -73,6 +74,12 @@ class User < ActiveRecord::Base
 
   after_initialize :default_values
   before_create :assign_random_nickname
+
+  def generate_password
+    password = SecureRandom.urlsafe_base64
+    self.password = password
+    self.password_confirmation = password
+  end
 
   def self.with_public_profile
     self.is_has_public_profile
@@ -155,6 +162,13 @@ class User < ActiveRecord::Base
 
   def has_completed_resource?(resource)
     !!self.resource_completions.find_by_resource_id(resource.id)
+  end
+
+  def send_activate_mail
+    generate_token
+    self.password_reset_sent_at = Time.current
+    save!
+    UserMailer.activate(self).deliver_now
   end
 
   def send_password_reset

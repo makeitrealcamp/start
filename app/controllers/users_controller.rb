@@ -1,15 +1,32 @@
 class UsersController < ApplicationController
-  before_action :private_access, except: [:new, :create, :profile]
-  before_action :public_access, only: [:new, :create]
+  before_action :private_access, except: [:new, :create, :profile, :activate_form, :activate]
+  before_action :public_access, only: [:new, :create, :activate_form, :activate]
+
+  def activate_form
+    @user = User.where(["settings -> 'password_reset_token' = '#{params[:v]}'"]).where(status:"created").take
+    raise ActionController::RoutingError.new('Not Found') unless @user
+
+    if @user.password_reset_sent_at < 2.hours.ago
+      redirect_to login_path, flash: { error: "La página ya no se encuentra disponible" }
+    end
+  end
 
   def activate
-    begin
-      gender = Gendered::Name.new(activate_params[:first_name]).guess!
-    rescue SocketError => e
-      gender = :male
+    @user = User.where(["settings -> 'password_reset_token' = '#{params[:v]}'"]).where(status:"created").take
+    raise ActionController::RoutingError.new('Not Found') unless @user
+
+    if @user.password_reset_sent_at < 2.hours.ago
+      redirect_to login_path, flash: { error: "La página ya no se encuentra disponible" }
     end
 
-    current_user.update(activate_params.merge(gender: gender, status: User.statuses[:active], activated_at: Time.current))
+    @user.errors[:password] << "Por favor ingresa una contraseña" if user_params[:password].blank?
+
+    if @user.errors.empty? && @user.update(user_params.merge(status: User.statuses[:active], activated_at: Time.current))
+      @user.update(password_reset_token: nil, password_reset_sent_at: nil)
+      redirect_to login_path, flash: { notice: "Se Activado la cuenta satisfactoriamente." }
+    else
+      render :activate_form
+    end
   end
 
   def edit
@@ -48,12 +65,8 @@ class UsersController < ApplicationController
   private
     def user_params
       params.require(:user).permit(
-        :email, :password, :password_confirmation, :first_name, :mobile_number,
-        :birthday, :has_public_profile,:github_username,:nickname
+        :email, :password, :password_confirmation, :first_name, :mobile_number, :birthday,
+        :has_public_profile, :github_username, :nickname, :gender,
       )
-    end
-
-    def activate_params
-      params.require(:user).permit(:first_name, :optimism, :motivation, :mindset, :experience)
     end
 end

@@ -1,0 +1,13 @@
+Hola<%= @user.first_name? ? " #{@user.first_name}" : "" %>,<br>
+<br>
+Por favor active su cuenta de  <strong>Make it Real Start</strong> completando el siguente formulario
+<%= link_to "haz click acá para abrir el formulario", url_for(only_path: false, controller: 'users', action: 'activate_form', id: @user.id, v: @user.password_reset_token) %>.
+El enlace es válido por 2 horas.<br>
+<br>
+Si no has realizado esta solicitud, ignora este mensaje.
+<br>
+<br>
+Que tengas un muy buen día,<br>
+<br>
+&nbsp;&nbsp;<strong>Equipo de soporte</strong><br>
+&nbsp;&nbsp;<strong>makeitreal.camp</strong>
