@@ -14,6 +14,11 @@
 #  settings        :hstore
 #  account_type    :integer
 #  nickname        :string
+#  level_id        :integer
+#
+# Indexes
+#
+#  index_users_on_level_id  (level_id)
 #
 
 require 'rails_helper'
@@ -143,6 +148,12 @@ RSpec.describe User, type: :model do
         create(:solution, user: user, challenge: challenge, status: :completed)
 
         expect(user.stats.completed_challenges_count).to eq 1
+      end
+
+      it "Should sum an user total points" do
+        user.points.create(course_id: course.id, points: 10)
+        user.points.create(course_id: course.id, points: 10)
+        expect(user.stats.total_points).to eq 20
       end
     end
   end

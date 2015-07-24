@@ -42,6 +42,10 @@ class UserStats
     1
   end
 
+  def total_points
+     @user.points.sum(:points)
+  end
+
   private
 
   def completed_resources_by_course(course)

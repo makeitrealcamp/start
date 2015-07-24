@@ -14,6 +14,11 @@
 #  settings        :hstore
 #  account_type    :integer
 #  nickname        :string
+#  level_id        :integer
+#
+# Indexes
+#
+#  index_users_on_level_id  (level_id)
 #
 
 class User < ActiveRecord::Base
@@ -29,6 +34,8 @@ class User < ActiveRecord::Base
   has_many :projects, -> { uniq }, through: :project_solutions
   has_many :resource_completions, dependent: :delete_all
   has_many :resources, -> { uniq }, through: :resource_completions
+  has_many :points
+  belongs_to :level
 
   hstore_accessor :profile,
     first_name: :string,
@@ -187,4 +194,5 @@ class User < ActiveRecord::Base
         end while User.find_by_nickname(self.nickname)
       end
     end
+
 end

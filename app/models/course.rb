@@ -29,6 +29,7 @@ class Course < ActiveRecord::Base
   has_many :resources
   has_many :challenges
   has_many :projects
+  has_many :points
   belongs_to :phase
 
   validates :name, presence: true

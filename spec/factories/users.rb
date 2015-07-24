@@ -14,6 +14,11 @@
 #  settings        :hstore
 #  account_type    :integer
 #  nickname        :string
+#  level_id        :integer
+#
+# Indexes
+#
+#  index_users_on_level_id  (level_id)
 #
 
 FactoryGirl.define do

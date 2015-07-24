@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715041839) do
+ActiveRecord::Schema.define(version: 20150724230602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,18 +125,13 @@ ActiveRecord::Schema.define(version: 20150715041839) do
 
   add_index "lessons", ["section_id"], name: "index_lessons_on_section_id", using: :btree
 
-  create_table "pair_programming_times", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "day"
-    t.integer  "start_time_hour"
-    t.integer  "start_time_minute"
-    t.string   "time_zone"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.integer  "duration_in_minutes"
+  create_table "levels", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "required_points"
+    t.string   "image_url"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
-
-  add_index "pair_programming_times", ["user_id"], name: "index_pair_programming_times_on_user_id", using: :btree
 
   create_table "phases", force: :cascade do |t|
     t.string   "name"
@@ -148,6 +143,16 @@ ActiveRecord::Schema.define(version: 20150715041839) do
     t.datetime "updated_at",  null: false
     t.string   "color"
   end
+
+  create_table "points", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.integer  "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "points", ["course_id"], name: "index_points_on_course_id", using: :btree
 
   create_table "project_solutions", force: :cascade do |t|
     t.integer  "user_id"
@@ -250,7 +255,10 @@ ActiveRecord::Schema.define(version: 20150715041839) do
     t.hstore   "settings"
     t.integer  "account_type"
     t.string   "nickname"
+    t.integer  "level_id"
   end
+
+  add_index "users", ["level_id"], name: "index_users_on_level_id", using: :btree
 
   create_table "version_associations", force: :cascade do |t|
     t.integer "version_id"
@@ -281,7 +289,7 @@ ActiveRecord::Schema.define(version: 20150715041839) do
   add_foreign_key "lesson_completions", "lessons"
   add_foreign_key "lesson_completions", "users"
   add_foreign_key "lessons", "sections"
-  add_foreign_key "pair_programming_times", "users"
+  add_foreign_key "points", "courses"
   add_foreign_key "project_solutions", "projects"
   add_foreign_key "project_solutions", "users"
   add_foreign_key "projects", "courses"
@@ -289,4 +297,5 @@ ActiveRecord::Schema.define(version: 20150715041839) do
   add_foreign_key "solutions", "challenges"
   add_foreign_key "solutions", "users"
   add_foreign_key "subscriptions", "users"
+  add_foreign_key "users", "levels"
 end
