@@ -1,0 +1,21 @@
+<%# required: user %>
+<% unread = user.notifications.unread %>
+<% count = unread.count %>
+<li class="dropdow">
+  <a href="#" class="dropdown-toggle notifications" data-toggle="dropdown">
+    <button class="btn <%= notifications_class(user) %>">
+      <%= count %>
+    </button>
+  </a>
+  <ul class="dropdown-menu">
+    <% if count == 0 %>
+      <li><a href="#"><p class="text-muted">No tienes notificaciones</p></a></li>
+    <% else %>
+      <% unread.each do |n| %>
+        <li>
+          <%= n.message.html_safe %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</li>

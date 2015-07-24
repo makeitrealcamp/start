@@ -39,6 +39,7 @@ class User < ActiveRecord::Base
   belongs_to :level
   has_many :badge_ownerships, dependent: :destroy
   has_many :badges, -> { uniq }, through: :badge_ownerships
+  has_many :notifications
 
   hstore_accessor :profile,
     first_name: :string,
@@ -184,7 +185,7 @@ class User < ActiveRecord::Base
     )
     SubscriptionsMailer.welcome_mail(self).deliver_now
     SubscriptionsMailer.welcome_hangout(self).deliver_later!(wait: 24.hours)
-    
+
   end
 
   def has_valid_password_reset_token?
