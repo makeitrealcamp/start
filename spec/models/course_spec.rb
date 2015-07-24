@@ -12,7 +12,6 @@
 #  description   :string
 #  slug          :string
 #  published     :boolean
-#  phase_id      :integer
 #
 # Indexes
 #
@@ -26,6 +25,7 @@ RSpec.describe Course, type: :model do
   context 'associations' do
     it { should have_many(:resources) }
     it { should have_many(:challenges) }
+    it { should have_many(:badges).dependent(:destroy) }
   end
 
   context 'validations' do

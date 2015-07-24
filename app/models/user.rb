@@ -34,9 +34,11 @@ class User < ActiveRecord::Base
   has_many :projects, -> { uniq }, through: :project_solutions
   has_many :resource_completions, dependent: :delete_all
   has_many :resources, -> { uniq }, through: :resource_completions
+
   has_many :points
   has_many :challenge_completions
   belongs_to :level
+  has_many :badges_users, dependent: :destroy
 
   hstore_accessor :profile,
     first_name: :string,

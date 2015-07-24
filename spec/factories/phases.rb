@@ -3,6 +3,7 @@
 # Table name: phases
 #
 #  id          :integer          not null, primary key
+#  number      :integer
 #  name        :string
 #  description :text
 #  slug        :string
@@ -10,7 +11,6 @@
 #  published   :boolean
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  color       :string
 #
 
 FactoryGirl.define do

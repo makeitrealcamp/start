@@ -15,9 +15,6 @@
 #  content       :text
 #  slug          :string
 #  published     :boolean
-#  video_url     :string
-#  category      :integer
-#  own           :boolean
 #
 # Indexes
 #
