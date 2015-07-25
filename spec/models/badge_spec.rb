@@ -10,6 +10,7 @@
 #  course_id      :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  giving_method  :integer
 #
 
 require 'rails_helper'
@@ -24,11 +25,20 @@ RSpec.describe Badge, type: :model do
   context 'validations' do
     it { should validate_presence_of :name }
     it { should validate_presence_of :image_url }
-    it { should validate_presence_of :require_points }
-    it { should validate_presence_of :course }
+    it { should validate_presence_of :giving_method }
   end
 
-  it "has a valid factory" do
-    expect(build(:badge)).to be_valid
+  context "has a valid factory " do
+    it 'when giving method is points' do
+      badge = build(:badge, giving_method: 1, require_points: 100)
+      expect(badge.giving_method).to eq "points"
+      expect(badge).to be_valid
+    end
+
+    it 'when giving method is manually' do
+      badge = build(:badge, giving_method: 0, course: nil)
+      expect(badge.giving_method).to eq "manually"
+      expect(badge).to be_valid
+    end
   end
 end

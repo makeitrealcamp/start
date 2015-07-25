@@ -13,7 +13,7 @@ class Admin::BadgesController < ApplicationController
     @badge = Badge.new(badge_params)
 
     if @badge.save
-      redirect_to admin_badges_path, notice: "La insignia  <strong>#{@lesson.name}</strong> ha sido creado"
+      redirect_to admin_badges_path, notice: "La insignia  <strong>#{@badge.name}</strong> ha sido creado"
     else
       render :new
     end
@@ -31,7 +31,8 @@ class Admin::BadgesController < ApplicationController
   private
 
     def badge_params
-      params.require(:badge).permit(:name, :description, :image_url, :course_id)
+      params.require(:badge).permit(:name, :description, :image_url,
+      :giving_method, :require_points, :course_id)
     end
 
 end

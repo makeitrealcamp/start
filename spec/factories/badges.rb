@@ -10,14 +10,15 @@
 #  course_id      :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  giving_method  :integer
 #
 
 FactoryGirl.define do
   factory :badge do
     name { Faker::Name.title }
     description { Faker::Lorem.paragraph }
-    require_points 0
     image_url Faker::Avatar.image
+    giving_method "manually"
     association  :course, factory: :course
   end
 end
