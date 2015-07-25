@@ -39,7 +39,7 @@
 
         <div class="actions text-right">
           <%= link_to "Cancelar", "#", class: "btn btn-default" %>
-          <%= f.submit "Crear insignia", class: "btn btn-primary" %>
+          <%= f.submit @badge.new_record? ? "Crear insignia" : "Actualizar insignia", class: "btn btn-primary" %>
         </div>
       </div>
     <% end %>

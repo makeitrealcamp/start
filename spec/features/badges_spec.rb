@@ -54,6 +54,7 @@ RSpec.feature "Badges", type: :feature do
           expect(badge.image_url).to eq image_url
           expect(badge.giving_method).to eq "points"
           expect(badge.require_points).to eq require_points
+          expect(Badge.count).to eq 2
           expect(badge.course).to eq course
           expect(current_path).to eq admin_badges_path
         end
@@ -75,7 +76,6 @@ RSpec.feature "Badges", type: :feature do
           }.not_to change(Badge, :count)
 
           expect(page).to have_selector '.panel-danger'
-
         end
       end
 
@@ -101,6 +101,7 @@ RSpec.feature "Badges", type: :feature do
           expect(badge.image_url).to eq image_url
           expect(badge.giving_method).to eq "manually"
           expect(badge.require_points).to be_nil
+          expect(Badge.count).to eq 2
           expect(badge.course).to be_nil
           expect(current_path).to eq admin_badges_path
         end
@@ -120,5 +121,109 @@ RSpec.feature "Badges", type: :feature do
         end
       end
     end
+
+    context 'edit badge' do
+      context 'when giving method is points', js: true do
+        scenario 'display form' do
+          badge = create(:badge, giving_method: "points", require_points: 100, course: course)
+          login(admin)
+          visit admin_badges_path
+          all(:css, '.badges .glyphicon.glyphicon-pencil').last.click
+          expect(page).to have_selector '.giving-method-points'
+          expect(current_path).to eq edit_admin_badge_path(badge)
+        end
+
+        scenario 'with valid input' do
+          badge = create(:badge, giving_method: "points", require_points: 100, course: course)
+          login(admin)
+          visit admin_badges_path
+          all(:css, '.badges .glyphicon.glyphicon-pencil').last.click
+          name = Faker::Name::name
+          description = Faker::Lorem.paragraph
+          image_url =  Faker::Avatar.image
+          require_points = 100
+          fill_in 'badge_name', with: name
+          fill_in 'badge_description', with: description
+          fill_in 'badge_image_url', with: image_url
+          fill_in 'badge_require_points', with: require_points
+          select course.name, from: "badge_course_id"
+          click_button 'Actualizar insignia'
+          badge.reload
+          expect(badge.name).to eq name
+          expect(badge.description).to eq description
+          expect(badge.image_url).to eq image_url
+          expect(current_path).to eq  admin_badges_path
+        end
+
+        scenario 'without valid input' do
+          badge = create(:badge, giving_method: "points", require_points: 100, course: course)
+          login(admin)
+          visit admin_badges_path
+          all(:css, '.badges .glyphicon.glyphicon-pencil').last.click
+          name = Faker::Name::name
+          description = Faker::Lorem.paragraph
+          image_url =  Faker::Avatar.image
+          require_points = 100
+          fill_in 'badge_name', with: name
+          fill_in 'badge_description', with: description
+          fill_in 'badge_image_url', with: image_url
+          fill_in 'badge_require_points', with: ""
+          click_button 'Actualizar insignia'
+          expect(page).to have_selector '.panel-danger'
+        end
+      end
+
+      context 'when giving method is manually', js: true do
+        scenario 'display form' do
+          login(admin)
+          visit admin_badges_path
+          all(:css, '.badges .glyphicon.glyphicon-pencil').first.click
+          expect(page).not_to have_selector '.giving-method-points'
+          expect(current_path).to eq edit_admin_badge_path(badge)
+        end
+
+        scenario 'with valid input' do
+          login(admin)
+          visit admin_badges_path
+          all(:css, '.badges .glyphicon.glyphicon-pencil').first.click
+          name = Faker::Name::name
+          description = Faker::Lorem.paragraph
+          image_url =  Faker::Avatar.image
+          require_points = 100
+          fill_in 'badge_name', with: name
+          fill_in 'badge_description', with: description
+          fill_in 'badge_image_url', with: image_url
+          click_button 'Actualizar insignia'
+          badge.reload
+          expect(badge.name).to eq name
+          expect(badge.description).to eq description
+          expect(badge.image_url).to eq image_url
+          expect(current_path).to eq admin_badges_path
+        end
+
+        scenario 'without valid input' do
+          login(admin)
+          visit admin_badges_path
+          all(:css, '.badges .glyphicon.glyphicon-pencil').last.click
+          fill_in 'badge_name', with: ""
+          fill_in 'badge_description', with: ""
+          fill_in 'badge_image_url', with: ""
+          click_button 'Actualizar insignia'
+          expect(page).to have_selector '.panel-danger'
+        end
+      end
+    end
+
+    scenario 'delete badge', js: true do
+      create(:badge)
+      login(admin)
+      visit admin_badges_path
+      all(:css, '.badges .glyphicon.glyphicon-remove').last.click
+      page.driver.browser.switch_to.alert.accept
+      wait_for_ajax
+      expect(Badge.count).to eq 1
+      expect(page).to have_selector('table.badges tbody tr', count: 1)
+    end
+
   end
 end

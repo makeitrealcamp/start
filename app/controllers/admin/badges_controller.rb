@@ -20,12 +20,21 @@ class Admin::BadgesController < ApplicationController
   end
 
   def edit
+    @badge = Badge.find(params[:id])
   end
 
   def update
+    @badge = Badge.find(params[:id])
+    if @badge && @badge.update(badge_params)
+      redirect_to admin_badges_path, notice: "La insignia  <strong>#{@badge.name}</strong> ha sido actualizada"
+    else
+      render :edit
+    end
   end
 
-  def delete
+  def destroy
+    @badge = Badge.find(params[:id])
+    @badge.destroy
   end
 
   private
