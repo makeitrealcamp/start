@@ -15,5 +15,13 @@ FactoryGirl.define do
     name "teclado blanco"
     required_points 0
     image_url "MyString"
+    factory :level_1 do
+      name "Level 1"
+      required_points 0
+    end
+    factory :level_2 do
+      name "Level 2"
+      required_points 100
+    end
   end
 end

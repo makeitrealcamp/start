@@ -26,6 +26,11 @@ RSpec.describe Solution, type: :model do
   let(:challenge) { create(:challenge) }
   let(:solution) { create(:solution,challenge: challenge, user: user) }
 
+  before do
+    create(:level_1)
+    create(:level_2)
+  end
+
   describe "challenge completion" do
     context "User completes a challenge and creates the correct amount of points" do
       before do
