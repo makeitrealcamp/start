@@ -42,13 +42,16 @@
         <% end %>
       </div>
       <div class="points-box">
-        <span class="label label-warning"><%= @project_solution.status %></span>
-        <span class="label label-info"><%= @project_solution.points %></span>
-        <% if @user.is_admin? %>
-          <%= form_for(:project_solution, url: assign_points_admin_project_solution_path(@project_solution)) do |f| %>
-              <%= f.label :puntos %>
+        <% if @project_solution.pending_review? %>
+          <span class="label label-warning">Revisión pendiente</span>
+        <% else %>
+          <span class="label label-success">Revisado</span>
+        <% end %>
+        <span class="label label-info"><%= @project_solution.points %> puntos</span>
+        <% if current_user.is_admin? %>
+          <%= form_for(:project_solution, url: assign_points_admin_project_solution_path(@project_solution), html: { class: "form-inline add-points-form"}) do |f| %>
               <%= f.number_field :points, class: "form-control" %>
-              <%= f.submit "Agregar puntos" %>
+              <%= f.submit "Agregar puntos", class: "btn btn-primary" %>
           <% end %>
         <% end %>
       </div>

@@ -16,37 +16,9 @@
     </div>
   </div>
   <div class="row">
+    <%= render "project_solutions/project_box", solution: @own_project_solution, own_solution: true %>
     <% @project_solutions.each do |solution| %>
-      <div class="col-xs-12 col-md-4">
-        <div class="project-solution-box">
-          <div class="media">
-            <div class="media-left">
-              <img src="<%= Gravatar.new("#{solution.user.email}").image_url %>" class="img-circle" />
-            </div>
-            <div class="media-body">
-              <h4 class="media-heading">Solución de <%= solution.user.first_name %></h4>
-              <p>
-                <%= truncate(solution.summary) %>
-              </p>
-              <%= link_to "https://github.com/#{solution.repository}", class: "link" do %>
-                <i class="fa fa-github"></i>
-                <%= solution.repository %>
-              <% end %>
-              <br>
-              <% unless solution.url.blank? %>
-                <%= link_to "http://#{solution.url}", class: "link" do %>
-                  <i class="fa fa-globe"></i>
-                  <%= solution.url %>
-                <% end %>
-              <% end %>
-              <%= link_to course_project_project_solution_path(@project.course,@project,solution), class: "btn btn-primary btn-comment" do %>
-                Ver
-                <span class="glyphicon glyphicon-chevron-right"></span>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
+      <%= render "project_solutions/project_box", solution: solution %>
     <% end %>
 
   </div>

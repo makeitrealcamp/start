@@ -20,6 +20,7 @@
 class Point < ActiveRecord::Base
   belongs_to :course
   belongs_to :user
+  belongs_to :pointable, polymorphic: true
   after_create :check_user_level!
 
 

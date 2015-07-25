@@ -37,7 +37,11 @@ Rails.application.routes.draw do
     end
 
     resources :projects, except: [:index] do
-      resources :project_solutions, only: [:create,:update, :index, :show]
+      resources :project_solutions, only: [:create,:update, :index, :show] do
+        member do
+          patch :request_revision
+        end
+      end
     end
 
     resources :resources, except: [:index] do

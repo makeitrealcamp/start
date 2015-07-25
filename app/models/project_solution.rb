@@ -29,10 +29,17 @@ class ProjectSolution < ActiveRecord::Base
   validates :user, presence: true
   validates :repository, presence: true
   validates :summary, presence: true
-  after_save :request_revision
 
-  def request_revision
+  after_initialize :default_values
 
+  def points
+    self.project.points.where(user: self.user).sum(:points)
   end
+
+  private
+
+    def default_values
+      self.status ||= ProjectSolution.statuses[:pending_review]
+    end
 
 end
