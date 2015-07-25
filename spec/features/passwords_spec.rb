@@ -23,7 +23,7 @@ RSpec.feature "Password", type: :feature do
     fill_in 'password', with: password
     fill_in 'password_confirmation', with: password
     click_button 'Cambiar Contraseña'
-    expect(page).not_to have_selector '.alert-success'
+    expect(page).to have_selector '.alert-success'
     expect(page).to have_content 'La contraseña ha sido cambiada con éxito'
   end
 
