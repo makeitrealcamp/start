@@ -82,11 +82,16 @@ class Challenge < ActiveRecord::Base
     name
   end
 
+  def points
+    self.difficulty_bonus + Challenge::BASE_POINTS
+  end
+
   private
     def default_values
       self.published ||= false
       self.evaluation ||= "def evaluate(files)\n  \nend"
       self.evaluation_strategy ||= :ruby_embedded
+      self.difficulty_bonus ||= 0
     rescue ActiveModel::MissingAttributeError => e
       # ranked_model makes partial selects and this error is thrown
     end

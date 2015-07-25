@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   has_many :resource_completions, dependent: :delete_all
   has_many :resources, -> { uniq }, through: :resource_completions
   has_many :points
+  has_many :challenge_completions
   belongs_to :level
 
   hstore_accessor :profile,
@@ -138,8 +139,7 @@ class User < ActiveRecord::Base
   end
 
   def has_completed_challenge?(challenge)
-    solution = self.solutions.where(challenge_id: challenge.id).take
-    solution && solution.status == "completed"
+    ChallengeCompletion.exists?(challenge_id: challenge.id,user_id: self.id)
   end
 
   def has_completed_resource?(resource)
