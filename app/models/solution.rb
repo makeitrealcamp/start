@@ -35,7 +35,7 @@ class Solution < ActiveRecord::Base
 
   after_initialize :default_values
   after_create :create_documents
-  after_update :create_user_points
+  after_update :create_user_points!
 
   scope :evaluated, -> { where(status: [Solution.statuses[:completed], Solution.statuses[:failed] ]) }
 
@@ -80,10 +80,10 @@ class Solution < ActiveRecord::Base
       end
     end
 
-    def create_user_points
+    def create_user_points!
       if self.completed? && !self.user.has_completed_challenge?(self.challenge)
-        self.user.challenge_completions.create(challenge: self.challenge)
-        self.user.points.create(course: self.challenge.course, points: self.challenge.points )
+        self.user.challenge_completions.create!(challenge: self.challenge)
+        self.user.points.create!(course: self.challenge.course, points: self.challenge.points )
       end
     end
 end

@@ -12,10 +12,8 @@
 
 FactoryGirl.define do
   factory :level do
-    user nil
-name "MyString"
-required_points 1
-image_url "MyString"
+    name "teclado blanco"
+    required_points 0
+    image_url "MyString"
   end
-
 end
