@@ -20,7 +20,8 @@ class Level < ActiveRecord::Base
       level_diff.push(level_id: level.id, diff: diff) if diff >= 0
     end
     correct_level = level_diff.sort{|a, b| a[:diff] <=> b[:diff] }.first
-    Level.find(correct_level[:level_id])
+    return nil if correct_level.nil?
+    return Level.find(correct_level[:level_id])
   end
 
 end

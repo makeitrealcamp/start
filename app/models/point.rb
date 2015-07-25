@@ -27,7 +27,10 @@ class Point < ActiveRecord::Base
   private
 
     def check_user_level!
-      user.level = Level.for_points(user.stats.total_points)
-      user.save!
+      new_level = Level.for_points(user.stats.total_points)
+      unless new_level.nil?
+        user.level = new_level
+        user.save!
+      end
     end
 end
