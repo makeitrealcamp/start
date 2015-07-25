@@ -117,6 +117,8 @@ Rails.application.routes.draw do
         post "assign_points"
       end
     end
+    
+    resources :badges
   end
 
   # routes to evaluate forms

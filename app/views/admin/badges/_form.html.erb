@@ -1,0 +1,40 @@
+<div class="container resource-form-page">
+  <div class="row">
+    <%= form_for [:admin, @badge] do |f| %>
+      <div class="col-sm-10 col-sm-offset-1">
+        <%= render 'shared/flash_messages_form', object: @badge  %>
+
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :description %>
+          <%= f.text_area :description, rows: 2, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :image_url %>
+          <%= f.file_field :image_url, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :require_points %>
+          <%= f.text_field :require_points, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :course %>
+          <%= f.collection_select(:course_id, Course.all, :id, :name, {},{class: "form-control"}) %>
+        </div>
+
+        <div class="actions text-right">
+          <%= link_to "Cancelar", "#", class: "btn btn-default" %>
+          <%= f.submit "Crear insignia", class: "btn btn-primary" %>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+</div>

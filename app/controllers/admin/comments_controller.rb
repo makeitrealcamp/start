@@ -1,5 +1,5 @@
 class Admin::CommentsController < ApplicationController
-   before_action :admin_access
+  before_action :admin_access
 
   def index
     @comments = Comment.all.limit(100)
