@@ -27,6 +27,7 @@ class Project < ActiveRecord::Base
 
   belongs_to :course
   has_many :project_solutions
+  has_many :points, as: :pointable
 
   scope :for, -> user { published unless user.is_admin? }
   scope :published, -> { where(published: true) }

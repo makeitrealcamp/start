@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-xs-6">
 
-      <%= link_to course_project_path(@project.course, @project), class: "btn btn-link" do %>
+      <%= link_to course_project_project_solutions_path(@project.course, @project), class: "btn btn-link" do %>
         <span class='glyphicon glyphicon-arrow-left'></span>
-        <span class='hidden-xs'>Volver a <strong><%= @project.name %></strong></span>
+        <span class='hidden-xs'>Volver a soluciones de <strong><%= @project.name %></strong></span>
       <% end %>
 
     </div>
@@ -41,7 +41,17 @@
           <% end %>
         <% end %>
       </div>
-
+      <div class="points-box">
+        <span class="label label-warning"><%= @project_solution.status %></span>
+        <span class="label label-info"><%= @project_solution.points %></span>
+        <% if @user.is_admin? %>
+          <%= form_for(:project_solution, url: assign_points_admin_project_solution_path(@project_solution)) do |f| %>
+              <%= f.label :puntos %>
+              <%= f.number_field :points, class: "form-control" %>
+              <%= f.submit "Agregar puntos" %>
+          <% end %>
+        <% end %>
+      </div>
       <p>
         <%= @project_solution.summary %>
       </p>

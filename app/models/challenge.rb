@@ -41,6 +41,7 @@ class Challenge < ActiveRecord::Base
   has_many :documents, as: :folder
   has_many :comments, as: :commentable
   has_many :solutions
+  has_many :points, as: :pointable
 
   validates :name, presence: true
   validates :instructions, presence: true

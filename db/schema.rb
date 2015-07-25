@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150725164114) do
+ActiveRecord::Schema.define(version: 20150725193509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -159,11 +159,14 @@ ActiveRecord::Schema.define(version: 20150725164114) do
     t.integer  "user_id"
     t.integer  "course_id"
     t.integer  "points"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "pointable_id"
+    t.string   "pointable_type"
   end
 
   add_index "points", ["course_id"], name: "index_points_on_course_id", using: :btree
+  add_index "points", ["pointable_type", "pointable_id"], name: "index_points_on_pointable_type_and_pointable_id", using: :btree
 
   create_table "project_solutions", force: :cascade do |t|
     t.integer  "user_id"
@@ -173,6 +176,7 @@ ActiveRecord::Schema.define(version: 20150725164114) do
     t.text     "summary"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "status"
   end
 
   add_index "project_solutions", ["project_id"], name: "index_project_solutions_on_project_id", using: :btree

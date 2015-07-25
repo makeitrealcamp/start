@@ -108,6 +108,11 @@ Rails.application.routes.draw do
     end
     resources :solutions, only: [:index]
     resources :comments, only: [:index, :destroy]
+    resources :project_solutions, only: [] do
+      member do
+        post "assign_points"
+      end
+    end
   end
 
   # routes to evaluate forms
