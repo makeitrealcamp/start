@@ -37,9 +37,8 @@ class UserStats
 
 
   def badges_count
-    #TODO: implement badges module
-    # By now everyone has the "Hago parte de MIR" badge
-    1
+    # + 1 badge 'hago parte de make it real'
+    @user.badges.count + 1
   end
 
   def total_points
