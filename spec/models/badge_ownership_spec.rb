@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: badges_users
+# Table name: badge_ownerships
 #
 #  id         :integer          not null, primary key
 #  user_id    :integer
@@ -11,6 +11,6 @@
 
 require 'rails_helper'
 
-RSpec.describe BadgesUser, type: :model do
+RSpec.describe BadgeOwnership, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

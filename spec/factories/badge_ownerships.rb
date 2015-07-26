@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: badges_users
+# Table name: badge_ownerships
 #
 #  id         :integer          not null, primary key
 #  user_id    :integer
@@ -9,7 +9,9 @@
 #  updated_at :datetime         not null
 #
 
-class BadgesUser < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :badge
+FactoryGirl.define do
+  factory :badge_ownerships do
+    user_id 1
+    badge_id 1
+  end
 end
