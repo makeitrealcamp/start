@@ -6,6 +6,7 @@
       <%= link_to "<span class='glyphicon glyphicon-arrow-left'></span> Volver a #{@challenge.course.name}".html_safe, @challenge.course %>
       <h1><%= @challenge.name %></h1>
 
+      <h3>Este Reto vale <span class="label label-default"><%= @challenge.points %></span> puntos</h3>
       <div class="instructions-text"><%= markdown @challenge.instructions %></div>
     </div>
 
