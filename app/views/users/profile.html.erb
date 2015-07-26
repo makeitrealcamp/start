@@ -124,6 +124,18 @@
             <span class="emblem-date"><%= l(@user.created_at, format: '%d de %B de %Y') %></span>
           </div>
         </div>
+
+        <% if current_user.is_admin? %>
+        <div class="col-xs-4 col-sm-3 col-md-2 text-center">
+          <%= link_to root_path, class: "add-emblem" do %>
+            <div class="add-emblem-circle">
+              <span class="glyphicon glyphicon-plus"></span>
+            </div>
+            <div class="add-emblem-description">Entregar emblema al usuario</div>
+          <% end %>
+
+        </div>
+        <% end %>
       </div><!-- /row -->
     </div><!-- /profile-emblems -->
 
