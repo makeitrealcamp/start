@@ -37,13 +37,13 @@ RSpec.feature "Badges", type: :feature do
           name = Faker::Name::name
           description = Faker::Lorem.paragraph
           image_url =  Faker::Avatar.image
-          require_points = 100
+          required_points = 100
           expect {
             fill_in 'badge_name', with: name
             fill_in 'badge_description', with: description
             fill_in 'badge_image_url', with: image_url
             select 'Points', from: "badge_giving_method"
-            fill_in 'badge_require_points', with: require_points
+            fill_in 'badge_required_points', with: required_points
             select course.name, from: "badge_course_id"
             click_button 'Crear insignia'
           }.to change(Badge, :count).by 1
@@ -53,7 +53,7 @@ RSpec.feature "Badges", type: :feature do
           expect(badge.description).to eq description
           expect(badge.image_url).to eq image_url
           expect(badge.giving_method).to eq "points"
-          expect(badge.require_points).to eq require_points
+          expect(badge.required_points).to eq required_points
           expect(Badge.count).to eq 2
           expect(badge.course).to eq course
           expect(current_path).to eq admin_badges_path
@@ -100,7 +100,7 @@ RSpec.feature "Badges", type: :feature do
           expect(badge.description).to eq description
           expect(badge.image_url).to eq image_url
           expect(badge.giving_method).to eq "manually"
-          expect(badge.require_points).to be_nil
+          expect(badge.required_points).to be_nil
           expect(Badge.count).to eq 2
           expect(badge.course).to be_nil
           expect(current_path).to eq admin_badges_path
@@ -125,7 +125,7 @@ RSpec.feature "Badges", type: :feature do
     context 'edit badge' do
       context 'when giving method is points', js: true do
         scenario 'display form' do
-          badge = create(:badge, giving_method: "points", require_points: 100, course: course)
+          badge = create(:badge, giving_method: "points", required_points: 100, course: course)
           login(admin)
           visit admin_badges_path
           all(:css, '.badges .glyphicon.glyphicon-pencil').last.click
@@ -134,18 +134,18 @@ RSpec.feature "Badges", type: :feature do
         end
 
         scenario 'with valid input' do
-          badge = create(:badge, giving_method: "points", require_points: 100, course: course)
+          badge = create(:badge, giving_method: "points", required_points: 100, course: course)
           login(admin)
           visit admin_badges_path
           all(:css, '.badges .glyphicon.glyphicon-pencil').last.click
           name = Faker::Name::name
           description = Faker::Lorem.paragraph
           image_url =  Faker::Avatar.image
-          require_points = 100
+          required_points = 100
           fill_in 'badge_name', with: name
           fill_in 'badge_description', with: description
           fill_in 'badge_image_url', with: image_url
-          fill_in 'badge_require_points', with: require_points
+          fill_in 'badge_required_points', with: required_points
           select course.name, from: "badge_course_id"
           click_button 'Actualizar insignia'
           badge.reload
@@ -156,18 +156,18 @@ RSpec.feature "Badges", type: :feature do
         end
 
         scenario 'without valid input' do
-          badge = create(:badge, giving_method: "points", require_points: 100, course: course)
+          badge = create(:badge, giving_method: "points", required_points: 100, course: course)
           login(admin)
           visit admin_badges_path
           all(:css, '.badges .glyphicon.glyphicon-pencil').last.click
           name = Faker::Name::name
           description = Faker::Lorem.paragraph
           image_url =  Faker::Avatar.image
-          require_points = 100
+          required_points = 100
           fill_in 'badge_name', with: name
           fill_in 'badge_description', with: description
           fill_in 'badge_image_url', with: image_url
-          fill_in 'badge_require_points', with: ""
+          fill_in 'badge_required_points', with: ""
           click_button 'Actualizar insignia'
           expect(page).to have_selector '.panel-danger'
         end
@@ -189,7 +189,7 @@ RSpec.feature "Badges", type: :feature do
           name = Faker::Name::name
           description = Faker::Lorem.paragraph
           image_url =  Faker::Avatar.image
-          require_points = 100
+          required_points = 100
           fill_in 'badge_name', with: name
           fill_in 'badge_description', with: description
           fill_in 'badge_image_url', with: image_url

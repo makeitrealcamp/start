@@ -2,15 +2,15 @@
 #
 # Table name: badges
 #
-#  id             :integer          not null, primary key
-#  name           :string
-#  description    :text
-#  require_points :integer
-#  image_url      :string
-#  course_id      :integer
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  giving_method  :integer
+#  id              :integer          not null, primary key
+#  name            :string
+#  description     :text
+#  required_points :integer
+#  image_url       :string
+#  course_id       :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  giving_method   :integer
 #
 
 require 'rails_helper'
@@ -30,7 +30,7 @@ RSpec.describe Badge, type: :model do
 
   context "has a valid factory " do
     it 'when giving method is points' do
-      badge = build(:badge, giving_method: 1, require_points: 100)
+      badge = build(:badge, giving_method: 1, required_points: 100)
       expect(badge.giving_method).to eq "points"
       expect(badge).to be_valid
     end

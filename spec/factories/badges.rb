@@ -2,15 +2,15 @@
 #
 # Table name: badges
 #
-#  id             :integer          not null, primary key
-#  name           :string
-#  description    :text
-#  require_points :integer
-#  image_url      :string
-#  course_id      :integer
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  giving_method  :integer
+#  id              :integer          not null, primary key
+#  name            :string
+#  description     :text
+#  required_points :integer
+#  image_url       :string
+#  course_id       :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  giving_method   :integer
 #
 
 FactoryGirl.define do

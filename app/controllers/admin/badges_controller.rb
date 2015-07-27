@@ -41,7 +41,7 @@ class Admin::BadgesController < ApplicationController
 
     def badge_params
       params.require(:badge).permit(:name, :description, :image_url,
-      :giving_method, :require_points, :course_id)
+      :giving_method, :required_points, :course_id)
     end
 
 end
