@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
   has_many :challenge_completions
   belongs_to :level
   has_many :badge_ownerships, dependent: :destroy
+  has_many :badges, -> { uniq }, through: :badge_ownerships
 
   hstore_accessor :profile,
     first_name: :string,

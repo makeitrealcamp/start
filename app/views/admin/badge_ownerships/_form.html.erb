@@ -8,18 +8,23 @@
 
       <div class="alert" style="display:none" role="alert">
       </div>
-
-      <%= form_for [:admin, @badge_ownership], remote: true do |f| %>
-        <div class="modal-body">
-          <div class="form-group">
-            <%= f.label :badge_id, "Insignia" %>
-            <%= f.collection_select :badge_id, @unassigned_badges, :id, :name, {}, { class: 'form-control input-lg' } %>
+      <% if @unassigned_badges.empty? %>
+        <div class="alert alert-danger">
+          No se le puede asignar manualmente más insignias a este usuario
+        </div>
+      <% else %>
+        <%= form_for [:admin, @badge_ownership], remote: true do |f| %>
+          <div class="modal-body">
+            <div class="form-group">
+              <%= f.label :badge_id, "Insignia" %>
+              <%= f.collection_select :badge_id, @unassigned_badges, :id, :name, {}, { class: 'form-control input-lg' } %>
+            </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <%= f.hidden_field :user_id %>
-          <%= f.submit("Asignar", class: 'btn btn-primary') %>
-        </div>
+          <div class="modal-footer">
+            <%= f.hidden_field :user_id %>
+            <%= f.submit("Asignar", class: 'btn btn-primary') %>
+          </div>
+        <% end %>
       <% end %>
     </div><!-- .modal-content -->
   </div><!-- .modal-dialog -->

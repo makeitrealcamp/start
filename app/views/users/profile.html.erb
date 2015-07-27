@@ -120,7 +120,7 @@
         </div>
 
         <% @user.badge_ownerships.each do |ownership| %>
-          <%= render 'badge', ownership: ownership %>
+          <%= render 'users/badge', ownership: ownership %>
         <% end %>
 
         <div class="placeholder"></div>
