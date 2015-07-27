@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150726001835) do
+ActiveRecord::Schema.define(version: 20150726010456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(version: 20150726001835) do
 
   add_index "auth_providers", ["user_id"], name: "index_auth_providers_on_user_id", using: :btree
 
+  create_table "badge_ownerships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "badge_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "badges", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -37,13 +44,6 @@ ActiveRecord::Schema.define(version: 20150726001835) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "giving_method"
-  end
-
-  create_table "badges_users", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "badge_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "challenge_completions", force: :cascade do |t|

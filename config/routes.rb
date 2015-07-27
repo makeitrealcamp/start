@@ -119,6 +119,7 @@ Rails.application.routes.draw do
     end
     
     resources :badges
+    resources :badge_ownerships, only: [:new, :create]
   end
 
   # routes to evaluate forms

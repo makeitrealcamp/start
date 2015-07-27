@@ -15,7 +15,7 @@
 
 class Badge < ActiveRecord::Base
   belongs_to :course
-  has_many :badges_users, dependent: :destroy
+  has_many :badge_ownerships, dependent: :destroy
 
   validates :name, presence: true
   validates :image_url, presence:  true

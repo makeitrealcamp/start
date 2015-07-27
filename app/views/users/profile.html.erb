@@ -110,25 +110,31 @@
 
     <div class="col-sm-12 col-md-12 profile-emblems">
       <% if @is_own_profile %>
-        <h2>Mis Emblemas</h2>
+        <h2>Mis Insignias</h2>
       <% else %>
-        <h2>Emblemas</h2>
+        <h2>Insignias</h2>
       <% end %>
       <div class="row">
-        <div class="col-xs-4 col-sm-3 col-md-2">
-          <div class="emblem">
-            <div class="emblem-container">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 169.7 169.7" enable-background="new 0 0 169.7 169.7"><style type="text/css">.st0{fill:#ff3000;}</style><g id="XMLID_1083_"><path id="XMLID_58_" class="st0" d="M75.6 104.3l-13.2-57.1h-.5c.6 4.4.9 8.4.9 12.1v45h-12v-67.1h19.9l11.9 52.8h.4l11.8-52.7h20.2v67.1h-12.3v-45.6c0-3.8.2-7.6.7-11.6h-.4l-13.2 57h-14.2z"/><path class="st0" d="M50.8 116.1h64.1v10.7h-64.1z" id="XMLID_1064_"/></g><path id="XMLID_37_" class="st0" d="M84.8 169.7c-46.7 0-84.8-38.1-84.8-84.9 0-46.7 38.1-84.8 84.8-84.8s84.8 38.1 84.8 84.8c.1 46.8-38 84.9-84.8 84.9zm0-166.7c-45.1 0-81.8 36.7-81.8 81.8s36.7 81.8 81.8 81.8 81.8-36.7 81.8-81.8-36.6-81.8-81.8-81.8z"/></svg>
-            </div>
-            <a href="">Hago parte de Make It Real</a>
-            <span class="emblem-date"><%= l(@user.created_at, format: '%d de %B de %Y') %></span>
-          </div>
+        <div class="col-xs-4 col-sm-3 col-md-2 text-center">
+          <img src="https://s3.amazonaws.com/makeitreal/badges/emblem_mir_01%402x.png" alt="Hago parte de Make it Real" width="90">
         </div>
+
+        <% @user.badge_ownerships.each do |ownership| %>
+          <%= render 'users/badge', ownership: ownership %>
+        <% end %>
+
+        <div class="placeholder"></div>
+        <% if current_user && current_user.is_admin? %>
+        <div class="col-xs-4 col-sm-3 col-md-2 text-center">
+          <%= link_to new_admin_badge_ownership_path(user_id: @user.id), remote: true, class: "add-emblem" do %>
+            <div class="add-emblem-circle">
+              <span class="glyphicon glyphicon-plus"></span>
+            </div>
+          <% end %>
+        </div>
+        <% end %>
       </div><!-- /row -->
     </div><!-- /profile-emblems -->
-
-
-
 
   </div><!-- /row -->
 </div><!-- /profile-view -->

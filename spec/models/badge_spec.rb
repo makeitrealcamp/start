@@ -19,7 +19,7 @@ RSpec.describe Badge, type: :model do
 
   context 'associations' do
     it { should belong_to(:course) }
-    it { should have_many(:badges_users).dependent(:destroy) }
+    it { should have_many(:badge_ownerships).dependent(:destroy) }
   end
 
   context 'validations' do

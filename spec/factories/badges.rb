@@ -20,5 +20,9 @@ FactoryGirl.define do
     image_url Faker::Avatar.image
     giving_method "manually"
     association  :course, factory: :course
+    factory :manually_assigned_badge do
+      giving_method "manually"
+    end
+
   end
 end

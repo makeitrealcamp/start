@@ -32,7 +32,7 @@ RSpec.describe User, type: :model do
     it { should have_many(:solutions).dependent(:destroy) }
     it { should have_many(:resource_completions) }
     it { should have_many(:auth_providers).dependent(:destroy) }
-    it { should have_many(:badges_users).dependent(:destroy) }
+    it { should have_many(:badge_ownerships).dependent(:destroy) }
   end
 
   context 'validations ' do
