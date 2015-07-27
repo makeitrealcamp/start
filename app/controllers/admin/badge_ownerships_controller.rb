@@ -1,4 +1,6 @@
 class Admin::BadgeOwnershipsController < ApplicationController
+  before_action :admin_access
+  
   def new
     user = User.find(params[:user_id])
     @badge_ownership = BadgeOwnership.new(user: user)
