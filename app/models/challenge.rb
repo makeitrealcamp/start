@@ -83,7 +83,7 @@ class Challenge < ActiveRecord::Base
     name
   end
 
-  def points
+  def point_value
     self.difficulty_bonus + Challenge::BASE_POINTS
   end
 

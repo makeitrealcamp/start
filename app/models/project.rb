@@ -35,7 +35,7 @@ class Project < ActiveRecord::Base
 
   BASE_POINTS = 500
 
-  def points
+  def point_value
     self.difficulty_bonus + Project::BASE_POINTS
   end
 end
