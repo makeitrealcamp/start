@@ -67,6 +67,13 @@ class Solution < ActiveRecord::Base
       ))
   end
 
+  def create_user_points!
+    if self.completed? && !self.user.has_completed_challenge?(self.challenge)
+      self.user.challenge_completions.create!(challenge: self.challenge)
+      self.user.points.create!(course: self.challenge.course, points: self.challenge.point_value, pointable: self.challenge)
+    end
+  end
+  
   private
 
     def default_values
@@ -80,10 +87,4 @@ class Solution < ActiveRecord::Base
       end
     end
 
-    def create_user_points!
-      if self.completed? && !self.user.has_completed_challenge?(self.challenge)
-        self.user.challenge_completions.create!(challenge: self.challenge)
-        self.user.points.create!(course: self.challenge.course, points: self.challenge.point_value, pointable: self.challenge)
-      end
-    end
 end
