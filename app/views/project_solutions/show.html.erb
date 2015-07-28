@@ -47,10 +47,10 @@
         <% else %>
           <span class="label label-success">Revisado</span>
         <% end %>
-        <span class="label label-info"><%= @project_solution.points %> puntos</span>
+        <span class="label label-info"><%= @project_solution.point_value %> puntos</span>
         <% if current_user.is_admin? %>
-          <%= form_for(:project_solution, url: assign_points_admin_project_solution_path(@project_solution), html: { class: "form-inline add-points-form"}) do |f| %>
-              <%= f.number_field :points, class: "form-control" %>
+          <%= form_for(:point, url: assign_points_admin_project_solution_path(@project_solution), html: { class: "form-inline add-points-form"}) do |f| %>
+              <%= f.number_field :points, value: @project_solution.project.point_value, class: "form-control" %>
               <%= f.submit "Agregar puntos", class: "btn btn-primary" %>
           <% end %>
         <% end %>

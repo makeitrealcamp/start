@@ -4,9 +4,11 @@
       <%= render '/shared/challenge_actions', challenge: @challenge %>
 
       <%= link_to "<span class='glyphicon glyphicon-arrow-left'></span> Volver a #{@challenge.course.name}".html_safe, @challenge.course %>
-      <h1><%= @challenge.name %></h1>
-
-      <h3>Este Reto vale <span class="label label-default"><%= @challenge.points %></span> puntos</h3>
+      <h1>
+        <%= @challenge.name %>
+        <br />
+        <span class="label label-default points-label"><%= @challenge.point_value %> puntos</span>
+      </h1>
       <div class="instructions-text"><%= markdown @challenge.instructions %></div>
     </div>
 

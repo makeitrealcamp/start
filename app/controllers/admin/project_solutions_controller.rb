@@ -6,7 +6,11 @@ class Admin::ProjectSolutionsController < ApplicationController
     @project_solution = ProjectSolution.find(params[:id])
     @user = @project_solution.user
 
-    @user.points.create(course: @project_solution.project.course, points:assign_points_params[:points], pointable: @project_solution.project)
+    @user.points.create(
+      course: @project_solution.project.course,
+      points:assign_points_params[:points],
+      pointable: @project_solution.project
+    )
 
     @project_solution.status = ProjectSolution.statuses[:reviewed]
     @project_solution.save
@@ -17,7 +21,7 @@ class Admin::ProjectSolutionsController < ApplicationController
   private
 
   def assign_points_params
-    params.require(:project_solution).permit(:points)
+    params.require(:point).permit(:points)
   end
 
 end
