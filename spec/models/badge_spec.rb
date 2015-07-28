@@ -30,13 +30,14 @@ RSpec.describe Badge, type: :model do
 
   context "has a valid factory " do
     it 'when giving method is points' do
-      badge = build(:badge, giving_method: 1, required_points: 100)
+      badge = build(:points_badge)
       expect(badge.giving_method).to eq "points"
+      expect(badge.required_points).to_not eq nil
       expect(badge).to be_valid
     end
 
     it 'when giving method is manually' do
-      badge = build(:badge, giving_method: 0, course: nil)
+      badge = build(:manually_assigned_badge)
       expect(badge.giving_method).to eq "manually"
       expect(badge).to be_valid
     end
