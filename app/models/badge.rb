@@ -24,4 +24,7 @@ class Badge < ActiveRecord::Base
   validates :course, presence: true, if: :points?
 
   enum giving_method: [:manually, :points]
+
+  scope :granted_by_points, -> { points }
+
 end

@@ -21,8 +21,11 @@ class Point < ActiveRecord::Base
   belongs_to :course
   belongs_to :user
   belongs_to :pointable, polymorphic: true
-  after_create :check_user_level!
 
+  validates :user, presence: true
+
+  after_create :check_user_level!
+  after_create :check_user_badges!
 
   private
 
@@ -32,5 +35,12 @@ class Point < ActiveRecord::Base
         user.level = new_level
         user.save!
       end
+    end
+
+    def check_user_badges!
+      user.badges << Badge.granted_by_points
+        .where.not(id: self.user.badges)
+        .where(course_id: self.course)
+        .where("required_points <= ?",self.user.stats.points_per_course(self.course))
     end
 end

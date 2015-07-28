@@ -42,7 +42,11 @@ class UserStats
   end
 
   def total_points
-     @user.points.sum(:points)
+    @user.points.sum(:points)
+  end
+
+  def points_per_course(course)
+    @user.points.where(course: course).sum(:points)
   end
 
   private

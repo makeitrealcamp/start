@@ -27,16 +27,19 @@ RSpec.describe Point, type: :model do
   let!(:user) { create(:paid_user, level: level_1 ) }
   let!(:user) { create(:paid_user, level: level_1 ) }
   let!(:course) { create(:course) }
+  let!(:badge_100) { create(:points_badge, course: course, required_points: 100) }
+  let!(:badge_200) { create(:points_badge, course: course, required_points: 200) }
+  let!(:badge_300) { create(:points_badge, course: course, required_points: 300) }
 
 
-  describe "events that occur after creation of points" do
-    context "user is in level 1" do
-      it "Should change the user level if it has the next level requiered points" do
+  context "When a user earns points" do
+    describe "Level assignment" do
+      it "Should change the user level if it has the next level required points" do
         user.points.create(points: 100, course: course )
         expect(user.reload.level).to eq level_2
       end
 
-      it "Should not change the user level if it has not reached the next level requiered points" do
+      it "Should not change the user level if it has not reached the next level required points" do
         user.points.create(points: 99, course: course )
         expect(user.reload.level).to eq level_1
       end
@@ -45,6 +48,49 @@ RSpec.describe Point, type: :model do
         user.points.create(points: 1001, course: course )
         expect(user.reload.level).to eq level_3
       end
+    end
+    describe "Badges assignment" do
+      it "Should assign badges to user according to courses points" do
+        user.points.create(points: 100, course: course )
+        expect(user.badges.exists? badge_100.id).to eq true
+        expect(user.badges.exists? badge_200.id).to eq false
+        expect(user.badges.exists? badge_300.id).to eq false
+      end
+
+      it "Should not assign multiple times the same badge" do
+        user.points.create(points: 100, course: course )
+        user.points.create(points: 100, course: course )
+        expect(user.badges.where(id: badge_100.id).count).to eq 1
+      end
+
+      it "Should assign multiple badges if the user earns sufficient points" do
+        user.points.create(points: 1000, course: course )
+        expect(user.badges.exists? badge_100.id).to eq true
+        expect(user.badges.exists? badge_200.id).to eq true
+        expect(user.badges.exists? badge_300.id).to eq true
+      end
+
+      it "Should not assign badges if the user doesn't have sufficient points" do
+        user.points.create(points: 99, course: course )
+        expect(user.badges.exists? badge_100.id).to eq false
+        expect(user.badges.exists? badge_200.id).to eq false
+      end
+
+      it "Should not assign badges of course A if the user earns points for a course B" do
+        user.points.create(points: 1000, course: create(:course) )
+        expect(user.badges.exists? badge_100.id).to eq false
+        expect(user.badges.exists? badge_200.id).to eq false
+      end
+    end
+  end
+  context "When a user loses points" do
+
+    xit "Should lose badges" do
+
+    end
+
+    xit "Should recalculate his level" do
+
     end
   end
 end
