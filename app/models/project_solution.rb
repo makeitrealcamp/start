@@ -32,7 +32,7 @@ class ProjectSolution < ActiveRecord::Base
 
   after_initialize :default_values
 
-  def points
+  def point_value
     self.project.points.where(user: self.user).sum(:points)
   end
 

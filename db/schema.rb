@@ -230,8 +230,9 @@ ActiveRecord::Schema.define(version: 20150726010456) do
     t.string   "explanation_video_url"
     t.boolean  "published"
     t.integer  "row"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "difficulty_bonus",      default: 0
   end
 
   add_index "projects", ["course_id"], name: "index_projects_on_course_id", using: :btree

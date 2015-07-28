@@ -64,7 +64,8 @@ class ProjectsController < ApplicationController
       :explanation_text,
       :explanation_video_url,
       :published,
-      :row_position
+      :row_position,
+      :difficulty_bonus
     )
   end
 end
