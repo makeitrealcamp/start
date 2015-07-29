@@ -11,4 +11,40 @@ namespace :mir do
     end
   end
 
+  desc "Create default badges"
+  task create_badges: :environment do
+    levels = ["Padawan", "Caballero Jedi", "Maestro Jedi"]
+
+    badges_data = {
+      "HTML y CSS" => [2,3,4],
+      "Bootstrap 3" => [5,6,7],
+      "Git y Github" => [8,9,10],
+      "Ruby básico" => [11,12,13],
+      "Intro to Web Development" => [14,15,16],
+      "Ruby on Rails I" => [17,18,19],
+      "Ruby on Rails II" => [20,21,22],
+      "Javascript" => [23,24,25],
+      "jQuery y AJAX" => [26,27,28]
+    }
+    ActiveRecord::Base.transaction do
+      badges_data.each do |course_name,url_nums|
+        if c = Course.find_by_name(course_name)
+          url_nums.each_with_index do |url_num, i|
+            c.badges.create(
+              name: "#{course_name} #{levels[i]}",
+              giving_method: "points",
+              required_points: 30000, # Required points should be adjusted manually after running this script
+              image_url: "https://s3.amazonaws.com/makeitreal/badges/emblem_mir_#{'%02d' % url_num}%402x.png"
+            )
+          end
+        end
+      end
+
+      Badge.create(name: "Primer pair programming", giving_method: "manually", image_url: "https://s3.amazonaws.com/makeitreal/badges/emblem_mir_29%402x.png")
+      Badge.create(name: "Code challenge breaker", giving_method: "manually", image_url: "https://s3.amazonaws.com/makeitreal/badges/emblem_mir_30%402x.png")
+      Badge.create(name: "Primer deploy", giving_method: "manually", image_url: "https://s3.amazonaws.com/makeitreal/badges/emblem_mir_31%402x.png")
+    end
+
+  end
+
 end
