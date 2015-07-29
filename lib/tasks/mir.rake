@@ -6,7 +6,7 @@ namespace :mir do
       Point.where(pointable_type: "Challenge").destroy_all
       ChallengeCompletion.destroy_all
       Solution.completed.find_each do |sol|
-        sol.create_user_points!
+        sol.create_user_points! if sol.challenge.published?
       end
     end
   end
