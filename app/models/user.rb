@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   has_many :resource_completions, dependent: :delete_all
   has_many :resources, -> { uniq }, through: :resource_completions
   has_many :points
-  has_many :challenge_completions
+  has_many :challenge_completions, dependent: :delete_all
   belongs_to :level
   has_many :badge_ownerships, dependent: :destroy
   has_many :badges, -> { uniq }, through: :badge_ownerships

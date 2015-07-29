@@ -112,12 +112,12 @@ Rails.application.routes.draw do
     end
     resources :solutions, only: [:index]
     resources :comments, only: [:index, :destroy]
-    resources :project_solutions, only: [] do
+    resources :project_solutions, only: [:index] do
       member do
         post "assign_points"
       end
     end
-    
+
     resources :badges
     resources :badge_ownerships, only: [:new, :create]
   end

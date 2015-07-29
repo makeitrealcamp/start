@@ -1,6 +1,12 @@
 class Admin::ProjectSolutionsController < ApplicationController
   before_action :admin_access
 
+  def index
+    @solutions = ProjectSolution.all
+    if ["pending_review","reviewed"].include? params[:status]
+      @solutions.send(params[:status])
+    end
+  end
 
   def assign_points
     @project_solution = ProjectSolution.find(params[:id])
