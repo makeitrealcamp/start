@@ -14,6 +14,11 @@
 #  settings        :hstore
 #  account_type    :integer
 #  nickname        :string
+#  level_id        :integer
+#
+# Indexes
+#
+#  index_users_on_level_id  (level_id)
 #
 
 require 'rails_helper'
@@ -27,6 +32,8 @@ RSpec.describe User, type: :model do
     it { should have_many(:solutions).dependent(:destroy) }
     it { should have_many(:resource_completions) }
     it { should have_many(:auth_providers).dependent(:destroy) }
+    it { should have_many(:badge_ownerships).dependent(:destroy) }
+    it { should have_many(:badges) }
   end
 
   context 'validations ' do
@@ -143,6 +150,31 @@ RSpec.describe User, type: :model do
         create(:solution, user: user, challenge: challenge, status: :completed)
 
         expect(user.stats.completed_challenges_count).to eq 1
+      end
+    end
+    describe "#total_points" do
+      it "Should sum an user total points" do
+        user.points.create(course_id: course.id, points: 10)
+        user.points.create(course_id: course.id, points: 10)
+        expect(user.stats.total_points).to eq 20
+      end
+    end
+    describe "#badges_count" do
+      context "When a user has only the 'hago parte de MIR' badge" do
+        it "should return 1" do
+          expect(user.stats.badges_count).to eq(1)
+        end
+      end
+      it "should return correct badges count" do
+        badge = create(:badge)
+
+        user.badge_ownerships.create(badge: badge)
+        user.badge_ownerships.create(badge: badge)
+        user.badge_ownerships.create(badge: badge)
+        user.badge_ownerships.create(badge: badge)
+        # (1) badge + (1)'hago parte de MIR'
+        expect(user.stats.badges_count).to eq 2
+
       end
     end
   end

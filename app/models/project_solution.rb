@@ -10,6 +10,7 @@
 #  summary    :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  status     :integer
 #
 # Indexes
 #
@@ -20,6 +21,7 @@
 class ProjectSolution < ActiveRecord::Base
   belongs_to :user
   belongs_to :project
+  enum status: [:pending_review, :reviewed]
 
   has_many :comments, as: :commentable
 
@@ -27,5 +29,17 @@ class ProjectSolution < ActiveRecord::Base
   validates :user, presence: true
   validates :repository, presence: true
   validates :summary, presence: true
+
+  after_initialize :default_values
+
+  def point_value
+    self.project.points.where(user: self.user).sum(:points)
+  end
+
+  private
+
+    def default_values
+      self.status ||= ProjectSolution.statuses[:pending_review]
+    end
 
 end

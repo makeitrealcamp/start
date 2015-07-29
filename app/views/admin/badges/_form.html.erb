@@ -1,0 +1,57 @@
+<div class="container resource-form-page">
+  <div class="row">
+    <%= form_for [:admin, @badge] do |f| %>
+      <div class="col-sm-10 col-sm-offset-1">
+        <%= render 'shared/flash_messages_form', object: @badge  %>
+
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :description %>
+          <%= f.text_area :description, rows: 2, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :image_url %>
+          <%= f.text_field :image_url, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :giving_method %>
+          <%= f.select :giving_method, giving_methods, {}, {class: "form-control"}  %>
+        </div>
+
+        <!-- markdown form -->
+        <div class="giving-method-points giving-method">
+          <div class="form-group">
+            <%= f.label :required_points %>
+            <%= f.number_field :required_points, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :course %>
+            <%= f.collection_select(:course_id, Course.all, :id, :name, { prompt: 'Select to course' }, { class: "form-control"}) %>
+          </div>
+        </div>
+
+        <div class="actions text-right">
+          <%= link_to "Cancelar", "#", class: "btn btn-default" %>
+          <%= f.submit @badge.new_record? ? "Crear insignia" : "Actualizar insignia", class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  (function(){
+    var badgeView = new BadgeView();
+
+    $(document).on('page:fetch', function(){
+      badgeView.remove();
+    });
+  })();
+</script>

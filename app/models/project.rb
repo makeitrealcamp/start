@@ -11,6 +11,7 @@
 #  row                   :integer
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  difficulty_bonus      :integer          default(0)
 #
 # Indexes
 #
@@ -27,8 +28,14 @@ class Project < ActiveRecord::Base
 
   belongs_to :course
   has_many :project_solutions
+  has_many :points, as: :pointable
 
   scope :for, -> user { published unless user.is_admin? }
   scope :published, -> { where(published: true) }
 
+  BASE_POINTS = 500
+
+  def point_value
+    self.difficulty_bonus + Project::BASE_POINTS
+  end
 end

@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-xs-6">
 
-      <%= link_to course_project_path(@project.course, @project), class: "btn btn-link" do %>
+      <%= link_to course_project_project_solutions_path(@project.course, @project), class: "btn btn-link" do %>
         <span class='glyphicon glyphicon-arrow-left'></span>
-        <span class='hidden-xs'>Volver a <strong><%= @project.name %></strong></span>
+        <span class='hidden-xs'>Volver a soluciones de <strong><%= @project.name %></strong></span>
       <% end %>
 
     </div>
@@ -41,7 +41,29 @@
           <% end %>
         <% end %>
       </div>
-
+      <div class="points-box">
+        <% if @project_solution.pending_review? %>
+          <span class="label label-warning">Revisión pendiente</span>
+        <% else %>
+          <span class="label label-success">Revisado</span>
+        <% end %>
+        <span class="label label-info"><%= @project_solution.point_value %> puntos</span>
+        <% if current_user.is_admin? %>
+          <%= form_for(:point, url: assign_points_admin_project_solution_path(@project_solution), html: { class: "form-inline add-points-form"}) do |f| %>
+              <%= f.number_field :points, value: @project_solution.project.point_value, class: "form-control" %>
+              <%= f.submit "Agregar puntos", class: "btn btn-primary" %>
+          <% end %>
+        <% end %>
+        <% if @project_solution.user == current_user %>
+          <div class="request-revision">
+            <% request_path = request_revision_course_project_project_solution_path(@project_solution.project.course,@project_solution.project,@project_solution) %>
+            <%= button_to request_path, class: "btn btn-success", method: :patch do %>
+              Solicitar Revisión
+              <i class="fa fa-hand-o-up"></i>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
       <p>
         <%= @project_solution.summary %>
       </p>

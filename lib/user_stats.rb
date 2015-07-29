@@ -37,9 +37,16 @@ class UserStats
 
 
   def badges_count
-    #TODO: implement badges module
-    # By now everyone has the "Hago parte de MIR" badge
-    1
+    # + 1 badge 'hago parte de make it real'
+    @user.badges.count + 1
+  end
+
+  def total_points
+    @user.points.sum(:points)
+  end
+
+  def points_per_course(course)
+    @user.points.where(course: course).sum(:points)
   end
 
   private

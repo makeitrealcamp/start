@@ -1,7 +1,8 @@
 .project-solution-box {
-  padding: 20px 20px 40px 20px;
+  padding: 20px 20px 25px 20px;
   margin: 20px;
   background-color: white;
+  min-height: 202px;
   img {
     width: 40px;
   }
@@ -10,6 +11,10 @@
     right: 35px;
     bottom: 20px;
   }
+  .links {
+    padding-top: 15px;
+    padding-bottom: 10px;
+  }
 }
 
 .project-solution {
@@ -17,4 +22,10 @@
     padding-top: 10px;
     padding-bottom: 10px;
   }
+}
+.add-points-form {
+  padding: 15px 0 15px 0;
+}
+.request-revision {
+  padding: 15px 0 15px 0;
 }

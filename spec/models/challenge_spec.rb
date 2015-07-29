@@ -18,6 +18,7 @@
 #  restricted          :boolean          default(FALSE)
 #  preview             :boolean          default(FALSE)
 #  pair_programming    :boolean          default(FALSE)
+#  difficulty_bonus    :integer
 #
 # Indexes
 #

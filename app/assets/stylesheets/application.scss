@@ -23,6 +23,8 @@
 @import "content_navigation";
 @import "phases";
 @import "profiles";
+@import "points";
+@import "admin/badges";
 
 html, body{
 
@@ -183,4 +185,10 @@ img.avatar {
 code {
   color: #313630;
   background-color: #E9E9E3;
+}
+
+.hightlighted {
+  border-style: solid;
+  border-color: #FC441D;
+  border-width: 3px;
 }

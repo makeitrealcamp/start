@@ -14,6 +14,11 @@
 #  settings        :hstore
 #  account_type    :integer
 #  nickname        :string
+#  level_id        :integer
+#
+# Indexes
+#
+#  index_users_on_level_id  (level_id)
 #
 
 class User < ActiveRecord::Base
@@ -29,6 +34,11 @@ class User < ActiveRecord::Base
   has_many :projects, -> { uniq }, through: :project_solutions
   has_many :resource_completions, dependent: :delete_all
   has_many :resources, -> { uniq }, through: :resource_completions
+  has_many :points
+  has_many :challenge_completions
+  belongs_to :level
+  has_many :badge_ownerships, dependent: :destroy
+  has_many :badges, -> { uniq }, through: :badge_ownerships
 
   hstore_accessor :profile,
     first_name: :string,
@@ -131,8 +141,7 @@ class User < ActiveRecord::Base
   end
 
   def has_completed_challenge?(challenge)
-    solution = self.solutions.where(challenge_id: challenge.id).take
-    solution && solution.status == "completed"
+    ChallengeCompletion.exists?(challenge_id: challenge.id,user_id: self.id)
   end
 
   def has_completed_resource?(resource)
@@ -187,4 +196,5 @@ class User < ActiveRecord::Base
         end while User.find_by_nickname(self.nickname)
       end
     end
+
 end

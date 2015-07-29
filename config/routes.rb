@@ -37,7 +37,11 @@ Rails.application.routes.draw do
     end
 
     resources :projects, except: [:index] do
-      resources :project_solutions, only: [:create,:update, :index, :show]
+      resources :project_solutions, only: [:create,:update, :index, :show] do
+        member do
+          patch :request_revision
+        end
+      end
     end
 
     resources :resources, except: [:index] do
@@ -108,6 +112,14 @@ Rails.application.routes.draw do
     end
     resources :solutions, only: [:index]
     resources :comments, only: [:index, :destroy]
+    resources :project_solutions, only: [] do
+      member do
+        post "assign_points"
+      end
+    end
+    
+    resources :badges
+    resources :badge_ownerships, only: [:new, :create]
   end
 
   # routes to evaluate forms

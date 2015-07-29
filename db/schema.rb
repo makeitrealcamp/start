@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715041839) do
+ActiveRecord::Schema.define(version: 20150728074735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,34 @@ ActiveRecord::Schema.define(version: 20150715041839) do
   end
 
   add_index "auth_providers", ["user_id"], name: "index_auth_providers_on_user_id", using: :btree
+
+  create_table "badge_ownerships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "badge_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "badges", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "required_points"
+    t.string   "image_url"
+    t.integer  "course_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "giving_method"
+  end
+
+  create_table "challenge_completions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "challenge_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "challenge_completions", ["challenge_id"], name: "index_challenge_completions_on_challenge_id", using: :btree
+  add_index "challenge_completions", ["user_id"], name: "index_challenge_completions_on_user_id", using: :btree
 
   create_table "challenges", force: :cascade do |t|
     t.integer  "course_id"
@@ -44,6 +72,7 @@ ActiveRecord::Schema.define(version: 20150715041839) do
     t.boolean  "restricted",                      default: false
     t.boolean  "preview",                         default: false
     t.boolean  "pair_programming",                default: false
+    t.integer  "difficulty_bonus"
   end
 
   add_index "challenges", ["course_id"], name: "index_challenges_on_course_id", using: :btree
@@ -125,6 +154,24 @@ ActiveRecord::Schema.define(version: 20150715041839) do
 
   add_index "lessons", ["section_id"], name: "index_lessons_on_section_id", using: :btree
 
+  create_table "levels", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "required_points"
+    t.string   "image_url"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "user_id"
+    t.text     "message"
+    t.integer  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
+
   create_table "pair_programming_times", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "day"
@@ -149,6 +196,19 @@ ActiveRecord::Schema.define(version: 20150715041839) do
     t.string   "color"
   end
 
+  create_table "points", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.integer  "points"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "pointable_id"
+    t.string   "pointable_type"
+  end
+
+  add_index "points", ["course_id"], name: "index_points_on_course_id", using: :btree
+  add_index "points", ["pointable_type", "pointable_id"], name: "index_points_on_pointable_type_and_pointable_id", using: :btree
+
   create_table "project_solutions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "project_id"
@@ -157,6 +217,7 @@ ActiveRecord::Schema.define(version: 20150715041839) do
     t.text     "summary"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "status"
   end
 
   add_index "project_solutions", ["project_id"], name: "index_project_solutions_on_project_id", using: :btree
@@ -169,8 +230,9 @@ ActiveRecord::Schema.define(version: 20150715041839) do
     t.string   "explanation_video_url"
     t.boolean  "published"
     t.integer  "row"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "difficulty_bonus",      default: 0
   end
 
   add_index "projects", ["course_id"], name: "index_projects_on_course_id", using: :btree
@@ -250,7 +312,10 @@ ActiveRecord::Schema.define(version: 20150715041839) do
     t.hstore   "settings"
     t.integer  "account_type"
     t.string   "nickname"
+    t.integer  "level_id"
   end
+
+  add_index "users", ["level_id"], name: "index_users_on_level_id", using: :btree
 
   create_table "version_associations", force: :cascade do |t|
     t.integer "version_id"
@@ -275,13 +340,17 @@ ActiveRecord::Schema.define(version: 20150715041839) do
   add_index "versions", ["transaction_id"], name: "index_versions_on_transaction_id", using: :btree
 
   add_foreign_key "auth_providers", "users"
+  add_foreign_key "challenge_completions", "challenges"
+  add_foreign_key "challenge_completions", "users"
   add_foreign_key "challenges", "courses"
   add_foreign_key "comments", "users"
   add_foreign_key "courses", "phases"
   add_foreign_key "lesson_completions", "lessons"
   add_foreign_key "lesson_completions", "users"
   add_foreign_key "lessons", "sections"
+  add_foreign_key "notifications", "users"
   add_foreign_key "pair_programming_times", "users"
+  add_foreign_key "points", "courses"
   add_foreign_key "project_solutions", "projects"
   add_foreign_key "project_solutions", "users"
   add_foreign_key "projects", "courses"
@@ -289,4 +358,5 @@ ActiveRecord::Schema.define(version: 20150715041839) do
   add_foreign_key "solutions", "challenges"
   add_foreign_key "solutions", "users"
   add_foreign_key "subscriptions", "users"
+  add_foreign_key "users", "levels"
 end

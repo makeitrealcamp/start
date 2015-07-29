@@ -18,6 +18,7 @@
 #  restricted          :boolean          default(FALSE)
 #  preview             :boolean          default(FALSE)
 #  pair_programming    :boolean          default(FALSE)
+#  difficulty_bonus    :integer
 #
 # Indexes
 #
@@ -25,6 +26,7 @@
 #
 
 class Challenge < ActiveRecord::Base
+  BASE_POINTS = 100
   has_paper_trail on: [:update, :destroy]
 
   include RankedModel
@@ -39,6 +41,7 @@ class Challenge < ActiveRecord::Base
   has_many :documents, as: :folder
   has_many :comments, as: :commentable
   has_many :solutions
+  has_many :points, as: :pointable
 
   validates :name, presence: true
   validates :instructions, presence: true
@@ -80,11 +83,16 @@ class Challenge < ActiveRecord::Base
     name
   end
 
+  def point_value
+    self.difficulty_bonus + Challenge::BASE_POINTS
+  end
+
   private
     def default_values
       self.published ||= false
       self.evaluation ||= "def evaluate(files)\n  \nend"
       self.evaluation_strategy ||= :ruby_embedded
+      self.difficulty_bonus ||= 0
     rescue ActiveModel::MissingAttributeError => e
       # ranked_model makes partial selects and this error is thrown
     end

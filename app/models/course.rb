@@ -29,7 +29,9 @@ class Course < ActiveRecord::Base
   has_many :resources
   has_many :challenges
   has_many :projects
+  has_many :points
   belongs_to :phase
+  has_many :badges, dependent: :destroy
 
   validates :name, presence: true
   scope :for, -> user { published unless user.is_admin? }

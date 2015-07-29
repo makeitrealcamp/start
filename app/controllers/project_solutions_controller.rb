@@ -15,6 +15,7 @@ class ProjectSolutionsController < ApplicationController
   # GET /courses/:course_id/projects/:project_id/project_solutions
   def index
     if current_user.is_admin? || current_user.has_completed_project?(@project)
+      @own_project_solution = @project.project_solutions.find_by_user_id(current_user.id)
       @project_solutions = @project.project_solutions.where.not(user_id: current_user.id)
     else
       flash[:notice] = "Debes publicar tu solución para ver las soluciones de la comunidad."
@@ -44,6 +45,15 @@ class ProjectSolutionsController < ApplicationController
     else
       render "projects/show"
     end
+  end
+
+  def request_revision
+    @project_solution = ProjectSolution.find(params[:id])
+
+    @project_solution.status = ProjectSolution.statuses[:pending_review]
+    @project_solution.save
+
+    redirect_to request.referer
   end
 
   protected

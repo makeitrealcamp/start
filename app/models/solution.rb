@@ -35,6 +35,7 @@ class Solution < ActiveRecord::Base
 
   after_initialize :default_values
   after_create :create_documents
+  after_update :create_user_points!
 
   scope :evaluated, -> { where(status: [Solution.statuses[:completed], Solution.statuses[:failed] ]) }
 
@@ -66,7 +67,15 @@ class Solution < ActiveRecord::Base
       ))
   end
 
+  def create_user_points!
+    if self.completed? && !self.user.has_completed_challenge?(self.challenge)
+      self.user.challenge_completions.create!(challenge: self.challenge)
+      self.user.points.create!(course: self.challenge.course, points: self.challenge.point_value, pointable: self.challenge)
+    end
+  end
+  
   private
+
     def default_values
       self.status ||= :created
       self.attempts ||= 0
@@ -77,4 +86,5 @@ class Solution < ActiveRecord::Base
         documents.create(name: document.name, content: document.content)
       end
     end
+
 end

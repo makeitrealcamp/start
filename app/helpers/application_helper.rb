@@ -27,7 +27,7 @@ module ApplicationHelper
     uri = URI(src)
 
     if user
-      params = URI.decode_www_form(uri.query || []) << ['wemail', user.email ]
+      params = URI.decode_www_form(uri.query || "") << ['wemail', user.email ]
       uri.query = URI.encode_www_form(params)
     end
 

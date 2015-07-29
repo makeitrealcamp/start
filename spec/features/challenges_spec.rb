@@ -7,9 +7,11 @@ RSpec.feature "Challenges", type: :feature do
   let!(:admin )    { create(:admin) }
   let!(:course)    { create(:course) }
   let!(:challenge) { create(:challenge, course: course, published: true, restricted: true) }
+  let!(:level_1)  {create(:level_1)}
+  let!(:level_2)  {create(:level_2)}
 
-  context 'when user is free account' do
-    context 'should not access challenges restricted' do
+  context 'when the user has a free account' do
+    context 'should not access restricted challenges ' do
       scenario 'return not found when access by url' do
         login(user)
         visit course_challenge_path(course, challenge)
@@ -50,14 +52,15 @@ RSpec.feature "Challenges", type: :feature do
         login(user)
         visit course_path(course)
         click_on free_challenge.name
+        wait_for_ajax
         expect(current_path).to eq course_challenge_path(course, free_challenge)
       end
     end
   end
 
   context 'when user is paid account' do
-    context 'list challenges' do
-      scenario 'only the published' do
+    describe 'list challenges' do
+      scenario 'show only published challenges' do
         create(:challenge, course: course, published: true)
         create(:challenge, course: course, published: false)
         login(user_paid)

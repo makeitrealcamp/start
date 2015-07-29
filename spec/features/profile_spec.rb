@@ -16,6 +16,7 @@ RSpec.feature "Profile", type: :feature do
 
 
       login(user_with_public_profile)
+      wait_for_ajax
       visit(user_profile_path(user_with_public_profile.nickname))
 
       find('#user_has_public_profile_false').click
