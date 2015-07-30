@@ -119,6 +119,7 @@ Rails.application.routes.draw do
     end
 
     resources :badges
+    resources :levels
     resources :badge_ownerships, only: [:new, :create]
   end
 
