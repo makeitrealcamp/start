@@ -22,7 +22,10 @@ class SessionsController < ApplicationController
       sign_in(user)
       redirect_to signed_in_root_path
     else
-      redirect_to signup_path
+      redirect_to login_path, flash: { error:
+        %Q( Para ingresar a la plataforma debes ser estudiante de Make it Real.
+          Visita <a href="http://www.makeitreal.camp">makeitreal.camp</a> para más información)
+        }
     end
   end
 
@@ -38,6 +41,6 @@ class SessionsController < ApplicationController
   private
 
   def url_omniauth_failure(message)
-    redirect_to signup_path, flash: { error: message }
+    redirect_to login_path, flash: { error: message }
   end
 end

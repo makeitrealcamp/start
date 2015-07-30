@@ -9,7 +9,6 @@ RSpec.feature "Sign In", type: :feature do
       mock_auth_hash_facebook(user)
       visit login_path
       find('#sign-in-facebook').click
-      sleep(0.5)
       expect(current_path).to eq signed_in_root_path
     end
 
@@ -17,8 +16,8 @@ RSpec.feature "Sign In", type: :feature do
       OmniAuth.config.mock_auth[:facebook] = :invalid_credentials
       visit login_path
       find('#sign-in-facebook').click
-      sleep(0.5)
-      expect(current_url).to eq(Prework::Application::APPLICATION_FORM_URL)
+      expect(current_path).to eq login_path
+      expect(page).to have_selector '.alert-top-error'
     end
   end
 
@@ -27,7 +26,6 @@ RSpec.feature "Sign In", type: :feature do
       mock_auth_hash_github(user)
       visit login_path
       find('#sign-in-github').click
-      sleep(0.5)
       expect(current_path).to eq signed_in_root_path
     end
 
@@ -35,9 +33,8 @@ RSpec.feature "Sign In", type: :feature do
       OmniAuth.config.mock_auth[:github] = :invalid_credentials
       visit login_path
       find('#sign-in-github').click
-      wait_for_ajax
-      sleep(0.5)
-      expect(current_url).to eq(Prework::Application::APPLICATION_FORM_URL)
+      expect(current_path).to eq login_path
+      expect(page).to have_selector ".alert-top-error"
     end
   end
 end
