@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   has_many :resource_completions, dependent: :delete_all
   has_many :resources, -> { uniq }, through: :resource_completions
   has_many :points
-  has_many :challenge_completions
+  has_many :challenge_completions, dependent: :delete_all
   belongs_to :level
   has_many :badge_ownerships, dependent: :destroy
   has_many :badges, -> { uniq }, through: :badge_ownerships
@@ -76,6 +76,15 @@ class User < ActiveRecord::Base
 
   def self.with_public_profile
     self.is_has_public_profile
+  end
+
+  def self.search(q)
+    query_string = q.split.join('%')
+    where(%Q(
+      LOWER(UNACCENT(profile -> 'first_name')) LIKE LOWER(UNACCENT(:q)) OR
+      LOWER(UNACCENT(email)) LIKE LOWER(UNACCENT(:q)) OR
+      LOWER(UNACCENT(nickname)) LIKE LOWER(UNACCENT(:q))
+    ),q: "%#{query_string}%")
   end
 
   def completed_challenges

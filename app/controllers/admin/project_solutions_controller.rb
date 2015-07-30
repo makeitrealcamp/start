@@ -1,6 +1,20 @@
 class Admin::ProjectSolutionsController < ApplicationController
   before_action :admin_access
 
+  def index
+    @solutions = ProjectSolution.all
+    @q = {}
+    if ["pending_review","reviewed"].include? params[:status]
+      @q[:status] = params[:status]
+      @solutions = @solutions.send(@q[:status])
+    end
+    if((@q[:project] = params[:project]) && (!@q[:project].strip.blank?))
+      @solutions = @solutions.where(project_id: @q[:project])
+    end
+    if((@q[:user] = params[:user]) && (!@q[:user].strip.blank?))
+      @solutions = @solutions.where(user_id: User.search(@q[:user]))
+    end
+  end
 
   def assign_points
     @project_solution = ProjectSolution.find(params[:id])

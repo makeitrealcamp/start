@@ -1,0 +1,54 @@
+<div class="container admin-project-solutions">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Soluciones de proyectos</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <%= render "admin/project_solutions/search_form" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <thead>
+            <tr>
+              <th>Proyecto</th>
+              <th>Usuario</th>
+              <th>Última actualización</th>
+              <th>Estado de revisión</th>
+              <th>Puntos actuales</th>
+              <th></th>
+            </tr>
+          </thead>
+        </thead>
+        <tbody>
+          <% @solutions.each do |sol| %>
+            <tr>
+              <td> <%= link_to sol.project.name, course_project_path(sol.project.course,sol.project)%> </td>
+              <td> <%= link_to "#{sol.user.first_name} - (#{sol.user.email})", user_profile_path(sol.user.nickname)%> </td>
+              <td> <%= sol.updated_at %></td>
+              <td>
+                <% if sol.pending_review? %>
+                  <span class="label label-warning">Revisión pendiente</span>
+                <% else %>
+                  <span class="label label-success">Revisado</span>
+                <% end %>
+              </td>
+              <td><%= sol.point_value %></td>
+              <td>
+                <%= link_to [sol.project.course,sol.project,sol], class: "btn btn-lg btn-info" do %>
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+</div>
