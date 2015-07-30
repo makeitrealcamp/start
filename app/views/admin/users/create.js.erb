@@ -1,7 +1,10 @@
-<% if @user.errors.empty? %>
-  $('.alert').removeClass('alert-danger').addClass('alert-success').html('se ha enviado el correo de activación al correo <%= @user.email %>' ).show();
-  $('input#user_first_name').val('');
-  $('input#user_email').val('');
+<% if @user.valid? %>
+  $("#create-user-modal .alerts-container")
+    .html('<%= j render "shared/alert", msg: "se ha enviado el correo de activación al correo #{@user.email}", type: "notice" %>')
+    .show();
+  $('#create-user-modal input').val('');
 <% else %>
-  $('.alert').removeClass('alert-success').addClass('alert-danger').html('<%= @user.errors.full_messages[0] %>').show();
+  $("#create-user-modal .alerts-container")
+    .html('<%= j render "shared/flash_messages_form", object: @user %>')
+    .show();
 <% end %>

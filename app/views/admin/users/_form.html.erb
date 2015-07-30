@@ -6,7 +6,7 @@
         <h4 class="modal-title">Nuevo Usuario</h4>
       </div>
 
-      <div class="alert" style="display:none" role="alert">
+      <div class="alerts-container">
       </div>
 
       <%= form_for [:admin, @user], remote: true do |f| %>
@@ -25,7 +25,10 @@
             <%= f.label :email, "Correo electrónico" %>
             <%= f.text_field :email, class: "form-control" %>
           </div>
-
+          <div class="form-group">
+            <%= f.label :account_type, "tipo de cuenta" %>
+            <%= f.select :account_type, options_for_select(User.account_types.keys,"paid_account"),{},class: "form-control" %>
+          </div>
           <div class="form-group">
             <span class="radio-caption">Sexo:</span>
             <label class="radio-inline">
@@ -39,7 +42,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <%= f.submit "Crear Usuario", class: 'btn btn-primary'  %>
+          <%= f.button "Crear Usuario", class: 'btn btn-primary'  %>
         </div>
       <% end %>
     </div><!-- .modal-content -->

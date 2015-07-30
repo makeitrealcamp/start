@@ -1,7 +1,6 @@
 <div class="container course-form-page">
   <div class="row">
-    <%= form_for @user, url: url_for(:controller => 'users', :action => 'activate') do |f| %>
-       <%= hidden_field_tag :v, @user.password_reset_token %>
+    <%= form_for @user, url: activate_users_path(token: @user.password_reset_token) do |f| %>
       <div class="col-sm-10 col-sm-offset-1">
         <%= render 'shared/flash_messages_form', object: @user %>
         <h1>Activar Cuenta</h1>

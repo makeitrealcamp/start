@@ -3,27 +3,38 @@ class UsersController < ApplicationController
   before_action :public_access, only: [:new, :create, :activate_form, :activate]
 
   def activate_form
-    @user = User.where(["settings -> 'password_reset_token' = '#{params[:v]}'"]).where(status:"created").take
-    raise ActionController::RoutingError.new('Not Found') unless @user
+    token = params[:token]
+    @user = User.created.where("settings -> 'password_reset_token' = ? ", token).take!
 
-    if @user.password_reset_sent_at < 2.hours.ago
-      redirect_to login_path, flash: { error: "La página ya no se encuentra disponible" }
+    if @user.password_reset_sent_at < 2.days.ago
+      redirect_to login_path, flash: { error: "Tu link de activación ha expirado." }
     end
   end
 
   def activate
-    @user = User.where(["settings -> 'password_reset_token' = '#{params[:v]}'"]).where(status:"created").take
-    raise ActionController::RoutingError.new('Not Found') unless @user
+    token = params[:token]
+    @user = User.created.where("settings -> 'password_reset_token' = ?",token).take!
 
-    if @user.password_reset_sent_at < 2.hours.ago
-      redirect_to login_path, flash: { error: "La página ya no se encuentra disponible" }
+# TODO: pasar tooooooda esta lógica al modelo
+    if @user.password_reset_sent_at < 2.days.ago
+      redirect_to login_path, error: "Tu link de activación ha expirado."
     end
+    user_attrs = user_params.merge(status: User.statuses[:active],activated_at: Time.current)
 
-    @user.errors[:password] << "Por favor ingresa una contraseña" if user_params[:password].blank?
+    @user.errors[:password] << "es un campo requerido" if user_params[:password].blank?
 
-    if @user.errors.empty? && @user.update(user_params.merge(status: User.statuses[:active], activated_at: Time.current))
-      @user.update(password_reset_token: nil, password_reset_sent_at: nil)
-      redirect_to login_path, flash: { notice: "Se Activado la cuenta satisfactoriamente." }
+    if @user.errors.empty? && @user.update(user_attrs)
+      @user.update(password_reset_token: nil,password_reset_sent_at: nil)
+      @user.subscriptions.create
+      if Rails.env.development?
+        SubscriptionsMailer.welcome_mail(@user).deliver_now
+        SubscriptionsMailer.welcome_hangout(@user).deliver_now
+      else
+        SubscriptionsMailer.welcome_mail(@user).deliver_now
+        SubscriptionsMailer.welcome_hangout(@user).deliver_later!(wait: 24.hours)
+      end
+# TODO: pasar tooooooda esta lógica al modelo ^^
+      redirect_to login_path, notice: "¡Felicitaciones! Has activado tu cuenta de Make it Real. Ingresa a la plataforma y descubre lo que tenemos preparado para ti."
     else
       render :activate_form
     end
@@ -65,8 +76,8 @@ class UsersController < ApplicationController
   private
     def user_params
       params.require(:user).permit(
-        :email, :password, :password_confirmation, :first_name, :mobile_number, :birthday,
-        :has_public_profile, :github_username, :nickname, :gender,
+        :password, :password_confirmation, :first_name, :mobile_number, :birthday,
+        :has_public_profile, :github_username, :nickname, :gender
       )
     end
 end

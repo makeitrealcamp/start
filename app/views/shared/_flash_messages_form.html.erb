@@ -1,17 +1,11 @@
+<%# required: object %>
 <% if object.errors.any? %>
-  <div class="panel panel-danger">
-    <div class="panel-heading">
-      <h2 class="panel-title">
-        
-        <%= I18n.t('activerecord.errors.template.header', :count => object.errors.size, :model => object.class) %>
-      </h2>
+
+  <% object.errors.full_messages.each do |message| %>
+    <div class='alert alert-danger  fade in'>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%= message.html_safe %>
     </div>
-    <div class="panel-body">
-      <ul>
-        <% object.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
+  <% end %>
+
 <% end %>
