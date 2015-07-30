@@ -86,20 +86,18 @@ html.turbolinks-progress-bar::before {
   &.action-blue { background: #2A79A6; }
 }
 
-.alert-top {
-  @extend .alert;
-
+.alert {
   text-align: center;
   border-radius: 0;
   padding: 7px 15px;
   margin-top: -20px;
 }
 
-.alert-top-notice {
+.alert-notice {
   @extend .alert-success;
 }
 
-.alert-top-error {
+.alert-error {
   @extend .alert-danger;
 }
 

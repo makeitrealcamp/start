@@ -5,52 +5,51 @@ RSpec.feature "PasswordResets", type: :feature do
   let!(:user) { create(:user) }
 
   context 'as user not logged in' do
-    scenario 'display form reset password', js: true do
-      visit login_path
-      click_link 'Ingresar'
-      click_link 'He olvidado mi contraseña'
-      wait_for_ajax
-      expect(page).to have_selector '.modal-dialog'
-      expect(page).to have_selector 'input#email'
-    end
+    describe "request reset password token" do
+      scenario 'display form reset password', js: true do
+        visit login_path
+        click_link 'Ingresar'
+        click_link 'He olvidado mi contraseña'
+        wait_for_ajax
+        expect(page).to have_selector '.modal-dialog input[type="email"]'
+      end
 
-    scenario 'generate password reset token when the user exist', js: true do
-      visit login_path
-      click_link 'Ingresar'
-      click_link 'He olvidado mi contraseña'
-      wait_for_ajax
-      find(:css, '.modal-dialog input#email').set(user.email)
-      click_button 'Restablecer Contraseña'
-      wait_for_ajax
-      user.reload
-      expect(user.password_reset_token).not_to be_nil
-      expect(user.password_reset_sent_at).not_to be_nil
-      expect(page).to have_selector '.alert-success'
-    end
+      scenario 'generate password reset token when the user exists', js: true do
+        visit login_path
+        click_link 'Ingresar'
+        click_link 'He olvidado mi contraseña'
+        wait_for_ajax
+        find(:css, '.modal-dialog input[type="email"]').set(user.email)
+        click_button 'Restablecer Contraseña'
+        wait_for_ajax
+        user.reload
+        expect(user.password_reset_token).not_to be_nil
+        expect(user.password_reset_sent_at).not_to be_nil
+        expect(page).to have_selector '.alert-notice'
+      end
 
-    scenario 'not generate password reset token when the user not exist', js: true do
-      visit login_path
-      click_link 'Ingresar'
-      click_link 'He olvidado mi contraseña'
-      wait_for_ajax
-      find(:css, '.modal-dialog input#email').set(Faker::Internet.email)
-      click_button 'Restablecer Contraseña'
-      wait_for_ajax
-      user.reload
-      expect(page).to have_selector '.alert-danger'
-      expect(page).to have_content  'El correo electrónico no existe en la base de datos'
-    end
+      scenario "don't generate password reset token when the user doesn't exist", js: true do
+        visit login_path
+        click_link 'Ingresar'
+        click_link 'He olvidado mi contraseña'
+        wait_for_ajax
+        find(:css, '.modal-dialog input[type="email"]').set(Faker::Internet.email)
+        click_button 'Restablecer Contraseña'
+        wait_for_ajax
+        user.reload
+        expect(page).to have_selector '.alert-error'
+      end
 
-    scenario 'when email is empty', js: true do
-      visit login_path
-      click_link 'Ingresar'
-      click_link 'He olvidado mi contraseña'
-      wait_for_ajax
-      click_button 'Restablecer Contraseña'
-      wait_for_ajax
-      user.reload
-      expect(page).to have_selector '.alert-danger'
-      expect(page).to have_content  'Por favor digita un correo electrónico'
+      scenario 'when email is empty', js: true do
+        visit login_path
+        click_link 'Ingresar'
+        click_link 'He olvidado mi contraseña'
+        wait_for_ajax
+        click_button 'Restablecer Contraseña'
+        wait_for_ajax
+        user.reload
+        expect(page).to have_selector '.alert-error'
+      end
     end
 
     scenario 'Display form change password', js: true do

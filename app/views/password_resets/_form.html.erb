@@ -6,14 +6,14 @@
         <h4 class="modal-title">Restablecer Contraseña</h4>
       </div>
 
-      <div class="alert" style="display:none" role="alert">
+      <div class="alerts-container">
       </div>
 
-      <%= form_tag password_reset_path, remote: true do |f| %>
+      <%= form_for :password_reset_request, url: password_reset_path, remote: true do |f| %>
         <div class="modal-body">
           <div class="form-group">
-            <%= label_tag(:email, "Correo electrónico") %>
-            <%= email_field_tag(:email, nil, class: 'form-control input-lg') %>
+            <%= f.label(:email, "Correo electrónico") %>
+            <%= f.email_field(:email, class: 'form-control input-lg') %>
           </div>
         </div>
         <div class="modal-footer">

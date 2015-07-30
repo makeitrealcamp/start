@@ -5,14 +5,10 @@ class PasswordResetsController < ApplicationController
   end
 
   def create
-    @errors = []
-    @errors << "Por favor digita un correo electrónico" if params[:email].blank?
-    user = User.find_by_email(params[:email]) unless params[:email].blank?
-
-    if user
+    @reset_request = PasswordResetRequestForm.new(password_reset_request_params)
+    if @reset_request.valid?
+      user = User.find_by_email(@reset_request.email)
       user.send_password_reset
-    else
-      @errors << "El correo electrónico no existe en la base de datos"
     end
   end
 
@@ -45,4 +41,7 @@ class PasswordResetsController < ApplicationController
       params.require(:user).permit(:password, :password_confirmation)
     end
 
+    def password_reset_request_params
+      params.require(:password_reset_request).permit(:email)
+    end
 end
