@@ -78,6 +78,15 @@ class User < ActiveRecord::Base
     self.is_has_public_profile
   end
 
+  def self.search(q)
+    query_string = q.split.join('%')
+    where(%Q(
+      LOWER(UNACCENT(profile -> 'first_name')) LIKE LOWER(UNACCENT(:q)) OR
+      LOWER(UNACCENT(email)) LIKE LOWER(UNACCENT(:q)) OR
+      LOWER(UNACCENT(nickname)) LIKE LOWER(UNACCENT(:q))
+    ),q: "%#{query_string}%")
+  end
+
   def completed_challenges
     self.challenges.joins(:solutions).where('solutions.status = ?',Solution.statuses[:completed]).uniq
   end

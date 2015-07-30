@@ -17,14 +17,15 @@
 @import "comments";
 @import "projects";
 @import "project_solutions";
-@import "admin/dashboard";
-@import "admin/solutions";
 @import "forms";
 @import "content_navigation";
 @import "phases";
 @import "profiles";
 @import "points";
+@import "admin/dashboard";
+@import "admin/solutions";
 @import "admin/badges";
+@import "admin/project_solutions";
 
 html, body{
 

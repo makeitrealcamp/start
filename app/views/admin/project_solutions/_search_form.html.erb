@@ -1,0 +1,19 @@
+<%= form_tag(admin_project_solutions_path, method: "get", class: "form-inline search-project-solutions-form") do %>
+  <div class="form-group">
+    <label for="status">Estado</label>
+    <%= select_tag :status, options_for_select(ProjectSolution.statuses.keys,@q[:status]),
+     class: "form-control", include_blank: true %>
+  </div>
+  <div class="form-group">
+    <label for="project">Proyecto</label>
+    <%= select_tag :project, options_for_select(project_select_options,@q[:project]),
+     class: "form-control", include_blank: true %>
+  </div>
+  <div class="form-group">
+    <label for="user">Usuario</label>
+    <%= text_field_tag :user, @q[:user],
+     class: "form-control", placeholder: "email, nombre o nickname"%>
+  </div>
+  <%= button_tag("Buscar", class: "btn btn-success") %>
+  <%= link_to "Limpiar", admin_project_solutions_path, class: "btn btn-default btn-warning clean-form" %>
+<% end %>
