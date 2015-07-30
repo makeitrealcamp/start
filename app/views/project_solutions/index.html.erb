@@ -16,7 +16,9 @@
     </div>
   </div>
   <div class="row">
-    <%= render "project_solutions/project_box", solution: @own_project_solution, own_solution: true %>
+    <% unless @own_project_solution.nil? %>
+      <%= render "project_solutions/project_box", solution: @own_project_solution, own_solution: true %>
+    <% end %>
     <% @project_solutions.each do |solution| %>
       <%= render "project_solutions/project_box", solution: solution %>
     <% end %>
