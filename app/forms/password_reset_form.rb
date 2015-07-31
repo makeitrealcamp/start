@@ -11,19 +11,6 @@ class PasswordResetForm < BaseForm
 
   validate :token_existence
 
-  def persisted?
-    false
-  end
-
-  def save
-    if valid?
-      persist!
-      true
-    else
-      false
-    end
-  end
-
 private
 
   def persist!
@@ -40,7 +27,7 @@ private
       errors[:token] << "vencido. Solicita uno nuevo"
     end
   end
-  
+
   def set_user
     @user = User.where("settings -> 'password_reset_token' = ?",token).take
   end
