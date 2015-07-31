@@ -6,12 +6,12 @@ class PasswordsController < ApplicationController
   end
 
   def update
-    current_user.errors[:password] << "Por favor ingresa una contraseña" if params[:password].blank?
-    current_user.update(user_params) if current_user.errors.empty?
+    @password_change = PasswordChangeForm.new(password_change_params.merge(user: current_user))
+    @password_change.save
   end
 
   private
-    def user_params
-      params.permit(:password, :password_confirmation)
+    def password_change_params
+      params.require(:password_change).permit(:password,:password_confirmation)
     end
 end

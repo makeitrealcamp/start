@@ -1,4 +1,4 @@
-$('<%= j render "form" %>').on('hidden.bs.modal', function (e) {
+$('<%= j render "passwords/form" %>').on('hidden.bs.modal', function (e) {
   $(this).remove();
   $('.modal-backdrop').remove();
 }).modal();

@@ -1,6 +1,11 @@
-<% if current_user.errors.empty? %>
-  $('.alert').removeClass('alert-danger').addClass('alert-success').html('La contraseña ha sido cambiada con éxito').show();
-  $('input[type=password]').val('');
+<% if @password_change.valid? %>
+  $('#change-password-modal input[type=password]').val('');
+  $('#change-password-modal').modal('hide');
+  $('.main-alerts-container').prepend(
+    '<%= j render "shared/alert", msg: "La contraseña ha sido cambiada con éxito", type: "notice" %>'
+  );
 <% else %>
-  $('.alert').removeClass('alert-success').addClass('alert-danger').html('<%= current_user.errors.full_messages[0] %>').show();
+  $('#change-password-modal .alerts-container').html(
+    '<%= j render "shared/flash_messages_form", object: @password_change %>'
+  );
 <% end %>
