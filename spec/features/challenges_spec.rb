@@ -16,7 +16,7 @@ RSpec.feature "Challenges", type: :feature do
         login(user)
         visit course_challenge_path(course, challenge)
         expect(current_path).to eq signed_in_root_path
-        expect(page).to have_selector('.alert-top-notice', count: 1)
+        expect(page).to have_selector('.alert-notice', count: 1)
         expect(page).to have_content('Debes estar inscrito al programa para acceder a este recurso')
       end
     end

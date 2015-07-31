@@ -75,7 +75,7 @@ RSpec.feature "Badges", type: :feature do
             click_button 'Crear insignia'
           }.not_to change(Badge, :count)
 
-          expect(page).to have_selector '.panel-danger'
+          expect(page).to have_selector '.alert-error'
         end
       end
 
@@ -169,7 +169,7 @@ RSpec.feature "Badges", type: :feature do
           fill_in 'badge_image_url', with: image_url
           fill_in 'badge_required_points', with: ""
           click_button 'Actualizar insignia'
-          expect(page).to have_selector '.panel-danger'
+          expect(page).to have_selector '.alert-error'
         end
       end
 
@@ -209,7 +209,7 @@ RSpec.feature "Badges", type: :feature do
           fill_in 'badge_description', with: ""
           fill_in 'badge_image_url', with: ""
           click_button 'Actualizar insignia'
-          expect(page).to have_selector '.panel-danger'
+          expect(page).to have_selector '.alert-error'
         end
       end
     end

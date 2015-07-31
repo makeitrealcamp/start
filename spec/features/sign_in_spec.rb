@@ -17,7 +17,7 @@ RSpec.feature "Sign In", type: :feature do
       visit login_path
       find('#sign-in-facebook').click
       expect(current_path).to eq login_path
-      expect(page).to have_selector '.alert-top-error'
+      expect(page).to have_selector '.alert-error'
     end
   end
 
@@ -34,7 +34,7 @@ RSpec.feature "Sign In", type: :feature do
       visit login_path
       find('#sign-in-github').click
       expect(current_path).to eq login_path
-      expect(page).to have_selector ".alert-top-error"
+      expect(page).to have_selector ".alert-error"
     end
   end
 end

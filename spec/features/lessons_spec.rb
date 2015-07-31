@@ -76,7 +76,7 @@ RSpec.feature "Lessons", type: :feature do
           click_button 'Crear Lesson'
         }.not_to change(Lesson, :count)
 
-        expect(page).to have_selector '.panel-danger'
+        expect(page).to have_selector '.alert-error'
         expect(current_path).to eq course_resource_section_lessons_path(course,resource,section)
       end
     end
@@ -136,7 +136,7 @@ RSpec.feature "Lessons", type: :feature do
         fill_in 'lesson_info', with: info
         click_button 'Actualizar Lesson'
 
-        expect(page).to have_selector '.panel-danger'
+        expect(page).to have_selector '.alert-error'
       end
     end
 

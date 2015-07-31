@@ -87,7 +87,7 @@ RSpec.feature "Resources", type: :feature do
           click_button  'Crear Resource'
         }.not_to change(Resource, :count)
 
-        expect(page).to have_selector ".panel-danger"
+        expect(page).to have_selector ".alert-error"
         expect(current_path).to eq course_resources_path(course)
       end
     end
@@ -127,7 +127,7 @@ RSpec.feature "Resources", type: :feature do
           click_button  'Crear Resource'
         }.not_to change(Resource, :count)
 
-        expect(page).to have_selector ".panel-danger"
+        expect(page).to have_selector ".alert-error"
         expect(current_path).to eq course_resources_path(course)
       end
     end
@@ -195,7 +195,7 @@ RSpec.feature "Resources", type: :feature do
       click_button  'Actualizar Resource'
 
       wait_for_ajax
-      expect(page).to have_selector ".panel-danger"
+      expect(page).to have_selector ".alert-error"
       expect(current_path).to eq course_resource_path( course, resource)
     end
 

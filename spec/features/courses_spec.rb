@@ -106,7 +106,7 @@ RSpec.feature "Courses", type: :feature do
       }.not_to change(Course, :count)
 
       wait_for_ajax
-      expect(page).to have_selector ".panel-danger"
+      expect(page).to have_selector ".alert-error"
     end
 
     scenario 'edit course with valid input', js: true do
@@ -150,7 +150,7 @@ RSpec.feature "Courses", type: :feature do
       fill_in 'course_time_estimate', with: time_estimate
       click_button 'Actualizar Course'
       wait_for_ajax
-      expect(page).to have_selector ".panel-danger"
+      expect(page).to have_selector ".alert-error"
     end
   end
 end
