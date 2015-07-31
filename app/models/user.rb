@@ -175,6 +175,13 @@ class User < ActiveRecord::Base
     solution = solutions.new(challenge_id: challenge.id)
   end
 
+  def has_valid_password_reset_token?
+    (!!self.password_reset_sent_at) && (self.password_reset_sent_at >= 2.hours.ago)
+  end
+
+  def has_valid_account_activation_token?
+    (!!self.password_reset_sent_at) && (self.password_reset_sent_at >= 2.days.ago)
+  end
   private
     def default_values
       self.roles ||= ["user"]

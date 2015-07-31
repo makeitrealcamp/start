@@ -23,7 +23,7 @@ private
     set_user
     if @user.nil?
       errors[:token] << "no válido" if @user.nil?
-    elsif @user.password_reset_sent_at < 2.hours.ago
+    elsif !@user.has_valid_password_reset_token?
       errors[:token] << "vencido. Solicita uno nuevo"
     end
   end
