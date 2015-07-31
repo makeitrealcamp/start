@@ -25,10 +25,7 @@
 <body class="expand">
   <%= render "layouts/navbar" %>
   <div class="content-wrapper expand">
-    <% flash.each do |type, msg| -%>
-      <%= render "shared/alert", msg: msg, type: type %>
-    <% end -%>
-
+    <%= render "utils/alerts" %>
     <%= yield %>
   </div>
 

@@ -22,6 +22,7 @@
 @import "phases";
 @import "profiles";
 @import "points";
+@import "alerts";
 @import "admin/dashboard";
 @import "admin/solutions";
 @import "admin/badges";
@@ -84,21 +85,6 @@ html.turbolinks-progress-bar::before {
   &.action-warn { background: #E3A214; }
   &.action-love { background: #AF38C7;}
   &.action-blue { background: #2A79A6; }
-}
-
-.alert {
-  text-align: center;
-  border-radius: 0;
-  padding: 7px 15px;
-  margin-top: -20px;
-}
-
-.alert-notice {
-  @extend .alert-success;
-}
-
-.alert-error {
-  @extend .alert-danger;
 }
 
 .CodeMirror pre {

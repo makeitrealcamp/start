@@ -63,6 +63,7 @@ module ApplicationHelper
     end
 
   end
+
   def facebook_button(opts={})
     if Rails.env == "development"
       # In development, we will share always the MIR page
@@ -70,5 +71,11 @@ module ApplicationHelper
       opts[:url] = "http://makeitreal.camp"
     end
     super(opts)
+  end
+
+  def alert_classes(type)
+    return "alert-success alert-notice" if ["notice","success"].include? type.to_s
+    return "alert-error alert-danger" if ["error","danger"].include? type.to_s
+    return "alert-#{type.to_s}"
   end
 end
