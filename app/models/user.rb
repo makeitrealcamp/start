@@ -175,6 +175,18 @@ class User < ActiveRecord::Base
     solution = solutions.new(challenge_id: challenge.id)
   end
 
+  def activate!
+    self.update!(
+      password_reset_token: nil,
+      password_reset_sent_at: nil,
+      status: User.statuses[:active],
+      activated_at: Time.current
+    )
+    SubscriptionsMailer.welcome_mail(self).deliver_now
+    SubscriptionsMailer.welcome_hangout(self).deliver_later!(wait: 24.hours)
+    
+  end
+
   def has_valid_password_reset_token?
     (!!self.password_reset_sent_at) && (self.password_reset_sent_at >= 2.hours.ago)
   end
@@ -182,6 +194,7 @@ class User < ActiveRecord::Base
   def has_valid_account_activation_token?
     (!!self.password_reset_sent_at) && (self.password_reset_sent_at >= 2.days.ago)
   end
+
   private
     def default_values
       self.roles ||= ["user"]

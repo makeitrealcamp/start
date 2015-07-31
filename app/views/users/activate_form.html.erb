@@ -1,11 +1,12 @@
 <div class="container course-form-page">
   <div class="row">
-    <%= form_for @user, url: activate_users_path(token: @user.password_reset_token) do |f| %>
+    <%= form_for :activate_user, url: activate_users_path(token: @activate_user.token), method: :patch do |f| %>
+      <%= f.hidden_field :token %>
       <div class="col-sm-10 col-sm-offset-1">
-        <%= render 'shared/flash_messages_form', object: @user %>
         <h1>Activar Cuenta</h1>
         <div class="row">
           <div class="col-sm-6">
+            <%= render 'shared/flash_messages_form', object: @activate_user %>
             <div class="form-group">
               <%= f.label :email, "Correo Electrónico" %>
               <%= f.text_field :email, class: 'form-control input-lg', placeholder: 'email', disabled: true %>

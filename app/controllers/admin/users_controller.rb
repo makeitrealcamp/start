@@ -9,6 +9,7 @@ class Admin::UsersController < ApplicationController
     @user = User.new(user_params)
     @user.generate_password
     if @user.save
+      @user.subscriptions.create
       @user.send_activate_mail
     end
   end

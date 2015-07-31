@@ -5,36 +5,17 @@ class UsersController < ApplicationController
   def activate_form
     token = params[:token]
     @user = User.created.where("settings -> 'password_reset_token' = ? ", token).take!
-
-    if @user.password_reset_sent_at < 2.days.ago
+    if @user.has_valid_account_activation_token?
+      @activate_user = ActivateUserForm.new(token: token)
+    else
       redirect_to login_path, flash: { error: "Tu link de activación ha expirado." }
     end
   end
 
   def activate
-    token = params[:token]
-    @user = User.created.where("settings -> 'password_reset_token' = ?",token).take!
-
-# TODO: pasar tooooooda esta lógica al modelo
-    if @user.password_reset_sent_at < 2.days.ago
-      redirect_to login_path, error: "Tu link de activación ha expirado."
-    end
-    user_attrs = user_params.merge(status: User.statuses[:active],activated_at: Time.current)
-
-    @user.errors[:password] << "es un campo requerido" if user_params[:password].blank?
-
-    if @user.errors.empty? && @user.update(user_attrs)
-      @user.update(password_reset_token: nil,password_reset_sent_at: nil)
-      @user.subscriptions.create
-      if Rails.env.development?
-        SubscriptionsMailer.welcome_mail(@user).deliver_now
-        SubscriptionsMailer.welcome_hangout(@user).deliver_now
-      else
-        SubscriptionsMailer.welcome_mail(@user).deliver_now
-        SubscriptionsMailer.welcome_hangout(@user).deliver_later!(wait: 24.hours)
-      end
-# TODO: pasar tooooooda esta lógica al modelo ^^
-      redirect_to login_path, notice: "¡Felicitaciones! Has activado tu cuenta de Make it Real. Ingresa a la plataforma y descubre lo que tenemos preparado para ti."
+    @activate_user = ActivateUserForm.new(activate_user_params)
+    if @activate_user.save
+      redirect_to login_path, flash: { notice: "¡Felicitaciones! Has activado tu cuenta de Make it Real. Ingresa a la plataforma y descubre lo que tenemos preparado para ti." }
     else
       render :activate_form
     end
@@ -78,6 +59,12 @@ class UsersController < ApplicationController
       params.require(:user).permit(
         :password, :password_confirmation, :first_name, :mobile_number, :birthday,
         :has_public_profile, :github_username, :nickname, :gender
+      )
+    end
+    def activate_user_params
+      params.require(:activate_user).permit(
+        :password, :password_confirmation, :first_name, :mobile_number, :birthday,
+        :has_public_profile, :github_username, :nickname, :gender, :token
       )
     end
 end
