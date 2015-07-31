@@ -25,7 +25,7 @@
         <tbody>
           <% @levels.each do |level| %>
           <tr id="level-<%= level.id %>">
-            <td><%= image_tag( level.image_url, class: "img-circle" ) %></td>
+            <td><%= image_tag( level.image_url, class: "img-circle" ) unless level.image_url.blank? %></td>
             <td><%= level.name %></td>
             <td><%= level.required_points %></td>
             <td>

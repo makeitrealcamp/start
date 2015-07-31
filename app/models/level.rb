@@ -13,6 +13,8 @@
 class Level < ActiveRecord::Base
   has_many :users
 
+  default_scope { order('required_points ASC') }
+
   def self.for_points(user_points)
     level_diff = []
     Level.all.each do |level|

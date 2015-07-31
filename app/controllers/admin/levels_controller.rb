@@ -26,7 +26,7 @@ class Admin::LevelsController < ApplicationController
   def update
     @level = Level.find(params[:id])
     if @level && @level.update(level_params)
-      redirect_to admin_badges_path, notice: "El nivel  <strong>#{@level.name}</strong> ha sido actualizado"
+      redirect_to admin_levels_path, notice: "El nivel  <strong>#{@level.name}</strong> ha sido actualizado"
     else
       render :edit
     end

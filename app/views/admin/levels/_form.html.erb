@@ -25,11 +25,10 @@
         </div>
 
         <div class="actions text-right">
-          <%= link_to "Cancelar", "#", class: "btn btn-default" %>
+          <%= link_to "Cancelar", admin_levels_path , class: "btn btn-default" %>
           <%= f.submit @level.new_record? ? "Crear nivel" : "Actualizar nivel", class: "btn btn-primary" %>
         </div>
       </div>
     <% end %>
   </div>
 </div>
-
