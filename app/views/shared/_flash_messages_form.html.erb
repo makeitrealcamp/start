@@ -2,7 +2,7 @@
 <% if object.errors.any? %>
 
   <% object.errors.full_messages.each do |message| %>
-    <div class='alert alert-danger  fade in'>
+    <div class='alert alert-danger alert-error fade in'>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       <%= message.html_safe %>
     </div>

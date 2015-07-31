@@ -14,23 +14,19 @@ class PasswordResetsController < ApplicationController
 
 
   def edit
-    @user = User.where(["settings -> 'password_reset_token' = '#{params[:t]}'"]).take
-    raise ActionController::RoutingError.new('Not Found') unless @user
-
-    if @user.password_reset_sent_at < 2.hours.ago
-      redirect_to login_path, flash: { error: "La página ya no se encuentra disponible" }
+    token = params[:token]
+    user = User.where("settings -> 'password_reset_token' = ?",token).take!
+    if user.password_reset_sent_at < 2.hours.ago
+      redirect_to login_path, error: "El token de restablecimiento de contraseña ha vencido. Solicita uno nuevo."
+    else
+      @password_reset = PasswordResetForm.new(token: token)
     end
   end
 
   def update
-    @user = User.where("settings -> 'password_reset_token' = '#{params[:t]}'").take
-    @user.errors[:password] << "Por favor ingresa una contraseña" if user_params[:password].blank?
-
-    if @user.password_reset_sent_at < 2.hours.ago
-      redirect_to new_password_reset_path, flash: { error: "La página ya no se encuentra disponible" }
-    elsif @user.errors.empty? && @user.update(user_params)
-      @user.update(password_reset_token: nil, password_reset_sent_at: nil)
-      redirect_to login_path, flash: { notice: "la contraseña se ha restablecido correctamente" }
+    @password_reset = PasswordResetForm.new(password_reset_params)
+    if @password_reset.save
+      redirect_to login_path, notice: "la contraseña se ha restablecido correctamente"
     else
       render :edit
     end
@@ -43,5 +39,9 @@ class PasswordResetsController < ApplicationController
 
     def password_reset_request_params
       params.require(:password_reset_request).permit(:email)
+    end
+
+    def password_reset_params
+      params.require(:password_reset).permit(:password, :password_confirmation, :token)
     end
 end
