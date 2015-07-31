@@ -10,13 +10,13 @@
             <div class="first-name"><%= @user.first_name %></div>
             <div class="info-value"><span class="glyphicon glyphicon-envelope"></span> <%= @user.email %></div>
             <div class="info-value"><span class="glyphicon glyphicon-time"></span> Se unió el <%= l @user.created_at, format: '%d %b, %Y' %></div>
-            <div class="info-status"><%= @user.str_status %></div>
+            <div class="info-status"><%= @user.status %></div>
           </div>
         </div>
         <div class="col-sm-4">
           <% if @user.active? && current_user.is_admin? %>
           <div class="details">
-            <div class="detail-value"><strong>Optimismo:</strong> <%= @user.str_optimism %></div>
+            <div class="detail-value"><strong>Optimismo:</strong> <%= @user.optimism %></div>
             <div class="detail-value"><strong>Motivación:</strong> <%= @user.motivation %></div>
             <div class="detail-value"><strong>Mentalidad:</strong> <%= @user.mindset %></div>
             <div class="detail-value"><strong>Experience:</strong> <%= @user.experience %></div>

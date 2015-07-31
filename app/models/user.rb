@@ -102,31 +102,8 @@ class User < ActiveRecord::Base
     @stats ||= UserStats.new(self)
   end
 
-  def has_role?(role)
-    roles && roles.include?(role)
-  end
-
   def is_admin?
     admin_account?
-  end
-
-  def str_status
-    active? ? "Activo" : "Sin Activar"
-  end
-
-  def str_optimism
-    return "" if optimism.nil?
-    optimism == "high" ? "alto" : "bajo"
-  end
-
-  def str_account_type
-    if free_account?
-      "Usuario Free"
-    elsif paid_account?
-      "Usuario Pago"
-    elsif admin_account?
-      "Administrador"
-    end
   end
 
   def resource_completed_at(resource)
@@ -204,6 +181,7 @@ class User < ActiveRecord::Base
       self.status ||= :created
       self.has_public_profile ||= false
       self.account_type ||= User.account_types[:free_account]
+      self.level ||= Level.for_points(0)
     end
 
     def generate_token
