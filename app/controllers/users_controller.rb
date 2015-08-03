@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def activate_form
     token = params[:token]
-    @user = User.created.where("settings -> 'password_reset_token' = ? ", token).take!
+    @user = User.where("settings -> 'password_reset_token' = ? ", token).take!
     if @user.has_valid_account_activation_token?
       @activate_user = ActivateUserForm.new(token: token)
     else

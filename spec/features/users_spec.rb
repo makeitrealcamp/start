@@ -151,10 +151,32 @@ RSpec.feature "Users", type: :feature do
       expect(user.has_public_profile).to eq true
       expect(user.mobile_number).to eq '3001234567'
       expect(user.first_name).to eq original_first_name
-      expect(user.birthday).to_not be_nil # the factory assigns a random date
 
       expect(current_path).to eq login_path
       expect(page).to have_selector '.alert-notice'
+    end
+
+    scenario 'with existing nickname' do
+      create(:user,nickname: "simon0191")
+
+      activate_account(
+        token: user.password_reset_token,
+        password: password,
+        password_confirmation: password,
+        nickname: 'simon0191',
+        gender: 'male',
+        has_public_profile: true,
+        mobile_number: '3001234567'
+      )
+      user.reload
+
+      expect(user.authenticate(original_password)).to eq user
+      expect(user.status).to eq "created"
+      expect(user.nickname).to_not eq 'simon0191'
+
+      expect(page).to have_selector ".alert-error"
+      expect(current_path).to eq activate_users_path
+
     end
 
 
@@ -168,7 +190,6 @@ RSpec.feature "Users", type: :feature do
 
       expect(user.authenticate(original_password)).to eq user
       expect(user.status).to eq "created"
-      expect(user.birthday).to_not be_nil # the factory assigns a random date
       expect(user.nickname).to_not eq 'pepito'
 
       expect(page).to have_selector ".alert-error"

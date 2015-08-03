@@ -9,10 +9,9 @@ class PasswordChangeForm < BaseForm
   validates :password_confirmation, presence: true
   validates_confirmation_of :password
 
-private
-
-  def persist!
-    self.user.update!(password: self.password, password_confirmation: self.password_confirmation)
-  end
+  private
+    def persist!
+      self.user.update!(password: self.password, password_confirmation: self.password_confirmation)
+    end
 
 end
