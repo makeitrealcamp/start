@@ -22,6 +22,7 @@
 @import "phases";
 @import "profiles";
 @import "points";
+@import "alerts";
 @import "admin/dashboard";
 @import "admin/solutions";
 @import "admin/badges";
@@ -84,23 +85,6 @@ html.turbolinks-progress-bar::before {
   &.action-warn { background: #E3A214; }
   &.action-love { background: #AF38C7;}
   &.action-blue { background: #2A79A6; }
-}
-
-.alert-top {
-  @extend .alert;
-
-  text-align: center;
-  border-radius: 0;
-  padding: 7px 15px;
-  margin-top: -20px;
-}
-
-.alert-top-notice {
-  @extend .alert-success;
-}
-
-.alert-top-error {
-  @extend .alert-danger;
 }
 
 .CodeMirror pre {
@@ -192,4 +176,8 @@ code {
   border-style: solid;
   border-color: #FC441D;
   border-width: 3px;
+}
+
+.margin-bottom {
+  margin-bottom: 20px;
 }

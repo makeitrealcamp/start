@@ -42,6 +42,7 @@ class User < ActiveRecord::Base
 
   hstore_accessor :profile,
     first_name: :string,
+    last_name: :string,
     gender: :string,
     birthday: :date,
     mobile_number: :string,
@@ -74,6 +75,12 @@ class User < ActiveRecord::Base
   after_initialize :default_values
   before_create :assign_random_nickname
 
+  def generate_password
+    password = SecureRandom.urlsafe_base64
+    self.password = password
+    self.password_confirmation = password
+  end
+
   def self.with_public_profile
     self.is_has_public_profile
   end
@@ -95,31 +102,8 @@ class User < ActiveRecord::Base
     @stats ||= UserStats.new(self)
   end
 
-  def has_role?(role)
-    roles && roles.include?(role)
-  end
-
   def is_admin?
     admin_account?
-  end
-
-  def str_status
-    active? ? "Activo" : "Sin Activar"
-  end
-
-  def str_optimism
-    return "" if optimism.nil?
-    optimism == "high" ? "alto" : "bajo"
-  end
-
-  def str_account_type
-    if free_account?
-      "Usuario Free"
-    elsif paid_account?
-      "Usuario Pago"
-    elsif admin_account?
-      "Administrador"
-    end
   end
 
   def resource_completed_at(resource)
@@ -157,6 +141,13 @@ class User < ActiveRecord::Base
     !!self.resource_completions.find_by_resource_id(resource.id)
   end
 
+  def send_activate_mail
+    generate_token
+    self.password_reset_sent_at = Time.current
+    save!
+    UserMailer.activate(self).deliver_now
+  end
+
   def send_password_reset
     generate_token
     self.password_reset_sent_at = Time.current
@@ -184,12 +175,33 @@ class User < ActiveRecord::Base
     solution = solutions.new(challenge_id: challenge.id)
   end
 
+  def activate!
+    self.update!(
+      password_reset_token: nil,
+      password_reset_sent_at: nil,
+      status: User.statuses[:active],
+      activated_at: Time.current
+    )
+    SubscriptionsMailer.welcome_mail(self).deliver_now
+    SubscriptionsMailer.welcome_hangout(self).deliver_later!(wait: 24.hours)
+    
+  end
+
+  def has_valid_password_reset_token?
+    (!!self.password_reset_sent_at) && (self.password_reset_sent_at >= 2.hours.ago)
+  end
+
+  def has_valid_account_activation_token?
+    (!!self.password_reset_sent_at) && (self.password_reset_sent_at >= 2.days.ago)
+  end
+
   private
     def default_values
       self.roles ||= ["user"]
       self.status ||= :created
       self.has_public_profile ||= false
       self.account_type ||= User.account_types[:free_account]
+      self.level ||= Level.for_points(0)
     end
 
     def generate_token
@@ -205,5 +217,4 @@ class User < ActiveRecord::Base
         end while User.find_by_nickname(self.nickname)
       end
     end
-
 end

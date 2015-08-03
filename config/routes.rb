@@ -17,7 +17,10 @@ Rails.application.routes.draw do
   resource :password_reset, except: [:index, :show]
 
   resources :users do
-    patch :activate, on: :member
+    collection do
+      get :activate, action: 'activate_form'
+      patch :activate
+    end
   end
   # profile
   get "/u/:nickname", to: "users#profile", as: :user_profile
@@ -103,7 +106,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'dashboard', to: 'dashboard#index'
-    resources :users, only: [:index, :show] do
+    resources :users, only: [:index, :new, :create, :show] do
       resources :subscriptions, only: [:create] do
         member do
           patch :cancel

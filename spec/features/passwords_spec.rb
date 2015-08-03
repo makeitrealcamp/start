@@ -1,61 +1,45 @@
 require 'rails_helper'
 
 RSpec.feature "Password", type: :feature do
+  let!(:original_password) { Faker::Internet.password }
+  let!(:password) { Faker::Internet.password }
+  let!(:other_password) { Faker::Internet.password }
+  let!(:user) { create(:user,password: original_password,password_confirmation: original_password) }
 
-  let!(:user) { create(:user) }
+  context "Change password" do
+    scenario 'with valid input', js: true do
+      change_password(user: user, new_password: password, new_password_confirmation: password)
+      expect(page).to have_selector '.alert-success'
+      expect(user.reload.authenticate(password)).to eq(user)
+    end
 
-  scenario 'Display form change password', js: true do
-    login(user)
-    find('.avatar').click
-    click_link 'Cambiar Contraseña'
-    wait_for_ajax
-    expect(page).to have_selector '.modal-dialog'
-    expect(page).to have_selector 'input#password'
-    expect(page).to have_selector 'input#password_confirmation'
+    scenario 'without password', js: true do
+      change_password(user: user, new_password: '', new_password_confirmation: '')
+      expect(page).to have_selector '.alert-danger'
+      expect(user.reload.authenticate(original_password)).to eq(user)
+    end
+
+    scenario 'without password_confirmation', js: true do
+      change_password(user: user, new_password: password, new_password_confirmation: '')
+      expect(page).to have_selector '.alert-danger'
+      expect(user.reload.authenticate(original_password)).to eq(user)
+    end
+
+    scenario 'with password different from password confirmation', js: true do
+      change_password(user: user, new_password: password, new_password_confirmation: other_password)
+      expect(page).to have_selector '.alert-danger'
+      expect(user.reload.authenticate(original_password)).to eq(user)
+    end
   end
+end
 
-  scenario 'Change password with valid input', js: true do
-    login(user)
-    find('.avatar').click
-    click_link 'Cambiar Contraseña'
-    wait_for_ajax
-    password = Faker::Internet.password
-    fill_in 'password', with: password
-    fill_in 'password_confirmation', with: password
-    click_button 'Cambiar Contraseña'
-    expect(page).to have_selector '.alert-success'
-    expect(page).to have_content 'La contraseña ha sido cambiada con éxito'
-  end
 
-  scenario 'Change password without password', js: true do
-    login(user)
-    find('.avatar').click
-    click_link 'Cambiar Contraseña'
-    wait_for_ajax
-    fill_in 'password_confirmation', with: Faker::Internet.password
-    click_button 'Cambiar Contraseña'
-    expect(page).to have_selector '.alert-danger'
-    expect(page).to have_content 'Por favor ingresa una contraseña'
-  end
-
-  scenario 'Change password without password_confirmation', js: true do
-    login(user)
-    find('.avatar').click
-    click_link 'Cambiar Contraseña'
-    wait_for_ajax
-    fill_in 'password', with: Faker::Internet.password
-    click_button 'Cambiar Contraseña'
-    expect(page).to have_selector '.alert-danger'
-  end
-
-  scenario 'Change password when is not match', js: true do
-    login(user)
-    find('.avatar').click
-    click_link 'Cambiar Contraseña'
-    wait_for_ajax
-    fill_in 'password', with: Faker::Internet.password
-    fill_in 'password_confirmation', with: Faker::Internet.password
-    click_button 'Cambiar Contraseña'
-    expect(page).to have_selector '.alert-danger'
-  end
+def change_password(opts = {})
+  login(opts[:user])
+  find('.avatar').click
+  click_link 'Cambiar Contraseña'
+  wait_for_ajax
+  fill_in 'password_change_password', with: opts[:new_password]
+  fill_in 'password_change_password_confirmation', with: opts[:new_password_confirmation]
+  click_button 'Cambiar Contraseña'
 end

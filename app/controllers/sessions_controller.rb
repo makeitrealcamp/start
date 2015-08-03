@@ -17,11 +17,15 @@ class SessionsController < ApplicationController
 
   def create_with_omniauth
     if env['omniauth.auth'].info.email.blank?
-      url_omniauth_failure("No pudimos obtener el email de #{env['omniauth.auth'].provider.capitalize}. Por favor habilítalo o regístrate usando tu email y contraseña")
-    else
-      user = AuthProvider.omniauth(env['omniauth.auth'])
+      url_omniauth_failure("No pudimos obtener el email de #{env['omniauth.auth'].provider.capitalize}. Por favor habilítalo")
+    elsif user = AuthProvider.omniauth(env['omniauth.auth'])
       sign_in(user)
       redirect_to signed_in_root_path
+    else
+      redirect_to login_path, flash: { error:
+        %Q( Para ingresar a la plataforma debes ser estudiante de Make it Real.
+          Visita <a href="http://www.makeitreal.camp">makeitreal.camp</a> para más información)
+        }
     end
   end
 
@@ -37,6 +41,6 @@ class SessionsController < ApplicationController
   private
 
   def url_omniauth_failure(message)
-    redirect_to signup_path, flash: { error: message }
+    redirect_to login_path, flash: { error: message }
   end
 end

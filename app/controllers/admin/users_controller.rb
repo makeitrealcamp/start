@@ -1,6 +1,19 @@
 class Admin::UsersController < ApplicationController
   before_action :admin_access
 
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+    @user.generate_password
+    if @user.save
+      @user.subscriptions.create
+      @user.send_activate_mail
+    end
+  end
+
   def index
     @users ||= User.all
 
@@ -52,4 +65,9 @@ class Admin::UsersController < ApplicationController
     params_clone[:page] = 1
     Rails.application.routes.url_helpers.admin_users_path(params_clone)
   end
+
+  private
+    def user_params
+      params.require(:user).permit(:first_name, :last_name, :email, :gender, :nickname, :account_type)
+    end
 end

@@ -5,35 +5,27 @@ class PasswordResetsController < ApplicationController
   end
 
   def create
-    @errors = []
-    @errors << "Por favor digita un correo electrónico" if params[:email].blank?
-    user = User.find_by_email(params[:email]) unless params[:email].blank?
-
-    if user
+    @reset_request = PasswordResetRequestForm.new(password_reset_request_params)
+    if @reset_request.valid?
+      user = User.find_by_email(@reset_request.email)
       user.send_password_reset
-    else
-      @errors << "El correo electrónico no existe en la base de datos"
     end
   end
 
 
   def edit
-    @user = User.where(["settings -> 'password_reset_token' = '#{params[:t]}'"]).take
-    raise ActionController::RoutingError.new('Not Found') unless @user
-
-    if @user.password_reset_sent_at < 2.hours.ago
-      redirect_to login_path, flash: { error: "La página ya no se encuentra disponible" }
+    token = params[:token]
+    user = User.where("settings -> 'password_reset_token' = ?",token).take!
+    if user.has_valid_password_reset_token?
+      @password_reset = PasswordResetForm.new(token: token)
+    else
+      redirect_to login_path, flash: { error: "El token de restablecimiento de contraseña ha vencido. Solicita uno nuevo." }
     end
   end
 
   def update
-    @user = User.where("settings -> 'password_reset_token' = '#{params[:t]}'").take
-    @user.errors[:password] << "Por favor ingresa una contraseña" if user_params[:password].blank?
-
-    if @user.password_reset_sent_at < 2.hours.ago
-      redirect_to new_password_reset_path, flash: { error: "La página ya no se encuentra disponible" }
-    elsif @user.errors.empty? && @user.update(user_params)
-      @user.update(password_reset_token: nil, password_reset_sent_at: nil)
+    @password_reset = PasswordResetForm.new(password_reset_params)
+    if @password_reset.save
       redirect_to login_path, flash: { notice: "la contraseña se ha restablecido correctamente" }
     else
       render :edit
@@ -45,4 +37,11 @@ class PasswordResetsController < ApplicationController
       params.require(:user).permit(:password, :password_confirmation)
     end
 
+    def password_reset_request_params
+      params.require(:password_reset_request).permit(:email)
+    end
+
+    def password_reset_params
+      params.require(:password_reset).permit(:password, :password_confirmation, :token)
+    end
 end

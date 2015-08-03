@@ -21,9 +21,11 @@ class AuthProvider < ActiveRecord::Base
   validates :uid, :provider, :user,  presence: true
 
   def self.omniauth(auth)
-    password = SecureRandom.urlsafe_base64
-    user = User.where(email: auth.info.email).first_or_create!(password: password, password_confirmation: password)
-    user.auth_providers.where(provider: auth.provider, uid: auth.uid).first_or_create(image: auth.info.image)
-    user
+    user = User.where(email: auth.info.email).take
+
+    if user
+      user.auth_providers.where(provider: auth.provider, uid: auth.uid).first_or_create(image: auth.info.image)
+      user #return user
+    end
   end
 end

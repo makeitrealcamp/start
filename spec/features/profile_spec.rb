@@ -14,16 +14,13 @@ RSpec.feature "Profile", type: :feature do
       visit(user_profile_path(user_with_public_profile.nickname))
       expect(page).to_not have_selector(".update-profile-visibility")
 
-
       login(user_with_public_profile)
-      wait_for_ajax
       visit(user_profile_path(user_with_public_profile.nickname))
 
       find('#user_has_public_profile_false').click
       wait_for_ajax
       expect(user_with_public_profile.reload.has_public_profile).to eq false
       expect(page).to_not have_selector(".share-url")
-
 
       find('#user_has_public_profile_true').click
       wait_for_ajax

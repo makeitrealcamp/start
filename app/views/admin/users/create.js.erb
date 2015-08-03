@@ -1,0 +1,8 @@
+<% if @user.valid? %>
+  $("#create-user-modal .alerts-container")
+    .html('<%= j render "shared/alert", msg: "se ha enviado el correo de activación al correo #{@user.email}", type: "notice" %>');
+  $('#create-user-modal input').val('');
+<% else %>
+  $("#create-user-modal .alerts-container")
+    .html('<%= j render "shared/flash_messages_form", object: @user %>');
+<% end %>

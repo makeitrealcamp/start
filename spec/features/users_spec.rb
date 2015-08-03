@@ -61,10 +61,55 @@ RSpec.feature "Users", type: :feature do
   end
 
   context 'when accessed as admin' do
-    scenario "show list users", js: true do
+    context 'create user', js: true do
+      scenario 'display form' do
+        login(admin)
+        wait_for_ajax
+        visit admin_users_path
+        click_link 'Nuevo usuario'
+        expect(page).to have_selector "#create-user-modal"
+      end
+
+      scenario 'with valid input ' do
+        login(admin)
+        wait_for_ajax
+        visit admin_users_path
+        click_link 'Nuevo usuario'
+        wait_for_ajax
+
+        first_name = Faker::Name.first_name
+        last_name = Faker::Name.last_name
+        email = Faker::Internet.email
+
+        find(:css, '.modal-dialog input#user_first_name').set(first_name)
+        find(:css, '.modal-dialog input#user_last_name').set(last_name)
+        find(:css, '.modal-dialog input#user_email').set(email)
+        find(:css, '.modal-dialog #user_gender_male').set(true)
+        click_button "Crear Usuario"
+        wait_for_ajax
+        user = User.find_by_email(email)
+        expect(user).not_to be_nil
+        expect(user.first_name).to eq first_name
+        expect(user.last_name).to eq last_name
+        expect(user.gender).to eq "male"
+
+        expect(page).to have_selector '.alert-success'
+      end
+
+      scenario 'without valid input' do
+        login(admin)
+        wait_for_ajax
+        visit admin_users_path
+        click_link 'Nuevo usuario'
+        wait_for_ajax
+        click_button "Crear Usuario"
+        expect(page).to have_selector '.alert-danger'
+      end
+    end
+
+    scenario "show list users" do
       login(admin)
       visit admin_users_path
-      wait_for_ajax
       expect(current_path).to eq admin_users_path
     end
 
@@ -76,41 +121,100 @@ RSpec.feature "Users", type: :feature do
     end
   end
 
-  context 'with Facebook account', js: true do
-    scenario "can sign in user" do
-      mock_auth_hash_facebook
-      visit login_path
-      find('#sign-in-facebook').click
-      sleep(1.0)
-      expect(current_path).to eq signed_in_root_path
+  describe 'account activation' do
+
+    let!(:password) { Faker::Internet.password(8) }
+    let!(:other_password) { Faker::Internet.password(8) }
+    let!(:original_password) { Faker::Internet.password(8) }
+    let!(:user) {create(:user, status: "created", password: original_password, password_confirmation: original_password)}
+
+    before do
+      user.send_activate_mail
     end
 
-    xscenario 'can handle authentication error ' do
-      OmniAuth.config.mock_auth[:facebook] = :invalid_credentials
-      visit login_path
-      find('#sign-in-facebook').click
-      wait_for_ajax
-      expect(page).to have_content 'Es necesario que autorices los permisos para poder ingresar a Make it Real. También puedes regístrate con email y contraseña.'
-      expect(current_path).to eq Prework::Application::APPLICATION_FORM_URL
+    scenario 'with valid input' do
+      original_first_name = user.first_name
+      activate_account(
+        token: user.password_reset_token,
+        password: password,
+        password_confirmation: password,
+        nickname: 'pepito',
+        gender: 'male',
+        has_public_profile: true,
+        mobile_number: '3001234567'
+      )
+      user.reload
+      expect(user.authenticate(password)).to eq user
+      expect(user.status).to eq "active"
+      expect(user.nickname).to eq 'pepito'
+      expect(user.gender).to eq 'male'
+      expect(user.has_public_profile).to eq true
+      expect(user.mobile_number).to eq '3001234567'
+      expect(user.first_name).to eq original_first_name
+
+      expect(current_path).to eq login_path
+      expect(page).to have_selector '.alert-notice'
+    end
+
+    scenario 'with existing nickname' do
+      create(:user,nickname: "simon0191")
+
+      activate_account(
+        token: user.password_reset_token,
+        password: password,
+        password_confirmation: password,
+        nickname: 'simon0191',
+        gender: 'male',
+        has_public_profile: true,
+        mobile_number: '3001234567'
+      )
+      user.reload
+
+      expect(user.authenticate(original_password)).to eq user
+      expect(user.status).to eq "created"
+      expect(user.nickname).to_not eq 'simon0191'
+
+      expect(page).to have_selector ".alert-error"
+      expect(current_path).to eq activate_users_path
+
+    end
+
+
+    scenario 'with invalid input' do
+      activate_account(
+        token: user.password_reset_token,
+        password: password,
+        password_confirmation: other_password,
+        nickname: 'pepito'
+      )
+
+      expect(user.authenticate(original_password)).to eq user
+      expect(user.status).to eq "created"
+      expect(user.nickname).to_not eq 'pepito'
+
+      expect(page).to have_selector ".alert-error"
+      expect(current_path).to eq activate_users_path
     end
   end
+end
 
-  context 'with github account', js: true do
-    scenario "can sign in user" do
-      mock_auth_hash_github
-      visit login_path
-      find('#sign-in-github').click
-      sleep(1.0)
-      expect(current_path).to eq signed_in_root_path
-    end
 
-    xscenario 'can handle authentication error' do
-      OmniAuth.config.mock_auth[:github] = :invalid_credentials
-      visit login_path
-      find('#sign-in-github').click
-      wait_for_ajax
-      expect(page).to have_content 'Es necesario que autorices los permisos para poder ingresar a Make it Real. También puedes regístrate con email y contraseña.'
-      expect(current_path).to eq Prework::Application::APPLICATION_FORM_URL
-    end
-  end
+def activate_account(opts={})
+
+  visit activate_users_path(token: opts[:token])
+
+  fill_in "activate_user_mobile_number", with: opts[:mobile_number]
+  fill_in "activate_user_birthday", with: opts[:birthday]
+  fill_in "activate_user_nickname", with: opts[:nickname]
+
+  find(:css, '#activate_user_has_public_profile_true').set(true) if opts[:has_public_profile] == true
+  find(:css, '#activate_user_has_public_profile_false').set(true) if opts[:has_public_profile] == false
+
+  find(:css, '#activate_user_gender_male').set(true) if opts[:gender] == "male"
+  find(:css, '#activate_user_gender_male').set(true) if opts[:gender] == "female"
+
+  fill_in "activate_user_password", with: opts[:password]
+  fill_in "activate_user_password_confirmation", with: opts[:password_confirmation]
+
+  click_button 'Activar Cuenta'
 end

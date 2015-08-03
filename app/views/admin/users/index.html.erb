@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-sm-6">
       <h1>Estudiantes</h1>
+      <%= link_to "Nuevo usuario", new_admin_user_path,  remote: true, class: "btn btn-primary margin-bottom" %>
     </div>
     <div class="col-sm-6">
       <%= form_tag(admin_users_path, method: "get",
@@ -23,7 +24,6 @@
         <% end %>
       </div>
     </div>
-
     <div class="col-sm-6">
       <%= will_paginate @users, previous_label: "< Anterior",
         next_label: "Siguiente >", class:"pull-right pagination" %>
@@ -47,7 +47,7 @@
         <% @users.each do |user| %>
         <tr id="user-<%= user.id %>">
           <td><%= link_to name(user), user_profile_path(user.nickname) %></td>
-          <td><%= user.str_account_type %> (<%= user.str_status %>)</td>
+          <td><%= user.account_type %> (<%= user.status %>)</td>
           <td class="text-center"><%= l user.created_at, format: '%d %b %Y' %></td>
           <td class="text-center"><%= distance_of_time_in_words_to_now(user.last_active_at) unless user.last_active_at.nil? %></td>
           <td class="text-center"><%= user.solutions.completed.count %></td>
@@ -67,7 +67,6 @@
         <% end %>
       </div>
     </div>
-
     <div class="col-sm-6">
       <%= will_paginate @users, previous_label: "< Anterior",
         next_label: "Siguiente >", class:"pull-right pagination" %>

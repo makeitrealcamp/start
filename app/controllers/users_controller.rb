@@ -1,30 +1,24 @@
 class UsersController < ApplicationController
-  before_action :private_access, except: [:new, :create, :profile]
-  before_action :public_access, only: [:new, :create]
+  before_action :private_access, except: [:new, :create, :profile, :activate_form, :activate]
+  before_action :public_access, only: [:new, :create, :activate_form, :activate]
 
-#  def new
-#    redirect_to application_form_path
-#    # @user = User.new
-#  end
-#
-#  def create
-#    @user = User.create(user_params)
-#    if @user.valid?
-#      sign_in(@user)
-#      redirect_to signed_in_root_path
-#    else
-#      render :new
-#    end
-#  end
+  def activate_form
+    token = params[:token]
+    @user = User.where("settings -> 'password_reset_token' = ? ", token).take!
+    if @user.has_valid_account_activation_token?
+      @activate_user = ActivateUserForm.new(token: token)
+    else
+      redirect_to login_path, flash: { error: "Tu link de activación ha expirado." }
+    end
+  end
 
   def activate
-    begin
-      gender = Gendered::Name.new(activate_params[:first_name]).guess!
-    rescue SocketError => e
-      gender = :male
+    @activate_user = ActivateUserForm.new(activate_user_params)
+    if @activate_user.save
+      redirect_to login_path, flash: { notice: "¡Felicitaciones! Has activado tu cuenta de Make it Real. Ingresa a la plataforma y descubre lo que tenemos preparado para ti." }
+    else
+      render :activate_form
     end
-
-    current_user.update(activate_params.merge(gender: gender, status: User.statuses[:active], activated_at: Time.current))
   end
 
   def edit
@@ -63,12 +57,14 @@ class UsersController < ApplicationController
   private
     def user_params
       params.require(:user).permit(
-        :email, :password, :password_confirmation, :first_name, :mobile_number,
-        :birthday, :has_public_profile,:github_username,:nickname
+        :password, :password_confirmation, :first_name, :mobile_number, :birthday,
+        :has_public_profile, :github_username, :nickname, :gender
       )
     end
-
-    def activate_params
-      params.require(:user).permit(:first_name, :optimism, :motivation, :mindset, :experience)
+    def activate_user_params
+      params.require(:activate_user).permit(
+        :password, :password_confirmation, :first_name, :mobile_number, :birthday,
+        :has_public_profile, :github_username, :nickname, :gender, :token
+      )
     end
 end

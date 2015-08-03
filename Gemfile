@@ -66,7 +66,7 @@ gem 'unicorn', platforms: [:ruby]
 
 gem 'zeroclipboard-rails'
 gem 'shareable', github: "simon0191/shareable"
-
+gem 'virtus'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

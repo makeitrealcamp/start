@@ -1,6 +1,15 @@
 <%# required: msg %>
 <%# optional: type %>
-<div class='alert alert-top  fade in <%= "alert-top-#{type}" if defined? type %>'>
+<% random = SecureRandom.hex(4)%>
+<div id="alert-<%= random %>" class='alert fade in <%= alert_classes(type) if defined? type %>'>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <%= msg.html_safe %>
+  <script type="text/javascript">
+    setTimeout(function(){
+      $("#alert-<%=random%>").addClass("dismiss-alert");
+    },5000);
+    setTimeout(function(){
+      $("#alert-<%=random%>").remove();
+    },6000);
+  </script>
 </div>

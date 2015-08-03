@@ -3,6 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .admin-project-solutions {
   .search-project-solutions-form {
-    margin-bottom: 50px; 
+    margin-bottom: 50px;
+    label {
+      display: block;
+    }
+    .btn {
+      margin-top: 25px;
+    }
   }
 }

@@ -1,0 +1,39 @@
+@mixin dimiss-tansition($duration) {
+  -webkit-transition: height $duration linear 0s, padding-top $duration linear 0s, padding-bottom $duration linear 0s, margin-top $duration linear 0s, margin-bottom $duration linear 0s, border-top $duration linear 0s, border-bottom $duration linear 0s;
+     -moz-transition: height $duration linear 0s, padding-top $duration linear 0s, padding-bottom $duration linear 0s, margin-top $duration linear 0s, margin-bottom $duration linear 0s, border-top $duration linear 0s, border-bottom $duration linear 0s;
+      -ms-transition: height $duration linear 0s, padding-top $duration linear 0s, padding-bottom $duration linear 0s, margin-top $duration linear 0s, margin-bottom $duration linear 0s, border-top $duration linear 0s, border-bottom $duration linear 0s;
+          transition: height $duration linear 0s, padding-top $duration linear 0s, padding-bottom $duration linear 0s, margin-top $duration linear 0s, margin-bottom $duration linear 0s, border-top $duration linear 0s, border-bottom $duration linear 0s;
+}
+
+.alert {
+  text-align: center;
+  border-radius: 0;
+  padding: 7px 15px;
+  margin-top: -20px;
+  margin-bottom: 5px;
+
+  @include dimiss-tansition(.5s);
+}
+
+.alert-notice {
+  @extend .alert-success;
+  margin-bottom: 5px;
+  @include dimiss-tansition(.5s);
+}
+
+.alert-error {
+  @extend .alert-danger;
+  margin-bottom: 5px;
+  @include dimiss-tansition(.5s);
+}
+
+.dismiss-alert {
+  overflow: hidden;
+  height: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-top: 0px;
+  border-bottom: 0px;
+}

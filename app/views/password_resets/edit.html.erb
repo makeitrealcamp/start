@@ -1,9 +1,10 @@
 <div class="container login">
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
-      <%= form_for @user, url: password_reset_path(t: params[:t]), method: 'PATCH' do |f| %>
-        <%= render 'shared/flash_messages_form', object: @user  %>
+      <%= form_for :password_reset, url: password_reset_path(token: @password_reset.token), method: :patch do |f| %>
         <h1>Restablecer Contraseña</h1>
+        <%= render 'shared/flash_messages_form', object: @password_reset  %>
+        <%= f.hidden_field :token %>
         <div class="form-group">
           <%= f.label :password, "Contraseña"  %>
           <%= f.password_field :password, class: 'form-control input-lg' %>
