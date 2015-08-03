@@ -1,1 +1,1 @@
-$("*[data-resource-id='<%= @resource.id %>']").replaceWith('<%= j link_to_toggle_completed @resource %>');
+$("#resource_" + '<%= @resource.id %>' ).replaceWith("<%= j render  partial: 'courses/resource_item', locals: { resource: @resource } %>");

@@ -3,6 +3,7 @@ class ResourceCompletionController < ApplicationController
 
   def create
     @resource = Resource.friendly.find(params[:resource_id])
+    @course = @resource.course
     if @resource.resource_completions.where(user: current_user).blank?
       @resource.resource_completions.create(user_id: current_user.id)
     end
@@ -15,6 +16,7 @@ class ResourceCompletionController < ApplicationController
 
   def destroy
     @resource = Resource.friendly.find(params[:resource_id])
+    @course = @resource.course
     ResourceCompletion.where(resource_id: @resource.id, user_id: current_user.id).delete_all
   end
 
