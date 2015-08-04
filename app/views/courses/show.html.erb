@@ -28,7 +28,7 @@
           <% end %>
           <li role="presentation" class="<%= "active" if @tab == :resources %>"><a href="#resources" aria-controls="resources" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Recursos</a></li>
           <% if current_user.is_admin? || @course.projects.for(current_user).count > 0 %>
-            <li role="presentation" class="<%= "active" if @tab == :projects %>"><a href="#projects" aria-controls="resources" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-road" aria-hidden="true"></span> Proyectos</a></li>
+            <li role="presentation" class="<%= "active" if @tab == :projects %>"><a href="#projects" aria-controls="projects" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-road" aria-hidden="true"></span> Proyectos</a></li>
           <% end %>
         </ul>
 
@@ -41,13 +41,14 @@
           <div role="tabpanel" class="tab-pane resources <%= "active" if @tab == :resources %>" id="resources">
             <%= render 'resources_section' %>
           </div><!-- tab resources -->
+          <% if current_user.is_admin? || @course.projects.for(current_user).count > 0 %>
+            <div role="tabpanel" class="tab-pane projects <%= "active" if @tab == :projects %>" id="projects">
+              <%= render 'projects_section' %>
+            </div><!-- /projects tab -->
+          <% end %>
+
         </div><!-- /tab content -->
 
-        <% if current_user.is_admin? || @course.projects.for(current_user).count > 0 %>
-          <div role="tabpanel" class="tab-pane projects <%= "active" if @tab == :projects %>" id="projects">
-            <%= render 'projects_section' %>
-          </div><!-- /projects tab -->
-        <% end %>
         </div>
       </div>
     </div>
