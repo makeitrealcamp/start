@@ -5,40 +5,18 @@ RSpec.describe ApplicationHelper, :type => :helper  do
   let!(:src) { Faker::Internet.url }
 
   describe "#embedded_video" do
-    context 'with user' do
-      it 'should return an iframe' do
-        expect(embedded_video(src, user: user)).to have_selector('iframe')
-      end
-      it 'should have wemail query param' do
+    context 'when the video is of wistia provider' do
+      it 'should return an div' do
+        src  = "http://fast.wistia.net/embed/iframe/es7g1ii56j"
         video = embedded_video(src, user: user)
-        iframe = Nokogiri::HTML(video)
-        src = iframe.xpath("//iframe")[0]['src']
-        uri = URI(src)
-        params = CGI.parse(uri.query || "")
-        expect(params["wemail"].present?).to be true
-        expect(params["wemail"]).to eq([user.email])
+        expect(video).to have_selector('div')
+        expect(video).to have_selector('#wistia_es7g1ii56j')
       end
-
-      it 'should not include user in the attributes of the iframe tag' do
-        video = embedded_video(src, user: user)
-        iframe = Nokogiri::HTML(video)
-        user_attr = iframe.xpath("//iframe")[0]['user']
-        expect(user_attr).to be nil
-      end
-
     end
-    context 'without user' do
+
+    context 'when the video is not wistia provider' do
       it 'should return an iframe' do
         expect(embedded_video(src)).to have_selector('iframe')
-      end
-
-      it 'should not have wemail' do
-        video = embedded_video(src)
-        iframe = Nokogiri::HTML(video)
-        src = iframe.xpath("//iframe")[0]['src']
-        uri = URI(src)
-        params = CGI.parse(uri.query || "")
-        expect(params["wemail"].present?).to be false
       end
     end
   end
