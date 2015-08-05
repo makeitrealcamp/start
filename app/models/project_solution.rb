@@ -21,8 +21,6 @@
 class ProjectSolution < ActiveRecord::Base
   belongs_to :user
   belongs_to :project
-  enum status: [:pending_review, :reviewed]
-
   has_many :comments, as: :commentable
 
   validates :project, presence: true
@@ -30,10 +28,19 @@ class ProjectSolution < ActiveRecord::Base
   validates :repository, presence: true
   validates :summary, presence: true
 
+  enum status: [:pending_review, :reviewed]
   after_initialize :default_values
 
   def point_value
     self.project.points.where(user: self.user).sum(:points)
+  end
+
+  def notify_mentors
+    admins = User.admin_account.all
+
+    admins.each do |admin|
+      UserMailer.project_solution_notification(admin, self).deliver_now
+    end
   end
 
   private

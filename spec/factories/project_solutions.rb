@@ -20,11 +20,10 @@
 
 FactoryGirl.define do
   factory :project_solution do
-    user nil
-project nil
-github_url "MyString"
-url "MyString"
-summary "MyText"
+    repository { Faker::Internet.url }
+    url { Faker::Internet.url }
+    summary { Faker::Lorem.paragraph }
+    association  :user, factory: :user
+    association  :project, factory: :project
   end
-
 end
