@@ -26,21 +26,27 @@ module ApplicationHelper
     user = opts[:user]
     uri = URI(src)
 
-    if user
-      params = URI.decode_www_form(uri.query || "") << ['wemail', user.email ]
-      uri.query = URI.encode_www_form(params)
+    if uri.host == "fast.wistia.net"
+      html[:width] ||= "640px"
+      html[:height] ||= "361px"
+      id_video = src.split('/').last
+      content_tag :div do
+        content_tag(:div, nil , id: "wistia_#{id_video}", style: "width: #{html[:width]};height: #{html[:height]}") +
+        javascript_include_tag("//fast.wistia.com/assets/external/E-v1.js") +
+        javascript_tag("wistiaEmbed = Wistia.embed('#{id_video}', { trackEmail: '#{user.email}' });")
+      end
+    else
+      html[:src] ||= uri
+      html[:allowtransparency] ||= true
+      html[:frameborder] ||= "0"
+      html[:scrolling] ||= "no"
+      html[:allowfullscreen] ||= true
+      html[:mozallowfullscreen] ||= true
+      html[:webkitallowfullscreen] ||= true
+      html[:oallowfullscreen] ||= true
+      html[:msallowfullscreen] ||= true
+      content_tag(:iframe, nil, html)
     end
-
-    html[:src] ||= uri
-    html[:allowtransparency] ||= true
-    html[:frameborder] ||= "0"
-    html[:scrolling] ||= "no"
-    html[:allowfullscreen] ||= true
-    html[:mozallowfullscreen] ||= true
-    html[:webkitallowfullscreen] ||= true
-    html[:oallowfullscreen] ||= true
-    html[:msallowfullscreen] ||= true
-    content_tag(:iframe,nil,html)
   end
 
   def genderize(male, female, user=current_user)
