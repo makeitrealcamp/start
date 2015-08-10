@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :record_user_activity
+  before_action :set_content_language
 
   def sign_in(user)
     cookies.permanent.signed[:user_id] = user.id
@@ -62,6 +63,10 @@ class ApplicationController < ActionController::Base
         @first_activity = true if current_user.last_active_at.nil?
         current_user.touch :last_active_at
       end
+    end
+
+    def set_content_language
+      response.headers["Content-Language"] = I18n.locale.to_s
     end
 
 end
