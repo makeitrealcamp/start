@@ -17,7 +17,7 @@
   <% if current_user.has_access_to?(resource) %>
     <% section.lessons.each_with_index do |lesson, j| %>
       <div class="lesson list-group-item" id="lesson_<%=lesson.id %>" data-sortable="true" data-resource-id="<%= lesson.id %>" data-location="<%= url_for([resource.course, resource, section, lesson]) %>" >
-        <%= link_to "Lección #{j} - #{lesson.name} #{video_duration(lesson)}", course_resource_section_lesson_path(resource.course,resource,section,lesson) %>
+        <%= link_to "Lección #{j} - #{lesson.name}", course_resource_section_lesson_path(resource.course,resource,section,lesson) %>
           <div class="pull-right actions">
             <% if current_user.is_admin? %>
               <%= link_to edit_course_resource_section_lesson_path(resource.course,resource,section,lesson) do %>
@@ -30,6 +30,7 @@
           </div>
 
           <span class="lesson-status glyphicon glyphicon-ok <%= 'completed' if current_user.has_completed_lesson?(lesson)%> "></span>
+          <span class="lesson-duration"><%= video_duration(lesson) %></span>
 
       </div>
     <% end %>
