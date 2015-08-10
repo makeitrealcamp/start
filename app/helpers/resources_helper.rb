@@ -11,7 +11,7 @@ module ResourcesHelper
   end
 
   def video_duration(lesson)
-    "(#{lesson.video_duration})" if lesson.video_duration?
+    "#{lesson.video_duration}" if lesson.video_duration?
   end
 
 end
