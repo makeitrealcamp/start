@@ -74,8 +74,9 @@ class User < ActiveRecord::Base
   enum status: [:created, :active]
   enum account_type: [:free_account, :paid_account, :admin_account]
 
-  after_initialize :default_values
   before_create :assign_random_nickname
+  after_initialize :default_values
+  after_save :check_user_level
 
   def generate_password
     password = SecureRandom.urlsafe_base64
@@ -221,6 +222,12 @@ class User < ActiveRecord::Base
         begin
           self.nickname = SecureRandom.hex(8)
         end while User.find_by_nickname(self.nickname)
+      end
+    end
+
+    def check_user_level
+      if self.level_id_was != self.level_id
+        self.notifications.create!(notification_type: :level_up, data: {level_id: self.level_id})
       end
     end
 end

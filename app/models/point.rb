@@ -35,7 +35,6 @@ class Point < ActiveRecord::Base
       unless new_level.nil?
         user.level = new_level
         user.save!
-        user.notifications.create!(notification_type: :level_up, data: {level_id: new_level.id})
       end
     end
 
