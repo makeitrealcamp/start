@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
   has_many :badge_ownerships, dependent: :destroy
   has_many :badges, -> { uniq }, through: :badge_ownerships
   has_many :notifications
+  has_many :comments
 
   hstore_accessor :profile,
     first_name: :string,
@@ -80,6 +81,10 @@ class User < ActiveRecord::Base
     password = SecureRandom.urlsafe_base64
     self.password = password
     self.password_confirmation = password
+  end
+
+  def self.commenters_of(commentable)
+    joins(:comments).where(comments: {commentable_id: commentable.id,commentable_type: commentable.class.to_s}).uniq
   end
 
   def self.with_public_profile

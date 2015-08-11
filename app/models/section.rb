@@ -25,11 +25,10 @@ class Section < ActiveRecord::Base
   validates :title, presence: true
 
   default_scope { rank(:row) }
+  delegate :course, to: :resource
 
   alias_method :course, :resource
   alias_method :course=, :resource=
-
-
 
   def next(user)
     self.resource.sections.where('row > ?', self.row).first

@@ -87,6 +87,14 @@ class Challenge < ActiveRecord::Base
     self.difficulty_bonus + Challenge::BASE_POINTS
   end
 
+  def name_for_notification
+    name
+  end
+
+  def url_for_notification
+    Rails.application.routes.url_helpers.course_challenge_url(self.course,self)
+  end
+
   private
     def default_values
       self.published ||= false

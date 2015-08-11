@@ -70,6 +70,14 @@ class Resource < ActiveRecord::Base
     title
   end
 
+  def name_for_notification
+    title
+  end
+
+  def url_for_notification
+    Rails.application.routes.url_helpers.course_resource_url(self.course,self)
+  end
+
   private
     def default_values
       self.published ||= false
