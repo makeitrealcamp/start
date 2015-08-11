@@ -24,15 +24,33 @@
   <%= yield %>
 <% else %>
 <body class="expand">
-  <%= render "layouts/navbar" %>
-  <div class="content-wrapper expand">
-    <%= render "utils/alerts" %>
-    <%= yield %>
-  </div>
-
-  <div class="overlay"></div>
-
-  <%= render "layouts/content_navigation" %>
+  <div class="new_home">
+  <nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <%= link_to image_tag('logoNavMir.png', class: "navbar-brand"), root_path %>
+      </div>
+      <div class="navbar-collapse collapse" id="navbar">
+        <ul class="nav navbar-nav">
+          <li><a href="#">Nuestro Programa</a></li>
+          <li><a href="#">Preguntas Frecuentes</a></li>
+          <li><a href="#">Blog</a></li>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Ingresar</a></li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </nav>
+</div>
 </body>
 <% end %>
 </html>

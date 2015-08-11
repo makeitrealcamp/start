@@ -10,4 +10,8 @@ class PagesController < ApplicationController
     @content = client.contents("makeitrealcamp/handbook", path: "README.md", accept: "application/vnd.github.VERSION.raw").encode("ASCII-8BIT").force_encoding("utf-8")
   end
 
+  def new_home
+    render layout: false
+  end
+
 end

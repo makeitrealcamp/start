@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html class="expand" lang="en" xml:lang="en" xmlns= "http://www.w3.org/1999/xhtml">
+<head>
+
+  <title><%= @title || "Make it Real - Transformando la educación" %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Language" content="<%= I18n.locale.to_s %>">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Open+Sans+Condensed:300,700|Karla:400,700' rel='stylesheet' type='text/css'>
+
+  <%= favicon_link_tag 'favicon.ico' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  <%= render "utils/google_analytics" %>
+  <%= render "utils/ab_testing_optimizely" %>
+  <%= render "utils/crazyegg" %>
+  <%= render "utils/support_chat" %>
+
+  <%= yield :head %>
+</head>
+
+
+<body class="expand">
+  <div class="new_home">
+    <header>
+      <nav class="navbar navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <%= link_to image_tag('logoNavMir.png'), root_path, class: "navbar-brand" %>
+          </div>
+          <div class="navbar-collapse collapse" id="navbar">
+            <ul class="nav navbar-nav">
+              <li><a href="#">Nuestro Programa</a></li>
+              <li><a href="#">Preguntas Frecuentes</a></li>
+              <li><a href="#">Blog</a></li>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#">Ingresar</a></li>
+            </ul>
+          </div>
+          <!--/.nav-collapse -->
+        </div>
+      </nav>
+    </header>
+
+    <div class="intro">
+      
+    </div>
+
+
+
+  </div><!--/new_home -->
+</body>
+</html>
+
+
+
