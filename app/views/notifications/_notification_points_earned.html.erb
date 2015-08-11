@@ -1,0 +1,10 @@
+<%# required: notification, notification.data["point_id"] %>
+<% point = Point.find(notification.data["point_id"]) %>
+<li class="notification notification-<%=notification.notification_type%>">
+  ¡Felicitaciones! has ganado <strong><%= point.points %> puntos</strong>
+  <% if point.pointable_type == "Challenge" %>
+    por resolver el reto <%= point.pointable.name %>
+  <% elsif point.pointable_type == "Project" %>
+    por tu solución para el proyecto <%= point.pointable.name %>
+  <% end %>
+</li>

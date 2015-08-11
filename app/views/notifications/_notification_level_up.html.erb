@@ -1,0 +1,12 @@
+<%# required: notification, notification.data["level_id"] %>
+<% level = Level.find(notification.data["level_id"]) %>
+<li class="notification notification-<%=notification.notification_type%>">
+  <div class="row">
+    <div class="col-xs-3">
+      <img class="img-responsive" src="<%= level.image_url%>" alt="<%= level.name%>" />
+    </div>
+    <div class="col-xs-9">
+      ¡Felicitaciones! has avanzado a <strong><%= level.name %></strong>
+    </div>
+  </div>
+</li>

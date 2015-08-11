@@ -2,12 +2,13 @@
 #
 # Table name: notifications
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer
-#  message    :text
-#  status     :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id                :integer          not null, primary key
+#  user_id           :integer
+#  status            :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  notification_type :integer
+#  data              :json
 #
 # Indexes
 #

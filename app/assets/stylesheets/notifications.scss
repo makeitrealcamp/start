@@ -1,0 +1,18 @@
+.navbar {
+  .notifications-btn {
+    padding-top: 17px;
+    padding-bottom: 0;
+  }
+}
+
+.notifications {
+  width: 400px;
+  padding-bottom: 0px;
+  .notification {
+    padding: 20px 20px;
+    border-bottom: 1px black solid;
+    .comment-link {
+      text-decoration: none;
+    }
+  }
+}
