@@ -25,15 +25,14 @@ module ApplicationHelper
   def embedded_video(src,opts = {}, html = {})
     user = opts[:user]
     uri = URI(src)
+    id_video = src.split('/').last
 
     if uri.host == "fast.wistia.net"
-      html[:width] ||= "640px"
-      html[:height] ||= "361px"
       id_video = src.split('/').last
       content_tag :div do
-        content_tag(:div, nil , id: "wistia_#{id_video}", style: "width: #{html[:width]};height: #{html[:height]}") +
+        content_tag(:div, nil , id: "wistia_#{id_video}", class: "video-wistia") +
         javascript_include_tag("//fast.wistia.com/assets/external/E-v1.js") +
-        javascript_tag("wistiaEmbed = Wistia.embed('#{id_video}', { trackEmail: '#{user.email}' });")
+        javascript_tag("Wistia.embed('#{id_video}', { trackEmail: '#{user.email}' });")
       end
     else
       html[:src] ||= uri
