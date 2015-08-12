@@ -748,5 +748,133 @@
     }
   }
 
+  .email {
+    overflow: hidden;
+    background: #272727;
+    padding-bottom: 100px;
+    position: relative;
+    h3 {
+      text-align: center;
+      font-size: 42px;
+      text-transform: uppercase;
+      color: #ff4300;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+      margin-top: 150px;
+      margin-bottom: 50px;
+    }
+    p {
+      color: #fff;
+      text-align: center;
+      margin-bottom: 50px;
+      width: 85%;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 20px;
+    }
+    .form-control {
+      background: #121212;
+      border-radius: 2px;
+      border: solid 1px #807f7f;
+      font-size: 18px;
+      padding: 10px;
+      margin: 0 auto;
+      height: auto;
+      width: 320px;
+    }
+    form {
+      .btn-main {
+        margin: 30px auto;
+      }
+    }
+    .top-container {
+      z-index: 1;
+      position: relative;
+    }
+    .icon-mir {
+      position: absolute;
+      left: 15%;
+      top: 55px;
+      z-index: 0;
+    }
+  }
+  .txt-bold {
+    font-weight: 700;
+  }
+  .btn-main {
+    background: transparent;
+    border: solid 1px #ff4300;
+    border-radius: 2px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+    padding: 10px 0;
+    color: #ff4300;
+    width: 280px;
+    font-size: 18px;
+    display: block;
+  }
+
+  footer {
+    padding-top: 130px;
+    overflow: hidden;
+    .logo-footer {
+      text-align: center;
+      margin-bottom: 45px;
+      margin-top: 35px;
+    }
+    h4 {
+      text-align: center;
+      font-size: 24px;
+      text-transform: uppercase;
+      color: #ff4300;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+      margin-bottom: 30px;
+    }
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin-bottom: 0;
+    }
+    .social-icons {
+      text-align: center;
+      svg {
+        fill: #272727;
+      }
+      li {
+        display: inline-block;
+        margin-right: 30px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+    .site-links {
+      font-size: 18px;
+      a {
+        color: #3b3a3a;
+      }
+      li {
+        margin-bottom: 15px;
+      }
+    }
+    .copyright-container {
+      padding: 0;
+    }
+    .copyright {
+      text-align: center;
+      font-size: 14px;
+      color: #a1a1a1;
+      margin-top: 100px;
+      padding: 30px 0;
+      border-top: solid 1px #ff4300;
+      a {
+        font-weight: 700;
+        color: #a1a1a1;
+      }
+    }
+  }
+
 
 }
