@@ -1,0 +1,23 @@
+<%# required: user %>
+<% count = user.notifications.unread.count %>
+<li id="notifications-widget" class="dropdown">
+
+  <%= link_to mark_as_read_notifications_path, remote: true, method: :put, class: "dropdown-toggle notifications-btn","data-toggle":"dropdown" do %>
+    <%= render "notifications/count", count: count %>
+  <% end %>
+  <ul id="notifications" class="dropdown-menu notifications">
+    <%= render "notifications/list", notifications: user.notifications %>
+  </ul>
+</li>
+
+<script type="text/javascript">
+  (function() {
+    var refresh_interval_id = setInterval(function() {
+      $("#refresh-notifications").trigger("click");
+    },3000);
+    console.log("refresh_interval_id: " + refresh_interval_id);
+    $(document).on("page:before-change", function() {
+      clearInterval(refresh_interval_id);
+    });
+  })();
+</script>

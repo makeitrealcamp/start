@@ -12,7 +12,9 @@
 #
 # Indexes
 #
-#  index_notifications_on_user_id  (user_id)
+#  index_notifications_on_created_at  (created_at)
+#  index_notifications_on_status      (status)
+#  index_notifications_on_user_id     (user_id)
 #
 
 class Notification < ActiveRecord::Base

@@ -8,6 +8,8 @@
 .notifications {
   width: 400px;
   padding-bottom: 0px;
+  max-height: 540px;
+  overflow-y: scroll;
   .notification {
     padding: 20px 20px;
     border-bottom: 1px black solid;

@@ -33,7 +33,7 @@
                 </ul>
               </li>
             <% end %>
-            <%= render "notifications/dropdown", user: current_user %>
+            <%= render "notifications/widget", user: current_user %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle avatar" data-toggle="dropdown">
                 <img src="<%= Gravatar.new("#{current_user.email}").image_url %>" class="img-circle" />
