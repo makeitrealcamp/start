@@ -1,6 +1,6 @@
 <%# required: notifications %>
 <li id="refresh-notifications-container">
-  <%= link_to "refresh", notifications_path(last_created_at: notifications.first.created_at.to_datetime.strftime("%Q")),
+  <%= link_to "refresh", notifications_path(last_created_at: last_created_at(notifications)),
     remote: true, id: "refresh-notifications", class: "hidden" %>
 </li>
 <% notifications.each do |n| %>

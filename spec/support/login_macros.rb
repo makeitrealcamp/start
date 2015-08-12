@@ -5,10 +5,5 @@ module LoginMacros
     fill_in 'email', with: user.email
     fill_in 'password', with: user.password
     click_button 'Ingresar'
-    begin
-      wait_for_ajax
-    rescue Capybara::NotSupportedByDriverError
-      # Rescue error when js is not enabled
-    end
   end
 end
