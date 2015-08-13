@@ -19,7 +19,8 @@
 
 class Notification < ActiveRecord::Base
   PER_PAGE = 10
-  
+  RETRIEVE_INTERVAL_IN_MILLIS = 3000
+
   belongs_to :user
   enum status: [:read,:unread]
 
