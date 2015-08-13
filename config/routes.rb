@@ -128,6 +128,7 @@ Rails.application.routes.draw do
 
   resources :notifications, only: [:index] do
     collection do
+      get :retrieve_new
       put :mark_as_read
     end
   end

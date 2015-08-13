@@ -83,4 +83,8 @@ module ApplicationHelper
     return "alert-error alert-danger" if ["error","danger"].include? type.to_s
     return "alert-#{type.to_s}"
   end
+
+  def timestamp(date)
+    date.to_datetime.strftime("%Q")
+  end
 end

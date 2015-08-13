@@ -1,0 +1,17 @@
+<%# required: user %>
+<%# optional: page %>
+
+<% page ||= 1 %>
+<% next_page = page.to_i + 1 %>
+<% notifications = user.notifications.paginate(page: page, per_page: Notification::PER_PAGE) %>
+
+<% if notifications.empty? %>
+  <li class="no-more-notifications">
+    <p class="text-muted">No tienes más notificaciones</p>
+  </li>
+<% else %>
+  <%= render "notifications/list", notifications: notifications %>
+  <li class="see-more-notifications">
+    <%= link_to "ver más", notifications_path(page: next_page), remote: true %>
+  </li>
+<% end %>

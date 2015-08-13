@@ -1,4 +1,3 @@
-<% unless @notifications.empty? %>
-  $("#notifications-count").replaceWith('<%= j render "notifications/count", count: @unread_count %>');
-  $("#refresh-notifications-container").replaceWith('<%= j render "notifications/list", notifications: @notifications %>')
-<% end %>
+$(".see-more-notifications").replaceWith(
+  '<%= j render "notifications/notifications", user: @user, page: @page, next_page: @next_page %>'
+)

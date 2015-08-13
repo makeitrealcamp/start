@@ -18,6 +18,8 @@
 #
 
 class Notification < ActiveRecord::Base
+  PER_PAGE = 10
+  
   belongs_to :user
   enum status: [:read,:unread]
 

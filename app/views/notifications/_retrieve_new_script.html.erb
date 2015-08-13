@@ -1,0 +1,15 @@
+<script type="text/javascript">
+  (function() {
+    var $notifications = $("#notifications");
+    var refresh_interval_id = setInterval(function() {
+      var last_created_at = $notifications.find(".notification").first().data("created-at-timestamp");
+      var url = '<%= retrieve_new_notifications_path(last_created_at: 'XXX') %>';
+      url = url.replace("XXX",last_created_at);
+      $.getScript(url);
+    },3000);
+    $(document).on("page:before-change", function() {
+      clearInterval(refresh_interval_id);
+    });
+    console.log("refresh_interval_id: " + refresh_interval_id);
+  })();
+</script>

@@ -1,8 +1,6 @@
 <%# required: notifications %>
-<li id="refresh-notifications-container">
-  <%= link_to "refresh", notifications_path(last_created_at: last_created_at(notifications)),
-    remote: true, id: "refresh-notifications", class: "hidden" %>
-</li>
 <% notifications.each do |n| %>
-  <%= render "notifications/notification_#{n.notification_type}", notification: n %>
+  <li class="notification notification-<%=n.notification_type%>" data-created-at-timestamp="<%= timestamp(n.created_at)%>">
+    <%= render "notifications/notification_#{n.notification_type}", notification: n %>
+  </li>
 <% end %>

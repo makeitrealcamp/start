@@ -1,4 +1,2 @@
 <%# required: notification, notification.data["message"] %>
-<li class="notification notification-<%=notification.notification_type%>">
-  <%= notification.data["message"].html_safe %>
-</li>
+<%= notification.data["message"].html_safe %>

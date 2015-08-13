@@ -17,4 +17,13 @@
       text-decoration: none;
     }
   }
+  .no-more-notifications,.see-more-notifications {
+    padding: 10px 20px;
+  }
+  .see-more-notifications {
+    a {
+      color: $link-color;
+      text-decoration: underline;
+    }
+  }
 }

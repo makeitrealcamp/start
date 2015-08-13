@@ -6,18 +6,7 @@
     <%= render "notifications/count", count: count %>
   <% end %>
   <ul id="notifications" class="dropdown-menu notifications">
-    <%= render "notifications/list", notifications: user.notifications %>
+    <%= render "notifications/notifications", user: user %>
   </ul>
 </li>
-
-<script type="text/javascript">
-  (function() {
-    var refresh_interval_id = setInterval(function() {
-      $("#refresh-notifications").trigger("click");
-    },3000);
-    console.log("refresh_interval_id: " + refresh_interval_id);
-    $(document).on("page:before-change", function() {
-      clearInterval(refresh_interval_id);
-    });
-  })();
-</script>
+<%= render "notifications/retrieve_new_script" %>

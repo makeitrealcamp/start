@@ -1,16 +1,14 @@
 <%# required: notification, notification.data["comment_id"] %>
 <% comment = Comment.find(notification.data["comment_id"]) %>
-<li class="notification notification-<%=notification.notification_type%>">
-  <div class="row">
-    <div class="col-xs-3">
-      <img class="img-responsive" src="<%= comment.user.avatar_url %>" alt="<%= comment.user.first_name %>" />
-    </div>
-    <div class="col-xs-9">
-      <%= link_to comment.commentable.url_for_notification, class: "comment-link" do %>
-        <strong><%= comment.user.first_name || comment.user.nickname %></strong>
-        &nbsp;ha comentado en
-        <strong><%= comment.commentable.name_for_notification %></strong>
-      <% end %>
-    </div>
+<div class="row">
+  <div class="col-xs-3">
+    <img class="img-responsive" src="<%= comment.user.avatar_url %>" alt="<%= comment.user.first_name %>" />
   </div>
-</li>
+  <div class="col-xs-9">
+    <%= link_to comment.commentable.url_for_notification, class: "comment-link" do %>
+      <strong><%= comment.user.first_name || comment.user.nickname %></strong>
+      &nbsp;ha comentado en
+      <strong><%= comment.commentable.name_for_notification %></strong>
+    <% end %>
+  </div>
+</div>
