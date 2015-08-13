@@ -3,7 +3,7 @@
     var $notifications = $("#notifications");
     var refresh_interval_id = setInterval(function() {
       var last_created_at = $notifications.find(".notification").first().data("created-at-timestamp");
-      last_created_at = last_created_at || new Date().getTime();
+      last_created_at = last_created_at || new Date(0).getTime();
       var url = '<%= retrieve_new_notifications_path(last_created_at: 'XXX') %>';
       url = url.replace("XXX",last_created_at);
       $.getScript(url);
