@@ -80,4 +80,5 @@ Rails.application.configure do
   config.active_job.queue_adapter = :sidekiq
 
   config.action_mailer.default_url_options = { host: 'start.makeitreal.camp'}
+  Rails.application.default_url_options[:host] = 'start.makeitreal.camp'
 end

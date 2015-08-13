@@ -33,6 +33,9 @@ class Lesson < ActiveRecord::Base
 
   scope :published, -> { where(section_id: Resource.published.map(&:sections).flatten.map(&:id)) }
   scope :free_preview, -> { where(free_preview: true) }
+  default_scope { rank(:row) }
+
+  delegate :course, :resource, to: :section
 
   def self.for(user)
     if user.is_admin?
@@ -44,7 +47,6 @@ class Lesson < ActiveRecord::Base
     end
   end
 
-  default_scope { rank(:row) }
 
   def resource
     self.section.resource
@@ -52,6 +54,14 @@ class Lesson < ActiveRecord::Base
 
   def to_s
     name
+  end
+
+  def name_for_notification
+    name
+  end
+
+  def url_for_notification
+    Rails.application.routes.url_helpers.course_resource_section_lesson_url(self.course,self.resource, self.section,self)
   end
 
   def next(user)

@@ -39,6 +39,8 @@ class User < ActiveRecord::Base
   belongs_to :level
   has_many :badge_ownerships, dependent: :destroy
   has_many :badges, -> { uniq }, through: :badge_ownerships
+  has_many :notifications
+  has_many :comments
 
   hstore_accessor :profile,
     first_name: :string,
@@ -72,13 +74,18 @@ class User < ActiveRecord::Base
   enum status: [:created, :active]
   enum account_type: [:free_account, :paid_account, :admin_account]
 
-  after_initialize :default_values
   before_create :assign_random_nickname
+  after_initialize :default_values
+  after_save :check_user_level
 
   def generate_password
     password = SecureRandom.urlsafe_base64
     self.password = password
     self.password_confirmation = password
+  end
+
+  def self.commenters_of(commentable)
+    joins(:comments).where(comments: {commentable_id: commentable.id,commentable_type: commentable.class.to_s}).uniq
   end
 
   def self.with_public_profile
@@ -184,7 +191,7 @@ class User < ActiveRecord::Base
     )
     SubscriptionsMailer.welcome_mail(self).deliver_now
     SubscriptionsMailer.welcome_hangout(self).deliver_later!(wait: 24.hours)
-    
+
   end
 
   def has_valid_password_reset_token?
@@ -215,6 +222,12 @@ class User < ActiveRecord::Base
         begin
           self.nickname = SecureRandom.hex(8)
         end while User.find_by_nickname(self.nickname)
+      end
+    end
+
+    def check_user_level
+      if self.level_id_was != self.level_id
+        self.notifications.create!(notification_type: :level_up, data: {level_id: self.level_id})
       end
     end
 end

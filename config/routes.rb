@@ -126,6 +126,13 @@ Rails.application.routes.draw do
     resources :badge_ownerships, only: [:new, :create]
   end
 
+  resources :notifications, only: [:index] do
+    collection do
+      get :retrieve_new
+      put :mark_as_read
+    end
+  end
+
   # routes to evaluate forms
   match 'forms/hello', to: 'forms#hello', via: [:get, :post]
 end

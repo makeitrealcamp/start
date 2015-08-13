@@ -32,16 +32,25 @@ class ProjectSolution < ActiveRecord::Base
   after_initialize :default_values
   after_save :notify_mentors_if_pending_review
 
+  delegate :course, to: :project
+
   def point_value
     self.project.points.where(user: self.user).sum(:points)
   end
 
   def notify_mentors
     admins = User.admin_account.all
-
     admins.each do |admin|
       UserMailer.project_solution_notification(admin, self).deliver_now
     end
+  end
+
+  def name_for_notification
+    "Solución para #{self.project.name}"
+  end
+
+  def url_for_notification
+    Rails.application.routes.url_helpers.course_project_project_solution_url(self.course,self.project, self)
   end
 
   private

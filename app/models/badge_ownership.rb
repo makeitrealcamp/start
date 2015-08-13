@@ -15,4 +15,12 @@ class BadgeOwnership < ActiveRecord::Base
 
   validates :user, presence: true
   validates :badge, presence: true
+
+  after_create :notify_user
+
+  private
+
+    def notify_user
+      user.notifications.create!(notification_type: :badge_earned, data: {badge_id: badge.id})
+    end
 end

@@ -1,0 +1,17 @@
+<%# required: count %>
+<button id="notifications-count" class="btn <%= notifications_class(count) %>">
+  <%= count %>
+</button>
+<script type="text/javascript">
+  (function(){
+    var $title = $("title");
+    var title_text = $title.text();
+    var count = <%= count %>;
+    var notifications_regex = /^\(\d+\)/;
+    title_text = title_text.replace(notifications_regex,"");
+    if(count > 0) {
+      title_text = "("+count+") " + title_text;
+    }
+    $title.text(title_text);
+  })();
+</script>

@@ -24,6 +24,7 @@ class Point < ActiveRecord::Base
 
   validates :user, presence: true
 
+  after_create :notify_user
   after_create :check_user_level!
   after_create :check_user_badges!
 
@@ -38,9 +39,14 @@ class Point < ActiveRecord::Base
     end
 
     def check_user_badges!
-      user.badges << Badge.granted_by_points
+      new_badges = Badge.granted_by_points
         .where.not(id: self.user.badges)
         .where(course_id: self.course)
         .where("required_points <= ?",self.user.stats.points_per_course(self.course))
+      user.badges << new_badges
+    end
+
+    def notify_user
+      user.notifications.create!(notification_type: :points_earned, data: {point_id: self.reload.id})
     end
 end
