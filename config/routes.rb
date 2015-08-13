@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get "home2" => "pages#new_home"
 
+  get "curriculum" => "pages#curriculum"
+
   get "thanks", to: "pages#thanks", as: :thanks
 
   get 'handbook', to: 'pages#handbook', as: :handbook

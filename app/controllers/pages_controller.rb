@@ -14,4 +14,8 @@ class PagesController < ApplicationController
     render layout: false
   end
 
+  def curriculum
+    render layout: false
+  end
+
 end
