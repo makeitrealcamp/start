@@ -904,6 +904,57 @@
     }
   }
 
+  .curriculum-phases {
+    background: #272727;
+    text-align: center;
+    overflow: hidden;
+    margin-top: 150px;
+    h3 {
+      text-align: center;
+      font-size: 42px;
+      text-transform: uppercase;
+      color: #ff4300;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+      margin-top: 150px;
+      margin-bottom: 80px;
+    }
+  }
+  .curriculum-phase {
+    text-align: center;
+    color: #fff;
+    .deco-quote {
+      margin-bottom: 15px;
+    }
+    .phase-number {
+      text-transform: uppercase;
+      color: #ff4300;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+      font-size: 30px;
+    }
+    h4 {
+      text-transform: uppercase;
+      color: #ff4300;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+      font-size: 24px;
+    }
+    p {
+      color: #fff;
+      font-size: 16px;
+      width: 80%;
+      margin: 0 auto;
+    }
+    ul {
+      margin: 15px auto 0;
+      width: 80%;
+      list-style-type: none;
+      padding-left: 10px;
+      text-align: left;
+    }
+  }
+
 
 
 }
