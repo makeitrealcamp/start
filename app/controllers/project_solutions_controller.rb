@@ -49,10 +49,7 @@ class ProjectSolutionsController < ApplicationController
 
   def request_revision
     @project_solution = ProjectSolution.find(params[:id])
-
-    @project_solution.status = ProjectSolution.statuses[:pending_review]
-    @project_solution.save
-
+    @project_solution.pending_review!
     redirect_to request.referer
   end
 

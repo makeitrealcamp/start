@@ -1,0 +1,7 @@
+Hola<%= @user.first_name? ? " #{@user.first_name}" : "" %>,<br>
+<br />
+
+El maker  <strong><%= link_to @maker.email, user_profile_url(@maker.nickname) %></strong> ha subido una solución al proyecto <strong><%= @project.name %></strong>, para ver la solución
+debes hacer click en el siguiente link:
+<br />
+<%= link_to course_project_project_solution_url(@project.course, @project, @solution), course_project_project_solution_url(@project.course, @project, @solution)  %>

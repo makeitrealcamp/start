@@ -14,4 +14,12 @@ class UserMailer < ApplicationMailer
     @user = user
     mail to: @user.email, subject: "Por favor active su cuenta en  Make it Real"
   end
+
+  def project_solution_notification(admin, solution)
+    @user = admin
+    @solution = solution
+    @maker = solution.user
+    @project = solution.project
+    mail to: @user.email, subject: "El maker #{@maker.email} hizo una solución al proyecto #{@project.name} "
+  end
 end
