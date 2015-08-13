@@ -30,6 +30,7 @@ class ProjectSolution < ActiveRecord::Base
 
   enum status: [:pending_review, :reviewed]
   after_initialize :default_values
+  after_save :notify_mentors_if_pending_review
 
   def point_value
     self.project.points.where(user: self.user).sum(:points)
@@ -44,9 +45,13 @@ class ProjectSolution < ActiveRecord::Base
   end
 
   private
-
     def default_values
       self.status ||= ProjectSolution.statuses[:pending_review]
     end
 
+    def notify_mentors_if_pending_review
+      if self.status == "pending_review" && self.status_was != "pending_review"
+        notify_mentors
+      end
+    end
 end

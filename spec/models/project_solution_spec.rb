@@ -47,9 +47,35 @@ RSpec.describe ProjectSolution, type: :model do
     end
   end
 
-  describe '#notify_mentors' do
-    it 'send email' do
+  describe "#notify_mentors" do
+    it "should send email" do
       expect { project_solution.notify_mentors }.to change { ActionMailer::Base.deliveries.count }.by(1)
     end
+    it "should call #notifiy_mentors after creation" do
+      project_solution = build(:project_solution)
+      expect(project_solution).to receive(:notify_mentors)
+      project_solution.save
+    end
+
+    context "project_solution is reviewed" do
+      before do
+        project_solution.reviewed!
+      end
+      it "should call #notifiy_mentors when status changes to pending_review" do
+        expect(project_solution).to receive(:notify_mentors)
+        project_solution.pending_review!
+      end
+    end
+
+    context "project_solution is pending_review" do
+      before do
+        project_solution.pending_review!
+      end
+      it "should not call #notifiy_mentors when its updated" do
+        expect(project_solution).to_not receive(:notify_mentors)
+        project_solution.update(summary: Faker::Lorem.sentence)
+      end
+    end
+
   end
 end

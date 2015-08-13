@@ -31,7 +31,6 @@ class ProjectSolutionsController < ApplicationController
     if @project_solution.save
       flash[:notice] = "Tu solución ha sido publicada, ahora ayuda a los demás con tu opinión"
       redirect_to course_project_project_solutions_path(@project.course,@project)
-      @project_solution.notify_mentors
     else
       render "projects/show"
     end
@@ -51,7 +50,6 @@ class ProjectSolutionsController < ApplicationController
   def request_revision
     @project_solution = ProjectSolution.find(params[:id])
     @project_solution.pending_review!
-    @project_solution.notify_mentors
     redirect_to request.referer
   end
 
