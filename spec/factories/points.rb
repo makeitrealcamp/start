@@ -19,9 +19,9 @@
 
 FactoryGirl.define do
   factory :point do
-    user ""
-    course nil
     points 1
+    association :user, factory: :user
+    association :course, factory: :course
   end
 
 end

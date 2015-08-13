@@ -152,6 +152,7 @@ RSpec.describe User, type: :model do
         expect(user.stats.completed_challenges_count).to eq 1
       end
     end
+
     describe "#total_points" do
       it "Should sum an user total points" do
         user.points.create(course_id: course.id, points: 10)
@@ -159,12 +160,14 @@ RSpec.describe User, type: :model do
         expect(user.stats.total_points).to eq 20
       end
     end
+
     describe "#badges_count" do
       context "When a user has only the 'hago parte de MIR' badge" do
         it "should return 1" do
           expect(user.stats.badges_count).to eq(1)
         end
       end
+
       it "should return correct badges count" do
         badge = create(:badge)
 
@@ -174,7 +177,6 @@ RSpec.describe User, type: :model do
         user.badge_ownerships.create(badge: badge)
         # (1) badge + (1)'hago parte de MIR'
         expect(user.stats.badges_count).to eq 2
-
       end
     end
   end
@@ -185,6 +187,23 @@ RSpec.describe User, type: :model do
       user.save
       expect(user.reload.nickname).not_to eq(nil)
       expect(user.reload.nickname).not_to eq("")
+    end
+  end
+
+  describe '#next_level' do
+    let!(:level){ create(:level) }
+    let!(:level_1){ create(:level_1) }
+    let!(:level_2){ create(:level_2) }
+
+    it 'should return a next level' do
+      expect(user.next_level).to eq level_1
+    end
+
+    context 'when has completed all levels' do
+      it 'should return a nil' do
+        create(:point, points: 300, user: user)
+        expect(user.next_level).to be_nil
+      end
     end
   end
 end

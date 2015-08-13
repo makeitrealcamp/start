@@ -54,6 +54,8 @@ FactoryGirl.define do
     activated_at { Faker::Time.between(2.days.ago, Time.now) }
     account_type  User.account_types[:free_account]
 
+    association  :level, factory: :level
+
     factory :admin do
       account_type  User.account_types[:admin_account]
     end

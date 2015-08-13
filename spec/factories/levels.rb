@@ -14,14 +14,14 @@ FactoryGirl.define do
   factory :level do
     name "teclado blanco"
     required_points 0
-    image_url "MyString"
+    image_url { Faker::Avatar.image }
     factory :level_1 do
       name "Level 1"
-      required_points 0
+      required_points 100
     end
     factory :level_2 do
       name "Level 2"
-      required_points 100
+      required_points 200
     end
   end
 end

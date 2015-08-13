@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-sm-1 col-md-2">
+    <%= image_tag @user.level.image_url %>
+    <p class="text-muted">Nivel Actual</p>
+  </div>
+
+  <div class="col-sm-10 col-md-8">
+    <% if @user.next_level %>
+      <p class="points"><%= @user.stats.total_points %>/<%= @user.next_level.required_points %></p>
+    <% else %>
+      <p class="points"><%= @user.stats.total_points %>/<%= @user.stats.total_points %></p>
+    <% end %>
+      <%= progress_bar(progress: @user.stats.progress_level, color: "red", opacity: 1.4) %>
+  </div>
+
+  <% if @user.next_level %>
+    <div class="col-sm-1 col-md-2">
+      <%= image_tag @user.next_level.image_url %>
+      <p class="text-muted">próximo nivel</p>
+    </div>
+  <% end %>
+</div>
