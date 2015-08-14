@@ -636,6 +636,20 @@
     padding: 70px 0;
     &.curriculum {
       margin-top: 70px;
+      h2 {
+        text-transform: uppercase;
+      }
+      p {
+        color: #fff;
+        font-size: 20px;
+        margin-top: 25px;
+      }
+    }
+    &.faq {
+      margin-top: 70px;
+      h2 {
+        text-transform: uppercase;
+      }
     }
     h2 {
       font-size: 30px;
@@ -1000,6 +1014,23 @@
       .title-container {
         overflow: hidden;
         margin-bottom: 10px;
+      }
+    }
+  }
+
+  .faqs {
+    margin: 40px 0;
+    h3 {
+      font-size: 24px;
+      text-transform: uppercase;
+      color: #ff4300;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+    }
+    .question {
+      margin: 60px 0;
+      p {
+        font-size: 18px;
       }
     }
   }

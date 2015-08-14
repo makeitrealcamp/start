@@ -18,4 +18,8 @@ class PagesController < ApplicationController
     render layout: false
   end
 
+  def faq
+    render layout: false
+  end
+
 end
