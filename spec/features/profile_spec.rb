@@ -8,8 +8,6 @@ RSpec.feature "Profile", type: :feature do
   let!(:admin) { create(:admin) }
 
   describe "update visibility" do
-    # private access + show edition options if it's his profile
-    # private access + don't show edition options if it's not his profile
     scenario "profile visibility update form", js: true do
       visit(user_profile_path(user_with_public_profile.nickname))
       expect(page).to_not have_selector(".update-profile-visibility")
@@ -29,7 +27,4 @@ RSpec.feature "Profile", type: :feature do
 
     end
   end
-
-  # public access + show invitation to join MIR
-
 end
