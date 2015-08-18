@@ -17,7 +17,7 @@
       var pusher = new Pusher('<%= Pusher.key %>', {
         encrypted: true
       });
-      var channel = pusher.subscribe('user_<%= current_user.id %>');
+      var channel = pusher.subscribe('<%= current_user.private_channel %>');
       channel.bind('notifications:new', function(data) {
         var url = '<%= notification_path("XXX") %>';
         url = url.replace("XXX",data.notification_id);
