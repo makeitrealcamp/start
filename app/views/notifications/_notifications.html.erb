@@ -10,7 +10,9 @@
     <p class="text-muted">No tienes más notificaciones</p>
   </li>
 <% else %>
-  <%= render "notifications/list", notifications: notifications %>
+  <% notifications.each do |n| %>
+    <%= render "notifications/notification_item", notification: n %>
+  <% end %>
   <li class="see-more-notifications">
     <%= link_to "ver más", notifications_path(page: next_page), remote: true %>
   </li>

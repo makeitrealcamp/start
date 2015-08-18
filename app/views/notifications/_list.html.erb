@@ -1,6 +1,0 @@
-<%# required: notifications %>
-<% notifications.each do |n| %>
-  <li class="notification notification-<%=n.notification_type%>" data-created-at-timestamp="<%= timestamp(n.created_at)%>">
-    <%= render "notifications/notification_#{n.notification_type}", notification: n %>
-  </li>
-<% end %>

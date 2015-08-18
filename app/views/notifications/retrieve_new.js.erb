@@ -1,4 +1,0 @@
-<% unless @notifications.empty? %>
-  $("#notifications-count").replaceWith('<%= j render "notifications/count", count: @unread_count %>');
-  $("#notifications").prepend('<%= j render "notifications/list", notifications: @notifications %>')
-<% end %>

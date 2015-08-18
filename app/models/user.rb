@@ -202,6 +202,10 @@ class User < ActiveRecord::Base
     (!!self.password_reset_sent_at) && (self.password_reset_sent_at >= 2.days.ago)
   end
 
+  def private_channel
+    "#{Rails.application.config.x.notifications.channel_prefix}_user_#{self.id}"
+  end
+
   private
     def default_values
       self.roles ||= ["user"]

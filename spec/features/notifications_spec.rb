@@ -4,7 +4,6 @@ RSpec.feature "Notifications", type: :feature do
   let!(:user) { create(:user) }
 
   before do
-    allow(Rails.application.config.x.notifications).to receive(:retrieve_interval_in_millis).and_return(500)
     allow(Rails.application.config.x.notifications).to receive(:active).and_return(true)
   end
 
