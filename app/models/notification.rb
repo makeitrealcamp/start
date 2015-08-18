@@ -19,25 +19,33 @@
 
 class Notification < ActiveRecord::Base
   PER_PAGE = 10
-  
+
   belongs_to :user
   enum status: [:read,:unread]
 
   # There has to be a partial por each notification_type !
   enum notification_type: [:notice,:level_up,:points_earned,:comment_activity,:comment_response,:badge_earned]
 
-  after_initialize :default_values
   validates :user, presence: true
   validates :status, presence: true
   validates :notification_type, presence: true
 
   default_scope { order('created_at DESC') }
 
+  after_initialize :default_values
+  after_create :notify_user
+
   private
     def default_values
       self.status ||= Notification.statuses[:unread]
       self.notification_type ||= Notification.notification_types[:notice]
       self.data ||= {}
+    end
+
+    def notify_user
+      if Rails.application.config.x.notifications.active
+        Pusher.trigger("user_#{self.user_id}", 'notifications:new',{notification_id: self.id})
+      end
     end
 
 end

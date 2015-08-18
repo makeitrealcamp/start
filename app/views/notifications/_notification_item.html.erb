@@ -1,0 +1,4 @@
+<%# required: notification %>
+<li class="notification notification-<%=notification.notification_type%>">
+  <%= render "notifications/notification_#{notification.notification_type}", notification: notification %>
+</li>

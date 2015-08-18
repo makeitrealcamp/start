@@ -126,9 +126,8 @@ Rails.application.routes.draw do
     resources :badge_ownerships, only: [:new, :create]
   end
 
-  resources :notifications, only: [:index] do
+  resources :notifications, only: [:index,:show] do
     collection do
-      get :retrieve_new
       put :mark_as_read
     end
   end

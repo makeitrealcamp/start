@@ -1,20 +1,34 @@
 <% if Rails.application.config.x.notifications.active %>
-  <script type="text/javascript">
-      (function() {
-        var $notifications = $("#notifications");
-        var refresh_interval_id = setInterval(function() {
-          var last_created_at = $notifications.find(".notification").first().data("created-at-timestamp");
-          last_created_at = last_created_at || new Date(0).getTime();
-          var url = '<%= retrieve_new_notifications_path(last_created_at: 'XXX') %>';
-          url = url.replace("XXX",last_created_at);
-          $.getScript(url);
-        },<%= Rails.application.config.x.notifications.retrieve_interval_in_millis %>);
-        $(document).on("page:before-change", function() {
-          clearInterval(refresh_interval_id);
-        });
-        console.log("refresh_interval_id: " + refresh_interval_id);
-      })();
+  <script src="https://js.pusher.com/2.2/pusher.min.js"></script>
+
+  <% if Rails.application.config.x.notifications.logging %>
+    <script>
+      // Enable pusher logging - don't include this in production
+      Pusher.log = function(message) {
+        if (window.console && window.console.log) {
+          window.console.log(message);
+        }
+      };
+    </script>
+  <% end %>
+
+  <script>
+    (function() {
+      var pusher = new Pusher('<%= Pusher.key %>', {
+        encrypted: true
+      });
+      var channel = pusher.subscribe('user_<%= current_user.id %>');
+      channel.bind('notifications:new', function(data) {
+        var url = '<%= notification_path("XXX") %>';
+        url = url.replace("XXX",data.notification_id);
+        $.getScript(url);
+      });
+      $(document).on("page:before-change", function() {
+        pusher.disconnect();
+      });
+    })();
   </script>
+
 <% else %>
   <script type="text/javascript">
     console.log("Notifications retrieval is inactive");
