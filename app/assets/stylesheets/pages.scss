@@ -834,6 +834,88 @@
       z-index: 0;
     }
   }
+
+  .apply-now {
+    overflow: hidden;
+    background: #272727;
+    padding-bottom: 100px;
+    position: relative;
+    h3 {
+      text-align: center;
+      font-size: 42px;
+      text-transform: uppercase;
+      color: #ff4300;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+      margin-top: 150px;
+      margin-bottom: 50px;
+    }
+    h4 {
+      text-transform: uppercase;
+      color: #ff4300;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+      text-align: center;
+      font-size: 24px;
+      margin-top: 35px;
+    }
+    p {
+      color: #fff;
+      text-align: center;
+      margin-bottom: 50px;
+      width: 85%;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 20px;
+    }
+    .form-control {
+      background: #121212;
+      border-radius: 2px;
+      border: solid 1px #807f7f;
+      font-size: 18px;
+      padding: 10px;
+      margin: 0 auto;
+      height: auto;
+      width: 320px;
+    }
+    .price {
+      font-size: 42px;
+      &.before {
+        text-decoration: line-through;
+        color: #929292;
+      }
+      &.after {
+        margin-top: 15px;
+      }
+    }
+    .price-caption {
+      font-size: 14px;
+      color: #929292;
+    }
+    ul {
+      margin-bottom: 30px;
+      text-align: left;
+    }
+    li {
+      font-size: 18px;
+      margin-bottom: 15px;
+      list-style-image: image-url("bulletMir.png");
+    }
+
+    .top-container {
+      z-index: 1;
+      position: relative;
+      color: #fff;
+      text-align: center;
+    }
+    .icon-mir {
+      position: absolute;
+      left: 15%;
+      top: 55px;
+      z-index: 0;
+    }
+  }
+
   .txt-bold {
     font-weight: 700;
   }
@@ -849,6 +931,7 @@
     width: 280px;
     font-size: 18px;
     display: block;
+    margin: 0 auto;
   }
 
   footer {
@@ -945,6 +1028,14 @@
     .deco-quote {
       margin-bottom: 15px;
     }
+    .icon-phase {
+      display: block;
+      margin: 0 auto;
+      width: 200px;
+      .img-responsive {
+        margin: 0 auto 20px;
+      }
+    }
     .phase-number {
       text-transform: uppercase;
       color: #ff4300;
@@ -977,7 +1068,6 @@
   .curriculum-technologies {
     overflow: hidden;
     text-align: center;
-    padding-bottom: 100px;
     h3 {
         text-align: center;
         font-size: 42px;
