@@ -201,6 +201,12 @@
     }
     p { margin-bottom: 0; }
     p.em { font-size: 21px; }
+
+    .row {
+      margin: auto;
+      border-bottom: solid 1px #999; border-top: solid 1px #999;
+      padding: 20px;
+    }
   }
 
   .solution-eval-footer {

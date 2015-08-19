@@ -76,6 +76,11 @@
       <span class="glyphicon glyphicon-{{= icon }} icon" style="color: {{= color }}" aria-hidden="true"></span>
       <h3>{{= title }}</h3>
       <p>{{= message }}</p>
+      {{ if (status == "completed") { }}
+        <p>Has ganado <%=  @challenge.point_value %> puntos. </p>
+        <h2></h2>
+        <%= render 'users/level' %>
+      {{ } }}
     </div>
 
     <div class="solution-eval-footer">
