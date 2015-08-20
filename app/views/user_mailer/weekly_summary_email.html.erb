@@ -1,0 +1,97 @@
+<p>Hola<%= @user.first_name? ? " #{@user.first_name}" : "" %>,</p>
+
+<p>Te traemos un resumen de tu semana en Make it Real:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td style="border-style: solid;border-color: black;border-width: 1px;padding: 10px;min-width: 70px;text-align: right;">Retos resueltos</td>
+      <td style="border-style: solid;border-color: black;border-width: 1px;padding: 10px;min-width: 70px;text-align: right;"><%= @solved_challenges.count %></td>
+      <td style="border-style: solid;border-color: black;border-width: 1px;padding: 10px;min-width: 70px;text-align: right;">
+        <% if @solved_challenges.empty? %>
+          :(
+        <% else %>
+          <p>Algunos de los retos que solucionaste:</p>
+          <% @solved_challenges.limit(3).each do |c| %>
+            <p><%= link_to c.name_for_notification, c.url_for_notification %></p>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="border-style: solid;border-color: black;border-width: 1px;padding: 10px;min-width: 70px;text-align: right;">Recursos completados</td>
+      <td style="border-style: solid;border-color: black;border-width: 1px;padding: 10px;min-width: 70px;text-align: right;"><%= @completed_resources.count %></td>
+      <td style="border-style: solid;border-color: black;border-width: 1px;padding: 10px;min-width: 70px;text-align: right;">
+        <% if @completed_resources.empty? %>
+          :(
+        <% else %>
+          <p>Algunos de los recursos que completaste:</p>
+          <% @completed_resources.limit(3).each do |r| %>
+            <p><%= link_to r.name_for_notification, r.url_for_notification %></p>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="border-style: solid;border-color: black;border-width: 1px;padding: 10px;min-width: 70px;text-align: right;">Proyectos terminados</td>
+      <td style="border-style: solid;border-color: black;border-width: 1px;padding: 10px;min-width: 70px;text-align: right;"><%= @finished_projects.count %></td>
+      <td style="border-style: solid;border-color: black;border-width: 1px;padding: 10px;min-width: 70px;text-align: right;">
+        <% if @finished_projects.empty? %>
+          :(
+        <% else %>
+          <p>Algunos de los proyectos que terminaste:</p>
+          <% @finished_projects.limit(3).each do |p| %>
+            <% project_solution = @user.project_solutions.find_by_project_id(p.id) %>
+            <p><%= link_to project_solution.name_for_notification, project_solution.url_for_notification %></p>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="border-style: solid;border-color: black;border-width: 1px;padding: 10px;min-width: 70px;text-align: right;">Medallas recibidas</td>
+      <td style="border-style: solid;border-color: black;border-width: 1px;padding: 10px;min-width: 70px;text-align: right;"><%= @received_badges.count %></td>
+      <td style="border-style: solid;border-color: black;border-width: 1px;padding: 10px;min-width: 70px;text-align: right;">
+        <% if @received_badges.empty? %>
+          :(
+        <% else %>
+          <p>Algunas de las medallas que recibiste:</p>
+          <% @received_badges.limit(3).each do |b| %>
+            <img style="width: 35px;height: 35px;" src="<%= b.image_url%>" alt="<%= b.name%>" />
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="border-style: solid;border-color: black;border-width: 1px;padding: 10px;min-width: 70px;text-align: right;">Puntos recibidos</td>
+      <td style="border-style: solid;border-color: black;border-width: 1px;padding: 10px;min-width: 70px;text-align: right;"><%= @received_points.count %></td>
+      <td style="border-style: solid;border-color: black;border-width: 1px;padding: 10px;min-width: 70px;text-align: right;">
+        <% if @received_points.empty? %>
+          :(
+        <% else %>
+          :D
+        <% end %>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="border-style: solid;border-color: black;border-width: 1px;padding: 10px;min-width: 70px;text-align: right;">Notificaciones sin leer</td>
+      <td style="border-style: solid;border-color: black;border-width: 1px;padding: 10px;min-width: 70px;text-align: right;"><%= @unread_notifications.count %></td>
+      <td style="border-style: solid;border-color: black;border-width: 1px;padding: 10px;min-width: 70px;text-align: right;">
+        <%= link_to "Revisar notificaciones", root_url %>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+<p>Saludos,</p>
+
+<p style="margin-left: 30px;">
+  Equipo Make it Real<br>
+  makeitreal.camp
+</p>
