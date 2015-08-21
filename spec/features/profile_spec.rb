@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.feature "Profile", type: :feature do
-  let!(:user) { create(:user) }
 
-  let!(:user_with_private_profile) { create(:user, has_public_profile: false) }
-  let!(:user_with_public_profile) { create(:user, has_public_profile: true) }
+  let!(:user) { create(:paid_user) }
+  let!(:user_with_private_profile) { create(:paid_user, has_public_profile: false) }
+  let!(:user_with_public_profile) { create(:paid_user, has_public_profile: true) }
   let!(:admin) { create(:admin) }
   let!(:level)   { create(:level) }
   let!(:level_1) { create(:level_1) }

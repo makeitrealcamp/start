@@ -2,7 +2,7 @@ require 'rails_helper'
 
 
 RSpec.feature "Sign In", type: :feature do
-  let!(:user) { create(:user) }
+  let!(:user) { create(:paid_user) }
 
   context 'with Facebook account' do
     scenario "can sign in user" do

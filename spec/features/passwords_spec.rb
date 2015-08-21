@@ -4,7 +4,7 @@ RSpec.feature "Password", type: :feature do
   let!(:original_password) { Faker::Internet.password }
   let!(:password) { Faker::Internet.password }
   let!(:other_password) { Faker::Internet.password }
-  let!(:user) { create(:user,password: original_password,password_confirmation: original_password) }
+  let!(:user) { create(:paid_user, password: original_password, password_confirmation: original_password) }
 
   context "Change password" do
     scenario 'with valid input', js: true do

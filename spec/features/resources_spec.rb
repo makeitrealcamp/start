@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "Resources", type: :feature do
 
-  let!(:user) { create(:user) }
+  let!(:user) { create(:paid_user) }
   let!(:admin) { create(:admin) }
   let!(:course) { create(:course) }
 
@@ -92,7 +92,6 @@ RSpec.feature "Resources", type: :feature do
       end
     end
 
-
     context 'when is markdown document type' do
       scenario "create resource with valid input", js: true do
         login(admin)
@@ -130,6 +129,19 @@ RSpec.feature "Resources", type: :feature do
         expect(page).to have_selector ".alert-error"
         expect(current_path).to eq course_resources_path(course)
       end
+    end
+
+    scenario "show form edit resource", js: true do
+      resource = create(:resource, course: course)
+      create(:resource, course: course)
+
+      login(admin)
+
+      visit course_path(course)
+      all('.resources span.action-edit', count: 2).first.click
+
+      expect(page).to have_content "Editar Recurso"
+      expect(current_path).to eq edit_course_resource_path(course, resource)
     end
 
     scenario "edit resource with valid input", js: true do

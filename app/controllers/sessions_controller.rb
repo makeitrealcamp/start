@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
+      redirect_user_free  and return if user.free_account?
       sign_in(user)
       redirect_to signed_in_root_path
     else
@@ -19,6 +20,7 @@ class SessionsController < ApplicationController
     if env['omniauth.auth'].info.email.blank?
       url_omniauth_failure("No pudimos obtener el email de #{env['omniauth.auth'].provider.capitalize}. Por favor habilítalo")
     elsif user = AuthProvider.omniauth(env['omniauth.auth'])
+      redirect_user_free and return if user.free_account?
       sign_in(user)
       redirect_to signed_in_root_path
     else
@@ -42,5 +44,12 @@ class SessionsController < ApplicationController
 
   def url_omniauth_failure(message)
     redirect_to login_path, flash: { error: message }
+  end
+
+  def redirect_user_free
+    redirect_to login_path, flash: { notice:
+      %Q(Apreciado usuario el programa ya no está disponible para
+        usuarios gratuitos, si quiere hacer uso del programa, por favor haz click en el siguiente enlace  <a href="http://www.makeitreal.camp">makeitreal.camp</a> y dar click en el botón ¡Aplica ahora! y siga las instrucciones)
+      }
   end
 end

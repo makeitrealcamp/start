@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Notifications", type: :feature do
-  let!(:user) { create(:user) }
+  let!(:user) { create(:paid_user) }
 
   scenario "User receives 2 notifications", js: true do
     mock_notifications_service(page)
