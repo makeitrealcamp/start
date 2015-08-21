@@ -37,9 +37,9 @@
           </div>
           <div class="navbar-collapse collapse" id="navbar">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Nuestro Programa</a></li>
-              <li><a href="#">Preguntas Frecuentes</a></li>
-              <li><a href="#">Blog</a></li>
+              <li class="active"><%= link_to "Nuestro Programa", curriculum_path %></li>
+              <li><%= link_to "Preguntas Frecuentes", faq_path %></li>
+              <li><a href="http://blog.makeitreal.camp/">Blog</a></li>
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -182,7 +182,7 @@
                 <%= image_tag("iconProgramador.png", class: "img-responsive") %>
               </span>
               <span class="phase-number">Fase Uno</span>
-              <h4>Programador Aprendiz</h4>
+              <!-- <h4>Programador Aprendiz</h4> -->
               <div class="deco-quote">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="318" height="14" viewBox="0 0 318 14">
                   <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAAOCAMAAACB64AbAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA8FBMVEUAAABvb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb28AAABnb5fuAAAATnRSTlMAh0PzFM2TAVLpPg/FnwNi5TELu6sGdN4mB7C2CYbVGwSlvw2YyROZEqm8DIzSGLmtftgex51z3yUZ04tm5C0j3XhZ6DQuZU7qalVE4kVAkR1IAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAMJJREFUWMPlzsUOwkAQgOFFiy5aoLgVirtTrLi9/+NACCFAC5ceppN+h5XZZPOTq9YYyC9GE3SbDNEas8XKKL/Y7A7oOAScLjdVmnu8Pug0FPyBICufhsIR6DAkuGgs/jViEskUdBYa6Uw29zGgeb4AHYUILfLC25UtlSvQSagw1Vr9dfE3mhx0EDatdud5Ero9quorXeoPho99NJ4wKr/Spak4u6/zxRI6BKmVtCYbcQudgdZuf5CO0BGInc4X6IT/bpS9ZWS2pSfVAAAAAElFTkSuQmCC" width="318" height="14"/>
@@ -207,7 +207,7 @@
                 <%= image_tag("iconWebDev.png", class: "img-responsive") %>
               </span>
               <span class="phase-number">Fase Dos</span>
-              <h4>Web Developer</h4>
+              <!--<h4>Web Developer</h4>-->
               <div class="deco-quote">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="318" height="14" viewBox="0 0 318 14">
                   <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAAOCAMAAACB64AbAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA8FBMVEUAAABvb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb28AAABnb5fuAAAATnRSTlMAh0PzFM2TAVLpPg/FnwNi5TELu6sGdN4mB7C2CYbVGwSlvw2YyROZEqm8DIzSGLmtftgex51z3yUZ04tm5C0j3XhZ6DQuZU7qalVE4kVAkR1IAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAMJJREFUWMPlzsUOwkAQgOFFiy5aoLgVirtTrLi9/+NACCFAC5ceppN+h5XZZPOTq9YYyC9GE3SbDNEas8XKKL/Y7A7oOAScLjdVmnu8Pug0FPyBICufhsIR6DAkuGgs/jViEskUdBYa6Uw29zGgeb4AHYUILfLC25UtlSvQSagw1Vr9dfE3mhx0EDatdud5Ero9quorXeoPho99NJ4wKr/Spak4u6/zxRI6BKmVtCYbcQudgdZuf5CO0BGInc4X6IT/bpS9ZWS2pSfVAAAAAElFTkSuQmCC" width="318" height="14"/>
@@ -232,7 +232,7 @@
                 <%= image_tag("iconWebDevPro.png", class: "img-responsive") %>
               </span>
               <span class="phase-number">Fase Tres</span>
-              <h4>Web Developer Profesional</h4>
+              <!--<h4>Web Developer Profesional</h4>-->
               <div class="deco-quote">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="318" height="14" viewBox="0 0 318 14">
                   <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAAOCAMAAACB64AbAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA8FBMVEUAAABvb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb28AAABnb5fuAAAATnRSTlMAh0PzFM2TAVLpPg/FnwNi5TELu6sGdN4mB7C2CYbVGwSlvw2YyROZEqm8DIzSGLmtftgex51z3yUZ04tm5C0j3XhZ6DQuZU7qalVE4kVAkR1IAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAMJJREFUWMPlzsUOwkAQgOFFiy5aoLgVirtTrLi9/+NACCFAC5ceppN+h5XZZPOTq9YYyC9GE3SbDNEas8XKKL/Y7A7oOAScLjdVmnu8Pug0FPyBICufhsIR6DAkuGgs/jViEskUdBYa6Uw29zGgeb4AHYUILfLC25UtlSvQSagw1Vr9dfE3mhx0EDatdud5Ero9quorXeoPho99NJ4wKr/Spak4u6/zxRI6BKmVtCYbcQudgdZuf5CO0BGInc4X6IT/bpS9ZWS2pSfVAAAAAElFTkSuQmCC" width="318" height="14"/>
@@ -280,14 +280,14 @@
             </div>
           </div>
           <div class="col-md-6 img-feature">
-            <%= image_tag("pic01.png", class: "img-responsive") %>
+            <%= image_tag("02slack.png", class: "img-responsive", alt: "Acceso al chat de estudiantes y mentores") %>
           </div>
         </div><!--/feature-one -->
 
 
         <div class="feature feature-two curriculum">
           <div class="col-md-6 img-feature">
-            <%= image_tag("pic02.png", class: "img-responsive") %>
+            <%= image_tag("02challenges.png", class: "img-responsive", alt: "Soluciona retos que se autoevaluan") %>
           </div>
           <div class="col-md-6">
             <div class="text">
@@ -306,14 +306,14 @@
             </div>
           </div>
           <div class="col-md-6 img-feature">
-            <%= image_tag("pic01.png", class: "img-responsive") %>
+            <%= image_tag("02discuss.png", class: "img-responsive", alt: "Nuestras soluciones oficiales") %>
           </div>
         </div><!--/feature-one -->
 
 
         <div class="feature feature-two curriculum">
           <div class="col-md-6 img-feature">
-            <%= image_tag("pic02.png", class: "img-responsive") %>
+            <%= image_tag("02exclusive.png", class: "img-responsive", alt: "Material Exclusivo") %>
           </div>
           <div class="col-md-6">
             <div class="text">
@@ -332,7 +332,7 @@
             </div>
           </div>
           <div class="col-md-6 img-feature">
-            <%= image_tag("pic01.png", class: "img-responsive") %>
+            <%= image_tag("02portfolio.png", class: "img-responsive", alt: "Portafolio") %>
           </div>
         </div><!--/feature-one -->
 

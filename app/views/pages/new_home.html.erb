@@ -37,13 +37,13 @@
           </div>
           <div class="navbar-collapse collapse" id="navbar">
             <ul class="nav navbar-nav">
-              <li><a href="#">Nuestro Programa</a></li>
-              <li><a href="#">Preguntas Frecuentes</a></li>
-              <li><a href="#">Blog</a></li>
+              <li><%= link_to "Nuestro Programa", curriculum_path %></li>
+              <li><%= link_to "Preguntas Frecuentes", faq_path %></li>
+              <li><a href="http://blog.makeitreal.camp/">Blog</a></li>
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Ingresar</a></li>
+              <li><%= link_to "Ingresar", login_path %></li>
             </ul>
           </div>
           <!--/.nav-collapse -->
@@ -54,13 +54,13 @@
     <div class="intro">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-12">
-            <h1 class="tagline">Acelera tu aprendizaje en desarrollo web.</h1>
+          <div class="col-md-6 col-md-offset-3">
+            <h1 class="tagline">Aprende desarrollo web de la mano de mentores experimentados.</h1>
           </div>
           <div class="col-md-6 col-md-offset-3">
             <div class="quotes">
-              “You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it killed the world once and got a taste for murder.“
-              <span class="author">- Nombre de la persona, posición, nombre de la empresa</span>
+              "Este es de lejos el mejor programa para aprender a desarrollar productos digitales que existe en Colombia."
+              <span class="author">- Nayib Abdalá, Ex-alumno. Creador de <a href="http://www.innovationlessons.com/">Innovation Lessons</a> y asesor de Startups.</span>
             </div>
           </div><!--/quotes -->
 
@@ -147,45 +147,48 @@
           </div>
           <div class="col-md-4">
             <div class="student-quote">
-              <p>Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks.</p>
+              <p>"En Make it Real logré cosas que nunca habría imaginado hacer. Fue una de las experiencias más intensas y desafiantes de toda mi vida."</p>
               <div class="deco-quote">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="318" height="14" viewBox="0 0 318 14">
                   <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAAOCAMAAACB64AbAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA8FBMVEUAAABvb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb28AAABnb5fuAAAATnRSTlMAh0PzFM2TAVLpPg/FnwNi5TELu6sGdN4mB7C2CYbVGwSlvw2YyROZEqm8DIzSGLmtftgex51z3yUZ04tm5C0j3XhZ6DQuZU7qalVE4kVAkR1IAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAMJJREFUWMPlzsUOwkAQgOFFiy5aoLgVirtTrLi9/+NACCFAC5ceppN+h5XZZPOTq9YYyC9GE3SbDNEas8XKKL/Y7A7oOAScLjdVmnu8Pug0FPyBICufhsIR6DAkuGgs/jViEskUdBYa6Uw29zGgeb4AHYUILfLC25UtlSvQSagw1Vr9dfE3mhx0EDatdud5Ero9quorXeoPho99NJ4wKr/Spak4u6/zxRI6BKmVtCYbcQudgdZuf5CO0BGInc4X6IT/bpS9ZWS2pSfVAAAAAElFTkSuQmCC" width="318" height="14"/>
                 </svg>
               </div>
-              <%= image_tag("pic03.png") %>
-              <span class="author">- nombre persona, cargo, empresa</span>
+              <%= image_tag("people/02sebas.png") %>
+              <span class="author">- Sebastián Zapata, Ex-alumno y creador de <a target="_blank" href="http://4chef.com.co/">4Chef</a>. Más info en su <a target="_blank" href="http://mardiniii.github.io/">página personal</a>.</span>
             </div>
           </div>
 
-          <div class="col-md-4">
-            <div class="student-quote">
-              <p>This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit. the motherfucker, know what I'm sayin'?</p>
-              <div class="deco-quote">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="318" height="14" viewBox="0 0 318 14">
-                  <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAAOCAMAAACB64AbAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA8FBMVEUAAABvb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb28AAABnb5fuAAAATnRSTlMAh0PzFM2TAVLpPg/FnwNi5TELu6sGdN4mB7C2CYbVGwSlvw2YyROZEqm8DIzSGLmtftgex51z3yUZ04tm5C0j3XhZ6DQuZU7qalVE4kVAkR1IAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAMJJREFUWMPlzsUOwkAQgOFFiy5aoLgVirtTrLi9/+NACCFAC5ceppN+h5XZZPOTq9YYyC9GE3SbDNEas8XKKL/Y7A7oOAScLjdVmnu8Pug0FPyBICufhsIR6DAkuGgs/jViEskUdBYa6Uw29zGgeb4AHYUILfLC25UtlSvQSagw1Vr9dfE3mhx0EDatdud5Ero9quorXeoPho99NJ4wKr/Spak4u6/zxRI6BKmVtCYbcQudgdZuf5CO0BGInc4X6IT/bpS9ZWS2pSfVAAAAAElFTkSuQmCC" width="318" height="14"/>
-                </svg>
-              </div>
-              <%= image_tag("pic04.png") %>
-              <span class="author">- nombre persona, cargo, empresa</span>
-            </div>
-          </div>
 
           <div class="col-md-4">
             <div class="student-quote">
-              <p>Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? </p>
+              <p>"Make it Real me abrió las puertas a un nuevo mundo que hasta ahora empieza a ser explorado y en el que las mujeres podemos entrar a jugar un rol muy importante."</p>
               <div class="deco-quote">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="318" height="14" viewBox="0 0 318 14">
                   <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAAOCAMAAACB64AbAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA8FBMVEUAAABvb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb28AAABnb5fuAAAATnRSTlMAh0PzFM2TAVLpPg/FnwNi5TELu6sGdN4mB7C2CYbVGwSlvw2YyROZEqm8DIzSGLmtftgex51z3yUZ04tm5C0j3XhZ6DQuZU7qalVE4kVAkR1IAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAMJJREFUWMPlzsUOwkAQgOFFiy5aoLgVirtTrLi9/+NACCFAC5ceppN+h5XZZPOTq9YYyC9GE3SbDNEas8XKKL/Y7A7oOAScLjdVmnu8Pug0FPyBICufhsIR6DAkuGgs/jViEskUdBYa6Uw29zGgeb4AHYUILfLC25UtlSvQSagw1Vr9dfE3mhx0EDatdud5Ero9quorXeoPho99NJ4wKr/Spak4u6/zxRI6BKmVtCYbcQudgdZuf5CO0BGInc4X6IT/bpS9ZWS2pSfVAAAAAElFTkSuQmCC" width="318" height="14"/>
                 </svg>
               </div>
-              <%= image_tag("pic05.png") %>
-              <span class="author">- nombre persona, cargo, empresa</span>
+              <%= image_tag("people/02sorel.png") %>
+              <span class="author">- Sorel de León, Ex-alumna. Trabajando en <a target="_blank"href="http://yuxipacific.com/">Yuxi Pacific.</a></span>
             </div>
           </div>
+
+
+          <div class="col-md-4">
+            <div class="student-quote">
+              <p>"Todas las empresas que desarrollen software deberían tener sus ojos puestos en Make it Real, el talento que sale de allí es de primera."</p>
+              <div class="deco-quote">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="318" height="14" viewBox="0 0 318 14">
+                  <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAAOCAMAAACB64AbAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA8FBMVEUAAABvb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb28AAABnb5fuAAAATnRSTlMAh0PzFM2TAVLpPg/FnwNi5TELu6sGdN4mB7C2CYbVGwSlvw2YyROZEqm8DIzSGLmtftgex51z3yUZ04tm5C0j3XhZ6DQuZU7qalVE4kVAkR1IAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAMJJREFUWMPlzsUOwkAQgOFFiy5aoLgVirtTrLi9/+NACCFAC5ceppN+h5XZZPOTq9YYyC9GE3SbDNEas8XKKL/Y7A7oOAScLjdVmnu8Pug0FPyBICufhsIR6DAkuGgs/jViEskUdBYa6Uw29zGgeb4AHYUILfLC25UtlSvQSagw1Vr9dfE3mhx0EDatdud5Ero9quorXeoPho99NJ4wKr/Spak4u6/zxRI6BKmVtCYbcQudgdZuf5CO0BGInc4X6IT/bpS9ZWS2pSfVAAAAAElFTkSuQmCC" width="318" height="14"/>
+                </svg>
+              </div>
+              <%= image_tag("people/02luis-hurtado.png") %>
+              <span class="author">- Luis Hurtado, Tech Leader de <a target="_blank" href="http://kommit.co/">Kommit</a>, empresa de desarrollo Web y Móvil.</span>
+            </div>
+          </div>
+
 
           <div class="col-md-12">
-            <a href="" class="more-quotes">
+            <a href="" class="more-quotes hidden">
               Ver más opiniones
               <span class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="83" height="83" viewBox="0 0 83 83">
