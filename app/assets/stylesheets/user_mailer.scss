@@ -1,0 +1,20 @@
+.summary-email {
+  .summary-table {
+    td {
+      border-style: solid;
+      border-color: black;
+      border-width: 1px;
+      padding: 10px;
+      min-width: 70px;
+      text-align: right;
+      .badge {
+        width: 60px;
+        height: auto;
+      }
+    }
+  }
+}
+
+.signature {
+  margin-left: 30px;
+}

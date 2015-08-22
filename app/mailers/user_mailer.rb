@@ -1,5 +1,6 @@
 class UserMailer < ApplicationMailer
-
+  include Roadie::Rails::Automatic
+  
   def password_reset(user)
     @user = user
     mail to: @user.email, subject: "Reestablecer Contraseña"

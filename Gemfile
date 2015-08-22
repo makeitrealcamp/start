@@ -68,6 +68,7 @@ gem 'zeroclipboard-rails'
 gem 'shareable', github: "simon0191/shareable"
 gem 'virtus'
 gem 'pusher'
+gem 'roadie-rails', '~> 1.0.6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
