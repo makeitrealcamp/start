@@ -15,9 +15,8 @@ RSpec.feature "Users", type: :feature do
       expect { visit admin_users_path }.to raise_error
     end
 
-    scenario "should not show link of admin", js: true do
+    scenario "should not show link of admin" do
       login(user)
-      wait_for_ajax
       expect(page).not_to have_content('Admin')
       expect(current_path).to eq signed_in_root_path
     end
@@ -35,7 +34,7 @@ RSpec.feature "Users", type: :feature do
         expect(current_path).to eq edit_user_path(user)
       end
 
-      scenario "edit profile with valid input", js: true do
+      scenario "edit profile with valid input" do
         login(user)
         first_name = Faker::Name.first_name
         mobile_number = Faker::Number.number(10)
@@ -49,7 +48,6 @@ RSpec.feature "Users", type: :feature do
 
         click_button 'Actualizar Perfil'
 
-        wait_for_ajax
         user.reload
         sleep(1.0)
         expect(user.first_name).to eq first_name
@@ -62,13 +60,6 @@ RSpec.feature "Users", type: :feature do
 
   context 'when accessed as admin' do
     context 'create user', js: true do
-      scenario 'display form' do
-        login(admin)
-        wait_for_ajax
-        visit admin_users_path
-        click_link 'Nuevo usuario'
-        expect(page).to have_selector "#create-user-modal"
-      end
 
       scenario 'with valid input ' do
         login(admin)
@@ -105,19 +96,6 @@ RSpec.feature "Users", type: :feature do
         click_button "Crear Usuario"
         expect(page).to have_selector '.alert-danger'
       end
-    end
-
-    scenario "show list users" do
-      login(admin)
-      visit admin_users_path
-      expect(current_path).to eq admin_users_path
-    end
-
-    scenario "show link of users", js: true do
-      login(admin)
-      wait_for_ajax
-      expect(all('a', text: 'Admin').count).to eq 1
-      expect(current_path).to eq signed_in_root_path
     end
   end
 

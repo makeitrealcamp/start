@@ -132,21 +132,6 @@ RSpec.feature "Resources", type: :feature do
       end
     end
 
-
-
-    scenario "show form edit resource", js: true do
-      resource = create(:resource, course: course)
-      create(:resource, course: course)
-
-      login(admin)
-
-      visit course_path(course)
-      all('.resources span.action-edit', count: 2).first.click
-
-      expect(page).to have_content "Editar Recurso"
-      expect(current_path).to eq edit_course_resource_path(course, resource)
-    end
-
     scenario "edit resource with valid input", js: true do
       resource = create(:resource, course: course)
       create(:resource, course: course)

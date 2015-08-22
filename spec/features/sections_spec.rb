@@ -11,14 +11,6 @@ RSpec.feature "Sections", type: :feature do
 
   context 'when accessed as admin' do
     context 'new section', js: true do
-      scenario 'display modal form' do
-        login(admin)
-        visit course_resource_path(course, resource)
-        click_link 'Nueva Sección'
-        wait_for_ajax
-        expect(page).to have_selector '.modal-dialog'
-        expect(page).to have_selector 'input#section_title'
-      end
 
       scenario 'with valid input' do
         login(admin)
@@ -50,14 +42,6 @@ RSpec.feature "Sections", type: :feature do
     end
 
     context 'edit Section', js: true do
-      scenario 'display form'  do
-        login(admin)
-        visit course_resource_path(course, resource)
-        all(:css, '.resource-section-title a .glyphicon.glyphicon-pencil').first.click
-        sleep(1.0)
-        expect(page).to have_selector '.modal-dialog'
-        expect(page).to have_selector 'input#section_title'
-      end
 
       scenario 'with valid input'  do
         login(admin)
