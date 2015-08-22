@@ -176,19 +176,6 @@ ActiveRecord::Schema.define(version: 20150812074346) do
   add_index "notifications", ["status"], name: "index_notifications_on_status", using: :btree
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
-  create_table "pair_programming_times", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "day"
-    t.integer  "start_time_hour"
-    t.integer  "start_time_minute"
-    t.string   "time_zone"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.integer  "duration_in_minutes"
-  end
-
-  add_index "pair_programming_times", ["user_id"], name: "index_pair_programming_times_on_user_id", using: :btree
-
   create_table "phases", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -353,7 +340,6 @@ ActiveRecord::Schema.define(version: 20150812074346) do
   add_foreign_key "lesson_completions", "users"
   add_foreign_key "lessons", "sections"
   add_foreign_key "notifications", "users"
-  add_foreign_key "pair_programming_times", "users"
   add_foreign_key "points", "courses"
   add_foreign_key "project_solutions", "projects"
   add_foreign_key "project_solutions", "users"
