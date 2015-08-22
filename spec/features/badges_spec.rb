@@ -15,22 +15,9 @@ RSpec.feature "Badges", type: :feature do
   end
 
   context 'when user is  admin' do
-    scenario "show list baddges", js: true do
-      login(admin)
-      visit admin_badges_path
-      expect(current_path).to eq admin_badges_path
-    end
-
-    scenario 'display form new badge' do
-      login(admin)
-      visit admin_badges_path
-      click_link  'Nueva insignia'
-      expect(current_path).to eq new_admin_badge_path
-    end
-
     context 'create badge' do
       context 'when giving method is points' do
-        scenario 'with valid input', js: true do
+        scenario 'with valid input' do
           login(admin)
           visit admin_badges_path
           click_link  'Nueva insignia'
@@ -59,7 +46,7 @@ RSpec.feature "Badges", type: :feature do
           expect(current_path).to eq admin_badges_path
         end
 
-        scenario 'without valid input', js: true do
+        scenario 'without valid input' do
           login(admin)
           visit admin_badges_path
           click_link  'Nueva insignia'
@@ -80,7 +67,7 @@ RSpec.feature "Badges", type: :feature do
       end
 
       context 'when giving method is manually' do
-        scenario 'with valid input', js: true do
+        scenario 'with valid input' do
           login(admin)
           visit admin_badges_path
           click_link  'Nueva insignia'
@@ -106,7 +93,7 @@ RSpec.feature "Badges", type: :feature do
           expect(current_path).to eq admin_badges_path
         end
 
-        scenario 'without valid input', js: true do
+        scenario 'without valid input' do
           login(admin)
           visit admin_badges_path
           click_link  'Nueva insignia'
@@ -124,15 +111,6 @@ RSpec.feature "Badges", type: :feature do
 
     context 'edit badge' do
       context 'when giving method is points', js: true do
-        scenario 'display form' do
-          badge = create(:badge, giving_method: "points", required_points: 100, course: course)
-          login(admin)
-          visit admin_badges_path
-          all(:css, '.badges .glyphicon.glyphicon-pencil').last.click
-          expect(page).to have_selector '.giving-method-points'
-          expect(current_path).to eq edit_admin_badge_path(badge)
-        end
-
         scenario 'with valid input' do
           badge = create(:badge, giving_method: "points", required_points: 100, course: course)
           login(admin)
@@ -174,13 +152,6 @@ RSpec.feature "Badges", type: :feature do
       end
 
       context 'when giving method is manually', js: true do
-        scenario 'display form' do
-          login(admin)
-          visit admin_badges_path
-          all(:css, '.badges .glyphicon.glyphicon-pencil').first.click
-          expect(page).not_to have_selector '.giving-method-points'
-          expect(current_path).to eq edit_admin_badge_path(badge)
-        end
 
         scenario 'with valid input' do
           login(admin)

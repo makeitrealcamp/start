@@ -21,22 +21,14 @@ RSpec.feature "Lessons", type: :feature do
     end
   end
 
-  context 'when accessed as admin', js: true do
+  context 'when accessed as admin' do
 
     context 'create lesson' do
-      scenario 'display form' do
-        login(admin)
-        visit course_resource_path(course, resource)
-        click_link 'Nueva Lección'
-        sleep(1.0)
-        expect(current_path).to eq new_course_resource_section_lesson_path(course,resource,section)
-      end
 
       scenario 'with valid input' do
         login(admin)
-        visit course_resource_path(course, resource)
-        click_link 'Nueva Lección'
-        sleep(1.0)
+        visit new_course_resource_section_lesson_path(course, resource,section)
+
         name = Faker::Lorem.word
         video_url = Faker::Internet.url
         description = Faker::Lorem.paragraph
@@ -61,9 +53,8 @@ RSpec.feature "Lessons", type: :feature do
 
       scenario 'without valid input' do
         login(admin)
-        visit course_resource_path(course, resource)
-        click_link 'Nueva Lección'
-        sleep(1.0)
+        visit new_course_resource_section_lesson_path(course, resource,section)
+
         name = Faker::Lorem.word
         video_url = Faker::Internet.url
         description = Faker::Lorem.paragraph
@@ -82,21 +73,11 @@ RSpec.feature "Lessons", type: :feature do
     end
 
     context 'update lesson' do
-      scenario 'display form' do
-        login(admin)
-        visit course_resource_path(course, resource)
-        all(:css, '.lessons .actions a .glyphicon.glyphicon-pencil').first.click
-        sleep(1.0)
-        expect(current_path).to eq edit_course_resource_section_lesson_path(course,resource,section,lesson)
-      end
 
       scenario 'when click on cancel button' do
         login(admin)
-        visit course_resource_path(course, resource)
-        all(:css, '.lessons .actions a .glyphicon.glyphicon-pencil').first.click
-        sleep(1.0)
+        visit edit_course_resource_section_lesson_path(course, resource,section,lesson)
         click_link 'Cancelar'
-        sleep(1.0)
         expect(current_path).to eq course_resource_path(course, resource)
       end
 
@@ -140,7 +121,7 @@ RSpec.feature "Lessons", type: :feature do
       end
     end
 
-    scenario 'delete lesson' do
+    scenario 'delete lesson', js: true do
       create(:lesson, section: section)
       login(admin)
       visit course_resource_path(course, resource)
@@ -151,7 +132,5 @@ RSpec.feature "Lessons", type: :feature do
       expect(page).to have_selector('.lesson', count: 1)
     end
   end
-
-
 
 end

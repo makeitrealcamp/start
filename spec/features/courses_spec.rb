@@ -74,7 +74,7 @@ RSpec.feature "Courses", type: :feature do
       expect(current_path).to eq new_course_path
     end
 
-    scenario 'create course with valid input', js: true do
+    scenario 'create course with valid input' do
       login(admin)
       visit phase_path(phase)
       click_link 'Nuevo Curso'
@@ -93,7 +93,7 @@ RSpec.feature "Courses", type: :feature do
       expect(page).to have_content "El curso ha sido creado"
     end
 
-    scenario 'create course without valid input', js: true do
+    scenario 'create course without valid input' do
       login(admin)
       visit phase_path(phase)
       click_link 'Nuevo Curso'
@@ -105,15 +105,13 @@ RSpec.feature "Courses", type: :feature do
         click_button 'Crear Course'
       }.not_to change(Course, :count)
 
-      wait_for_ajax
       expect(page).to have_selector ".alert-error"
     end
 
-    scenario 'edit course with valid input', js: true do
+    scenario 'edit course with valid input' do
       course = create(:course,phase: phase)
       login(admin)
-      visit phase_path(phase)
-      all(:css, '.action-edit').last.click
+      visit edit_course_path(course)
 
       name = Faker::Name::title
       description = Faker::Lorem.sentence
@@ -134,11 +132,10 @@ RSpec.feature "Courses", type: :feature do
       expect(page).to have_content 'El curso ha sido actualizado'
     end
 
-    scenario 'edit course without valid input', js: true do
+    scenario 'edit course without valid input' do
       course = create(:course)
       login(admin)
-      visit phase_path(phase)
-      all(:css, '.action-edit').last.click
+      visit edit_course_path(course)
 
       description = Faker::Lorem.sentence
       excerpt = Faker::Lorem.paragraph
@@ -149,7 +146,6 @@ RSpec.feature "Courses", type: :feature do
       fill_in 'course_excerpt', with: excerpt
       fill_in 'course_time_estimate', with: time_estimate
       click_button 'Actualizar Course'
-      wait_for_ajax
       expect(page).to have_selector ".alert-error"
     end
   end
