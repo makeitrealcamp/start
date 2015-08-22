@@ -50,7 +50,7 @@ namespace :mir do
   task send_summary_email: :environment do
     students = User.where(account_type: [User.account_types[:paid_account],User.account_types[:admin_account]])
     students.each do |u|
-      UserMailer.weekly_summary_email(u).deliver_later
+      UserMailer.weekly_summary_email(u).deliver_now
     end
   end
 
