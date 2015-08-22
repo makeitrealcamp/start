@@ -11,7 +11,7 @@
 
 FactoryGirl.define do
   factory :badge_ownerships do
-    user_id 1
-    badge_id 1
+    association  :user, factory: :user
+    association  :badge, factory: :badge
   end
 end

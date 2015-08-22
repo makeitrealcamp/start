@@ -8,22 +8,24 @@ RSpec.feature "Notifications", type: :feature do
     login(user)
     message1 = Faker::Lorem.sentence
     message2 = Faker::Lorem.sentence
+
+
     user.notifications.create!(notification_type: Notification.notification_types[:notice],data:{message: message1})
     find(:css,".notifications-btn").click
     within :css,"#notifications" do
-      expect(page).to have_selector('.notification.notification-notice', count: 1)
+      expect(page).to have_selector('.notification', count: user.notifications.count)
       expect(page).to have_content(message1)
     end
     user.notifications.create!(notification_type: Notification.notification_types[:notice],data:{message: message2})
     within :css,"#notifications" do
-      expect(page).to have_selector('.notification.notification-notice', count: 2)
+      expect(page).to have_selector('.notification', count: user.notifications.count)
       expect(page).to have_content(message2)
     end
   end
 
-  context "User has a lot of notifications" do
+  context "User has 30 notifications" do
     before do
-      create_list(:notification,Notification::PER_PAGE*3, user: user )
+      create_list(:notification,(Notification::PER_PAGE*3) - user.notifications.count, user: user )
     end
     scenario "user requests all the notifications", js: true do
       mock_notifications_service(page)

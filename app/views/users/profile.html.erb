@@ -1,22 +1,5 @@
 <div class="container profile-view">
   <div class="row">
-    <!--
-    <div class="col-sm-12 col-md-12 account-type">
-      <div class="row">
-        <div class="col-sm-4 col-md-2">
-          Tipo de cuenta: <span class="txt-bold">gratis</span>
-        </div>
-        <div class="col-sm-8 col-md-7">
-          Todavía no estás inscrito en Make It Real, pero tienes acceso a nuestro contenido gratis. Únete para acceder a todos los cursos, recursos y proyectos que tenemos para tí.
-        </div>
-        <div class="col-sm-12 col-md-3">
-          <a href="" class="btn-cta">Unirse a Make it Real</a>
-        </div>
-      </div>
-    </div>
-    -->
-    <!-- /account-type -->
-
     <div class="col-sm-12 col-md-12 profile-status profile-header">
       <%= render "users/profile_header", user: @user, is_own_profile: @is_own_profile %>
     </div><!-- /profile-status -->
@@ -67,8 +50,14 @@
         </div><!-- /my-achievements -->
 
       </div><!-- /row -->
-    </div><!-- /profile-data -->
 
+      <div class = "row">
+        <div class="col-xs-12 col-sm-12 col-md-12 level">
+          <h2></h2><!-- display line separator section -->
+          <%= render 'users/level' %>
+        </div>
+      </div><!-- /level -->
+    </div><!-- /profile-data -->
 
     <div class="col-sm-12 col-md-12 profile-progress">
       <div class="row">

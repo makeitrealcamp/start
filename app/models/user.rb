@@ -112,6 +112,10 @@ class User < ActiveRecord::Base
     @stats ||= UserStats.new(self)
   end
 
+  def next_level
+    Level.order(:required_points).where("required_points > ?", self.stats.total_points).first
+  end
+
   def is_admin?
     admin_account?
   end

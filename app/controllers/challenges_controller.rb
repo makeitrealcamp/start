@@ -28,6 +28,7 @@ class ChallengesController < ApplicationController
 
   def show
     @challenge = Challenge.friendly.find(params[:id])
+    @user = current_user
     paid_access
     @solution = load_solution
   end
