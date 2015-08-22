@@ -1,7 +1,6 @@
 <div class="row">
   <div class="col-xs-2 col-sm-2 col-md-2">
-    <%= image_tag @user.level.image_url %>
-    <p class="text-muted">Nivel Actual</p>
+    <%= image_tag @user.level.image_url, class: "img-responsive" %>
   </div>
 
   <div class="col-xs-8 col-sm-8 col-md-8">
@@ -10,13 +9,12 @@
     <% else %>
       <p class="points"><%= @user.stats.total_points %>/<%= @user.stats.total_points %></p>
     <% end %>
-      <%= progress_bar(progress: @user.stats.progress_level, color: "red", opacity: 1.4) %>
+      <%= progress_bar(progress: @user.stats.level_progress, color: "red", opacity: 1.4) %>
   </div>
 
   <% if @user.next_level %>
     <div class="col-xs-2 col-sm-2 col-md-2">
-      <%= image_tag @user.next_level.image_url %>
-      <p class="text-muted">próximo nivel</p>
+      <%= image_tag @user.next_level.image_url, class: "img-responsive" %>
     </div>
   <% end %>
 </div>

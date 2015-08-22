@@ -15,7 +15,7 @@ class UserStats
     user_completed.to_f/total.to_f
   end
 
-  def progress_level
+  def level_progress
     points_next_level = @user.next_level ? @user.next_level.required_points : 0
     (@user.stats.total_points - @user.level.required_points).to_f/(points_next_level - @user.level.required_points).to_f
   end
