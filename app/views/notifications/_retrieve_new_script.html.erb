@@ -1,36 +1,15 @@
-<% if Rails.application.config.x.notifications.active %>
-  <script src="https://js.pusher.com/2.2/pusher.min.js"></script>
-
-  <% if Rails.application.config.x.notifications.logging %>
-    <script>
-      // Enable pusher logging - don't include this in production
-      Pusher.log = function(message) {
-        if (window.console && window.console.log) {
-          window.console.log(message);
-        }
-      };
-    </script>
-  <% end %>
-
-  <script>
-    (function() {
-      var pusher = new Pusher('<%= Pusher.key %>', {
-        encrypted: true
-      });
-      var channel = pusher.subscribe('<%= current_user.private_channel %>');
-      channel.bind('notifications:new', function(data) {
-        var url = '<%= notification_path("XXX") %>';
-        url = url.replace("XXX",data.notification_id);
-        $.getScript(url);
-      });
-      $(document).on("page:before-change", function() {
-        pusher.disconnect();
-      });
-    })();
-  </script>
-
-<% else %>
-  <script type="text/javascript">
-    console.log("Notifications retrieval is inactive");
-  </script>
+<script>
+  (function() {
+    Dispatcher.on("notifications:new", function(data) {
+      var url = '<%= notification_path("XXX") %>';
+      url = url.replace("XXX",data.notification_id);
+      $.getScript(url);
+    });
+    $(document).on("page:before-change", function() {
+      Dispatcher.off("notifications:new");
+    });
+  })();
+</script>
+<% if User::NOTIFICATION_SERVICE == Pusher %>
+  <%= render "notifications/pusher_script" %>
 <% end %>

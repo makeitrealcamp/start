@@ -43,9 +43,7 @@ class Notification < ActiveRecord::Base
     end
 
     def notify_user
-      if Rails.application.config.x.notifications.active
-        Pusher.trigger("#{self.user.private_channel}", 'notifications:new',{notification_id: self.id})
-      end
+      user.notifier.notify('notifications:new',{notification_id: self.id})
     end
 
 end
