@@ -1,0 +1,27 @@
+<script src="https://js.pusher.com/2.2/pusher.min.js"></script>
+<script>
+  (function(){
+    var pusher = new Pusher('<%= Pusher.key %>', {
+      encrypted: true
+    });
+    var channel = pusher.subscribe('<%= current_user.notifier.channel %>');
+    channel.bind('notifications:new', function(data) {
+      Dispatcher.trigger("notifications:new",data);
+    });
+    $(document).on("page:before-change", function() {
+      pusher.disconnect();
+    });
+  })();
+</script>
+<%# Enable logging in development %>
+<% if Rails.env == "development" %>
+  <script>
+    (function(){
+      Pusher.log = function(message) {
+        if (window.console && window.console.log) {
+          window.console.log(message);
+        }
+      };
+    })();
+  </script>
+<% end %>

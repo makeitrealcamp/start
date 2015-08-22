@@ -22,7 +22,10 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessor :password_confirmation
+
+  NOTIFICATION_SERVICE = Pusher
+
+  attr_accessor :password_confirmation, :notifier
   has_secure_password validations: false
 
   has_many :solutions, dependent: :destroy
@@ -202,8 +205,8 @@ class User < ActiveRecord::Base
     (!!self.password_reset_sent_at) && (self.password_reset_sent_at >= 2.days.ago)
   end
 
-  def private_channel
-    "#{Rails.application.config.x.notifications.channel_prefix}_user_#{self.id}"
+  def notifier
+    @notifier ||= UserNotifier.new(self,User::NOTIFICATION_SERVICE)
   end
 
   private
