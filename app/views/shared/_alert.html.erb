@@ -4,12 +4,19 @@
 <div id="alert-<%= random %>" class='alert fade in <%= alert_classes(type) if defined? type %>'>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <%= msg.html_safe %>
-  <script type="text/javascript">
-    setTimeout(function(){
-      $("#alert-<%=random%>").addClass("dismiss-alert");
-    },5000);
-    setTimeout(function(){
-      $("#alert-<%=random%>").remove();
-    },6000);
-  </script>
 </div>
+<script type="text/javascript">
+  (function(){
+    var $alert = $("#alert-<%=random%>");
+    var wordCount = $alert.text().split(" ").length;
+    // The average human reads 200 Words Per Minute
+    var delay = Math.max(5000,Math.ceil(wordCount * 60000 / 200));
+    setTimeout(function(){
+      $alert.addClass("dismiss-alert");
+    },delay);
+    setTimeout(function(){
+      $alert.remove();
+    },delay + 1000);
+  })();
+
+</script>
