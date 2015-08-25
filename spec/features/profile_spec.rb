@@ -30,14 +30,14 @@ RSpec.feature "Profile", type: :feature do
     end
   end
 
-  describe 'when has not  completed all levels', js: true do
+  describe 'when has not  completed all levels' do
     scenario 'display the next level' do
       visit(user_profile_path(user_with_public_profile.nickname))
       expect(page).to have_selector('.level .row img', count: 2)
     end
   end
 
-  describe 'when has completed all levels', js: true do
+  describe 'when has completed all levels' do
     scenario 'should not display the next level' do
       create(:point, points: 300, user: user_with_public_profile)
       visit(user_profile_path(user_with_public_profile.nickname))
