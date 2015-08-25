@@ -47,9 +47,9 @@ class SessionsController < ApplicationController
   end
 
   def redirect_user_free
-    redirect_to login_path, flash: { notice:
-      %Q(Apreciado usuario el programa ya no está disponible para
-        usuarios gratuitos, si quiere hacer uso del programa, por favor haz click en el siguiente enlace  <a href="http://www.makeitreal.camp">makeitreal.camp</a> y dar click en el botón ¡Aplica ahora! y siga las instrucciones)
-      }
+    redirect_to root_path, notice: %Q(
+        Make it Real ya no está disponible para usuarios gratuitos.
+        Si quieres ingresar al programa haz click en el botón ¡Aplica ahora!)
+
   end
 end
