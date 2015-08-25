@@ -1,13 +1,12 @@
 require 'rails_helper'
 
 RSpec.feature "Courses", type: :feature do
-  let!(:user) { create(:user) }
+  let!(:user) { create(:paid_user) }
   let!(:admin) { create(:admin) }
   let!(:phase) { create(:phase) }
   let!(:course) { create(:course,phase: phase) }
 
   context 'when accessed as user' do
-
     scenario "list all courses published" do
       create(:course,phase: phase)
       create(:course,phase: phase)
@@ -35,25 +34,13 @@ RSpec.feature "Courses", type: :feature do
       expect(current_path).to eq course_path(course)
     end
 
-    describe 'is of type free' do
-      scenario 'list courses' do
-        create(:course,phase: phase)
-        create(:course,phase: phase)
-        login(user)
-        visit phase_path(phase)
-        expect(page).to have_selector('.course', count: 3)
-      end
-    end
-
-    describe 'is of type paid' do
-      scenario 'list all courses' do
-        user = create(:user, account_type: User.account_types[:paid_account])
-        create(:course,phase: phase)
-        create(:course,phase: phase)
-        login(user)
-        visit phase_path(phase)
-        expect(page).to have_selector('.course', count: 3)
-      end
+    scenario 'list all courses' do
+      user = create(:user, account_type: User.account_types[:paid_account])
+      create(:course,phase: phase)
+      create(:course,phase: phase)
+      login(user)
+      visit phase_path(phase)
+      expect(page).to have_selector('.course', count: 3)
     end
   end
 

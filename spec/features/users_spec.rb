@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "Users", type: :feature do
 
-  let!(:user) { create(:user) }
+  let!(:user) { create(:paid_user) }
   let!(:admin) { create(:admin) }
 
   context 'when accessed as user' do

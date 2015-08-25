@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Resource completion", type: :feature do
-  let!(:user) { create(:user) }
+  let!(:user) { create(:paid_user) }
   let!(:course) { create(:course) }
 
   context "when user completes a resource but there are more resources" do

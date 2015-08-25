@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "Comments", type: :feature do
 
-  let!(:user)      { create(:user) }
+  let!(:user)      { create(:paid_user) }
   let!(:admin )    { create(:admin) }
   let!(:course)    { create(:course) }
   let!(:challenge) { create(:challenge, course: course) }

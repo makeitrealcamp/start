@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.feature "Profile", type: :feature do
-  let!(:user) { create(:user) }
 
-  let!(:user_with_private_profile) { create(:user, has_public_profile: false) }
-  let!(:user_with_public_profile) { create(:user, has_public_profile: true) }
+  let!(:user) { create(:paid_user) }
+  let!(:user_with_private_profile) { create(:paid_user, has_public_profile: false) }
+  let!(:user_with_public_profile) { create(:paid_user, has_public_profile: true) }
   let!(:admin) { create(:admin) }
   let!(:level)   { create(:level) }
   let!(:level_1) { create(:level_1) }
@@ -30,14 +30,14 @@ RSpec.feature "Profile", type: :feature do
     end
   end
 
-  describe 'when has not  completed all levels', js: true do
+  describe 'when has not  completed all levels' do
     scenario 'display the next level' do
       visit(user_profile_path(user_with_public_profile.nickname))
       expect(page).to have_selector('.level .row img', count: 2)
     end
   end
 
-  describe 'when has completed all levels', js: true do
+  describe 'when has completed all levels' do
     scenario 'should not display the next level' do
       create(:point, points: 300, user: user_with_public_profile)
       visit(user_profile_path(user_with_public_profile.nickname))

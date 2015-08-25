@@ -10,54 +10,6 @@ RSpec.feature "Challenges", type: :feature do
   let!(:level_1)  {create(:level_1)}
   let!(:level_2)  {create(:level_2)}
 
-  context 'when the user has a free account' do
-    context 'should not access restricted challenges ' do
-      scenario 'return not found when access by url' do
-        login(user)
-        visit course_challenge_path(course, challenge)
-        expect(current_path).to eq signed_in_root_path
-        expect(page).to have_selector('.alert-notice', count: 1)
-        expect(page).to have_content('Debes estar inscrito al programa para acceder a este recurso')
-      end
-    end
-
-    context 'list challenges' do
-      scenario 'only the published' do
-        create(:challenge, course: course, published: true)
-        create(:challenge, course: course, published: false)
-        login(user)
-        visit course_path(course)
-        expect(page).to have_selector('.challenge', count: 2)
-        expect(page).to have_selector('.banner')
-      end
-
-      scenario 'view' do
-        create(:challenge, course: course, published: true, restricted: false)
-        create(:challenge, course: course, published: true, restricted: false)
-        login(user)
-        visit course_path(course)
-        expect(page).to have_selector(".glyphicon-lock", count: 1)
-        expect(page).to have_selector(".glyphicon-ok", count: 2)
-      end
-
-      scenario 'disabled challenge when is restricted' do
-        login(user)
-        visit course_path(course)
-        all(:css, '.challenge').first.click
-        expect(current_path).to eq course_path(course)
-      end
-
-      scenario 'enabled challenge when is not restricted', js: true do
-        free_challenge = create(:challenge, course: course, published: true, restricted: false)
-        login(user)
-        visit course_path(course)
-        click_on free_challenge.name
-        wait_for_ajax
-        expect(current_path).to eq course_challenge_path(course, free_challenge)
-      end
-    end
-  end
-
   context 'when user is paid account' do
     describe 'list challenges' do
       scenario 'show only published challenges' do
