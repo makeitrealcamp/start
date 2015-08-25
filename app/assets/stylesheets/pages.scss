@@ -717,9 +717,7 @@
     &.curriculum {
       margin-bottom: 105px;
       @media (max-width: $screen-md-min) {
-        margin-bottom: 50px;
-        padding-bottom: 50px;
-        border-bottom: solid 1px #dfdfdf;
+        margin-bottom: 65px;
       }
       &.last {
         border-bottom: 0;
@@ -768,14 +766,15 @@
     .text {
       padding: 15% 10% 0 20%;
       @media (max-width: $screen-md-min) {
-        margin-bottom: 50px;
-        padding: 0 8%;
+        margin-bottom: 30px;
+        padding: 0 8.5%;
       }
     }
     .img-feature {
       img {
         @media (max-width: $screen-md-min) {
           margin: 0 auto;
+          width: 80%;
         }
       }
     }
@@ -784,13 +783,15 @@
     .text {
       padding: 15% 10% 0;
       @media (max-width: $screen-md-min) {
-        padding: 5% 8% 0;
+        padding: 0 8.5%;
+        margin-bottom: 30px;
       }
     }
     .img-feature {
       img {
         @media (max-width: $screen-md-min) {
           margin: 0 auto;
+          width: 80%;
         }
       }
     }

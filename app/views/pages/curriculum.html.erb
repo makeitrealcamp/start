@@ -43,7 +43,7 @@
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Ingresar</a></li>
+              <li><%= link_to "Ingresar", login_path %></li>
             </ul>
           </div>
           <!--/.nav-collapse -->
@@ -286,14 +286,14 @@
 
 
         <div class="feature feature-two curriculum">
-          <div class="col-md-6 img-feature">
-            <%= image_tag("02challenges.png", class: "img-responsive", alt: "Soluciona retos que se autoevaluan") %>
-          </div>
-          <div class="col-md-6">
+          <div class="col-md-6 col-md-push-6">
             <div class="text">
               <h4>Retos que se autoevalúan</h4>
               <p>Gran parte de la programación es aprender a buscar en Internet y resolver problemas. Hemos diseñado retos para que aprendas esas habilidades mientras los solucionas.</p>
             </div>
+          </div>
+          <div class="col-md-6 col-md-pull-6 img-feature">
+            <%= image_tag("02challenges.png", class: "img-responsive", alt: "Soluciona retos que se autoevaluan") %>
           </div>
         </div><!--/feature-two -->
 
@@ -312,14 +312,14 @@
 
 
         <div class="feature feature-two curriculum">
-          <div class="col-md-6 img-feature">
-            <%= image_tag("02exclusive.png", class: "img-responsive", alt: "Material Exclusivo") %>
-          </div>
-          <div class="col-md-6">
+          <div class="col-md-6 col-md-push-6">
             <div class="text">
               <h4>Material Exclusivo</h4>
               <p>Recibe acceso exclusivo a nuestros cursos y videos con temas complementarios.</p>
             </div>
+          </div>
+          <div class="col-md-6 col-md-pull-6 img-feature">
+            <%= image_tag("02exclusive.png", class: "img-responsive", alt: "Material Exclusivo") %>
           </div>
         </div><!--/feature-two -->
 
