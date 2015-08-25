@@ -685,6 +685,9 @@
         color: #fff;
         font-size: 20px;
         margin-top: 25px;
+        @media (max-width: $screen-sm-min) {
+          font-size: 18px;
+        }
       }
     }
     &.faq {
@@ -713,12 +716,25 @@
     overflow: hidden;
     &.curriculum {
       margin-bottom: 105px;
+      @media (max-width: $screen-md-min) {
+        margin-bottom: 50px;
+        padding-bottom: 50px;
+        border-bottom: solid 1px #dfdfdf;
+      }
+      &.last {
+        border-bottom: 0;
+      }
       h4 {
         font-size: 24px;
         text-transform: uppercase;
         color: #ff4300;
         font-family: 'Open Sans', sans-serif;
         font-weight: 300;
+      }
+      h3 {
+        @media (max-width: $screen-md-min) {
+          font-size: 32px;
+        }
       }
     }
     h3 {
@@ -972,6 +988,11 @@
       font-weight: 300;
       margin-top: 150px;
       margin-bottom: 50px;
+      @media (max-width: $screen-md-min) {
+        font-size: 32px;
+        margin-top: 70px;
+        margin-bottom: 35px;
+      }
     }
     h4 {
       text-transform: uppercase;
@@ -1003,6 +1024,9 @@
     }
     .price {
       font-size: 42px;
+      @media (max-width: $screen-md-min) {
+        font-size: 32px;
+      }
       &.before {
         text-decoration: line-through;
         color: #929292;
@@ -1142,6 +1166,9 @@
     text-align: center;
     overflow: hidden;
     margin-top: 150px;
+    @media (max-width: $screen-md-min) {
+      margin-top: 70px;
+    }
     h3 {
       text-align: center;
       font-size: 42px;
@@ -1151,16 +1178,27 @@
       font-weight: 300;
       margin-top: 150px;
       margin-bottom: 80px;
+      @media (max-width: $screen-md-min) {
+        margin-top: 80px;
+        font-size: 32px;
+      }
     }
     .icon {
       display: inline-block;
       margin-top: 80px;
       margin-bottom: 100px;
+      @media (max-width: $screen-md-min) {
+        margin-top: 40px;
+        margin-bottom: 50px;
+      }
     }
   }
   .curriculum-phase {
     text-align: center;
     color: #fff;
+    @media (max-width: $screen-md-min) {
+      margin-bottom: 70px;
+    }
     .deco-quote {
       margin-bottom: 15px;
     }
@@ -1198,6 +1236,9 @@
       list-style-type: none;
       padding-left: 10px;
       text-align: left;
+      @media (max-width: $screen-md-min) {
+        text-align: center;
+      }
     }
   }
 
@@ -1213,11 +1254,19 @@
         font-weight: 300;
         margin-top: 150px;
         margin-bottom: 80px;
+        @media (max-width: $screen-md-min) {
+          font-size: 32px;
+          margin-top: 80px;
+        }
     }
     .technology {
       min-height: 200px;
       overflow: hidden;
       padding: 0 10%;
+      @media (max-width: $screen-md-min) {
+        min-height: auto;
+        margin-bottom: 40px;
+      }
       h4 {
         text-transform: uppercase;
         color: #ff4300;
@@ -1227,19 +1276,33 @@
         float: left;
         margin-top: 7px;
         margin-left: 10px;
+        @media (max-width: $screen-md-min) {
+          float: none;
+          display: inline-block;
+        }
       }
       p {
         font-size: 20px;
         text-align: left;
+        @media (max-width: $screen-md-min) {
+          text-align: center;
+        }
       }
       .icon {
         font-size: 42px;
         color: #f04500;
         float: left;
+        @media (max-width: $screen-md-min) {
+          float: none;
+          display: inline-block;
+        }
       }
       .title-container {
         overflow: hidden;
         margin-bottom: 10px;
+        @media (max-width: $screen-md-min) {
+          text-align: center;
+        }
       }
     }
   }
