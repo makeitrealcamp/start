@@ -14,3 +14,6 @@
 **/.DS_Store
 .ukku.yml
 script.rb
+
+# Ignore application configuration
+/config/application.yml
