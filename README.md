@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/makeitrealcamp/start.png?label=ready&title=Ready)](https://waffle.io/makeitrealcamp/start)
 README
 ======
 
