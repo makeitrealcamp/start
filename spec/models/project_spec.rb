@@ -21,5 +21,16 @@
 require 'rails_helper'
 
 RSpec.describe Project, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  context 'associations' do
+    it { should belong_to(:course) }
+    it { should have_many(:project_solutions) }
+    it { should have_many(:points) }
+  end
+
+  context 'validations' do
+    it { should validate_presence_of :name }
+    it { should validate_presence_of :explanation_text }
+    it { should validate_presence_of :course }
+  end
 end

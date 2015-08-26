@@ -18,4 +18,12 @@ require 'rails_helper'
 
 RSpec.describe Section, type: :model do
 
+  context 'associations' do
+    it { should belong_to :resource }
+    it { should have_many(:lessons).dependent(:delete_all) }
+  end
+
+  context 'validations' do
+    it { should validate_presence_of(:title) }
+  end
 end
