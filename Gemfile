@@ -94,4 +94,5 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem "selenium-webdriver", '~>2.45.0'
+  gem "codeclimate-test-reporter", require: nil
 end

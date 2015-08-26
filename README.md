@@ -1,4 +1,11 @@
-== README
+README
+======
+
+![Codeship status](https://codeship.com/projects/b580f560-2de6-0133-79c1-52e1cc32b2ed/status?branch=master)
+
+[![Code Climate](https://codeclimate.com/github/makeitrealcamp/start/badges/gpa.svg)](https://codeclimate.com/github/makeitrealcamp/start)
+
+[![Test Coverage](https://codeclimate.com/github/makeitrealcamp/start/badges/coverage.svg)](https://codeclimate.com/github/makeitrealcamp/start/coverage)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
