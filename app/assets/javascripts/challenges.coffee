@@ -266,6 +266,9 @@ class ChallengeFormView extends Backbone.View
     else if evaluation_strategy == "phantomjs_embedded"
       @evaluation_editor.setOption("mode", "javascript")
       @evaluation_editor.setValue("open('index.html', function(status) {\n\n});")
+    else if evaluation_strategy == "async_phantomjs_embedded"
+      @evaluation_editor.setOption("mode", "javascript")
+      @evaluation_editor.setValue("open('index.html', function(page, chain) {\n\n});")
     else if evaluation_strategy == "ruby_git"
       @evaluation_editor.setOption("mode", "ruby")
       @evaluation_editor.setValue("def evaluate(repo)\n\nend")

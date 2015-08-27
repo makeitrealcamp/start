@@ -52,7 +52,9 @@ class Solution < ActiveRecord::Base
       SinatraEvaluator.new.evaluate(self)
     elsif self.challenge.ruby_git_pr?
       GitPREvaluator.new.evaluate(self)
-    else
+    elsif self.challenge.async_phantomjs_embedded?
+      AsyncPhantomEvaluator.new.evaluate(self)
+    else      
       self.status = :failed
       self.error_message = "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp"
       self.save!
