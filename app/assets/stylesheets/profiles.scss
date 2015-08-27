@@ -188,7 +188,7 @@
 
   .level {
     h2 {
-      border-bottom: solid 2px #dddddd;
+      padding-top: 20px;
     }
 
     .points{
@@ -197,7 +197,15 @@
     }
 
     .progress {
-      background-color: black;
+      background: #303030;
+    }
+    .level-image-container {
+      margin: 0 auto;
+      width: 90px;
+    }
+    .progress-bar-success {
+      background-color: #ff3300 !important;
+      opacity: 1 !important;
     }
   }
 
