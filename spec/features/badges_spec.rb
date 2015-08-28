@@ -190,7 +190,7 @@ RSpec.feature "Badges", type: :feature do
       login(admin)
       visit admin_badges_path
       all(:css, '.badges .glyphicon.glyphicon-remove').last.click
-      page.driver.browser.switch_to.alert.accept
+      handle_confirm
       wait_for_ajax
       expect(Badge.count).to eq 1
       expect(page).to have_selector('table.badges tbody tr', count: 1)

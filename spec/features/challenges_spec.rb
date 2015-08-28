@@ -66,7 +66,7 @@ RSpec.feature "Challenges", type: :feature do
     visit course_challenge_path(course, challenge)
     find('.nav-tabs .dropdown-toggle').click
     click_link 'Reiniciar Reto'
-    page.driver.browser.switch_to.alert.accept
+    handle_confirm
     wait_for_ajax
     course_challenge_path(course, challenge)
   end
@@ -95,7 +95,7 @@ RSpec.feature "Challenges", type: :feature do
       login(admin)
       visit course_path(course)
       all(:css, '.actions a .glyphicon.glyphicon-remove').first.click
-      page.driver.browser.switch_to.alert.accept
+      handle_confirm
       wait_for_ajax
       expect(page).to have_selector('.challenge', count: 2)
       expect(Challenge.count).to eq 2
