@@ -3,6 +3,10 @@ class PasswordsController < ApplicationController
   before_action :private_access
 
   def edit
+    respond_to do |format|
+      format.js
+      format.html { redirect_to phases_path }
+    end
   end
 
   def update
