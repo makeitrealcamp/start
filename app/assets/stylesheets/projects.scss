@@ -1,5 +1,21 @@
 .project {
+  margin-bottom: 60px;
+
+  h2 { margin-top: 30px; }
+  h3 {
+    font-size: 18px;
+    // font-weight: bold;
+  }
+
   .video-wrapper { margin-bottom: 40px; }
+
+  img {
+    max-width: 100%;
+    border: 1px solid #eee;
+    padding: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 
   .new_project_solution, .edit_project_solution {
     .summary {
