@@ -2,7 +2,7 @@
   line-height: 1.6;
 
   .main {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), asset-url('home02.png') no-repeat center top;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), asset-url('home.jpg') no-repeat center top;
     background-size: cover;
     color: white;
     min-height: 400px;
@@ -924,6 +924,29 @@
       text-align: center;
       @media (max-width: $screen-md-min) {
         margin-bottom: 80px;
+      }
+      .mentor-links {
+        text-align: left;
+        width: 70%;
+        margin: 15px auto 0;
+        @media (max-width: $screen-md-min) {
+          text-align: center;
+        }
+        ul {
+          list-style-type: none;
+          padding-left: 0;
+        }
+        li {
+          display: inline-block;
+          font-size: 24px;
+          margin-right: 15px;
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+      .mentor-link {
+        
       }
     }
   }
