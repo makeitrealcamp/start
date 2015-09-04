@@ -2,6 +2,10 @@ class PasswordResetsController < ApplicationController
   before_action :public_access
 
   def new
+    respond_to do |format|
+      format.js
+      format.html { redirect_to phases_path }
+    end
   end
 
   def create
