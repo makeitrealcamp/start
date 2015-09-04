@@ -1,0 +1,40 @@
+#!/bin/bash
+APP_PATH=/home/git/app
+VARS_PATH=/home/git/env
+
+# Setup environment variables
+echo "-----> Reading configuration variables"
+vars=""
+for f in $VARS_PATH/*
+do
+  var="${f##*/}=$(<$f)"
+  vars="$vars $var"
+done
+
+# Setup ruby
+echo "-----> Selecting ruby version and installing bundler"
+cd $APP_PATH
+mkdir tmp
+source /etc/profile.d/rvm.sh
+rvm use 2.0.0
+gem install bundler --no-ri --no-rdoc
+bundle install --without development test
+
+# Kill current sidekiq
+echo "-----> Killing current process"
+current_sidekiq=`ps aux | grep sidekiq | grep -v grep | awk '{print $2}'`
+if [ "$current_sidekiq" != "" ]; then
+  echo "-----> Killing current sidekiq process: $current_sidekiq"
+  kill $current_sidekiq
+fi
+
+# Prepare
+echo "-----> Preparing"
+if [ ! -d "tmp" ]; then
+  mkdir tmp
+fi
+
+# Run
+echo "-----> Running"
+run_sidekiq="$vars bundle exec sidekiq -d -L log/sidekiq.log -e production"
+eval $run_sidekiq˘∏
