@@ -81,4 +81,9 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'start.makeitreal.camp'}
   Rails.application.default_url_options[:host] = 'start.makeitreal.camp'
+
+  # Setup papertrail
+  if ENV['REMOTE_LOGGER_HOST'] && ENV['REMOTE_LOGGER_PORT']
+    config.logger = RemoteSyslogLogger.new(ENV['REMOTE_LOGGER_HOST'],ENV['REMOTE_LOGGER_PORT'], program: 'start')
+  end
 end
