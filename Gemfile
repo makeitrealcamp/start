@@ -71,6 +71,7 @@ gem 'pusher'
 gem 'roadie-rails', '~> 1.0.6'
 gem 'figaro'
 gem 'remote_syslog_logger'
+gem 'date_supercharger'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
