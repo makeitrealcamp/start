@@ -69,7 +69,7 @@
     }
   }
 
-  .main-nav.navbar-shrink { 
+  .main-nav.navbar-shrink {
     background-color: rgba(28, 28, 28, 0.8);
 
     .brand {
@@ -125,9 +125,9 @@
     border-color: #F04500;
     border-radius: 3px;
 
-    @media (min-width: $screen-sm-min) { 
+    @media (min-width: $screen-sm-min) {
       font-size: 24px;
-      padding: 7px 30px; 
+      padding: 7px 30px;
     }
 
     small {
@@ -172,7 +172,7 @@
     }
   }
 
-  .main .more { 
+  .main .more {
     font-size: 34px;
     margin-top: 80px;
     margin-bottom: 20px;
@@ -280,7 +280,7 @@
       }
 
       img {
-        width: 100%; 
+        width: 100%;
         border: 1px solid #ccc;
       }
     }
@@ -313,9 +313,9 @@
   .social-proof {
     @media (min-width: $screen-md-min) { padding-bottom: 40px; }
 
-    .carousel-inner { 
-      height: 370px; 
-      
+    .carousel-inner {
+      height: 370px;
+
       @media (min-width: $screen-sm-min) { height: 300px; }
       @media (min-width: $screen-md-min) { height: 400px; }
     }
@@ -597,7 +597,7 @@
     }
   }
   .intro {
-    background: url("../assets/introBg.png") center center;
+    background: url("introBg.png") center center;
     background-size: cover;
     width: 100%;
     height: 100%;
@@ -946,7 +946,7 @@
         }
       }
       .mentor-link {
-        
+
       }
     }
   }
