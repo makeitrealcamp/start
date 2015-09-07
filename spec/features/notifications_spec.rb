@@ -42,9 +42,45 @@ RSpec.feature "Notifications", type: :feature do
         expect(page).to have_selector('.no-more-notifications')
       end
     end
-
   end
 
+  context 'resource is not available' do
+    scenario "when notification type is comment_activity", js: true do
+      mock_notifications_service(page)
+      login(user)
+
+      user.notifications.create!(notification_type: Notification.notification_types[:comment_activity], data: { comment_id: 0 })
+      find(:css,".notifications-btn").click
+      within :css,"#notifications" do
+        expect(page).to have_selector('.notification', count: user.notifications.count)
+        expect(page).to have_content("El recurso ya no se encuentra disponible")
+      end
+    end
+
+    scenario "when notification type is comment_response", js: true do
+      mock_notifications_service(page)
+      login(user)
+
+      user.notifications.create!(notification_type: Notification.notification_types[:comment_response], data: { response_id: 0 })
+      find(:css,".notifications-btn").click
+      within :css,"#notifications" do
+        expect(page).to have_selector('.notification', count: user.notifications.count)
+        expect(page).to have_content("El recurso ya no se encuentra disponible")
+      end
+    end
+
+    scenario "when notification type is badge_earned", js: true do
+      mock_notifications_service(page)
+      login(user)
+
+      user.notifications.create!(notification_type: Notification.notification_types[:badge_earned], data: { badge_id: 0 })
+      find(:css,".notifications-btn").click
+      within :css,"#notifications" do
+        expect(page).to have_selector('.notification', count: user.notifications.count)
+        expect(page).to have_content("El recurso ya no se encuentra disponible")
+      end
+    end
+  end
 end
 
 

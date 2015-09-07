@@ -4,6 +4,7 @@
   <div class="col-xs-3">
     <img class="img-responsive" src="<%= comment.user.avatar_url %>" alt="<%= comment.user.first_name %>" />
   </div>
+
   <div class="col-xs-9">
     <%= link_to comment.commentable.url_for_notification, class: "comment-link" do %>
       <strong><%= comment.user.first_name || comment.user.nickname %></strong>

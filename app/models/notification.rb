@@ -35,6 +35,18 @@ class Notification < ActiveRecord::Base
   after_initialize :default_values
   after_create :notify_user
 
+  def resource_avaliable?
+    if comment_activity?
+      Comment.exists?(data["comment_id"])
+    elsif comment_response?
+      Comment.exists?(data["response_id"])
+    elsif badge_earned?
+      Badge.exists?(data["badge_id"])
+    else
+      return true
+    end
+  end
+
   private
     def default_values
       self.status ||= Notification.statuses[:unread]
