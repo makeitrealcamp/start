@@ -1,16 +1,23 @@
-<link rel="stylesheet" href="user_mailer.css" >
+<div class="summary-email" style="max-width: 600px;width: 100%">
+  <div class="logo" style="text-align: center">
+    <a href="http://www.makeitreal.camp" target="_blank" class="logo-email" style="color: #ff4300;text-decoration: none">
+      <img src="http://www.makeitreal.camp/assets/logoNavMir-000f42dc00d0ddb798cc40365bcf880d1ea4a29cf8eb978cbea17ed3090c4f03.png" alt="Make it Real">
+    </a>
+  </div>
+  <p class="text-center" style="text-align: center">Hola<%= @user.first_name? ? " #{@user.first_name}" : "" %>, Te traemos un resumen de tu semana en Make it Real:</p>
+  <div class="nivel-actual text-center" style="text-align: center;margin: 15px 0">
+    <div class="level-image-container">
+      <span class="txt-bold" style="font-weight: bold">Tu nivel actual</span><br>
+      <%= image_tag @user.level.image_url, class: "img-responsive img-level" %>
+    </div>
+  </div>
 
-<div class="summary-email">
-  <p>Hola<%= @user.first_name? ? " #{@user.first_name}" : "" %>,</p>
-
-  <p>Te traemos un resumen de tu semana en Make it Real:</p>
-
-  <table class="summary-table">
+  <table class="summary-table" style="width: 100%;border-collapse: collapse;border-spacing: 0">
     <tbody>
       <tr>
-        <td>Retos resueltos</td>
-        <td><%= @solved_challenges.count %></td>
-        <td>
+        <td class="text-left" style="border: 1px solid #ddd;padding: 10px;text-align: left">Retos resueltos</td>
+        <td style="border: 1px solid #ddd;padding: 10px;text-align: right"><%= @solved_challenges.count %></td>
+        <td style="border: 1px solid #ddd;padding: 10px;text-align: right">
           <% if @solved_challenges.empty? %>
             :(
           <% else %>
@@ -23,9 +30,9 @@
       </tr>
 
       <tr>
-        <td>Recursos completados</td>
-        <td><%= @completed_resources.count %></td>
-        <td>
+        <td class="text-left" style="border: 1px solid #ddd;padding: 10px;text-align: left">Recursos completados</td>
+        <td style="border: 1px solid #ddd;padding: 10px;text-align: right"><%= @completed_resources.count %></td>
+        <td style="border: 1px solid #ddd;padding: 10px;text-align: right">
           <% if @completed_resources.empty? %>
             :(
           <% else %>
@@ -38,9 +45,9 @@
       </tr>
 
       <tr>
-        <td>Proyectos terminados</td>
-        <td><%= @finished_projects.count %></td>
-        <td>
+        <td class="text-left" style="border: 1px solid #ddd;padding: 10px;text-align: left">Proyectos terminados</td>
+        <td style="border: 1px solid #ddd;padding: 10px;text-align: right"><%= @finished_projects.count %></td>
+        <td style="border: 1px solid #ddd;padding: 10px;text-align: right">
           <% if @finished_projects.empty? %>
             :(
           <% else %>
@@ -54,9 +61,9 @@
       </tr>
 
       <tr>
-        <td>Medallas recibidas</td>
-        <td><%= @received_badges.count %></td>
-        <td>
+        <td class="text-left" style="border: 1px solid #ddd;padding: 10px;text-align: left">Medallas recibidas</td>
+        <td style="border: 1px solid #ddd;padding: 10px;text-align: right"><%= @received_badges.count %></td>
+        <td style="border: 1px solid #ddd;padding: 10px;text-align: right">
           <% if @received_badges.empty? %>
             :(
           <% else %>
@@ -69,9 +76,9 @@
       </tr>
 
       <tr>
-        <td>Puntos recibidos</td>
-        <td><%= @received_points.count %></td>
-        <td>
+        <td class="text-left" style="border: 1px solid #ddd;padding: 10px;text-align: left">Puntos recibidos</td>
+        <td style="border: 1px solid #ddd;padding: 10px;text-align: right"><%= @received_points.count %></td>
+        <td style="border: 1px solid #ddd;padding: 10px;text-align: right">
           <% if @received_points.empty? %>
             :(
           <% else %>
@@ -81,10 +88,18 @@
       </tr>
 
       <tr>
-        <td>Notificaciones sin leer</td>
-        <td><%= @unread_notifications.count %></td>
-        <td>
-          <%= link_to "Revisar notificaciones", root_url %>
+        <td class="text-left" style="border: 1px solid #ddd;padding: 10px;text-align: left">Puntos para avanzar al siguiente nivel</td>
+        <td style="border: 1px solid #ddd;padding: 10px;text-align: right"><%= @user.next_level.required_points %></td>
+        <td style="border: 1px solid #ddd;padding: 10px;text-align: right">
+            :D
+        </td>
+      </tr>
+
+      <tr>
+        <td class="text-left" style="border: 1px solid #ddd;padding: 10px;text-align: left">Notificaciones sin leer</td>
+        <td style="border: 1px solid #ddd;padding: 10px;text-align: right"><%= @unread_notifications.count %></td>
+        <td style="border: 1px solid #ddd;padding: 10px;text-align: right">
+          <%= link_to "Revisar notificaciones", root_url, {:style => 'color: #ff4300'} %>
         </td>
       </tr>
 
@@ -92,10 +107,14 @@
   </table>
 
 
-  <p>Saludos,</p>
-
-  <p class="signature">
-    Equipo Make it Real<br>
-    makeitreal.camp
+  <p class="text-center" style="text-align: center">Saludos,</p>
+  <p class="signature text-center" style="text-align: center">
+    <span class="txt-bold" style="font-weight: bold">Equipo Make it Real</span><br>
+    <a href="http://www.makeitreal.camp" target="_blank" style="color: #ff4300;text-decoration: none">makeitreal.camp</a>
   </p>
+  <div class="mir-icon" style="text-align: center;margin-top: 15px">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="30" height="40" viewBox="0 0 30 40">
+        <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAoCAMAAADezbogAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAATlBMVEUAAAAjICAjICAjICAjICAjICAjICAjICAjICAjICAjICAjICAjICAjICAjICD/RgD/RgD/RgD/RgD/RgD/RgD/RgD/RgAjICD/RgAAAAD/NUQRAAAAF3RSTlMARMyZdxHdqu67iDNVZiI44HBAgDzweO12ytAAAAABYktHRACIBR1IAAAACXBIWXMAAAsSAAALEgHS3X78AAAA50lEQVQ4y83SSxKDIAwA0KAoImD/tfc/aYeQIATGTTfNghl9SkgCqJ1igBwjv9OQeT946LFinfYea2YleY6LYdbxaSk5ZluYbXyw5eZrXBwxblWxj0tI6hCqo+FhxyK1qljNR2OwKVAzvpuQ45dWcMiNwTyrYJcbg6f0gmHBLflkk2TDU4kFzyBZc2OoRMGKkitqkGD+C3fZWqachoYjmX6babSSU70b1y85dctz9yTjBbQrl9/wyNfKdjlUd7Lhjdl3GaeSx96ySTpAn9P1oyvXskscSv7juFxP4gb3z0k8fuTn6yTeXw/bPgiGMSluAAAAAElFTkSuQmCC" width="30" height="40"/>
+    </svg>
+  </div>
 </div>
