@@ -41,6 +41,7 @@ $color_thunderbird_approx: #cc2424;
     display: table;
     clear: both;
   }
+
   .discussion-entry {
     position: relative;
     margin-top: 5px;
@@ -263,6 +264,10 @@ $color_thunderbird_approx: #cc2424;
   }
   .btn-link {
     white-space: normal;
+  }
+  .markdown-support {
+    font-size: 13px;
+    opacity: 0.7;
   }
 }
 
