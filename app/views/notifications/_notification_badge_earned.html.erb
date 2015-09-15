@@ -1,9 +1,10 @@
 <%# required: notification, notification.data["badge_id"] %>
-<% badge = Badge.find(notification.data["badge_id"]) %>
+<% badge = Badge.find_by_id(notification.data["badge_id"]) %>
 <div class="row">
   <div class="col-xs-3">
     <img class="img-responsive" src="<%= badge.image_url%>" alt="<%= badge.name%>" />
   </div>
+
   <div class="col-xs-9">
     ¡Felicitaciones! has recibido la insignia <strong><%= badge.name %></strong>
   </div>
