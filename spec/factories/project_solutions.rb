@@ -20,7 +20,7 @@
 
 FactoryGirl.define do
   factory :project_solution do
-    repository { Faker::Internet.url }
+    repository 'nmenag/jekyllthemes'
     url { Faker::Internet.url }
     summary { Faker::Lorem.paragraph }
     association  :user, factory: :user
