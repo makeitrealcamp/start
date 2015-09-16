@@ -74,7 +74,7 @@ RSpec.feature "Sections", type: :feature do
       login(admin)
       visit course_resource_path(course, resource)
       all(:css, '.resource-section-title a .glyphicon.glyphicon-remove').first.click
-      page.driver.browser.switch_to.alert.accept
+      handle_confirm
       wait_for_ajax
       expect(resource.sections.count).to eq 0
       expect(Lesson.count).to eq 0

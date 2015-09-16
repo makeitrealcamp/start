@@ -103,7 +103,7 @@ RSpec.feature "Comments", type: :feature do
         login(user)
         visit discussion_course_challenge_path(challenge.course, challenge)
         all(:css, '.comment-actions a .glyphicon.glyphicon-remove').first.click
-        page.driver.browser.switch_to.alert.accept
+        handle_confirm
         wait_for_ajax
         expect(Comment.count).to eq 1
         expect(page).to have_selector('article.discussion-entry', count: 1)

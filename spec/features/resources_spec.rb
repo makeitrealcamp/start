@@ -204,7 +204,7 @@ RSpec.feature "Resources", type: :feature do
       visit phase_path(course.phase)
       all('a', text: 'Entrar').first.click
       all('.resources span.action-remove', count: 2).first.click
-      page.driver.browser.switch_to.alert.accept
+      handle_confirm
       wait_for_ajax
 
       expect(course.resources.count).to eq 1

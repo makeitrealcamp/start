@@ -60,7 +60,6 @@ RSpec.feature "Users", type: :feature do
 
   context 'when accessed as admin' do
     context 'create user', js: true do
-
       scenario 'with valid input ' do
         login(admin)
         wait_for_ajax
@@ -83,7 +82,6 @@ RSpec.feature "Users", type: :feature do
         expect(user.first_name).to eq first_name
         expect(user.last_name).to eq last_name
         expect(user.gender).to eq "male"
-
         expect(page).to have_selector '.alert-success'
       end
 

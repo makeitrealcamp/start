@@ -126,7 +126,7 @@ RSpec.feature "Lessons", type: :feature do
       login(admin)
       visit course_resource_path(course, resource)
       all(:css, '.lessons .actions a .glyphicon.glyphicon-remove').first.click
-      page.driver.browser.switch_to.alert.accept
+      handle_confirm
       wait_for_ajax
       expect(Lesson.count).to eq 1
       expect(page).to have_selector('.lesson', count: 1)
