@@ -15,9 +15,6 @@
       <div class="collapse navbar-collapse" id="right-menu">
         <% if signed_in? %>
           <ul class="nav navbar-nav navbar-right">
-            <% if current_user.paid_account? || current_user.is_admin? %>
-              <li><%= link_to "<span class='glyphicon glyphicon-book'></span> <span class='hidden-xs'>Handbook</span>".html_safe, handbook_path %></li>
-            <% end %>
             <li><a href="http://blog.makeitreal.camp/" target="_blank">Blog</a></li>
             <% if current_user.is_admin? %>
               <li class="dropdown">
@@ -33,6 +30,12 @@
                 </ul>
               </li>
             <% end %>
+            <li class="nav-user-level">
+              <a href="http://blog.makeitreal.camp/2015/09/15/niveles-make-it-real/" target="_blank">
+                <%= @current_user.stats.total_points %> <span class="txt-small">pts.</span>
+                <%= image_tag @current_user.level.image_url, class: "user-badge" %>
+              </a>
+            </li>
             <%= render "notifications/widget", user: current_user %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle avatar" data-toggle="dropdown">
@@ -43,6 +46,10 @@
                 <li><%= link_to "Mi Perfil", user_profile_path(current_user.nickname) %></li>
                 <li><%= link_to "Editar Perfil", edit_user_path(current_user) %></li>
                 <li><%= link_to "Cambiar Contraseña", edit_password_path, remote: true %></li>
+                <li class="divider"></li>
+                <% if current_user.paid_account? || current_user.is_admin? %>
+                  <li><%= link_to "<span class='glyphicon glyphicon-book'></span> <span class='hidden-xs'>Handbook</span>".html_safe, handbook_path %></li>
+                <% end %>
                 <li class="divider"></li>
                 <li><%= link_to "Salir", logout_path, method: :delete %></li>
               </ul>

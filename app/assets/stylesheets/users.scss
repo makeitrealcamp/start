@@ -138,3 +138,17 @@
 .user-search-form {
   padding-top: 30px;
 }
+
+.navbar-right {
+  .nav-user-level {
+    border-left: 1px solid #1f1f1f;
+    .user-badge {
+      width: 63px;
+      padding-left: 15px;
+    }
+    a {
+      padding-bottom: 10px;
+      padding-top: 18px;
+    }
+  }
+}

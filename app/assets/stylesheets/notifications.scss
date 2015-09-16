@@ -1,7 +1,14 @@
 .navbar {
   .notifications-btn {
-    padding-top: 17px;
-    padding-bottom: 0;
+    padding-bottom: 15px;
+    padding-top: 18px;
+    border-right: 1px solid #1f1f1f;
+    border-left: 1px solid #1f1f1f;
+    .btn {
+      background: #303030;
+      border-radius: 20%;
+      color: #fff;
+    }
   }
 }
 
