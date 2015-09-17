@@ -49,7 +49,7 @@ module CoursesHelper
     elsif failed > 0
       "Recuerda que si no estás luchando con los retos no estás aprendiendo nada nuevo."
     elsif evaluated == course.challenges.published.count
-      "Has completado todos los retos de este curso. ¡Felicitaciones"
+      "Has completado todos los retos de este curso. ¡Felicitaciones!"
     else
       "¿Estás #{current_user.gender == "female" ? "preparada" : "preparado"} para el siguiente reto?"
     end
