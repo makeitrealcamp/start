@@ -35,11 +35,29 @@ RSpec.describe ProjectSolution, type: :model do
     it { should validate_presence_of :user }
     it { should validate_presence_of :repository }
     it { should validate_presence_of :summary }
+    it { should_not allow_value("lorem").for(:url) }
   end
 
   it "has a valid factory" do
     expect(build(:project_solution)).to be_valid
   end
+
+  context 'validation repository field' do
+    context 'when repository does not exist' do
+      it 'should not be valid' do
+        username = Faker::Internet.user_name
+        repository = Faker::Internet.slug('foo bar', '-')
+        expect(build(:project_solution, repository: "#{username}/#{repository}")).not_to be_valid
+      end
+    end
+
+    context 'when the format is not valid' do
+      it 'should not be valid' do
+        expect(build(:project_solution, repository: "lorem")).not_to be_valid
+      end
+    end
+  end
+
 
   context 'default_values' do
     it "should be initialized with default values" do

@@ -27,6 +27,8 @@ class ProjectSolution < ActiveRecord::Base
   validates :user, presence: true
   validates :repository, presence: true
   validates :summary, presence: true
+  validates :url, format: { with: URI.regexp }, if: Proc.new { |a| a.url.present? }
+  validate  :validate_repository
 
   enum status: [:pending_review, :reviewed]
   after_initialize :default_values
@@ -56,6 +58,16 @@ class ProjectSolution < ActiveRecord::Base
   private
     def default_values
       self.status ||= ProjectSolution.statuses[:pending_review]
+    end
+
+    def validate_repository
+      begin
+        unless Octokit.repository?(repository)
+          errors.add(:repository, "No se encontró el repositorio #{repository}")
+        end
+      rescue ArgumentError
+        errors.add(:repository, "Formato invalido")
+      end
     end
 
     def notify_mentors_if_pending_review
