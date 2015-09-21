@@ -35,7 +35,7 @@
         <% end %>
         <br>
         <% unless @project_solution.url.blank? %>
-          <%= link_to "http://#{@project_solution.url}", class: "link" do %>
+          <%= link_to @project_solution.url do %>
             <i class="fa fa-globe"></i>
             <%= @project_solution.url %>
           <% end %>
@@ -65,7 +65,7 @@
         <% end %>
       </div>
       <p>
-        <%= @project_solution.summary %>
+        <%= markdown @project_solution.summary %>
       </p>
 
     </div>
