@@ -16,7 +16,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Quiz::QuizAttempt, type: :model do
+RSpec.describe Quizer::QuizAttempt, type: :model do
   it "has a valid factory" do
     quiz_attempt = build(:quiz_attempt)
     expect(quiz_attempt).to be_valid

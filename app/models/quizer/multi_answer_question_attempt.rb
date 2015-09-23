@@ -16,24 +16,27 @@
 #  index_question_attempts_on_quiz_attempt_id  (quiz_attempt_id)
 #
 
-class Quiz::QuestionAttempt < ActiveRecord::Base
-  belongs_to :quiz_attempt
-  belongs_to :question
+class Quizer::MultiAnswerQuestionAttempt < Quizer::QuestionAttempt
 
-  validate :validate_data_schema
-
-  def self.types
-    [Quiz::MultiAnswerQuestionAttempt]
-  end
+  after_initialize :defaults
 
   protected
-    def data_schema
-      raise 'Abstract Method'
+    def defaults
+      self.data ||= { "answers" => [] }
     end
 
-    def validate_data_schema
-      unless JSON::Validator.validate(data_schema,data,insert_defaults: true)
-        errors[:data] << JSON::Validator.fully_validate(data_schema,data,insert_defaults: true)
-      end
+    def data_schema
+      {
+        "type" => "object",
+        "default" => {"answers" => []},
+        "required" => ["answers"],
+        "properties" => {
+          "answers" => {
+            "type" => "array",
+            "default" => [],
+            "items" => { "type" => "string" }
+          }
+        }
+      }
     end
 end

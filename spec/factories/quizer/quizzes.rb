@@ -16,7 +16,7 @@
 #
 
 FactoryGirl.define do
-  factory :quiz, class: Quiz::Quiz do
+  factory :quiz, class: Quizer::Quiz do
     name "HTML y CSS"
     course { create(:course) }
   end

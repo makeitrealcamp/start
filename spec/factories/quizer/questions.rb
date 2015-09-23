@@ -15,13 +15,13 @@
 #
 
 FactoryGirl.define do
-  factory :multi_answer_question, class: Quiz::MultiAnswerQuestion do
+  factory :multi_answer_question, class: Quizer::MultiAnswerQuestion do
     quiz { create(:quiz) }
     data do
       {
         "question" => "What?",
-        "wrong_answers" => [ "a","b","c" ],
-        "correct_answers" => [ "d","e" ]
+        "wrong_answers" => [ "wrong answer a","wrong answer b","wrong answer c" ],
+        "correct_answers" => [ "correct answer d","correct answer e" ]
       }
     end
   end

@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1><%= @quiz.name %></h1>
+    </div>
+  </div>
+
+  <% @quiz_attempt.question_attempts.each do |qa| %>
+    <div class="row question">
+      <div class="col-xs-12">
+        <%= render "quizer/questions/multi_answer_question", question_attempt: qa %>
+      </div>
+    </div>
+  <% end %>
+</div>

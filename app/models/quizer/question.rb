@@ -15,12 +15,23 @@
 #  index_questions_on_quiz_id  (quiz_id)
 #
 
-class Quiz::Question < ActiveRecord::Base
+class Quizer::Question < ActiveRecord::Base
   belongs_to :quiz
   validate :validate_data_schema
 
   def self.types
-    [Quiz::MultiAnswerQuestion]
+    [Quizer::MultiAnswerQuestion]
+  end
+
+  def attempt_type
+    unless Quizer::Question.types.map(&:to_s).include? self.type
+      raise "Invalid Quesiton Type"
+    end
+    (type+'Attempt').constantize
+  end
+
+  def create_attempt!(attributes)
+    attempt_type.create!({question: self}.merge(attributes))
   end
 
   protected

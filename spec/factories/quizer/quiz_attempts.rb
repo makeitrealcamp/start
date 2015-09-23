@@ -15,7 +15,7 @@
 #
 
 FactoryGirl.define do
-  factory :quiz_attempt, :class => Quiz::QuizAttempt do
+  factory :quiz_attempt, :class => Quizer::QuizAttempt do
     user { create(:user) }
     quiz { create(:quiz) }
   end

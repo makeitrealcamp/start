@@ -14,7 +14,11 @@
 #  index_questions_on_quiz_id  (quiz_id)
 #
 
-class Quiz::MultiAnswerQuestion < Quiz::Question
+class Quizer::MultiAnswerQuestion < Quizer::Question
+
+  def mixed_answers
+    (data["correct_answers"] + data["wrong_answers"]).shuffle
+  end
 
   protected
     def data_schema
@@ -24,13 +28,13 @@ class Quiz::MultiAnswerQuestion < Quiz::Question
         "properties" => {
           "question" => { "type" => "string" },
           "wrong_answers" => {
-            "default" => [],
             "type" => "array",
+            "default" => [],
             "items" => { "type" => "string" }
           },
           "correct_answers" => {
-            "default" => [],
             "type" => "array",
+            "default" => [],
             "items" => { "type" => "string" }
           }
         }

@@ -1,2 +1,4 @@
-module Admin::BadgeOwnershipsHelper
+module Admin
+  module BadgeOwnershipsHelper
+  end
 end

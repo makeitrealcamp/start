@@ -16,7 +16,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Quiz::Question, type: :model do
+RSpec.describe Quizer::Question, type: :model do
 
   it "has a valid factory" do
     question = build(:multi_answer_question)
@@ -25,7 +25,7 @@ RSpec.describe Quiz::Question, type: :model do
 
   describe "validations" do
     it "validates data schema" do
-      question = Quiz::MultiAnswerQuestion.create
+      question = Quizer::MultiAnswerQuestion.create
       expect(question.errors).to have_key(:data)
     end
   end

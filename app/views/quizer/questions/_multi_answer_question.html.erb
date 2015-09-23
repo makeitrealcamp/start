@@ -1,0 +1,28 @@
+<%# required: question_attempt %>
+<% question = question_attempt.question %>
+<% quiz = question.quiz %>
+<% course = quiz.course %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <p class="question">
+        <%= question.data["question"] %>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <%= form_for :question_attempt, url: question_attempt_path(question_attempt), method: :patch, remote: true  do |f| %>
+        <% question.mixed_answers.each do |option| %>
+          <%# f.hidden_field :answers, value: [] %>
+          <div>
+            <%= f.check_box(:answers, {:multiple => true},option,"") %>
+            <%= option %>
+          </div>
+        <% end %>
+        <%= f.submit "Guardar", class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+</div>

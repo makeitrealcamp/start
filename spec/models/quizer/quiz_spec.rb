@@ -9,6 +9,7 @@
 #  course_id  :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  published  :boolean
 #
 # Indexes
 #
@@ -17,7 +18,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Quiz::Quiz, type: :model do
+RSpec.describe Quizer::Quiz, type: :model do
 
   it "should have a valid factory" do
     expect(build(:quiz)).to be_valid

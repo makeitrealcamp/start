@@ -14,9 +14,21 @@
 #  index_quiz_attempts_on_user_id  (user_id)
 #
 
-class Quiz::QuizAttempt < ActiveRecord::Base
+class Quizer::QuizAttempt < ActiveRecord::Base
   belongs_to :user
   belongs_to :quiz
   has_many :question_attempts
   has_many :questions, through: :question_attempts
+
+  after_create :assign_questions
+
+  private
+
+    def assign_questions
+      possible_questions = quiz.questions
+      n = [20,possible_questions.count].min
+      possible_questions.order("RANDOM()").limit(n).each do |q|
+        q.create_attempt!(quiz_attempt: self)
+      end
+    end
 end
