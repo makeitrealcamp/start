@@ -92,7 +92,7 @@ class Challenge < ActiveRecord::Base
   end
 
   def url_for_notification
-    Rails.application.routes.url_helpers.course_challenge_url(self.course,self)
+    Rails.application.routes.url_helpers.discussion_course_challenge_path(self.course, self)
   end
 
   private
