@@ -11,7 +11,7 @@
       <div class="media-body">
         <h4 class="media-heading">Solución de <%= solution.user.first_name %></h4>
         <p>
-          <%= truncate(solution.summary) %>
+          <%= markdown truncate(solution.summary) %>
         </p>
         <% if own_solution %>
           <span class="label label-info">Mi solución</span><br/>
@@ -23,7 +23,7 @@
           <% end %>
           <br>
           <% unless solution.url.blank? %>
-            <%= link_to "http://#{solution.url}", class: "link" do %>
+            <%= link_to solution.url, class: "link" do %>
               <i class="fa fa-globe"></i>
               <%= solution.url %>
             <% end %>
