@@ -7,6 +7,8 @@
 #  quiz_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  status     :integer
+#  score      :decimal(, )
 #
 # Indexes
 #
@@ -20,13 +22,19 @@ class Quizer::QuizAttempt < ActiveRecord::Base
   has_many :question_attempts
   has_many :questions, through: :question_attempts
 
+  enum status: [:ongoing,:finished]
   after_create :assign_questions
+
+  def update_quiz_attempt_score!
+    self.score = question_attempts.sum(:score)/questions.count.to_f
+    save!
+  end
 
   private
 
     def assign_questions
       possible_questions = quiz.questions
-      n = [20,possible_questions.count].min
+      n = [5,possible_questions.count].min
       possible_questions.order("RANDOM()").limit(n).each do |q|
         q.create_attempt!(quiz_attempt: self)
       end

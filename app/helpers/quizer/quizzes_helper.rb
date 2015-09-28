@@ -8,5 +8,21 @@ module Quizer
         question_attempt
       )
     end
+
+    def finish_quiz_attempt_path(quiz_attempt)
+      finish_course_quizer_quiz_quiz_attempt_path(
+        quiz_attempt.quiz.course,
+        quiz_attempt.quiz,
+        quiz_attempt
+      )
+    end
+
+    def quiz_attempt_results_path(quiz_attempt)
+      results_course_quizer_quiz_quiz_attempt_path(
+        quiz_attempt.quiz.course,
+        quiz_attempt.quiz,
+        quiz_attempt
+      )
+    end
   end
 end

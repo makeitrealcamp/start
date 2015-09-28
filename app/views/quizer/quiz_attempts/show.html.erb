@@ -12,4 +12,9 @@
       </div>
     </div>
   <% end %>
+  <div class="row">
+    <div class="col-xs-12">
+      <%= button_to "Finalizar", finish_quiz_attempt_path(@quiz_attempt), method: :patch %>
+    </div>
+  </div>
 </div>

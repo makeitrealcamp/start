@@ -25,7 +25,7 @@ class Quizer::Question < ActiveRecord::Base
 
   def attempt_type
     unless Quizer::Question.types.map(&:to_s).include? self.type
-      raise "Invalid Quesiton Type"
+      raise "Invalid Question Type"
     end
     (type+'Attempt').constantize
   end

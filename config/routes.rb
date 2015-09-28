@@ -65,6 +65,10 @@ Rails.application.routes.draw do
     namespace :quizer, path: "/" do
       resources :quizzes do
         resources :quiz_attempts, only: [:create, :show] do
+          member do
+            patch :finish
+            get :results
+          end
           resources :question_attempts, only: [:update]
         end
       end

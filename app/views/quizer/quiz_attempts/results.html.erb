@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Resultados para el quiz <strong><%= @quiz_attempt.quiz.name %></strong></h1>
+      <p>
+        Puntaje: <%= "%.2f\%" % (@quiz_attempt.score*100) %>
+      </p>
+    </div>
+  </div>
+</div>
