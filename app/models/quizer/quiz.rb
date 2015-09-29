@@ -26,12 +26,17 @@ class Quizer::Quiz < ActiveRecord::Base
   belongs_to :course
   has_many :questions
   has_many :quiz_attempts
+  has_many :users, -> { uniq }, through: :quiz_attempts
 
   validates :name, presence: true
   validates :course, presence: true
 
   after_initialize :defaults
   scope :for, -> user { published unless user.is_admin? }
+
+  def is_being_attempted_by_user?(user)
+    user.quiz_attempts.ongoing.any?
+  end
 
   private
 

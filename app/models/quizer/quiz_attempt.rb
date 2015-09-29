@@ -22,8 +22,12 @@ class Quizer::QuizAttempt < ActiveRecord::Base
   has_many :question_attempts
   has_many :questions, through: :question_attempts
 
+  validate :validate_unique_attempt_per_user
+
   enum status: [:ongoing,:finished]
+  after_initialize :defaults
   after_create :assign_questions
+
 
   def update_quiz_attempt_score!
     self.score = question_attempts.sum(:score)/questions.count.to_f
@@ -31,6 +35,17 @@ class Quizer::QuizAttempt < ActiveRecord::Base
   end
 
   private
+
+    def defaults
+      self.status ||= Quizer::QuizAttempt.statuses[:ongoing]
+      self.score ||= 0
+    end
+
+    def validate_unique_attempt_per_user
+      if user && user.quiz_attempts.ongoing.where.not(id: id).exists?(quiz_id: quiz_id)
+        errors[:user] << "should finish existing quiz attempt"
+      end
+    end
 
     def assign_questions
       possible_questions = quiz.questions
