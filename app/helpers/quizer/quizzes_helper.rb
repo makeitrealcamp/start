@@ -24,5 +24,14 @@ module Quizer
         quiz_attempt
       )
     end
+
+    def ongoing_quiz_attempt_for_user_path(quiz,current_user)
+      quiz_attempt = current_user.quiz_attempts.ongoing.find_by_quiz_id(quiz.id)
+      course_quizer_quiz_quiz_attempt_path(
+        quiz.course,
+        quiz,
+        quiz_attempt
+      )
+    end
   end
 end

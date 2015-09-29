@@ -10,8 +10,9 @@ module Quizer
     end
 
     def create
-      @quiz_attempt = @quiz.quiz_attempts.new(user: current_user)
-      if @quiz_attempt.save
+      if @quiz.is_being_attempted_by_user?(current_user)
+        redirect_to ongoing_quiz_attempt_for_user_path(@quiz,current_user)
+      elsif @quiz_attempt = @quiz.quiz_attempts.create(user: current_user)
         redirect_to course_quizer_quiz_quiz_attempt_path(@course,@quiz,@quiz_attempt)
       else
         flash[:error] = "Algo salió mal"

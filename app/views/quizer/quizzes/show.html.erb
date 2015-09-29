@@ -7,8 +7,37 @@
 
   <div class="row">
     <div class="col-md-8 col-md-offset-2 text-center">
-      <%# TODO: if exists a quiz attempt currently being attempted show link to that attempt %>
-      <%= button_to "Comenzar Quiz", course_quizer_quiz_quiz_attempts_path(@course,@quiz), method: :post, class: "btn btn-success" %>
+      <% if @quiz.is_being_attempted_by_user? current_user %>
+        <p>
+          Ya comenzaste este quiz.
+        </p>
+        <%= link_to "Continuar Quiz", ongoing_quiz_attempt_for_user_path(@quiz,current_user), class: "btn btn-success" %>
+      <% else %>
+        <%= button_to "Comenzar Quiz", course_quizer_quiz_quiz_attempts_path(@course,@quiz), method: :post, class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h2>Resultados anteriores</h2>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Puntaje</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @finished_quiz_attempts.each do |quiz_attempt| %>
+              <tr id="quiz-attempt-<%= quiz_attempt.id %>">
+                <td><%= quiz_attempt.created_at.strftime("%Y-%m-%d") %></td>
+                <td><%= "%.2f\%" % (quiz_attempt.score*100) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 

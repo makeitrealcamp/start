@@ -4,6 +4,8 @@ module Quizer
     before_action :set_quiz, only: [:destroy,:update,:edit,:show]
 
     def show
+      @finished_quiz_attempts = current_user.quiz_attempts
+        .where(quiz_id: @quiz.id).finished.order('created_at DESC')
     end
 
     def new
