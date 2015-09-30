@@ -10,7 +10,7 @@ class SolutionsController < ApplicationController
 
   def show
     @solution = Solution.find(params[:id])
-    render json: @solution.to_json
+    render json: @solution.as_json({include_user_level: true})
   end
 
   def update_documents

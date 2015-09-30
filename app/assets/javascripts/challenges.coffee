@@ -142,7 +142,7 @@ class SolutionView extends Backbone.View
         message: "<strong>¡Felicitaciones!</strong> Lo lograste."
         color: "#4DFF62"
         icon: "ok-sign"
-
+        user: solution.user_hash
     else if solution.status == "failed"
       data =
         status: "failed"

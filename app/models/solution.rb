@@ -54,7 +54,7 @@ class Solution < ActiveRecord::Base
       GitPREvaluator.new.evaluate(self)
     elsif self.challenge.async_phantomjs_embedded?
       AsyncPhantomEvaluator.new.evaluate(self)
-    else      
+    else
       self.status = :failed
       self.error_message = "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp"
       self.save!
@@ -63,10 +63,24 @@ class Solution < ActiveRecord::Base
   end
 
   def as_json(options)
-    json = super(options.merge(
-      methods: [:error_message, :url, :completed_at],
+    methods = [:error_message, :url, :completed_at]
+
+    if options.key?(:include_user_level)
+      user = methods << :user_hash
+    end
+
+    super(options.merge(
+      methods: methods,
       include: [:documents]
-      ))
+    ))
+  end
+
+  def user_hash
+    user_hash = { level_image: user.level.image_url, total_points: user.stats.total_points, level_progress: user.stats.level_progress, points_needed_for_next_level: user.stats.points_needed_for_next_level }
+
+    if user.next_level
+      user_hash.merge!(next_level: true, required_points: user.next_level.required_points, next_level_image: user.next_level.image_url)
+    end
   end
 
   def create_user_points!
@@ -75,7 +89,7 @@ class Solution < ActiveRecord::Base
       self.user.points.create!(course: self.challenge.course, points: self.challenge.point_value, pointable: self.challenge)
     end
   end
-  
+
   private
 
     def default_values

@@ -31,6 +31,12 @@ RSpec.describe Solution, type: :model do
     create(:level_2)
   end
 
+  context 'associations' do
+    it { should belong_to(:user) }
+    it { should belong_to(:challenge) }
+    it { should have_many(:documents) }
+  end
+
   describe "challenge completion" do
     context "User completes a challenge and creates the correct amount of points" do
       before do
@@ -54,6 +60,27 @@ RSpec.describe Solution, type: :model do
 
         expect(user.stats.total_points).to eq(expected_points)
       end
+    end
+  end
+
+  describe "#as_json" do
+    it "should return hash" do
+      solution_json = solution.serializable_hash(
+        methods: [:error_message, :url, :completed_at],
+        include: [:documents]
+      )
+
+      expect(solution.as_json({})).to eq solution_json
+      expect(solution.as_json({}).class).to eq Hash
+    end
+
+    it 'should return hash with user_hash' do
+      solution_json = solution.serializable_hash(
+        methods: [:error_message, :url, :completed_at, :user_hash],
+        include: [:documents]
+      )
+      expect(solution.as_json({include_user_level: true})).to eq solution_json
+      expect(solution.as_json({include_user_level: true}).class).to eq Hash
     end
   end
 end

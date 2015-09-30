@@ -40,6 +40,16 @@ class UserStats
     @user.projects.published.count
   end
 
+  def points_needed_for_next_level
+
+    if @user.next_level
+      @user.next_level.required_points - @user.stats.total_points
+    else
+      @user.stats.total_points
+    end
+  end
+
+
 
   def badges_count
     # + 1 badge 'hago parte de make it real'
