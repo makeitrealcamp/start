@@ -21,16 +21,20 @@ class Quizer::MultiAnswerQuestionAttempt < Quizer::QuestionAttempt
 
   after_initialize :defaults
 
+  def answers
+    data["answers"]
+  end
+
   protected
     def defaults
       self.data ||= { "answers" => [] }
     end
 
     def calculate_score
-      total = question.data["correct_answers"].length + question.data["wrong_answers"].length
+      total = question.correct_answers.length + question.wrong_answers.length
       count = total
-      count -= question.data["correct_answers"].count { |a| !data["answers"].include?(a) }
-      count -= question.data["wrong_answers"].count { |a| data["answers"].include?(a) }
+      count -= question.correct_answers_hashes.count { |a| !answers.include?(a) }
+      count -= question.wrong_answers_hashes.count { |a| answers.include?(a) }
       count/total.to_f
     end
 

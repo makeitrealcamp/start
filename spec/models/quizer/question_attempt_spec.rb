@@ -55,14 +55,14 @@ RSpec.describe Quizer::QuestionAttempt, type: :model do
       end
 
       it "should be 1 if all the answers are correct" do
-        question_attempt.data["answers"] = question.data["correct_answers"].shuffle
+        question_attempt.data["answers"] = question.correct_answers_hashes.shuffle
         question_attempt.save!
         question_attempt.reload
         expect(question_attempt.score).to eq(1)
       end
 
       it "should be 0 if all the answers are wrong" do
-        question_attempt.data["answers"] = question.data["wrong_answers"].shuffle
+        question_attempt.data["answers"] = question.wrong_answers_hashes.shuffle
         question_attempt.save!
         question_attempt.reload
         expect(question_attempt.score).to eq(0)
@@ -72,7 +72,7 @@ RSpec.describe Quizer::QuestionAttempt, type: :model do
         question.data["correct_answers"] = ["a","b","c"]
         question.data["wrong_answers"] = ["d","e"]
         question.save
-        answers = question.mixed_answers
+        answers = question.mixed_answers_hashes
         # Generate all possible combinations of answers
         (0..answers.length).each do |i|
           answers.combination(i).each do |c|

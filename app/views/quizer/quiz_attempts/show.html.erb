@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container quiz-attempt">
   <div class="row">
     <div class="col-xs-12">
       <h1><%= @quiz.name %></h1>
@@ -12,9 +12,10 @@
       </div>
     </div>
   <% end %>
-  <div class="row">
+  <div class="row finish-quiz">
+    <hr>
     <div class="col-xs-12">
-      <%= button_to "Finalizar", finish_quiz_attempt_path(@quiz_attempt), method: :patch %>
+      <%= button_to "Finalizar quiz y ver resultado", finish_quiz_attempt_path(@quiz_attempt), method: :patch, class: "btn btn-primary" %>
     </div>
   </div>
 </div>
