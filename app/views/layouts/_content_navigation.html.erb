@@ -18,7 +18,7 @@
               <ul id="course_<%=course.id%>_children" class="collapse course-children">
 
                 <% if course.challenges.for(current_user).count > 0 %>
-                  <li class="nav-division">Retos</li>
+                  <li class="nav-division"><%= link_to "Retos", course_path(course,anchor: "challenges") %></li>
                   <% course.challenges.for(current_user).each do |challenge| %>
                     <li class="nav-challenge">
                       <% if current_user.free_account? && challenge.restricted? %>
@@ -32,7 +32,7 @@
                 <% end %>
 
                 <% if course.resources.for(current_user).count > 0 %>
-                  <li class="nav-division">Recursos</li>
+                  <li class="nav-division"><%= link_to "Recursos", course_path(course,anchor: "resources") %></li>
                   <% course.resources.for(current_user).each do |resource| %>
                     <li class="nav-resource">
                       <% if current_user.has_completed_resource?(resource) %>
@@ -44,7 +44,7 @@
                 <% end %>
 
                 <% if course.projects.for(current_user).count > 0 %>
-                  <li class="nav-division">Proyectos</li>
+                  <li class="nav-division"><%= link_to "Proyectos", course_path(course,anchor: "projects") %></li>
                   <% course.projects.for(current_user).each do |project| %>
                     <li class="nav-project">
                       <% if current_user.free_account? %>
@@ -56,6 +56,19 @@
                     </li>
                   <% end %>
                 <% end %>
+
+                <% if course.quizzes.for(current_user).count > 0 %>
+                  <li class="nav-division"><%= link_to "Quizzes", course_path(course,anchor: "quizzes") %></li>
+                  <% course.quizzes.for(current_user).each do |quiz| %>
+                    <li class="nav-quiz">
+                      <% if quiz.has_been_attempted_by_user?(current_user) %>
+                        <i class="text-success fa fa-check"></i>
+                      <% end %>
+                      <%= link_to quiz.name, course_quizer_quiz_path(course,quiz) %>
+                    </li>
+                  <% end %>
+                <% end %>
+
 
               </ul>
             </li>

@@ -37,6 +37,9 @@ class Quizer::Quiz < ActiveRecord::Base
   def is_being_attempted_by_user?(user)
     user.quiz_attempts.ongoing.any?
   end
+  def has_been_attempted_by_user?(user)
+    user.quiz_attempts.finished.any?
+  end
 
   private
 
