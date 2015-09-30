@@ -32,6 +32,8 @@ class Quizer::Quiz < ActiveRecord::Base
   validates :course, presence: true
 
   after_initialize :defaults
+  
+  scope :published, -> { where(published: true) }
   scope :for, -> user { published unless user.is_admin? }
 
   def is_being_attempted_by_user?(user)
