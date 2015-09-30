@@ -44,6 +44,10 @@ class Quizer::MultiAnswerQuestion < Quizer::Question
     wrong_answers.map { |a| Digest::SHA1.hexdigest(a) }
   end
 
+  def question
+    data["question"]
+  end
+
   protected
     def data_schema
       {

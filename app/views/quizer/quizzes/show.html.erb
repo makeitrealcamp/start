@@ -32,6 +32,7 @@
             <tr>
               <th>Fecha</th>
               <th>Puntaje</th>
+              <th>Detalle</th>
             </tr>
           </thead>
           <tbody>
@@ -39,6 +40,9 @@
               <tr id="quiz-attempt-<%= quiz_attempt.id %>">
                 <td><%= quiz_attempt.created_at.strftime("%Y-%m-%d") %></td>
                 <td><%= "%.2f\%" % (quiz_attempt.score*100) %></td>
+                <td>
+                  <%= link_to "Detalle >", quiz_attempt_results_path(quiz_attempt) %>
+                </td>
               </tr>
             <% end %>
           </tbody>

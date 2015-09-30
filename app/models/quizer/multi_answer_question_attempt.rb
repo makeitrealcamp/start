@@ -25,6 +25,12 @@ class Quizer::MultiAnswerQuestionAttempt < Quizer::QuestionAttempt
     data["answers"]
   end
 
+  def is_correct_answer?(answer_hash)
+    correct_answer_selected = answers.include?(answer_hash) && question.correct_answers_hashes.include?(answer_hash)
+    wrong_answer_avoided = !answers.include?(answer_hash) && question.wrong_answers_hashes.include?(answer_hash)
+    correct_answer_selected || wrong_answer_avoided
+  end
+
   protected
     def defaults
       self.data ||= { "answers" => [] }
