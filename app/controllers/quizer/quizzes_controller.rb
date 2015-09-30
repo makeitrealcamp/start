@@ -16,7 +16,7 @@ module Quizer
       @quiz = Quiz.new(quiz_params)
       if @quiz.save
         flash[:notice] = "Quiz creado"
-        redirect_to course_path(@quiz.course)
+        redirect_to course_path(@quiz.course,anchor: "quizzes")
       else
         render :new
       end
@@ -28,7 +28,7 @@ module Quizer
     def update
       if @quiz.update(quiz_params)
         flash[:notice] = "Quiz actualizado"
-        redirect_to course_path(@quiz.course)
+        redirect_to course_path(@quiz.course,anchor: "quizzes")
       else
         render :edit
       end
@@ -46,7 +46,7 @@ module Quizer
 
     private
       def quiz_params
-        params.require(:quiz_quiz).permit(:name, :published,:course_id)
+        params.require(:quizer_quiz).permit(:name, :published,:course_id)
       end
 
       def set_course
