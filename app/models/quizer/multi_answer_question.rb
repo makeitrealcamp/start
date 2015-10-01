@@ -8,6 +8,7 @@
 #  data       :json
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  published  :boolean
 #
 # Indexes
 #

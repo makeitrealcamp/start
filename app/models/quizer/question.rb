@@ -1,4 +1,3 @@
-
 # == Schema Information
 #
 # Table name: questions
@@ -9,6 +8,7 @@
 #  data       :json
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  published  :boolean
 #
 # Indexes
 #
@@ -17,7 +17,10 @@
 
 class Quizer::Question < ActiveRecord::Base
   belongs_to :quiz
+
   validate :validate_data_schema
+
+  after_initialize :defaults
 
   def self.types
     [Quizer::MultiAnswerQuestion]
@@ -34,7 +37,18 @@ class Quizer::Question < ActiveRecord::Base
     attempt_type.create!({question: self}.merge(attributes))
   end
 
+  # Method used to display the question or a summary of the question
+  def question
+    raise 'Abstract Method'
+  end
+
   protected
+
+    def defaults
+      self.published ||= false
+      true
+    end
+
     def data_schema
       raise 'Abstract Method'
     end
