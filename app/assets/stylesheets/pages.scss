@@ -731,6 +731,84 @@
     }
   }
 
+  .info-session {
+    background: #272727;
+    color: #fff;
+    text-align: center;
+    padding: 0 0 70px;
+    -webkit-transition: height 0.5s ease;
+    -moz-transition: height 0.5s ease;
+    -o-transition: height 0.5s ease;
+    transition: height 0.5s ease;
+    height: 345px;
+    overflow: hidden;
+    &.change {
+      height: 500px;
+    }
+    h3 {
+      font-family: "Open Sans",sans-serif;
+      font-size: 28px;
+      font-weight: 300;
+      text-align: center;
+      text-transform: uppercase;
+      border-top: solid 1px #131313;
+      margin-top: 0;
+      padding-top: 65px;
+    }
+    p {
+      font-size: 20px;
+      margin: 25px 0 40px;
+    }
+    .new-cal {
+      .add-to-calendar-checkbox {
+        font-size: 18px;
+        font-weight: normal;
+        background: transparent;
+        border: 1px solid #ff4300;
+        border-radius: 2px;
+        color: #ff4300;
+        display: block;
+        font-family: "Open Sans",sans-serif;
+        font-size: 18px;
+        font-weight: 300;
+        margin: 0 auto;
+        padding: 10px 0;
+        text-transform: uppercase;
+        width: 280px;
+        -webkit-transition: opacity 0.6s ease;
+        -moz-transition: opacity 0.6s ease;
+        -o-transition: opacity 0.6s ease;
+        transition: opacity 0.6s ease;
+        &:hover {
+          opacity: 0.7;
+          cursor: pointer;
+        }
+      }
+      .add-to-calendar-checkbox ~ a::before {
+        display: none;
+      }
+      .add-to-calendar-checkbox ~ a {
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: "Karla",sans-serif;
+        opacity: 0;
+        -webkit-transition: opacity 0.3s ease;
+        -moz-transition: opacity 0.3s ease;
+        -o-transition: opacity 0.3s ease;
+        transition: opacity 0.3s ease;
+        display: block;
+      }
+      .add-to-calendar-checkbox:checked ~ a {
+        opacity: 1;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: "Karla",sans-serif;
+      }
+    }
+  }
+
   .feature {
     margin-bottom: 50px;
     overflow: hidden;
