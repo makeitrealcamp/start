@@ -12,13 +12,13 @@ ready = function() {
       id: 'add-to-calendar'                               // You need to pass an ID. If you don't, one will be generated for you.
     },
     data: {
-      title: 'Get on the front page of HN',     // Event title
-      start: new Date('June 15, 2013 19:00'),   // Event start date
-      duration: 120,                            // Event duration (IN MINUTES)
-      end: new Date('June 15, 2013 23:00'),     // You can also choose to set an end time.
+      title: 'Sesión Informativa Make it Real',     // Event title
+      start: new Date('October 25, 2015 19:00'),   // Event start date
+      duration: 30,                            // Event duration (IN MINUTES)
+      end: new Date('October 25, 2015 19:30'),     // You can also choose to set an end time.
                                                     // If an end time is set, this will take precedence over duration
       address: 'The internet',
-      description: 'Get on the front page of HN, then prepare for world domination.'
+      description: 'Descripción evento.'
     }
   });
   document.querySelector('.new-cal').appendChild(myCalendar);
