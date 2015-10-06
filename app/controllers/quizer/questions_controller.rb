@@ -1,7 +1,7 @@
 module Quizer
   class QuestionsController < ApplicationController
     before_action :admin_access
-    
+
     before_action :set_course
     before_action :set_quiz
     before_action :set_question, only: [:update,:edit]
@@ -11,19 +11,14 @@ module Quizer
     end
 
     def new
-      @question_form = Quizer::MultiAnswerQuestionForm.new
+      @question = Quizer::Question.new(type: params[:type],quiz: @quiz)
+      @question_form = @question.new_form(params[:type])
     end
 
     def create
-      @question_form = Quizer::MultiAnswerQuestionForm.new(
-        question_params
-      )
-      if @question_form.save
-        flash[:notice] = "Pregunta creada"
-        redirect_to course_quizer_quiz_questions_path
-      else
-        render :new
-      end
+      @question = Quizer::Question.new(type: params[:type],quiz: @quiz)
+      @question_form = @question.new_form(params[:type],question_params)
+      @question_form.save
     end
 
     def edit

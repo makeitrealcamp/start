@@ -48,7 +48,7 @@
                 <td><%= quiz_attempt.created_at.strftime("%Y-%m-%d") %></td>
                 <td><%= "%.2f\%" % (quiz_attempt.score*100) %></td>
                 <td>
-                  <%= link_to "Detalle >", quiz_attempt_results_path(quiz_attempt) %>
+                  <%= link_to "Resultados >", quiz_attempt_results_path(quiz_attempt) %>
                 </td>
               </tr>
             <% end %>

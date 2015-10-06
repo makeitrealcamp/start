@@ -1,5 +1,8 @@
+<%# required: question_form, question_form.question %>
+<% question = question_form.question %>
+
 <div id="question-modal" class="modal fade">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -9,33 +12,22 @@
       <div class="alerts-container">
       </div>
 
-      <%= form_for question_form, as: :question, url: question_form_path(question_form),
-        remote: true, method: (question_form.question.new_record? ? :post : :patch) do |f| %>
+      <%= form_for question_form, as: :question, url: question_form_path(question_form,type: question.class.name),
+        remote: true, method: (question.new_record? ? :post : :patch) do |f| %>
 
         <div class="modal-body">
           <div class="form-group">
             <%= f.check_box :published %>
             <%= f.label :published, "Publicado" %>
           </div>
-          <div class="form-group">
-            <%= f.label :text, "Pregunta" %>
-            <%= f.text_field :text, class: "form-control" %>
+
+          <%= render "quizer/questions/#{question_form.class.name.demodulize.underscore}",
+            question_form: question_form, form: f %>
+
+          <div class="modal-footer">
+            <%= f.button "Guardar", class: 'btn btn-primary'  %>
           </div>
-          <%= f.label "Respuestas correctas" %>
-          <% question_form.correct_answers.each do |correct_answer| %>
-            <div class="form-group">
-              <%= f.text_area :correct_answers, multiple: true, class: "form-control", value: correct_answer %>
-            </div>
-          <% end %>
-          <%= f.label "Respuestas incorrectas" %>
-          <% question_form.wrong_answers.each do |wrong_answer| %>
-            <div class="form-group">
-              <%= f.text_area :wrong_answers, multiple: true, class: "form-control", value: wrong_answer %>
-            </div>
-          <% end %>
-        <div class="modal-footer">
-          <%= f.button "Guardar", class: 'btn btn-primary'  %>
-        </div>
+        </div><!-- .modal-body -->
       <% end %>
     </div><!-- .modal-content -->
   </div><!-- .modal-dialog -->

@@ -7,11 +7,23 @@
       <% end %>
     </div>
   </div>
+  <div class="row margin-bottom">
+    <div class="col-xs-12">
+      <%= form_tag(new_course_quizer_quiz_question_path(@course,@quiz),method: "get",remote: true, class: 'form-inline') do %>
+        <div class="form-group">
+          <%= label_tag "Tipo" %>
+          <%= select_tag :type, question_type_options, class: "form-control"%>
+        </div>
+        <div class="form-group">
+          <%= submit_tag("Agregar Pregunta", class: "btn btn-info") %>
+        </div>
+      <% end %>
+    </div>
+  </div>
   <div class="row">
     <div class="col-xs-12">
-
       <div class="table-responsive">
-        <table class="table table-striped">
+        <table id="questions" class="table table-striped">
           <thead>
             <tr>
               <th>Id</th>

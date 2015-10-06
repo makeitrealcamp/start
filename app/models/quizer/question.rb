@@ -29,14 +29,19 @@ class Quizer::Question < ActiveRecord::Base
   end
 
   def attempt_type
-    unless Quizer::Question.types.map(&:to_s).include? self.type
-      raise "Invalid Question Type"
-    end
     (type+'Attempt').constantize
+  end
+
+  def form_type
+    (type+'Form').constantize
   end
 
   def create_attempt!(attributes)
     attempt_type.create!({question: self}.merge(attributes))
+  end
+
+  def new_form(type,attributes={})
+    form_type.new({question: self}.merge(attributes))
   end
 
   # Method used to display the question or a summary of the question
