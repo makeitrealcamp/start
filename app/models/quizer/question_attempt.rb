@@ -28,7 +28,9 @@ class Quizer::QuestionAttempt < ActiveRecord::Base
   after_save :update_quiz_attempt_score!
 
   def self.types
-    [Quizer::MultiAnswerQuestionAttempt]
+    [Quizer::MultiAnswerQuestionAttempt,Quizer::OpenQuestionAttempt]
+  end
+
   def form_type
     (type+'Form').constantize
   end

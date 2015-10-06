@@ -12,4 +12,14 @@ FactoryGirl.define do
     end
   end
 
+  factory :open_question_attempt, class: Quizer::OpenQuestionAttempt do
+    quiz_attempt { create(:quiz_attempt) }
+    question { create(:open_question,quiz: self.quiz_attempt.quiz) }
+    data do
+      {
+        "answer" => self.question.correct_answer
+      }
+    end
+  end
+
 end
