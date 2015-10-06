@@ -78,15 +78,16 @@
       <p>{{= message }}</p>
       {{ if (status == "completed") { }}
         <p>Has ganado <%=  @challenge.point_value %> puntos. </p>
+        <span class="points_needed_for_next_level">Te faltan {{= user.points_needed_for_next_level }} puntos para alcanzar el siguiente nivel</span>
         <h2></h2>
-        <%= render 'users/level' %>
+        <%= render 'users/level_js' %>
       {{ } }}
     </div>
 
     <div class="solution-eval-footer">
       <button type="button" class="btn btn-transparent close-overlay" data-dismiss="modal">Cerrar</button>
       {{ if (status == "completed") { }}
-      <%= link_to "Continuar <span class='glyphicon glyphicon-chevron-right'></span>".html_safe,
+        <%= link_to "Continuar <span class='glyphicon glyphicon-chevron-right'></span>".html_safe,
         discussion_course_challenge_path(@challenge.course, @challenge), class: "btn btn-success" %>
       {{ } }}
     </div>
