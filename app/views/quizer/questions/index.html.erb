@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row margin-bottom">
+    <div class="col-xs-12">
+      <%= link_to course_quizer_quiz_path(@course,@quiz) do %>
+        <span class='glyphicon glyphicon-arrow-left'></span>
+        Volver al Quiz <%= @quiz.name %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Publicada</th>
+              <th>Pregunta</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @questions.each do |q| %>
+              <%= render "question_row", question: q %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -25,8 +25,16 @@ class Quizer::MultiAnswerQuestion < Quizer::Question
     mixed_answers.map { |a| [a,Digest::SHA1.hexdigest(a)]}
   end
 
+  def correct_answers=(correct_answers)
+    data["correct_answers"] = correct_answers
+  end
+
   def correct_answers
     data["correct_answers"]
+  end
+
+  def wrong_answers=(wrong_answers)
+    data["wrong_answers"] = wrong_answers
   end
 
   def wrong_answers
@@ -45,17 +53,21 @@ class Quizer::MultiAnswerQuestion < Quizer::Question
     wrong_answers.map { |a| Digest::SHA1.hexdigest(a) }
   end
 
-  def question
-    data["question"]
+  def text=(text)
+    data["text"] = text
+  end
+
+  def text
+    data["text"]
   end
 
   protected
     def data_schema
       {
         "type" => "object",
-        "required" => ["question"],
+        "required" => ["text"],
         "properties" => {
-          "question" => { "type" => "string" },
+          "text" => { "type" => "string" },
           "wrong_answers" => {
             "type" => "array",
             "default" => [],

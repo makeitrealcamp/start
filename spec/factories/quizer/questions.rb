@@ -19,7 +19,7 @@ FactoryGirl.define do
     quiz { create(:quiz) }
     data do
       {
-        "question" => "What?",
+        "text" => "What?",
         "wrong_answers" => [ "wrong answer a","wrong answer b","wrong answer c" ],
         "correct_answers" => [ "correct answer d","correct answer e" ]
       }

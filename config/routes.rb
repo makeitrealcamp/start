@@ -64,6 +64,7 @@ Rails.application.routes.draw do
     end
     namespace :quizer, path: "/" do
       resources :quizzes do
+        resources :questions, only: [:index,:new,:create,:edit,:update]
         resources :quiz_attempts, only: [:create, :show] do
           member do
             patch :finish

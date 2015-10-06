@@ -22,6 +22,8 @@ class Quizer::Question < ActiveRecord::Base
 
   after_initialize :defaults
 
+  scope :published, -> { where(published: true) }
+
   def self.types
     [Quizer::MultiAnswerQuestion]
   end
@@ -38,7 +40,7 @@ class Quizer::Question < ActiveRecord::Base
   end
 
   # Method used to display the question or a summary of the question
-  def question
+  def text
     raise 'Abstract Method'
   end
 

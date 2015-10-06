@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row margin-bottom">
     <div class="col-md-8 col-md-offset-2 text-center">
       <% if @quiz.is_being_attempted_by_user? current_user %>
         <p>
@@ -20,6 +20,13 @@
         <%= link_to "Continuar Quiz", ongoing_quiz_attempt_for_user_path(@quiz,current_user), class: "btn btn-success" %>
       <% else %>
         <%= button_to "Comenzar Quiz", course_quizer_quiz_quiz_attempts_path(@course,@quiz), method: :post, class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row margin-bottom">
+    <div class="col-md-8 col-md-offset-2 text-center">
+      <% if @current_user.is_admin? %>
+        <%= link_to "Preguntas", course_quizer_quiz_questions_path(@course,@quiz), class: "btn btn-info" %>
       <% end %>
     </div>
   </div>
