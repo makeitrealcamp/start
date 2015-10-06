@@ -17,6 +17,8 @@
 
 class Quizer::MultiAnswerQuestion < Quizer::Question
 
+  after_initialize :defaults
+
   def mixed_answers
     (data["correct_answers"] + data["wrong_answers"]).shuffle
   end
@@ -62,6 +64,15 @@ class Quizer::MultiAnswerQuestion < Quizer::Question
   end
 
   protected
+    def defaults
+      super
+      self.data ||= {
+        "text" => "",
+        "wrong_answers" => [],
+        "correct_answers" => []
+      }
+    end
+
     def data_schema
       {
         "type" => "object",

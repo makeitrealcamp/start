@@ -12,38 +12,25 @@ module Quizer
 
     def new
       @question = Quizer::Question.new(type: params[:type],quiz: @quiz)
-      @question_form = @question.new_form(params[:type])
+      @question_form = @question.new_form
     end
 
     def create
       @question = Quizer::Question.new(type: params[:type],quiz: @quiz)
-      @question_form = @question.new_form(params[:type],question_params)
+      @question_form = @question.new_form(@question.form_type.sanitize_params(params))
       @question_form.save
     end
 
     def edit
-      @question_form = Quizer::MultiAnswerQuestionForm.new(
-        question: @question,
-        text: @question.text,
-        published: @question.published,
-        correct_answers: @question.correct_answers,
-        wrong_answers: @question.wrong_answers
-      )
+      @question_form = @question.new_form
     end
 
     def update
-      @question_form = MultiAnswerQuestionForm.new(
-        question_params.merge(question: @question)
-      )
+      @question_form = @question.new_form(@question.form_type.sanitize_params(params))
       @question_form.save
     end
 
     private
-      def question_params
-        params
-          .require(:question)
-          .permit(:text,:published,correct_answers:[],wrong_answers:[])
-      end
 
       def set_course
         @course = Course.friendly.find(params[:course_id])

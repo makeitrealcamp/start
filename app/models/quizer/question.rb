@@ -40,8 +40,12 @@ class Quizer::Question < ActiveRecord::Base
     attempt_type.create!({question: self}.merge(attributes))
   end
 
-  def new_form(type,attributes={})
-    form_type.new({question: self}.merge(attributes))
+  def new_form(attributes=nil)
+    if attributes.nil?
+      form_type.new(self)
+    else
+      form_type.new({question: self}.merge(attributes))
+    end
   end
 
   # Method used to display the question or a summary of the question
