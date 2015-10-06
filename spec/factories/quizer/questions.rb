@@ -26,4 +26,14 @@ FactoryGirl.define do
     end
   end
 
+  factory :open_question, class: Quizer::OpenQuestion do
+    quiz { create(:quiz) }
+    data do
+      {
+        "text" => "5 + 5 ?",
+        "correct_answer" => "10"
+      }
+    end
+  end
+
 end

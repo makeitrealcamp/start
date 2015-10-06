@@ -25,7 +25,7 @@ class Quizer::Question < ActiveRecord::Base
   scope :published, -> { where(published: true) }
 
   def self.types
-    [Quizer::MultiAnswerQuestion]
+    [Quizer::MultiAnswerQuestion,Quizer::OpenQuestion]
   end
 
   def attempt_type
