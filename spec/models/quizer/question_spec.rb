@@ -26,7 +26,7 @@ RSpec.describe Quizer::Question, type: :model do
 
   describe "validations" do
     it "validates data schema" do
-      question = Quizer::MultiAnswerQuestion.create
+      question = Quizer::MultiAnswerQuestion.create(data:{})
       expect(question.errors).to have_key(:data)
     end
   end
