@@ -13,7 +13,7 @@ module Quizer
       if @quiz.is_being_attempted_by_user?(current_user)
         redirect_to ongoing_quiz_attempt_for_user_path(@quiz,current_user)
       elsif @quiz_attempt = @quiz.quiz_attempts.create(user: current_user)
-        redirect_to course_quizer_quiz_quiz_attempt_path(@course,@quiz,@quiz_attempt)
+        redirect_to course_quizer_quiz_quiz_attempt_path(@course,@quiz,@quiz_attempt.reload)
       else
         flash[:error] = "Algo salió mal"
         redirect_to :back

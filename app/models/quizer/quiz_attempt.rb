@@ -49,9 +49,8 @@ class Quizer::QuizAttempt < ActiveRecord::Base
 
     def assign_questions
       possible_questions = quiz.questions.published
-      n = [5,possible_questions.count].min
-      possible_questions.order("RANDOM()").limit(n).each do |q|
-        q.create_attempt!(quiz_attempt: self)
+      possible_questions.shuffle[0...5].each do |question|
+        question.create_attempt!(quiz_attempt: self)
       end
     end
 end

@@ -14,7 +14,7 @@
   <div class="row">
     <div class="col-xs-12">
       <%= form_for :question_attempt, url: "#dummy",
-        html: {class: "multi-answer-question-attempt",id: "question-attempt-#{question_attempt.id}"} do |f| %>
+        html: {class: "multi-answer-question-attempt"} do |f| %>
         <table class="table table-striped">
           <tbody>
             <% question.mixed_answers_with_hashes.each do |option,hash| %>

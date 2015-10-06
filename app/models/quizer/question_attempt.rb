@@ -29,6 +29,16 @@ class Quizer::QuestionAttempt < ActiveRecord::Base
 
   def self.types
     [Quizer::MultiAnswerQuestionAttempt]
+  def form_type
+    (type+'Form').constantize
+  end
+
+  def new_form(attributes=nil)
+    if attributes.nil?
+      form_type.new(self)
+    else
+      form_type.new({question_attempt: self}.merge(attributes))
+    end
   end
 
   protected

@@ -19,11 +19,15 @@
     </div>
   </div>
 
-  <% @quiz_attempt.question_attempts.each do |qa| %>
+  <% @quiz_attempt.question_attempts.each_with_index do |qa,i| %>
     <div class="row question">
-      <div class="col-xs-12">
+      <div class="col-xs-1">
+        <%= i %>
+      </div>
+      <div class="col-xs-11">
         <%= render "#{qa.type.demodulize.underscore}_result", question_attempt: qa %>
       </div>
     </div>
+    <hr>
   <% end %>
 </div>

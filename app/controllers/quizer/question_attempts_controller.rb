@@ -6,8 +6,8 @@ module Quizer
     before_action :set_question_attempt, only: [:update]
 
     def update
-      form = MultiAnswerQuestionAttemptForm.new(
-        question_attempt_params.merge(question_attempt: @question_attempt)
+      form = @question_attempt.new_form(
+        @question_attempt.form_type.sanitize_params(params)
       )
       if form.save
         head :ok
@@ -17,11 +17,6 @@ module Quizer
     end
 
     private
-      def question_attempt_params
-        params
-          .require(:question_attempt)
-          .permit(answers:[])
-      end
 
       def set_course
         @course = Course.friendly.find(params[:course_id])
