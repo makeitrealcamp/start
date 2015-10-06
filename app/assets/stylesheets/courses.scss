@@ -406,6 +406,28 @@ blockquote {
     }
   }
 
+  .quizzes {
+    padding-top: 20px;
+    .quiz-title {
+      min-height: 80px;
+      padding: 20px 0;
+      background-color: #FAFAFA;
+      border-style: solid;
+      border-width: 1px;
+      border-color: #E5E5E5;
+      margin-bottom: 20px;
+    }
+    .score-box {
+      background-color: #F04500;
+      font-size: 35px;
+      font-family: 'Open Sans Condensed';
+      color: white;
+      padding: 0 20px;
+      max-width: 150px;
+      text-align: center;
+    }
+  }
+
   .challenges {
     margin-bottom: 40px;
 

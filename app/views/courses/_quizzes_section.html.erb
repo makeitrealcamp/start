@@ -1,33 +1,39 @@
 <% if current_user.is_admin? %>
   <div class="row">
-    <div class="col-sm-12 text-center new-quiz-btn">
+    <div class="col-sm-12 text-center new-quiz-btn margin-bottom">
       <%= link_to '<span class="glyphicon glyphicon-plus"></span> Nuevo Quiz'.html_safe, new_polymorphic_path([@course,Quizer::Quiz]), class: "btn btn-success" %>
     </div>
   </div>
 <% end %>
 
-<div class="row quizzes-list quizzes">
+<div class="row quizzes-list quizzes margin-bottom">
   <div class="col-sm-10 col-sm-offset-1">
     <% if current_user.is_admin? || @course.quizzes.for(current_user).count > 0 %>
       <% @course.quizzes.for(current_user).each_with_index do |quiz, index| %>
 
         <div id="quiz-<%= quiz.id %>" class="quiz clearfix" data-sortable="true" data-resource-id="<%= quiz.id %>">
-          <%= link_to [@course, quiz] do %>
-            <div class="btn-quiz-go">
-              <span class="glyphicon glyphicon-chevron-right"></span>
+          <div class="quiz-title row">
+            <div class="col-xs-10">
+              <%= link_to quiz.name, [@course, quiz] %>
+              <% if current_user.is_admin? %>
+                <div class="actions">
+                  <% unless quiz.published %>
+                    <span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span>
+                  <% end %>
+                  <%= link_to "<span class='glyphicon glyphicon-pencil action action-edit'></span>".html_safe, edit_polymorphic_path([@course,quiz]) %>
+                  <%= link_to "<span class='glyphicon glyphicon-remove action action-remove'></span>".html_safe, polymorphic_path([@course,quiz]), method: :delete, remote: true %>
+                </div>
+              <% end %>
             </div>
-          <% end %>
-          <div class="quiz-title">
-            <%= link_to quiz.name, [@course, quiz] %>
-            <% if current_user.is_admin? %>
-              <div class="actions">
-                <% unless quiz.published %>
-                  <span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span>
-                <% end %>
-                <%= link_to "<span class='glyphicon glyphicon-pencil action action-edit'></span>".html_safe, edit_polymorphic_path([@course,quiz]) %>
-                <%= link_to "<span class='glyphicon glyphicon-remove action action-remove'></span>".html_safe, polymorphic_path([@course,quiz]), method: :delete, remote: true %>
-              </div>
-            <% end %>
+            <div class="col-xs-2 text-center">
+              <% if quiz.has_been_attempted_by_user?(current_user) %>
+                <div class="score-box">
+                  <%= "%.2f\%" % (quiz.best_score_of_user(current_user) * 100) %>
+                </div>
+              <% else %>
+                Todavía no has intentado este quiz
+              <% end %>
+            </div>
           </div>
         </div>
       <% end %>

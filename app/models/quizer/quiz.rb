@@ -32,15 +32,25 @@ class Quizer::Quiz < ActiveRecord::Base
   validates :course, presence: true
 
   after_initialize :defaults
-  
+
   scope :published, -> { where(published: true) }
   scope :for, -> user { published unless user.is_admin? }
 
   def is_being_attempted_by_user?(user)
-    user.quiz_attempts.ongoing.any?
+    user.quiz_attempts.where(quiz_id: self.id).ongoing.any?
   end
+
   def has_been_attempted_by_user?(user)
-    user.quiz_attempts.finished.any?
+    user.quiz_attempts.where(quiz_id: self.id).finished.any?
+  end
+
+  def best_score_of_user(user)
+    user.quiz_attempts
+      .where(quiz_id: self.id)
+      .finished
+      .order("score DESC")
+      .first
+      .score
   end
 
   private
