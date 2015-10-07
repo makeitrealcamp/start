@@ -26,6 +26,9 @@ module Quizer
     end
 
     def results
+      if @quiz.is_being_attempted_by_user?(current_user)
+        redirect_to ongoing_quiz_attempt_for_user_path(@quiz,current_user)
+      end
     end
 
     private

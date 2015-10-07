@@ -20,6 +20,17 @@ require 'rails_helper'
 
 RSpec.describe Quizer::Quiz, type: :model do
 
+  context 'associations' do
+    it { should belong_to(:course) }
+    it { should have_many(:questions) }
+    it { should have_many(:quiz_attempts) }
+  end
+
+  context 'validations' do
+    it { validate_presence_of(:name) }
+    it { validate_presence_of(:course) }
+  end
+
   it "should have a valid factory" do
     expect(build(:quiz)).to be_valid
   end

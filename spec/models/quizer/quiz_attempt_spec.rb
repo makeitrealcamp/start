@@ -23,6 +23,14 @@ RSpec.describe Quizer::QuizAttempt, type: :model do
   let!(:quiz_attempt) { create(:quiz_attempt, status: Quizer::QuizAttempt.statuses[:ongoing]) }
   let(:question_attempts) { build_list(:question_attempt,10, quiz_attempt: quiz_attempt) }
 
+  context 'associations' do
+    it { should belong_to(:user) }
+    it { should belong_to(:quiz) }
+    it { should have_many(:question_attempts) }
+    it { should have_many(:questions) }
+  end
+
+
   it "has a valid factory" do
     quiz_attempt = build(:quiz_attempt)
     expect(quiz_attempt).to be_valid
