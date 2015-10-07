@@ -1,6 +1,5 @@
-//= require ouical.min
-var ready;
-ready = function() {
+var initHome;
+initHome = function() {
   $('.home .new_site').on('click', '.scroll', function() {
     $('html,body').animate({
     scrollTop: $('#anchor').offset().top - 75},
@@ -29,5 +28,4 @@ ready = function() {
     e.preventDefault();
   });
 };
-$(document).ready(ready);
-$(document).on('page:load', ready);
+$(document).on('page:load', initHome);

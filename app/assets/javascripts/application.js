@@ -27,6 +27,7 @@
 //= require nested_form_fields
 //= require zeroclipboard
 //= require_tree .
+//= require ouical.min
 
 Turbolinks.enableProgressBar();
 
