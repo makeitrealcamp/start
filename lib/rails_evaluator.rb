@@ -38,12 +38,12 @@ class RailsEvaluator < Evaluator
 
   def prefix_path
     # we need change the prefix in development because boot2docker only shares de /Users path, not /tmp
-    Rails.env.production? ? "/tmp/ukku" : File.expand_path('~/.ukku')
+    Rails.env.production? ? "/app/tmp/ukku" : File.expand_path('~/.ukku')
   end
 
   def create_tmp_path(solution)
     if !File.exist?("#{prefix_path}/rails")
-      FileUtils.mkdir_p("#{prefix_path}/rails")  
+      FileUtils.mkdir_p("#{prefix_path}/rails")
       FileUtils.chmod_R(0777, "#{prefix_path}/rails")
     end
 
@@ -52,7 +52,7 @@ class RailsEvaluator < Evaluator
     FileUtils.rm_rf(path)
     FileUtils.mkdir(path)
     FileUtils.chmod(0777, path)
-    
+
     path
   end
 
