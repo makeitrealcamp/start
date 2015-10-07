@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row margin-bottom">
+    <div class="col-xs-12">
+      <%= link_to course_quizer_quiz_path(@course,@quiz) do %>
+        <span class='glyphicon glyphicon-arrow-left'></span>
+        Volver al Quiz <%= @quiz.name %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row margin-bottom">
+    <div class="col-xs-12">
+      <%= form_tag(new_course_quizer_quiz_question_path(@course,@quiz),method: "get",remote: true, class: 'form-inline') do %>
+        <div class="form-group">
+          <%= label_tag "Tipo" %>
+          <%= select_tag :type, question_type_options, class: "form-control"%>
+        </div>
+        <div class="form-group">
+          <%= submit_tag("Agregar Pregunta", class: "btn btn-info") %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="table-responsive">
+        <table id="questions" class="table table-striped">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Publicada</th>
+              <th>Pregunta</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @questions.each do |q| %>
+              <%= render "question_row", question: q %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

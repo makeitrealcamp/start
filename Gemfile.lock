@@ -205,6 +205,8 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
+    json-schema (2.5.1)
+      addressable (~> 2.3.7)
     jwt (1.5.1)
     kgio (2.9.3)
     launchy (2.4.3)
@@ -440,6 +442,7 @@ DEPENDENCIES
   hstore_accessor
   jbuilder (~> 2.0)
   jquery-rails
+  json-schema
   launchy
   letter_opener
   momentjs-rails

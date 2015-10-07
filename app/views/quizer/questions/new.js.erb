@@ -1,0 +1,5 @@
+$('<%= j render "quizer/questions/form", question_form: @question_form %>').on('hidden.bs.modal', function (e) {
+  $(this).remove();
+  $('.modal-backdrop').remove();
+})
+.modal();

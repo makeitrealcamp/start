@@ -62,6 +62,18 @@ Rails.application.routes.draw do
         end
       end
     end
+    namespace :quizer, path: "/" do
+      resources :quizzes do
+        resources :questions, only: [:index,:new,:create,:edit,:update]
+        resources :quiz_attempts, only: [:create, :show] do
+          member do
+            patch :finish
+            get :results
+          end
+          resources :question_attempts, only: [:update]
+        end
+      end
+    end
   end
 
   resources :lessons, only: [] do
@@ -78,6 +90,12 @@ Rails.application.routes.draw do
 
   resources :phases, only:[] do
     patch 'update_position', on: :member
+  end
+
+  namespace :quiz, path: "/" do
+    resources :quizzes, only:[] do
+      patch 'update_position', on: :member
+    end
   end
 
   scope "/:commentable_resource" do

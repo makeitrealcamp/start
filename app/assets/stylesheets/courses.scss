@@ -170,7 +170,7 @@ blockquote {
   .nav-tabs {
     li {
       text-align: center;
-      width: 33.333%;
+      width: 25%;
     }
     .glyphicon {
       margin-right: 7px;
@@ -403,6 +403,28 @@ blockquote {
       .project-title a { color: #303030; }
 
       &.over { border-top: 2px dashed #999; }
+    }
+  }
+
+  .quizzes {
+    padding-top: 20px;
+    .quiz-title {
+      min-height: 80px;
+      padding: 20px 0;
+      background-color: #FAFAFA;
+      border-style: solid;
+      border-width: 1px;
+      border-color: #E5E5E5;
+      margin-bottom: 20px;
+    }
+    .score-box {
+      background-color: #F04500;
+      font-size: 35px;
+      font-family: 'Open Sans Condensed';
+      color: white;
+      padding: 0 20px;
+      max-width: 150px;
+      text-align: center;
     }
   }
 

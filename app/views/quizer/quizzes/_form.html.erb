@@ -1,0 +1,30 @@
+<div class="container course-form-page">
+  <div class="row">
+    <%= form_for @quiz,url: [@course,@quiz] do |f| %>
+      <div class="col-sm-10 col-sm-offset-1">
+        <%= render 'shared/flash_messages_form', object: @quiz %>
+        <h1>Editar Quiz</h1>
+
+        <div class="form-group">
+          <%= f.label :course %>
+          <%= f.collection_select :course_id, Course.all, :id, :name, {},class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.check_box :published %>
+          <%= f.label :published %>
+        </div>
+
+        <div class="actions text-right">
+          <%= link_to "Cancelar", course_path(@course, anchor: "quizzes"), class: "btn btn-default" %>
+          <%= f.submit class: "btn btn-primary"%>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

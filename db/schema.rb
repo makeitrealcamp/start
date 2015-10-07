@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812074346) do
+ActiveRecord::Schema.define(version: 20150930232433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -228,6 +228,54 @@ ActiveRecord::Schema.define(version: 20150812074346) do
 
   add_index "projects", ["course_id"], name: "index_projects_on_course_id", using: :btree
 
+  create_table "question_attempts", force: :cascade do |t|
+    t.integer  "quiz_attempt_id"
+    t.integer  "question_id"
+    t.json     "data"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "type"
+    t.decimal  "score"
+  end
+
+  add_index "question_attempts", ["question_id"], name: "index_question_attempts_on_question_id", using: :btree
+  add_index "question_attempts", ["quiz_attempt_id"], name: "index_question_attempts_on_quiz_attempt_id", using: :btree
+
+  create_table "questions", force: :cascade do |t|
+    t.integer  "quiz_id"
+    t.string   "type"
+    t.json     "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean  "published"
+  end
+
+  add_index "questions", ["quiz_id"], name: "index_questions_on_quiz_id", using: :btree
+
+  create_table "quiz_attempts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "quiz_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "status"
+    t.decimal  "score"
+  end
+
+  add_index "quiz_attempts", ["quiz_id"], name: "index_quiz_attempts_on_quiz_id", using: :btree
+  add_index "quiz_attempts", ["user_id"], name: "index_quiz_attempts_on_user_id", using: :btree
+
+  create_table "quizzes", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "row"
+    t.string   "slug"
+    t.integer  "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean  "published"
+  end
+
+  add_index "quizzes", ["course_id"], name: "index_quizzes_on_course_id", using: :btree
+
   create_table "resources", force: :cascade do |t|
     t.integer  "course_id"
     t.string   "title",         limit: 100
@@ -344,6 +392,12 @@ ActiveRecord::Schema.define(version: 20150812074346) do
   add_foreign_key "project_solutions", "projects"
   add_foreign_key "project_solutions", "users"
   add_foreign_key "projects", "courses"
+  add_foreign_key "question_attempts", "questions"
+  add_foreign_key "question_attempts", "quiz_attempts"
+  add_foreign_key "questions", "quizzes"
+  add_foreign_key "quiz_attempts", "quizzes"
+  add_foreign_key "quiz_attempts", "users"
+  add_foreign_key "quizzes", "courses"
   add_foreign_key "resources", "courses"
   add_foreign_key "solutions", "challenges"
   add_foreign_key "solutions", "users"

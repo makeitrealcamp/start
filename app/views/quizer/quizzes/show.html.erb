@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <%= link_to course_path(@course,@quiz,anchor: "quizzes") do %>
+        <span class='glyphicon glyphicon-arrow-left'></span>
+        Volver al Curso <%= @course.name %>
+      <% end %>
+      <div class="text-center">
+        <h1>Quiz: <%= @quiz.name %></h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="row margin-bottom">
+    <div class="col-md-8 col-md-offset-2 text-center">
+      <% if @quiz.is_being_attempted_by_user? current_user %>
+        <p>
+          Ya comenzaste este quiz.
+        </p>
+        <%= link_to "Continuar Quiz", ongoing_quiz_attempt_for_user_path(@quiz,current_user), class: "btn btn-success" %>
+      <% else %>
+        <%= button_to "Comenzar Quiz", course_quizer_quiz_quiz_attempts_path(@course,@quiz), method: :post, class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row margin-bottom">
+    <div class="col-md-8 col-md-offset-2 text-center">
+      <% if @current_user.is_admin? %>
+        <%= link_to "Preguntas", course_quizer_quiz_questions_path(@course,@quiz), class: "btn btn-info" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h2>Resultados anteriores</h2>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Puntaje</th>
+              <th>Detalle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @finished_quiz_attempts.each do |quiz_attempt| %>
+              <tr id="quiz-attempt-<%= quiz_attempt.id %>">
+                <td><%= quiz_attempt.created_at.strftime("%Y-%m-%d") %></td>
+                <td><%= "%.2f\%" % (quiz_attempt.score*100) %></td>
+                <td>
+                  <%= link_to "Resultados >", quiz_attempt_results_path(quiz_attempt) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

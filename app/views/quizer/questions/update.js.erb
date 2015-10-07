@@ -1,0 +1,14 @@
+<% if @question_form.valid? %>
+  $('#question-modal').remove();
+  $('.modal-backdrop').remove();
+  $('.main-alerts-container')
+    .prepend('<%= j render "shared/alert", msg: "Pregunta actualizada", type: "success" %>')
+
+  $('#question-<%= @question.id %>').replaceWith('<%= j render "question_row", question: @question %>')
+
+
+<% else %>
+  $('#question-modal .alerts-container').html(
+    '<%= j render "shared/flash_messages_form", object: @question_form %>'
+  );
+<% end %>

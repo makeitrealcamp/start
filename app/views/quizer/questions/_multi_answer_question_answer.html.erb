@@ -1,0 +1,9 @@
+<%# required: form, answer, type %>
+<div class="form-group row answer">
+  <div class="col-xs-10">
+    <%= form.text_area type, multiple: true, class: "form-control", value: answer %>
+  </div>
+  <div class="col-xs-2">
+    <button class="remove-answer btn btn-danger" type="button"><span class="glyphicon glyphicon-minus"></span></button>
+  </div>
+</div>

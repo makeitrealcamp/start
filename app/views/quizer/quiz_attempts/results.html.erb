@@ -1,0 +1,33 @@
+<div class="container quiz-attempt-result">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= link_to course_quizer_quiz_path(@course,@quiz) do %>
+        <span class='glyphicon glyphicon-arrow-left'></span>
+        Volver al Quiz <%= @quiz.name %>
+      <% end %>
+
+      <h1>Resultados para el quiz <strong><%= @quiz_attempt.quiz.name %></strong></h1>
+      <p>
+        Puntaje: <%= "%.2f\%" % (@quiz_attempt.score*100) %>
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h1><%= @quiz.name %></h1>
+    </div>
+  </div>
+
+  <% @quiz_attempt.question_attempts.each_with_index do |qa,i| %>
+    <div class="row question">
+      <div class="col-xs-1">
+        <%= i %>
+      </div>
+      <div class="col-xs-11">
+        <%= render "#{qa.type.demodulize.underscore}_result", question_attempt: qa %>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+</div>

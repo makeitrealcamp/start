@@ -30,6 +30,7 @@ class Course < ActiveRecord::Base
   has_many :challenges
   has_many :projects
   has_many :points
+  has_many :quizzes, class_name: 'Quizer::Quiz'
   belongs_to :phase
   has_many :badges, dependent: :destroy
 

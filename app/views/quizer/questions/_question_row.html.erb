@@ -1,0 +1,17 @@
+<%# required: question %>
+<% course = question.quiz.course %>
+<% quiz = question.quiz %>
+<tr id="question-<%= question.id %>">
+  <td class="col-xs-1"><%= question.id %></td>
+  <td class="col-xs-1">
+    <% if question.published  %>
+      <span class="text-succes glyphicon glyphicon-ok"></span>
+    <% end %>
+  </td>
+  <td><%= question.text %></td>
+  <td>
+    <%= link_to edit_course_quizer_quiz_question_path(course,quiz,question), remote: true, class: "btn btn-xs btn-info" do %>
+      <span class="glyphicon glyphicon-pencil"></span>
+    <% end %>
+  </td>
+</tr>

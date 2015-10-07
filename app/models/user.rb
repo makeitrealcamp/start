@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
   has_many :badges, -> { uniq }, through: :badge_ownerships
   has_many :notifications
   has_many :comments
+  has_many :quiz_attempts, class_name: '::Quizer::QuizAttempt'
 
   hstore_accessor :profile,
     first_name: :string,
