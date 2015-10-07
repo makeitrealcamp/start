@@ -5,6 +5,8 @@ initHome = function() {
     scrollTop: $('#anchor').offset().top - 75},
     'slow');
   });
+  var startTime = moment().endOf('month').day('Thursday').hour('18');  // moment.js in local time
+  var endTime = moment().endOf('month').day('Thursday').hour('19');  // moment.js in local time
   var myCalendar = createCalendar({
     options: {
       class: 'add-to-calendar',
@@ -12,9 +14,9 @@ initHome = function() {
     },
     data: {
       title: 'Sesión Informativa Make it Real',     // Event title
-      start: new Date('October 25, 2015 19:00'),   // Event start date
-      duration: 30,                            // Event duration (IN MINUTES)
-      end: new Date('October 25, 2015 19:30'),     // You can also choose to set an end time.
+      start: new Date(startTime),   // Event start date
+      duration: 60,                            // Event duration (IN MINUTES)
+      end: new Date(endTime),     // You can also choose to set an end time.
                                                     // If an end time is set, this will take precedence over duration
       address: 'The internet',
       description: 'Descripción evento.'
