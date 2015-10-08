@@ -1,0 +1,7 @@
+#!/bin/bash
+# http://stackoverflow.com/questions/3601515/how-to-check-if-a-variable-is-set-in-bash#answer-13864829
+if [ -z ${SIDEKIQ_MONITOR+x} ]; then
+  bundle exec unicorn -p $PORT -c ./config/unicorn.rb
+else
+  bundle exec rackup -p $PORT sidekiq_monitor.ru
+fi

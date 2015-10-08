@@ -1,2 +1,0 @@
-web: bundle exec rackup -p $PORT sidekiq_monitor.ru
-worker: bundle exec sidekiq
