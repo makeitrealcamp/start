@@ -1,3 +1,8 @@
+
+if ENV["SIDEKIQ_MONITOR_USERNAME"].nil? || ENV["SIDEKIQ_MONITOR_PASSWORD"].nil?
+  raise '$SIDEKIQ_MONITOR_USERNAME and $SIDEKIQ_MONITOR_PASSWORD required'
+end
+
 require 'sidekiq'
 require 'sidekiq/web'
 
