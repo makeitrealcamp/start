@@ -1,2 +1,4 @@
 #!/bin/bash
+echo "moving Procfile.dokku -> Procfile"
 mv Procfile.dokku Procfile
+echo "now usinf Procfile.dokku as Procfile"
