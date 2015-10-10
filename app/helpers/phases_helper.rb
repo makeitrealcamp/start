@@ -1,3 +1,0 @@
-module PhasesHelper
-
-end
