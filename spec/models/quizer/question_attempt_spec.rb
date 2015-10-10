@@ -21,6 +21,11 @@ require 'rails_helper'
 
 RSpec.describe Quizer::QuestionAttempt, type: :model do
 
+  context 'associations' do
+    it { should belong_to(:quiz_attempt) }
+    it { should belong_to(:question) }
+  end
+
   it "has a valid factory" do
     question_attempt = build(:multi_answer_question_attempt)
     expect(question_attempt).to be_valid

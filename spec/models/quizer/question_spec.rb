@@ -19,6 +19,10 @@ require 'rails_helper'
 
 RSpec.describe Quizer::Question, type: :model do
 
+  context 'associations' do
+    it { should belong_to(:quiz) }
+  end
+
   it "has a valid factory" do
     question = build(:multi_answer_question)
     expect(question).to be_valid
