@@ -1422,7 +1422,7 @@
       overflow: hidden;
       background: #fff;
       border: 1px solid #dddddd;
-      padding: 25px;
+      padding: 20px;
       margin-bottom: 70px;
       @media (max-width: $screen-md-min) {
         margin-bottom: 40px;
@@ -1432,8 +1432,14 @@
         text-align: left;
         min-height: 115px;
         overflow: hidden;
+        @media (max-width: $screen-lg-min) {
+          min-height: 100px;
+        }
         @media (max-width: $screen-md-min) {
-          text-align: center;
+          min-height: 120px;
+        }
+        @media (max-width: $screen-sm-min) {
+          min-height: 0;
         }
       }
     }
@@ -1445,7 +1451,7 @@
       padding-top: 15px;
       .profile-name {
         display: block;
-        font-size: 18px;
+        font-size: 16px;
       }
       .profile-link {
         display: block;
