@@ -834,7 +834,6 @@
     text-align: center;
     overflow: hidden;
     margin-top: 150px;
-    padding-bottom: 150px;
     @media (max-width: $screen-md-min) {
       padding-bottom: 30px;
       margin-top: 80px;
@@ -1418,20 +1417,7 @@
   .section-quotes {
     overflow: hidden;
     text-align: center;
-    h3 {
-        text-align: center;
-        font-size: 42px;
-        text-transform: uppercase;
-        color: #ff4300;
-        font-family: 'Open Sans', sans-serif;
-        font-weight: 300;
-        margin-top: 150px;
-        margin-bottom: 80px;
-        @media (max-width: $screen-md-min) {
-          font-size: 32px;
-          margin-top: 80px;
-        }
-    }
+    margin-top: 80px;
     .each-quote {
       overflow: hidden;
       background: #fff;
