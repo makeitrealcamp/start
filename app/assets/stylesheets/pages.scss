@@ -1413,4 +1413,71 @@
       }
     }
   }
+
+
+  .section-quotes {
+    overflow: hidden;
+    text-align: center;
+    h3 {
+        text-align: center;
+        font-size: 42px;
+        text-transform: uppercase;
+        color: #ff4300;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 300;
+        margin-top: 150px;
+        margin-bottom: 80px;
+        @media (max-width: $screen-md-min) {
+          font-size: 32px;
+          margin-top: 80px;
+        }
+    }
+    .each-quote {
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #dddddd;
+      padding: 25px;
+      margin-bottom: 70px;
+      @media (max-width: $screen-md-min) {
+        margin-bottom: 40px;
+      }
+      p {
+        font-size: 16px;
+        text-align: left;
+        min-height: 115px;
+        overflow: hidden;
+        @media (max-width: $screen-md-min) {
+          text-align: center;
+        }
+      }
+    }
+    .student-data {
+      overflow: hidden;
+      text-align: left;
+      border-top: 1px solid #ff3300;
+      margin-top: 15px;
+      padding-top: 15px;
+      .profile-name {
+        display: block;
+        font-size: 18px;
+      }
+      .profile-link {
+        display: block;
+        margin: 5px 0;
+        i {
+          font-size: 20px;
+          margin-right: 10px;
+        }
+      }
+
+      .profile-img {
+        float: left;
+        margin-right: 15px;
+        width: 80px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
 }

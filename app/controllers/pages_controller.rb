@@ -26,4 +26,8 @@ class PagesController < ApplicationController
     @home = true
   end
 
+  def quotes
+    render layout: false
+  end
+
 end

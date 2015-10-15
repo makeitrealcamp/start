@@ -12,7 +12,6 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
-  <%= render "utils/fb_pixel" %>
   <%= render "utils/google_analytics" %>
   <%= render "utils/ab_testing_optimizely" %>
   <%= render "utils/crazyegg" %>
@@ -23,7 +22,6 @@
 
 
 <body class="expand">
-  <%= render "utils/google_tagmanager" %>
   <div class="new_site">
     <header>
       <nav class="navbar navbar-fixed-top">
@@ -40,7 +38,7 @@
           <div class="navbar-collapse collapse" id="navbar">
             <ul class="nav navbar-nav">
               <li><%= link_to "Nuestro Programa", curriculum_path %></li>
-              <li class="active"><%= link_to "Preguntas Frecuentes", faq_path %></li>
+              <li><%= link_to "Preguntas Frecuentes", faq_path %></li>
               <li><a href="http://blog.makeitreal.camp/">Blog</a></li>
               </li>
             </ul>
@@ -55,86 +53,158 @@
 
 
 
-    <div class="pitch faq">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-10 col-md-offset-1">
-            <h2><span class="icon">
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="45" height="61" viewBox="0 0 45 61">
-                <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAA9CAMAAAAOEhAzAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAATlBMVEUAAAD/////////////////////////////////////////////////////////RgD/RgD/RgD/RgD/RgD/RgD/RgD/RgD/////RgAAAACjiGzUAAAAF3RSTlMAZnciuxHuRIjMM92ZVapUcA7AIKjgHOQ5ed8AAAABYktHRACIBR1IAAAACXBIWXMAAAsSAAALEgHS3X78AAABWklEQVRIx+3Vy3aEIAwAUF4KKjh90///0i4mkQQIeLpts3LkwkQSVGlDQ1XBR61ymcZS6ZWN+kp7jm0e6ioVPdaO6zDWmettonems6CPrZO452NkbUgxUm3gXptJgnWohjEj6mzb2vhW+wNmFbw/76w9DdmFpjauow2MbUXDfNPT2BNNbXxPX8+EeMHpXX1W9UnYOl0N23pWtQl9jRtW1Sb1NfYQNhb8XAQNl5rV5lCCxibiLSVpz+oTr3/qa9zg58GHvrGSxuIlctxXJepA6pPK7gv6qh6fKWjaWK50jaDxyfZSGzXQ8br2JClJl8Yy5K6kS7XPkrao8URYvFiGGpbUljaBqPEEwJEOYw0DG9RGjzVu85X/WLMX9KEm2lAdZzpRbWZ6oXqfafqpwXfFQMei3VyTT6SZa/L59XONJyKXd7Ovp//H7+Pxcj9e1dv3/Xj/I/rj8358/QCd/5PAWPoF3wAAAABJRU5ErkJggg==" width="45" height="61"/>
-              </svg>
-            </span>
-            Preguntas Frecuentes</h2>
+
+    <div class="container">
+      <div class="row">
+        <div class="section-quotes">
+          <div class="col-md-12">
+            <h3>Lo que dicen de nosotros</h3>
           </div>
-        </div><!--/row -->
-      </div><!--/container -->
-    </div><!--/pitch faq -->
+
+          <div class="col-md-4">
+            <div class="each-quote">
+              <p>"En Make it Real logré cosas que nunca habría imaginado hacer. Fue una de las experiencias más intensas y desafiantes de toda mi vida."</p>
+              <div class="student-data">
+                <div class="profile-img">
+                  <img alt="02sebas 2e30ee526ec59d44e0ca0fddb30e191c17dde7b6369f6f1e106660c14c7f0a4a" src="/assets/people/02sebas-2e30ee526ec59d44e0ca0fddb30e191c17dde7b6369f6f1e106660c14c7f0a4a.png">
+                </div>
+                <span class="profile-name txt-bold">Sebastián Zapata</span>
+                <span class="profile-link">
+                  <a href="http://github.com/heyjoeb">
+                    <i class="fa fa-github"></i>github
+                  </a> 
+                </span>
+                <span class="profile-link">
+                  <a href="http://github.com/heyjoeb">
+                    <i class="fa fa-user"></i>sitio web
+                  </a> 
+                </span>
+              </div><!--/student-data -->
+            </div> <!--/each-quote -->
+          </div><!--/col-md-4 -->
+
+
+          <div class="col-md-4">
+            <div class="each-quote">
+              <p>"Make it Real me abrió las puertas a un nuevo mundo que hasta ahora empieza a ser explorado y en el que las mujeres podemos entrar a jugar un rol muy importante."</p>
+              <div class="student-data">
+                <div class="profile-img">
+                  <img alt="" src="/assets/people/02sorel-ad517b25ea033409aab1f77152624f8e39b28c8929c2c1b00f624fe5870a503d.png">
+                </div>
+                <span class="profile-name txt-bold">Sorel de León</span>
+                <span class="profile-link">
+                  <a href="http://github.com/heyjoeb">
+                    <i class="fa fa-github"></i>github
+                  </a> 
+                </span>
+                <span class="profile-link">
+                  <a href="http://github.com/heyjoeb">
+                    <i class="fa fa-user"></i>sitio web
+                  </a> 
+                </span>
+              </div><!--/student-data -->
+            </div> <!--/each-quote -->
+          </div><!--/col-md-4 -->
+
+
+          <div class="col-md-4">
+            <div class="each-quote">
+              <p>"Todas las empresas que desarrollen software deberían tener sus ojos puestos en Make it Real, el talento que sale de allí es de primera."</p>
+              <div class="student-data">
+                <div class="profile-img">
+                  <img alt="" src="/assets/people/02luis-hurtado-04231e027335949b67c7ab5547db0f500e1ff4acc438e66a48ae4da1843a8604.png">
+                </div>
+                <span class="profile-name txt-bold">Luis Hurtado</span>
+                <span class="profile-link">
+                  <a href="http://github.com/heyjoeb">
+                    <i class="fa fa-github"></i>github
+                  </a> 
+                </span>
+                <span class="profile-link">
+                  <a href="http://github.com/heyjoeb">
+                    <i class="fa fa-user"></i>sitio web
+                  </a> 
+                </span>
+              </div><!--/student-data -->
+            </div> <!--/each-quote -->
+          </div><!--/col-md-4 -->
+
+
+          <div class="col-md-4">
+            <div class="each-quote">
+              <p>"Make it Real me abrió las puertas a un nuevo mundo que hasta ahora empieza a ser explorado y en el que las mujeres podemos entrar a jugar un rol muy importante."</p>
+              <div class="student-data">
+                <div class="profile-img">
+                  <img alt="" src="/assets/people/02sorel-ad517b25ea033409aab1f77152624f8e39b28c8929c2c1b00f624fe5870a503d.png">
+                </div>
+                <span class="profile-name txt-bold">Sorel de León</span>
+                <span class="profile-link">
+                  <a href="http://github.com/heyjoeb">
+                    <i class="fa fa-github"></i>github
+                  </a> 
+                </span>
+                <span class="profile-link">
+                  <a href="http://github.com/heyjoeb">
+                    <i class="fa fa-user"></i>sitio web
+                  </a> 
+                </span>
+              </div><!--/student-data -->
+            </div> <!--/each-quote -->
+          </div><!--/col-md-4 -->
+
+          <div class="col-md-4">
+            <div class="each-quote">
+              <p>"Todas las empresas que desarrollen software deberían tener sus ojos puestos en Make it Real, el talento que sale de allí es de primera."</p>
+              <div class="student-data">
+                <div class="profile-img">
+                  <img alt="" src="/assets/people/02luis-hurtado-04231e027335949b67c7ab5547db0f500e1ff4acc438e66a48ae4da1843a8604.png">
+                </div>
+                <span class="profile-name txt-bold">Luis Hurtado</span>
+                <span class="profile-link">
+                  <a href="http://github.com/heyjoeb">
+                    <i class="fa fa-github"></i>github
+                  </a> 
+                </span>
+                <span class="profile-link">
+                  <a href="http://github.com/heyjoeb">
+                    <i class="fa fa-user"></i>sitio web
+                  </a> 
+                </span>
+              </div><!--/student-data -->
+            </div> <!--/each-quote -->
+          </div><!--/col-md-4 -->
+
+          <div class="col-md-4">
+            <div class="each-quote">
+              <p>"En Make it Real logré cosas que nunca habría imaginado hacer. Fue una de las experiencias más intensas y desafiantes de toda mi vida."</p>
+              <div class="student-data">
+                <div class="profile-img">
+                  <img alt="02sebas 2e30ee526ec59d44e0ca0fddb30e191c17dde7b6369f6f1e106660c14c7f0a4a" src="/assets/people/02sebas-2e30ee526ec59d44e0ca0fddb30e191c17dde7b6369f6f1e106660c14c7f0a4a.png">
+                </div>
+                <span class="profile-name txt-bold">Sebastián Zapata</span>
+                <span class="profile-link">
+                  <a href="http://github.com/heyjoeb">
+                    <i class="fa fa-github"></i>github
+                  </a> 
+                </span>
+                <span class="profile-link">
+                  <a href="http://github.com/heyjoeb">
+                    <i class="fa fa-user"></i>sitio web
+                  </a> 
+                </span>
+              </div><!--/student-data -->
+            </div> <!--/each-quote -->
+          </div><!--/col-md-4 -->
+            
+        </div><!--/section-quotes -->
+
+      </div><!--/row -->
+    </div><!--/container -->
 
 
     <div class="container-fluid"> 
       <div class="row">
-        <div class="container">
-          <div class="faqs">
-            <div class="col-md-8 col-md-offset-2">
-              <section class="question">
-                <h3>¿Qué hace a Make it Real diferente?</h3>
-                <p>Make it Real es un programa muy estructurado, apoyado de mentores y una increíble comunidad, pero con la flexibilidad horaria y la dedicación que más te convenga.</p>
-                <p>Hemos diseñado cuidadosamente el programa para que aprendas las habilidades que se requieren para convertirte en Desarrollador Web y puedas construir y desplegar aplicaciones complejas y robustas.</p>
-              </section><!--/question -->
-
-              <section class="question">
-                <h3>¿Cuánto tiempo debo dedicar?</h3>
-                <p>Lo mínimo que debes dedicar para completarlo en un año es 15 a 20 horas por semana. Sin embargo, si le dedicas 80 horas a la semana podrías completarlo en 3 meses o antes. Tu decides.</p>
-              </section><!--/question -->
-
-              <section class="question">
-                <h3>¿Me van a ayudar a encontrar empleo?</h3>
-                <p>Constantemente estamos publicando nuevas ofertas de empleo y es muy probable que consigas un empleo al terminar el programa. Aunque no brindamos ninguna garantía, la mayoría de nuestros estudiantes han conseguido empleo en los primeros 3 meses después de finalizarlo.</p>
-              </section><!--/question -->
-
-              <section class="question">
-                <h3>¿Por qué están haciendo esto?</h3>
-                <p>Porque creemos que el sistema de educación formal no se ha adaptado a las necesidades del mundo actual. Queremos mostrar que existen mejores formas de aprender a programar que ingresar a una universidad y que los títulos no son la única forma de conseguir trabajo.</p>
-                <p>Pero nuestra mayor motivación es que más gente aprenda a programar y mejore su calidad de vida. La programación nos permite trabajar desde donde queramos y en la mayoría de casos en horarios flexibles. Eso abre muchas posibilidades para viajar, compartir en familia, y lo más importante: intentar mejorar el mundo.</p>
-              </section><!--/question -->
-
-              <section class="question">
-                <h3>¿Por qué un programa virtual y no presencial?</h3>
-                <p>Son varias las razones así que hemos escrito un <a href="">post completo</a> explicándolas.</p>
-              </section><!--/question -->
-
-              <section class="question">
-                <h3>¿Cómo sé si este programa es para mi?</h3>
-                <p>Si sientes que el programa no es para ti y te retiras en los primeros 15 días, recibirás un reembolso completo. Si cancelas después, recibirás un reembolso parcial según tu avance en la plataforma. Cero riesgo.</p>
-              </section><!--/question -->
-
-              <section class="question">
-                <h3>¿Cuáles son los requerimientos?</h3>
-                <p>Lo único que necesitas es un computador (con cualquier sistema operativo) y una buena conexión a Internet para ver los videos. Una advertencia: la mayoría de recursos están en Inglés. Es preferible si al menos lo entiendes escrito. Pero si no, no te preocupes, puedes usar un traductor si es necesario y buscar otros recursos por tu cuenta.</p>
-              </section><!--/question -->
-
-              <section class="question">
-                <h3>¿Qué pasa si no lo completo durante el año?</h3>
-                <p>El objetivo es que lo completes. Pero si por alguna razón no lo puedes hacer deberás pagar mensualmente para mantener activa la plataforma. Aún no hemos definido el costo.</p>
-                <p>Nuestra recomendación es que pienses bien si le puedes dedicar el tiempo antes de tomar la decisión.</p>
-              </section><!--/question -->
-
-              <section class="question">
-                <h3>¿Por qué Ruby on Rails?</h3>
-                <p>Por varias razones. La primera es que no importa con qué tecnología aprendas, el mundo de la programación se mueve muy rápido y en algunos años la mayoría de tecnologías actuales serán obsoletas. El objetivo del programa es que aprendas a aprender.</p>
-                <p>Seleccionamos Ruby on Rails porque es un framework muy expresivo, fácil de aprender y con una gran comunidad de desarrolladores en el mundo.</p>
-                <p>No tenemos nada en contra de otros lenguajes y frameworks de programación, pero creemos que Rails tiene el balance perfecto entre madurez y facilidad de aprendizaje. Además, una vez que aprendas Rails, tus conocimientos pueden ser rápidamente transferidos a otros frameworks de programación similares en otros lenguajes como Django (Python), Laravel (PHP) o Express.js (Node.js).</p>
-              </section><!--/question -->
-            </div>
-          </div><!--/pitch faqs -->
-        </div>
-
         
-
-
-        
-      
-
         <div class="apply-now">
           <div class="top-container">
             <div class="col-md-6 col-md-offset-3">
@@ -162,6 +232,7 @@
             <%= image_tag("bgIconMir.png", class: "img-responsive") %>
           </div>
         </div><!--/apply-now -->
+
 
 
         <footer>
