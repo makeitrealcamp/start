@@ -8,6 +8,6 @@ class FormsController < ApplicationController
     client = Slack::Web::Client.new(token: ENV['slack_token'])
     client.chat_postMessage(channel: ENV['mentor_channel_id'], text: params[:message], username: current_user.first_name.capitalize)
     flash[:notice] = "Hemos enviado tu mensaje pronto un mentor te ayudara via Slack"
-    redirect_to root_path
+    redirect_to(:back)
   end
 end
