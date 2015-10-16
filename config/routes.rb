@@ -159,4 +159,5 @@ Rails.application.routes.draw do
 
   # routes to evaluate forms
   match 'forms/hello', to: 'forms#hello', via: [:get, :post]
+  post 'forms/slack_help', to: 'forms#slack_help', as: "slack_help"
 end

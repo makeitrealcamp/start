@@ -57,6 +57,7 @@ gem 'omniauth-github'
 gem 'font-awesome-sass'
 gem 'nested_form_fields'
 gem 'annotate', '~> 2.6.6'
+gem 'slack-ruby-client'
 
 #windows specific
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
