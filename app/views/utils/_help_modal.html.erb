@@ -1,0 +1,19 @@
+<div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Ayuda en camino!</h4>
+      </div>
+      <div class="modal-body">
+        <p>Hola <%= current_user.first_name.capitalize %> en Make It Real siempre estamos listos para ayudarte, al hacer click abajo te redirigemos a una conversacion en Slack con un mentor para que te ayude a solucionar tus dudas!</p>
+        <p><strong>Nota:</strong> En caso de que no estes logueado en slack es necesario que ingreses tus credenciales antes de que seas redirigido a la conversacion con el mentor.</p>
+      </div>
+      <div class="modal-footer">
+        <a href="https://makeitrealcamp.slack.com/messages/@juan_gomez" class="btn btn-primary">Recibir ayuda de un mentor!</a>
+        <!-- <button type="button" class="btn btn-primary">Recibir ayuda de un mentor!</button> -->
+        <button type="button" class="btn btn-default" data-dismiss="modal">Ya no necesito ayuda</button>
+      </div>
+    </div>
+  </div>
+</div>
