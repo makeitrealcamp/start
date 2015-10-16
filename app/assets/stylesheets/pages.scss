@@ -1423,23 +1423,20 @@
       background: #fff;
       border: 1px solid #dddddd;
       padding: 20px;
-      margin-bottom: 70px;
-      @media (max-width: $screen-md-min) {
-        margin-bottom: 40px;
-      }
+      margin-bottom: 40px;
       p {
         font-size: 16px;
         text-align: left;
-        min-height: 115px;
+        height: 115px;
         overflow: hidden;
         @media (max-width: $screen-lg-min) {
-          min-height: 100px;
+          height: 100px;
         }
         @media (max-width: $screen-md-min) {
-          min-height: 120px;
+          height: 120px;
         }
         @media (max-width: $screen-sm-min) {
-          min-height: 0;
+          height: auto;
         }
       }
     }
