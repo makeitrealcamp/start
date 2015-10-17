@@ -22,4 +22,8 @@ class PagesController < ApplicationController
     render layout: false
   end
 
+  def thanks
+    @home = true
+  end
+
 end
