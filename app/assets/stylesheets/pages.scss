@@ -503,6 +503,8 @@
   color: #303030;
   margin-bottom: 60px;
 
+  h1, h2, h3 { text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7); }
+
   h1 {
     text-align: center;
     margin-bottom: 40px;
@@ -535,20 +537,25 @@
   }
 
   p, ol, ul {
+    color: #303030;
     font-size: 16px;
-    font-weight: 300;
     line-height: 1.7;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
 
     @media (min-width: $screen-sm-min) {
       font-size: 18px;
-      margin-bottom: 36px;
+      margin-bottom: 30px;
     }
-    @media (min-width: $screen-md-min) { font-size: 21px; }
 
-    strong { font-weight: normal; }
   }
 
   ol li { margin-bottom: 15px; }
+
+  img {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
 }
 
 
