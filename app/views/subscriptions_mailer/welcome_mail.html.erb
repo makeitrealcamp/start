@@ -1,12 +1,14 @@
 <p>Hola<%= @user.first_name? ? " #{@user.first_name}" : "" %>,</p>
 
-<p>Estamos muy contentos de que te hayas unido a Make it Real, una comunidad de creadores que se están preparando para construir las aplicaciones del futuro. Vamos a hacer todo lo posible para que tengas la mejor experiencia de aprendizaje y para ayudarte a cumplir tu sueño de convertirte en <%= genderize("desarrollador", "desarrolladora", @user) %> web.</p>
+<p>¡Gracias por activar tu cuenta! El siguiente paso es leer la <strong>Guía del Estudiante</strong> que se encuentra en el siguiente link:</p>
 
-<p>Hemos creado una guía detallada en la que podrás encontrar los pasos a seguir para iniciar este camino de la mano de mentores y otros estudiantes que comparten tu mismo interés por aprender. ¿Estás <%= genderize("listo", "lista", @user) %>?</p>
+<p><%= link_to handbook_url, handbook_url %>.</p>
 
-<p>Ingresa a <%= link_to handbook_url, handbook_url %>.</p>
+<p>En la guía encontrarás toda la información que necesitas para iniciar el programa.</p>
 
-<p>Cualquier pregunta o inquietud no dudes en hacérmela saber y con gusto te responderé.</p>
+<p>En las próximas 24 horas tu mentor se comunicará contigo para coordinar la primera mentoría en donde recibirás consejos importantes que te ayudarán a tener éxito en el programa.</p>
+
+<p>Si tienes alguna pregunta o inquietud simplemente responde este correo y con gusto la atenderé.</p>
 
 <p>Cordial Saludo,</p>
 
