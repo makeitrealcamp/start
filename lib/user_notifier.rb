@@ -13,7 +13,6 @@ class UserNotifier
   end
 
   def notify(event,data)
-    puts "#{Pusher.url}!!!!!!!!!!!!!!!!!!!!!!"
     @notification_service.trigger(channel, 'notifications:new',data)
   end
 end
