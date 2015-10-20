@@ -620,9 +620,11 @@
     font-weight: 700;
     font-family: 'Karla', sans-serif;
     color: #fff;
-    margin-top: 70px;
+    margin-top: 170px;
+    padding: 0 35px;
     @media (max-width: $screen-sm-min) {
       font-size: 28px;
+      padding: 0;
     }
     @media ( max-width: 1200px ) and (max-height: 600px ) {
       margin-top: 150px;
