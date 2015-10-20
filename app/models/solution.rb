@@ -47,9 +47,9 @@ class Solution < ActiveRecord::Base
     elsif self.challenge.ruby_git?
       GitEvaluator.new.evaluate(self)
     elsif self.challenge.rails_git?
-      RailsEvaluator.new.evaluate(self)
+      RailsEvaluator.new(self).evaluate
     elsif self.challenge.sinatra_git?
-      SinatraEvaluator.new.evaluate(self)
+      SinatraEvaluator.new(self).evaluate
     elsif self.challenge.ruby_git_pr?
       GitPREvaluator.new.evaluate(self)
     elsif self.challenge.async_phantomjs_embedded?

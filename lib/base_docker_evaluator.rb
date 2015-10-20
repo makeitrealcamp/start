@@ -63,10 +63,17 @@ class BaseDockerEvaluator < Evaluator
     }
   end
 
-  def create_shared_file(opts)
-    relative_path = opts[:relative_path]
-    content = opts[:content]
+  def result_shared_path
+    relative_path = "result.json"
+    {
+      relative_path: relative_path,
+      local_path: File.join(tmp_path,relative_path),
+      container_path: File.join(container_path,relative_path)
+    }
+  end
 
+  def create_shared_file(relative_path,content)
+    
     local_path = File.join(tmp_path,relative_path)
     dirname = File.dirname(local_path)
 

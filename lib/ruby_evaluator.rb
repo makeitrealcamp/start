@@ -36,10 +36,7 @@ class RubyEvaluator < BaseDockerEvaluator
 
   def create_solution_files
     solution.documents.map do |document|
-      create_shared_file(
-        relative_path: File.join("solution_files",document.name),
-        content: document.content
-      )
+      create_shared_file(File.join("solution_files",document.name),document.content)
     end
   end
 
@@ -49,10 +46,7 @@ class RubyEvaluator < BaseDockerEvaluator
     solution_files_paths = shared_paths.map { |f| f[:container_path] }
     evaluation = self.solution.challenge.evaluation
     evaluator_content = ERB.new(template).result(binding)
-    create_shared_file(
-      relative_path: "evaluation.rb",
-      content: evaluator_content
-    )
+    create_shared_file("evaluation.rb",evaluator_content)
   end
 
   def create_executor_file(shared_path)
@@ -62,10 +56,7 @@ class RubyEvaluator < BaseDockerEvaluator
     error_file_path = error_shared_path[:container_path]
 
     executor_content = ERB.new(template).result(binding)
-    create_shared_file(
-      relative_path: "executor.sh",
-      content: executor_content
-    )
+    create_shared_file("executor.sh",executor_content)
   end
 
 end
