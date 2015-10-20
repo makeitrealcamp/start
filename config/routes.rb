@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   root 'pages#home'
 
-  get "home" => "pages#new_home"
-
   get "curriculum" => "pages#curriculum"
 
   get "faq" => "pages#faq"
+
+  get "quotes" => "pages#quotes"
 
   get "thanks", to: "pages#thanks", as: :thanks
 
