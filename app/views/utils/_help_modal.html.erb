@@ -1,0 +1,23 @@
+<%= form_tag(slack_help_path) do %>
+  <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Ayuda en camino!</h4>
+        </div>
+        <div class="modal-body">
+          <p>Escribe cual es tu duda y se la enviaremos a un mentor, este se contactara contigo lo mas pronto posible via <em>Slack</em></p>
+          <div class="form-group">
+             <label for="recipient-name" class="control-label">Mensaje:</label>
+             <%= text_area_tag "message",nil, class: "form-control" %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= submit_tag "Enviar Mensaje", class: "btn btn-primary" %>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
