@@ -585,6 +585,10 @@
   .nav > li > a:hover, .nav > li > a:focus {
     background: transparent;
   }
+  .navbar-nav > li > a {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
   .navbar {
     font-size: 14px;
     background: #fff;
@@ -616,9 +620,11 @@
     font-weight: 700;
     font-family: 'Karla', sans-serif;
     color: #fff;
-    margin-top: 70px;
+    margin-top: 170px;
+    padding: 0 35px;
     @media (max-width: $screen-sm-min) {
       font-size: 28px;
+      padding: 0;
     }
     @media ( max-width: 1200px ) and (max-height: 600px ) {
       margin-top: 150px;
@@ -1427,13 +1433,13 @@
       p {
         font-size: 16px;
         text-align: left;
-        height: 115px;
+        height: 140px;
         overflow: hidden;
         @media (max-width: $screen-lg-min) {
           height: 100px;
         }
         @media (max-width: $screen-md-min) {
-          height: 120px;
+          height: 140px;
         }
         @media (max-width: $screen-sm-min) {
           height: auto;
@@ -1450,8 +1456,13 @@
         display: block;
         font-size: 16px;
       }
-      .profile-link {
+      .profile-status {
         display: block;
+        font-size: 14px;
+        color: #999999;
+      }
+      .profile-link {
+        display: inline-block;
         margin: 5px 0;
         i {
           font-size: 20px;

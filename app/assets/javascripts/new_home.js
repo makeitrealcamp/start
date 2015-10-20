@@ -1,6 +1,6 @@
 var ready;
 ready = function() {
-  $('.home .new_site').on('click', '.scroll', function() {
+  $('.new_site .intro').on('click', '.scroll', function() {
     $('html,body').animate({
     scrollTop: $('#anchor').offset().top - 75},
     'slow');

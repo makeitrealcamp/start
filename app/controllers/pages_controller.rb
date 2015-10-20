@@ -27,7 +27,7 @@ class PagesController < ApplicationController
   def thanks
   end
 
-  def quotes
+  def makers
   end
 
 end

@@ -6,12 +6,16 @@
         <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
           <h1 class="tagline">Aprende desarrollo web de la mano de mentores experimentados</h1>
         </div>
+        <!--
+        
         <div class="col-md-10 col-md-offset-1 col-lg-6 col-lg-offset-3">
           <div class="quotes">
             "Este es de lejos el mejor programa para aprender a desarrollar productos digitales que existe en Colombia."
             <span class="author">- Nayib Abdalá, Ex-alumno. Creador de <a href="http://www.businesshackers.how/">Business Hackers</a> y asesor de startups.</span>
           </div>
-        </div><!--/quotes -->
+        </div>
+
+        /quotes -->
 
         <div class="col-md-12">
           <%= link_to "https://makeitreal.typeform.com/to/KbayyW", class: "btn btn-main apply" do %>
@@ -141,12 +145,10 @@
 
 
         <div class="col-md-12">
-          <a href="<%= quotes_path %>" class="more-quotes">
-            Ver más opiniones
+          <a href="<%= makers_path %>" class="more-quotes">
+            Conoce las opiniones de más makers
             <span class="icon">
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="83" height="83" viewBox="0 0 83 83">
-                <image xlink:href="data:img/png;base64,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" width="83" height="83"/>
-              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="83" height="83" viewBox="0 0 83 83"><image xlink:href="data:img/png;base64,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" width="83" height="83"/></svg>
             </span>
           </a>
         </div><!--/more-quotes -->
