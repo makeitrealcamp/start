@@ -1,0 +1,16 @@
+#!/bin/bash
+# require: evaluation_file_path, error_file_path
+
+set -e
+set -x
+
+if [ ! -f <%= evaluation_file_path %> ]; then
+  echo "No se encontró el archivo de evaluación <%= evaluation_file_path %>." >> <%= error_file_path %>
+  exit 1
+fi
+ruby <%= evaluation_file_path %> &> <%= error_file_path %>
+
+if [ -s <%= error_file_path %> ]
+then
+  exit 1
+fi

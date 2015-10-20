@@ -1,26 +1,21 @@
 class BaseDockerEvaluator < Evaluator
 
+  attr_accessor :solution
+
+  def initialize(solution = nil)
+    self.solution = solution
+  end
 
   def prefix_path
     # we need change the prefix in development because boot2docker only shares de /Users path, not /tmp
     evaluation_folder_name = self.class.name.demodulize.underscore
-    Rails.env.production? ? "/app/tmp/ukku/#{evaluation_folder_name}" : File.expand_path("~/.ukku/#{evaluation_folder_name}")
-  end
-
-  def create_tmp_path(solution)
-    if !File.exist?("#{prefix_path}")
-      FileUtils.mkdir_p("#{prefix_path}")
-      FileUtils.chmod_R(0777, "#{prefix_path}")
+    if Rails.env.production?
+      File.join("/app/tmp/ukku",evaluation_folder_name)
+    else
+      File.expand_path("~/.ukku/#{evaluation_folder_name}")
     end
-
-    path = "#{prefix_path}/user#{solution.user_id}-solution#{solution.id}"
-
-    FileUtils.rm_rf(path)
-    FileUtils.mkdir(path)
-    FileUtils.chmod(0777, path)
-
-    path
   end
+
 
   def handle_error(solution, error_path)
     fail(solution, File.read(error_path).truncate(255))
@@ -36,5 +31,56 @@ class BaseDockerEvaluator < Evaluator
     fail(solution, message)
   end
 
+  def create_tmp_path
+    if !File.exist?(prefix_path)
+      FileUtils.mkdir_p(prefix_path)
+      FileUtils.chmod_R(0777, prefix_path)
+    end
 
+    path = File.join(prefix_path,"user#{solution.user_id}-solution#{solution.id}")
+
+    FileUtils.rm_rf(path)
+    FileUtils.mkdir(path)
+    FileUtils.chmod(0777, path)
+
+    path
+  end
+
+  def tmp_path
+    @tmp_path ||= create_tmp_path
+  end
+
+  def container_path
+    "/ukku/data"
+  end
+
+  def error_shared_path
+    relative_path = "error.txt"
+    {
+      relative_path: relative_path,
+      local_path: File.join(tmp_path,relative_path),
+      container_path: File.join(container_path,relative_path)
+    }
+  end
+
+  def create_shared_file(opts)
+    relative_path = opts[:relative_path]
+    content = opts[:content]
+
+    local_path = File.join(tmp_path,relative_path)
+    dirname = File.dirname(local_path)
+
+    unless File.directory?(dirname)
+      FileUtils.mkdir_p(dirname)
+    end
+
+    File.open(local_path, 'w') do |file|
+      file.write(content)
+    end
+    {
+      relative_path: relative_path,
+      local_path: local_path,
+      container_path: File.join(container_path,relative_path)
+    }
+  end
 end

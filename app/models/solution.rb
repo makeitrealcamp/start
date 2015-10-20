@@ -41,7 +41,7 @@ class Solution < ActiveRecord::Base
 
   def evaluate
     if self.challenge.ruby_embedded?
-      RubyEvaluator.new.evaluate(self)
+      RubyEvaluator.new(self).evaluate
     elsif self.challenge.phantomjs_embedded?
       PhantomEvaluator.new.evaluate(self)
     elsif self.challenge.ruby_git?

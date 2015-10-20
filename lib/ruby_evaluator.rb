@@ -1,82 +1,26 @@
 class RubyEvaluator < BaseDockerEvaluator
-  def evaluate(solution)
-    tmp_path = create_tmp_path(solution)
 
-    # write solution files
-    files_paths = solution.documents.map do |document|
-      file_path = "#{tmp_path}/#{document.name}"
-      File.open(file_path, 'w') do |file|
-        file.write(document.content)
-      end
-      "/ukku/data/#{document.name}"
-    end
+  RUBY_EVALUATOR_TEMPLATE_PATH = "evaluator_templates/ruby_evaluator_template.rb.erb"
+  RUBY_EXECUTOR_TEMPLATE_PATH = "evaluator_templates/ruby_executor_template.sh.erb"
 
-    # create evaluation file content
-    evaluation_file = %Q(
-      class Context
-        def self.eval(file)
-          c = Context.new
-          c.instance_eval(file)
-          c
-        end
-      end
-      # wrapper of file to mantain compatibility with previous evaluator
-      class SolutionFile
-        attr_accessor :content
-        def initialize(content)
-          self.content = content
-        end
-      end
+  def evaluate
 
-      def format_exception(message)
-        message.gsub(/for #<Context:.*>/i, '').gsub(/\\(eval\\)\\:/i, '')
-      end
+    solution_files_paths = create_solution_files
+    evaluation_file_path = create_evaluation_file(solution_files_paths)
+    executor_script_path = create_executor_file(evaluation_file_path)
 
-      #{solution.challenge.evaluation} # define evaluate method
+    FileUtils.chmod(0777,executor_script_path[:local_path])
 
-      files = #{files_paths.inspect}.each_with_object({}) do |path,hash|
-        file = File.open(path, "rb")
-        hash[File.basename(path)] = SolutionFile.new(file.read)
-        file.close
-      end
-      print evaluate(files)
-    )
+    status = Subprocess.call([
+      "docker", "run", "-v", "#{tmp_path}:#{container_path}", "germanescobar/ruby-evaluator",
+      "/bin/bash", "-c", "-l",
+      "#{executor_script_path[:container_path]}"])
 
-    # write evaluation file
-    evaluation_file_path = "#{tmp_path}/evaluation_#{SecureRandom.hex}.rb"
-    File.open("#{evaluation_file_path}", 'w') do |file|
-      file.write(evaluation_file)
-    end
-    # create executor_script
-    executor_script = %Q(
-      #!/bin/bash
-
-      set -e
-      set -x
-
-      if [ ! -f $1 ]; then
-        echo "No se encontró el archivo de evaluación #{evaluation_file_path}." >> /ukku/data/error.txt
-        exit 1
-      fi
-      ruby $1 &> /ukku/data/error.txt
-
-      if [ -s /ukku/data/error.txt ]
-      then
-        exit 1
-      fi
-    )
-    executor_script_path = "#{tmp_path}/ruby_#{SecureRandom.hex}.sh"
-    File.open("#{executor_script_path}", 'w') do |file|
-      file.write(executor_script)
-    end
-    FileUtils.chmod(0777,executor_script_path)
-
-    status = Subprocess.call(["docker", "run", "-v", "#{tmp_path}:/ukku/data", "germanescobar/ruby-evaluator", "/bin/bash", "-c", "-l", "/ukku/data/#{File.basename(executor_script_path)} /ukku/data/#{File.basename(evaluation_file_path)}"])
     if status.success?
       complete(solution)
     else
-      if File.exist?("#{tmp_path}/error.txt") && !File.read("#{tmp_path}/error.txt").empty?
-        handle_error(solution, "#{tmp_path}/error.txt")
+      if File.exist?(error_shared_path[:local_path]) && !File.read(error_shared_path[:local_path]).empty?
+        handle_error(solution, error_shared_path[:local_path])
       else
         fail(solution, "La evaluación falló por un problema desconocido :S. Repórtalo a info@makeitreal.camp enviando el URL con tu solución.")
       end
@@ -88,6 +32,40 @@ class RubyEvaluator < BaseDockerEvaluator
     fail(solution, "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp: #{e.message}".truncate(250))
   ensure
     # File.delete("#{tmp_path}/error.txt") if File.exist?("#{tmp_path}/error.txt")
+  end
+
+  def create_solution_files
+    solution.documents.map do |document|
+      create_shared_file(
+        relative_path: File.join("solution_files",document.name),
+        content: document.content
+      )
+    end
+  end
+
+  def create_evaluation_file(shared_paths)
+    template = File.read(RUBY_EVALUATOR_TEMPLATE_PATH)
+    # required for template: evaluation, solution_file_paths
+    solution_files_paths = shared_paths.map { |f| f[:container_path] }
+    evaluation = self.solution.challenge.evaluation
+    evaluator_content = ERB.new(template).result(binding)
+    create_shared_file(
+      relative_path: "evaluation.rb",
+      content: evaluator_content
+    )
+  end
+
+  def create_executor_file(shared_path)
+    template = File.read(RUBY_EXECUTOR_TEMPLATE_PATH)
+    # required for template: evaluation_file_path, error_file_path
+    evaluation_file_path = shared_path[:container_path]
+    error_file_path = error_shared_path[:container_path]
+
+    executor_content = ERB.new(template).result(binding)
+    create_shared_file(
+      relative_path: "executor.sh",
+      content: executor_content
+    )
   end
 
 end

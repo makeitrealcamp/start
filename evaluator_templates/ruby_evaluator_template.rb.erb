@@ -1,0 +1,30 @@
+# required: evaluation, solution_files_paths
+class Context
+  def self.eval(file)
+    c = Context.new
+    c.instance_eval(file)
+    c
+  end
+end
+# wrapper of file to mantain compatibility with previous evaluator
+class SolutionFile
+  attr_accessor :content
+  def initialize(content)
+    self.content = content
+  end
+end
+
+def format_exception(message)
+  message.gsub(/for #<Context:.*>/i, '').gsub(/\\(eval\\)\\:/i, '')
+end
+
+# Challenge evaluation
+<%= evaluation %>
+
+files = <%= solution_files_paths %>.each_with_object({}) do |path,hash|
+  file = File.open(path, "rb")
+  hash[File.basename(path)] = SolutionFile.new(file.read)
+  file.close
+end
+
+print evaluate(files)
