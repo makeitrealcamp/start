@@ -36,4 +36,3 @@ User.create(email: "user_free@makeitreal.camp",account_type: User.account_types[
 
 User.create(email: "user_paid@makeitreal.camp",account_type: User.account_types[:paid_account], password: "mir1234", password_confirmation: "mir1234")
 
-User.create(email: "j.gomez267@gmail.com", account_type: User.account_types[:paid_account], password: "mir1234", password_confirmation: "mir1234")
