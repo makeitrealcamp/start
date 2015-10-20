@@ -198,7 +198,7 @@ class User < ActiveRecord::Base
       activated_at: Time.current
     )
     SubscriptionsMailer.welcome_mail(self).deliver_now
-    SubscriptionsMailer.welcome_hangout(self).deliver_later!(wait: 24.hours)
+    SubscriptionsMailer.welcome_hangout(self).deliver_later!(wait: 8.hours)
 
   end
 

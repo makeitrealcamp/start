@@ -48,7 +48,7 @@
                 <li><%= link_to "Cambiar Contraseña", edit_password_path, remote: true %></li>
                 <li class="divider"></li>
                 <% if current_user.paid_account? || current_user.is_admin? %>
-                  <li><%= link_to "<span class='glyphicon glyphicon-book'></span> <span class='hidden-xs'>Handbook</span>".html_safe, handbook_path %></li>
+                  <li><%= link_to "<span class='glyphicon glyphicon-book'></span> <span class='hidden-xs'>Guía del estudiante</span>".html_safe, handbook_path %></li>
                 <% end %>
                 <li class="divider"></li>
                 <li><%= link_to "Salir", logout_path, method: :delete %></li>

@@ -1,16 +1,14 @@
-Hola<%= @user.first_name? ? " #{@user.first_name}" : "" %>,<br>
-<br />
-Activa tu cuenta de  <strong>Make it Real Start</strong> completando el formulario que encontrarás en el siguiente link:
-<br />
+<p>Hola<%= @user.first_name? ? " #{@user.first_name}" : "" %>,</p>
 
-<%= link_to activate_users_url(token: @user.password_reset_token), activate_users_url(token: @user.password_reset_token) %>
-<br />
-El enlace es válido por 2 días.<br />
-<br />
-Si no has realizado esta solicitud, ignora este mensaje.
-<br />
-<br />
-Que tengas un día lleno de aprendizaje,<br>
-<br>
-&nbsp;&nbsp;<strong>Equipo de soporte</strong><br>
-&nbsp;&nbsp;<strong>makeitreal.camp</strong>
+<p><%= genderize("Bienvenido", "Bienvenida", @user) %> a Make it Real, un programa en el que te convertirás en <%= genderize("Desarrollador", "Desarrolladora", @user) %> Web, ya sea para encontrar un mejor empleo o crear tu propia startup.</p>
+
+<p>El primer paso es activar tu cuenta en la plataforma haciendo click en el siguiente link:</p>
+
+<p><%= link_to activate_users_url(token: @user.password_reset_token), activate_users_url(token: @user.password_reset_token) %></p>
+
+<p>Si tienes alguna pregunta o inquietud simplemente responde este correo y con gusto la atenderé.</p>
+
+<p>Cordial saludo,</p>
+
+<p style="margin-left: 30px;">Diana Vanegas<br>
+makeitreal.camp</p>

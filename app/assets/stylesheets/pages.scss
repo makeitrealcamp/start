@@ -503,6 +503,8 @@
   color: #303030;
   margin-bottom: 60px;
 
+  h1, h2, h3 { text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7); }
+
   h1 {
     text-align: center;
     margin-bottom: 40px;
@@ -535,20 +537,25 @@
   }
 
   p, ol, ul {
+    color: #303030;
     font-size: 16px;
-    font-weight: 300;
     line-height: 1.7;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
 
     @media (min-width: $screen-sm-min) {
       font-size: 18px;
-      margin-bottom: 36px;
+      margin-bottom: 30px;
     }
-    @media (min-width: $screen-md-min) { font-size: 21px; }
 
-    strong { font-weight: normal; }
   }
 
   ol li { margin-bottom: 15px; }
+
+  img {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
 }
 
 
@@ -827,7 +834,6 @@
     text-align: center;
     overflow: hidden;
     margin-top: 150px;
-    padding-bottom: 150px;
     @media (max-width: $screen-md-min) {
       padding-bottom: 30px;
       margin-top: 80px;
@@ -1397,11 +1403,69 @@
       color: #ff4300;
       font-family: 'Open Sans', sans-serif;
       font-weight: 300;
+      margin-bottom: 25px;
     }
     .question {
       margin: 60px 0;
       p {
         font-size: 18px;
+      }
+    }
+  }
+
+
+  .section-quotes {
+    overflow: hidden;
+    text-align: center;
+    margin-top: 80px;
+    .each-quote {
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #dddddd;
+      padding: 20px;
+      margin-bottom: 40px;
+      p {
+        font-size: 16px;
+        text-align: left;
+        height: 115px;
+        overflow: hidden;
+        @media (max-width: $screen-lg-min) {
+          height: 100px;
+        }
+        @media (max-width: $screen-md-min) {
+          height: 120px;
+        }
+        @media (max-width: $screen-sm-min) {
+          height: auto;
+        }
+      }
+    }
+    .student-data {
+      overflow: hidden;
+      text-align: left;
+      border-top: 1px solid #ff3300;
+      margin-top: 15px;
+      padding-top: 15px;
+      .profile-name {
+        display: block;
+        font-size: 16px;
+      }
+      .profile-link {
+        display: block;
+        margin: 5px 0;
+        i {
+          font-size: 20px;
+          margin-right: 10px;
+        }
+      }
+
+      .profile-img {
+        float: left;
+        margin-right: 15px;
+        width: 80px;
+        img {
+          width: 100%;
+        }
       }
     }
   }
