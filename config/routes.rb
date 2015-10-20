@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get "faq" => "pages#faq"
 
-  get "quotes" => "pages#quotes"
+  get "makers" => "pages#makers"
 
   get "thanks", to: "pages#thanks", as: :thanks
 
