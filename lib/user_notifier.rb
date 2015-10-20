@@ -1,5 +1,6 @@
 class UserNotifier
 
+
   attr_accessor :user, :notification_service, :channel
 
   def initialize(user,notification_service = Pusher)
@@ -12,6 +13,7 @@ class UserNotifier
   end
 
   def notify(event,data)
+    puts "#{Pusher.url}!!!!!!!!!!!!!!!!!!!!!!"
     @notification_service.trigger(channel, 'notifications:new',data)
   end
 end
