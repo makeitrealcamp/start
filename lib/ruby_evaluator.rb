@@ -1,4 +1,4 @@
-class RubyEvaluator < Evaluator
+class RubyEvaluator < BaseDockerEvaluator
   def evaluate(solution)
     tmp_path = create_tmp_path(solution)
 
@@ -88,30 +88,6 @@ class RubyEvaluator < Evaluator
     fail(solution, "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp: #{e.message}".truncate(250))
   ensure
     # File.delete("#{tmp_path}/error.txt") if File.exist?("#{tmp_path}/error.txt")
-  end
-
-  def prefix_path
-    # we need change the prefix in development because boot2docker only shares de /Users path, not /tmp
-    Rails.env.production? ? "/app/tmp/ukku" : File.expand_path('~/.ukku')
-  end
-
-  def create_tmp_path(solution)
-    if !File.exist?("#{prefix_path}/ruby")
-      FileUtils.mkdir_p("#{prefix_path}/ruby")
-      FileUtils.chmod_R(0777, "#{prefix_path}/ruby")
-    end
-
-    path = "#{prefix_path}/ruby/user#{solution.user_id}-solution#{solution.id}"
-
-    FileUtils.rm_rf(path)
-    FileUtils.mkdir(path)
-    FileUtils.chmod(0777, path)
-
-    path
-  end
-
-  def handle_error(solution, error_path)
-    fail(solution, File.read(error_path).truncate(255))
   end
 
 end

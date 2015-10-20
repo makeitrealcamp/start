@@ -1,4 +1,4 @@
-class RailsEvaluator < Evaluator
+class RailsEvaluator < BaseDockerEvaluator
   def evaluate(solution)
     # check if repository exists
     if !Octokit.repository?(solution.repository)
@@ -36,37 +36,4 @@ class RailsEvaluator < Evaluator
     File.delete("#{tmp_path}/result.json") if File.exist?("#{tmp_path}/result.json")
   end
 
-  def prefix_path
-    # we need change the prefix in development because boot2docker only shares de /Users path, not /tmp
-    Rails.env.production? ? "/app/tmp/ukku" : File.expand_path('~/.ukku')
-  end
-
-  def create_tmp_path(solution)
-    if !File.exist?("#{prefix_path}/rails")
-      FileUtils.mkdir_p("#{prefix_path}/rails")
-      FileUtils.chmod_R(0777, "#{prefix_path}/rails")
-    end
-
-    path = "#{prefix_path}/rails/user#{solution.user_id}-solution#{solution.id}"
-
-    FileUtils.rm_rf(path)
-    FileUtils.mkdir(path)
-    FileUtils.chmod(0777, path)
-
-    path
-  end
-
-  def handle_error(solution, error_path)
-    fail(solution, File.read(error_path).truncate(255))
-  end
-
-  def handle_test_failure(solution, result_path)
-    result_file = File.read(result_path)
-    result = JSON.parse(result_file)
-    tests = result["examples"].reject { |test| test["status"] != "failed" }
-
-    test = tests[0]
-    message = "#{test['exception']['message']}"
-    fail(solution, message)
-  end
 end
