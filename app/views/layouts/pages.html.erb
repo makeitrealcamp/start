@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html class="expand" lang="en" xml:lang="en" xmlns= "http://www.w3.org/1999/xhtml">
 <head>
-
   <title><%= @title || "Make it Real - Transformando la educación" %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Language" content="<%= I18n.locale.to_s %>">
@@ -12,8 +11,8 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
-  <%= render "utils/google_analytics" %>
   <%= render "utils/fb_pixel" %>
+  <%= render "utils/google_analytics" %>
   <%= render "utils/ab_testing_optimizely" %>
   <%= render "utils/crazyegg" %>
   <%= render "utils/support_chat" %>
@@ -21,14 +20,8 @@
   <%= yield :head %>
 </head>
 <body class="expand">
-  <%= render "layouts/navbar" %>
-  <div class="content-wrapper expand">
-    <%= render "utils/alerts" %>
-    <%= yield %>
-  </div>
-
-  <div class="overlay"></div>
-
-  <%= render "layouts/content_navigation" %>
+  <%= render "utils/google_tagmanager" %>
+  <%= render "utils/alerts" %>
+  <%= yield %>
 </body>
 </html>
