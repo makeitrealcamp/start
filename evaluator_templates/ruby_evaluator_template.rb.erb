@@ -1,4 +1,5 @@
 # required: evaluation, solution_files_paths
+require 'execjs'
 class Context
   def self.eval(file)
     c = Context.new
@@ -12,6 +13,11 @@ class SolutionFile
   def initialize(content)
     self.content = content
   end
+
+  def as_javascript
+     ExecJS.compile(content)
+  end
+
 end
 
 def format_exception(message)
