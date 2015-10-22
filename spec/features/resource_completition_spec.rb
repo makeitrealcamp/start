@@ -5,12 +5,11 @@ RSpec.feature "Resource completion", type: :feature do
   let!(:course) { create(:course) }
 
   context "when user completes a resource but there are more resources" do
-    scenario "should be redirected to next resource" do
+    scenario "should be redirected to next resource", js: true do
       resource = create(:resource, course: course)
       next_resource = create(:resource, course: course, row_position: :last)
-
       login(user)
-
+      wait_for_ajax
       visit course_resource_path(course, resource)
       click_link 'Completar y Continuar'
       expect(current_path).to eq course_resource_path(course, next_resource)
@@ -18,12 +17,11 @@ RSpec.feature "Resource completion", type: :feature do
   end
 
   context "when user completes last resource but haven`t finished course" do
-    scenario "should be redirected to same course" do
+    scenario "should be redirected to same course", js: true do
       resource = create(:resource, course: course)
       challenge = create(:challenge, course: course)
-
       login(user)
-
+      wait_for_ajax
       visit course_resource_path(resource.course, resource)
       click_link 'Completar y Continuar'
       expect(current_path).to eq course_path(resource.course)
@@ -35,9 +33,7 @@ RSpec.feature "Resource completion", type: :feature do
       current_course = create(:course, row_position: :last)
       resource = create(:resource, course: current_course)
       next_course = create(:course, row_position: :last)
-
       login(user)
-
       visit course_resource_path(resource.course, resource)
       click_link 'Completar y Continuar'
       expect(current_path).to eq course_path(next_course)
@@ -45,11 +41,10 @@ RSpec.feature "Resource completion", type: :feature do
   end
 
   context "when user completes last resource (and course) and there are no more courses" do
-    scenario "should be redirected to same course" do
+    scenario "should be redirected to same course", js: true do
       resource = create(:resource)
-
       login(user)
-
+      wait_for_ajax
       visit course_resource_path(resource.course, resource)
       click_link 'Completar y Continuar'
       expect(current_path).to eq course_path(resource.course)
@@ -61,9 +56,8 @@ RSpec.feature "Resource completion", type: :feature do
       resource = create(:resource, course: course)
       next_resource = create(:resource, course: course, row_position: :last)
       user.resource_completions.create(resource: next_resource) # user has already completed next resource
-
       login(user)
-
+      wait_for_ajax
       visit course_resource_path(course, resource)
       click_link 'Completar y Continuar'
       expect(current_path).to eq course_resource_path(course, next_resource)
@@ -75,6 +69,7 @@ RSpec.feature "Resource completion", type: :feature do
       scenario 'should mark completed' do
         resource = create(:resource, course: course)
         login(user)
+        wait_for_ajax
         visit course_path(course)
         click_link 'Recursos'
         all(:css, '.resource-additional .glyphicon-ok-circle').first.click
@@ -89,6 +84,7 @@ RSpec.feature "Resource completion", type: :feature do
         resource = create(:resource, course: course)
         create(:resource_completion, resource: resource, user: user)
         login(user)
+        wait_for_ajax
         visit course_path(course)
         click_link 'Recursos'
         all(:css, '.resource-additional .glyphicon-ok-circle').first.click

@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
   end
 
   def omniauth_failure
-    url_omniauth_failure("Es necesario que autorices los permisos para poder ingresar a Make it Real. También puedes regístrate con email y contraseña.")
+    url_omniauth_failure("Es necesario que autorices los permisos para poder ingresar a Make it Real.")
   end
 
   def destroy

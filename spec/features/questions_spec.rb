@@ -19,6 +19,7 @@ RSpec.feature "Questions", type: :feature do
   context 'when accessed as admin' do
     scenario 'list all questions of a quiz', js: true do
       login(admin)
+      wait_for_ajax
       visit course_quizer_quiz_path(course, quiz)
       click_link 'Preguntas'
       expect(current_path).to eq course_quizer_quiz_questions_path(course, quiz)
@@ -27,6 +28,7 @@ RSpec.feature "Questions", type: :feature do
     context 'when is multiple answers questions', js: true do
       scenario 'display modal form' do
         login(admin)
+        wait_for_ajax
         visit course_quizer_quiz_questions_path(course, quiz)
         click_button 'Agregar Pregunta'
         expect(page).to have_css('#question-modal')
@@ -37,6 +39,7 @@ RSpec.feature "Questions", type: :feature do
       context 'when create question' do
         scenario 'with 1 answer correct and 1 wrong answer' do
           login(admin)
+          wait_for_ajax
           visit course_quizer_quiz_questions_path(course, quiz)
           question = 'why?'
           answer_correct = 'answer correct 1'
@@ -66,14 +69,13 @@ RSpec.feature "Questions", type: :feature do
 
         scenario 'with multiple correct answers and multiple wrong answers' do
           login(admin)
+          wait_for_ajax
           visit course_quizer_quiz_questions_path(course, quiz)
-
           question = 'why?'
           answer_correct1 = 'answer correct 1'
           answer_correct2 = 'answer correct 2'
           wrong_answer1 = 'wrong answer 1'
           wrong_answer2 = 'wrong answer 1'
-
           click_button 'Agregar Pregunta'
           fill_in 'question_text', with: question
 
@@ -101,7 +103,6 @@ RSpec.feature "Questions", type: :feature do
 
           click_button 'Guardar'
           wait_for_ajax
-
           quiz_question = quiz.questions.last
           expect(page).to have_no_css('#question-modal')
           expect(quiz_question.data["text"]).to eq question
@@ -113,6 +114,7 @@ RSpec.feature "Questions", type: :feature do
 
         scenario 'without valid input' do
           login(admin)
+          wait_for_ajax
           visit course_quizer_quiz_questions_path(course, quiz)
           click_button 'Agregar Pregunta'
           click_button 'Guardar'
@@ -126,6 +128,7 @@ RSpec.feature "Questions", type: :feature do
       context 'when update question' do
         scenario 'display modal form' do
           login(admin)
+          wait_for_ajax
           visit course_quizer_quiz_questions_path(course, quiz)
           all(:css, 'a span.glyphicon-pencil').first.click
           expect(page).to have_css('#question-modal')
@@ -135,6 +138,7 @@ RSpec.feature "Questions", type: :feature do
 
         scenario 'with add new answers' do
           login(admin)
+          wait_for_ajax
           visit course_quizer_quiz_questions_path(course, quiz)
           question = 'when?'
           answer_correct = 'other answer correct'
@@ -164,6 +168,7 @@ RSpec.feature "Questions", type: :feature do
 
         scenario 'with remove answers correct' do
           login(admin)
+          wait_for_ajax
           visit course_quizer_quiz_questions_path(course, quiz)
           all(:css, 'a span.glyphicon-pencil').first.click
           wait_for_ajax
@@ -187,6 +192,7 @@ RSpec.feature "Questions", type: :feature do
 
         scenario 'without valid input' do
           login(admin)
+          wait_for_ajax
           visit course_quizer_quiz_questions_path(course, quiz)
           all(:css, 'a span.glyphicon-pencil').first.click
           fill_in 'question_text', with: nil
@@ -202,6 +208,7 @@ RSpec.feature "Questions", type: :feature do
     context 'when is open questions', js: true do
       scenario 'display modal form' do
         login(admin)
+        wait_for_ajax
         visit course_quizer_quiz_questions_path(course, quiz)
         select 'Quizer::OpenQuestion', from: "type"
         click_button 'Agregar Pregunta'
@@ -213,6 +220,7 @@ RSpec.feature "Questions", type: :feature do
       context 'when create question' do
         scenario 'with valid input' do
           login(admin)
+          wait_for_ajax
           question = 'why?'
           answer = 'answer correct'
           visit course_quizer_quiz_questions_path(course, quiz)
@@ -230,6 +238,7 @@ RSpec.feature "Questions", type: :feature do
 
         scenario 'without valid input' do
           login(admin)
+          wait_for_ajax
           visit course_quizer_quiz_questions_path(course, quiz)
           select 'Quizer::OpenQuestion', from: "type"
           click_button 'Agregar Pregunta'
@@ -244,6 +253,7 @@ RSpec.feature "Questions", type: :feature do
       context 'when update question' do
         scenario 'with valid input' do
           login(admin)
+          wait_for_ajax
           visit course_quizer_quiz_questions_path(course, quiz)
           question = 'what?'
           answer = 'answer correct'
@@ -260,6 +270,7 @@ RSpec.feature "Questions", type: :feature do
 
         scenario 'without valid input' do
           login(admin)
+          wait_for_ajax
           visit course_quizer_quiz_questions_path(course, quiz)
           question = 'what?'
           answer = 'answer correct'

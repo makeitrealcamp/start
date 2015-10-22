@@ -6,7 +6,7 @@ RSpec.feature "Password", type: :feature do
   let!(:other_password) { Faker::Internet.password }
   let!(:user) { create(:paid_user, password: original_password, password_confirmation: original_password) }
 
-  context "Change password" do
+  xcontext "Change password" do
     scenario 'with valid input', js: true do
       change_password(user: user, new_password: password, new_password_confirmation: password)
       expect(page).to have_selector '.alert-success'

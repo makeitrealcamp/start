@@ -5,18 +5,19 @@ RSpec.feature "Users", type: :feature do
   let!(:user) { create(:paid_user) }
   let!(:admin) { create(:admin) }
 
+  scenario "when is not logged in" do
+    expect { visit admin_users_path }.to raise_error
+  end
+
   context 'when accessed as user' do
-    scenario "when is not logged in" do
-      expect { visit admin_users_path }.to raise_error
+    scenario "not allow access" do
+      login(user)
+      expect { visit admin_users_path }.to raise_error ActionController::RoutingError
     end
 
-    scenario "when not allow access" do
+    scenario "should not show link of admin", js: true do
       login(user)
-      expect { visit admin_users_path }.to raise_error
-    end
-
-    scenario "should not show link of admin" do
-      login(user)
+      wait_for_ajax
       expect(page).not_to have_content('Admin')
       expect(current_path).to eq signed_in_root_path
     end
@@ -27,15 +28,17 @@ RSpec.feature "Users", type: :feature do
         expect(current_path).to eq login_path
       end
 
-      scenario "show form edit profile" do
+      scenario "show form edit profile", js: true do
         login(user)
+        wait_for_ajax
         find('.avatar').click
         click_link 'Editar Perfil'
         expect(current_path).to eq edit_user_path(user)
       end
 
-      scenario "edit profile with valid input" do
+      scenario "edit profile with valid input", js: true do
         login(user)
+        wait_for_ajax
         first_name = Faker::Name.first_name
         mobile_number = Faker::Number.number(10)
         birthday =  '01-01-2015'
@@ -60,7 +63,6 @@ RSpec.feature "Users", type: :feature do
 
   context 'when accessed as admin' do
     context 'create user', js: true do
-
       scenario 'with valid input ' do
         login(admin)
         wait_for_ajax
@@ -83,7 +85,6 @@ RSpec.feature "Users", type: :feature do
         expect(user.first_name).to eq first_name
         expect(user.last_name).to eq last_name
         expect(user.gender).to eq "male"
-
         expect(page).to have_selector '.alert-success'
       end
 
@@ -100,7 +101,6 @@ RSpec.feature "Users", type: :feature do
   end
 
   describe 'account activation' do
-
     let!(:password) { Faker::Internet.password(8) }
     let!(:other_password) { Faker::Internet.password(8) }
     let!(:original_password) { Faker::Internet.password(8) }

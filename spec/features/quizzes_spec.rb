@@ -30,6 +30,7 @@ RSpec.feature "Quizzes", type: :feature do
       create(:quiz, course: course, published: true)
       create(:quiz, course: course, published: false)
       login(user)
+      wait_for_ajax
       visit course_path(course)
       find("a", text: "Quizzes").click
       expect(page).to have_selector('.quiz', count: 2)
@@ -39,6 +40,7 @@ RSpec.feature "Quizzes", type: :feature do
 
     scenario 'display quiz', js: true do
       login(user)
+      wait_for_ajax
       visit course_path(course)
       find("a", text: "Quizzes").click
       click_link quiz.name
@@ -65,6 +67,7 @@ RSpec.feature "Quizzes", type: :feature do
       scenario 'should create attempt' do
         quiz = create(:quiz, course: course, published: true)
         login(user)
+        wait_for_ajax
         visit course_path(course)
         find("a", text: "Quizzes").click
         click_link quiz.name
@@ -77,6 +80,7 @@ RSpec.feature "Quizzes", type: :feature do
     context 'when has Started the quiz', js: true do
       scenario 'should continue the attempt' do
         login(user)
+        wait_for_ajax
         visit course_path(course)
         find("a", text: "Quizzes").click
         click_link quiz.name
@@ -89,12 +93,12 @@ RSpec.feature "Quizzes", type: :feature do
       scenario 'display score' do
         quiz_attempt.finished!
         login(user)
+        wait_for_ajax
         visit course_path(course)
         find("a", text: "Quizzes").click
         expect(page).to have_css(".score-box", count: 1)
       end
     end
-
   end
 
   context 'when accessed as admin', js: true do
@@ -102,6 +106,7 @@ RSpec.feature "Quizzes", type: :feature do
       create(:quiz, course: course, published: true)
       create(:quiz, course: course, published: false)
       login(admin)
+      wait_for_ajax
       visit course_path(course)
       find("a", text: "Quizzes").click
       expect(page).to have_selector('.quiz', count: 3)
@@ -111,6 +116,7 @@ RSpec.feature "Quizzes", type: :feature do
 
     scenario 'display form new quiz' do
       login(admin)
+      wait_for_ajax
       visit course_path(course)
       find("a", text: "Quizzes").click
       click_link 'Nuevo Quiz'
@@ -122,6 +128,7 @@ RSpec.feature "Quizzes", type: :feature do
     context 'when create quiz' do
       scenario 'with valid input' do
         login(admin)
+        wait_for_ajax
         visit new_course_quizer_quiz_path(course)
         name = Faker::Name.title
         expect {
@@ -137,6 +144,7 @@ RSpec.feature "Quizzes", type: :feature do
 
       scenario 'without valid input' do
         login(admin)
+        wait_for_ajax
         visit new_course_quizer_quiz_path(course)
         click_button 'Crear Quiz'
         expect(page).to have_selector ".alert-error"
@@ -145,6 +153,7 @@ RSpec.feature "Quizzes", type: :feature do
 
     scenario 'display form edit quiz' do
       login(admin)
+      wait_for_ajax
       visit course_path(course)
       find("a", text: "Quizzes").click
       all(".quizzes span.action-edit").first.click
@@ -155,6 +164,7 @@ RSpec.feature "Quizzes", type: :feature do
     context 'when update quiz' do
       scenario 'with valid input' do
         login(admin)
+        wait_for_ajax
         visit edit_course_quizer_quiz_path(course, quiz)
         name = Faker::Name::title
         fill_in 'quizer_quiz_name', with: name
@@ -167,6 +177,7 @@ RSpec.feature "Quizzes", type: :feature do
 
       scenario 'without valid input' do
         login(admin)
+        wait_for_ajax
         visit edit_course_quizer_quiz_path(course, quiz)
         fill_in 'quizer_quiz_name', with: nil
         find(:css, "#quizer_quiz_published").set(false)

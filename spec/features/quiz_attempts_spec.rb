@@ -11,6 +11,7 @@ RSpec.feature "QuizAttempts", type: :feature do
   scenario 'list only questions published', js: true do
     create(:multi_answer_question, quiz: quiz)
     login(user)
+    wait_for_ajax
     visit course_quizer_quiz_quiz_attempt_path(course, quiz, quiz_attempt)
     expect(page).to have_css('.row.question', count: 2)
   end
@@ -18,6 +19,7 @@ RSpec.feature "QuizAttempts", type: :feature do
   context 'when the quiz is being attempted', js: true do
     scenario 'not display results' do
       login(user)
+      wait_for_ajax
       visit results_course_quizer_quiz_quiz_attempt_path(course, quiz, quiz_attempt)
       expect(current_path).to eq course_quizer_quiz_quiz_attempt_path(course, quiz, quiz_attempt)
     end
@@ -25,6 +27,7 @@ RSpec.feature "QuizAttempts", type: :feature do
     context 'when finalized the quiz' do
       scenario 'display result' do
         login(user)
+        wait_for_ajax
         visit course_path(course)
         find("a", text: "Quizzes").click
         click_link quiz.name
@@ -42,6 +45,7 @@ RSpec.feature "QuizAttempts", type: :feature do
     scenario 'display results' do
       quiz_attempt.finished!
       login(user)
+      wait_for_ajax
       visit results_course_quizer_quiz_quiz_attempt_path(course, quiz, quiz_attempt)
       expect(current_path).to eq results_course_quizer_quiz_quiz_attempt_path(course, quiz, quiz_attempt)
     end

@@ -1,72 +1,39 @@
 require 'rails_helper'
 
-
 RSpec.feature "Sign In", type: :feature do
   let!(:user) { create(:paid_user) }
+  let!(:user_free){ create(:user) }
 
   context 'when user is free'  do
-    scenario 'should redirect to root path' do
-      user = create(:user)
-      visit login_path
-      login(user)
+    scenario 'should redirect to root path', js: true do
+      login(user_free)
       expect(current_path).to eq root_path
-      expect(page).to have_selector '.alert-notice'
-    end
-
-    context 'with Facebook account' do
-      scenario 'should redirect to root path' do
-        user = create(:user)
-        mock_auth_hash_facebook(user)
-        visit login_path
-        find('#sign-in-facebook').click
-        expect(current_path).to eq root_path
-        expect(page).to have_selector '.alert-notice'
-      end
-    end
-
-    context 'with github account' do
-      scenario 'should redirect to root path' do
-        user = create(:user)
-        mock_auth_hash_github(user)
-        visit login_path
-        find('#sign-in-github').click
-        expect(current_path).to eq root_path
-        expect(page).to have_selector '.alert-notice'
-      end
+      expect(page).to have_css('.alert-notice')
     end
   end
 
-  context 'with Facebook account' do
-    scenario "can sign in user" do
-      mock_auth_hash_facebook(user)
-      visit login_path
-      find('#sign-in-facebook').click
-      expect(current_path).to eq signed_in_root_path
+  context 'when user is paid', js: true do
+    xcontext 'when is created' do
+      scenario 'should redirect to root path' do
+        login(user)
+        wait_for_ajax
+        expect(current_path).to eq root_path
+        expect(page).to have_css('.alert-notice')
+      end
     end
 
-    scenario 'can handle authentication error', js: true do
-      OmniAuth.config.mock_auth[:facebook] = :invalid_credentials
-      visit login_path
-      find('#sign-in-facebook').click
-      expect(current_path).to eq login_path
-      expect(page).to have_selector '.alert-error'
+    scenario 'can sign in' do
+      login(user)
+      wait_for_ajax
+      expect(current_path).to eq signed_in_root_path
     end
   end
 
-  context 'with github account' do
-    scenario "can sign in user" do
-      mock_auth_hash_github(user)
-      visit login_path
-      find('#sign-in-github').click
-      expect(current_path).to eq signed_in_root_path
-    end
-
-    scenario 'can handle authentication error', js: true do
-      OmniAuth.config.mock_auth[:github] = :invalid_credentials
-      visit login_path
-      find('#sign-in-github').click
-      expect(current_path).to eq login_path
-      expect(page).to have_selector ".alert-error"
-    end
+  scenario 'can handle authentication error', js: true do
+    OmniAuth.config.mock_auth[:slack] = :invalid_credentials
+    visit login_path
+    find('#sign-in-slack').click
+    expect(current_path).to eq login_path
+    expect(page).to have_selector '.alert-error'
   end
 end

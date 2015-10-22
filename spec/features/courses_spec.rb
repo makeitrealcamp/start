@@ -29,12 +29,12 @@ RSpec.feature "Courses", type: :feature do
 
     scenario 'should not show form new course' do
       login(user)
-      expect{visit new_course_path}.to  raise_error ActionController::RoutingError
+      expect{visit new_course_path}.to raise_error ActionController::RoutingError
     end
 
     scenario 'should not show form edit course' do
       login(user)
-      expect{visit edit_course_path(course)}.to  raise_error ActionController::RoutingError
+      expect{visit edit_course_path(course)}.to raise_error ActionController::RoutingError
     end
 
     scenario 'show course', js: true do
@@ -109,8 +109,8 @@ RSpec.feature "Courses", type: :feature do
     scenario 'edit course with valid input' do
       course = create(:course)
       login(admin)
+      wait_for_ajax
       visit edit_course_path(course)
-
       name = Faker::Name::title
       description = Faker::Lorem.sentence
       excerpt = Faker::Lorem.paragraph
@@ -133,12 +133,11 @@ RSpec.feature "Courses", type: :feature do
     scenario 'edit course without valid input' do
       course = create(:course)
       login(admin)
+      wait_for_ajax
       visit edit_course_path(course)
-
       description = Faker::Lorem.sentence
       excerpt = Faker::Lorem.paragraph
       time_estimate = "#{Faker::Number.digit} horas"
-
       fill_in 'course_name', with: nil
       fill_in 'course_description', with: description
       fill_in 'course_excerpt', with: excerpt

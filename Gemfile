@@ -74,7 +74,6 @@ gem 'date_supercharger'
 gem 'json-schema'
 gem 'simple_timeout'
 gem 'gretel'
-gem 'slugify'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
