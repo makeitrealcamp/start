@@ -2,6 +2,7 @@ module Quizer
   class QuizAttemptsController < ApplicationController
     include QuizzesHelper
 
+    before_action :private_access
     before_action :set_course
     before_action :set_quiz
     before_action :set_quiz_attempt, only: [:show,:finish,:results]
