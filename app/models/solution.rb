@@ -41,15 +41,15 @@ class Solution < ActiveRecord::Base
 
   def evaluate
     if self.challenge.ruby_embedded?
-      RubyEvaluator.new.evaluate(self)
+      RubyEvaluator.new(self).evaluate
     elsif self.challenge.phantomjs_embedded?
       PhantomEvaluator.new.evaluate(self)
     elsif self.challenge.ruby_git?
       GitEvaluator.new.evaluate(self)
     elsif self.challenge.rails_git?
-      RailsEvaluator.new.evaluate(self)
+      RailsEvaluator.new(self).evaluate
     elsif self.challenge.sinatra_git?
-      SinatraEvaluator.new.evaluate(self)
+      SinatraEvaluator.new(self).evaluate
     elsif self.challenge.ruby_git_pr?
       GitPREvaluator.new.evaluate(self)
     elsif self.challenge.async_phantomjs_embedded?

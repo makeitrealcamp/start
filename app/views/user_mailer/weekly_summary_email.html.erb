@@ -77,7 +77,7 @@
 
       <tr>
         <td class="text-left" style="border: 1px solid #ddd;padding: 10px;text-align: left">Puntos recibidos</td>
-        <td style="border: 1px solid #ddd;padding: 10px;text-align: right"><%= @received_points.count %></td>
+        <td style="border: 1px solid #ddd;padding: 10px;text-align: right"><%= @received_points.sum(:points) %></td>
         <td style="border: 1px solid #ddd;padding: 10px;text-align: right">
           <% if @received_points.empty? %>
             :(
@@ -89,7 +89,7 @@
 
       <tr>
         <td class="text-left" style="border: 1px solid #ddd;padding: 10px;text-align: left">Puntos para avanzar al siguiente nivel</td>
-        <td style="border: 1px solid #ddd;padding: 10px;text-align: right"><%= @user.next_level.required_points %></td>
+        <td style="border: 1px solid #ddd;padding: 10px;text-align: right"><%= @points_needed_for_next_level %></td>
         <td style="border: 1px solid #ddd;padding: 10px;text-align: right">
             :D
         </td>

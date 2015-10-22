@@ -36,6 +36,7 @@ class UserMailer < ApplicationMailer
     @received_badges = Badge.where(id: user.badge_ownerships.created_at_after(beginning_of_week).created_at_before(end_of_week).pluck(:badge_id))
     @received_points = user.points.created_at_after(beginning_of_week).created_at_before(end_of_week)
     @unread_notifications = user.notifications.unread
+    @points_needed_for_next_level = user.stats.points_needed_for_next_level
     mail to: @user.email, subject: "Un resumen de tu semana en Make it Real"
   end
 end
