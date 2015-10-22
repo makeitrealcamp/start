@@ -1037,6 +1037,7 @@
       -moz-transition: opacity 0.6s ease;
       -o-transition: opacity 0.6s ease;
       transition: opacity 0.6s ease;
+      color: #fff;
       &:hover {
         opacity: 0.7;
         text-decoration: none;
@@ -1057,7 +1058,7 @@
       font-family: 'Open Sans', sans-serif;
       font-weight: 300;
       margin-top: 150px;
-      margin-bottom: 50px;
+      margin-bottom: 30px;
       @media (max-width: $screen-md-min) {
         font-size: 32px;
         margin-top: 70px;
@@ -1075,12 +1076,16 @@
     }
     p {
       color: #fff;
-      text-align: center;
+      text-align: left;
       margin-bottom: 50px;
       width: 85%;
       margin-left: auto;
       margin-right: auto;
-      font-size: 20px;
+      font-size: 18px;
+    }
+    .btn-main {
+      margin-top: 50px;
+      color: #fff;
     }
     .form-control {
       background: #121212;
@@ -1094,6 +1099,7 @@
     }
     .price {
       font-size: 42px;
+      margin-bottom: 50px;
       @media (max-width: $screen-md-min) {
         font-size: 32px;
       }
