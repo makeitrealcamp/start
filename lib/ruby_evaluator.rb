@@ -12,13 +12,13 @@ class RubyEvaluator < BaseDockerEvaluator
     FileUtils.chmod(0777,executor_script_path[:local_path])
 
     command = [
-      "docker", "run", "-d", "-v", "#{tmp_path}:#{container_path}", "germanescobar/ruby-evaluator",
+      "docker", "run", "-d", "-v", "#{tmp_path}:#{container_path}", "makeitrealcamp/mir-evaluator",
       "/bin/bash", "-c", "-l",
       "#{executor_script_path[:container_path]}"].join(" ")
 
     execution = DockerExecution.new(command,solution.challenge.timeout)
     execution.start!
-    
+
     if execution.success?
       complete(solution)
     else
@@ -37,12 +37,6 @@ class RubyEvaluator < BaseDockerEvaluator
   end
 
   private
-
-    def create_solution_files
-      solution.documents.map do |document|
-        create_shared_file(File.join("solution_files",document.name),document.content)
-      end
-    end
 
     def create_evaluation_file(shared_paths)
       template = File.read(RUBY_EVALUATOR_TEMPLATE_PATH)

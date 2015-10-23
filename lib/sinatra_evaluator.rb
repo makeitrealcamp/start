@@ -15,7 +15,7 @@ class SinatraEvaluator < BaseDockerEvaluator
 
     repo = "https://github.com/#{solution.repository}"
     command = [
-      "docker", "run", "-d","-v", "#{tmp_path}:#{container_path}", "germanescobar/ruby-evaluator",
+      "docker", "run", "-d","-v", "#{tmp_path}:#{container_path}", "makeitrealcamp/mir-evaluator",
       "/bin/bash", "-c", "-l", "'/root/sinatra.sh #{repo}'"
     ].join(" ")
 
