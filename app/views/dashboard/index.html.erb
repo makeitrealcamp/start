@@ -1,0 +1,94 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="box next-step">
+        <h2>Tu próximo paso</h2>
+        <p class="text-center"><strong>¡Vas muy bien <%= current_user.first_name %>!</strong> Empieza con el reto:</p>
+
+        <div class="next-challenge">
+          <a href="">JavaScript - Herencia</a>
+        </div>
+
+        <p>O continúa con alguno de los retos que tienes pendientes:</p>
+        <ul>
+          <li><a href="#">Ruby - Herencia</a></li>
+          <li><a href="#">Git y Github - Integrando Ramas</a></li>
+          <li><a href="#">Ver 9 más ... </a></li>
+        </ul>
+      </div>
+
+      <div class="box week-progress">
+        <h2>Tu avance esta semana</h2>
+        <ul class="achivements clearfix">
+          <li>
+            <span class="metric-value">1200</span>
+            <span class="metric-label">Puntos obtenidos</span>
+          </li>
+          <li>
+            <span class="metric-value">5</span>
+            <span class="metric-label">Retos resueltos</span>
+          </li>
+          <li>
+            <span class="metric-value">5</span>
+            <span class="metric-label">Recursos completados</span>
+          </li>
+          <li>
+            <span class="metric-value">2</span>
+            <span class="metric-label">Proyectos terminados</span>
+          </li>
+          <li>
+            <span class="metric-value">1</span>
+            <span class="metric-label">Medallas recibidas</span>
+          </li>
+        </ul>
+
+        <div class="level-progress row">
+          <div class="col-sm-2">
+            <div class="level-image"><img class="img-responsive" src="https://s3.amazonaws.com/makeitreal/levels/nivelPurpura%402x.png" alt="Nivelpurpura%402x"></div>
+          </div>
+          <div class="col-sm-8 text-center">
+            <div class="progress">
+              <div class="progress-bar progress-bar-success" role="progressbar" style="width: 98.0%;opacity:1.0;background-color:red">98%</div>
+            </div>
+            <p class="progress-text">Te faltan <strong>340</strong> puntos para el siguiente nivel</p>
+          </div>
+          <div class="col-sm-2">
+            <div class="level-image"><img class="img-responsive" src="https://s3.amazonaws.com/makeitreal/levels/nivelPurpura%402x.png" alt="Nivelpurpura%402x"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box chart clearfix">
+        <h2>Tu avance en el programa</h2>
+        <div id="progress-chart" style="height: 250px;"></div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="box feed">
+        <div class="entry">
+          <img src="http://www.gravatar.com/avatar/12270acfe9b6842e1a5b6e594382f149" class="img-circle">
+          <div class="description">Germán ha ganado <strong>140 puntos</strong> por resolver el reto <strong>Ruby - Herencia</strong>
+            <span>Hace 3 días</span></div>
+
+        </div>
+
+        <div class="entry">
+          <img src="http://www.gravatar.com/avatar/12270acfe9b6842e1a5b6e594382f149" class="img-circle">
+          <div class="description">Germán ha ganado <strong>140 puntos</strong> por resolver el reto <strong>Ruby - Herencia</strong>
+          <span>Hace 3 días</span></div>
+        </div>
+
+        <div class="entry">
+          <img src="http://www.gravatar.com/avatar/12270acfe9b6842e1a5b6e594382f149" class="img-circle">
+          <div class="description">Germán ha avanzado a <strong>Teclado Púrpura</strong></strong>
+          <span>Hace 3 días</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag 'canvasjs-1.6.1' %>
+<script>
+  new DashboardView();  
+</script>
