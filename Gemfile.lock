@@ -363,6 +363,7 @@ GEM
       redis (~> 3.2, >= 3.2.1)
       redis-namespace (~> 1.5, >= 1.5.2)
     signature (0.1.8)
+    simple_timeout (0.0.1)
     simplecov (0.10.0)
       docile (~> 1.1.0)
       json (~> 1.8)
@@ -476,6 +477,7 @@ DEPENDENCIES
   shareable!
   shoulda-matchers
   sidekiq
+  simple_timeout
   sinatra
   spring
   subprocess

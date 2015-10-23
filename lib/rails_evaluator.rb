@@ -13,12 +13,15 @@ class RailsEvaluator < BaseDockerEvaluator
     create_shared_file("rails_template.rb",File.read(RAILS_TEMPLATE_PATH))
 
     repo = "https://github.com/#{solution.repository}"
-    status = Subprocess.call([
-        "docker", "run", "-v", "#{tmp_path}:#{container_path}",
-        "-v", "#{prefix_path}/bundler-cache:/ukku/bundler-cache",
-        "germanescobar/ruby-evaluator", "/bin/bash", "-c", "-l", "/root/rails.sh #{repo}"])
+    command = [
+      "docker", "run", "-d", "-v", "#{tmp_path}:#{container_path}",
+      "-v", "#{prefix_path}/bundler-cache:/ukku/bundler-cache",
+      "germanescobar/ruby-evaluator", "/bin/bash", "-c", "-l", "'/root/rails.sh #{repo}'"]
 
-    if status.success?
+    execution = DockerExecution.new(command.join(" "),solution.challenge.timeout)
+    execution.start!
+
+    if execution.success?
       complete(solution)
     else
       if File.exist?(error_shared_path[:local_path]) && !File.read(error_shared_path[:local_path]).empty?
@@ -30,11 +33,11 @@ class RailsEvaluator < BaseDockerEvaluator
       end
 
     end
-  rescue Exception => e
-    puts e.message
-    puts e.backtrace
-
-    fail(solution, "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp: #{e.message}".truncate(250))
+  rescue SimpleTimeout::Error
+    fail_timeout(solution)
+  rescue Exception => unknown_error
+    puts unknown_error.message
+    fail_unknown(solution,unknown_error)
   ensure
     File.delete(error_shared_path[:local_path]) if File.exist?(error_shared_path[:local_path])
     File.delete(result_shared_path[:local_path]) if File.exist?(result_shared_path[:local_path])
