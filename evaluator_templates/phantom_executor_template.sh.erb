@@ -1,0 +1,18 @@
+#!/bin/bash
+# require: evaluation_file_path, error_file_path,port,solution_files_folder
+
+set -e
+set -x
+
+if [ ! -f <%= evaluation_file_path %> ]; then
+  echo "No se encontró el archivo de evaluación <%= evaluation_file_path %>." >> <%= error_file_path %>
+  exit 1
+fi
+http-server -p <%= port %> <%= solution_files_folder %> & echo "Running server in localhost:<%= port %>..."
+
+ruby -e 'require "phantomjs"; print Phantomjs.run("<%= evaluation_file_path %>")' &> <%= error_file_path %>
+
+if [ -s <%= error_file_path %> ]
+then
+  exit 1
+fi
