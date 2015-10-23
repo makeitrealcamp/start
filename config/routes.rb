@@ -2,15 +2,11 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   get "curriculum" => "pages#curriculum"
-
   get "pricing" => "pages#pricing"
-
   get "faq" => "pages#faq"
-
   get "makers" => "pages#makers"
 
   get "thanks", to: "pages#thanks", as: :thanks
-
   get 'handbook', to: 'pages#handbook', as: :handbook
 
   get  'login', to: 'sessions#new', as: :login
@@ -34,7 +30,8 @@ Rails.application.routes.draw do
   # profile
   get "/u/:nickname", to: "users#profile", as: :user_profile
 
-  get '/phases', to: 'phases#index', as: :signed_in_root
+  get '/dashboard', to: 'dashboard#index', as: :signed_in_root
+  get '/phases', to: 'phases#index'
 
   resources :phases, except: [:destroy] do
     patch 'update_position', on: :member
