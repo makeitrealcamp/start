@@ -19,6 +19,7 @@
 #  preview             :boolean          default(FALSE)
 #  pair_programming    :boolean          default(FALSE)
 #  difficulty_bonus    :integer
+#  timeout             :integer
 #
 # Indexes
 #

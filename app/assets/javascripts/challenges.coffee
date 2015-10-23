@@ -260,6 +260,7 @@ class ChallengeFormView extends Backbone.View
 
   change_evaluation_strategy: =>
     evaluation_strategy = @.$('#challenge_evaluation_strategy').val()
+    @.$('#challenge_timeout').val( {"ruby_embedded":15,"phantomjs_embedded":30,"ruby_git":15,"rails_git":90,"sinatra_git":90,"ruby_git_pr":15,"async_phantomjs_embedded":30}[evaluation_strategy] )
     if evaluation_strategy == "ruby_embedded"
       @evaluation_editor.setOption("mode", "ruby")
       @evaluation_editor.setValue("def evaluate(files)\n\nend")

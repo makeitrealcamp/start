@@ -19,6 +19,7 @@
 #  preview             :boolean          default(FALSE)
 #  pair_programming    :boolean          default(FALSE)
 #  difficulty_bonus    :integer
+#  timeout             :integer
 #
 # Indexes
 #
@@ -95,12 +96,24 @@ class Challenge < ActiveRecord::Base
     Rails.application.routes.url_helpers.discussion_course_challenge_path(self.course, self)
   end
 
+  def self.default_timeouts
+    {
+      ruby_embedded: 15, phantomjs_embedded: 30, ruby_git: 15, rails_git: 90,
+      sinatra_git: 90, ruby_git_pr: 15, async_phantomjs_embedded: 30
+    }
+  end
+
+  def self.default_timeout_for_evaluation_strategy(strategy)
+    default_timeouts[strategy.to_sym]
+  end
+
   private
     def default_values
       self.published ||= false
       self.evaluation ||= "def evaluate(files)\n  \nend"
       self.evaluation_strategy ||= :ruby_embedded
       self.difficulty_bonus ||= 0
+      self.timeout ||= 15
     rescue ActiveModel::MissingAttributeError => e
       # ranked_model makes partial selects and this error is thrown
     end
