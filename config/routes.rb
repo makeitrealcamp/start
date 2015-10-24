@@ -19,9 +19,6 @@ Rails.application.routes.draw do
 
   post 'inscription_info', to: 'users#send_inscription_info', as: :inscription_info
 
-  resource :password, only: [:edit, :update]
-  resource :password_reset, except: [:index, :show]
-
   resources :users do
     collection do
       get :activate, action: 'activate_form'
