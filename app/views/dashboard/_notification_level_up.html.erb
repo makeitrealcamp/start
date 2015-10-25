@@ -1,0 +1,4 @@
+<%# required: notification, notification.data["level_id"] %>
+<% level = Level.find(notification.data["level_id"]) %>
+
+<%= notification.user.first_name %> ha avanzado al nivel <strong><%= level.name %></strong>

@@ -52,24 +52,17 @@
     </div>
     <div class="col-sm-4">
       <div class="box feed">
-        <div class="entry">
-          <img src="http://www.gravatar.com/avatar/12270acfe9b6842e1a5b6e594382f149" class="img-circle">
-          <div class="description">Germán ha ganado <strong>140 puntos</strong> por resolver el reto <strong>Ruby - Herencia</strong>
-            <span>Hace 3 días</span></div>
-
-        </div>
-
-        <div class="entry">
-          <img src="http://www.gravatar.com/avatar/12270acfe9b6842e1a5b6e594382f149" class="img-circle">
-          <div class="description">Germán ha ganado <strong>140 puntos</strong> por resolver el reto <strong>Ruby - Herencia</strong>
-          <span>Hace 3 días</span></div>
-        </div>
-
-        <div class="entry">
-          <img src="http://www.gravatar.com/avatar/12270acfe9b6842e1a5b6e594382f149" class="img-circle">
-          <div class="description">Germán ha avanzado a <strong>Teclado Púrpura</strong></strong>
-          <span>Hace 3 días</span></div>
-        </div>
+        <% @notifications.each do |notification| %>
+          <% if notification.resource_avaliable? && is_public_notification?(notification) %>
+          <div class="entry">
+            <img src="<%= Gravatar.new("#{notification.user.email}").image_url %>" class="img-circle" />
+            <div class="description">
+              <%= render "dashboard/notification_#{notification.notification_type}", notification: notification %>
+              <span>Hace <%= time_ago_in_words(notification.created_at) %></span>
+            </div>
+          </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
