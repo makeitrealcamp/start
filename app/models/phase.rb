@@ -25,10 +25,12 @@ class Phase < ActiveRecord::Base
   after_initialize :default_values
 
   default_scope { rank(:row) }
-  scope :for, -> user { published unless user.is_admin? }
+  scope :for, -> user { is_published unless user.is_admin? }
   scope :published, -> { where(published: true) }
 
-
+  def next
+    Phase.published.where('row > ?', self.row).first
+  end
 
   private
     def default_values
