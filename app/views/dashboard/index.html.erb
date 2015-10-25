@@ -10,39 +10,37 @@
         <h2>Tu avance esta semana</h2>
         <ul class="achivements clearfix">
           <li>
-            <span class="metric-value">1200</span>
+            <span class="metric-value"><%= @received_points %></span>
             <span class="metric-label">Puntos obtenidos</span>
           </li>
           <li>
-            <span class="metric-value">5</span>
+            <span class="metric-value"><%= @solved_challenges %></span>
             <span class="metric-label">Retos resueltos</span>
           </li>
           <li>
-            <span class="metric-value">5</span>
+            <span class="metric-value"><%= @completed_resources %></span>
             <span class="metric-label">Recursos completados</span>
           </li>
           <li>
-            <span class="metric-value">2</span>
+            <span class="metric-value"><%= @finished_projects %></span>
             <span class="metric-label">Proyectos terminados</span>
           </li>
           <li>
-            <span class="metric-value">1</span>
+            <span class="metric-value"><%= @received_badges %></span>
             <span class="metric-label">Medallas recibidas</span>
           </li>
         </ul>
 
         <div class="level-progress row">
           <div class="col-sm-2">
-            <div class="level-image"><img class="img-responsive" src="https://s3.amazonaws.com/makeitreal/levels/nivelPurpura%402x.png" alt="Nivelpurpura%402x"></div>
+            <div class="level-image"><%= image_tag current_user.level.image_url, class: "img-responsive" %></div>
           </div>
           <div class="col-sm-8 text-center">
-            <div class="progress">
-              <div class="progress-bar progress-bar-success" role="progressbar" style="width: 98.0%;opacity:1.0;background-color:red">98%</div>
-            </div>
-            <p class="progress-text">Te faltan <strong>340</strong> puntos para el siguiente nivel</p>
+            <%= progress_bar(progress: current_user.stats.level_progress, color: "red", opacity: 1.4, show_percentage: true) %>
+            <p class="progress-text">Te faltan <strong><%= current_user.next_level.required_points - current_user.stats.total_points %></strong> puntos para el siguiente nivel</p>
           </div>
           <div class="col-sm-2">
-            <div class="level-image"><img class="img-responsive" src="https://s3.amazonaws.com/makeitreal/levels/nivelPurpura%402x.png" alt="Nivelpurpura%402x"></div>
+            <div class="level-image"><%= image_tag current_user.next_level.image_url, class: "img-responsive" %></div>
           </div>
         </div>
       </div>
