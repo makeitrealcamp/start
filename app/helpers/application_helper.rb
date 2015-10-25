@@ -98,7 +98,7 @@ module ApplicationHelper
     (start.to_date..Date.current).map.with_index do |date, i|
       total_points += user.points.where(created_at: date.beginning_of_day..date.end_of_day).sum(:points)
       ret += "{ x: new Date(#{date.year}, #{date.month}, #{date.day}), y: #{total_points}"
-      if total_points > level.required_points
+      if level && total_points > level.required_points
         level = level.next
         ret += ", indexLabel: '#{level.name}'"
       end

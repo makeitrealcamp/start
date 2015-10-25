@@ -220,7 +220,14 @@ class User < ActiveRecord::Base
 
   def next_challenge
     if last_solution.nil?
-      Phase.published.first.courses.published.first.challenges.published.first
+      first_phase = Phase.published.first
+      if first_phase
+        course = first_phase.courses.published.first 
+      end
+
+      if course
+        challenges.published.first
+      end
     elsif last_solution.completed?
       find_next_challenge
     else
