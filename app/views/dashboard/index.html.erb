@@ -37,11 +37,15 @@
           </div>
           <div class="col-sm-8 text-center">
             <%= progress_bar(progress: current_user.stats.level_progress, color: "red", opacity: 1.4, show_percentage: true) %>
+            <% if current_user.next_level %>
             <p class="progress-text">Te faltan <strong><%= current_user.next_level.required_points - current_user.stats.total_points %></strong> puntos para el siguiente nivel</p>
+            <% end %>
           </div>
+          <% if current_user.next_level %>
           <div class="col-sm-2">
             <div class="level-image"><%= image_tag current_user.next_level.image_url, class: "img-responsive" %></div>
           </div>
+          <% end %>
         </div>
       </div>
 
