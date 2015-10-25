@@ -3,18 +3,7 @@
     <div class="col-sm-8">
       <div class="box next-step">
         <h2>Tu próximo paso</h2>
-        <p class="text-center"><strong>¡Vas muy bien <%= current_user.first_name %>!</strong> Empieza con el reto:</p>
-
-        <div class="next-challenge">
-          <a href="">JavaScript - Herencia</a>
-        </div>
-
-        <p>O continúa con alguno de los retos que tienes pendientes:</p>
-        <ul>
-          <li><a href="#">Ruby - Herencia</a></li>
-          <li><a href="#">Git y Github - Integrando Ramas</a></li>
-          <li><a href="#">Ver 9 más ... </a></li>
-        </ul>
+        <%= render next_step %>
       </div>
 
       <div class="box week-progress">
