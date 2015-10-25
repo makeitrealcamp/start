@@ -13,6 +13,8 @@ class DashboardController < ApplicationController
     @completed_resources = Resource.where(id: current_user.resource_completions.created_at_after(bow).pluck(:resource_id)).count
     @finished_projects = Project.where(id: current_user.project_solutions.created_at_after(bow).pluck(:project_id)).count
     @received_badges = Badge.where(id: current_user.badge_ownerships.created_at_after(bow).pluck(:badge_id)).count
+
+    @notifications = Notification.limit(50)
   end
 
   private
