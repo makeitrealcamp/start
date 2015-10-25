@@ -25,7 +25,7 @@ class Phase < ActiveRecord::Base
   after_initialize :default_values
 
   default_scope { rank(:row) }
-  scope :for, -> user { is_published unless user.is_admin? }
+  scope :for, -> user { published unless user.is_admin? }
   scope :published, -> { where(published: true) }
 
   def next
