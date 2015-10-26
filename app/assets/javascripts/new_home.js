@@ -11,11 +11,11 @@ ready = function() {
   $.get("http://ipinfo.io", function(response) {
     if(response.country == "CO") {
         $("#currency").html("COP$2'290,000");
-        $("#financing").html("Si eliges financiación, paga 1 cuota de COP$690,000 y 6 de COP$349,000.");
+        $("#financing").html("<li>" + "1 cuota inicial de COP$690,000" + " y " + "6 cuotas de COP$349,000." + "</li>");
     }
     else {
-        $("#currency").html("US$900");
-        $("#financing").html("Si eliges financiación, paga 1 cuota de US$299 y 5 de US$150.");
+        $("#currency").html("USD$900");
+        $("#financing").html("<li>" + "1 cuota inicial de USD$299" + " y " + "6 cuotas de USD$150." + "</li>");
     }
   }, "jsonp"); 
 };

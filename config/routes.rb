@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get "curriculum" => "pages#curriculum"
 
+  get "pricing" => "pages#pricing"
+
   get "faq" => "pages#faq"
 
   get "makers" => "pages#makers"

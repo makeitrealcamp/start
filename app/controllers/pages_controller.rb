@@ -30,4 +30,7 @@ class PagesController < ApplicationController
   def makers
   end
 
+  def pricing
+  end
+
 end
