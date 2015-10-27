@@ -1,11 +1,8 @@
+<% breadcrumb :quiz_result, @quiz_attempt.quiz %>
+
 <div class="container quiz-attempt-result">
   <div class="row">
     <div class="col-xs-12">
-      <%= link_to course_quizer_quiz_path(@course,@quiz) do %>
-        <span class='glyphicon glyphicon-arrow-left'></span>
-        Volver al Quiz <%= @quiz.name %>
-      <% end %>
-
       <h1>Resultados para el quiz <strong><%= @quiz_attempt.quiz.name %></strong></h1>
       <p>
         Puntaje: <%= "%.2f\%" % (@quiz_attempt.score*100) %>

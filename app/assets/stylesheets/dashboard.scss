@@ -1,0 +1,92 @@
+.box {
+  background-color: white;
+  border: solid 1px #dddddd;
+  padding: 15px 20px;
+  margin-bottom: 30px;
+
+  h2 {
+    font-family: "Open Sans Condensed", sans-serif;
+    border-bottom: 1px solid #ff3300;
+    margin-top: 0;
+    padding-bottom: 10px;
+  }
+}
+
+.next-challenge {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+
+  a {
+    font-size: 24px;
+  }
+}
+
+.week-progress {
+  .achivements {
+    list-style-type: none;
+    padding-left: 0;
+
+    li {
+      float: left;
+      width: 20%;
+      text-align: center;
+
+      .metric-value {
+        display: block;
+        color: #ff3000;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .metric-label {
+        color: #999;
+        font-size: 13px;
+      }
+    }
+  }
+
+  .level-progress {
+    margin-top: 40px;
+
+    .level-image {
+      margin: 0 auto;
+      width: 90px;
+    }
+
+    .progress {
+      margin-bottom: 0;
+      margin-top: 20px;
+    }
+
+    .progress-text {
+      color: #999;
+      font-size: 14px;
+      text-align: right;
+      margin-top: 5px;
+    }
+  }
+}
+
+.feed {
+  padding: 0;
+
+  .entry {
+    padding: 15px 20px;
+    border-bottom: 1px solid #ccc;
+
+    img { 
+      float: left;
+      width: 30px; 
+    }
+    .description {
+      padding-left: 50px;
+
+      span {
+        display: block;
+        color: #999;
+        font-size: 13px;
+      }
+    }
+  }
+}

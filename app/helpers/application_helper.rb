@@ -87,4 +87,24 @@ module ApplicationHelper
   def timestamp(date)
     date.to_datetime.strftime("%Q")
   end
+
+  # data to show the progress chart of a user
+  def progress_data(user)
+    start = user.activated_at || Date.current
+
+    total_points = 0
+    level = Level.second
+    ret = "["
+    (start.to_date..Date.current).map.with_index do |date, i|
+      total_points += user.points.where(created_at: date.beginning_of_day..date.end_of_day).sum(:points)
+      ret += "{ x: new Date(#{date.year}, #{date.month}, #{date.day}), y: #{total_points}"
+      if level && total_points > level.required_points
+        level = level.next
+        ret += ", indexLabel: '#{level.name}'"
+      end
+      ret += " },"
+    end
+    ret = ret.chomp if ret.end_with?(",")
+    ret += "]"
+  end
 end

@@ -17,6 +17,7 @@ class UserStats
 
   def level_progress
     points_next_level = @user.next_level ? @user.next_level.required_points : 0
+    return 0 if points_next_level - @user.level.required_points
     (@user.stats.total_points - @user.level.required_points).to_f/(points_next_level - @user.level.required_points).to_f
   end
 
@@ -40,6 +41,10 @@ class UserStats
     @user.projects.published.count
   end
 
+  def completed_projects_by_course_count(course)
+    completed_projects_by_course(course).count
+  end
+
   def points_needed_for_next_level
 
     if @user.next_level
@@ -48,8 +53,6 @@ class UserStats
       @user.stats.total_points
     end
   end
-
-
 
   def badges_count
     # + 1 badge 'hago parte de make it real'
@@ -66,12 +69,16 @@ class UserStats
 
   private
 
-  def completed_resources_by_course(course)
-    @user.resources.published.where(course_id: course.id)
-  end
+    def completed_resources_by_course(course)
+      @user.resources.published.where(course_id: course.id)
+    end
 
-  def completed_challenges_by_course(course)
-    @user.completed_challenges.published.where(course_id: course.id)
-  end
+    def completed_challenges_by_course(course)
+      @user.completed_challenges.published.where(course_id: course.id)
+    end
+
+    def completed_projects_by_course(course)
+      @user.projects.published.where(course_id: course.id)
+    end
 
 end

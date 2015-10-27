@@ -11,6 +11,7 @@
 @import "pages";
 @import "sessions";
 @import "users";
+@import "dashboard";
 @import "courses";
 @import "challenges";
 @import "resources";
@@ -47,11 +48,16 @@ html.turbolinks-progress-bar::before {
 .expand { height: 100%; }
 .overflow { overflow-y: auto; }
 
-
+.breadcrumb {
+  margin-top: -15px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+  padding-left: 20px;
+}
 
 .content-wrapper {
-  margin-top: -90px;
-  padding-top: 120px;
+  margin-top: -141px;
+  padding-top: 171px;
   &.no-scroll {
     overflow: hidden;
   }

@@ -214,6 +214,27 @@ class User < ActiveRecord::Base
     @notifier ||= UserNotifier.new(self,User::NOTIFICATION_SERVICE)
   end
 
+  def last_solution
+    solutions.order('updated_at DESC').take
+  end
+
+  def next_challenge
+    if last_solution.nil?
+      first_phase = Phase.published.first
+      if first_phase
+        course = first_phase.courses.published.first 
+      end
+
+      if course
+        challenges.published.first
+      end
+    elsif last_solution.completed?
+      find_next_challenge
+    else
+      last_solution.challenge
+    end
+  end
+
   private
     def default_values
       self.roles ||= ["user"]
@@ -241,5 +262,23 @@ class User < ActiveRecord::Base
       if self.level_id_was != self.level_id
         self.notifications.create!(notification_type: :level_up, data: {level_id: self.level_id})
       end
+    end
+
+    def find_next_challenge
+      current_challenge = last_solution.challenge
+      next_challenge = current_challenge.next_for(self)
+      if next_challenge.nil?
+        course = current_challenge.course.next
+        if course.nil?
+          phase = current_challenge.course.phase.next
+          if phase.nil?
+            return solutions.pending.joins(:challenge).where('challenges.published = ?', true).order('updated_at ASC').take.try(:challenge)
+          else
+            course = phase.courses.published.first
+          end
+        end
+        next_challenge = course.challenges.published.first
+      end
+      next_challenge
     end
 end

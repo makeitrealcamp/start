@@ -38,6 +38,7 @@ class Solution < ActiveRecord::Base
   after_update :create_user_points!
 
   scope :evaluated, -> { where(status: [Solution.statuses[:completed], Solution.statuses[:failed] ]) }
+  scope :pending, -> { where(status: [Solution.statuses[:created], Solution.statuses[:failed] ]) }
 
   def evaluate
     if self.challenge.ruby_embedded?

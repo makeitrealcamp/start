@@ -38,8 +38,8 @@
       <div class="row solutions">
         <div class="col-sm-12">
           <hr>
-          <h3>Soluciones</h3>
-          <div id="solved-challenges-chart" style="height: 250px; margin-bottom: 40px;" data-chart='<%= user_solved_challenges_data(@user).to_json.html_safe %>'></div>
+          <h3>Progreso</h3>
+          <div id="progress-chart" style="height: 250px;" data-chart='<%= progress_data(@user) %>'></div>
           <table class="table table-bordered">
             <tr>
               <th>Reto</th>
@@ -181,10 +181,12 @@
     });
   });
 
-  new CanvasJS.Chart('solved-challenges-chart', {
+  CanvasJS.addColorSet('mir', ["#ff3300"]);
+  new CanvasJS.Chart('progress-chart', {
+    colorSet: "mir",
     data: [{
-      type: "line",
-      dataPoints: $('#solved-challenges-chart').data('chart')
+      type: "area",
+      dataPoints: eval($('#progress-chart').data('chart'))
     }]
   }).render();
 </script>

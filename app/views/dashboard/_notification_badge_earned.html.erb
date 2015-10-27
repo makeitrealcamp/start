@@ -1,0 +1,4 @@
+<%# required: notification, notification.data["badge_id"] %>
+<% badge = Badge.find_by_id(notification.data["badge_id"]) %>
+
+<%= notification.user.first_name %> ha recibido la insignia <strong><%= badge.name %></strong>
