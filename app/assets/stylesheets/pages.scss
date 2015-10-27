@@ -1074,12 +1074,9 @@
       z-index: 0;
     }
   }
-  .apply-now {
+  .pricing {
     overflow: hidden;
-    background: #272727;
-    padding-bottom: 100px;
     position: relative;
-    margin-top: 70px;
     h3 {
       text-align: center;
       font-size: 42px;
@@ -1103,15 +1100,7 @@
       text-align: center;
       font-size: 24px;
       margin-top: 35px;
-    }
-    p {
-      color: #fff;
-      text-align: left;
-      margin-bottom: 50px;
-      width: 85%;
-      margin-left: auto;
-      margin-right: auto;
-      font-size: 18px;
+      margin-bottom: 25px;
     }
     .btn-main {
       margin-top: 50px;
@@ -1194,6 +1183,79 @@
       @media (max-width: $screen-lg-min) {
         margin-top: 10px;
       }
+    }
+  }
+
+  .benefits {
+    background: #272727;
+    overflow: hidden;
+    min-height: 500px;
+    h4 {
+      margin-top: 120px;
+    }
+  }
+  .financing {
+    border: solid 1px #f04500;
+    background: #fff;
+    margin: 105px 0;
+    padding: 30px;
+    text-align: center;
+    border-radius: 5px;
+    .price-one {
+      font-size: 46px;
+      font-family: open sans;
+      font-weight: 600;
+      color: #f04500;
+    }
+    .plus {
+      font-size: 46px;
+    }
+    .valor-total {
+      font-size: 22px;
+      margin: 20px 0;
+    }
+    .directo {
+      color: #f04500;
+    }
+    .valor-ahorro {
+      font-weight: 600;
+      color: #f04500;
+    }
+    .caption {
+      font-size: 14px;
+      color: #999;
+    }
+  }
+  .financing-quote {
+    margin: 105px 0;
+    .more {
+      text-align: center;
+      margin-top: 35px;
+    }
+  }
+  .student-says {
+    .student-data {
+      border-top: 1px solid #ff3300;
+      margin-top: 25px;
+      overflow: hidden;
+      padding-top: 25px;
+      text-align: center;
+    }
+    .profile-img {
+      margin: 0 auto;
+      width: 80px;
+      img {
+        width: 100%;
+      }
+    }
+    .profile-name {
+      display: block;
+      font-size: 16px;
+    }
+    .profile-status {
+      color: #999999;
+      display: block;
+      font-size: 14px;
     }
   }
 
