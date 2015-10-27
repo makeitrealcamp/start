@@ -8,7 +8,7 @@ window.ready_pricing = function() {
     else {
       $("#financing-usd").show();
     }
-  }).fail(function() {
+  },"json").fail(function() {
     $("#financing-cop").show();
   });
 
