@@ -1117,7 +1117,7 @@
       width: 320px;
     }
     .price {
-      font-size: 42px;
+      font-size: 38px;
       margin-bottom: 50px;
       @media (max-width: $screen-md-min) {
         font-size: 32px;
@@ -1189,9 +1189,11 @@
   .benefits {
     background: #272727;
     overflow: hidden;
-    min-height: 500px;
+    min-height: 600px;
     h4 {
-      margin-top: 120px;
+      font-size: 28px;
+      margin-top: 100px;
+      margin-bottom: 60px;
     }
   }
   .financing {
@@ -1202,17 +1204,17 @@
     text-align: center;
     border-radius: 5px;
     .price-one {
-      font-size: 46px;
+      font-size: 42px;
       font-family: open sans;
       font-weight: 600;
       color: #f04500;
     }
     .plus {
-      font-size: 46px;
+      font-size: 42px;
     }
     .valor-total {
       font-size: 22px;
-      margin: 20px 0;
+      margin: 30px 0 20px;
     }
     .directo {
       color: #f04500;
