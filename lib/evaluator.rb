@@ -11,4 +11,13 @@ class Evaluator
     solution.error_message = nil
     solution.save!
   end
+
+  def fail_timeout(solution)
+    fail(solution, "Se ha exedido el tiempo máximo de ejecución de esta solución. Verifica que no haya ciclos infinitos en tu código.")
+  end
+
+  def fail_unknown(solution,error)
+    fail(solution, "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp: #{error.message}".truncate(250))
+  end
+
 end

@@ -43,7 +43,7 @@ class Solution < ActiveRecord::Base
     if self.challenge.ruby_embedded?
       RubyEvaluator.new(self).evaluate
     elsif self.challenge.phantomjs_embedded?
-      PhantomEvaluator.new.evaluate(self)
+      PhantomEvaluator.new(self).evaluate
     elsif self.challenge.ruby_git?
       GitEvaluator.new.evaluate(self)
     elsif self.challenge.rails_git?
@@ -53,7 +53,7 @@ class Solution < ActiveRecord::Base
     elsif self.challenge.ruby_git_pr?
       GitPREvaluator.new.evaluate(self)
     elsif self.challenge.async_phantomjs_embedded?
-      AsyncPhantomEvaluator.new.evaluate(self)
+      AsyncPhantomEvaluator.new(self).evaluate
     else
       self.status = :failed
       self.error_message = "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp"
