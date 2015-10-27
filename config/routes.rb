@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     patch 'update_position', on: :member
   end
 
-  resources :courses, except: [:destroy,:index] do
+  resources :courses, except: [:destroy] do
     patch 'update_position', on: :member
 
     resources :challenges, except: [:index, :destroy] do
