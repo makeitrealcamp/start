@@ -11,16 +11,12 @@
                 <h2 class="course-title"><%= course.name %></h2>
                 <%= progress_bar(progress: current_user.stats.progress_by_course(course), show_percentage: true, color: phase.color) %>
                 <div class="row info">
-                  <div class="col-xs-4 info-item">
+                  <div class="col-xs-6 info-item">
                     <span class="info-item-value"><%= current_user.stats.completed_challenges_by_course_count(course) %>/<%= course.challenges.published.count %></span>
                     <span class="info-item-label">Retos</span>
                   </div>
-                  <div class="col-xs-4 info-item">
-                    <span class="info-item-value"><%= current_user.stats.completed_resources_by_course_count(course) %>/<%= course.resources.published.count %></span>
-                    <span class="info-item-label">Recursos</span>
-                  </div>
-                  <div class="col-xs-4 info-item">
-                    <span class="info-item-value"><%= course.projects.published.count %></span>
+                  <div class="col-xs-6 info-item">
+                    <span class="info-item-value"><%= current_user.stats.completed_projects_by_course_count(course) %>/<%= course.projects.published.count %></span>
                     <span class="info-item-label">Proyectos</span>
                   </div>
                 </div>
@@ -35,10 +31,15 @@
 </div>
 
 <script>
-  $('.course').on('click', function(e) {
-    e.preventDefault();
+  var ready = function() {
+    $('.course').on('click', function(e) {
+      e.preventDefault();
 
-    var id = $(this).data("id");
-    window.location.href = "/courses/" + id;
-  });
+      var id = $(this).data("id");
+      window.location.href = "/courses/" + id;
+    });
+  };
+
+  $(document).ready(ready);
+  $(document).on('page:load', ready);
 </script>

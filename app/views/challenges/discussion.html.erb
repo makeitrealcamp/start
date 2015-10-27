@@ -1,16 +1,11 @@
+<% breadcrumb :challenge_discussion, @challenge %>
+
 <div class="container-fluid challenge-discussion">
   <div class="row">
-    <div class="col-xs-6 text-left">
-      <%= link_to "<span class='glyphicon glyphicon-chevron-left'></span> Volver al reto ".html_safe,
-        [@challenge.course, @challenge], class: "btn btn-link" %>
-    </div>
-    <div class="col-xs-6 text-right">
-      <%= link_to "Siguiente reto <span class='glyphicon glyphicon-chevron-right'></span>".html_safe,
-        [@challenge.course, @challenge.next_for(current_user)], class: "btn btn-success" %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12"><h1>Discusión: <%= @challenge.name %></h1></div>
+    <div class="col-sm-9"><h1>Discusión: <%= @challenge.name %></h1></div>
+    <div class="col-sm-3 text-right"><%= link_to "Siguiente reto <span class='glyphicon glyphicon-chevron-right'></span>".html_safe,
+        [@challenge.course, @challenge.next_for(current_user)], class: "btn btn-success" %></div>
+
   </div>
   <div class="row">
     <div class="col-xs-12 col-md-7 expand">
