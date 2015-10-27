@@ -39,7 +39,7 @@ class PhantomEvaluator < BaseDockerEvaluator
     File.delete(error_shared_path[:local_path]) if File.exist?(error_shared_path[:local_path])
   end
 
-  private
+  protected
 
     def create_phantom_util_file
       content = File.read(PHANTOM_UTIL_PATH)
