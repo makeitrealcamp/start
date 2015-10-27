@@ -585,6 +585,9 @@
   .nav > li > a:hover, .nav > li > a:focus {
     background: transparent;
   }
+  .navbar-brand {
+    margin-left: 0 !important;
+  }
   .navbar-nav > li > a {
     padding-left: 13px;
     padding-right: 13px;
