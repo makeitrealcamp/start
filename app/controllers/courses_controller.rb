@@ -2,6 +2,10 @@ class CoursesController < ApplicationController
   before_action :private_access
   before_action :admin_access, except:[:index, :show]
 
+  def index
+    @phases = Phase.for(current_user)
+  end
+
   def show
     @course = Course.friendly.find(params[:id])
     @tab = @course.challenges.count > 0 ? :challenges : :resources
