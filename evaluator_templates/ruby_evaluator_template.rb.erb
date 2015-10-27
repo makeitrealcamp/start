@@ -1,5 +1,7 @@
 # required: evaluation, solution_files_paths
 require 'execjs'
+require 'nokogiri'
+
 class Context
   def self.eval(file)
     c = Context.new
@@ -16,6 +18,10 @@ class SolutionFile
 
   def as_javascript
      ExecJS.compile(content)
+  end
+
+  def as_html
+    Nokogiri::HTML(content)
   end
 
 end
