@@ -15,7 +15,7 @@
       </div><!--/row -->
     </div><!--/container -->
   </div><!--/pitch curriculum -->
-  
+
 
 
   <div class="container-fluid">
@@ -24,8 +24,13 @@
         <div class="container">
           <div class="row">
             <div class="col-md-6">
-              <div id="financing" class="financing">
-                
+              <div id="financing-usd" class="financing">
+                <%= render "price_box", currency: "USD",first_payment: 299,monthly_payment: 150,
+                  one_payment: 900,monthly_payments: 5, currency_name: "dólares americanos",saving: 120 %>
+              </div>
+              <div id="financing-cop" class="financing">
+                <%= render "price_box", currency: "COP",first_payment: "800,000",monthly_payment: "320,000",
+                  one_payment: "2,060,000",monthly_payments: 5, currency_name: "pesos colombianos",saving: "340,000" %>
               </div>
             </div>
 
@@ -71,7 +76,7 @@
             </div>
           </div>
         </div>
-        
+
 
         <div class="col-md-12 benefits">
           <div class="col-md-6 col-md-offset-3">
@@ -102,3 +107,10 @@
 
 
 </div><!--/new_site -->
+
+<script type="text/javascript">
+  $(document).on("ready page:load", window.ready_pricing);
+  $(document).on("page:before-change", function() {
+    $(document).off("ready page:load", window.ready_pricing);
+  });
+</script>
