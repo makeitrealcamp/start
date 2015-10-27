@@ -3,7 +3,7 @@
     <%= form_for @quiz,url: [@course,@quiz] do |f| %>
       <div class="col-sm-10 col-sm-offset-1">
         <%= render 'shared/flash_messages_form', object: @quiz %>
-        <h1>Editar Quiz</h1>
+        <h1><%= @quiz.new_record? ? "Nuevo Quiz" : "Editar Quiz" %></h1>
 
         <div class="form-group">
           <%= f.label :course %>

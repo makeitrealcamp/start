@@ -1,5 +1,7 @@
 module Quizer
   class QuizzesController < ApplicationController
+    before_action :private_access
+    before_action :admin_access, except: [:show] 
     before_action :set_course
     before_action :set_quiz, only: [:destroy,:update,:edit,:show]
 
