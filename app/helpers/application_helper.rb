@@ -92,7 +92,10 @@ module ApplicationHelper
   def progress_data(user)
     total_points = 0
 
-    start = [user.activated_at || Date.current,user.points.order(:created_at).first.created_at || Date.current].min
+    start = Date.current
+    if(first_point = user.points.order(:created_at).first)
+      start = first_point.created_at
+    end
 
     level = Level.order(:required_points).second
     curr = 0
