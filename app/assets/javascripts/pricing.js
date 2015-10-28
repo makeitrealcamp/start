@@ -1,7 +1,7 @@
 
 window.ready_pricing = function() {
   // cambiar tipo de moneda
-  $.get("http://ipinfo.io", function(response) {
+  $.get("//ipinfo.io", function(response) {
     if(response.country == "CO") {
       $("#financing-cop").show();
     }
