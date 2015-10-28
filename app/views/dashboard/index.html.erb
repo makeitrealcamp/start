@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="box next-step">
+        <h2>Tu próximo paso</h2>
+        <%= render next_step %>
+      </div>
+
+      <div class="box week-progress">
+        <h2>Tu avance esta semana</h2>
+        <ul class="achivements clearfix">
+          <li>
+            <span class="metric-value"><%= @received_points %></span>
+            <span class="metric-label">Puntos obtenidos</span>
+          </li>
+          <li>
+            <span class="metric-value"><%= @solved_challenges %></span>
+            <span class="metric-label">Retos resueltos</span>
+          </li>
+          <li>
+            <span class="metric-value"><%= @completed_resources %></span>
+            <span class="metric-label">Recursos completados</span>
+          </li>
+          <li>
+            <span class="metric-value"><%= @finished_projects %></span>
+            <span class="metric-label">Proyectos terminados</span>
+          </li>
+          <li>
+            <span class="metric-value"><%= @received_badges %></span>
+            <span class="metric-label">Medallas recibidas</span>
+          </li>
+        </ul>
+
+        <div class="level-progress row">
+          <div class="col-sm-2">
+            <div class="level-image"><%= image_tag current_user.level.image_url, class: "img-responsive" %></div>
+          </div>
+          <div class="col-sm-8 text-center">
+            <%= progress_bar(progress: current_user.stats.level_progress, color: "red", opacity: 1.4, show_percentage: true) %>
+            <% if current_user.next_level %>
+            <p class="progress-text">Te faltan <strong><%= current_user.next_level.required_points - current_user.stats.total_points %></strong> puntos para el siguiente nivel</p>
+            <% end %>
+          </div>
+          <% if current_user.next_level %>
+          <div class="col-sm-2">
+            <div class="level-image"><%= image_tag current_user.next_level.image_url, class: "img-responsive" %></div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="box chart clearfix">
+        <h2>Tu avance en el programa</h2>
+        <div id="progress-chart" style="height: 250px;" data-chart='<%= progress_data(current_user) %>'></div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="box feed">
+        <% @notifications.each do |notification| %>
+          <% if notification.resource_avaliable? && is_public_notification?(notification) %>
+          <div class="entry">
+            <img src="<%= Gravatar.new("#{notification.user.email}").image_url %>" class="img-circle" />
+            <div class="description">
+              <%= render "dashboard/notification_#{notification.notification_type}", notification: notification %>
+              <span>Hace <%= time_ago_in_words(notification.created_at) %></span>
+            </div>
+          </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var dashboardView = null;
+    var initDashboardView = function() {
+      dashboardView = new DashboardView();
+    }
+    $(document).on("ready page:load",initDashboardView);
+    $(document).on("page:before-change",function() {
+      dashboardView.remove();
+      $(document).off("ready page:load",initDashboardView);
+    });
+  })();
+</script>

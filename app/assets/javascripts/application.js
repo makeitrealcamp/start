@@ -22,6 +22,7 @@
 //= require codemirror/htmlmixed
 //= require underscore-1.8.2
 //= require backbone-1.1.2
+//= require canvasjs-1.6.1
 //= require moment
 //= require moment/es.js
 //= require nested_form_fields

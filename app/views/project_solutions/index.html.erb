@@ -1,12 +1,6 @@
+<% breadcrumb :project_solutions, @project %>
+
 <div class="container-fluid project_solutions">
-  <div class="row">
-    <div class="col-xs-12">
-      <%= link_to course_project_path(@project.course,@project), class: "btn btn-link push-left" do %>
-        <span class='glyphicon glyphicon-arrow-left'></span>
-        <span class='hidden-xs'>Volver a <strong><%= @project.name %></strong></span>
-      <% end %>
-    </div>
-  </div>
   <div class="row">
     <div class="col-xs-12">
       <div class="text-center">

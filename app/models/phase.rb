@@ -28,7 +28,9 @@ class Phase < ActiveRecord::Base
   scope :for, -> user { published unless user.is_admin? }
   scope :published, -> { where(published: true) }
 
-
+  def next
+    Phase.published.where('row > ?', self.row).first
+  end
 
   private
     def default_values
