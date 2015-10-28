@@ -1,5 +1,5 @@
-class DashboardView
-  constructor: ->
+class DashboardView extends Backbone.View
+  initialize: ->
     @generate_chart()
 
   generate_chart: ->

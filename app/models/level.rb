@@ -28,4 +28,9 @@ class Level < ActiveRecord::Base
     return Level.find(correct_level[:level_id])
   end
 
+  def next
+    Level.order(:required_points)
+      .where("required_points > ?",self.required_points).first
+  end
+
 end

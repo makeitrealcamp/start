@@ -17,7 +17,7 @@ crumb :challenges do |course|
 end
 
 crumb :challenge do |challenge|
-  link challenge.name, challenge
+  link challenge.name, course_challenge_path(challenge.course,challenge)
   parent :challenges, challenge.course
 end
 

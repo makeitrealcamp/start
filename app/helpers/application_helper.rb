@@ -93,7 +93,8 @@ module ApplicationHelper
     start = user.activated_at || Date.current
 
     total_points = 0
-    level = Level.second
+    level = Level.order(:required_points).second
+
     ret = "["
     (start.to_date..Date.current).map.with_index do |date, i|
       total_points += user.points.where(created_at: date.beginning_of_day..date.end_of_day).sum(:points)
