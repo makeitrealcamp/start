@@ -88,24 +88,46 @@ module ApplicationHelper
     date.to_datetime.strftime("%Q")
   end
 
-  # data to show the progress chart of a user
+  #data to show the progress chart of a user
   def progress_data(user)
-    start = user.activated_at || Date.current
-
     total_points = 0
+    start = user.activated_at || Date.current
     level = Level.order(:required_points).second
+    curr = 0
+    data = (start.to_date..Date.current).map do |day|
+      { date: day, points: 0 }
+    end
 
-    ret = "["
-    (start.to_date..Date.current).map.with_index do |date, i|
-      total_points += user.points.where(created_at: date.beginning_of_day..date.end_of_day).sum(:points)
-      ret += "{ x: new Date(#{date.year}, #{date.month}, #{date.day}), y: #{total_points}"
+    user.points.order(:created_at).find_each do |point|
+      day = point.created_at.beginning_of_day
+      while data[curr][:date] != day
+        curr+=1
+        data[curr][:points] = data[curr-1][:points]
+      end
+
+      total_points += point.points
+
+      data[curr][:points] = total_points
       if level && total_points > level.required_points
         level = level.next
-        ret += ", indexLabel: '#{level.name}'"
+        data[curr][:level_upgrade] = level.name
       end
-      ret += " },"
     end
-    ret = ret.chomp if ret.end_with?(",")
-    ret += "]"
+    curr+=1
+    while curr < data.length
+      data[curr][:points] = data[curr-1][:points]
+      curr+=1
+    end
+
+    "[" + data.map do |day|
+      date = day[:date]
+      points = day[:points]
+      ret = "{ x: new Date(#{date.year}, #{date.month-1}, #{date.day}), y: #{points}"
+      if day[:level_upgrade]
+        ret += ", indexLabel: '#{day[:level_upgrade]}'"
+      end
+      ret += " }"
+    end.join(",") + "]"
   end
+
 end
