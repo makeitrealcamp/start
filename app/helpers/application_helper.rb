@@ -88,18 +88,22 @@ module ApplicationHelper
     date.to_datetime.strftime("%Q")
   end
 
-  #data to show the progress chart of a user
+  # data to show the progress chart of a user
   def progress_data(user)
     total_points = 0
-    start = [user.activated_at || Date.current, Date.new(2015,7,28)].max
+
+    start = [user.activated_at || Date.current,user.points.order(:created_at).first.created_at || Date.current].min
+
     level = Level.order(:required_points).second
     curr = 0
-    data = (start.to_date..Date.current).map do |day|
+    data = (start.to_date..(Date.current+1.day)).map do |day|
       { date: day, points: 0 }
     end
 
-    user.points.order(:created_at).find_each do |point|
+    user.points.order(:created_at).each do |point|
+
       day = point.created_at.beginning_of_day
+
       while data[curr][:date] != day
         curr+=1
         data[curr][:points] = data[curr-1][:points]
@@ -113,6 +117,7 @@ module ApplicationHelper
         level = level.next
       end
     end
+
     curr+=1
     while curr < data.length
       data[curr][:points] = data[curr-1][:points]
