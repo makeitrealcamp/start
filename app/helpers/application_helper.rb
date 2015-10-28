@@ -108,9 +108,9 @@ module ApplicationHelper
       total_points += point.points
 
       data[curr][:points] = total_points
-      if level && total_points > level.required_points
-        level = level.next
+      while level && total_points > level.required_points
         data[curr][:level_upgrade] = level.name
+        level = level.next
       end
     end
     curr+=1
