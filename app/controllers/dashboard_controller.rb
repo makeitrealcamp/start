@@ -1,4 +1,5 @@
 class DashboardController < ApplicationController
+  before_action :private_access
   def index
     @challenge = current_user.next_challenge
     @is_new_challenge = solution_to(@challenge).nil?
