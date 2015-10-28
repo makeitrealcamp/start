@@ -43,6 +43,7 @@ class Challenge < ActiveRecord::Base
   has_many :comments, as: :commentable
   has_many :solutions
   has_many :points, as: :pointable
+  has_one :phase, through: :course
 
   validates :name, presence: true
   validates :instructions, presence: true

@@ -220,14 +220,16 @@ class User < ActiveRecord::Base
 
   def next_challenge
     if last_solution.nil?
-      first_phase = Phase.published.first
-      if first_phase
-        course = first_phase.courses.published.first 
-      end
-
-      if course
-        challenges.published.first
-      end
+      Challenge.published.includes(:course,:phase).all.sort do |a,b|
+        if (phase_diff = a.phase.row - b.phase.row) != 0
+          diff = phase_diff
+        elsif (course_diff = a.course.row - b.course.row) != 0
+          diff = course_diff
+        else
+          diff = a.row - b.row
+        end
+        diff
+      end.first
     elsif last_solution.completed?
       find_next_challenge
     else
