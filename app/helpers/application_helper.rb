@@ -91,7 +91,7 @@ module ApplicationHelper
   #data to show the progress chart of a user
   def progress_data(user)
     total_points = 0
-    start = user.activated_at || Date.current
+    start = [user.activated_at || Date.current, Date.new(2015,7,28)].max
     level = Level.order(:required_points).second
     curr = 0
     data = (start.to_date..Date.current).map do |day|
