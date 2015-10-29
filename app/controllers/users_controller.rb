@@ -56,15 +56,13 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(
-        :password, :password_confirmation, :first_name, :mobile_number, :birthday,
+      params.require(:user).permit(:first_name, :mobile_number, :birthday,
         :has_public_profile, :github_username, :nickname, :gender
       )
     end
     def activate_user_params
-      params.require(:activate_user).permit(
-        :password, :password_confirmation, :first_name, :mobile_number, :birthday,
-        :has_public_profile, :github_username, :nickname, :gender, :token
+      params.require(:activate_user).permit(:first_name, :mobile_number, :birthday,
+      :has_public_profile, :github_username, :nickname, :gender, :token
       )
     end
 end

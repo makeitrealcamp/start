@@ -14,8 +14,6 @@ class ActivateUserForm < BaseForm
   attribute :mobile_number, String, default: delegate_to_user
   attribute :nickname, String, default: delegate_to_user
 
-  validates :password, presence: true, length: { within: 6..40 }
-  validates :password_confirmation, presence: true
   validates :gender, inclusion: {in: ["male","female"]}, if: -> { !self.gender.blank? }
   validates_confirmation_of :password
   validates :nickname, presence: true
