@@ -54,7 +54,7 @@ class ChallengesController < ApplicationController
 
     def challenge_params
       params.require(:challenge).permit(
-        :course_id, :name, :instructions, :evaluation_strategy, :published,
+        :course_id, :name, :instructions, :evaluation_strategy, :published, :timeout,
         :evaluation, :solution_text, :solution_video_url,:difficulty_bonus, :restricted, :preview, :pair_programming,
         documents_attributes: [:id, :name, :content, :_destroy])
     end
@@ -62,4 +62,5 @@ class ChallengesController < ApplicationController
     def paid_access
       super if @challenge.restricted?
     end
+
 end

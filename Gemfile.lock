@@ -180,6 +180,8 @@ GEM
     gravatar-ultimate (2.0.0)
       activesupport (>= 2.3.14)
       rack
+    gretel (3.0.8)
+      rails (>= 3.2.0)
     hashie (3.4.2)
     hitimes (1.2.2)
     hitimes (1.2.2-x86-mingw32)
@@ -363,6 +365,7 @@ GEM
       redis (~> 3.2, >= 3.2.1)
       redis-namespace (~> 1.5, >= 1.5.2)
     signature (0.1.8)
+    simple_timeout (0.0.1)
     simplecov (0.10.0)
       docile (~> 1.1.0)
       json (~> 1.8)
@@ -445,6 +448,7 @@ DEPENDENCIES
   friendly_id (~> 5.1.0)
   gendered
   gravatar-ultimate
+  gretel
   hstore_accessor
   jbuilder (~> 2.0)
   jquery-rails
@@ -476,6 +480,7 @@ DEPENDENCIES
   shareable!
   shoulda-matchers
   sidekiq
+  simple_timeout
   sinatra
   spring
   subprocess
@@ -488,6 +493,3 @@ DEPENDENCIES
   web-console (~> 2.0)
   will_paginate
   zeroclipboard-rails
-
-BUNDLED WITH
-   1.10.6

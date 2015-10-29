@@ -19,6 +19,10 @@
           <%= f.select :difficulty_bonus, [0,20,40,60,80], {},class: 'form-control', placeholder: 'Bono de Dificultad' %>
         </div>
         <div class="form-group">
+          <%= f.label :timeout %> <small>(en segundos)</small>
+          <%= f.number_field :timeout, class: 'form-control', placeholder: 'Timeout' %>
+        </div>
+        <div class="form-group">
           <%= f.label :instructions %>
           <%= f.text_area :instructions, class: 'form-control', rows: 15, placeholder: 'Instructions' %>
         </div>

@@ -8,7 +8,7 @@ if [ ! -f <%= evaluation_file_path %> ]; then
   echo "No se encontró el archivo de evaluación <%= evaluation_file_path %>." >> <%= error_file_path %>
   exit 1
 fi
-gem install execjs
+
 ruby <%= evaluation_file_path %> &> <%= error_file_path %>
 
 if [ -s <%= error_file_path %> ]

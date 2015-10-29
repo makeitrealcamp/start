@@ -73,6 +73,8 @@ gem 'figaro'
 gem 'remote_syslog_logger'
 gem 'date_supercharger'
 gem 'json-schema'
+gem 'simple_timeout'
+gem 'gretel'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

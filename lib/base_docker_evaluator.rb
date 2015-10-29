@@ -73,7 +73,7 @@ class BaseDockerEvaluator < Evaluator
   end
 
   def create_shared_file(relative_path,content)
-    
+
     local_path = File.join(tmp_path,relative_path)
     dirname = File.dirname(local_path)
 
@@ -89,5 +89,48 @@ class BaseDockerEvaluator < Evaluator
       local_path: local_path,
       container_path: File.join(container_path,relative_path)
     }
+  end
+
+  def solution_files_shared_folder
+    relative_path = "solution_files"
+    {
+      relative_path: relative_path,
+      local_path: File.join(tmp_path,relative_path),
+      container_path: File.join(container_path,relative_path)
+    }
+  end
+
+  def create_solution_files
+    solution.documents.map do |document|
+      create_shared_file(File.join(solution_files_shared_folder[:relative_path],document.name),document.content)
+    end
+  end
+
+  class DockerExecution
+    attr_accessor :timeout,:command,:docker_id,:success
+
+    def initialize(command,timeout)
+      self.timeout = timeout
+      self.command = command
+    end
+
+    def start!
+      self.success = SimpleTimeout::timeout(self.timeout) do
+        puts "******* Command: #{self.command} *******"
+        self.docker_id = `#{self.command}`.strip
+        puts "******* DOCKER_ID: #{self.docker_id} *******"
+        system "docker logs -f --tail='all' #{self.docker_id}"
+        `docker wait #{self.docker_id}`.strip == "0"
+      end
+    rescue SimpleTimeout::Error => e
+      system "docker kill #{docker_id}"
+      raise e.class, e.message
+    ensure
+      system "docker rm #{docker_id}"
+    end
+
+    def success?
+      self.success == true
+    end
   end
 end

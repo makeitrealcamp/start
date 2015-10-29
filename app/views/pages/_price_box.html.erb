@@ -1,0 +1,20 @@
+<%# required: currency,first_payment,monthly_payment,one_payment,monthly_payments,saving %>
+<div class='primera-cuota'>
+  <span class='price-one'>$<%= first_payment %> <%= currency %></span>
+  </br>Primera cuota
+</div>
+<div class='plus'>+</div>
+<div class='otras-cuotas'>
+  <p>
+    <%= monthly_payments %> cuotas mensuales de
+  </p>
+  <span class='price-one'>$<%= monthly_payment %> <%= currency %></span>
+</div>
+<p class='valor-total'>O paga
+  <span class='directo'>$<%= one_payment %> <%= currency %>
+  </span> de entrada y ahorra
+  <span class='valor-ahorro'>$<%= saving %> <%= currency %></span>
+</p>
+<div class='caption'>
+  <p>Recibimos todos los medios de pago. Precios en <strong><%= currency_name %></strong>.</p>
+</div>

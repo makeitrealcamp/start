@@ -1,0 +1,22 @@
+<% if current_user.solutions.empty? %>
+  <p class="text-center"><strong>¡<%= genderize("Bienvenido", "Bienvenida") %> <%= current_user.first_name %>!</strong> Para empezar intenta solucionar tu primer reto haciendo click en el siguiente link:</p>
+<% else %>
+  <p class="text-center"><strong>¡Vas muy bien <%= current_user.first_name %>!</strong> Para avanzar intenta solucionar el siguiente reto:</p>
+<% end %>
+
+<div class="next-challenge">
+  <%= link_to "#{@challenge.course.name} - #{@challenge.name}", [@challenge.course, @challenge] %>
+</div>
+
+<% if current_user.solutions.empty? %>
+<p>Si aún no has leído la <%= link_to "guía del estudiante", handbook_path %>, te aconsejamos hacerlo primero. No olvides también visitar <%= link_to "los temas", courses_path %> y completar los recursos del <%= link_to "curso de preparación", Phase.published.first.courses.published.first %>.</p>
+<% end %>
+
+<% if @pending_challenges.any? %>
+<p>O continúa con alguno de los retos que tienes pendientes:</p>
+<ul>
+  <% @pending_challenges.each do |challenge| %>
+    <li><%= link_to "#{challenge.course.name} - #{challenge.name}", [challenge.course, challenge] %></li>
+  <% end %>
+</ul>
+<% end %>

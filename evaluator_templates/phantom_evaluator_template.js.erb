@@ -1,0 +1,36 @@
+//required: host,port,phantom_util_path
+var evaluations = [];
+var page = require('webpage').create();
+
+function open(path, callback, viewportSize, setup) {
+  evaluations.push({ path: path, callback: callback, viewportSize: viewportSize, setup: setup });
+}
+
+function evaluate(index) {
+  if (index >= evaluations.length) {
+    phantom.exit();
+  }
+
+  var evaluation = evaluations[index];
+  page.viewportSize = evaluation.viewportSize || { width: 1024, height: 800 };
+  var url = '<%=host%>:<%=port%>/' + evaluation.path;
+  page.open(url, function(status) {
+    if (status != 'success') {
+      console.log('No se pudo abrir ' + evaluation.path);
+      return;
+    }
+
+    if (evaluation.setup) {
+      evaluation.setup(page);
+    }
+
+    page.injectJs('<%= phantom_util_path %>');
+    var result = page.evaluate(evaluation.callback);
+    if (result) {
+      console.log(result);
+      phantom.exit();
+    } else {
+      setTimeout(function() { evaluate(index + 1) }, 100);
+    }
+  });
+}

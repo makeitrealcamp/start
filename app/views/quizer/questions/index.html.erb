@@ -1,12 +1,6 @@
+<% breadcrumb :quiz_questions, @quiz %>
+
 <div class="container">
-  <div class="row margin-bottom">
-    <div class="col-xs-12">
-      <%= link_to course_quizer_quiz_path(@course,@quiz) do %>
-        <span class='glyphicon glyphicon-arrow-left'></span>
-        Volver al Quiz <%= @quiz.name %>
-      <% end %>
-    </div>
-  </div>
   <div class="row margin-bottom">
     <div class="col-xs-12">
       <%= form_tag(new_course_quizer_quiz_question_path(@course,@quiz),method: "get",remote: true, class: 'form-inline') do %>

@@ -1,22 +1,6 @@
+<% breadcrumb :project_solution, @project_solution %>
+
 <div class="container-fluid project-solution">
-  <div class="row">
-    <div class="col-xs-6">
-
-      <%= link_to course_project_project_solutions_path(@project.course, @project), class: "btn btn-link" do %>
-        <span class='glyphicon glyphicon-arrow-left'></span>
-        <span class='hidden-xs'>Volver a soluciones de <strong><%= @project.name %></strong></span>
-      <% end %>
-
-    </div>
-
-    <div class="col-xs-6">
-      <div class="text-right">
-        <%= link_to course_project_project_solutions_path(@project.course,@project), class: "btn btn-success" do %>
-          <span class='glyphicon glyphicon-blackboard'></span> Ver otras soluciones
-        <% end %>
-      </div>
-    </div>
-  </div>
   <div class="row">
     <div class="col-xs-12 col-md-7 expand">
       <div class="media title-wrapper">

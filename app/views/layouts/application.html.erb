@@ -18,11 +18,10 @@
   <%= render "layouts/navbar" %>
   <div class="content-wrapper expand">
     <%= render "utils/alerts" %>
+    <%= breadcrumbs style: :bootstrap %>
     <%= yield %>
   </div>
 
   <div class="overlay"></div>
-
-  <%= render "layouts/content_navigation" %>
 </body>
 </html>

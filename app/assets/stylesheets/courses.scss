@@ -21,10 +21,50 @@ blockquote {
   }
 }
 
-.courses-page, .phase-page {
+.courses-page {
+  .phase-name {
+    display: inline-block;
+    position: relative;
+    background-color: $body-bg;
+    color: #666;
+    font-size: 14px;
+    font-weight: bold;
+    bottom: -10px;
+    left: 10px;
+    padding: 0 5px;
+  }
+  .phase {
+    border-top: 1px solid #ccc;
+    padding: 30px 10px 20px;
+  }
+  .course {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 30px;
+    cursor: pointer;
+
+    .course-title {
+      font-size: 21px;
+      font-weight: normal;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    .info {
+      span {
+        display: block;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      .info-item-value { font-size: 18px; }
+    }
+  }
+}
+
+.phase-page {
   margin-bottom: 20px;
-
-
 
   .new-course-btn {
     margin-top: -20px;
@@ -137,7 +177,7 @@ blockquote {
     .actions {
       position: absolute;
       top: 10px;
-      right: 7px;
+      right: 25px;
 
       .edit-course-btn {
         opacity: 0.4;
@@ -149,7 +189,7 @@ blockquote {
       padding: 10px 30px;
       border: 1px solid #ddd;
       background: white;
-      margin-top: 20px;
+
       span {
         font-weight: bold;
         color: #999;

@@ -167,7 +167,7 @@ RSpec.feature "Questions", type: :feature do
           visit course_quizer_quiz_questions_path(course, quiz)
           all(:css, 'a span.glyphicon-pencil').first.click
           wait_for_ajax
-
+          expect(page).to have_selector('.correct-answers .answer')
           within all('.correct-answers .answer').last do
             find('.remove-answer').click
           end

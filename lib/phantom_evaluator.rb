@@ -1,59 +1,72 @@
 # encoding: UTF-8
-class PhantomEvaluator < Evaluator
-  def evaluate(solution)
-    host = ENV['HOSTNAME'] || "http://localhost:3000"
-    filename = 'tmp/eval-' + solution.id.to_s + '.js'
+class PhantomEvaluator < BaseDockerEvaluator
 
-    script = %Q[var evaluations = [];
-var page = require('webpage').create();
+  PHANTOM_EVALUATOR_TEMPLATE_PATH = "evaluator_templates/phantom_evaluator_template.js.erb"
+  PHANTOM_EXECUTOR_SCRIPT_TEMPLATE_PATH = "evaluator_templates/phantom_executor_template.sh.erb"
+  PHANTOM_UTIL_PATH = "evaluator_templates/phantom-util.js"
 
-function open(path, callback, viewportSize, setup) {
-  evaluations.push({ path: path, callback: callback, viewportSize: viewportSize, setup: setup });
-}
+  def evaluate
+    host = "http://127.0.0.1"
+    port = 8080
 
-function evaluate(index) {
-  if (index >= evaluations.length) {
-    phantom.exit();
-  }
+    solution_files_paths = create_solution_files
+    evaluation_file_path = create_evaluation_file(host,port)
+    executor_script_path = create_executor_file(evaluation_file_path,port)
 
-  var evaluation = evaluations[index];
-  page.viewportSize = evaluation.viewportSize || { width: 1024, height: 800 };
-  var url = '#{host}/solutions/#{solution.id}/preview/' + evaluation.path;
-  page.open(url, function(status) {
-    if (status != 'success') {
-      console.log('No se pudo abrir ' + evaluation.path);
-      return;
-    }
+    FileUtils.chmod(0777,executor_script_path[:local_path])
 
-    if (evaluation.setup) {
-      evaluation.setup(page);
-    }
+    command = [
+      "docker", "run", "-d", "-v", "#{tmp_path}:#{container_path}", "makeitrealcamp/mir-evaluator",
+      "/bin/bash", "-c", "-l",
+      "#{executor_script_path[:container_path]}"].join(" ")
 
-    page.injectJs('lib/phantom-util.js');
-    var result = page.evaluate(evaluation.callback);
-    if (result) { 
-      console.log(result);
-      phantom.exit();
-    } else {
-      setTimeout(function() { evaluate(index + 1) }, 100);
-    }
-  });
-}
-    ]
+    execution = DockerExecution.new(command,solution.challenge.timeout)
+    execution.start!
+    if execution.success?
+      complete(solution)
+    else
+      if File.exist?(error_shared_path[:local_path]) && !File.read(error_shared_path[:local_path]).empty?
+        handle_error(solution, error_shared_path[:local_path])
+      else
+        fail(solution, "La evaluación falló por un problema desconocido :S. Repórtalo a info@makeitreal.camp enviando el URL con tu solución.")
+      end
+    end
+  rescue SimpleTimeout::Error
+    fail_timeout(solution)
+  rescue Exception => unknown_error
+    fail_unknown(solution,unknown_error)
+  ensure
+    File.delete(error_shared_path[:local_path]) if File.exist?(error_shared_path[:local_path])
+  end
 
-    File.open(filename, 'w') do |f|
-      f.write script + "\n"
-      f.write solution.challenge.evaluation + "\n"
-      f.write "evaluate(0);"
+  protected
+
+    def create_phantom_util_file
+      content = File.read(PHANTOM_UTIL_PATH)
+      create_shared_file("phantom_util.js",content)
     end
 
-    output = Phantomjs.run(filename)
-    output.blank? ? complete(solution) : fail(solution, output)
+    def create_evaluation_file(host,port)
+      template = File.read(PHANTOM_EVALUATOR_TEMPLATE_PATH)
+      # required for template: host,port,phantom_util_path
+      phantom_util_path = create_phantom_util_file[:container_path]
 
-  rescue Exception => e
-    puts e.message
-    puts e.backtrace
+      evaluation = self.solution.challenge.evaluation
 
-    fail(solution, "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp: #{e.message}")
-  end
+      evaluator_content = ERB.new(template).result(binding)
+      evaluator_content += "\n" + evaluation + "\n" + "evaluate(0);"
+
+      create_shared_file("evaluation.js",evaluator_content)
+    end
+
+    def create_executor_file(evaluation_shared_path,port)
+      template = File.read(PHANTOM_EXECUTOR_SCRIPT_TEMPLATE_PATH)
+      # required for template: evaluation_file_path, error_file_path,port,solution_files_folder
+      evaluation_file_path = evaluation_shared_path[:container_path]
+      error_file_path = error_shared_path[:container_path]
+      solution_files_folder = solution_files_shared_folder[:container_path]
+      executor_content = ERB.new(template).result(binding)
+      create_shared_file("executor.sh",executor_content)
+    end
+
 end

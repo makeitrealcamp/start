@@ -1,0 +1,45 @@
+<div class="container courses-page">
+  <div class="row">
+    <div class="col-sm-12">
+      <% @phases.each do |phase| %>
+      <span class="phase-name" style="color: <%= phase.color %>"><%= phase.name.upcase %></span>
+      <div class="phase">
+        <div class="row">
+          <% phase.courses.for(current_user).each do |course| %>
+            <div class="col-sm-6">
+              <div class="course" style="border-left: 7px solid <%= phase.color %>" data-id="<%= course.friendly_id %>">
+                <h2 class="course-title"><%= course.name %></h2>
+                <%= progress_bar(progress: current_user.stats.progress_by_course(course), show_percentage: true, color: phase.color) %>
+                <div class="row info">
+                  <div class="col-xs-6 info-item">
+                    <span class="info-item-value"><%= current_user.stats.completed_challenges_by_course_count(course) %>/<%= course.challenges.published.count %></span>
+                    <span class="info-item-label">Retos</span>
+                  </div>
+                  <div class="col-xs-6 info-item">
+                    <span class="info-item-value"><%= current_user.stats.completed_projects_by_course_count(course) %>/<%= course.projects.published.count %></span>
+                    <span class="info-item-label">Proyectos</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>    
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  var ready = function() {
+    $('.course').on('click', function(e) {
+      e.preventDefault();
+
+      var id = $(this).data("id");
+      window.location.href = "/courses/" + id;
+    });
+  };
+
+  $(document).ready(ready);
+  $(document).on('page:load', ready);
+</script>
