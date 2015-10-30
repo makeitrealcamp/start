@@ -15,7 +15,7 @@ class DashboardController < ApplicationController
     @finished_projects = Project.where(id: current_user.project_solutions.created_at_after(bow).pluck(:project_id)).count
     @received_badges = Badge.where(id: current_user.badge_ownerships.created_at_after(bow).pluck(:badge_id)).count
 
-    @notifications = Notification.limit(50)
+    @notifications = Notification.limit(25)
   end
 
   private
