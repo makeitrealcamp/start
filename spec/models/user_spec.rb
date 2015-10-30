@@ -39,7 +39,9 @@ RSpec.describe User, type: :model do
   context 'validations ' do
     it { should validate_presence_of :email }
     it { should validate_uniqueness_of :email }
+    it { should validate_uniqueness_of :nickname }
     it { should should_not allow_value("email.example").for(:email) }
+    it { should should_not allow_value("lorem.ipsum").for(:nickname) }
   end
 
   context 'default_values' do

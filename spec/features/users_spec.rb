@@ -109,51 +109,53 @@ RSpec.feature "Users", type: :feature do
 
     scenario 'with valid input' do
       original_first_name = user.first_name
+      nickname = Faker::Internet.user_name('Nancy')
+      number = Faker::Number.number(10)
       activate_account(
         token: user.password_reset_token,
-        nickname: 'pepito',
-        mobile_number: '3001234567'
+        nickname: nickname,
+        mobile_number: number
       )
       user.reload
       expect(user.status).to eq "active"
-      expect(user.nickname).to eq 'pepito'
-      expect(user.mobile_number).to eq '3001234567'
+      expect(user.nickname).to eq nickname
+      expect(user.mobile_number).to eq number
       expect(user.first_name).to eq original_first_name
       expect(current_path).to eq login_path
       expect(page).to have_selector '.alert-notice'
     end
 
-    scenario 'with existing nickname' do
-      create(:user,nickname: "simon0191")
+    context 'when without valid input' do
+      scenario 'with existing nickname' do
+        nickname = Faker::Internet.user_name('Nancy')
+        number = Faker::Number.number(10)
+        create(:user,nickname: nickname)
 
-      activate_account(
-        token: user.password_reset_token,
-        nickname: 'simon0191',
-        gender: 'male',
-        has_public_profile: true,
-        mobile_number: '3001234567'
-      )
-      user.reload
+        activate_account(
+          token: user.password_reset_token,
+          nickname: nickname,
+          gender: 'male',
+          has_public_profile: true,
+          mobile_number: number
+        )
 
-      expect(user.status).to eq "created"
-      expect(user.nickname).to_not eq 'simon0191'
+        user.reload
+        expect(user.status).to eq "created"
+        expect(user.nickname).to_not eq 'simon0191'
+        expect(page).to have_selector ".alert-error"
+        expect(current_path).to eq activate_users_path
+      end
 
-      expect(page).to have_selector ".alert-error"
-      expect(current_path).to eq activate_users_path
-
-    end
-
-
-    xscenario 'with invalid input' do
-      activate_account(
-        token: user.password_reset_token,
-        nickname: 'pepito'
-      )
-      expect(user.status).to eq "created"
-      expect(user.nickname).to_not eq 'pepito'
-
-      expect(page).to have_selector ".alert-error"
-      expect(current_path).to eq activate_users_path
+      scenario 'with nickname format is not valid' do
+        nickname = Faker::Internet.user_name('Nancy Johnson', %w(. _ -))
+        activate_account(
+          token: user.password_reset_token,
+          nickname: nickname
+        )
+        expect(user.status).to eq "created"
+        expect(page).to have_selector ".alert-error"
+        expect(current_path).to eq activate_users_path
+      end
     end
   end
 end

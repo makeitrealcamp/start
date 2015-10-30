@@ -13,11 +13,12 @@ RSpec.feature "Sign In", type: :feature do
   end
 
   context 'when user is paid', js: true do
-    xcontext 'when is created' do
-      scenario 'should redirect to root path' do
+    context 'when is created' do
+      scenario 'should redirect to login path' do
+        user.created!
         login(user)
         wait_for_ajax
-        expect(current_path).to eq root_path
+        expect(current_path).to eq login_path
         expect(page).to have_css('.alert-notice')
       end
     end

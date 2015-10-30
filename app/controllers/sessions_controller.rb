@@ -5,22 +5,12 @@ class SessionsController < ApplicationController
   def new
   end
 
-  def create
-    user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
-      redirect_user_free  and return if user.free_account?
-      sign_in(user)
-      redirect_to signed_in_root_path
-    else
-      redirect_to login_path, flash: { error: "Credenciales Inválidas" }
-    end
-  end
-
   def create_with_omniauth
     if env['omniauth.auth'].info.email.blank?
       url_omniauth_failure("No pudimos obtener el email de #{env['omniauth.auth'].provider.capitalize}. Por favor habilítalo")
     elsif user = AuthProvider.omniauth(env['omniauth.auth'])
       redirect_user_free and return if user.free_account?
+      redirect_user_with_status_created and return if user.created?
       sign_in(user)
       redirect_to signed_in_root_path
     else
@@ -42,14 +32,20 @@ class SessionsController < ApplicationController
 
   private
 
-  def url_omniauth_failure(message)
-    redirect_to login_path, flash: { error: message }
-  end
+    def url_omniauth_failure(message)
+      redirect_to login_path, flash: { error: message }
+    end
 
-  def redirect_user_free
-    redirect_to root_path, notice: %Q(
-        Make it Real ya no está disponible para usuarios gratuitos.
-        Si quieres ingresar al programa haz click en el botón ¡Aplica ahora!)
+    def redirect_user_free
+      redirect_to root_path, notice: %Q(
+          Make it Real ya no está disponible para usuarios gratuitos.
+          Si quieres ingresar al programa haz click en el botón ¡Aplica ahora!)
 
-  end
+    end
+
+    def redirect_user_with_status_created
+      redirect_to login_path, notice: %Q(
+          Debes Activar tu cuenta, el link de activación fue enviado a su correo electronico,
+          si no es asi por favor vuelvalo a pedir)
+    end
 end
