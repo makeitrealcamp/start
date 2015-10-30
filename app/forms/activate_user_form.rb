@@ -5,8 +5,6 @@ class ActivateUserForm < BaseForm
   end
 
   attribute :token, String
-  attribute :password, String
-  attribute :password_confirmation, String
   attribute :has_public_profile, Boolean, default: delegate_to_user
   attribute :gender, String, default: delegate_to_user
   attribute :first_name, String, default: delegate_to_user
@@ -15,8 +13,8 @@ class ActivateUserForm < BaseForm
   attribute :nickname, String, default: delegate_to_user
 
   validates :gender, inclusion: {in: ["male","female"]}, if: -> { !self.gender.blank? }
-  validates_confirmation_of :password
   validates :nickname, presence: true
+  validates :nickname, format: { with: /\A[a-zA-Z0-9]+\Z/ }
 
   validate :token_existence
   validate :nickname_uniqueness
@@ -36,8 +34,6 @@ class ActivateUserForm < BaseForm
       ActiveRecord::Base.transaction do
 
         attrs = {
-          password: self.password,
-          password_confirmation: self.password_confirmation,
           has_public_profile: self.has_public_profile,
           gender: self.gender,
           first_name: self.first_name,

@@ -2,19 +2,19 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  email           :string(100)
-#  roles           :string           is an Array
-#  password_digest :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  last_active_at  :datetime
-#  profile         :hstore
-#  status          :integer
-#  settings        :hstore
-#  account_type    :integer
-#  nickname        :string
-#  level_id        :integer
+#  id             :integer          not null, primary key
+#  email          :string(100)
+#  roles          :string           is an Array
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  last_active_at :datetime
+#  profile        :hstore
+#  status         :integer
+#  settings       :hstore
+#  account_type   :integer
+#  nickname       :string
+#  level_id       :integer
+#  path_id        :integer
 #
 # Indexes
 #
@@ -25,8 +25,7 @@ class User < ActiveRecord::Base
 
   NOTIFICATION_SERVICE = Pusher
 
-  attr_accessor :password_confirmation, :notifier
-  has_secure_password validations: false
+  attr_accessor :notifier
 
   belongs_to :level
   has_many :solutions, dependent: :destroy
@@ -78,11 +77,6 @@ class User < ActiveRecord::Base
   after_initialize :default_values
   after_save :check_user_level
 
-  def generate_password
-    password = SecureRandom.urlsafe_base64
-    self.password = password
-    self.password_confirmation = password
-  end
 
   def self.commenters_of(commentable)
     joins(:comments).where(comments: {commentable_id: commentable.id,commentable_type: commentable.class.to_s}).uniq
