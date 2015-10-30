@@ -70,7 +70,8 @@
 
 .feed {
   padding: 0;
-
+  max-height: 950px;
+  overflow: scroll;
   .entry {
     padding: 15px 20px;
     border-bottom: 1px solid #ccc;
