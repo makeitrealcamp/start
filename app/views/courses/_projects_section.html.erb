@@ -11,9 +11,9 @@
     <p class="tab-exp text-center"><%= projects_msg(@course) %></p>
 
     <% if current_user.is_admin? || @course.projects.for(current_user).count > 0 %>
-      <% @course.projects.for(current_user).each_with_index do |project, index| %>
+      <% @course.projects.for(current_user).rank(:row).each_with_index do |project, index| %>
         <% if current_user.has_access_to?(project) %>
-          <div id="project_<%= project.id %>" class="project clearfix" data-sortable="true" data-resource-id="<%= project.id %>">
+          <div id="project_<%= project.id %>" class="project clearfix" data-index="<%= index %>" data-sortable="true" data-resource-id="<%= project.id %>">
             <%= link_to [@course, project] do %>
               <div class="btn-project-go">
                 <span class="glyphicon glyphicon-chevron-right"></span>

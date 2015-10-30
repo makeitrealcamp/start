@@ -91,7 +91,7 @@ Rails.application.routes.draw do
     patch 'update_position', on: :member
   end
 
-  namespace :quiz, path: "/" do
+  namespace :quizer, path: "/" do
     resources :quizzes, only:[] do
       patch 'update_position', on: :member
     end

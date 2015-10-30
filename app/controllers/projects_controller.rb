@@ -48,7 +48,7 @@ class ProjectsController < ApplicationController
   end
 
   def update_position
-    @resource = Project.update(params[:id], row_position: params[:position])
+    @project = Project.update(params[:id], row_position: params[:position])
     head :ok
   end
 

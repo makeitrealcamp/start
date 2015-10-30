@@ -9,9 +9,9 @@
 <div class="row quizzes-list quizzes margin-bottom">
   <div class="col-sm-10 col-sm-offset-1">
     <% if current_user.is_admin? || @course.quizzes.for(current_user).count > 0 %>
-      <% @course.quizzes.for(current_user).each_with_index do |quiz, index| %>
+      <% @course.quizzes.for(current_user).rank(:row).each_with_index do |quiz, index| %>
 
-        <div id="quiz-<%= quiz.id %>" class="quiz clearfix" data-sortable="true" data-resource-id="<%= quiz.id %>">
+        <div id="quiz-<%= quiz.id %>" class="quiz clearfix" data-index="<%= index %>" data-sortable="true" data-resource-id="<%= quiz.id %>">
           <div class="quiz-title row">
             <div class="col-xs-10">
               <%= link_to quiz.name, [@course, quiz] %>
