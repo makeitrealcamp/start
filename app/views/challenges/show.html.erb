@@ -77,9 +77,7 @@
       <h3>{{= title }}</h3>
       <p>{{= message }}</p>
       {{ if (status == "completed") { }}
-        <p>Has ganado <%=  @challenge.point_value %> puntos. </p>
-        <span class="points_needed_for_next_level">Te faltan {{= user.points_needed_for_next_level }} puntos para alcanzar el siguiente nivel</span>
-        <h2></h2>
+        <div class="won-points">Has ganado <strong><%=  @challenge.point_value %></strong> puntos.</div>
         <%= render 'users/level_js' %>
       {{ } }}
     </div>
