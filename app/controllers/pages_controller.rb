@@ -33,4 +33,8 @@ class PagesController < ApplicationController
   def pricing
   end
 
+  def publicar
+    
+  end
+
 end
