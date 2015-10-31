@@ -6,17 +6,14 @@
   </div>
 
   <div class="col-xs-8 col-sm-8 col-md-8">
-    {{ if (user.hasOwnProperty('next_level')) { }}
-      <p class="points">{{= user.total_points }}/{{= user.required_points }}</p>
-    {{ } else { }}
-      <p class="points">{{= user.total_points }}/{{= user.total_points }}</p>
-    {{ } }}
     <div class="progress">
       <div class="progress-bar progress-bar-success"
         role="progressbar"
         style="width:{{= (user.level_progress*100).toFixed(2) }}%;opacity:0.6;background-color: red">
+          {{= (user.level_progress*100).toFixed(0) }}%
       </div>
     </div>
+    <div class="points-for-next-level">Te faltan <strong>{{= user.points_needed_for_next_level }}</strong> puntos para el siguiente nivel</div>
   </div>
 
   {{ if (user.hasOwnProperty("next_level")) { }}

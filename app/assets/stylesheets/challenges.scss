@@ -197,7 +197,7 @@
   .solution-eval-body {
     font-size: 18px;
     font-weight: 300;
-    padding: 30px 20px 40px;;
+    padding: 30px 20px 40px;
     text-align: center;
 
     h3 {
@@ -213,8 +213,13 @@
       padding: 20px;
     }
 
-    .points_needed_for_next_level {
-      color: #999;
+    .won-points { margin: 10px 0 15px; }
+
+    .points-for-next-level {
+      color: #ccc;
+      font-size: 13px;
+      text-align: right;
+      margin-top: -15px;
     }
   }
 
