@@ -27,6 +27,9 @@
 //= require moment/es.js
 //= require nested_form_fields
 //= require zeroclipboard
+//= require datepicker/bootstrap-datepicker
+//= require datepicker/bootstrap-datepicker.es.js
+//= require intlTelInput
 //= require_tree .
 
 Turbolinks.enableProgressBar();
