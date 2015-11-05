@@ -32,8 +32,16 @@ class ApplicationController < ActionController::Base
       redirect_to signed_in_root_path if signed_in?
     end
 
+    def activate_access
+      redirect_to activate_users_path if current_user.created?
+    end
+
     def private_access
-      redirect_to :login unless signed_in?
+      if signed_in?
+        activate_access and return
+      else
+        redirect_to :login
+      end
     end
 
     def admin_access

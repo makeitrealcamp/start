@@ -61,8 +61,6 @@ class User < ActiveRecord::Base
     github_username: :string
 
   hstore_accessor :settings,
-    password_reset_token: :string,
-    password_reset_sent_at: :datetime,
     info_requested_at: :datetime,
     has_public_profile: :boolean
 
@@ -148,20 +146,6 @@ class User < ActiveRecord::Base
     !!self.resource_completions.find_by_resource_id(resource.id)
   end
 
-  def send_activate_mail
-    generate_token
-    self.password_reset_sent_at = Time.current
-    save!
-    UserMailer.activate(self).deliver_now
-  end
-
-  def send_password_reset
-    generate_token
-    self.password_reset_sent_at = Time.current
-    save!
-    UserMailer.password_reset(self).deliver_now
-  end
-
   def avatar_url
     Gravatar.new(self.email).image_url
   end
@@ -184,22 +168,14 @@ class User < ActiveRecord::Base
 
   def activate!
     self.update!(
-      password_reset_token: nil,
-      password_reset_sent_at: nil,
       status: User.statuses[:active],
       activated_at: Time.current
     )
-    SubscriptionsMailer.welcome_mail(self).deliver_now
     SubscriptionsMailer.welcome_hangout(self).deliver_later!(wait: 8.hours)
-
   end
 
-  def has_valid_password_reset_token?
-    (!!self.password_reset_sent_at) && (self.password_reset_sent_at >= 2.hours.ago)
-  end
-
-  def has_valid_account_activation_token?
-    (!!self.password_reset_sent_at) && (self.password_reset_sent_at >= 2.days.ago)
+  def send_welcome_mail
+    SubscriptionsMailer.welcome_mail(self).deliver_now
   end
 
   def notifier
@@ -234,12 +210,6 @@ class User < ActiveRecord::Base
       self.has_public_profile ||= false
       self.account_type ||= User.account_types[:free_account]
       self.level ||= Level.for_points(0)
-    end
-
-    def generate_token
-      begin
-        self.password_reset_token = SecureRandom.urlsafe_base64
-      end while User.exists?(["settings -> 'password_reset_token' = '#{self.settings['password_reset_token']}'"])
     end
 
     def assign_random_nickname

@@ -14,12 +14,11 @@ RSpec.feature "Sign In", type: :feature do
 
   context 'when user is paid', js: true do
     context 'when is created' do
-      scenario 'should redirect to login path' do
+      scenario 'should redirect to form activate' do
         user.created!
         login(user)
         wait_for_ajax
-        expect(current_path).to eq login_path
-        expect(page).to have_css('.alert-notice')
+        expect(current_path).to eq activate_users_path
       end
     end
 

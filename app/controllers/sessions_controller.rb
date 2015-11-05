@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class SessionsController < ApplicationController
-  before_action :public_access, only: [:new, :create]
+  before_action :public_access, only: [:new, :create_with_omniauth]
 
   def new
   end
@@ -10,7 +10,6 @@ class SessionsController < ApplicationController
       url_omniauth_failure("No pudimos obtener el email de #{env['omniauth.auth'].provider.capitalize}. Por favor habilítalo")
     elsif user = AuthProvider.omniauth(env['omniauth.auth'])
       redirect_user_free and return if user.free_account?
-      redirect_user_with_status_created and return if user.created?
       sign_in(user)
       redirect_to signed_in_root_path
     else
@@ -41,11 +40,5 @@ class SessionsController < ApplicationController
           Make it Real ya no está disponible para usuarios gratuitos.
           Si quieres ingresar al programa haz click en el botón ¡Aplica ahora!)
 
-    end
-
-    def redirect_user_with_status_created
-      redirect_to login_path, notice: %Q(
-          Debes Activar tu cuenta, el link de activación fue enviado a su correo electronico,
-          si no es asi por favor vuelvalo a pedir)
     end
 end

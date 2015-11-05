@@ -64,6 +64,7 @@ RSpec.describe User, type: :model do
     end
   end
 
+
   describe '#completed_challenges' do
     it 'without challenges completed' do
       create(:challenge, course: course, published: false, restricted: true)

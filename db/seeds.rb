@@ -30,9 +30,8 @@ c2 = Challenge.create(course: html, name: "Ordenando el desorden", row_position:
   instructions: "Estas son las instrucciones del challenge.", evaluation: "def evaluate(files); return 'Siempre mal'; end")
 Document.create(folder: c2, name: "index.html", content: "")
 
-User.create(email: "admin@makeitreal.camp", account_type: User.account_types[:admin_account], password: "mir1234" , password_confirmation: "mir1234" )
+User.create(email: "admin@makeitreal.camp", account_type: User.account_types[:admin_account])
 
-User.create(email: "user_free@makeitreal.camp",account_type: User.account_types[:free_account], password: "mir1234", password_confirmation: "mir1234")
+User.create(email: "user_free@makeitreal.camp",account_type: User.account_types[:free_account])
 
-User.create(email: "user_paid@makeitreal.camp",account_type: User.account_types[:paid_account], password: "mir1234", password_confirmation: "mir1234")
-
+User.create(email: "user_paid@makeitreal.camp",account_type: User.account_types[:paid_account])

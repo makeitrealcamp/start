@@ -8,8 +8,7 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      @user.subscriptions.create
-      @user.send_activate_mail
+      @user.send_welcome_mail
     end
   end
 

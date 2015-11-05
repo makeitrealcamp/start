@@ -4,6 +4,7 @@ RSpec.feature "Users", type: :feature do
 
   let!(:user) { create(:paid_user) }
   let!(:admin) { create(:admin) }
+  let!(:user_with_status_created){ create(:paid_user, status: User.statuses[:created]) }
 
   scenario "when is not logged in" do
     expect { visit admin_users_path }.to raise_error
@@ -22,7 +23,31 @@ RSpec.feature "Users", type: :feature do
       expect(current_path).to eq signed_in_root_path
     end
 
+    context 'when user is not active' do
+      scenario 'should redirect active form when they click on Temas', js: true do
+        login(user_with_status_created)
+        wait_for_ajax
+        click_link 'Temas'
+        expect(current_path).to eq activate_users_path
+      end
+
+      scenario 'should redirect active form when they click on Mi Perfil', js: true do
+        login(user_with_status_created)
+        wait_for_ajax
+        click_link 'Temas'
+        expect(current_path).to eq activate_users_path
+      end
+    end
+
     context 'edit profile' do
+      scenario 'should redirect the active form when user is not active', js: true do
+        login(user_with_status_created)
+        wait_for_ajax
+        find('.avatar').click
+        click_link 'Editar Perfil'
+        expect(current_path).to eq activate_users_path
+      end
+
       scenario "should redirect to the login  when is not logged in" do
         visit edit_user_path(user)
         expect(current_path).to eq login_path
@@ -101,27 +126,20 @@ RSpec.feature "Users", type: :feature do
   end
 
   describe 'account activation' do
-    let!(:user) {create(:user, status: "created")}
-
-    before do
-      user.send_activate_mail
-    end
-
     scenario 'with valid input' do
-      original_first_name = user.first_name
+      original_first_name = user_with_status_created.first_name
       nickname = Faker::Internet.user_name('Nancy')
       number = Faker::Number.number(10)
       activate_account(
-        token: user.password_reset_token,
         nickname: nickname,
         mobile_number: number
       )
-      user.reload
-      expect(user.status).to eq "active"
-      expect(user.nickname).to eq nickname
-      expect(user.mobile_number).to eq number
-      expect(user.first_name).to eq original_first_name
-      expect(current_path).to eq login_path
+      user_with_status_created.reload
+      expect(user_with_status_created.status).to eq "active"
+      expect(user_with_status_created.nickname).to eq nickname
+      expect(user_with_status_created.mobile_number).to eq number
+      expect(user_with_status_created.first_name).to eq original_first_name
+      expect(current_path).to eq signed_in_root_path
       expect(page).to have_selector '.alert-notice'
     end
 
@@ -132,16 +150,13 @@ RSpec.feature "Users", type: :feature do
         create(:user,nickname: nickname)
 
         activate_account(
-          token: user.password_reset_token,
           nickname: nickname,
-          gender: 'male',
-          has_public_profile: true,
           mobile_number: number
         )
 
-        user.reload
-        expect(user.status).to eq "created"
-        expect(user.nickname).to_not eq 'simon0191'
+        user_with_status_created.reload
+        expect(user_with_status_created.status).to eq "created"
+        expect(user_with_status_created.nickname).to_not eq 'simon0191'
         expect(page).to have_selector ".alert-error"
         expect(current_path).to eq activate_users_path
       end
@@ -149,10 +164,9 @@ RSpec.feature "Users", type: :feature do
       scenario 'with nickname format is not valid' do
         nickname = Faker::Internet.user_name('Nancy Johnson', %w(. _ -))
         activate_account(
-          token: user.password_reset_token,
           nickname: nickname
         )
-        expect(user.status).to eq "created"
+        expect(user_with_status_created.status).to eq "created"
         expect(page).to have_selector ".alert-error"
         expect(current_path).to eq activate_users_path
       end
@@ -162,7 +176,7 @@ end
 
 
 def activate_account(opts={})
-  visit activate_users_path(token: opts[:token])
+  login(user_with_status_created)
   fill_in "activate_user_mobile_number", with: opts[:mobile_number]
   fill_in "activate_user_birthday", with: opts[:birthday]
   fill_in "activate_user_nickname", with: opts[:nickname]
