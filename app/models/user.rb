@@ -15,10 +15,12 @@
 #  account_type    :integer
 #  nickname        :string
 #  level_id        :integer
+#  path_id         :integer
 #
 # Indexes
 #
 #  index_users_on_level_id  (level_id)
+#  index_users_on_path_id   (path_id)
 #
 
 class User < ActiveRecord::Base
@@ -28,6 +30,8 @@ class User < ActiveRecord::Base
   attr_accessor :password_confirmation, :notifier
   has_secure_password validations: false
 
+  belongs_to :level
+  belongs_to :path
   has_many :solutions, dependent: :destroy
   has_many :challenges, -> { uniq }, through: :solutions
   has_many :auth_providers, dependent: :destroy
@@ -39,7 +43,6 @@ class User < ActiveRecord::Base
   has_many :resources, -> { uniq }, through: :resource_completions
   has_many :points
   has_many :challenge_completions, dependent: :delete_all
-  belongs_to :level
   has_many :badge_ownerships, dependent: :destroy
   has_many :badges, -> { uniq }, through: :badge_ownerships
   has_many :notifications
@@ -218,20 +221,14 @@ class User < ActiveRecord::Base
     solutions.order('updated_at DESC').take
   end
 
-  def next_challenge
+  def next_challenge(path)
+    # user has not completed nor attempted any challenge
     if last_solution.nil?
-      Challenge.published.includes(:course,:phase).all.sort do |a,b|
-        if (phase_diff = a.phase.row - b.phase.row) != 0
-          diff = phase_diff
-        elsif (course_diff = a.course.row - b.course.row) != 0
-          diff = course_diff
-        else
-          diff = a.row - b.row
-        end
-        diff
-      end.first
+      path.first_challenge
+    # user's last action was a challenge completion
     elsif last_solution.completed?
-      find_next_challenge
+      find_next_challenge(path)
+    # user attempted a challenge but it was not completed
     else
       last_solution.challenge
     end
@@ -244,6 +241,7 @@ class User < ActiveRecord::Base
       self.has_public_profile ||= false
       self.account_type ||= User.account_types[:free_account]
       self.level ||= Level.for_points(0)
+      self.path ||= Path.first
     end
 
     def generate_token
@@ -266,11 +264,11 @@ class User < ActiveRecord::Base
       end
     end
 
-    def find_next_challenge
+    def find_next_challenge(path)
       current_challenge = last_solution.challenge
       next_challenge = current_challenge.next_for(self)
       if next_challenge.nil?
-        course = current_challenge.course.next
+        course = current_challenge.course.next(path)
         if course.nil?
           phase = current_challenge.course.phase.next
           if phase.nil?

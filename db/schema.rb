@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151023052301) do
+ActiveRecord::Schema.define(version: 20151109173759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,13 @@ ActiveRecord::Schema.define(version: 20151023052301) do
   add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
+  create_table "course_phases", force: :cascade do |t|
+    t.integer  "course_id"
+    t.integer  "phase_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string   "name",          limit: 50
     t.integer  "row"
@@ -102,10 +109,7 @@ ActiveRecord::Schema.define(version: 20151023052301) do
     t.string   "description"
     t.string   "slug"
     t.boolean  "published"
-    t.integer  "phase_id"
   end
-
-  add_index "courses", ["phase_id"], name: "index_courses_on_phase_id", using: :btree
 
   create_table "documents", force: :cascade do |t|
     t.integer  "folder_id"
@@ -177,6 +181,14 @@ ActiveRecord::Schema.define(version: 20151023052301) do
   add_index "notifications", ["status"], name: "index_notifications_on_status", using: :btree
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
+  create_table "paths", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "published",   default: false
+  end
+
   create_table "phases", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -186,7 +198,10 @@ ActiveRecord::Schema.define(version: 20151023052301) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "color"
+    t.integer  "path_id"
   end
+
+  add_index "phases", ["path_id"], name: "index_phases_on_path_id", using: :btree
 
   create_table "points", force: :cascade do |t|
     t.integer  "user_id"
@@ -353,9 +368,11 @@ ActiveRecord::Schema.define(version: 20151023052301) do
     t.integer  "account_type"
     t.string   "nickname"
     t.integer  "level_id"
+    t.integer  "path_id"
   end
 
   add_index "users", ["level_id"], name: "index_users_on_level_id", using: :btree
+  add_index "users", ["path_id"], name: "index_users_on_path_id", using: :btree
 
   create_table "version_associations", force: :cascade do |t|
     t.integer "version_id"
@@ -384,11 +401,11 @@ ActiveRecord::Schema.define(version: 20151023052301) do
   add_foreign_key "challenge_completions", "users"
   add_foreign_key "challenges", "courses"
   add_foreign_key "comments", "users"
-  add_foreign_key "courses", "phases"
   add_foreign_key "lesson_completions", "lessons"
   add_foreign_key "lesson_completions", "users"
   add_foreign_key "lessons", "sections"
   add_foreign_key "notifications", "users"
+  add_foreign_key "phases", "paths"
   add_foreign_key "points", "courses"
   add_foreign_key "project_solutions", "projects"
   add_foreign_key "project_solutions", "users"
@@ -404,4 +421,5 @@ ActiveRecord::Schema.define(version: 20151023052301) do
   add_foreign_key "solutions", "users"
   add_foreign_key "subscriptions", "users"
   add_foreign_key "users", "levels"
+  add_foreign_key "users", "paths"
 end

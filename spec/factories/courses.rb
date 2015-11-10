@@ -12,11 +12,6 @@
 #  description   :string
 #  slug          :string
 #  published     :boolean
-#  phase_id      :integer
-#
-# Indexes
-#
-#  index_courses_on_phase_id  (phase_id)
 #
 
 FactoryGirl.define do

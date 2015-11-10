@@ -43,7 +43,6 @@ class Challenge < ActiveRecord::Base
   has_many :comments, as: :commentable
   has_many :solutions
   has_many :points, as: :pointable
-  has_one :phase, through: :course
 
   validates :name, presence: true
   validates :instructions, presence: true
@@ -65,8 +64,19 @@ class Challenge < ActiveRecord::Base
     end
   end
 
+  def self.path_order
+    all.includes(:course).sort do |a,b|
+      if (course_diff = a.course.row - b.course.row) != 0
+        diff = course_diff
+      else
+        diff = a.row - b.row
+      end
+      diff
+    end
+  end
+
   def next_for(user)
-    self.course.challenges.for(user).where('row > ?', self.row).first
+    self.course.challenges.for(user).order(:row).where('row > ?', self.row).first
   end
 
   def last?

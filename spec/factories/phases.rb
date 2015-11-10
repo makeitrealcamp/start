@@ -11,6 +11,11 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  color       :string
+#  path_id     :integer
+#
+# Indexes
+#
+#  index_phases_on_path_id  (path_id)
 #
 
 FactoryGirl.define do

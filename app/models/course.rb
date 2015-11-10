@@ -12,16 +12,11 @@
 #  description   :string
 #  slug          :string
 #  published     :boolean
-#  phase_id      :integer
-#
-# Indexes
-#
-#  index_courses_on_phase_id  (phase_id)
 #
 
 class Course < ActiveRecord::Base
   include RankedModel
-  ranks :row, with_same: :phase_id
+  ranks :row
 
   extend FriendlyId
   friendly_id :name
@@ -31,18 +26,21 @@ class Course < ActiveRecord::Base
   has_many :projects
   has_many :points
   has_many :quizzes, class_name: 'Quizer::Quiz'
-  belongs_to :phase
+  has_many :course_phases
+  has_many :phases, -> { uniq }, through: :course_phases
   has_many :badges, dependent: :destroy
 
   validates :name, presence: true
   scope :for, -> user { published unless user.is_admin? }
   scope :published, -> { where(published: true) }
-  default_scope { rank(:row) }
 
   after_initialize :default_values
 
-  def next
-    self.phase.courses.published.where('row > ?', self.row).first
+  def next(path)
+    phases
+      .published
+      .where(path_id: path.id).take
+      .courses.published.order(:row).where('row > ?', self.row).first
   end
 
   private
