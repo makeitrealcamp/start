@@ -117,12 +117,12 @@ RSpec.describe User, type: :model do
       challenge1 = create(:challenge, course: course, published: false, restricted: true)
       create(:solution, user: user, challenge: challenge, status: :completed)
 
-      resource  = create(:resource, course: course, published: true)
-      resource1 = create(:resource, course: course, published: false)
-      resource2 = create(:resource, course: course, published: true)
+      project  = create(:project, course: course, published: true)
+      project1 = create(:project, course: course, published: false)
+      project2 = create(:project, course: course, published: true)
 
-      create(:resource_completion, user: user, resource: resource)
-      create(:resource_completion, user: user, resource: resource1)
+      project_solution = create(:project_solution, user: user, project: project)
+
       expect(user.stats.progress_by_course(course)).to be < 1.0
     end
   end
