@@ -610,20 +610,19 @@
     }
   }
   .intro {
-    background: image-url("introBg2.png") center center;
+    background: image-url("introBg2.png") top center;
     background-size: cover;
     width: 100%;
-    height: 100%;
-    padding-top: 70px;
     text-align: center;
     position: relative;
+    min-height: 550px;
   }
   .tagline {
     font-size: 42px;
     font-weight: 700;
     font-family: 'Karla', sans-serif;
     color: #fff;
-    margin-top: 170px;
+    margin-top: 150px;
     padding: 0 35px;
     @media (max-width: $screen-sm-min) {
       font-size: 28px;
@@ -634,6 +633,14 @@
     }
     @media ( max-width: 1200px ) and (max-height: 400px ) {
       margin-top: 50px;
+    }
+  }
+  .tagline-support {
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 35px;
+    @media (max-width: $screen-sm-min) {
+      font-size: 22px;
     }
   }
   .quotes {
@@ -708,7 +715,6 @@
   }
 
   .pitch {
-    background: #272727;
     color: #ff4300;
     text-align: center;
     padding: 70px 0;
@@ -733,7 +739,7 @@
       }
     }
     h2 {
-      font-size: 30px;
+      font-size: 28px;
       font-family: 'Open Sans', sans-serif;
       font-weight: 300;
       margin: 0;
@@ -778,7 +784,8 @@
       color: #ff4300;
       font-family: 'Open Sans', sans-serif;
       font-weight: 300;
-      margin-top: 150px;
+      margin-top: 0;
+      padding-top: 150px;
       margin-bottom: 80px;
       @media (max-width: $screen-md-min) {
         margin-bottom: 40px;
@@ -816,6 +823,7 @@
     }
   }
   .feature-two {
+    margin-bottom: 150px;
     .text {
       padding: 15% 10% 0;
       @media (max-width: $screen-md-min) {
@@ -832,9 +840,8 @@
       }
     }
     h3 {
-      margin-top: 100px;
       @media (max-width: $screen-md-min) {
-        margin-top: 50px;
+        padding-top: 50px;
       }
     }
   }
@@ -842,7 +849,7 @@
     background: #272727;
     text-align: center;
     overflow: hidden;
-    margin-top: 150px;
+    margin-top: 30px;
     @media (max-width: $screen-md-min) {
       padding-bottom: 30px;
       margin-top: 80px;
@@ -920,6 +927,7 @@
 
   .feature-three {
     margin-bottom: 100px;
+    border-top: solid 1px #dddddd;
     @media (max-width: $screen-md-min) {
       margin-bottom: 40px;
     }
@@ -971,8 +979,104 @@
           }
         }
       }
-      .mentor-link {
+    }
+  }
 
+  .feature-programas {
+    h4 {
+      font-size: 24px;
+      text-transform: uppercase;
+      font-weight: 300;
+      color: #ff4300;
+      font-family: 'Open Sans', sans-serif;
+      text-align: center;
+      margin-top: 25px;
+    }
+    .programa {
+      text-align: center;
+      p {
+        margin: 20px 0;
+      }
+    }
+  }
+
+  .why {
+    background: #272727;
+    text-align: center;
+    overflow: hidden;
+    margin-top: 150px;
+    @media (max-width: $screen-md-min) {
+      margin-top: 70px;
+    }
+    h3 {
+      text-align: center;
+      font-size: 42px;
+      text-transform: uppercase;
+      color: #ff4300;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+      margin-top: 150px;
+      margin-bottom: 80px;
+      @media (max-width: $screen-md-min) {
+        margin-top: 80px;
+        font-size: 32px;
+      }
+    }
+    .icon {
+      display: inline-block;
+      margin-top: 80px;
+      margin-bottom: 100px;
+      @media (max-width: $screen-md-min) {
+        margin-top: 40px;
+        margin-bottom: 50px;
+      }
+    }
+  }
+  .reason {
+    text-align: center;
+    color: #fff;
+    @media (max-width: $screen-md-min) {
+      margin-bottom: 70px;
+    }
+    .deco-quote {
+      margin-bottom: 15px;
+    }
+    .icon-reason {
+      display: block;
+      margin: 0 auto;
+      width: 200px;
+      .img-responsive {
+        margin: 0 auto 20px;
+      }
+    }
+    .reason-number {
+      text-transform: uppercase;
+      color: #ff4300;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+      font-size: 30px;
+    }
+    h4 {
+      text-transform: uppercase;
+      color: #ff4300;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+      font-size: 24px;
+    }
+    p {
+      color: #fff;
+      font-size: 16px;
+      width: 80%;
+      margin: 0 auto;
+    }
+    ul {
+      margin: 15px auto 0;
+      width: 80%;
+      list-style-type: none;
+      padding-left: 10px;
+      text-align: left;
+      @media (max-width: $screen-md-min) {
+        text-align: center;
       }
     }
   }
