@@ -13,7 +13,7 @@
 
             <div class="form-group">
               <%= f.label :birthday, "Fecha de cumpleaños" %>
-              <%= f.text_field :birthday, data: { datetimepicker: true }, class: "form-control input-lg", placeholder: "DD/MM/AAAA" %>
+              <%= f.text_field :birthday, data: { datetimepicker: true }, class: "form-control input-lg", placeholder: "DD/MM/AAAA", value: @activate_user.birthday.blank? ? '' : Date.parse(@activate_user.birthday).strftime('%d-%m-%Y') %>
             </div>
             <div class="form-group">
               <%= f.label :mobile_number, "Celular"%>
