@@ -1,9 +1,9 @@
 <div class="new_site">
   <%= render "navigation" %>
   <div class="intro">
-    <div class="container-fluid">
+    <div class="container">
       <div class="row">
-        <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+        <div class="col-lg-10 col-lg-offset-1">
           <h1 class="tagline">Especialízate en Desarrollo Web</h1>
           <h2 class="tagline-support">Avanza tu carrera con un programa estructurado y guiado por mentores</h2>
         </div>
@@ -77,6 +77,7 @@
             <span class="icon-developer">
               <%= image_tag("iconFullStack.png", class: "img-responsive") %>
             </span>
+            <h4>Full stack web developer</h4>
             <p>En nuestro programa de full stack web developer aprenderás a crear aplicaciones Web con Ruby on Rails y bases de datos.</p>
             <%= link_to "Más Información", curriculum_path, class: "btn btn-main" %>
           </div>
@@ -87,6 +88,7 @@
             <span class="icon-developer">
               <%= image_tag("iconFrontEnd.png", class: "img-responsive") %>
             </span>
+            <h4>Front end web developer</h4>
             <p>En nuestro programa de front end web developer aprenderás a crear aplicaciones Web con Angular JS.</p>
             <%= link_to "Más Información", curriculum_path, class: "btn btn-main" %>
           </div>

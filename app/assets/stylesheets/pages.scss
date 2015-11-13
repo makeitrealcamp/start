@@ -619,12 +619,13 @@
   }
   
   .tagline {
-    font-size: 42px;
+    font-size: 48px;
     font-weight: 700;
     font-family: 'Karla', sans-serif;
     color: #fff;
-    margin-top: 150px;
+    margin-top: 210px;
     padding: 0 35px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     @media (max-width: $screen-sm-min) {
       font-size: 28px;
       padding: 0;
@@ -640,6 +641,7 @@
     font-weight: 400;
     color: #fff;
     margin-bottom: 35px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     @media (max-width: $screen-sm-min) {
       font-size: 22px;
     }
@@ -676,7 +678,7 @@
     font-weight: 400;
     margin-top: 12px;
     display: inline-block;
-    @media (max-width: $screen-lg-min) {
+    @media (max-width: $screen-md-min) {
       display: none;
     }
     @media (max-height: 700px ) {
@@ -783,8 +785,8 @@
       font-size: 42px;
       text-transform: uppercase;
       color: #ff4300;
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 300;
+      font-family: 'Karla', sans-serif;
+      font-weight: 400;
       margin-top: 0;
       padding-top: 150px;
       margin-bottom: 80px;
@@ -860,8 +862,8 @@
       font-size: 42px;
       text-transform: uppercase;
       color: #ff4300;
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 300;
+      font-family: 'Karla', sans-serif;
+      font-weight: 400;
       margin-top: 150px;
       margin-bottom: 80px;
       @media (max-width: $screen-md-min) {
@@ -1055,8 +1057,8 @@
       font-size: 42px;
       text-transform: uppercase;
       color: #ff4300;
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 300;
+      font-family: 'Karla', sans-serif;
+      font-weight: 400;
       margin-top: 150px;
       margin-bottom: 80px;
       @media (max-width: $screen-md-min) {
@@ -1133,8 +1135,8 @@
       font-size: 42px;
       text-transform: uppercase;
       color: #ff4300;
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 300;
+      font-family: 'Karla', sans-serif;
+      font-weight: 400;
       margin-top: 150px;
       margin-bottom: 50px;
       @media (max-width: $screen-xs-min) {
