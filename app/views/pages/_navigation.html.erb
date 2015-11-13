@@ -12,7 +12,17 @@
       </div>
       <div class="navbar-collapse collapse" id="navbar">
         <ul class="nav navbar-nav">
-          <li class="<%= 'active' if params[:action] == 'curriculum' %>"><%= link_to "Nuestro Programa", curriculum_path %></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+              Nuestros Programas <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="<%= 'active' if params[:action] == 'full_stack_web_developer' %>"><%= link_to "Full Stack Web Developer", full_stack_web_developer_path %>
+              </li>
+              <li class="<%= 'active' if params[:action] == 'front_end_web_developer' %>"><%= link_to "Front End Web Developer", front_end_web_developer_path %>
+              </li>
+            </ul>
+          </li>
           <li class="<%= 'active' if params[:action] == 'makers' %>"><%= link_to "Alumnos", makers_path %></li>
           <li class="<%= 'active' if params[:action] == 'pricing' %>"><%= link_to "Precio", pricing_path %></li>
           <li class="<%= 'active' if params[:action] == 'faq' %>"><%= link_to "Preguntas Frecuentes", faq_path %></li>
