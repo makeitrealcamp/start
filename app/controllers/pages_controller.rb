@@ -21,6 +21,12 @@ class PagesController < ApplicationController
   def curriculum
   end
 
+  def full_stack_web_developer
+  end
+
+  def front_end_web_developer
+  end
+
   def faq
   end
 

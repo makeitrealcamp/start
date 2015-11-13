@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   root 'pages#home'
 
-  get 'curriculum' => 'pages#curriculum'
-  get 'pricing' => 'pages#pricing'
-  get 'faq' => 'pages#faq'
-  get 'makers' => 'pages#makers'
-  get 'publicar' => 'pages#publicar'
+  get "curriculum" => "pages#curriculum"
+  get "full_stack_web_developer" => "pages#full_stack_web_developer"
+  get "front_end_web_developer" => "pages#front_end_web_developer"
+  get "faq" => "pages#faq"
+  get "makers" => "pages#makers"
+  get "publicar" => "pages#publicar"
 
   get 'thanks', to: 'pages#thanks', as: :thanks
   get 'handbook', to: 'pages#handbook', as: :handbook
