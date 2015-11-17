@@ -29,12 +29,13 @@ class UserMailer < ApplicationMailer
     beginning_of_week = date.beginning_of_week
     end_of_week = date.end_of_week
     @user = user
-    #TODO: move to UserStats
-    @solved_challenges = Challenge.where(id: user.solutions.completed_at_after(beginning_of_week).completed_at_before(end_of_week).pluck(:challenge_id))
-    @completed_resources = Resource.where(id: user.resource_completions.created_at_after(beginning_of_week).created_at_before(end_of_week).pluck(:resource_id))
-    @finished_projects = Project.where(id: user.project_solutions.created_at_after(beginning_of_week).created_at_before(end_of_week).pluck(:project_id))
-    @received_badges = Badge.where(id: user.badge_ownerships.created_at_after(beginning_of_week).created_at_before(end_of_week).pluck(:badge_id))
-    @received_points = user.points.created_at_after(beginning_of_week).created_at_before(end_of_week)
+
+    @solved_challenges = user.stats.solved_challenges(beginning_of_week, end_of_week)
+    @completed_resources = user.stats.completed_resources(beginning_of_week, end_of_week)
+    @finished_projects = user.stats.finished_projects(beginning_of_week, end_of_week)
+    @received_badges = user.stats.received_badges(beginning_of_week, end_of_week)
+    @received_points = user.stats.received_points(beginning_of_week, end_of_week)
+
     @unread_notifications = user.notifications.unread
     @points_needed_for_next_level = user.stats.points_needed_for_next_level
     mail to: @user.email, subject: "Un resumen de tu semana en Make it Real"
