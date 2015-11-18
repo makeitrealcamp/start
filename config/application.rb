@@ -31,5 +31,11 @@ module Prework
       generator.helper_specs false
       generator.controller_specs false
     end
+
+    Settings.reload_from_files(
+      Rails.root.join("config", "settings.yml").to_s,
+      Rails.root.join("config", "settings", "#{Rails.env}.yml").to_s,
+      Rails.root.join("config", "environments", "#{Rails.env}.yml").to_s
+    )
   end
 end

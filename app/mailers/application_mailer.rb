@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "info@makeitreal.camp"
+  default from: Settings.action_mailer.default_from
   layout 'mailer'
 
   helper ApplicationHelper
