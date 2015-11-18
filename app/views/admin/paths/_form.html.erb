@@ -1,0 +1,22 @@
+<% url = @path.persisted? ?  admin_path_path(@path) : admin_paths_path %>
+<% method = @path.persisted? ?  :patch : :post %>
+
+<%= form_for @path, url: url, method: method do |f| %>
+  <%= render 'shared/flash_messages_form', object: @path %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, rows: 2, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.check_box :published %>
+    <%= f.label :published %>
+  </div>
+
+  <%= f.submit "Guardar", class: "btn btn-success" %>
+<% end %>

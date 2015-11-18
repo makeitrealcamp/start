@@ -20,7 +20,7 @@
 
 class Phase < ActiveRecord::Base
   include RankedModel
-  ranks :row
+  ranks :row, with_same: :path_id
 
   extend FriendlyId
   friendly_id :name
@@ -30,8 +30,7 @@ class Phase < ActiveRecord::Base
   has_many :courses, -> { uniq }, through: :course_phases
 
   after_initialize :default_values
-
-  default_scope { rank(:row) }
+  
   scope :for, -> user {
     if user.is_admin?
       where(path_id: user.path_id)

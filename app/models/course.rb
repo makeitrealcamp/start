@@ -30,7 +30,11 @@ class Course < ActiveRecord::Base
   has_many :phases, -> { uniq }, through: :course_phases
   has_many :badges, dependent: :destroy
 
+  accepts_nested_attributes_for :course_phases, allow_destroy: true
+
+
   validates :name, presence: true
+  
   scope :for, -> user { published unless user.is_admin? }
   scope :published, -> { where(published: true) }
 

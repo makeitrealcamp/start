@@ -47,6 +47,8 @@ class CoursesController < ApplicationController
   private
     def course_params
       params.require(:course).permit(:name, :description, :excerpt, :abstract,
-        :time_estimate, :published, :visibility, :phase_id)
+        :time_estimate, :published, :visibility, :phase_id,
+        course_phases_attributes: [:phase_id,:id,:_destroy]
+        )
     end
 end

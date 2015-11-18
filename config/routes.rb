@@ -32,11 +32,8 @@ Rails.application.routes.draw do
   get "/u/:nickname", to: "users#profile", as: :user_profile
 
   get '/dashboard', to: 'dashboard#index', as: :signed_in_root
-  get '/phases', to: 'phases#index'
 
-  resources :phases, except: [:destroy] do
-    patch 'update_position', on: :member
-  end
+  resources :phases, only: [:new,:create,:edit,:update]
 
   resources :courses, except: [:destroy] do
     patch 'update_position', on: :member
@@ -131,6 +128,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'dashboard', to: 'dashboard#index'
+    resources :paths, only: [:index, :new, :create, :update, :edit]
     resources :users, only: [:index, :new, :create, :show] do
       resources :subscriptions, only: [:create] do
         member do

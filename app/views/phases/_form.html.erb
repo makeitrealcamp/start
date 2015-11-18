@@ -1,8 +1,8 @@
 <div class="container phase-form-page">
   <div class="row">
     <div class="col-sm-12 header">
-      <%= link_to signed_in_root_path do %>
-        <span class='glyphicon glyphicon-arrow-left'></span> Volver a todas las fases
+      <%= link_to admin_paths_path do %>
+        <span class='glyphicon glyphicon-arrow-left'></span> Volver
       <% end %>
     </div>
 
@@ -10,6 +10,10 @@
       <div class="col-sm-10 col-sm-offset-1">
         <%= render 'shared/flash_messages_form', object: @phase %>
         <h1>Editar Fase</h1>
+        <div class="form-group">
+          <%= f.label :path %>
+          <%= f.collection_select(:path_id, Path.all, :id, :name, {}, class: "form-control") %>
+        </div>
         <div class="form-group">
           <%= f.label :name %>
           <%= f.text_field :name, class: "form-control" %>

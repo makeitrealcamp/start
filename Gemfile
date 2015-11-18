@@ -98,7 +98,7 @@ group :test do
   gem 'capybara', '~> 2.4.4'
   gem 'database_cleaner'
   gem 'launchy'
-  gem "selenium-webdriver", '~>2.45.0'
-  gem "codeclimate-test-reporter", require: nil
+  gem 'selenium-webdriver', '~>2.45.0'
+  gem 'codeclimate-test-reporter', require: nil
 end
 gem 'sinatra', :require => nil
