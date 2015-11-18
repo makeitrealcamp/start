@@ -6,12 +6,12 @@ class UserStats
   end
 
   def progress_by_course(course)
-    resources_count = course.resources.published.count
     challenges_count = course.challenges.published.count
-    total = resources_count + challenges_count
+    projects_count = course.projects.published.count
+    total = challenges_count + projects_count
     return 1.0 if total == 0
 
-    user_completed = completed_resources_by_course_count(course) + completed_challenges_by_course_count(course)
+    user_completed = completed_challenges_by_course_count(course) + completed_projects_by_course_count(course)
     user_completed.to_f/total.to_f
   end
 
