@@ -182,44 +182,50 @@
 
         <div class="col-md-4 each-application-program text-center">
           <div class="image-application-program">
-            imagen
+            <%= image_tag("projects/air-bnb.png", class:"img-responsive") %>
           </div>
-          <h4>Aplicación uno</h4>
+          <h4>Clon de Air BnB</h4>
+          <p>Ruby on Rails, bootstrap, Git y PostgreSQL como Base de Datos.</p>
         </div>
 
         <div class="col-md-4 each-application-program text-center">
           <div class="image-application-program">
-            imagen
+            <%= image_tag("projects/stack-overflow.png", class:"img-responsive") %>
           </div>
-          <h4>Aplicación dos</h4>
+          <h4>Clon de Stack Overflow</h4>
+          <p>Ruby on Rails, bootstrap, Git y PostgreSQL como Base de Datos.</p>
         </div>
 
         <div class="col-md-4 each-application-program text-center">
           <div class="image-application-program">
-            imagen
+            <%= image_tag("projects/product-hunt.png", class:"img-responsive") %>
           </div>
-          <h4>Aplicación tres</h4>
+          <h4>Clon de Product Hunt</h4>
+          <p>Ruby on Rails, bootstrap, Git y PostgreSQL como Base de Datos.</p>
         </div>
 
         <div class="col-md-4 each-application-program text-center">
           <div class="image-application-program">
-            imagen
+            <%= image_tag("projects/stack-overflow.png", class:"img-responsive") %>
           </div>
-          <h4>Aplicación cuatro</h4>
+          <h4>Spotify Preview</h4>
+          <p>Ruby on Rails, bootstrap, Git y PostgreSQL como Base de Datos.</p>
         </div>
 
         <div class="col-md-4 each-application-program text-center">
           <div class="image-application-program">
-            imagen
+            <%= image_tag("projects/product-hunt.png", class:"img-responsive") %>
           </div>
-          <h4>Aplicación cinco</h4>
+          <h4>Landing para Jaguar</h4>
+          <p>Ruby on Rails, bootstrap, Git y PostgreSQL como Base de Datos.</p>
         </div>
 
         <div class="col-md-4 each-application-program text-center">
           <div class="image-application-program">
-            imagen
+            <%= image_tag("projects/air-bnb.png", class:"img-responsive") %>
           </div>
-          <h4>Aplicación seis</h4>
+          <h4>Ecommerce</h4>
+          <p>Ruby on Rails, bootstrap, Git y PostgreSQL como Base de Datos.</p>
         </div>
 
       </div><!--/row -->
@@ -231,10 +237,10 @@
     <div class="container">
       <div class="row">
 
-        <div class="col-md-12 title-program text-center">
+        <div class="col-md-8 col-md-offset-2 title-program text-center">
           <h3>Tu proyecto personal</h3>
-          <p class="subhead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, voluptate rem, molestiae dolorum totam suscipit laudantium magnam illo nihil id ab eius. Repellendus, sequi, provident.</p>
-          <a href="">Conoce los proyectos de nuestros makers</a>
+          <p class="subhead">Al ingresar a Make it Real te asignamos un mentor principal el cuál estará pendiente de tu progreso y también estará listo para solucionar tus dudas para que puedas aprovechar al máximo nuestro programa.</p>
+          <a href="" class="btn btn-main">Conoce los proyectos de nuestros makers</a>
         </div>
         
       </div><!--/row -->
@@ -243,15 +249,89 @@
 
 
   <div class="feature-program price-program">
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
-        
+        <div class="pricing">
+          <div class="col-md-12 title-program">
+            <h3>Precio</h3>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <div id="financing-usd" class="financing">
+                  <%= render "price_box", currency: "USD",first_payment: 299,monthly_payment: 150,
+                    one_payment: 900,monthly_payments: 5, currency_name: "dólares americanos",saving: 120 %>
+                </div>
+                <div id="financing-cop" class="financing">
+                  <%= render "price_box", currency: "COP",first_payment: "800,000",monthly_payment: "320,000",
+                    one_payment: "2,060,000",monthly_payments: 5, currency_name: "pesos colombianos",saving: "340,000" %>
+                </div>
+              </div>
 
-        <div class="col-md-12 title-program">
-          <h3>Precio</h3>
-        </div>
+              <div class="col-md-5 col-md-offset-1">
+                <div class="financing-quote">
+                  <h4>Lo que dicen de nosotros</h4>
+                  <div id="student-says-1" class="student-says">
+                    <p>"Make it Real me abrió un mar de oportunidades laborales como Desarrollador Web y un sin fin de posibilidades de materializar ideas de negocio. Definitivamente te ayuda a abrir la mente."</p>
+                    <div class="student-data">
+                      <div class="profile-img">
+                        <%= image_tag "people/daniel-llano.png" %>
+                      </div>
+                      <span class="profile-name txt-bold">Daniel Llano</span>
+                      <span class="profile-status">Desarrollador Web en Kommit</span>
+                    </div><!--/student-data -->
+                  </div>
+
+                  <div id="student-says-2" class="student-says">
+                    <p>"Estuve buscando algo como Make it Real por mucho tiempo, un lugar donde puedo llevar directamente los conocimientos que he aprendido a productos y proyectos de la vida real."</p>
+                    <div class="student-data">
+                      <div class="profile-img">
+                        <%= image_tag "people/german-hernandez.png" %>
+                      </div>
+                      <span class="profile-name txt-bold">Germán Hernandez</span>
+                      <span class="profile-status">Co-fundador de Kaizen Devs</span>
+                    </div><!--/student-data -->
+                  </div>
+
+                  <div id="student-says-3" class="student-says">
+                    <p>"Make it Real me brindó un cambio de mentalidad para generar confianza en uno mismo y en como el auto aprendizaje y la frustración son fundamentales en el proceso de adquirir nuevas habilidades."</p>
+                    <div class="student-data">
+                      <div class="profile-img">
+                        <%= image_tag "people/edwin-restrepo.png" %>
+                      </div>
+                      <span class="profile-name txt-bold">Edwin Restrepo</span>
+                      <span class="profile-status">Desarrollador Web en Yuxi Pacific</span>
+                    </div><!--/student-data -->
+                  </div>
+                  <div class="more">
+                    <a href="<%= makers_path %>">Ver más opiniones</a>
+                  </div>
+                </div> <!--/financing-quote -->
+              </div>
+            </div>
+          </div>
 
 
+          <div class="col-md-12 benefits">
+            <div class="col-md-6 col-md-offset-3">
+              <div class="top-container">
+                <h4>¿Qué beneficios recibo?</h4>
+                <ul>
+                  <li>Mentorías ilimitadas por Hangout o Skype con mentores experimentados.</li>
+                  <li>Acceso de por vida a Slack (nuestro chat interno). Sigue recibiendo apoyo de tus mentores y otros estudiantes aún cuando termines el programa.</li>
+                  <li>Acceso por un año a la plataforma (retos, cursos, charlas y material adicional).</li>
+                </ul>
+                <%= link_to "https://makeitreal.typeform.com/to/KbayyW", class: "btn btn-main" do %>
+                    ¡Aplica ahora!</a>
+                <div class="secret hidden">HcUy6Re2LLBRtj</div>
+                <% end %>
+              </div>
+            </div>
+            <div class="icon-mir">
+              <%= image_tag("bgIconMir.png", class: "img-responsive") %>
+            </div>
+          </div>
+        </div><!--/pricing -->
 
       </div><!--/row -->
     </div><!--/container -->
@@ -269,9 +349,14 @@
 
   <div class="container-fluid">
     <div class="row">
-      <%= render "cta_enroll" %>
       <%= render "footer" %>
     </div>
   </div>
 
 </div><!--/new_site -->
+<script type="text/javascript">
+  $(document).on("ready page:load", window.ready_pricing);
+  $(document).on("page:before-change", function() {
+    $(document).off("ready page:load", window.ready_pricing);
+  });
+</script>

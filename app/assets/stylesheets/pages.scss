@@ -1852,7 +1852,32 @@
   .applications-program {
     background: #272727;
     color: #fff;
+    .each-application-program {
+      margin-bottom: 50px;
+    }
   }
+  .project-program {
+    .btn-main {
+      display: inline-block;
+      margin-top: 50px;
+      padding: 10px 20px;
+      width: auto;
+    }
+  }
+  .price-program {
+    border-top: 1px solid #dddddd;
+    padding: 85px 0 0;
+    .financing {
+      margin-top: 0;
+    }
+    .financing-quote {
+      margin-top: 0;
+    }
+    .benefits {
+      padding-top: 85px;
+    }
+  }
+
 
   
 }
