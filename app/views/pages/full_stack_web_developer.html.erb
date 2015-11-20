@@ -14,7 +14,7 @@
           <ul>
             <li>
               <div class="icon-bullet-program">
-                ícono 1
+                <%= image_tag("icon-interna-aplicaciones.png") %>
               </div>
               <div class="content-bullet-program">
                 <h2>Crea aplicaciones reales</h2>
@@ -23,7 +23,7 @@
             </li>
             <li>
               <div class="icon-bullet-program">
-                ícono 2
+                <%= image_tag("icon-interna-mentores.png") %>
               </div>
               <div class="content-bullet-program">
                 <h2>Mentores Experimentados</h2>
@@ -32,7 +32,7 @@
             </li>
             <li>
               <div class="icon-bullet-program">
-                ícono 3
+                <%= image_tag("icon-interna-horario.png") %>
               </div>
               <div class="content-bullet-program">
                 <h2>Horario Flexible</h2>
@@ -47,28 +47,40 @@
   </div><!--/program-intro -->
 
 
-  <div class="data-program">
+  <div class="feature-program data-program">
     <div class="container">
       <div class="row">
 
-      <div class="col-md-3 each-data-program">
-        <span class="data-number">100</span>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum nihil quod accusantium fuga cumque dolores!</p>
+      <div class="col-md-12 title-program">
+        <h3>Incluye</h3>
       </div>
 
-      <div class="col-md-3 each-data-program">
-        <span class="data-number">100</span>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum nihil quod accusantium fuga cumque dolores!</p>
+      <div class="col-md-3">
+        <div class="each-data-program">
+          <span class="data-number">+200</span>
+          <p>Retos autoevaluado para que aprendas mientras los</p>
+        </div>
       </div>
 
-      <div class="col-md-3 each-data-program">
-        <span class="data-number">100</span>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum nihil quod accusantium fuga cumque dolores!</p>
+      <div class="col-md-3">
+        <div class="each-data-program">
+          <span class="data-number">110</span>
+          <p>Videos que te guiarán en la construcción de aplicaciones, no videos aburridos</p>
+        </div>
       </div>
 
-      <div class="col-md-3 each-data-program">
-        <span class="data-number">100</span>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum nihil quod accusantium fuga cumque dolores!</p>
+      <div class="col-md-3">
+        <div class="each-data-program">
+          <span class="data-number">10</span>
+          <p>Proyectos evaluados y retroalimentados por mentores experimentados.</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="each-data-program">
+          <span class="data-number">10 - 15</span>
+          <p>Horas de dedicación semanal mínimas durante un año</p>
+        </div>
       </div>
         
       </div><!--/row -->
@@ -77,32 +89,32 @@
 
 
 
-  <div class="target-program">
+  <div class="feature-program target-program">
     <div class="container">
       <div class="row">
-        <div class="col-md-12 target-title-program">
-          <h2>¿A quién está dirigido?</h2>
-          <p class="subhead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, officiis?</p>
+        <div class="col-md-12 title-program text-center">
+          <h3>¿A quién está dirigido?</h3>
+          <p class="subhead">Avanza tu carrera con un programa estructurado y guiado por mentores</p>
         </div>
 
         <div class="col-md-4 each-target-program">
           <div class="row">
-            <div class="col-md-3">imagen</div>
-            <div class="col-md-9">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel debitis similique recusandae molestiae totam pariatur deleniti optio autem animi ad!</div>
+            <div class="col-md-3"><%= image_tag("people/02sebas.png", class:"img-responsive") %></div>
+            <div class="col-md-9 target-profile">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel debitis similique recusandae molestiae totam pariatur deleniti optio autem animi ad!</div>
           </div>
         </div>
 
         <div class="col-md-4 each-target-program">
           <div class="row">
-            <div class="col-md-3">imagen</div>
-            <div class="col-md-9">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel debitis similique recusandae molestiae totam pariatur deleniti optio autem animi ad!</div>
+            <div class="col-md-3"><%= image_tag("people/02sorel.png", class:"img-responsive") %></div>
+            <div class="col-md-9 target-profile">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel debitis similique recusandae molestiae totam pariatur deleniti optio autem animi ad!</div>
           </div>
         </div>
 
         <div class="col-md-4 each-target-program">
           <div class="row">
-            <div class="col-md-3">imagen</div>
-            <div class="col-md-9">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel debitis similique recusandae molestiae totam pariatur deleniti optio autem animi ad!</div>
+            <div class="col-md-3"><%= image_tag("people/02luis-hurtado.png", class:"img-responsive") %></div>
+            <div class="col-md-9 target-profile">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel debitis similique recusandae molestiae totam pariatur deleniti optio autem animi ad!</div>
           </div>
         </div>
         
@@ -114,9 +126,9 @@
   <div class="feature-program mentories-program">
     <div class="container">
       <div class="row">
-        <div class="col-md-12 mentories-title-program">
-          <h2>Mentorías uno a uno</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed expedita vero architecto ut nobis incidunt aliquam cupiditate eius soluta, porro a placeat id, provident.</p>
+        <div class="col-md-8 col-md-offset-2 title-program text-center">
+          <h3>Mentorías uno a uno</h3>
+          <p class="subhead">Al ingresar a Make it Real te asignamos un mentor principal el cuál estará pendiente de tu progreso y listo para solucionar tus dudas para que puedas aprovechar al máximo nuestro programa.</p>
         </div>
         
       </div><!--/row -->
@@ -128,30 +140,30 @@
     <div class="container">
       <div class="row">
 
-      <div class="col-md-12 learnings-title-program">
-        <h2>Lo que aprenderás en el programa</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure corporis libero, atque?</p>
+      <div class="col-md-8 col-md-offset-2 title-program text-center">
+        <h3>Lo que aprenderás en el programa</h3>
+        <p class="subhead">Te enseñaremos las tecnologías y habilidades necesarias para convertirte en un profesional o emprendedor exitoso.</p>
       </div>
 
-      <div class="col-md-4 each-learning-program">
+      <div class="col-md-4 each-learning-program text-center">
         <div class="learning-icon">
-          learning icon
+          <%= image_tag("icon-interna-learn-autonomy.png") %>
         </div>
-        <h3>Autonomía</h3>
+        <h4>Autonomía</h4>
       </div><!--/each-learning-program -->
 
-      <div class="col-md-4 each-learning-program">
+      <div class="col-md-4 each-learning-program text-center">
         <div class="learning-icon">
-          learning icon
+          <%= image_tag("icon-interna-learn-problem-solving.png") %>
         </div>
-        <h3>Solución de problemas</h3>
+        <h4>Solución de problemas</h4>
       </div><!--/each-learning-program -->
 
-      <div class="col-md-4 each-learning-program">
+      <div class="col-md-4 each-learning-program text-center">
         <div class="learning-icon">
-          learning icon
+          <%= image_tag("icon-interna-learn-comms.png") %>
         </div>
-        <h3>Comunicación</h3>
+        <h4>Comunicación</h4>
       </div><!--/each-learning-program -->
         
       </div><!--/row -->
@@ -159,55 +171,55 @@
   </div><!--/learnings-program -->
 
 
-  <div class="applications-program">
+  <div class="feature-program applications-program">
     <div class="container">
       <div class="row">
 
-        <div class="col-md-12 applications-title-program">
-          <h2>Construye aplicaciones reales</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure corporis libero, atque?</p>
+        <div class="col-md-8 col-md-offset-2 title-program text-center">
+          <h3>Construye aplicaciones reales</h3>
+          <p class="subhead">Estas son algunas de las aplicaciones que construirás durante el programa</p>
         </div>
 
-        <div class="col-md-4 each-application-program">
+        <div class="col-md-4 each-application-program text-center">
           <div class="image-application-program">
             imagen
           </div>
-          <h3>Aplicación uno</h3>
+          <h4>Aplicación uno</h4>
         </div>
 
-        <div class="col-md-4 each-application-program">
+        <div class="col-md-4 each-application-program text-center">
           <div class="image-application-program">
             imagen
           </div>
-          <h3>Aplicación dos</h3>
+          <h4>Aplicación dos</h4>
         </div>
 
-        <div class="col-md-4 each-application-program">
+        <div class="col-md-4 each-application-program text-center">
           <div class="image-application-program">
             imagen
           </div>
-          <h3>Aplicación tres</h3>
+          <h4>Aplicación tres</h4>
         </div>
 
-        <div class="col-md-4 each-application-program">
+        <div class="col-md-4 each-application-program text-center">
           <div class="image-application-program">
             imagen
           </div>
-          <h3>Aplicación cuatro</h3>
+          <h4>Aplicación cuatro</h4>
         </div>
 
-        <div class="col-md-4 each-application-program">
+        <div class="col-md-4 each-application-program text-center">
           <div class="image-application-program">
             imagen
           </div>
-          <h3>Aplicación cinco</h3>
+          <h4>Aplicación cinco</h4>
         </div>
 
-        <div class="col-md-4 each-application-program">
+        <div class="col-md-4 each-application-program text-center">
           <div class="image-application-program">
             imagen
           </div>
-          <h3>Aplicación seis</h3>
+          <h4>Aplicación seis</h4>
         </div>
 
       </div><!--/row -->
@@ -215,13 +227,13 @@
   </div><!--/applicationss-program -->
 
 
-  <div class="project-program">
+  <div class="feature-program project-program">
     <div class="container">
       <div class="row">
 
-        <div class="col-md-12 project-title-program">
-          <h2>Tu proyecto personal</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, voluptate rem, molestiae dolorum totam suscipit laudantium magnam illo nihil id ab eius. Repellendus, sequi, provident.</p>
+        <div class="col-md-12 title-program text-center">
+          <h3>Tu proyecto personal</h3>
+          <p class="subhead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, voluptate rem, molestiae dolorum totam suscipit laudantium magnam illo nihil id ab eius. Repellendus, sequi, provident.</p>
           <a href="">Conoce los proyectos de nuestros makers</a>
         </div>
         
@@ -230,13 +242,13 @@
   </div><!--/project-program -->
 
 
-  <div class="price-program">
+  <div class="feature-program price-program">
     <div class="container">
       <div class="row">
         
 
-        <div class="col-md-12 price-title-program">
-          <h2>Precio</h2>
+        <div class="col-md-12 title-program">
+          <h3>Precio</h3>
         </div>
 
 

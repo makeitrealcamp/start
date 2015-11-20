@@ -1601,6 +1601,8 @@
     h1 {
       text-transform: uppercase;
       margin-top: 0;
+      font-size: 36px;
+      font-family: "Karla",sans-serif;
     }
     p {
       font-size: 20px;
@@ -1608,7 +1610,7 @@
     .btn-cta {
       font-size: 16px;
       padding: 10px 30px;
-      background: #161616;
+      background: #f04500;
       color: #fff;
       border: solid 1px #f04500;
       border-radius: 3px;
@@ -1634,9 +1636,74 @@
       width: 80%;
     }
     h2 {
-      margin-top: 0;
+      color: #ff4300;
+      font-family: "Open Sans", sans-serif;
+      font-weight: 300;
       margin-bottom: 10px;
+      margin-top: 0;
+      text-transform: uppercase;
     }
+  }
+  .feature-program {
+    padding: 85px 0;
+    h3 {
+      font-family: "Open Sans",sans-serif;
+      color: #ff4300;
+      font-size: 36px;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 300;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+    .title-program {
+      margin-bottom: 50px;
+      .subhead {
+        font-size: 20px;
+        margin-top: 30px;
+      }
+    }
+    h4 {
+      color: #ff4300;
+      margin-top: 25px;
+      text-transform: uppercase;
+    }
+  }
+  .data-program {
+    .each-data-program {
+      text-align: center;
+      border: 1px solid #dddddd;
+      border-radius: 4px;
+      margin-bottom: 30px;
+      padding: 15px;
+      height: 200px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .data-number {
+      color: #005e9f;
+      display: block;
+      font-size: 48px;
+      font-weight: 300;
+    }
+  }
+  .target-program {
+      border-top: solid 1px #dddddd;
+  }
+  .target-profile {
+    padding-left: 15px;
+    border-left: solid 1px #005e9f;
+  }
+  .mentories-program {
+    background: image-url("full-stack.png") center center;
+    background-size: cover;
+    .subhead {
+      color: #fff;
+    }
+  }
+  .applications-program {
+    background: #272727;
+    color: #fff;
   }
 
   
