@@ -28,10 +28,6 @@ class ApplicationController < ActionController::Base
     end
     helper_method :current_user
 
-    def current_path
-      current_user.path if current_user
-    end
-
     def public_access
       redirect_to signed_in_root_path if signed_in?
     end

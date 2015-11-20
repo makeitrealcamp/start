@@ -30,14 +30,6 @@ class Phase < ActiveRecord::Base
   has_many :courses, -> { uniq }, through: :course_phases
 
   after_initialize :default_values
-  
-  scope :for, -> user {
-    if user.is_admin?
-      where(path_id: user.path_id)
-    else
-      where(path_id: user.path_id).published
-    end
-  }
 
   scope :published, -> { where(published: true) }
 

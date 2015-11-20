@@ -34,17 +34,21 @@ class Course < ActiveRecord::Base
 
 
   validates :name, presence: true
-  
+
   scope :for, -> user { published unless user.is_admin? }
   scope :published, -> { where(published: true) }
 
   after_initialize :default_values
 
   def next(path)
-    phases
-      .published
-      .where(path_id: path.id).take
-      .courses.published.order(:row).where('row > ?', self.row).first
+    current_phase = phase_for_path(path)
+    if current_phase
+      current_phase.courses.published.order(:row).where('row > ?', self.row).first
+    end
+  end
+
+  def phase_for_path(path)
+    phases.published.where(path_id: path.id).take
   end
 
   private

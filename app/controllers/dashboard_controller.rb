@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
   before_action :private_access
   def index
-    @challenge = current_user.next_challenge(current_path)
+    @challenge = current_user.next_challenge
     @is_new_challenge = solution_to(@challenge).nil?
     @pending_challenges = current_user.solutions.pending.joins(:challenge)
         .where('challenges.published = ?', true)

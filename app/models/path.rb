@@ -16,6 +16,8 @@ class Path < ActiveRecord::Base
 
   has_many :phases
 
+  scope :for, -> user { published unless user.is_admin? }
+
   def courses
     Course.joins(:course_phases).joins(:phases)
       .where("course_phases.phase_id" => phases.pluck(:id) ).uniq
@@ -26,7 +28,7 @@ class Path < ActiveRecord::Base
   end
 
   def first_challenge
-    challenges.published.path_order.first
+    challenges.published.order_by_course_and_rank.first
   end
 
 end

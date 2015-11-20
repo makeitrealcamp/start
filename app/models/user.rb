@@ -15,12 +15,10 @@
 #  account_type    :integer
 #  nickname        :string
 #  level_id        :integer
-#  path_id         :integer
 #
 # Indexes
 #
 #  index_users_on_level_id  (level_id)
-#  index_users_on_path_id   (path_id)
 #
 
 class User < ActiveRecord::Base
@@ -48,6 +46,8 @@ class User < ActiveRecord::Base
   has_many :notifications
   has_many :comments
   has_many :quiz_attempts, class_name: '::Quizer::QuizAttempt'
+  has_many :path_subscriptions
+  has_many :paths, -> { uniq }, through: :path_subscriptions
 
   hstore_accessor :profile,
     first_name: :string,
@@ -77,6 +77,9 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true, on: :update, if: :password_digest_changed?
   validates_confirmation_of :password, on: :update, if: :password_digest_changed?
   validates :nickname, uniqueness: true
+  validates :path, presence: true
+
+  validate :validate_path
 
   enum status: [:created, :active]
   enum account_type: [:free_account, :paid_account, :admin_account]
@@ -221,17 +224,21 @@ class User < ActiveRecord::Base
     solutions.order('updated_at DESC').take
   end
 
-  def next_challenge(path)
+  def next_challenge
     # user has not completed nor attempted any challenge
     if last_solution.nil?
-      path.first_challenge
+      Challenge.for(self).order_by_course_and_rank.first
     # user's last action was a challenge completion
     elsif last_solution.completed?
-      find_next_challenge(path)
+      find_next_challenge
     # user attempted a challenge but it was not completed
     else
       last_solution.challenge
     end
+  end
+
+  def available_paths
+    Path.where(id: path_subscriptions.pluck(:path_id)).uniq
   end
 
   private
@@ -241,7 +248,6 @@ class User < ActiveRecord::Base
       self.has_public_profile ||= false
       self.account_type ||= User.account_types[:free_account]
       self.level ||= Level.for_points(0)
-      self.path ||= Path.first
     end
 
     def generate_token
@@ -264,21 +270,19 @@ class User < ActiveRecord::Base
       end
     end
 
-    def find_next_challenge(path)
+    def find_next_challenge
       current_challenge = last_solution.challenge
-      next_challenge = current_challenge.next_for(self)
-      if next_challenge.nil?
-        course = current_challenge.course.next(path)
-        if course.nil?
-          phase = current_challenge.course.phase.next
-          if phase.nil?
-            return solutions.pending.joins(:challenge).where('challenges.published = ?', true).order('updated_at ASC').take.try(:challenge)
-          else
-            course = phase.courses.published.first
-          end
-        end
-        next_challenge = course.challenges.published.first
+      next_challenge = current_challenge.next_for_user(self)
+      if next_challenge
+        next_challenge
+      else
+        solutions.pending.joins(:challenge).where('challenges.published = ?', true).order('updated_at ASC').take.try(:challenge)
       end
-      next_challenge
+    end
+
+    def validate_path
+      if self.path && !self.available_paths.exists?(id: self.path.id)
+        errors[:path] << "El usuario debe estar inscrito al programa"
+      end
     end
 end

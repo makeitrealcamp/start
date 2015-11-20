@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151109173759) do
+ActiveRecord::Schema.define(version: 20151119214208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -180,6 +180,14 @@ ActiveRecord::Schema.define(version: 20151109173759) do
   add_index "notifications", ["created_at"], name: "index_notifications_on_created_at", using: :btree
   add_index "notifications", ["status"], name: "index_notifications_on_status", using: :btree
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
+
+  create_table "path_subscriptions", force: :cascade do |t|
+    t.integer "path_id"
+    t.integer "user_id"
+  end
+
+  add_index "path_subscriptions", ["path_id"], name: "index_path_subscriptions_on_path_id", using: :btree
+  add_index "path_subscriptions", ["user_id"], name: "index_path_subscriptions_on_user_id", using: :btree
 
   create_table "paths", force: :cascade do |t|
     t.string   "name"
@@ -368,11 +376,9 @@ ActiveRecord::Schema.define(version: 20151109173759) do
     t.integer  "account_type"
     t.string   "nickname"
     t.integer  "level_id"
-    t.integer  "path_id"
   end
 
   add_index "users", ["level_id"], name: "index_users_on_level_id", using: :btree
-  add_index "users", ["path_id"], name: "index_users_on_path_id", using: :btree
 
   create_table "version_associations", force: :cascade do |t|
     t.integer "version_id"
@@ -405,6 +411,8 @@ ActiveRecord::Schema.define(version: 20151109173759) do
   add_foreign_key "lesson_completions", "users"
   add_foreign_key "lessons", "sections"
   add_foreign_key "notifications", "users"
+  add_foreign_key "path_subscriptions", "paths"
+  add_foreign_key "path_subscriptions", "users"
   add_foreign_key "phases", "paths"
   add_foreign_key "points", "courses"
   add_foreign_key "project_solutions", "projects"
@@ -421,5 +429,4 @@ ActiveRecord::Schema.define(version: 20151109173759) do
   add_foreign_key "solutions", "users"
   add_foreign_key "subscriptions", "users"
   add_foreign_key "users", "levels"
-  add_foreign_key "users", "paths"
 end

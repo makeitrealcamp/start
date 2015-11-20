@@ -48,7 +48,6 @@ class Challenge < ActiveRecord::Base
   validates :instructions, presence: true
 
   scope :published, -> { where(published: true) }
-  default_scope { rank(:row) }
 
   after_initialize :default_values
 
@@ -57,38 +56,47 @@ class Challenge < ActiveRecord::Base
   before_destroy :check_for_solutions
 
   def self.for(user)
-    if user.free_account? || user.paid_account?
-      published
-    elsif user.admin_account?
+    if user.is_admin?
       all
+    else
+      published.where(id: user.available_paths.map{ |path| path.challenges.pluck(:id) }.flatten)
     end
   end
 
-  def self.path_order
-    all.includes(:course).sort do |a,b|
-      if (course_diff = a.course.row - b.course.row) != 0
-        diff = course_diff
-      else
-        diff = a.row - b.row
-      end
-      diff
-    end
-  end
-
-  def next_for(user)
-    self.course.challenges.for(user).order(:row).where('row > ?', self.row).first
-  end
-
-  def last?
-    self.next.nil?
-  end
-
-  def name_with_course
-    "#{course.name} - #{name}"
+  def self.order_by_course_and_rank
+    joins(:course).order(["courses.row","challenges.row"])
   end
 
   def self.by_course
     Course.all.inject([]) { |memo, course| memo += where(course: course) }
+  end
+
+  def self.default_timeouts
+    {
+      ruby_embedded: 15, phantomjs_embedded: 30, ruby_git: 15, rails_git: 90,
+      sinatra_git: 90, ruby_git_pr: 15, async_phantomjs_embedded: 30
+    }
+  end
+
+  def self.default_timeout_for_evaluation_strategy(strategy)
+    default_timeouts[strategy.to_sym]
+  end
+
+  def next_for_user(user)
+    next_challenge_in_course = self.next_in_course_for_user(user)
+    if next_challenge_in_course
+      next_challenge_in_course
+    else
+      Challenge.for(user).order_by_course_and_rank.where("courses.row > ?",self.course.row).first
+    end
+  end
+
+  def next_in_course_for_user(user)
+    course.challenges.for(user).order_by_course_and_rank.first
+  end
+
+  def name_with_course
+    "#{course.name} - #{name}"
   end
 
   def to_s
@@ -105,17 +113,6 @@ class Challenge < ActiveRecord::Base
 
   def url_for_notification
     Rails.application.routes.url_helpers.discussion_course_challenge_path(self.course, self)
-  end
-
-  def self.default_timeouts
-    {
-      ruby_embedded: 15, phantomjs_embedded: 30, ruby_git: 15, rails_git: 90,
-      sinatra_git: 90, ruby_git_pr: 15, async_phantomjs_embedded: 30
-    }
-  end
-
-  def self.default_timeout_for_evaluation_strategy(strategy)
-    default_timeouts[strategy.to_sym]
   end
 
   private

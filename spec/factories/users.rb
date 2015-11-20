@@ -15,12 +15,10 @@
 #  account_type    :integer
 #  nickname        :string
 #  level_id        :integer
-#  path_id         :integer
 #
 # Indexes
 #
 #  index_users_on_level_id  (level_id)
-#  index_users_on_path_id   (path_id)
 #
 
 FactoryGirl.define do
