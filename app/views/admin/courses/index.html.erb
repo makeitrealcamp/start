@@ -1,0 +1,47 @@
+<div class="container admin-courses-container">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= link_to courses_path, class: "link" do %>
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        Volver
+      <% end %>
+      <h1>Cursos</h1>
+      <p class="text-muted">
+        Los cursos se deben organizar en conjunto porque pueden pertenecer a varias fases
+      </p>
+      <div class="table-responsive">
+        <table class="table courses">
+          <tbody>
+            <% @courses.order(:row).each_with_index do |course,index| %>
+              <tr id="course-<%= course.id %>" class="course" data-index="<%= index %>" data-sortable="true" data-resource-id="<%=course.id %>">
+                <td>
+                  <%= course.name %>
+                </td>
+                <td>
+                  <% course.phases.each do |phase| %>
+                    <span class="phase-label label label-default" style="background-color: <%= phase.color %>">
+                      <%= "#{phase.path.name} - #{phase.name}" %>
+                    </span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  (function() {
+    var sortables = [
+      new SortableView({el: ".courses",resource:"admin/courses"}),
+    ];
+    $(document).on("page:before-change", function() {
+      _.each(sortables, function(sortable) {
+        sortable.remove();
+      })
+    });
+  })();
+
+</script>

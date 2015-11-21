@@ -147,6 +147,10 @@ Rails.application.routes.draw do
     resources :badges
     resources :levels
     resources :badge_ownerships, only: [:new, :create]
+    
+    resources :courses, only:[:index] do
+      patch 'update_position', on: :member
+    end
   end
 
   resources :notifications, only: [:index,:show] do
