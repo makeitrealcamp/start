@@ -29,7 +29,6 @@ class User < ActiveRecord::Base
   has_secure_password validations: false
 
   belongs_to :level
-  belongs_to :path
   has_many :solutions, dependent: :destroy
   has_many :challenges, -> { uniq }, through: :solutions
   has_many :auth_providers, dependent: :destroy
@@ -77,9 +76,6 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true, on: :update, if: :password_digest_changed?
   validates_confirmation_of :password, on: :update, if: :password_digest_changed?
   validates :nickname, uniqueness: true
-  validates :path, presence: true
-
-  validate :validate_path
 
   enum status: [:created, :active]
   enum account_type: [:free_account, :paid_account, :admin_account]
@@ -238,7 +234,7 @@ class User < ActiveRecord::Base
   end
 
   def available_paths
-    Path.where(id: path_subscriptions.pluck(:path_id)).uniq
+    self.paths
   end
 
   private
@@ -277,12 +273,6 @@ class User < ActiveRecord::Base
         next_challenge
       else
         solutions.pending.joins(:challenge).where('challenges.published = ?', true).order('updated_at ASC').take.try(:challenge)
-      end
-    end
-
-    def validate_path
-      if self.path && !self.available_paths.exists?(id: self.path.id)
-        errors[:path] << "El usuario debe estar inscrito al programa"
       end
     end
 end

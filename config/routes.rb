@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   root 'pages#home'
 
-  get "curriculum" => "pages#curriculum"
-  get "pricing" => "pages#pricing"
-  get "faq" => "pages#faq"
-  get "makers" => "pages#makers"
-  get "publicar" => "pages#publicar"
+  get 'curriculum' => 'pages#curriculum'
+  get 'pricing' => 'pages#pricing'
+  get 'faq' => 'pages#faq'
+  get 'makers' => 'pages#makers'
+  get 'publicar' => 'pages#publicar'
 
-  get "thanks", to: "pages#thanks", as: :thanks
+  get 'thanks', to: 'pages#thanks', as: :thanks
   get 'handbook', to: 'pages#handbook', as: :handbook
 
   get  'login', to: 'sessions#new', as: :login
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get  'auth/:provider/callback', to: 'sessions#create_with_omniauth', as: :login_omniauth
   delete 'logout', to: 'sessions#destroy'
 
-  get "/signup" => redirect(Prework::Application::APPLICATION_FORM_URL)
+  get '/signup' => redirect(Prework::Application::APPLICATION_FORM_URL)
 
   post 'inscription_info', to: 'users#send_inscription_info', as: :inscription_info
 
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     end
   end
   # profile
-  get "/u/:nickname", to: "users#profile", as: :user_profile
+  get '/u/:nickname', to: 'users#profile', as: :user_profile
 
   get '/dashboard', to: 'dashboard#index', as: :signed_in_root
 
@@ -59,7 +59,7 @@ Rails.application.routes.draw do
         end
       end
     end
-    namespace :quizer, path: "/" do
+    namespace :quizer, path: '/' do
       resources :quizzes do
         resources :questions, only: [:index,:new,:create,:edit,:update]
         resources :quiz_attempts, only: [:create, :show] do
@@ -89,14 +89,14 @@ Rails.application.routes.draw do
     patch 'update_position', on: :member
   end
 
-  namespace :quizer, path: "/" do
+  namespace :quizer, path: '/' do
     resources :quizzes, only:[] do
       patch 'update_position', on: :member
     end
   end
 
-  scope "/:commentable_resource" do
-    scope "/:id" do
+  scope '/:commentable_resource' do
+    scope '/:id' do
       resources :comments, only: [:create]
     end
   end
@@ -118,8 +118,8 @@ Rails.application.routes.draw do
     delete 'reset', on: :member
   end
 
-  get 'dashboard', to: redirect("/phases", status: 301)
-  get 'courses', to: redirect("/phases", status: 301)
+  get 'dashboard', to: redirect('/phases', status: 301)
+  get 'courses', to: redirect('/phases', status: 301)
 
   resources :resources, only: [:edit, :update, :destroy] do
     patch 'update_position', on: :member
@@ -140,7 +140,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:index, :destroy]
     resources :project_solutions, only: [:index] do
       member do
-        post "assign_points"
+        post 'assign_points'
       end
     end
 

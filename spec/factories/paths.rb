@@ -12,8 +12,8 @@
 
 FactoryGirl.define do
   factory :path do
-    name "MyString"
-description "MyString"
+    name { Faker::Name.title }
+    description { Faker::Hacker.say_something_smart }
   end
 
 end

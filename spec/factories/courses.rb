@@ -19,7 +19,7 @@ FactoryGirl.define do
     name { Faker::Name.title }
     excerpt { Faker::Lorem.sentence }
     description { Faker::Lorem.paragraph }
-    phase { create(:phase) }
+    phases { create_list(:phase,1) }
     published true
   end
 end

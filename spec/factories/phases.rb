@@ -24,6 +24,7 @@ FactoryGirl.define do
     description { Faker::Lorem.sentence }
     color "#FF0000"
     published true
+    path { create(:path) }
   end
 
 end
