@@ -6,11 +6,19 @@
         Volver
       <% end %>
       <h1>Cursos</h1>
-      <p class="text-muted">
+      <%= link_to "Nuevo curso", new_course_path, class: "btn btn-success margin-bottom" %>
+      <p class="text-muted margin-bottom">
         Los cursos se deben organizar en conjunto porque pueden pertenecer a varias fases
       </p>
       <div class="table-responsive">
         <table class="table courses">
+          <thead>
+            <tr>
+              <th>Curso</th>
+              <th>Programa - Fase</th>
+              <th><!-- actions --></th>
+            </tr>
+          </thead>
           <tbody>
             <% @courses.order(:row).each_with_index do |course,index| %>
               <tr id="course-<%= course.id %>" class="course" data-index="<%= index %>" data-sortable="true" data-resource-id="<%=course.id %>">
@@ -22,6 +30,11 @@
                     <span class="phase-label label label-default" style="background-color: <%= phase.color %>">
                       <%= "#{phase.path.name} - #{phase.name}" %>
                     </span>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to edit_course_path(course), class: "btn btn-info" do %>
+                    <span class="glyphicon glyphicon-pencil"></span>
                   <% end %>
                 </td>
               </tr>
