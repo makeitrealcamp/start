@@ -32,7 +32,7 @@ class Phase < ActiveRecord::Base
   after_initialize :default_values
 
   scope :published, -> { where(published: true) }
-  validates :phase, presence: true
+  validates :path, presence: true
 
   def next
     Phase.published.order(:row).where('row > ?', self.row).first
