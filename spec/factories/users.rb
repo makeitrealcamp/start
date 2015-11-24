@@ -70,7 +70,7 @@ FactoryGirl.define do
 
     status { User.statuses[:active] }
 
-    after(:create) { |user| user.path_subscriptions.create(path: create(:path))}
+    after(:create) { |user| user.path_subscriptions.create(path: Path.published.first || create(:path,published: true))}
 
   end
 end

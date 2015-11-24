@@ -24,7 +24,7 @@ FactoryGirl.define do
     description { Faker::Lorem.sentence }
     color "#FF0000"
     published true
-    path { create(:path) }
+    path { Path.first || create(:path) }
     after(:create) { |phase| create_list(:course_phase,3,phase: phase) }
   end
 

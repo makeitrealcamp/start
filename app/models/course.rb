@@ -35,7 +35,11 @@ class Course < ActiveRecord::Base
 
   validates :name, presence: true
 
-  scope :for, -> user { published unless user.is_admin? }
+  scope :for, -> user {
+    unless user.is_admin?
+      published.where(id: Path.for(user).map(&:courses).flatten.map(&:id))
+    end
+  }
   scope :published, -> { where(published: true) }
 
   after_initialize :default_values

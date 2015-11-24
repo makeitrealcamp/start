@@ -19,9 +19,9 @@
         <div class="tab-content">
           <% @paths.each_with_index do |path,i| %>
             <div role="tabpanel" class="path tab-pane  <%= 'active' if i == 0 %>" id="path-<%= path.id %>">
-              <% path.phases.order(:row).each do |phase| %>
+              <% path.phases.for(current_user).order(:row).each do |phase| %>
                 <span class="phase-name" style="color: <%= phase.color %>"><%= phase.name.upcase %></span>
-                <div class="phase">
+                <div id="phase-<%= phase.id %>" class="phase">
                   <div class="row">
                     <% phase.courses.for(current_user).order(:row).each do |course| %>
                       <div class="col-sm-6">

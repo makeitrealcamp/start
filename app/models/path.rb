@@ -16,7 +16,7 @@ class Path < ActiveRecord::Base
 
   has_many :phases
 
-  scope :for, -> user { user.paths unless user.is_admin? }
+  scope :for, -> user { user.paths.published unless user.is_admin? }
   scope :published, -> { where(published: true) }
 
   def courses

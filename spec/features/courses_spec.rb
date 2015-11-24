@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.feature "Courses", type: :feature do
   let!(:user) { create(:paid_user) }
   let!(:admin) { create(:admin) }
-  let!(:path)         { user.paths.first }
+  let!(:path)         { user.paths.published.first }
   let!(:phase)        { path.phases.first }
-  let!(:course) { create(:course) }
+  let!(:course) { create(:course, published: true) }
   let!(:course_phase) { create(:course_phase,course: course, phase: phase) }
 
   context 'when accessed as user' do
-    scenario "list all courses published" do
+    scenario 'list all courses published' do
       3.times do
         create(:course,published: false)
         create(:course_phase,course: course, phase: phase)
@@ -20,7 +20,11 @@ RSpec.feature "Courses", type: :feature do
       end
       login(user)
       visit courses_path
-      expect(page).to have_selector('.course', count: path.courses.published.count)
+      Path.for(user).each do |path|
+        path.phases.for(user) do |phase|
+          expect(page).to have_css("#phase-#{phase.id} .course", count: phase.courses.for(user).count)
+        end
+      end
     end
 
     scenario 'should not show form new course' do
@@ -33,10 +37,10 @@ RSpec.feature "Courses", type: :feature do
       expect{visit edit_course_path(course)}.to  raise_error ActionController::RoutingError
     end
 
-    scenario 'show course' do
+    scenario 'show course', js: true do
       login(user)
-      visit phase_path(phase)
-      all('a', text: 'Entrar').first.click
+      visit courses_path
+      find(:css,"[data-id='#{course.friendly_id}']").click
       expect(current_path).to eq course_path(course)
     end
   end
@@ -55,20 +59,22 @@ RSpec.feature "Courses", type: :feature do
       visit courses_path
       expect(page).to have_css('.path', count: Path.all.count)
       Path.all.each do |path|
-        expect(page).to have_css("#path-#{path.id} .course", count: path.courses.count)
+        path.phases.each do |phase|
+          expect(page).to have_css("#phase-#{phase.id} .course", count: phase.courses.count)
+        end
       end
     end
 
     scenario 'display form new course' do
       login(admin)
-      visit phase_path(phase)
+      visit admin_courses_path
       click_link 'Nuevo Curso'
       expect(current_path).to eq new_course_path
     end
 
     scenario 'create course with valid input' do
       login(admin)
-      visit phase_path(phase)
+      visit admin_courses_path
       click_link 'Nuevo Curso'
 
       expect {
@@ -87,7 +93,7 @@ RSpec.feature "Courses", type: :feature do
 
     scenario 'create course without valid input' do
       login(admin)
-      visit phase_path(phase)
+      visit admin_courses_path
       click_link 'Nuevo Curso'
 
       expect {
@@ -101,7 +107,7 @@ RSpec.feature "Courses", type: :feature do
     end
 
     scenario 'edit course with valid input' do
-      course = create(:course,phase: phase)
+      course = create(:course)
       login(admin)
       visit edit_course_path(course)
 

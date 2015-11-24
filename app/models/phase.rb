@@ -31,8 +31,14 @@ class Phase < ActiveRecord::Base
 
   after_initialize :default_values
 
-  scope :published, -> { where(published: true) }
   validates :path, presence: true
+
+  scope :published, -> { where(published: true) }
+  scope :for, -> user {
+    unless user.is_admin?
+      published.where(id: user.paths.map(&:phases).flatten.map(&:id))
+    end
+  }
 
   def next
     Phase.published.order(:row).where('row > ?', self.row).first
