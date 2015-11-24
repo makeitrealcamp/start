@@ -44,10 +44,14 @@ class Course < ActiveRecord::Base
 
   after_initialize :default_values
 
-  def next(path)
-    current_phase = phase_for_path(path)
-    if current_phase
-      current_phase.courses.published.order(:row).where('row > ?', self.row).first
+  def next(path=nil)
+    if path.nil?
+      Course.published.order(:row).where('row > ?', self.row).first
+    else
+      current_phase = phase_for_path(path)
+      if current_phase
+        current_phase.courses.published.order(:row).where('row > ?', self.row).first
+      end
     end
   end
 
