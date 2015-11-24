@@ -201,8 +201,7 @@ RSpec.feature "Resources", type: :feature do
       create(:resource, course: course)
 
       login(admin)
-      visit phase_path(course.phase)
-      all('a', text: 'Entrar').first.click
+      visit course_path(course, tab: 'resources')
       all('.resources span.action-remove', count: 2).first.click
       page.driver.browser.switch_to.alert.accept
       wait_for_ajax
