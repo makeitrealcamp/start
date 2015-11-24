@@ -11,14 +11,14 @@
       <ul class="nav nav-tabs" role="tablist">
         <% @paths.each_with_index do |path,i| %>
           <li class="<%= 'active' if i == 0 %>" role="presentation">
-            <a href="#<%= path.name.slugify_trim %>" role="tab" data-toggle="tab"><%= path.name %></a>
+            <a href="#path-<%= path.id %>" role="tab" data-toggle="tab"><%= path.name %></a>
           </li>
         <% end %>
       </ul>
         <!-- Tab panes -->
         <div class="tab-content">
           <% @paths.each_with_index do |path,i| %>
-            <div role="tabpanel" class="tab-pane  <%= 'active' if i == 0 %>" id="<%= path.name.slugify_trim %>">
+            <div role="tabpanel" class="path tab-pane  <%= 'active' if i == 0 %>" id="path-<%= path.id %>">
               <% path.phases.order(:row).each do |phase| %>
                 <span class="phase-name" style="color: <%= phase.color %>"><%= phase.name.upcase %></span>
                 <div class="phase">

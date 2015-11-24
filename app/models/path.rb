@@ -16,7 +16,8 @@ class Path < ActiveRecord::Base
 
   has_many :phases
 
-  scope :for, -> user { published unless user.is_admin? }
+  scope :for, -> user { user.paths unless user.is_admin? }
+  scope :published, -> { where(published: true) }
 
   def courses
     Course.joins(:course_phases).joins(:phases)

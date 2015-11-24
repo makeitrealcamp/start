@@ -3,18 +3,24 @@ require 'rails_helper'
 RSpec.feature "Courses", type: :feature do
   let!(:user) { create(:paid_user) }
   let!(:admin) { create(:admin) }
-  let!(:phase) { create(:phase) }
-  let!(:course) { create(:course,phase: phase) }
+  let!(:path)         { user.paths.first }
+  let!(:phase)        { path.phases.first }
+  let!(:course) { create(:course) }
+  let!(:course_phase) { create(:course_phase,course: course, phase: phase) }
 
   context 'when accessed as user' do
     scenario "list all courses published" do
-      create(:course,phase: phase)
-      create(:course,phase: phase)
-      create(:course,phase: phase,published: false)
+      3.times do
+        create(:course,published: false)
+        create(:course_phase,course: course, phase: phase)
+      end
+      3.times do
+        create(:course,published: true)
+        create(:course_phase,course: course, phase: phase)
+      end
       login(user)
-      expect(Course.where(published: true).count).to eq 3
-      visit phase_path(phase)
-      expect(page).to have_selector('.course', count: 3)
+      visit courses_path
+      expect(page).to have_selector('.course', count: path.courses.published.count)
     end
 
     scenario 'should not show form new course' do
@@ -33,25 +39,24 @@ RSpec.feature "Courses", type: :feature do
       all('a', text: 'Entrar').first.click
       expect(current_path).to eq course_path(course)
     end
-
-    scenario 'list all courses' do
-      user = create(:user, account_type: User.account_types[:paid_account])
-      create(:course,phase: phase)
-      create(:course,phase: phase)
-      login(user)
-      visit phase_path(phase)
-      expect(page).to have_selector('.course', count: 3)
-    end
   end
 
-  context 'when accessed as admin' do
-    scenario "list all  courses published" do
-      create(:course,phase: phase)
-      create(:course,phase: phase)
-      create(:course,phase: phase, published: false)
+  context 'when user is admin' do
+    scenario 'list all courses' do
+      3.times do
+        create(:course,published: false)
+        create(:course_phase,course: course, phase: phase)
+      end
+      3.times do
+        create(:course,published: true)
+        create(:course_phase,course: course, phase: phase)
+      end
       login(admin)
-      visit phase_path(phase)
-      expect(page).to have_selector('.course', count: 4)
+      visit courses_path
+      expect(page).to have_css('.path', count: Path.all.count)
+      Path.all.each do |path|
+        expect(page).to have_css("#path-#{path.id} .course", count: path.courses.count)
+      end
     end
 
     scenario 'display form new course' do

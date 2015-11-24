@@ -3,7 +3,7 @@ class CoursesController < ApplicationController
   before_action :admin_access, except:[:index, :show]
 
   def index
-    @paths = current_user.paths
+    @paths = Path.for(current_user)
   end
 
   def show
