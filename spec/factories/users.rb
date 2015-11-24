@@ -69,5 +69,8 @@ FactoryGirl.define do
     end
 
     status { User.statuses[:active] }
+
+    after(:create) { |user| user.path_subscriptions.create(path: create(:path))}
+
   end
 end

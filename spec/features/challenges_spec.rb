@@ -2,15 +2,18 @@ require 'rails_helper'
 
 RSpec.feature "Challenges", type: :feature do
 
-  let!(:user)      { create(:user) }
-  let!(:user_paid) {create(:user, account_type: User.account_types[:paid_account]) }
-  let!(:admin )    { create(:admin) }
-  let!(:course)    { create(:course) }
-  let!(:challenge) { create(:challenge, course: course, published: true, restricted: true) }
-  let!(:level_1)  {create(:level_1)}
-  let!(:level_2)  {create(:level_2)}
+  let!(:user)         { create(:user) }
+  let!(:user_paid)    { create(:user, account_type: User.account_types[:paid_account]) }
+  let!(:admin )       { create(:admin) }
+  let!(:path)         { user_paid.paths.first }
+  let!(:phase)        { path.phases.first }
+  let!(:course)       { create(:course) }
+  let!(:course_phase) { create(:course_phase,course: course, phase: phase) }
+  let!(:challenge)    { create(:challenge, course: course, published: true, restricted: true) }
+  let!(:level_1)      { create(:level_1) }
+  let!(:level_2)      { create(:level_2) }
 
-  context 'when user is paid account' do
+  context 'user with paid account' do
     describe 'list challenges' do
       scenario 'show only published challenges' do
         create(:challenge, course: course, published: true)

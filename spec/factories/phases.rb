@@ -25,6 +25,7 @@ FactoryGirl.define do
     color "#FF0000"
     published true
     path { create(:path) }
+    after(:create) { |phase| create_list(:course_phase,3,phase: phase) }
   end
 
 end

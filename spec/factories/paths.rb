@@ -14,6 +14,7 @@ FactoryGirl.define do
   factory :path do
     name { Faker::Name.title }
     description { Faker::Hacker.say_something_smart }
+    phases { create_list(:phase,3, path: nil) }
   end
 
 end

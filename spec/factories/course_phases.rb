@@ -11,8 +11,8 @@
 
 FactoryGirl.define do
   factory :course_phase do
-    references ""
-references ""
+    course { create(:course, phases: []) }
+    phase { create(:phase,course_phases: []) }
   end
 
 end
