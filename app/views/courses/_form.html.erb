@@ -8,7 +8,6 @@
           <%= f.label :name %>
           <%= f.text_field :name, class: "form-control" %>
         </div>
-
         <div class="form-group">
           <%= f.label :description %>
           <%= f.text_area :description, rows: 2, class: "form-control" %>
@@ -25,8 +24,16 @@
         </div>
 
         <div class="form-group">
-          <%= f.label :phase %>
-          <%= f.collection_select(:phase_id, Phase.all, :id, :name, {},{class: "form-control"}) %>
+          <%= f.label :phases %>
+          <%= f.nested_fields_for :course_phases, wrapper_options: { class: 'row margin-bottom'} do |ff| %>
+            <div class="col-xs-11">
+              <%= ff.collection_select(:phase_id, Phase.all, :id, ->(phase){ "#{phase.path.name} - #{phase.name}" }, {},{class: "form-control"}) %>
+            </div>
+            <div class="col-xs-1 text-right">
+              <%= ff.remove_nested_fields_link '<span class="glyphicon glyphicon-trash"></span>'.html_safe, class: "btn btn-danger" %>
+            </div>
+          <% end %>
+          <%= f.add_nested_fields_link :course_phases, '<span class="glyphicon glyphicon-plus"></span>'.html_safe, class: "btn btn-primary" %>
         </div>
 
         <div class="form-group">
@@ -35,7 +42,7 @@
         </div>
 
         <div class="actions text-right">
-          <%= link_to "Cancelar", @course.phase || signed_in_root_path, class: "btn btn-default" %>
+          <%= link_to "Cancelar", admin_courses_path, class: "btn btn-default" %>
           <%= f.submit class: "btn btn-primary"%>
         </div>
       </div>

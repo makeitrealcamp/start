@@ -32,8 +32,9 @@ RSpec.feature "Resource completion", type: :feature do
 
   context "when user completes last resource (and course) and there are more courses" do
     scenario "should be redirected to next course" do
-      resource = create(:resource)
-      next_course = create(:course, row_position: :last, phase: resource.course.phase)
+      current_course = create(:course, row_position: :last)
+      resource = create(:resource, course: current_course)
+      next_course = create(:course, row_position: :last)
 
       login(user)
 

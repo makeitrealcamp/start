@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   attr_accessor :password_confirmation, :notifier
   has_secure_password validations: false
 
+  belongs_to :level
   has_many :solutions, dependent: :destroy
   has_many :challenges, -> { uniq }, through: :solutions
   has_many :auth_providers, dependent: :destroy
@@ -39,12 +40,13 @@ class User < ActiveRecord::Base
   has_many :resources, -> { uniq }, through: :resource_completions
   has_many :points
   has_many :challenge_completions, dependent: :delete_all
-  belongs_to :level
   has_many :badge_ownerships, dependent: :destroy
   has_many :badges, -> { uniq }, through: :badge_ownerships
   has_many :notifications
   has_many :comments
   has_many :quiz_attempts, class_name: '::Quizer::QuizAttempt'
+  has_many :path_subscriptions
+  has_many :paths, -> { uniq }, through: :path_subscriptions
 
   hstore_accessor :profile,
     first_name: :string,
@@ -219,22 +221,20 @@ class User < ActiveRecord::Base
   end
 
   def next_challenge
+    # user has not completed nor attempted any challenge
     if last_solution.nil?
-      Challenge.published.includes(:course,:phase).all.sort do |a,b|
-        if (phase_diff = a.phase.row - b.phase.row) != 0
-          diff = phase_diff
-        elsif (course_diff = a.course.row - b.course.row) != 0
-          diff = course_diff
-        else
-          diff = a.row - b.row
-        end
-        diff
-      end.first
+      Challenge.for(self).order_by_course_and_rank.first
+    # user's last action was a challenge completion
     elsif last_solution.completed?
       find_next_challenge
+    # user attempted a challenge but it was not completed
     else
       last_solution.challenge
     end
+  end
+
+  def available_paths
+    self.paths
   end
 
   private
@@ -268,19 +268,11 @@ class User < ActiveRecord::Base
 
     def find_next_challenge
       current_challenge = last_solution.challenge
-      next_challenge = current_challenge.next_for(self)
-      if next_challenge.nil?
-        course = current_challenge.course.next
-        if course.nil?
-          phase = current_challenge.course.phase.next
-          if phase.nil?
-            return solutions.pending.joins(:challenge).where('challenges.published = ?', true).order('updated_at ASC').take.try(:challenge)
-          else
-            course = phase.courses.published.first
-          end
-        end
-        next_challenge = course.challenges.published.first
+      next_challenge = current_challenge.next_for_user(self)
+      if next_challenge
+        next_challenge
+      else
+        solutions.pending.joins(:challenge).where('challenges.published = ?', true).order('updated_at ASC').take.try(:challenge)
       end
-      next_challenge
     end
 end

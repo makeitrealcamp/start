@@ -1,15 +1,7 @@
 class PhasesController < ApplicationController
   before_action :private_access
-  before_action :admin_access, except:[:index,:show]
+  before_action :admin_access
   before_action :set_phase, only: [:show,:edit,:update]
-
-  def index
-    @phases = Phase.for(current_user)
-  end
-
-  def show
-    @courses = @phase.courses.for(current_user)
-  end
 
   def new
     @phase = Phase.new
@@ -19,7 +11,7 @@ class PhasesController < ApplicationController
     @phase = Phase.new(phase_params)
     if @phase.save
       flash[:notice] = "Fase creada"
-      redirect_to phase_path(@phase)
+      redirect_to admin_paths_path
     else
       render :new
     end
@@ -32,7 +24,7 @@ class PhasesController < ApplicationController
   def update
     if @phase.update(phase_params)
       flash[:notice] = "Fase actualizada"
-      redirect_to phase_path(@phase)
+      redirect_to admin_paths_path
     else
       render :edit
     end
@@ -46,7 +38,7 @@ class PhasesController < ApplicationController
   protected
 
   def phase_params
-    params.require(:phase).permit(:name,:description,:published,:color)
+    params.require(:phase).permit(:name,:description,:published,:color,:path_id)
   end
 
   def set_phase

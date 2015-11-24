@@ -12,11 +12,6 @@
 #  description   :string
 #  slug          :string
 #  published     :boolean
-#  phase_id      :integer
-#
-# Indexes
-#
-#  index_courses_on_phase_id  (phase_id)
 #
 
 FactoryGirl.define do
@@ -24,7 +19,7 @@ FactoryGirl.define do
     name { Faker::Name.title }
     excerpt { Faker::Lorem.sentence }
     description { Faker::Lorem.paragraph }
-    phase { create(:phase) }
     published true
+    after(:create) { |course| course.course_phases.create(phase: Phase.published.first || create(:phase, published: true)) }
   end
 end

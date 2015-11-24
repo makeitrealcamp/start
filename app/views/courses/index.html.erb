@@ -1,31 +1,52 @@
 <div class="container courses-page">
   <div class="row">
-    <div class="col-sm-12">
-      <% @phases.each do |phase| %>
-      <span class="phase-name" style="color: <%= phase.color %>"><%= phase.name.upcase %></span>
-      <div class="phase">
-        <div class="row">
-          <% phase.courses.for(current_user).each do |course| %>
-            <div class="col-sm-6">
-              <div class="course" style="border-left: 7px solid <%= phase.color %>" data-id="<%= course.friendly_id %>">
-                <h2 class="course-title"><%= course.name %></h2>
-                <%= progress_bar(progress: current_user.stats.progress_by_course(course), show_percentage: true, color: phase.color) %>
-                <div class="row info">
-                  <div class="col-xs-6 info-item">
-                    <span class="info-item-value"><%= current_user.stats.completed_challenges_by_course_count(course) %>/<%= course.challenges.published.count %></span>
-                    <span class="info-item-label">Retos</span>
-                  </div>
-                  <div class="col-xs-6 info-item">
-                    <span class="info-item-value"><%= current_user.stats.completed_projects_by_course_count(course) %>/<%= course.projects.published.count %></span>
-                    <span class="info-item-label">Proyectos</span>
+    <div class="col-xs-12">
+      <% if current_user.is_admin? %>
+        <%= link_to admin_courses_path, class: "btn btn-success margin-bottom" do %>
+          Administrar cursos
+        <% end %>
+      <% end %>
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <% @paths.each_with_index do |path,i| %>
+          <li class="<%= 'active' if i == 0 %>" role="presentation">
+            <a href="#path-<%= path.id %>" role="tab" data-toggle="tab"><%= path.name %></a>
+          </li>
+        <% end %>
+      </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <% @paths.each_with_index do |path,i| %>
+            <div role="tabpanel" class="path tab-pane  <%= 'active' if i == 0 %>" id="path-<%= path.id %>">
+              <% path.phases.for(current_user).order(:row).each do |phase| %>
+                <span class="phase-name" style="color: <%= phase.color %>"><%= phase.name.upcase %></span>
+                <div id="phase-<%= phase.id %>" class="phase">
+                  <div class="row">
+                    <% phase.courses.for(current_user).order(:row).each do |course| %>
+                      <div class="col-sm-6">
+                        <div class="course" style="border-left: 7px solid <%= phase.color %>" data-id="<%= course.friendly_id %>">
+                          <h2 class="course-title"><%= course.name %></h2>
+                          <%= progress_bar(progress: current_user.stats.progress_by_course(course), show_percentage: true, color: phase.color) %>
+                          <div class="row info">
+                            <div class="col-xs-6 info-item">
+                              <span class="info-item-value"><%= current_user.stats.completed_challenges_by_course_count(course) %>/<%= course.challenges.published.count %></span>
+                              <span class="info-item-label">Retos</span>
+                            </div>
+                            <div class="col-xs-6 info-item">
+                              <span class="info-item-value"><%= current_user.stats.completed_projects_by_course_count(course) %>/<%= course.projects.published.count %></span>
+                              <span class="info-item-label">Proyectos</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
                   </div>
                 </div>
-              </div>
+              <% end %>
             </div>
-          <% end %>    
+          <% end %>
         </div>
-      </div>
-      <% end %>
     </div>
   </div>
 </div>

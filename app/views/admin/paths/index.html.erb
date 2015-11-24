@@ -1,0 +1,52 @@
+<div class="container paths">
+  <div class="row">
+    <div class="col-xs-6">
+      <h1>Programas</h1>
+      <%= link_to "Nuevo Programa", new_admin_path_path, class: "btn btn-success" %>
+      <%= link_to "Nueva Fase", new_phase_path, class: "btn btn-success" %>
+    </div>
+    <div class="clearfix"></div>
+    <% @paths.each do |path| %>
+      <div class="col-xs-12 col-md-6">
+        <div class="path">
+          <h2>
+            <div class="actions pull-right">
+              <% unless path.published %>
+                <span class="glyphicon glyphicon-alert action action-warn" data-toggle="tooltip" data-placement="bottom" title="Programa no publicado"></span>
+              <% end %>
+              <%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_admin_path_path(path) %>
+            </div>
+            <%= path.name %>
+          </h2>
+          <hr>
+          <% path.phases.rank(:row).each_with_index do |phase,index| %>
+            <div id="phase_<%= phase.id %>" class="phase" data-index="<%= index %>" data-sortable="true" data-resource-id="<%=phase.id %>">
+              <div class="actions pull-right">
+                <% unless phase.published %>
+                  <span class="glyphicon glyphicon-alert action action-warn" data-toggle="tooltip" data-placement="bottom" title="Fase no publicada"></span>
+                <% end %>
+                <%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_phase_path(phase) %>
+              </div>
+              <p>
+                <span class="glyphicon glyphicon-resize-vertical"></span>
+                <%= phase.name %>
+              </p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<script>
+  (function() {
+    var sortables = [
+      new SortableView({el: ".path",resource:"phases"}),
+    ];
+    $(document).on("page:before-change", function() {
+      _.each(sortables, function(sortable) {
+        sortable.remove();
+      })
+    });
+  })()
+</script>
