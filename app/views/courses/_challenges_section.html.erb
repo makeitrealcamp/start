@@ -12,7 +12,7 @@
       <p class="text-center tab-exp"><%= challenges_msg(@course) %></p>
 
       <% if current_user.is_admin? || current_user.paid_account? %>
-        <% @course.challenges.for(current_user).each_with_index do |challenge, index| %>
+        <% @course.challenges.for(current_user).order(:row).each_with_index do |challenge, index| %>
           <div id="challenge_<%= challenge.id %>" class="challenge clearfix <%= challenge_class(challenge) %>" data-index="<%= index %>" data-location="<%= url_for([@course, challenge]) %>" data-sortable="true" data-resource-id="<%=challenge.id %>">
             <div class="challenge-status">
               <span class="glyphicon glyphicon-ok"></span>
@@ -24,7 +24,7 @@
           </div>
         <% end %>
       <% else %>
-        <% @course.challenges.for(current_user).each_with_index do |challenge, index| %>
+        <% @course.challenges.for(current_user).order(:row).each_with_index do |challenge, index| %>
           <% if challenge.restricted? %>
             <div id="challenge_<%= challenge.id %>" class="challenge clearfix restricted" data-index="<%= index %>"  data-sortable="true" data-resource-id="<%=challenge.id %>">
               <div class="challenge-status">
