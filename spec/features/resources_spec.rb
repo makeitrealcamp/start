@@ -187,8 +187,8 @@ RSpec.feature "Resources", type: :feature do
       resource = create(:resource, course: course)
       create(:resource, course: course)
       login(admin)
-      visit course_path(course, tab: 'resources')
       wait_for_ajax
+      visit course_path(course, tab: 'resources')
       all('.resources span.action-remove', count: 2).first.click
       page.driver.browser.switch_to.alert.accept
       wait_for_ajax

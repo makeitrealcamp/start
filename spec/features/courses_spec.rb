@@ -39,6 +39,7 @@ RSpec.feature "Courses", type: :feature do
 
     scenario 'show course', js: true do
       login(user)
+      wait_for_ajax
       visit courses_path
       find(:css,"[data-id='#{course.friendly_id}']").click
       expect(current_path).to eq course_path(course)
@@ -106,7 +107,7 @@ RSpec.feature "Courses", type: :feature do
       expect(page).to have_selector ".alert-error"
     end
 
-    scenario 'edit course with valid input' do
+    scenario 'edit course with valid input', js: true do
       course = create(:course)
       login(admin)
       wait_for_ajax
@@ -130,7 +131,7 @@ RSpec.feature "Courses", type: :feature do
       expect(page).to have_content 'El curso ha sido actualizado'
     end
 
-    scenario 'edit course without valid input' do
+    scenario 'edit course without valid input', js: true do
       course = create(:course)
       login(admin)
       wait_for_ajax
