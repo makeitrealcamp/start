@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: Settings.action_mailer.default_from
+  default from: Figaro.env.mailer_from
   layout 'mailer'
 
   helper ApplicationHelper

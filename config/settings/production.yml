@@ -1,2 +1,0 @@
-action_mailer:
-  default_from: <%= ENV["MAILER_FROM"] %>
