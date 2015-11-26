@@ -36,9 +36,9 @@ class SessionsController < ApplicationController
     end
 
     def redirect_user_free
-      redirect_to root_path, notice: %Q(
+      redirect_to root_path, flash: { notice: %Q(
           Make it Real ya no está disponible para usuarios gratuitos.
           Si quieres ingresar al programa haz click en el botón ¡Aplica ahora!)
-
+        }
     end
 end
