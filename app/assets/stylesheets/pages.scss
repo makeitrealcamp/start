@@ -615,15 +615,15 @@
     width: 100%;
     text-align: center;
     position: relative;
-    min-height: 550px;
+    padding-top: 230px;
+    padding-bottom: 230px;
   }
   
   .tagline {
-    font-size: 48px;
+    font-size: 52px;
     font-weight: 700;
     font-family: 'Karla', sans-serif;
     color: #fff;
-    margin-top: 210px;
     padding: 0 35px;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     @media (max-width: $screen-sm-min) {
@@ -678,18 +678,13 @@
     font-weight: 400;
     margin-top: 12px;
     display: inline-block;
-    @media (max-width: $screen-md-min) {
-      display: none;
-    }
-    @media (max-height: 700px ) {
-      display: none;
-    }
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    margin-left: -36.5px;
     .icon {
       display: block;
       margin-top: 5px;
-      @media (max-width: $screen-sm-min) {
-        display: none;
-      }
     }
   }
 
@@ -746,6 +741,7 @@
       font-family: 'Open Sans', sans-serif;
       font-weight: 300;
       margin: 0;
+      line-height: 1.4em;
       @media (max-width: $screen-sm-min) {
         font-size: 24px;
       }
@@ -782,19 +778,16 @@
     }
     h3 {
       text-align: center;
-      font-size: 42px;
+      font-size: 38px;
       text-transform: uppercase;
       color: #ff4300;
       font-family: 'Karla', sans-serif;
       font-weight: 400;
       margin-top: 0;
-      padding-top: 150px;
+      padding-top: 120px;
       margin-bottom: 80px;
       @media (max-width: $screen-md-min) {
         margin-bottom: 40px;
-        margin-top: 80px;
-      }
-      @media (max-width: $screen-xs-min) {
         font-size: 32px;
       }
     }
@@ -826,14 +819,11 @@
     }
   }
   .feature-two {
-    margin-bottom: 150px;
-    .text {
-      padding: 15% 10% 0;
-      @media (max-width: $screen-md-min) {
-        padding: 0 8.5%;
-        margin-bottom: 30px;
-      }
-    }
+    padding-top: 80px;
+    padding-bottom: 130px;
+    background: asset-url('bg-community.png') no-repeat center center;
+    background-size: cover;
+    margin-bottom: 0;
     .img-feature {
       img {
         @media (max-width: $screen-md-min) {
@@ -843,8 +833,19 @@
       }
     }
     h3 {
+      color: #fff;
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+      margin-bottom: 50px;
       @media (max-width: $screen-md-min) {
         padding-top: 50px;
+      }
+    }
+    .text {
+      color: #fff;
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+      @media (max-width: $screen-md-min) {
+        width: 80%;
+        margin: 0 auto;
       }
     }
   }
@@ -852,19 +853,19 @@
     background: #272727;
     text-align: center;
     overflow: hidden;
-    margin-top: 30px;
+    padding-top: 30px;
     @media (max-width: $screen-md-min) {
       padding-bottom: 30px;
-      margin-top: 80px;
+      padding-top: 80px;
     }
     h3 {
       text-align: center;
-      font-size: 42px;
+      font-size: 38px;
       text-transform: uppercase;
       color: #ff4300;
       font-family: 'Karla', sans-serif;
       font-weight: 400;
-      margin-top: 150px;
+      margin-top: 120px;
       margin-bottom: 80px;
       @media (max-width: $screen-md-min) {
         margin-top: 80px;
@@ -877,6 +878,7 @@
       position: relative;
       margin-left: auto;
       margin-right: auto;
+      font-size: 21px;
       width: 75%;
       left: 0;
       right: 0;
@@ -973,24 +975,31 @@
       margin-bottom: 50px;
     }
     .text {
-      font-size: 20px;
+      font-size: 21px;
       text-align: center;
       margin-bottom: 100px;
+      width: 100%;
+      @media (max-width: $screen-md-min) {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
     h4 {
-      font-size: 24px;
-      text-transform: uppercase;
-      font-weight: 300;
+      font-size: 26px;
+      font-weight: 600;
       color: #ff4300;
       font-family: 'Open Sans', sans-serif;
       text-align: center;
-      margin-top: 25px;
+      margin-bottom: 25px;
+      margin-top: 35px;
     }
     p {
       text-align: left;
-      width: 70%;
-      margin: 0 auto;
-      line-height: 1.5em;
+      width: 85%;
+      margin: 0 auto 20px;
+      line-height: 1.7em;
+      font-size: 18px;
     }
     .mentor {
       text-align: center;
@@ -999,7 +1008,7 @@
       }
       .mentor-links {
         text-align: left;
-        width: 70%;
+        width: 85%;
         margin: 15px auto 0;
         @media (max-width: $screen-md-min) {
           text-align: center;
@@ -1023,9 +1032,8 @@
   .feature-programas {
     border-top: 1px solid #dddddd;
     h4 {
-      font-size: 24px;
-      text-transform: uppercase;
-      font-weight: 300;
+      font-size: 26px;
+      font-weight: 600;
       color: #ff4300;
       font-family: 'Open Sans', sans-serif;
       text-align: center;
@@ -1033,8 +1041,16 @@
     }
     .programa {
       text-align: center;
+      @media (max-width: $screen-md-min) {
+        margin-bottom: 85px;
+      }
       p {
-        margin: 20px 0;
+        margin: 30px 0;
+        font-size: 21px;
+        @media (max-width: $screen-md-min) {
+          width: 80%;
+          margin: 30px auto;
+        }
       }
     }
     .icon-developer {
@@ -1054,12 +1070,12 @@
     }
     h3 {
       text-align: center;
-      font-size: 42px;
+      font-size: 38px;
       text-transform: uppercase;
       color: #ff4300;
       font-family: 'Karla', sans-serif;
       font-weight: 400;
-      margin-top: 150px;
+      margin-top: 130px;
       margin-bottom: 80px;
       @media (max-width: $screen-md-min) {
         margin-top: 80px;
@@ -1088,30 +1104,32 @@
     .icon-reason {
       display: block;
       margin: 0 auto;
-      width: 200px;
+      width: 125px;
       .img-responsive {
         margin: 0 auto 20px;
       }
     }
     .reason-number {
-      text-transform: uppercase;
       color: #ff4300;
       font-family: 'Open Sans', sans-serif;
-      font-weight: 300;
-      font-size: 30px;
+      font-weight: 600;
+      font-size: 24px;
     }
     h4 {
       text-transform: uppercase;
       color: #ff4300;
       font-family: 'Open Sans', sans-serif;
       font-weight: 300;
-      font-size: 24px;
+      font-size: 26px;
     }
     p {
       color: #fff;
-      font-size: 16px;
+      font-size:21px;
       width: 80%;
       margin: 0 auto;
+      @media (max-width: $screen-md-min) {
+        width: 80%;
+      }
     }
     ul {
       margin: 15px auto 0;
@@ -1132,12 +1150,12 @@
     position: relative;
     h3 {
       text-align: center;
-      font-size: 42px;
+      font-size: 38px;
       text-transform: uppercase;
       color: #ff4300;
       font-family: 'Karla', sans-serif;
       font-weight: 400;
-      margin-top: 150px;
+      margin-top: 130px;
       margin-bottom: 50px;
       @media (max-width: $screen-xs-min) {
         font-size: 32px;
@@ -1417,7 +1435,7 @@
   }
 
   footer {
-    padding-top: 130px;
+    padding-top: 100px;
     overflow: hidden;
     @media (max-width: $screen-md-min) {
       padding-top: 65px;
