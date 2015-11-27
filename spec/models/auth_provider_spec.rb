@@ -32,47 +32,30 @@ RSpec.describe AuthProvider, type: :model do
   describe '.omniauth' do
     context 'when user is not found' do
       it 'return 1' do
-        AuthProvider.omniauth(mock_auth_hash_facebook(user))
+        AuthProvider.omniauth(mock_auth_hash_slack(user))
         expect(User.count).to eq 1
       end
     end
 
     context 'when user is found' do
       it 'return false' do
-        AuthProvider.omniauth(mock_auth_hash_facebook(user))
+        AuthProvider.omniauth(mock_auth_hash_slack(user))
         expect(User.count).not_to eq 2
       end
 
-      context 'auth_provider by facebook is not found'  do
+      context 'auth_provider by slack is not found'  do
         it 'return 1' do
-          create(:user, email: "user@facebook.com")
-          AuthProvider.omniauth(mock_auth_hash_facebook(user))
+          create(:user, email: "user@makeitreal.camp")
+          AuthProvider.omniauth(mock_auth_hash_slack(user))
           expect(AuthProvider.count).to eq 1
         end
       end
 
-      context 'auth_provider by facebook is found'  do
+      context 'auth_provider by slack is found'  do
         it 'return false' do
-          user = create(:user, email: "user@facebook.com")
-          create(:auth_provider, provider: "facebook", user: user)
-          AuthProvider.omniauth(mock_auth_hash_facebook(user))
-          expect(AuthProvider.count).not_to eq 2
-        end
-      end
-
-      context 'auth_provider by github is not found'  do
-        it 'return 1' do
-          create(:user, email: "user@github.com")
-          AuthProvider.omniauth(mock_auth_hash_github(user))
-          expect(AuthProvider.count).to eq 1
-        end
-      end
-
-      context 'auth_provider by github is found'  do
-        it 'return false' do
-          user = create(:user, email: "user@github.com")
-          create(:auth_provider, provider: "github", user: user)
-          AuthProvider.omniauth(mock_auth_hash_github(user))
+          user = create(:user, email: "user@makeitreal.camp")
+          create(:auth_provider, provider: "slack", user: user)
+          AuthProvider.omniauth(mock_auth_hash_slack(user))
           expect(AuthProvider.count).not_to eq 2
         end
       end

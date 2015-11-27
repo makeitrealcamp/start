@@ -1,19 +1,8 @@
 # encoding: UTF-8
 class SessionsController < ApplicationController
-  before_action :public_access, only: [:new, :create]
+  before_action :public_access, only: [:new, :create_with_omniauth]
 
   def new
-  end
-
-  def create
-    user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
-      redirect_user_free  and return if user.free_account?
-      sign_in(user)
-      redirect_to signed_in_root_path
-    else
-      redirect_to login_path, flash: { error: "Credenciales Inválidas" }
-    end
   end
 
   def create_with_omniauth
@@ -32,7 +21,7 @@ class SessionsController < ApplicationController
   end
 
   def omniauth_failure
-    url_omniauth_failure("Es necesario que autorices los permisos para poder ingresar a Make it Real. También puedes regístrate con email y contraseña.")
+    url_omniauth_failure("Es necesario que autorices los permisos para poder ingresar a Make it Real.")
   end
 
   def destroy
@@ -42,14 +31,14 @@ class SessionsController < ApplicationController
 
   private
 
-  def url_omniauth_failure(message)
-    redirect_to login_path, flash: { error: message }
-  end
+    def url_omniauth_failure(message)
+      redirect_to login_path, flash: { error: message }
+    end
 
-  def redirect_user_free
-    redirect_to root_path, notice: %Q(
-        Make it Real ya no está disponible para usuarios gratuitos.
-        Si quieres ingresar al programa haz click en el botón ¡Aplica ahora!)
-
-  end
+    def redirect_user_free
+      redirect_to root_path, flash: { notice: %Q(
+          Make it Real ya no está disponible para usuarios gratuitos.
+          Si quieres ingresar al programa haz click en el botón ¡Aplica ahora!)
+        }
+    end
 end

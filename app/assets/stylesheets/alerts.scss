@@ -1,3 +1,10 @@
+.pages-layout {  
+  .main-alerts-container {
+    position: relative;
+    top: $navbar-height;
+    z-index: $zindex-navbar;
+  }
+}
 @mixin dimiss-tansition($duration) {
   -webkit-transition: height $duration linear 0s, padding-top $duration linear 0s, padding-bottom $duration linear 0s, margin-top $duration linear 0s, margin-bottom $duration linear 0s, border-top $duration linear 0s, border-bottom $duration linear 0s;
      -moz-transition: height $duration linear 0s, padding-top $duration linear 0s, padding-bottom $duration linear 0s, margin-top $duration linear 0s, margin-bottom $duration linear 0s, border-top $duration linear 0s, border-bottom $duration linear 0s;

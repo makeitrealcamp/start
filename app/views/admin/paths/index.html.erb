@@ -8,7 +8,7 @@
     <div class="clearfix"></div>
     <% @paths.each do |path| %>
       <div class="col-xs-12 col-md-6">
-        <div class="path">
+        <div class="path margin-bottom">
           <h2>
             <div class="actions pull-right">
               <% unless path.published %>
@@ -28,10 +28,14 @@
                 <%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_phase_path(phase) %>
               </div>
               <p>
-                <span class="glyphicon glyphicon-resize-vertical"></span>
+                <span class="glyphicon glyphicon-stop" style="color:<%= phase.color %>"></span>
                 <%= phase.name %>
               </p>
             </div>
+          <% end %>
+          <% if path.phases.empty? %>
+          <p class="text-muted margin-bottom">Este programa todavía no tiene fases creadas.</p>
+          <%= link_to "Nueva Fase", new_phase_path(path_id: path.id), class: "btn btn-success" %>
           <% end %>
         </div>
       </div>

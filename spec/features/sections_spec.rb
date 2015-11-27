@@ -11,9 +11,9 @@ RSpec.feature "Sections", type: :feature do
 
   context 'when accessed as admin' do
     context 'new section', js: true do
-
       scenario 'with valid input' do
         login(admin)
+        wait_for_ajax
         visit course_resource_path(course, resource)
         click_link 'Nueva Sección'
         wait_for_ajax
@@ -30,6 +30,7 @@ RSpec.feature "Sections", type: :feature do
 
       scenario 'without valid input' do
         login(admin)
+        wait_for_ajax
         visit course_resource_path(course, resource)
         click_link 'Nueva Sección'
         wait_for_ajax
@@ -42,9 +43,9 @@ RSpec.feature "Sections", type: :feature do
     end
 
     context 'edit Section', js: true do
-
       scenario 'with valid input'  do
         login(admin)
+        wait_for_ajax
         visit course_resource_path(course, resource)
         all(:css, '.resource-section-title a .glyphicon.glyphicon-pencil').first.click
         wait_for_ajax
@@ -59,6 +60,7 @@ RSpec.feature "Sections", type: :feature do
 
       scenario 'without valid input'  do
         login(admin)
+        wait_for_ajax
         visit course_resource_path(course, resource)
         all(:css, '.resource-section-title a .glyphicon.glyphicon-pencil').first.click
         wait_for_ajax
@@ -72,6 +74,7 @@ RSpec.feature "Sections", type: :feature do
 
     scenario 'delete section', js: true do
       login(admin)
+      wait_for_ajax
       visit course_resource_path(course, resource)
       all(:css, '.resource-section-title a .glyphicon.glyphicon-remove').first.click
       page.driver.browser.switch_to.alert.accept

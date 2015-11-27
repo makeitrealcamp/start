@@ -1,5 +1,6 @@
 class UserNotifier
 
+
   attr_accessor :user, :notification_service, :channel
 
   def initialize(user,notification_service = Pusher)

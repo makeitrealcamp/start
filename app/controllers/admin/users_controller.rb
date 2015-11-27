@@ -3,14 +3,13 @@ class Admin::UsersController < ApplicationController
 
   def new
     @user = User.new
+    @user.path_subscriptions.build(path_id: Path.first.id) if Path.first
   end
 
   def create
-    @user = User.new(user_params)
-    @user.generate_password
+    @user = User.new(user_params.merge(status: :created))
     if @user.save
-      @user.subscriptions.create
-      @user.send_activate_mail
+      @user.send_welcome_mail
     end
   end
 
@@ -68,6 +67,9 @@ class Admin::UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :gender, :nickname, :account_type)
+      params.require(:user).permit(
+        :first_name, :last_name, :email, :gender, :nickname, :account_type,
+        path_subscriptions_attributes: [:path_id,:id,:_destroy]
+      )
     end
 end

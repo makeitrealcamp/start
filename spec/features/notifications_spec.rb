@@ -9,11 +9,10 @@ RSpec.feature "Notifications", type: :feature do
 
   scenario "User receives 2 notifications", js: true do
     mock_notifications_service(page)
-    login(user)
     message1 = Faker::Lorem.sentence
     message2 = Faker::Lorem.sentence
-
-
+    login(user)
+    wait_for_ajax
     user.notifications.create!(notification_type: Notification.notification_types[:notice],data:{message: message1})
     find(:css,".notifications-btn").click
     within :css,"#notifications" do
@@ -34,6 +33,7 @@ RSpec.feature "Notifications", type: :feature do
     scenario "user requests all the notifications", js: true do
       mock_notifications_service(page)
       login(user)
+      wait_for_ajax
       find(:css,".notifications-btn").click
       expect(page).to have_selector('.notification', count: Notification::PER_PAGE)
       within :css,"#notifications" do
@@ -63,7 +63,7 @@ RSpec.feature "Notifications", type: :feature do
     scenario "when notification type is comment_response", js: true do
       mock_notifications_service(page)
       login(user)
-
+      wait_for_ajax
       user.notifications.create!(notification_type: Notification.notification_types[:comment_response], data: { response_id: 0 })
       find(:css,".notifications-btn").click
       within :css,"#notifications" do
@@ -75,7 +75,6 @@ RSpec.feature "Notifications", type: :feature do
     scenario "when notification type is badge_earned", js: true do
       mock_notifications_service(page)
       login(user)
-
       user.notifications.create!(notification_type: Notification.notification_types[:badge_earned], data: { badge_id: 0 })
       find(:css,".notifications-btn").click
       within :css,"#notifications" do
@@ -90,6 +89,7 @@ RSpec.feature "Notifications", type: :feature do
       user1 = create(:user)
       mock_notifications_service(page)
       login(user)
+      wait_for_ajax
       comment = create(:comment, user: user, commentable: challenge)
       user.notifications.create!(notification_type: Notification.notification_types[:comment_activity], data: { comment_id: comment.id })
 

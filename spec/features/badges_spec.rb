@@ -16,9 +16,10 @@ RSpec.feature "Badges", type: :feature do
 
   context 'when user is  admin' do
     context 'create badge' do
-      context 'when giving method is points' do
+      context 'when giving method is points', js: true do
         scenario 'with valid input' do
           login(admin)
+          wait_for_ajax
           visit admin_badges_path
           click_link  'Nueva insignia'
           name = Faker::Name::name
@@ -48,6 +49,7 @@ RSpec.feature "Badges", type: :feature do
 
         scenario 'without valid input' do
           login(admin)
+          wait_for_ajax
           visit admin_badges_path
           click_link  'Nueva insignia'
           name = Faker::Name::name
@@ -66,9 +68,10 @@ RSpec.feature "Badges", type: :feature do
         end
       end
 
-      context 'when giving method is manually' do
+      context 'when giving method is manually', js: true do
         scenario 'with valid input' do
           login(admin)
+          wait_for_ajax
           visit admin_badges_path
           click_link  'Nueva insignia'
           name = Faker::Name::name
@@ -93,8 +96,9 @@ RSpec.feature "Badges", type: :feature do
           expect(current_path).to eq admin_badges_path
         end
 
-        scenario 'without valid input' do
+        scenario 'without valid input', js: true do
           login(admin)
+          wait_for_ajax
           visit admin_badges_path
           click_link  'Nueva insignia'
           name = Faker::Name::name
@@ -114,6 +118,7 @@ RSpec.feature "Badges", type: :feature do
         scenario 'with valid input' do
           badge = create(:badge, giving_method: "points", required_points: 100, course: course)
           login(admin)
+          wait_for_ajax
           visit admin_badges_path
           all(:css, '.badges .glyphicon.glyphicon-pencil').last.click
           name = Faker::Name::name
@@ -136,6 +141,7 @@ RSpec.feature "Badges", type: :feature do
         scenario 'without valid input' do
           badge = create(:badge, giving_method: "points", required_points: 100, course: course)
           login(admin)
+          wait_for_ajax
           visit admin_badges_path
           all(:css, '.badges .glyphicon.glyphicon-pencil').last.click
           name = Faker::Name::name
@@ -155,6 +161,7 @@ RSpec.feature "Badges", type: :feature do
 
         scenario 'with valid input' do
           login(admin)
+          wait_for_ajax
           visit admin_badges_path
           all(:css, '.badges .glyphicon.glyphicon-pencil').first.click
           name = Faker::Name::name
@@ -174,6 +181,7 @@ RSpec.feature "Badges", type: :feature do
 
         scenario 'without valid input' do
           login(admin)
+          wait_for_ajax
           visit admin_badges_path
           all(:css, '.badges .glyphicon.glyphicon-pencil').last.click
           fill_in 'badge_name', with: ""
@@ -188,6 +196,7 @@ RSpec.feature "Badges", type: :feature do
     scenario 'delete badge', js: true do
       create(:badge)
       login(admin)
+      wait_for_ajax
       visit admin_badges_path
       all(:css, '.badges .glyphicon.glyphicon-remove').last.click
       page.driver.browser.switch_to.alert.accept

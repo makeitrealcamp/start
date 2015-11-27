@@ -2,19 +2,18 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  email           :string(100)
-#  roles           :string           is an Array
-#  password_digest :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  last_active_at  :datetime
-#  profile         :hstore
-#  status          :integer
-#  settings        :hstore
-#  account_type    :integer
-#  nickname        :string
-#  level_id        :integer
+#  id             :integer          not null, primary key
+#  email          :string(100)
+#  roles          :string           is an Array
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  last_active_at :datetime
+#  profile        :hstore
+#  status         :integer
+#  settings       :hstore
+#  account_type   :integer
+#  nickname       :string
+#  level_id       :integer
 #
 # Indexes
 #
@@ -25,8 +24,7 @@ class User < ActiveRecord::Base
 
   NOTIFICATION_SERVICE = Pusher
 
-  attr_accessor :password_confirmation, :notifier
-  has_secure_password validations: false
+  attr_accessor :notifier
 
   belongs_to :level
   has_many :solutions, dependent: :destroy
@@ -62,20 +60,15 @@ class User < ActiveRecord::Base
     github_username: :string
 
   hstore_accessor :settings,
-    password_reset_token: :string,
-    password_reset_sent_at: :datetime,
     info_requested_at: :datetime,
     has_public_profile: :boolean
 
+  accepts_nested_attributes_for :path_subscriptions, allow_destroy: true
+
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
-  validates :password, presence: true, length: { within: 6..40 }, on: :create
-  validates :password, presence: true, length: { within: 6..40 }, if: :password_digest_changed?
-  validates :password_confirmation, presence: true, on: :create
-  validates_confirmation_of :password, on: :create
-  validates :password_confirmation, presence: true, on: :update, if: :password_digest_changed?
-  validates_confirmation_of :password, on: :update, if: :password_digest_changed?
   validates :nickname, uniqueness: true
+  validates :nickname, format: { with: /\A[a-zA-Z0-9]+\Z/ }, if: :nickname?
 
   enum status: [:created, :active]
   enum account_type: [:free_account, :paid_account, :admin_account]
@@ -84,11 +77,6 @@ class User < ActiveRecord::Base
   after_initialize :default_values
   after_save :check_user_level
 
-  def generate_password
-    password = SecureRandom.urlsafe_base64
-    self.password = password
-    self.password_confirmation = password
-  end
 
   def self.commenters_of(commentable)
     joins(:comments).where(comments: {commentable_id: commentable.id,commentable_type: commentable.class.to_s}).uniq
@@ -158,20 +146,6 @@ class User < ActiveRecord::Base
     !!self.resource_completions.find_by_resource_id(resource.id)
   end
 
-  def send_activate_mail
-    generate_token
-    self.password_reset_sent_at = Time.current
-    save!
-    UserMailer.activate(self).deliver_now
-  end
-
-  def send_password_reset
-    generate_token
-    self.password_reset_sent_at = Time.current
-    save!
-    UserMailer.password_reset(self).deliver_now
-  end
-
   def avatar_url
     Gravatar.new(self.email).image_url
   end
@@ -194,22 +168,13 @@ class User < ActiveRecord::Base
 
   def activate!
     self.update!(
-      password_reset_token: nil,
-      password_reset_sent_at: nil,
       status: User.statuses[:active],
       activated_at: Time.current
     )
+  end
+
+  def send_welcome_mail
     SubscriptionsMailer.welcome_mail(self).deliver_now
-    SubscriptionsMailer.welcome_hangout(self).deliver_later!(wait: 8.hours)
-
-  end
-
-  def has_valid_password_reset_token?
-    (!!self.password_reset_sent_at) && (self.password_reset_sent_at >= 2.hours.ago)
-  end
-
-  def has_valid_account_activation_token?
-    (!!self.password_reset_sent_at) && (self.password_reset_sent_at >= 2.days.ago)
   end
 
   def notifier
@@ -244,12 +209,6 @@ class User < ActiveRecord::Base
       self.has_public_profile ||= false
       self.account_type ||= User.account_types[:free_account]
       self.level ||= Level.for_points(0)
-    end
-
-    def generate_token
-      begin
-        self.password_reset_token = SecureRandom.urlsafe_base64
-      end while User.exists?(["settings -> 'password_reset_token' = '#{self.settings['password_reset_token']}'"])
     end
 
     def assign_random_nickname

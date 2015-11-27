@@ -52,8 +52,7 @@ gem 'momentjs-rails'
 
 gem 'rails_12factor', group: :production
 
-gem 'omniauth-facebook'
-gem 'omniauth-github'
+gem 'omniauth-slack'
 gem 'font-awesome-sass'
 gem 'nested_form_fields'
 gem 'annotate', '~> 2.6.6'
@@ -75,7 +74,6 @@ gem 'date_supercharger'
 gem 'json-schema'
 gem 'simple_timeout'
 gem 'gretel'
-gem 'slugify'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -9,8 +9,8 @@ RSpec.feature "Manually assign Badges", type: :feature do
 
   scenario "Manually assign badges to user", js: true do
     login(admin)
+    wait_for_ajax
     visit user_profile_path(user.nickname)
-
     find(:css,".add-emblem").click
     expect(page).to have_css('#new_badge_ownership')
 
@@ -22,14 +22,11 @@ RSpec.feature "Manually assign Badges", type: :feature do
     expect(user.badges.exists?(badge.id)).to eq(true)
     expect(page).to have_no_css('#new_badge_ownership')
     expect(page).to have_css("#badge-#{badge.id}")
-
-
     find(:css,".add-emblem").click
     expect(page).to have_no_css('#new_badge_ownership')
     within(:css,"#badge-modal") do
       expect(page).to have_content "No se le puede asignar manualmente más insignias a este usuario"
     end
-
   end
 
 end

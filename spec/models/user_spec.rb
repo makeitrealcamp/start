@@ -2,19 +2,18 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  email           :string(100)
-#  roles           :string           is an Array
-#  password_digest :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  last_active_at  :datetime
-#  profile         :hstore
-#  status          :integer
-#  settings        :hstore
-#  account_type    :integer
-#  nickname        :string
-#  level_id        :integer
+#  id             :integer          not null, primary key
+#  email          :string(100)
+#  roles          :string           is an Array
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  last_active_at :datetime
+#  profile        :hstore
+#  status         :integer
+#  settings       :hstore
+#  account_type   :integer
+#  nickname       :string
+#  level_id       :integer
 #
 # Indexes
 #
@@ -39,9 +38,9 @@ RSpec.describe User, type: :model do
   context 'validations ' do
     it { should validate_presence_of :email }
     it { should validate_uniqueness_of :email }
+    it { should validate_uniqueness_of :nickname }
     it { should should_not allow_value("email.example").for(:email) }
-    it { should have_secure_password }
-    it { should validate_length_of(:password).is_at_least(6).is_at_most(40) }
+    it { should should_not allow_value("lorem.ipsum").for(:nickname) }
   end
 
   context 'default_values' do
@@ -63,6 +62,7 @@ RSpec.describe User, type: :model do
       expect(user.free_account?).to be true
     end
   end
+
 
   describe '#completed_challenges' do
     it 'without challenges completed' do

@@ -23,6 +23,7 @@ RSpec.feature "Comments", type: :feature do
     context 'when the challenge is completed' do
       scenario 'Display comments', js: true do
         login(user)
+        wait_for_ajax
         visit discussion_course_challenge_path(challenge.course, challenge)
         wait_for_ajax
         expect(current_path).to eq discussion_course_challenge_path(challenge.course, challenge)
@@ -31,6 +32,7 @@ RSpec.feature "Comments", type: :feature do
       context 'create comment', js: true do
         scenario 'with valid input', js: true do
           login(user)
+          wait_for_ajax
           visit discussion_course_challenge_path(challenge.course, challenge)
           fill_in 'text', with: Faker::Lorem.paragraph
           click_button "Comentar"
@@ -42,6 +44,7 @@ RSpec.feature "Comments", type: :feature do
 
         scenario 'without input' do
           login(user)
+          wait_for_ajax
           visit discussion_course_challenge_path(challenge.course, challenge)
           click_button "Comentar"
           wait_for_ajax
@@ -51,10 +54,10 @@ RSpec.feature "Comments", type: :feature do
         end
       end
 
-
       context 'update comment', js: true do
         scenario 'display form' do
           login(user)
+          wait_for_ajax
           visit discussion_course_challenge_path(challenge.course, challenge)
           all(:css, '.comment-actions a .glyphicon.glyphicon-pencil').first.click
           wait_for_ajax
@@ -63,6 +66,7 @@ RSpec.feature "Comments", type: :feature do
 
         scenario 'with valid input' do
           login(user)
+          wait_for_ajax
           visit discussion_course_challenge_path(challenge.course, challenge)
           all(:css, '.comment-actions a .glyphicon.glyphicon-pencil').first.click
           text = Faker::Lorem.paragraph
@@ -76,6 +80,7 @@ RSpec.feature "Comments", type: :feature do
 
         scenario 'without input' do
           login(user)
+          wait_for_ajax
           visit discussion_course_challenge_path(challenge.course, challenge)
           all(:css, '.comment-actions a .glyphicon.glyphicon-pencil').first.click
           find(:css, 'form.edit-comment textarea#comment-input').set('')
@@ -87,6 +92,7 @@ RSpec.feature "Comments", type: :feature do
         scenario 'cancel comment edition' do
           original_comment_text = comment.text
           login(user)
+          wait_for_ajax
           visit discussion_course_challenge_path(challenge.course, challenge)
           all(:css, '.comment-actions a .glyphicon.glyphicon-pencil').first.click
           find(:css, 'form.edit-comment textarea#comment-input').set('XXX')
@@ -101,6 +107,7 @@ RSpec.feature "Comments", type: :feature do
       scenario 'Remove comment', js: true do
         comment1 = create(:comment, user: user, commentable: challenge)
         login(user)
+        wait_for_ajax
         visit discussion_course_challenge_path(challenge.course, challenge)
         all(:css, '.comment-actions a .glyphicon.glyphicon-remove').first.click
         page.driver.browser.switch_to.alert.accept
@@ -112,6 +119,7 @@ RSpec.feature "Comments", type: :feature do
       context 'response comments', js: true do
         scenario 'display form' do
           login(user)
+          wait_for_ajax
           visit discussion_course_challenge_path(challenge.course, challenge)
           all(:css, '.add-form-response').first.click
           wait_for_ajax
@@ -120,6 +128,7 @@ RSpec.feature "Comments", type: :feature do
 
         scenario 'with valid input' do
           login(user)
+          wait_for_ajax
           visit discussion_course_challenge_path(challenge.course, challenge)
           all(:css, '.add-form-response').first.click
           wait_for_ajax
@@ -137,6 +146,7 @@ RSpec.feature "Comments", type: :feature do
 
         scenario 'without valid input' do
           login(user)
+          wait_for_ajax
           visit discussion_course_challenge_path(challenge.course, challenge)
           all(:css, '.add-form-response').first.click
           wait_for_ajax
@@ -148,6 +158,7 @@ RSpec.feature "Comments", type: :feature do
 
         scenario 'with cancel form' do
           login(user)
+          wait_for_ajax
           visit discussion_course_challenge_path(challenge.course, challenge)
           all(:css, '.add-form-response').first.click
           wait_for_ajax
@@ -163,10 +174,8 @@ RSpec.feature "Comments", type: :feature do
         challenge = create(:challenge, course: course)
         solution = create(:solution, user: user, challenge: challenge)
         login(user)
-
-        visit discussion_course_challenge_path(challenge.course, challenge)
-
         wait_for_ajax
+        visit discussion_course_challenge_path(challenge.course, challenge)
         expect(page).to have_content 'Debes completar el reto para poder ver la discusión'
       end
     end

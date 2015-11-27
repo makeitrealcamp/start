@@ -2,19 +2,18 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  email           :string(100)
-#  roles           :string           is an Array
-#  password_digest :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  last_active_at  :datetime
-#  profile         :hstore
-#  status          :integer
-#  settings        :hstore
-#  account_type    :integer
-#  nickname        :string
-#  level_id        :integer
+#  id             :integer          not null, primary key
+#  email          :string(100)
+#  roles          :string           is an Array
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  last_active_at :datetime
+#  profile        :hstore
+#  status         :integer
+#  settings       :hstore
+#  account_type   :integer
+#  nickname       :string
+#  level_id       :integer
 #
 # Indexes
 #
@@ -24,8 +23,6 @@
 FactoryGirl.define do
   factory :user do
     sequence (:email) { |n| "user#{n}@example.com" }
-    password 'mir1234'
-    password_confirmation 'mir1234'
     first_name{ Faker::Name.first_name }
 
     sequence(:gender) do |n|

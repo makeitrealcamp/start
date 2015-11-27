@@ -102,8 +102,6 @@ RSpec.describe Lesson, type: :model do
         expect(lesson_1_2_1.next(free_user)).to eq(nil)
         expect(lesson_2_6_2.next(free_user)).to eq(nil)
       end
-
     end
-
   end
 end

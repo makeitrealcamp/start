@@ -1,21 +1,15 @@
 class UsersController < ApplicationController
-  before_action :private_access, except: [:new, :create, :profile, :activate_form, :activate]
-  before_action :public_access, only: [:new, :create, :activate_form, :activate]
+  before_action :private_access, except: [:profile, :activate_form, :activate]
 
   def activate_form
-    token = params[:token]
-    @user = User.where("settings -> 'password_reset_token' = ? ", token).take!
-    if @user.has_valid_account_activation_token?
-      @activate_user = ActivateUserForm.new(token: token)
-    else
-      redirect_to login_path, flash: { error: "Tu link de activación ha expirado." }
-    end
+    @activate_user = ActivateUserForm.new(user: current_user)
   end
 
   def activate
-    @activate_user = ActivateUserForm.new(activate_user_params)
+    @activate_user = ActivateUserForm.new(activate_user_params.merge(user: current_user))
+    
     if @activate_user.save
-      redirect_to login_path, flash: { notice: "¡Felicitaciones! Has activado tu cuenta de Make it Real. Ingresa a la plataforma y descubre lo que tenemos preparado para ti." }
+      redirect_to signed_in_root_path, flash: { notice: "¡Felicitaciones! Has activado tu cuenta de Make it Real. Ingresa a la plataforma y descubre lo que tenemos preparado para ti." }
     else
       render :activate_form
     end
@@ -56,15 +50,12 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(
-        :password, :password_confirmation, :first_name, :mobile_number, :birthday,
+      params.require(:user).permit(:first_name, :mobile_number, :birthday,
         :has_public_profile, :github_username, :nickname, :gender
       )
     end
     def activate_user_params
-      params.require(:activate_user).permit(
-        :password, :password_confirmation, :first_name, :mobile_number, :birthday,
-        :has_public_profile, :github_username, :nickname, :gender, :token
+      params.require(:activate_user).permit(:first_name, :mobile_number, :birthday, :github_username, :nickname, :gender
       )
     end
 end

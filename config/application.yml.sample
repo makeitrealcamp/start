@@ -1,0 +1,34 @@
+# Sample Figaro configuration file
+#
+# Create config/application.yml by copying this file
+# For more info see https://github.com/laserlemon/figaro
+#
+# In order to setup env var in heroku run figaro heroku:set -e production
+
+MAILER_FROM: 'info@makeitreal.camp'
+
+production:
+  FACEBOOK_KEY:                 '<FACEBOOK_KEY>'
+  FACEBOOK_SECRET:              '<FACEBOOK_SECRET>'
+  GITHUB_KEY:                   '<GITHUB_KEY>'
+  GITHUB_SECRET:                '<GITHUB_SECRET>'
+  GITHUB_TOKEN:                 '<GITHUB_TOKEN>'
+  GOOGLE_TRACKING_ID:           '<GOOGLE_TRACKING_ID>'
+  HOSTNAME:                     '<HOSTNAME>'
+  NOTIFICATIONS_CHANNEL_PREFIX: '<NOTIFICATIONS_CHANNEL_PREFIX>'
+  POSTMARK_API_KEY:             '<POSTMARK_API_KEY>'
+  PUSHER_URL:                   '<PUSHER_URL>'
+  SLACK_KEY:                    '<SLACK_KEY>'
+  SLACK_SECRET:                 '<SLACK_SECRET>'
+  SLACK_TEAM:                   '<SLACK_TEAM>'
+
+development:
+  PUSHER_URL:      '<PUSHER_URL>'
+  FACEBOOK_KEY:    '<FACEBOOK_KEY>'
+  FACEBOOK_SECRET: '<FACEBOOK_SECRET>'
+  GITHUB_KEY:      '<GITHUB_KEY>'
+  GITHUB_SECRET:   '<GITHUB_SECRET>'
+  SLACK_KEY:       '<SLACK_KEY>'
+  SLACK_SECRET:    '<SLACK_SECRET>'
+  SLACK_TEAM:      '<SLACK_TEAM>'
+  HELP_URL:        'https://<TEAM>.slack.com/messages/@<MENTOR_USERNAME>'

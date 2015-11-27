@@ -1,8 +1,9 @@
 OmniAuth.config.logger = Rails.logger
 
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET']
-  provider :github  , ENV['GITHUB_KEY']  , ENV['GITHUB_SECRET'], scope: "user:email"
+   provider :slack  , ENV['SLACK_KEY']  , ENV['SLACK_SECRET'],
+    scope: "identify,read,post",
+    team: ENV['SLACK_TEAM']
 end
 
 OmniAuth.config.on_failure = Proc.new do |env|

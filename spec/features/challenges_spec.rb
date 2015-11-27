@@ -15,25 +15,28 @@ RSpec.feature "Challenges", type: :feature do
 
   context 'user with paid account' do
     describe 'list challenges' do
-      scenario 'show only published challenges' do
+      scenario 'show only published challenges', js: true do
         create(:challenge, course: course, published: true)
         create(:challenge, course: course, published: false)
         login(user_paid)
+        wait_for_ajax
         visit course_path(course)
         expect(page).to have_selector('.challenge', count: 2)
         expect(page).not_to have_selector('.banner')
       end
 
-      scenario 'view' do
+      scenario 'view', js: true do
         create(:challenge, course: course, published: true, restricted: false)
         create(:challenge, course: course, published: true, restricted: false)
         login(user_paid)
+        wait_for_ajax
         visit course_path(course)
         expect(page).to have_selector(".glyphicon-ok", count: 3)
       end
 
       scenario 'enabled challenge when is restricted', js: true do
         login(user_paid)
+        wait_for_ajax
         visit course_path(course)
         all(:css, '.challenge').first.click
         wait_for_ajax
@@ -43,11 +46,12 @@ RSpec.feature "Challenges", type: :feature do
   end
 
   context 'when user is admin' do
-    context 'list challenges' do
+    context 'list challenges', js: true do
       scenario 'list all the challenges' do
         create(:challenge, course: course, published: true)
         create(:challenge, course: course, published: false)
         login(admin)
+        wait_for_ajax
         visit course_path(course)
         expect(page).to have_selector('.challenge', count: 3)
         expect(page).not_to have_selector('.banner')
@@ -57,6 +61,7 @@ RSpec.feature "Challenges", type: :feature do
         create(:challenge, course: course, published: true, restricted: false)
         create(:challenge, course: course, published: true, restricted: true)
         login(user_paid)
+        wait_for_ajax
         visit course_path(course)
         expect(page).to have_selector(".challenge .actions", count: 3)
       end
@@ -66,6 +71,7 @@ RSpec.feature "Challenges", type: :feature do
   scenario 'reset solution', js: true do
     create(:solution, user: user_paid, challenge: challenge)
     login(user_paid)
+    wait_for_ajax
     visit course_challenge_path(course, challenge)
     find('.nav-tabs .dropdown-toggle').click
     click_link 'Reiniciar Reto'
@@ -74,15 +80,17 @@ RSpec.feature "Challenges", type: :feature do
     course_challenge_path(course, challenge)
   end
 
-  context 'accept challenge' do
+  context 'accept challenge', js: true do
     scenario 'when have not accepted the challenge' do
       login(user_paid)
+      wait_for_ajax
       visit course_challenge_path(course, challenge)
       expect(page).to have_link '¡Sí, empezar a trabajar!'
     end
 
-    scenario 'when accept challenge', js: true do
+    scenario 'when accept challenge' do
       login(user_paid)
+      wait_for_ajax
       visit course_challenge_path(course, challenge)
       click_link '¡Sí, empezar a trabajar!'
       expect(page).not_to have_link '¡Sí, empezar a trabajar!'
@@ -96,6 +104,7 @@ RSpec.feature "Challenges", type: :feature do
       create(:challenge, course: course, published: true)
       create(:challenge, course: course, published: true)
       login(admin)
+      wait_for_ajax
       visit course_path(course)
       all(:css, '.actions a .glyphicon.glyphicon-remove').first.click
       page.driver.browser.switch_to.alert.accept
@@ -104,5 +113,4 @@ RSpec.feature "Challenges", type: :feature do
       expect(Challenge.count).to eq 2
     end
   end
-
 end
