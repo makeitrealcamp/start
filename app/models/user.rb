@@ -63,12 +63,12 @@ class User < ActiveRecord::Base
     info_requested_at: :datetime,
     has_public_profile: :boolean
 
+  accepts_nested_attributes_for :path_subscriptions, allow_destroy: true
+
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :nickname, uniqueness: true
   validates :nickname, format: { with: /\A[a-zA-Z0-9]+\Z/ }, if: :nickname?
-
-  accepts_nested_attributes_for :path_subscriptions, allow_destroy: true
 
   enum status: [:created, :active]
   enum account_type: [:free_account, :paid_account, :admin_account]

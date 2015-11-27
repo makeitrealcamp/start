@@ -7,7 +7,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params.merge(status: :created))
     if @user.save
       @user.send_welcome_mail
     end
