@@ -31,3 +31,4 @@ development:
   SLACK_KEY:       '<SLACK_KEY>'
   SLACK_SECRET:    '<SLACK_SECRET>'
   SLACK_TEAM:      '<SLACK_TEAM>'
+  HELP_URL:        'https://<TEAM>.slack.com/messages/@<MENTOR_USERNAME>'
