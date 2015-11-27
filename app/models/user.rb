@@ -170,7 +170,6 @@ class User < ActiveRecord::Base
       status: User.statuses[:active],
       activated_at: Time.current
     )
-    SubscriptionsMailer.welcome_hangout(self).deliver_later!(wait: 8.hours)
   end
 
   def send_welcome_mail
