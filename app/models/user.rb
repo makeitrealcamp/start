@@ -68,6 +68,7 @@ class User < ActiveRecord::Base
   validates :nickname, uniqueness: true
   validates :nickname, format: { with: /\A[a-zA-Z0-9]+\Z/ }, if: :nickname?
 
+  accepts_nested_attributes_for :path_subscriptions, allow_destroy: true
 
   enum status: [:created, :active]
   enum account_type: [:free_account, :paid_account, :admin_account]

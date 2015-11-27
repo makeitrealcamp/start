@@ -40,6 +40,18 @@
               <%= f.label(:false, "Femenino", class: "txt-bold") %>
             </label>
           </div>
+          <div class="form-group">
+            <%= f.label :paths, "Programas" %>
+            <%= f.nested_fields_for :path_subscriptions, wrapper_options: { class: 'row margin-bottom'} do |ff| %>
+              <div class="col-xs-10">
+                <%= ff.collection_select(:path_id, Path.all, :id, ->(path){ "#{path.name}" + (path.published ? "": " (NO publicado)") }, {},{class: "form-control"}) %>
+              </div>
+              <div class="col-xs-2 text-right">
+                <%= ff.remove_nested_fields_link '<span class="glyphicon glyphicon-trash"></span>'.html_safe, class: "btn btn-danger" %>
+              </div>
+            <% end %>
+            <%= f.add_nested_fields_link :path_subscriptions, '<span class="glyphicon glyphicon-plus"></span>'.html_safe, class: "btn btn-primary" %>
+          </div>
         </div>
         <div class="modal-footer">
           <%= f.button "Crear Usuario", class: 'btn btn-primary'  %>
