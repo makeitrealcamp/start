@@ -18,7 +18,6 @@ class PhasesController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
