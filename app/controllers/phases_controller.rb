@@ -5,6 +5,7 @@ class PhasesController < ApplicationController
 
   def new
     @phase = Phase.new
+    @phase.path_id = params[:path_id] if params[:path_id]
   end
 
   def create

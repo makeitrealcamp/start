@@ -12,7 +12,7 @@ class Admin::PathsController < ApplicationController
   def create
     @path = Path.new(path_params)
     if @path.save
-      redirect_to admin_paths_path, notice: "Path creado"
+      redirect_to admin_paths_path, notice: "Programa creado"
     else
       render :new
     end
@@ -22,6 +22,11 @@ class Admin::PathsController < ApplicationController
   end
 
   def update
+    if @path.update(path_params)
+      redirect_to admin_paths_path, notice: "Programa actualizado"
+    else
+      render :edit
+    end
   end
 
   private
