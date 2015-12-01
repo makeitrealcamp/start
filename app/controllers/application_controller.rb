@@ -38,6 +38,15 @@ class ApplicationController < ActionController::Base
 
     def private_access
       if signed_in?
+        if current_user.free_account?
+          sign_out
+          redirect_free_user
+          return
+        elsif current_user.suspended?
+          sign_out
+          redirect_suspended_user
+          return
+        end
         activate_access and return
       else
         redirect_to :login
@@ -45,7 +54,11 @@ class ApplicationController < ActionController::Base
     end
 
     def admin_access
-      raise ActionController::RoutingError.new('Not Found') unless signed_in? && current_user.is_admin?
+      private_access
+      unless signed_in? && current_user.is_admin?
+        raise ActionController::RoutingError.new('Not Found')
+      end
+
     end
 
     def paid_access
@@ -75,6 +88,16 @@ class ApplicationController < ActionController::Base
 
     def set_content_language
       response.headers["Content-Language"] = I18n.locale.to_s
+    end
+
+    def redirect_free_user
+      redirect_to root_path, notice: %Q(
+        Make it Real ya no está disponible para usuarios gratuitos.
+        Si quieres ingresar al programa haz click en el botón ¡Aplica ahora!)
+    end
+
+    def redirect_suspended_user
+      redirect_to root_path, notice: "Tu cuenta ha sido temporalmente suspendida."
     end
 
 end

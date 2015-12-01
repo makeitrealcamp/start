@@ -49,23 +49,35 @@ class Admin::UsersController < ApplicationController
     @resources = Resource.find(resources_ids).group_by(&:course)
   end
 
-  protected
-  def generate_account_type_url(account_type)
-    account_types = params[:account_type].nil? ? [] : params[:account_type].clone
+  def suspend
+    @user = User.find(params[:id])
+    @user.update!(suspended: true)
+    redirect_to :back, notice: "La cuenta de #{@user.email} ha sido suspendida"
+  end
 
-    if account_types.include? account_type.to_s
-      account_types.delete account_type.to_s
-    else
-      account_types << account_type.to_s
-    end
-    params_clone = params.clone.reject { |k| ['action','controller'].include? k }
-
-    params_clone[:account_type] = account_types
-    params_clone[:page] = 1
-    Rails.application.routes.url_helpers.admin_users_path(params_clone)
+  def reactivate
+    @user = User.find(params[:id])
+    @user.update!(suspended: false)
+    redirect_to :back, notice: "La cuenta de #{@user.email} ha sido reactivada"
   end
 
   private
+
+    def generate_account_type_url(account_type)
+      account_types = params[:account_type].nil? ? [] : params[:account_type].clone
+
+      if account_types.include? account_type.to_s
+        account_types.delete account_type.to_s
+      else
+        account_types << account_type.to_s
+      end
+      params_clone = params.clone.reject { |k| ['action','controller'].include? k }
+
+      params_clone[:account_type] = account_types
+      params_clone[:page] = 1
+      Rails.application.routes.url_helpers.admin_users_path(params_clone)
+    end
+
     def user_params
       params.require(:user).permit(
         :first_name, :last_name, :email, :gender, :nickname, :account_type,

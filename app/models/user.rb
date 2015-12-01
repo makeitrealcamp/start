@@ -57,7 +57,8 @@ class User < ActiveRecord::Base
     motivation: :string,
     experience: :string,
     activated_at: :datetime,
-    github_username: :string
+    github_username: :string,
+    suspended: :boolean
 
   hstore_accessor :settings,
     info_requested_at: :datetime,
@@ -208,6 +209,7 @@ class User < ActiveRecord::Base
       self.status ||= :created
       self.has_public_profile ||= false
       self.account_type ||= User.account_types[:free_account]
+      self.suspended ||= false
       self.level ||= Level.for_points(0)
     end
 
