@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if env['omniauth.auth'].info.email.blank?
       url_omniauth_failure("No pudimos obtener el email de #{env['omniauth.auth'].provider.capitalize}. Por favor habilítalo")
     elsif user = AuthProvider.omniauth(env['omniauth.auth'])
-      redirect_user_free and return if user.free_account?
+      redirect_free_user and return if user.free_account?
       sign_in(user)
       redirect_to signed_in_root_path
     else
@@ -35,10 +35,4 @@ class SessionsController < ApplicationController
       redirect_to login_path, flash: { error: message }
     end
 
-    def redirect_user_free
-      redirect_to root_path, flash: { notice: %Q(
-          Make it Real ya no está disponible para usuarios gratuitos.
-          Si quieres ingresar al programa haz click en el botón ¡Aplica ahora!)
-        }
-    end
 end

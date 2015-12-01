@@ -127,10 +127,9 @@ Rails.application.routes.draw do
     get 'dashboard', to: 'dashboard#index'
     resources :paths, only: [:index, :new, :create, :update, :edit]
     resources :users, only: [:index, :new, :create, :show] do
-      resources :subscriptions, only: [:create] do
-        member do
-          patch :cancel
-        end
+      member do
+        patch :suspend
+        patch :reactivate
       end
     end
     resources :solutions, only: [:index]

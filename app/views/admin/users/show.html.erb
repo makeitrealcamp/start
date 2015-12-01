@@ -11,6 +11,9 @@
             <div class="info-value"><span class="glyphicon glyphicon-envelope"></span> <%= @user.email %></div>
             <div class="info-value"><span class="glyphicon glyphicon-time"></span> Se unió el <%= l @user.created_at, format: '%d %b, %Y' %></div>
             <div class="info-status"><%= @user.status %></div>
+            <% if @user.suspended? %>
+              <span class="label label-warning"><div class="glyphicon glyphicon-warning-sign"></div> &nbsp;Usuario Suspendido</span>
+            <% end %>
           </div>
         </div>
         <div class="col-sm-4">
@@ -27,10 +30,10 @@
 
       <div class="row">
         <div class="col-sm-9 col-sm-offset-3 susbcription-container">
-          <% if @user.active_subscription %>
-            <%= render "admin/subscriptions/cancel_button" %>
+          <% if @user.suspended? %>
+            <%= render "admin/users/reactivate_button", user: @user %>
           <% else %>
-            <%= render "admin/subscriptions/create_button" %>
+            <%= render "admin/users/suspend_button", user: @user %>
           <% end %>
         </div>
       </div>
@@ -159,8 +162,6 @@
   </div>
 </div>
 </script>
-
-<%= javascript_include_tag 'canvasjs-1.6.1' %>
 <script>
   var editorModes = <%= codemirror_modes.to_json.html_safe %>;
   $('.solution-files').click(function() {
