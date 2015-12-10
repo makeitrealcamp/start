@@ -1785,7 +1785,7 @@
   .program-intro {
     margin-top: 70px;
     padding-top: 100px;
-    padding-bottom: 100px;
+    padding-bottom: 70px;
     color: #fff;
   }
   .full-stack {
@@ -1822,6 +1822,7 @@
   }
   .bullets-program {
     ul {
+      list-style-type: none;
       @media (max-width: $screen-md-min) {
         padding-left: 0;
       }
