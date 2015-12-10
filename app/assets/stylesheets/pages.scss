@@ -616,9 +616,26 @@
     }
   }
   .icon-menu {
-    width: 24px;
-    display: inline-block;
+    display: block;
+    float: left;
     margin-right: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 32px;
+  }
+  .text-menu {
+    display: block;
+    float: left;
+    font-size: 14px;
+    margin-top: 15px;
+    width: 190px;
+  }
+  .dropdown-menu a {
+    overflow: hidden;
+    width: 275px;
+    @media (max-width: $screen-sm-min) {
+      width: 100%;
+    }
   }
   .intro {
     background: image-url("introBg2.png") top center;
