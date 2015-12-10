@@ -602,12 +602,23 @@
       a {
         color: #ff4300;
       }
+      .icon-menu {
+        color: #ff4300;
+        svg {
+          fill: #ff4300;
+        }
+      }
     }
   }
   .navbar-toggle {
     .icon-bar {
       background: #ff4300;
     }
+  }
+  .icon-menu {
+    width: 24px;
+    display: inline-block;
+    margin-right: 10px;
   }
   .intro {
     background: image-url("introBg2.png") top center;
