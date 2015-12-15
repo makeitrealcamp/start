@@ -1807,7 +1807,7 @@
     color: #fff;
   }
   .full-stack {
-    background: image-url("full-stack.png") center center;
+    background: image-url("01.png") center center;
     background-size: cover;
   }
   .tagline-program {
@@ -1933,7 +1933,7 @@
     margin-right: auto;
   }
   .mentories-program {
-    background: image-url("full-stack.png") center center;
+    background: image-url("02.png") center center;
     background-size: cover;
     padding: 130px 0;
     .subhead {
@@ -2029,7 +2029,7 @@
     }
   }
   .project-program {
-    background: image-url("full-stack.png") center center;
+    background: image-url("03.png") center center;
     background-size: cover;
     padding: 130px 0;
     .title-program {
@@ -2102,6 +2102,26 @@
   .dropdown-menu > .active > a, .pagination .dropdown-menu > .current > a, .dropdown-menu > .active > a:hover, .pagination .dropdown-menu > .current > a:hover, .dropdown-menu > .active > a:focus, .pagination .dropdown-menu > .current > a:focus {
     background: transparent;
   }
+
+
+    .mentories-program {
+      &.front-end {
+        background: image-url("07.png") center bottom;
+        background-size: cover;
+      }
+    }
+    .project-program {
+      &.front-end {
+        background: image-url("08.png") center center;
+        background-size: cover;
+      }
+    }
+    .full-stack {
+      &.front-end {
+        background: image-url("05.png") center top;
+        background-size: cover;
+      }
+    }
 
   
 }
