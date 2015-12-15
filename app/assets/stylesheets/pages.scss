@@ -700,20 +700,21 @@
     }
   }
   .know-more {
-    font-size: 16px;
-    text-align: center;
-    color: #fff;
+    color: #ff4300;
     font-weight: 400;
-    margin-top: 12px;
     display: inline-block;
     position: absolute;
-    bottom: 100px;
+    bottom: 130px;
     left: 50%;
-    margin-left: -36.5px;
-    .icon {
-      display: block;
-      margin-top: 5px;
-    }
+    margin-left: -150px;
+    background: #fff;
+    border: solid 1px #ffffff;
+    border-radius: 2px;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    padding: 10px 0;
+    width: 300px;
+    font-size: 18px;
   }
 
   .press {
@@ -1807,7 +1808,7 @@
     color: #fff;
   }
   .full-stack {
-    background: image-url("01.png") center center;
+    background: image-url("01interna-programa.png") center center;
     background-size: cover;
   }
   .tagline-program {
@@ -1933,7 +1934,7 @@
     margin-right: auto;
   }
   .mentories-program {
-    background: image-url("02.png") center center;
+    background: image-url("02interna-programa.png") center center;
     background-size: cover;
     padding: 130px 0;
     .subhead {
@@ -2029,7 +2030,7 @@
     }
   }
   .project-program {
-    background: image-url("03.png") center center;
+    background: image-url("03interna-programa.png") center top;
     background-size: cover;
     padding: 130px 0;
     .title-program {
@@ -2106,19 +2107,19 @@
 
     .mentories-program {
       &.front-end {
-        background: image-url("07.png") center bottom;
+        background: image-url("01interna-programa.png") center center;
         background-size: cover;
       }
     }
     .project-program {
       &.front-end {
-        background: image-url("08.png") center center;
+        background: image-url("02interna-programa.png") center center;
         background-size: cover;
       }
     }
     .full-stack {
       &.front-end {
-        background: image-url("05.png") center top;
+        background: image-url("04interna-programa.png") center bottom;
         background-size: cover;
       }
     }
