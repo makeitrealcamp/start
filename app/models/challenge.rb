@@ -87,12 +87,12 @@ class Challenge < ActiveRecord::Base
     if next_challenge_in_course
       next_challenge_in_course
     else
-      Challenge.for(user).order_by_course_and_rank.where("courses.row > ?",self.course.row).first
+      Challenge.for(user).order_by_course_and_rank.where("courses.row > ?", self.course.row).take
     end
   end
 
   def next_in_course_for_user(user)
-    course.challenges.for(user).order_by_course_and_rank.first
+    course.challenges.for(user).order(:row).where("row > ?", self.row).take
   end
 
   def name_with_course

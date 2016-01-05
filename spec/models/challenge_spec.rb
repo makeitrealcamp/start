@@ -29,12 +29,17 @@
 require 'rails_helper'
 
 RSpec.describe Challenge, type: :model do
-  let(:challenge){create(:challenge)}
+  let(:challenge) { create(:challenge) }
   subject { Challenge.new }
 
   context 'associations' do
     it { should belong_to(:course) }
     it { should have_many(:documents) }
+  end
+
+  context 'validations ' do
+    it { should validate_presence_of :name }
+    it { should validate_presence_of :instructions}
   end
 
   context "friendly_id" do
@@ -48,8 +53,12 @@ RSpec.describe Challenge, type: :model do
     end
   end
 
-  context 'validations ' do
-    it { should validate_presence_of :name }
-    it { should validate_presence_of :instructions}
+  context "#next_for_user" do
+    it "returns the next challenge" do
+      user = create(:paid_user)
+      next_challenge = create(:challenge, course: challenge.course, row: 1)
+
+      expect(challenge.next_for_user(user)).to eq next_challenge
+    end
   end
 end

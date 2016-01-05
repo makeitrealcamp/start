@@ -12,6 +12,7 @@
 #  description   :string
 #  slug          :string
 #  published     :boolean
+#  phase_id      :integer
 #
 
 class Course < ActiveRecord::Base

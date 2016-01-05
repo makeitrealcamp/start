@@ -28,7 +28,9 @@
 
 FactoryGirl.define do
   factory :challenge do
+    course { create(:course) }
     name { Faker::Name.title }
     instructions { Faker::Lorem.paragraph }
+    published true
   end
 end
