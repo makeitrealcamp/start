@@ -1029,14 +1029,16 @@
       margin-top: 35px;
     }
     p {
-      text-align: left;
+      text-align: center;
       width: 80%;
       margin: 0 auto 20px;
       line-height: 1.7em;
       font-size: 18px;
+      height: 85px;
     }
     .mentor {
       text-align: center;
+      margin-bottom: 65px;
       @media (max-width: $screen-md-min) {
         margin-bottom: 80px;
       }
@@ -1050,6 +1052,7 @@
         ul {
           list-style-type: none;
           padding-left: 0;
+          text-align: center;
         }
         li {
           display: inline-block;
