@@ -1882,6 +1882,14 @@
       .subhead {
         font-size: 21px;
         margin-top: 30px;
+        &.txt-blue {
+   
+          font-family: "Open Sans",sans-serif;
+          font-weight: 300;
+          color: #005e9f;
+          text-transform: uppercase;
+          font-size: 24px;
+        }
       }
     }
     h4 {
