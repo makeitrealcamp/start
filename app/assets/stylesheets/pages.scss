@@ -1369,6 +1369,28 @@
         margin-top: 10px;
       }
     }
+    .txt-start-date {
+      font-family: "Open Sans",sans-serif;
+      font-weight: 600;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 24px;
+      text-align: center;
+      margin-top: 120px;
+    }
+    .txt-huge {
+      font-size: 60px;
+      display: block;
+    }
+    .start-date {
+      margin-bottom: 105px;
+      padding: 30px;
+      border-radius: 5px;
+      border: 1px solid #005e9f;
+      height: 441px;
+      background: image-url("03interna-programa.png") center center;
+      background-size: cover;
+    }
   }
 
   .txt-bold {
@@ -1881,14 +1903,6 @@
       .subhead {
         font-size: 21px;
         margin-top: 30px;
-        &.txt-blue {
-   
-          font-family: "Open Sans",sans-serif;
-          font-weight: 300;
-          color: #005e9f;
-          text-transform: uppercase;
-          font-size: 24px;
-        }
       }
     }
     h4 {
