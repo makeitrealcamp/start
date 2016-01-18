@@ -602,6 +602,12 @@
       a {
         color: #ff4300;
       }
+      .icon-menu {
+        color: #ff4300;
+        svg {
+          fill: #ff4300;
+        }
+      }
     }
   }
   .navbar-toggle {
@@ -609,22 +615,45 @@
       background: #ff4300;
     }
   }
+  .icon-menu {
+    display: block;
+    float: left;
+    margin-right: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 32px;
+  }
+  .text-menu {
+    display: block;
+    float: left;
+    font-size: 14px;
+    margin-top: 15px;
+    width: 190px;
+  }
+  .dropdown-menu a {
+    overflow: hidden;
+    width: 275px;
+    @media (max-width: $screen-sm-min) {
+      width: 100%;
+    }
+  }
   .intro {
-    background: image-url("introBg2.png") center center;
+    background: image-url("introBg2.png") top center;
     background-size: cover;
     width: 100%;
-    height: 100%;
-    padding-top: 70px;
     text-align: center;
     position: relative;
+    padding-top: 230px;
+    padding-bottom: 270px;
   }
+  
   .tagline {
-    font-size: 42px;
+    font-size: 52px;
     font-weight: 700;
     font-family: 'Karla', sans-serif;
     color: #fff;
-    margin-top: 170px;
     padding: 0 35px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     @media (max-width: $screen-sm-min) {
       font-size: 28px;
       padding: 0;
@@ -634,6 +663,15 @@
     }
     @media ( max-width: 1200px ) and (max-height: 400px ) {
       margin-top: 50px;
+    }
+  }
+  .tagline-support {
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 45px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    @media (max-width: $screen-sm-min) {
+      font-size: 22px;
     }
   }
   .quotes {
@@ -662,25 +700,18 @@
     }
   }
   .know-more {
-    font-size: 16px;
-    text-align: center;
-    color: #fff;
+    color: #ff4300;
     font-weight: 400;
-    margin-top: 12px;
     display: inline-block;
-    @media (max-width: $screen-lg-min) {
-      display: none;
-    }
-    @media (max-height: 700px ) {
-      display: none;
-    }
-    .icon {
-      display: block;
-      margin-top: 5px;
-      @media (max-width: $screen-sm-min) {
-        display: none;
-      }
-    }
+    background: #fff;
+    border: solid 1px #ffffff;
+    border-radius: 2px;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 0;
+    width: 300px;
+    font-size: 18px;
   }
 
   .press {
@@ -708,12 +739,12 @@
   }
 
   .pitch {
-    background: #272727;
     color: #ff4300;
     text-align: center;
     padding: 70px 0;
     &.curriculum {
       margin-top: 70px;
+      background: #1c1c1c;
       h2 {
         text-transform: uppercase;
       }
@@ -728,15 +759,17 @@
     }
     &.faq {
       margin-top: 70px;
+      background: #1c1c1c;
       h2 {
         text-transform: uppercase;
       }
     }
     h2 {
-      font-size: 30px;
+      font-size: 28px;
       font-family: 'Open Sans', sans-serif;
       font-weight: 300;
       margin: 0;
+      line-height: 1.4em;
       @media (max-width: $screen-sm-min) {
         font-size: 24px;
       }
@@ -773,23 +806,21 @@
     }
     h3 {
       text-align: center;
-      font-size: 42px;
       text-transform: uppercase;
       color: #ff4300;
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 300;
-      margin-top: 150px;
-      margin-bottom: 80px;
+      font-family: 'Karla', sans-serif;
+      margin-top: 0;
+      padding-top: 120px;
+      margin-bottom: 50px;
+      font-size: 34px;
+      font-weight: 600;
       @media (max-width: $screen-md-min) {
         margin-bottom: 40px;
-        margin-top: 80px;
-      }
-      @media (max-width: $screen-xs-min) {
         font-size: 32px;
       }
     }
     .text {
-      font-size: 20px;
+      font-size: 21px;
       @media (max-width: $screen-xs-min) {
         font-size: 18px;
       }
@@ -816,13 +847,11 @@
     }
   }
   .feature-two {
-    .text {
-      padding: 15% 10% 0;
-      @media (max-width: $screen-md-min) {
-        padding: 0 8.5%;
-        margin-bottom: 30px;
-      }
-    }
+    padding-top: 20px;
+    padding-bottom: 130px;
+    background: asset-url('bg-community.png') no-repeat center center;
+    background-size: cover;
+    margin-bottom: 0;
     .img-feature {
       img {
         @media (max-width: $screen-md-min) {
@@ -832,30 +861,46 @@
       }
     }
     h3 {
-      margin-top: 100px;
+      color: #fff;
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+      margin-bottom: 50px;
+      font-family: "Karla",sans-serif;
+      font-size: 34px;
+      font-weight: 700;
+      padding-bottom: 10px;
       @media (max-width: $screen-md-min) {
-        margin-top: 50px;
+        padding-top: 50px;
+      }
+    }
+    .text {
+      color: #fff;
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+      @media (max-width: $screen-md-min) {
+        width: 80%;
+        margin: 0 auto;
       }
     }
   }
   .student-quotes {
-    background: #272727;
+    background: #1c1c1c;
     text-align: center;
     overflow: hidden;
-    margin-top: 150px;
+    padding-top: 30px;
     @media (max-width: $screen-md-min) {
       padding-bottom: 30px;
-      margin-top: 80px;
+      padding-top: 80px;
     }
     h3 {
       text-align: center;
-      font-size: 42px;
       text-transform: uppercase;
-      color: #ff4300;
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 300;
-      margin-top: 150px;
+      font-family: 'Karla', sans-serif;
+      font-weight: 400;
+      margin-top: 120px;
       margin-bottom: 80px;
+      color: #fff;
+      font-size: 34px;
+      font-weight: 700;
+      padding-bottom: 10px;
       @media (max-width: $screen-md-min) {
         margin-top: 80px;
       }
@@ -863,40 +908,76 @@
         font-size: 32px;
       }
     }
-  }
-  .student-quote {
-    text-align: center;
-    @media (max-width: $screen-md-min) {
-      margin-bottom: 80px;
+    .carousel-caption {
+      position: relative;
       margin-left: auto;
       margin-right: auto;
-      width: 80%;
-    }
-    @media (max-width: $screen-xs-min) {
-      width: 100%;
-    }
-    p {
-      color: #fff;
-      font-size: 16px;
-      width: 80%;
-      margin: 0 auto;
-      @media (max-width: $screen-xs-min) {
-        margin-bottom: 30px;
+      font-size: 21px;
+      width: 75%;
+      left: 0;
+      right: 0;
+      .author {
+        color: #a5a5a5;
+        display: block;
+        font-size: 14px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        width: 80%;
       }
     }
-    .author {
-      display: block;
-      color: #a5a5a5;
-      font-size: 14px;
-      margin-top: 20px;
-      width: 80%;
-      margin-left: auto;
-      margin-right: auto;
+    .carousel-indicators {
+      bottom: 0;
     }
-    img {
-      width: 85px;
+    .carousel-quotes-image {
+      margin-bottom: 25px;
+      img {
+        width: 85px;
+      }
+    }
+    .carousel-control.left {
+      background-image: none;
+    }
+    .carousel-control.right {
+      background-image: none;
+    }
+    .carousel-control {
+      opacity: 1;
+      -webkit-transition: opacity 0.6s ease;
+      -moz-transition: opacity 0.6s ease;
+      -o-transition: opacity 0.6s ease;
+      transition: opacity 0.6s ease;
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+    .carousel-indicators .active, .carousel-indicators .pagination .current, .pagination .carousel-indicators .current {
+      opacity: 0.5;
+      background-color: #ff4300;
+      height: 1px;
+      margin: 0 10px;
+      width: 60px;
+    }
+    .carousel-indicators li {
+      background-color: #ff4300;
+      border: 0;
+      border-radius: 0;
+      height: 1px;
+      margin: 0 10px;
+      width: 60px;
+      -webkit-transition: opacity 0.6s ease;
+      -moz-transition: opacity 0.6s ease;
+      -o-transition: opacity 0.6s ease;
+      transition: opacity 0.6s ease;
+      &:hover {
+        opacity: 0.5;
+      }
+      @media (max-width: $screen-xs-min) {
+        display: none;
+      }
     }
   }
+  
   .deco-quote {
     margin: 30px 0;
     @media (max-width: $screen-xs-min) {
@@ -906,8 +987,8 @@
   .more-quotes {
     font-size: 18px;
     text-align: center;
-    color: #ff4300;
-    margin-top: 100px;
+    color: #fff;
+    margin-top: 60px;
     display: inline-block;
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
@@ -920,6 +1001,7 @@
 
   .feature-three {
     margin-bottom: 100px;
+    border-top: solid 1px #dddddd;
     @media (max-width: $screen-md-min) {
       margin-bottom: 40px;
     }
@@ -927,33 +1009,41 @@
       margin-bottom: 50px;
     }
     .text {
-      font-size: 20px;
+      font-size: 21px;
       text-align: center;
       margin-bottom: 100px;
+      width: 100%;
+      @media (max-width: $screen-md-min) {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
     h4 {
-      font-size: 24px;
-      text-transform: uppercase;
-      font-weight: 300;
+      font-size: 26px;
+      font-weight: 600;
       color: #ff4300;
       font-family: 'Open Sans', sans-serif;
       text-align: center;
-      margin-top: 25px;
+      margin-bottom: 25px;
+      margin-top: 35px;
     }
     p {
-      text-align: left;
-      width: 70%;
-      margin: 0 auto;
-      line-height: 1.5em;
+      text-align: center;
+      width: 80%;
+      margin: 0 auto 20px;
+      line-height: 1.7em;
+      font-size: 18px;
     }
     .mentor {
       text-align: center;
+      margin-bottom: 65px;
       @media (max-width: $screen-md-min) {
         margin-bottom: 80px;
       }
       .mentor-links {
         text-align: left;
-        width: 70%;
+        width: 80%;
         margin: 15px auto 0;
         @media (max-width: $screen-md-min) {
           text-align: center;
@@ -961,6 +1051,7 @@
         ul {
           list-style-type: none;
           padding-left: 0;
+          text-align: center;
         }
         li {
           display: inline-block;
@@ -971,26 +1062,142 @@
           }
         }
       }
-      .mentor-link {
+    }
+  }
 
+  .feature-programas {
+    border-top: 1px solid #dddddd;
+    margin-bottom: 150px;
+    h4 {
+      font-size: 26px;
+      font-weight: 600;
+      color: #ff4300;
+      font-family: 'Open Sans', sans-serif;
+      text-align: center;
+      margin-top: 25px;
+    }
+    .programa {
+      text-align: center;
+      @media (max-width: $screen-md-min) {
+        margin-bottom: 85px;
+      }
+      p {
+        margin: 30px 0;
+        font-size: 21px;
+        
+        @media (max-width: $screen-md-min) {
+          width: 80%;
+          margin: 30px auto;
+        }
+      }
+
+    }
+    .icon-developer {
+      display: block;
+      margin: 0 auto;
+      width: 222px;
+    }
+  }
+
+  .why {
+    background: #1c1c1c;
+    text-align: center;
+    overflow: hidden;
+    margin-top: 150px;
+    @media (max-width: $screen-md-min) {
+      margin-top: 70px;
+    }
+    h3 {
+      text-align: center;
+      text-transform: uppercase;
+      font-family: 'Karla', sans-serif;
+      margin-top: 130px;
+      margin-bottom: 80px;
+      color: #fff;
+      font-size: 34px;
+      font-weight: 700;
+      padding-bottom: 10px;
+      @media (max-width: $screen-md-min) {
+        margin-top: 80px;
+        font-size: 32px;
+      }
+    }
+    .icon {
+      display: inline-block;
+      margin-top: 80px;
+      margin-bottom: 80px;
+      @media (max-width: $screen-md-min) {
+        margin-top: 40px;
+        margin-bottom: 50px;
+      }
+    }
+  }
+  .reason {
+    text-align: center;
+    color: #fff;
+    @media (max-width: $screen-md-min) {
+      margin-bottom: 70px;
+    }
+    .deco-quote {
+      margin-bottom: 15px;
+    }
+    .icon-reason {
+      display: block;
+      margin: 0 auto;
+      width: 125px;
+      .img-responsive {
+        margin: 0 auto 20px;
+      }
+    }
+    .reason-number {
+      color: #ff4300;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 600;
+      font-size: 24px;
+    }
+    h4 {
+      text-transform: uppercase;
+      color: #ff4300;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+      font-size: 26px;
+    }
+    p {
+      color: #fff;
+      font-size:21px;
+      width: 80%;
+      margin: 0 auto;
+      @media (max-width: $screen-md-min) {
+        width: 80%;
+      }
+    }
+    ul {
+      margin: 15px auto 0;
+      width: 80%;
+      list-style-type: none;
+      padding-left: 10px;
+      text-align: left;
+      @media (max-width: $screen-md-min) {
+        text-align: center;
       }
     }
   }
 
   .email {
     overflow: hidden;
-    background: #272727;
+    background: #1c1c1c;
     padding-bottom: 100px;
     position: relative;
     h3 {
       text-align: center;
-      font-size: 42px;
       text-transform: uppercase;
-      color: #ff4300;
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 300;
-      margin-top: 150px;
+      font-family: 'Karla', sans-serif;
+      margin-top: 130px;
       margin-bottom: 50px;
+      color: #fff;
+      font-size: 34px;
+      font-weight: 700;
+      padding-bottom: 10px;
       @media (max-width: $screen-xs-min) {
         font-size: 32px;
       }
@@ -1050,7 +1257,7 @@
 
   .enroll {
     overflow: hidden;
-    background: #272727;
+    background: #1c1c1c;
     padding-bottom: 100px;
     position: relative;
     margin-top: 70px;
@@ -1162,6 +1369,28 @@
         margin-top: 10px;
       }
     }
+    .txt-start-date {
+      font-family: "Open Sans",sans-serif;
+      font-weight: 600;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 24px;
+      text-align: center;
+      margin-top: 120px;
+    }
+    .txt-huge {
+      font-size: 60px;
+      display: block;
+    }
+    .start-date {
+      margin-bottom: 105px;
+      padding: 30px;
+      border-radius: 5px;
+      border: 1px solid #005e9f;
+      height: 441px;
+      background: image-url("03interna-programa.png") center center;
+      background-size: cover;
+    }
   }
 
   .txt-bold {
@@ -1193,13 +1422,15 @@
   }
 
   .benefits {
-    background: #272727;
+    background: #1c1c1c;
     overflow: hidden;
     min-height: 600px;
     h4 {
       font-size: 28px;
       margin-top: 100px;
       margin-bottom: 60px;
+      font-family: "Karla",sans-serif;
+      font-size: 38px;
     }
   }
   .financing {
@@ -1269,7 +1500,7 @@
   }
 
   footer {
-    padding-top: 130px;
+    padding-top: 100px;
     overflow: hidden;
     @media (max-width: $screen-md-min) {
       padding-top: 65px;
@@ -1296,7 +1527,7 @@
     .social-icons {
       text-align: center;
       svg {
-        fill: #272727;
+        fill: #1c1c1c;
       }
       li {
         display: inline-block;
@@ -1363,7 +1594,7 @@
   }
 
   .curriculum-phases {
-    background: #272727;
+    background: #1c1c1c;
     text-align: center;
     overflow: hidden;
     margin-top: 150px;
@@ -1587,4 +1818,329 @@
       }
     }
   }
+
+  .program-intro {
+    margin-top: 70px;
+    padding-top: 100px;
+    padding-bottom: 70px;
+    color: #fff;
+  }
+  .full-stack {
+    background: image-url("01interna-programa.png") center center;
+    background-size: cover;
+  }
+  .tagline-program {
+    @media (max-width: $screen-md-min) {
+        margin-bottom: 85px;
+    }
+    h1 {
+      text-transform: uppercase;
+      margin-top: 0;
+      font-size: 36px;
+      font-family: "Karla",sans-serif;
+    }
+    p {
+      font-size: 20px;
+    }
+    .btn-cta {
+      font-size: 16px;
+      padding: 10px 30px;
+      background: #f04500;
+      color: #fff;
+      border: solid 1px #f04500;
+      border-radius: 3px;
+      font-weight: 600;
+      font-family: "Open Sans",sans-serif;
+      text-transform: uppercase;
+      font-size: 16px;
+      margin-top: 25px;
+      display: inline-block;
+    }
+  }
+  .bullets-program {
+    ul {
+      list-style-type: none;
+      @media (max-width: $screen-md-min) {
+        padding-left: 0;
+      }
+    }
+    li {
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+    .icon-bullet-program {
+      float: left;
+      width: 20%;
+    }
+    .content-bullet-program {
+      float: left;
+      width: 80%;
+    }
+    h2 {
+      color: #fff;
+      font-family: "Open Sans",sans-serif;
+      font-weight: 300;
+      margin-bottom: 10px;
+      margin-top: 0;
+      padding-bottom: 5px;
+      text-transform: uppercase;
+    }
+  }
+  .feature-program {
+    padding: 85px 0;
+    h3 {
+      font-family: "Karla",sans-serif;
+      font-size: 34px;
+      font-weight: 600;
+      color: #ff4300;
+      text-align: center;
+      text-transform: uppercase;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+    .title-program {
+      margin-bottom: 50px;
+      .subhead {
+        font-size: 21px;
+        margin-top: 30px;
+      }
+    }
+    h4 {
+      color: #333333;
+      font-size: 21px;
+      font-weight: 600;
+      margin-top: 25px;
+      text-transform: none;
+    }
+  }
+  .data-program {
+    .each-data-program {
+      text-align: center;
+      border: 1px solid #dddddd;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      padding: 15px;
+      height: 200px;
+      overflow: hidden;
+      background: #fff;
+      @media (max-width: $screen-md-min) {
+        height: auto;
+      }
+    }
+    .data-number {
+      color: #005e9f;
+      display: block;
+      font-size: 48px;
+      font-weight: 300;
+    }
+  }
+  .target-program {
+      border-top: solid 1px #dddddd;
+  }
+  .each-target-program {
+    text-align: center;
+    @media (max-width: $screen-md-min) {
+        margin-bottom: 75px;
+    }
+  }
+  .target-profile {
+    font-size: 18px;
+  }
+  .target-icon {
+    width: 90px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .mentories-program {
+    background: image-url("02interna-programa.png") center center;
+    background-size: cover;
+    padding: 130px 0;
+    .subhead {
+      color: #fff;
+    }
+    .title-program {
+      h3 {
+        color: #fff;
+        font-family: "Karla",sans-serif;
+        font-size: 34px;
+        font-weight: 700;
+        margin-bottom: 50px;
+        padding-bottom: 10px;
+      }
+    }
+  }
+  .skill-program {
+    .feature-program-skill {
+      font-size: 30px;
+      margin-bottom: 50px;
+      text-transform: none;
+    }
+  }
+  .technologies- {
+    border-top: 1px solid #ccc;
+    margin-top: 50px;
+    padding-top: 70px;
+  }
+  .each-learning-program {
+    margin-bottom: 30px;
+    @media (max-width: $screen-md-min) {
+        margin-bottom: 75px;
+    }
+  }
+  .learnings-program {
+    .technology {
+      min-height: 200px;
+      overflow: hidden;
+      padding: 0 10%;
+      .title-container {
+        margin-bottom: 10px;
+        overflow: hidden;
+        @media (max-width: $screen-md-min) {
+          text-align: center;
+        }
+      }
+      p {
+        font-size: 18px;
+        text-align: left;
+        @media (max-width: $screen-md-min) {
+          text-align: center;
+        }
+      }
+      h4 {
+        float: left;
+        margin-left: 10px;
+        margin-top: 7px;
+        @media (max-width: $screen-md-min) {
+          float: none;
+          margin-left: 0;
+        }
+      }
+      .icon {
+        color: #005e9f;
+        float: left;
+        font-size: 42px;
+        @media (max-width: $screen-md-min) {
+          float: none;
+        }
+      }
+    }
+  }
+  .applications-program {
+    background: #1c1c1c;
+    color: #fff;
+    h3 {
+      color: #fff;
+      font-weight: 700;
+      font-size: 34px;
+      padding-bottom: 10px;
+    }
+    h4 {
+      color: #ff4300;
+    }
+    .each-application-program {
+      margin-bottom: 50px;
+      @media (max-width: $screen-md-min) {
+        margin-bottom: 100px;
+      }
+      p {
+        font-size: 18px;
+      }
+    }
+  }
+  .project-program {
+    background: image-url("03interna-programa.png") center top;
+    background-size: cover;
+    padding: 130px 0;
+    .title-program {
+      h3 {
+        color: #fff;
+        font-family: "Karla",sans-serif;
+        font-size: 34px;
+        font-weight: 700;
+        margin-bottom: 50px;
+        padding-bottom: 10px;
+      }
+    }
+    .subhead {
+      color: #fff;
+    }
+    .btn-main {
+      display: inline-block;
+      margin-top: 50px;
+      padding: 10px 20px;
+      width: auto;
+      color: #fff;
+    }
+  }
+  .price-program {
+    border-top: 1px solid #dddddd;
+    padding: 85px 0 0;
+    .financing {
+      margin-top: 0;
+    }
+    .financing-quote {
+      margin-top: 0;
+      h4 {
+        color: #ff4300;
+      }
+    }
+    .benefits {
+      padding-top: 85px;
+      h3 {
+        color: #fff;
+        font-family: "Karla",sans-serif;
+        font-size: 34px;
+        font-weight: 700;
+        margin-bottom: 50px;
+        padding-bottom: 10px;
+      }
+      .btn-main {
+        background: #f04500 none repeat scroll 0 0;
+        border: 1px solid #f04500;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+    .email {
+
+    }
+  }
+  .email-program {
+    background: #1c1c1c;
+    border-top: 0;
+    padding-bottom: 40px;
+    .email {
+      padding-bottom: 230px;
+      &.form-control {
+        padding-bottom: 10px;
+      }
+    }
+  }
+  
+  .dropdown-menu > .active > a, .pagination .dropdown-menu > .current > a, .dropdown-menu > .active > a:hover, .pagination .dropdown-menu > .current > a:hover, .dropdown-menu > .active > a:focus, .pagination .dropdown-menu > .current > a:focus {
+    background: transparent;
+  }
+
+
+    .mentories-program {
+      &.front-end {
+        background: image-url("01interna-programa.png") center center;
+        background-size: cover;
+      }
+    }
+    .project-program {
+      &.front-end {
+        background: image-url("02interna-programa.png") center center;
+        background-size: cover;
+      }
+    }
+    .full-stack {
+      &.front-end {
+        background: image-url("04interna-programa.png") center bottom;
+        background-size: cover;
+      }
+    }
+
+  
 }
