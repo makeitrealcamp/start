@@ -1,13 +1,42 @@
 .login {
-  margin-top: 30px;
+  padding-top: 30px;
 
   .options {
     margin-top: 30px;
 
     .option { margin: 15px 0; }
   }
+  h1 {
+    color: #fff;
+  }
 }
-
+.expand.bg-login {
+  background: image-url("03interna-programa.png") center top;
+  margin-top: 0;
+  padding-top: 0;
+}
+.btn-main {
+  -webkit-transition: opacity 0.6s ease;
+  -moz-transition: opacity 0.6s ease;
+  -o-transition: opacity 0.6s ease;
+  transition: opacity 0.6s ease;
+  color: #fff;
+  background: #ff4300;
+  border: solid 1px #ff4300;
+  border-radius: 2px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  padding: 10px 0;
+  font-size: 18px;
+  display: block;
+  margin: 0 auto;
+  &:hover {
+    opacity: 0.7;
+    text-decoration: none;
+    color: #fff;
+  }
+}
 .btn-social{
   padding: 20px 0;
   a { width: 100%; }
