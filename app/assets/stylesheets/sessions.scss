@@ -1,6 +1,6 @@
 .login {
   padding-top: 30px;
-
+  margin-top: 100px;
   .options {
     margin-top: 30px;
 
@@ -8,6 +8,36 @@
   }
   h1 {
     color: #fff;
+    font-family: "Karla",sans-serif;
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 0;
+    margin-top: 0;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  p {
+    text-align: center;
+    color: #fff;
+    margin: 30px 0;
+    font-size: 18px;
+  }
+  a {
+    color: #fff;
+    text-decoration: underline;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .btn-main {
+    color: #fff;
+    background: #ff4300;
+    font-weight: 400;
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+      color: #fff;
+    }
   }
 }
 .expand.bg-login {
@@ -15,28 +45,7 @@
   margin-top: 0;
   padding-top: 0;
 }
-.btn-main {
-  -webkit-transition: opacity 0.6s ease;
-  -moz-transition: opacity 0.6s ease;
-  -o-transition: opacity 0.6s ease;
-  transition: opacity 0.6s ease;
-  color: #fff;
-  background: #ff4300;
-  border: solid 1px #ff4300;
-  border-radius: 2px;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  text-transform: uppercase;
-  padding: 10px 0;
-  font-size: 18px;
-  display: block;
-  margin: 0 auto;
-  &:hover {
-    opacity: 0.7;
-    text-decoration: none;
-    color: #fff;
-  }
-}
+
 .btn-social{
   padding: 20px 0;
   a { width: 100%; }
