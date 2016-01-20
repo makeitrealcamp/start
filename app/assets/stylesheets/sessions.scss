@@ -1,11 +1,49 @@
 .login {
-  margin-top: 30px;
-
+  padding-top: 30px;
+  margin-top: 100px;
   .options {
     margin-top: 30px;
 
     .option { margin: 15px 0; }
   }
+  h1 {
+    color: #fff;
+    font-family: "Karla",sans-serif;
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 0;
+    margin-top: 0;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  p {
+    text-align: center;
+    color: #fff;
+    margin: 30px 0;
+    font-size: 18px;
+  }
+  a {
+    color: #fff;
+    text-decoration: underline;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .btn-main {
+    color: #fff;
+    background: #ff4300;
+    font-weight: 400;
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+      color: #fff;
+    }
+  }
+}
+.expand.bg-login {
+  background: image-url("03interna-programa.png") center top;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .btn-social{
@@ -15,4 +53,11 @@
     background: $btn-facebook;
   }
 }
-
+.bg-login {
+  .new_site {
+    overflow: hidden;
+    @media (max-height: 525px) {
+      overflow-y: scroll;
+    }
+  }
+}

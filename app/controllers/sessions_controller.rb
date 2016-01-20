@@ -1,9 +1,13 @@
 # encoding: UTF-8
 class SessionsController < ApplicationController
   before_action :public_access, only: [:new, :create_with_omniauth]
+ 
 
   def new
+    render layout: "pages"
   end
+
+
 
   def create_with_omniauth
     if env['omniauth.auth'].info.email.blank?
