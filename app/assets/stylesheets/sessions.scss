@@ -56,5 +56,8 @@
 .bg-login {
   .new_site {
     overflow: hidden;
+    @media (max-height: 525px) {
+      overflow-y: scroll;
+    }
   }
 }
