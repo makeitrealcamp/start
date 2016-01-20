@@ -7,9 +7,7 @@
         <p>Si eres estudiante de Make it Real, ingresa a la plataforma con tu cuenta de Slack. Si no eres estudiante, te invitamos a que conozcas nuestros programas de <%= link_to "Desarrollador Web Front End", front_end_web_developer_path %> y de <%= link_to "Desarrollador Web Full Stack en Ruby on Rails.", full_stack_web_developer_path %></p>
         <%= form_tag controller: :sessions, action: :create do %>
           <div class="btn-social row">
-            <div class="col-xs-6 col-md-offset-3">
               <%= link_to '<i class="fa fa-slack"></i> <span class="visible-lg-inline">Ingresar con </span>Slack'.html_safe, '/auth/slack', class: "btn btn-main", id: "sign-in-slack"  %>
-            </div>
           </div>
         <% end %>
       </div>
