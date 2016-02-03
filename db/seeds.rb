@@ -36,6 +36,6 @@ User.create(email: "user_free@makeitreal.camp",account_type: User.account_types[
 
 User.create(email: "user_paid@makeitreal.camp",account_type: User.account_types[:paid_account])
 
-Path.create(id: 1, name: "Full-Stack", description: "Conviértete en un desarrollador Full-Stack.", published: true)
+Path.create(name: "Full-Stack", description: "Conviértete en un desarrollador Full-Stack.", published: true)
 
-Phase.create( name: "Programador Aprendiz", description: "Aprende los conceptos básicos del desarrollo web.", slug: "programador-aprendiz", published: true, color: "#3590BE", path_id: 1)
+Phase.create(name: "Programador Aprendiz", description: "Aprende los conceptos básicos del desarrollo web.", slug: "programador-aprendiz", published: true, color: "#3590BE", path_id: 1)
