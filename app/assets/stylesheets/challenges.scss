@@ -1,5 +1,16 @@
 .challenge-page {
+  padding-left: 50px;
+  padding-right: 50px;
   h1 { margin-top: 0; }
+  .btn-action {
+    margin-bottom: 40px;
+  }
+  .btn-cancel {
+    margin-bottom: 40px;
+  }
+  .btn-preview {
+    margin-right: 20px;
+  }
 
   .tooltip > .tooltip-inner {
     position: fixed;

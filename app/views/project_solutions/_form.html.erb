@@ -24,10 +24,10 @@
 
   <div>
     <div class="pull-right">
-      <%= f.submit "Publicar", class: "btn btn-primary" %>
+      <%= f.submit "Publicar", class: "btn-action" %>
     </div>
     <% if  current_user.is_admin? || !@project_solution.new_record? %>
-      <%= link_to course_project_project_solutions_path(@project.course,@project), class: "btn btn-success" do %>
+      <%= link_to course_project_project_solutions_path(@project.course,@project), class: "btn-go-to" do %>
         <span class='glyphicon glyphicon-blackboard'></span> Ver otras soluciones
       <% end %>
     <% end %>
