@@ -33,3 +33,69 @@ h2 {
 }
 
 .help-block { font-size: 14px; }
+.btn-action {
+  font-size: 16px;
+  border: 0;
+  padding: 10px 15px;
+  background: #f04500;
+  color: #fff;
+  border-radius: 3px;
+  font-weight: 600;
+  font-family: "Open Sans",sans-serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  display: inline-block;
+  -webkit-transition: background 0.6s ease;
+  -moz-transition: background 0.6s ease;
+  -o-transition: background 0.6s ease;
+  transition: background 0.6s ease;
+  &:hover, &:active, &:focus {
+    background: #005e9f;
+    text-decoration: none;
+    color: #fff;
+  }
+}
+.btn-go-to {
+  font-size: 16px;
+  border: 0;
+  padding: 10px 15px;
+  background: #005e9f;
+  color: #fff;
+  border-radius: 3px;
+  font-weight: 600;
+  font-family: "Open Sans",sans-serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  display: inline-block;
+  -webkit-transition: background 0.6s ease;
+  -moz-transition: background 0.6s ease;
+  -o-transition: background 0.6s ease;
+  transition: background 0.6s ease;
+  &:hover, &:focus, &:active {
+    background: #f04500;
+    text-decoration: none;
+    color: #fff;
+  }
+}
+.btn-cancel, .btn-preview {
+  font-size: 16px;
+  border: 0;
+  padding: 10px 15px;
+  background: #cac9c9;
+  color: #878787;
+  border-radius: 3px;
+  font-weight: 600;
+  font-family: "Open Sans",sans-serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  display: inline-block;
+  -webkit-transition: background 0.6s ease;
+  -moz-transition: background 0.6s ease;
+  -o-transition: background 0.6s ease;
+  transition: background 0.6s ease;
+  &:hover, &:focus, &:active {
+    background: #e2e1e1;
+    color: #878787;
+    text-decoration: none;
+  }
+}

@@ -10,6 +10,10 @@
     position: absolute;
     right: 35px;
     bottom: 20px;
+    background: #005e9f;
+    &:hover, &:focus, &:active {
+      background: #f04500;
+    }
   }
   .links {
     padding-top: 15px;

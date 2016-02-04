@@ -34,7 +34,7 @@
       <div class="col-xs-6 text-right">
         <div class="finish">
           <% if @resource.self_completable? %>
-            <%= link_to "<span class='glyphicon glyphicon-ok'></span> <span class='hidden-xs'>Completar y Continuar</span>".html_safe, course_resource_completion_path(course_id: @resource.course.id, resource_id: @resource.id), class: "btn btn-primary", method: :post %>
+            <%= link_to "<span class='glyphicon glyphicon-ok'></span> <span class='hidden-xs'>Completar y Continuar</span>".html_safe, course_resource_completion_path(course_id: @resource.course.id, resource_id: @resource.id), class: "btn-action", method: :post %>
           <% end %>
         </div>
       </div>

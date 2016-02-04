@@ -456,14 +456,18 @@ blockquote {
       border-width: 1px;
       border-color: #E5E5E5;
       margin-bottom: 20px;
+      .col-xs-2 {
+        font-size: 12px;
+      }
     }
     .score-box {
-      background-color: #F04500;
-      font-size: 35px;
-      font-family: 'Open Sans Condensed';
+      background-color: #f04500;
       color: white;
-      padding: 0 20px;
+      font-family: "Open Sans Condensed";
+      font-size: 24px;
+      margin-top: 6px;
       max-width: 150px;
+      padding: 0 20px;
       text-align: center;
     }
   }

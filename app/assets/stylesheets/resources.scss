@@ -5,6 +5,8 @@
 .resource-page {
   margin-top: -60px;
   padding-top: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
 
   h1 {
     margin-top: 40px;
@@ -58,6 +60,18 @@
   padding: 10px;
   border-top: 1px solid #ccc;
   background-color: white;
+  background: #303030;
+  .btn-link {
+    color: rgba(255, 255, 255, 0.8);
+    -webkit-transition: opacity 0.6s ease;
+    -moz-transition: opacity 0.6s ease;
+    -o-transition: opacity 0.6s ease;
+    transition: opacity 0.6s ease;
+    &:hover {
+      opacity: 0.7;
+      text-decoration: none;
+    }
+  }
 }
 
 .sections {
