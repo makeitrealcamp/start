@@ -138,7 +138,7 @@
     }
   }
   .intro {
-    background: image-url("introBg2.png") top center;
+    background: image-url("introBg2.jpg") top center;
     background-size: cover;
     width: 100%;
     text-align: center;
@@ -325,7 +325,7 @@
   .feature-two {
     padding-top: 20px;
     padding-bottom: 130px;
-    background: asset-url('bg-community.png') no-repeat center center;
+    background: asset-url('bg-community.jpg') no-repeat center center;
     background-size: cover;
     margin-bottom: 0;
     .img-feature {
@@ -864,7 +864,7 @@
       border-radius: 5px;
       border: 1px solid #005e9f;
       height: 441px;
-      background: image-url("03interna-programa.png") center center;
+      background: image-url("03interna-programa.jpg") center center;
       background-size: cover;
     }
   }
@@ -1190,7 +1190,7 @@
     color: #fff;
   }
   .full-stack {
-    background: image-url("01interna-programa.png") center center;
+    background: image-url("01interna-programa.jpg") center center;
     background-size: cover;
   }
   .tagline-program {
@@ -1316,7 +1316,7 @@
     margin-right: auto;
   }
   .mentories-program {
-    background: image-url("02interna-programa.png") center center;
+    background: image-url("02interna-programa.jpg") center center;
     background-size: cover;
     padding: 130px 0;
     .subhead {
@@ -1412,7 +1412,7 @@
     }
   }
   .project-program {
-    background: image-url("03interna-programa.png") center top;
+    background: image-url("03interna-programa.jpg") center top;
     background-size: cover;
     padding: 130px 0;
     .title-program {
@@ -1489,19 +1489,19 @@
 
     .mentories-program {
       &.front-end {
-        background: image-url("01interna-programa.png") center center;
+        background: image-url("01interna-programa.jpg") center center;
         background-size: cover;
       }
     }
     .project-program {
       &.front-end {
-        background: image-url("02interna-programa.png") center center;
+        background: image-url("02interna-programa.jpg") center center;
         background-size: cover;
       }
     }
     .full-stack {
       &.front-end {
-        background: image-url("04interna-programa.png") center bottom;
+        background: image-url("04interna-programa.jpg") center bottom;
         background-size: cover;
       }
     }
