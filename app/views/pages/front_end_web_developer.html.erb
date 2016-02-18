@@ -358,26 +358,58 @@
           </div>
           <div class="container">
             <div class="row">
-
-              <div class="col-md-6">
-                <div class="start-date">
-                  <p class="txt-start-date"><span class="txt-huge">30</span> cupos disponibles<br>inicio: febrero 18 de 2016</p>
-                </div>
-              </div>
-
               
               <div class="col-md-6">
                 <div id="financing-usd" class="financing">
-                  <%= render "price_box", currency: "USD",first_payment: 99,monthly_payment: 49,
-                    one_payment: 299,monthly_payments: 5, currency_name: "dólares americanos",saving: 45 %>
+                  <%= render "price_box", currency: "USD" ,first_payment: 179, monthly_payment: 99,
+                    one_payment: 599, monthly_payments: 5, currency_name: "dólares americanos",saving: 80 %>
                 </div>
                 <div id="financing-cop" class="financing">
-                  <%= render "price_box", currency: "COP",first_payment: "299,000",monthly_payment: "120,000",
-                    one_payment: "699,000",monthly_payments: 5, currency_name: "pesos colombianos",saving: "200,000" %>
+                  <%= render "price_box", currency: "COP",first_payment: "400,000",monthly_payment: "240,000",
+                    one_payment: "1,400,000",monthly_payments: 5, currency_name: "pesos colombianos",saving: "200,000" %>
                 </div>
               </div>
 
-            
+              <div class="col-md-5 col-md-offset-1">
+                <div class="financing-quote">
+                  <h4>Lo que dicen de nosotros</h4>
+                  <div id="student-says-1" class="student-says">
+                    <p>"Make it Real me abrió un mar de oportunidades laborales como Desarrollador Web y un sin fin de posibilidades de materializar ideas de negocio. Definitivamente te ayuda a abrir la mente."</p>
+                    <div class="student-data">
+                      <div class="profile-img">
+                        <%= image_tag "people/daniel-llano.png" %>
+                      </div>
+                      <span class="profile-name txt-bold">Daniel Llano</span>
+                      <span class="profile-status">Desarrollador Web en Kommit</span>
+                    </div><!--/student-data -->
+                  </div>
+
+                  <div id="student-says-2" class="student-says">
+                    <p>"Estuve buscando algo como Make it Real por mucho tiempo, un lugar donde puedo llevar directamente los conocimientos que he aprendido a productos y proyectos de la vida real."</p>
+                    <div class="student-data">
+                      <div class="profile-img">
+                        <%= image_tag "people/german-hernandez.png" %>
+                      </div>
+                      <span class="profile-name txt-bold">Germán Hernandez</span>
+                      <span class="profile-status">Co-fundador de Kaizen Devs</span>
+                    </div><!--/student-data -->
+                  </div>
+
+                  <div id="student-says-3" class="student-says">
+                    <p>"Make it Real me brindó un cambio de mentalidad para generar confianza en uno mismo y en como el auto aprendizaje y la frustración son fundamentales en el proceso de adquirir nuevas habilidades."</p>
+                    <div class="student-data">
+                      <div class="profile-img">
+                        <%= image_tag "people/edwin-restrepo.png" %>
+                      </div>
+                      <span class="profile-name txt-bold">Edwin Restrepo</span>
+                      <span class="profile-status">Desarrollador Web en Yuxi Pacific</span>
+                    </div><!--/student-data -->
+                  </div>
+                  <div class="more">
+                    <a href="<%= makers_path %>">Ver más opiniones</a>
+                  </div>
+                </div> <!--/financing-quote -->
+              </div>
             </div>
           </div>
 
