@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "faq" => "pages#faq"
   get "makers" => "pages#makers"
   get "publicar" => "pages#publicar"
+  get "scholarships", to: "pages#scholarships"
 
   get 'thanks', to: 'pages#thanks', as: :thanks
   get 'handbook', to: 'pages#handbook', as: :handbook
