@@ -27,9 +27,8 @@
 require 'rails_helper'
 
 RSpec.describe Resource, type: :model do
-
-  let(:course){create(:course)}
-  let(:resource){create(:resource, course: course)}
+  let(:course) {create(:course) }
+  let(:resource) { create(:resource, course: course) }
   subject { Resource.new }
 
   context 'associations' do

@@ -16,7 +16,7 @@
 
 FactoryGirl.define do
   factory :section do
-    resource { create(:resource,type: :course) }
+    resource { create(:resource, type: :course) }
     title { Faker::Name.title }
   end
 

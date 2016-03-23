@@ -4,7 +4,6 @@ class RubyEvaluator < BaseDockerEvaluator
   RUBY_EXECUTOR_TEMPLATE_PATH = "evaluator_templates/ruby_executor_template.sh.erb"
 
   def evaluate
-
     solution_files_paths = create_solution_files
     evaluation_file_path = create_evaluation_file(solution_files_paths)
     executor_script_path = create_executor_file(evaluation_file_path)
@@ -16,7 +15,7 @@ class RubyEvaluator < BaseDockerEvaluator
       "/bin/bash", "-c", "-l",
       "#{executor_script_path[:container_path]}"].join(" ")
 
-    execution = DockerExecution.new(command,solution.challenge.timeout)
+    execution = DockerExecution.new(command, solution.challenge.timeout)
     execution.start!
 
     if execution.success?

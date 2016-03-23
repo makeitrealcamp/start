@@ -21,7 +21,7 @@ class Course < ActiveRecord::Base
 
   extend FriendlyId
   friendly_id :name
-
+  
   has_many :resources
   has_many :challenges
   has_many :projects
@@ -32,7 +32,6 @@ class Course < ActiveRecord::Base
   has_many :badges, dependent: :destroy
 
   accepts_nested_attributes_for :course_phases, allow_destroy: true
-
 
   validates :name, presence: true
 

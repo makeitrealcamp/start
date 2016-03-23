@@ -9,7 +9,7 @@
 </div>
 
 <% if current_user.solutions.empty? %>
-<p>Si aún no has leído la <%= link_to "guía del estudiante", handbook_path %>, te aconsejamos hacerlo primero. No olvides también visitar <%= link_to "los temas", courses_path %> y completar los recursos del <%= link_to "curso de preparación", Phase.published.first.courses.published.first %>.</p>
+<p>Si aún no has leído la <%= link_to "guía del estudiante", handbook_path %>, te aconsejamos hacerlo primero.</p>
 <% end %>
 
 <% if @pending_challenges.any? %>

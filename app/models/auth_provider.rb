@@ -25,7 +25,7 @@ class AuthProvider < ActiveRecord::Base
 
     if user
       user.auth_providers.where(provider: auth.provider, uid: auth.uid).first_or_create(image: auth.info.image)
-      user #return user
+      return user
     end
   end
 end

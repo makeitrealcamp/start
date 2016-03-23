@@ -18,7 +18,7 @@
 FactoryGirl.define do
   factory :document do
     name "index.html"
-    association  :challenge, factory: :challenge
+    association :folder, factory: :challenge
   end
 
 end

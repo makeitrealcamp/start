@@ -20,80 +20,56 @@
 require 'rails_helper'
 
 RSpec.describe Notification, type: :model do
+  it { should define_enum_for :status }
+  it { should define_enum_for :notification_type }
 
-  let!(:user) { create(:user) }
-  let!(:user) { create(:user) }
+  describe "associations" do
+    it { should belong_to(:user) }
+  end
 
+  describe "validations" do
+    it { should validate_presence_of :user }
+    it { should validate_presence_of :status }
+    it { should validate_presence_of :notification_type }
+  end
 
-  describe "notification_types" do
-    it "should exist a partial per each notification_type" do
-      Notification.notification_types.keys.each do |notification_type|
-        path = "app/views/notifications/_notification_#{notification_type}.html.erb"
-        expect(File).to(
-          exist("#{Rails.root}/#{path}"),
-          "expected partial '#{path}' to exist"
-        )
+  it "has a valid factory" do
+    expect(build(:notification)).to be_valid
+  end
+
+  describe "#after_initialize" do
+    context "without attributes" do
+      let(:new_notification) { Notification.new }
+      it "sets the defaults values" do
+        expect(new_notification.status).to eq("unread")
+        expect(new_notification.notification_type).to eq("notice")
+      end
+    end
+
+    context "with attributes" do
+      let(:new_notification) { Notification.new(status: :read, notification_type: :comment_response) }
+      it "sets the received values" do
+        expect(new_notification.status).to eq("read")
+        expect(new_notification.notification_type).to eq("comment_response")
+      end
+    end
+
+    context "when the notification is loaded" do
+      let(:saved_notification) { create(:notification, status: :unread, notification_type: :level_up) }
+      it "sets the correct attributes" do
+        saved_notification.reload
+        expect(saved_notification.status).to eq("unread")
+        expect(saved_notification.notification_type).to eq("level_up")
       end
     end
   end
 
-  describe "user notifications" do
-
-    let!(:course)    { create(:course) }
-    let!(:challenge) { create(:challenge, course: course, published: true, restricted: true) }
-    let!(:level_1)  {create(:level_1)}
-    let!(:level_2)  {create(:level_2)}
-    let!(:user) { create(:user, level: level_1) }
-    let!(:other_user) { create(:user) }
-
-    context "user goes from level_1 to level_2" do
-      it "should notify user after level up" do
-        original_count = user.notifications.unread.level_up.count
-        user.level = level_2
-        user.save
-        expect(user.notifications.unread.level_up.count).to eq(original_count + 1)
-        expect(user.notifications.unread.level_up.where("data->>'level_id' = ?",level_2.id.to_s).count).to eq(1)
-      end
-    end
-
-    context "user earns point" do
-      it "should notify user after he receives points" do
-        original_count = user.notifications.unread.points_earned.count
-        point = Point.create!(user: user, course: course, points: challenge.point_value, pointable: challenge)
-        expect(user.notifications.unread.points_earned.count).to eq(original_count + 1)
-        expect(user.notifications.unread.points_earned.where("data->>'point_id' = ?",point.id.to_s).count).to eq(1)
-      end
-    end
-
-    context "user publish a comment in challenge discussion" do
-      let!(:comment) { create(:comment,commentable: challenge, user: user) }
-
-      context "other user comments in a commentable commented by the user" do
-        it "should notify user about activity in the commentable" do
-          other_comment = create(:comment, commentable: challenge, user: other_user)
-          expect(user.notifications.unread.comment_activity.where("data->>'comment_id' = ?",other_comment.id.to_s).count).to eq(1)
-        end
-      end
-
-      context "user comments in a commentable commented by the same user" do
-        it "should not notify user about activity in the commentable" do
-          other_comment = create(:comment, commentable: challenge, user: user)
-          expect(user.notifications.unread.comment_activity.where("data->>'comment_id' = ?",other_comment.id.to_s).count).to eq(0)
-        end
-      end
-
-      context "other user replies to a user's comment" do
-        it "should notify user about comment reply" do
-          response = create(:comment, commentable: challenge, user: other_user, response_to: comment)
-          expect(user.notifications.unread.comment_response.where("data->>'response_id' = ?",response.id.to_s).count).to eq(1)
-        end
-      end
-
-      context "user replies to a comment published by himself" do
-        it "should not notify user about comment reply" do
-          response = create(:comment, commentable: challenge, user: user, response_to: comment)
-          expect(user.notifications.unread.comment_response.where("data->>'response_id' = ?",response.id.to_s).count).to eq(0)
-        end
+  describe "notification types" do
+    it "exists a partial per each notification_type" do
+      Notification.notification_types.keys.each do |notification_type|
+        path = "app/views/notifications/_notification_#{notification_type}.html.erb"
+        expect(File).to(exist("#{Rails.root}/#{path}"),
+          "expected partial '#{path}' to exist")
       end
     end
   end

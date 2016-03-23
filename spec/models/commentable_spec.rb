@@ -28,5 +28,4 @@ RSpec.describe "Commentables" do
       expect(model.method_defined? :url_for_notification).to eq(true), "#{model.name} should implement #url_for_notification"
     end
   end
-
 end

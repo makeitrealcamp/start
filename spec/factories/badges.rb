@@ -19,14 +19,11 @@ FactoryGirl.define do
     description { Faker::Lorem.paragraph }
     image_url Faker::Avatar.image
     giving_method "manually"
-    factory :manually_assigned_badge do
-      giving_method "manually"
-    end
+
     factory :points_badge do
       giving_method "points"
       association  :course, factory: :course
       required_points 100
     end
-
   end
 end

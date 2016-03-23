@@ -1,63 +1,48 @@
 require 'rails_helper'
 
 RSpec.feature "ProjectSolutions", type: :feature do
-  let!(:user) { create(:paid_user) }
-  let!(:course) { create(:course) }
-  let!(:project) { create(:project, course: course)}
-  let!(:project_solution) { create(:project_solution, user: user, project: project) }
+  let(:user) { create(:user) }
+  let(:course) { create(:course) }
+  let(:project) { create(:project, course: course)}
 
-  context 'list project solutions', js: true do
-    scenario 'project with 2 solutions' do
-      user1 = create(:paid_user)
-      create(:project_solution, user: user1, project: project, url: nil)
-      login(user)
-      wait_for_ajax
-      visit course_project_project_solutions_path(course, project)
+  scenario "lists projects solutions" do
+    create(:project_solution, user: user, project: project)
 
-      all(:css, ".project-solution-box").first do
-        expect(page).to have_selector '.fa-globe'
-        find(find_link(project_solution.url)[:href]).to eq project_solution.url
-      end
+    user1 = create(:user)
+    create(:project_solution, user: user1, project: project, url: nil)
+    
+    login(user)
+    
+    visit course_project_project_solutions_path(course, project)
 
-      all(:css, ".project-solution-box").last do
-        expect(page).not_to have_selector '.fa-globe'
-      end
+    all(:css, ".project-solution-box").first do
+      expect(page).to have_selector '.fa-globe'
+      find(find_link(project_solution.url)[:href]).to eq project_solution.url
     end
 
-    scenario 'display markdown format' do
-      login(user)
-      wait_for_ajax
-      visit course_project_project_solutions_path(course, project)
-      all(:css, ".project-solution-box").first do
-        expect(page).to have_content(markdown project_solution.summary)
-      end
+    all(:css, ".project-solution-box").last do
+      expect(page).not_to have_selector '.fa-globe'
     end
   end
 
-  context 'show project solution', js: true do
-    scenario 'with url' do
-      login(user)
-      wait_for_ajax
-      visit course_project_project_solution_path(course, project, project_solution)
-      expect(page).to have_selector '.fa-globe'
-      expect(find_link(project_solution.url)[:href]).to eq project_solution.url
-    end
+  scenario "shows solution in markdown format" do
+    solution = create(:project_solution, user: user, project: project)
 
-    scenario 'without url ' do
-      project_solution = create(:project_solution, user: user, project: project, url: nil)
-      login(user)
-      wait_for_ajax
-      visit course_project_project_solution_path(course, project, project_solution)
-      expect(page).not_to have_selector '.fa-globe'
-    end
+    login(user)
+    visit course_project_project_solutions_path(course, project)
 
-    scenario 'display markdown format' do
-      login(user)
-      wait_for_ajax
-      visit course_project_project_solution_path(course, project, project_solution)
-      all(:css, ".project-solution-box").first do
-        expect(page).to have_content(markdown project_solution.summary)
-      end
+    all(:css, ".project-solution-box").first do
+      expect(page).to have_content(markdown solution.summary)
     end
+  end
+
+  scenario "shows solution with url" do
+    solution = create(:project_solution, user: user, project: project)
+
+    login(user)
+    visit course_project_project_solution_path(course, project, solution)
+
+    expect(page).to have_selector '.fa-globe'
+    expect(find_link(solution.url)[:href]).to eq solution.url
   end
 end

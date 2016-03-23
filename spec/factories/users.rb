@@ -24,51 +24,34 @@
 FactoryGirl.define do
   factory :user do
     sequence (:email) { |n| "user#{n}@example.com" }
-    first_name{ Faker::Name.first_name }
+    first_name { Faker::Name.first_name }
 
     sequence(:gender) do |n|
-      items = {male: "male", female: "female"}
+      items = { male: "male", female: "female" }
       items.values[rand(items.size)]
     end
 
-    birthday { Faker::Time.between(2.days.ago, Time.now)}
+    nickname { Faker::Internet.user_name(nil, %w(- _)) }
+    birthday { Faker::Time.between(2.days.ago, Time.now) }
     mobile_number { Faker::PhoneNumber.cell_phone }
 
-    sequence(:optimism) do |n|
-      items = { high: "high", low: "low" }
-      items.values[rand(items.size)]
-    end
-
-    sequence(:mindset) do |n|
-      items = { growth: "growth", fixed: "fixed" }
-      items.values[rand(items.size)]
-    end
-
-    sequence(:motivation) do |n|
-      items = {job: "job", challenge: "challenge", idea: "idea", impress: "impress", curiosity: "curiosity"}
-      items.values[rand(items.size)]
-    end
-
     activated_at { Faker::Time.between(2.days.ago, Time.now) }
-    account_type  User.account_types[:free_account]
+    account_type  User.account_types[:paid_account]
 
-    association :level, factory: :level
+    status { User.statuses[:active] }
+    level
+
+    factory :user_with_path do
+      after(:create) { |user| user.path_subscriptions.create(path: Path.published.first || create(:path,published: true))}
+    end
 
     factory :admin do
       account_type  User.account_types[:admin_account]
     end
 
-    factory :free_user do
-      account_type  User.account_types[:free_account]
+    factory :admin_with_path do
+      account_type  User.account_types[:admin_account]
+      after(:create) { |user| user.path_subscriptions.create(path: Path.published.first || create(:path,published: true))}
     end
-
-    factory :paid_user do
-      account_type  User.account_types[:paid_account]
-    end
-
-    status { User.statuses[:active] }
-
-    after(:create) { |user| user.path_subscriptions.create(path: Path.published.first || create(:path,published: true))}
-
   end
 end

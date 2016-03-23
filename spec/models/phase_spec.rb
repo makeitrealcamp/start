@@ -22,6 +22,15 @@ require 'rails_helper'
 
 RSpec.describe Phase, type: :model do
   context 'associations' do
+    it { should belong_to(:path) }
     it { should have_many(:courses) }
+  end
+
+  context "validations" do
+    it { should validate_presence_of :path }
+  end
+
+  it "has a valid factory" do
+    expect(build(:phase)).to be_valid
   end
 end

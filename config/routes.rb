@@ -94,16 +94,18 @@ Rails.application.routes.draw do
     end
   end
 
+  # to create a comment we need the commentable resource
   scope '/:commentable_resource' do
     scope '/:id' do
       resources :comments, only: [:create]
     end
   end
 
+  # it is easier to manage comments without the commentable resource in the path
   resources :comments, except: [:index, :create, :new, :show] do
     member do
-      get :response_to
       get :cancel_edit
+      get :response_to
     end
     collection do
       get :preview
@@ -111,10 +113,12 @@ Rails.application.routes.draw do
   end
 
   resources :solutions, only: [:show] do
-    put 'update_documents', on: :member
-    post 'submit', on: :member
-    get  'preview/:file', action: 'preview', on: :member, constraints: { file: /[0-z\.]+/ }, as: :preview
-    delete 'reset', on: :member
+    member do
+      put 'update_documents'
+      post 'submit'
+      get  'preview/:file', action: 'preview', constraints: { file: /[0-z\.]+/ }, as: :preview
+      delete 'reset'
+    end
   end
 
   get 'dashboard', to: redirect('/phases', status: 301)

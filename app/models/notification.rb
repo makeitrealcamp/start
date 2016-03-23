@@ -21,10 +21,11 @@ class Notification < ActiveRecord::Base
   PER_PAGE = 10
 
   belongs_to :user
-  enum status: [:read,:unread]
+  enum status: [:read, :unread]
 
-  # There has to be a partial por each notification_type !
-  enum notification_type: [:notice,:level_up,:points_earned,:comment_activity,:comment_response,:badge_earned]
+  # there must exists a partial por each notification_type!
+  enum notification_type: [ :notice, :level_up, :points_earned, 
+    :comment_activity, :comment_response, :badge_earned ]
 
   validates :user, presence: true
   validates :status, presence: true
@@ -55,7 +56,7 @@ class Notification < ActiveRecord::Base
     end
 
     def notify_user
-      user.notifier.notify('notifications:new',{notification_id: self.id})
+      user.notifier.notify('notifications:new', { notification_id: self.id })
     end
 
 end

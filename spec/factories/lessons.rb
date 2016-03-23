@@ -22,17 +22,12 @@
 FactoryGirl.define do
 
   factory :lesson do
-    section { create(:section) }
+    section
     name { Faker::Lorem.word }
     video_url { Faker::Internet.url }
     description { Faker::Lorem.paragraph }
     row 1
-    factory :paid_lesson do
-      free_preview false
-    end
-    factory :free_lesson do
-      free_preview true
-    end
+    free_preview false
   end
 
 end

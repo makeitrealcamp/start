@@ -26,5 +26,4 @@ class Badge < ActiveRecord::Base
   enum giving_method: [:manually, :points]
 
   scope :granted_by_points, -> { points }
-
 end

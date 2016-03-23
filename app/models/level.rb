@@ -17,6 +17,7 @@ class Level < ActiveRecord::Base
 
   default_scope { order('required_points ASC') }
 
+  # returns the level for the user_points
   def self.for_points(user_points)
     level_diff = []
     Level.all.each do |level|
@@ -28,9 +29,10 @@ class Level < ActiveRecord::Base
     return Level.find(correct_level[:level_id])
   end
 
+  # returns the next level of the actual level (self)
   def next
     Level.order(:required_points)
-      .where("required_points > ?",self.required_points).first
+      .where("required_points > ?", self.required_points).first
   end
 
 end

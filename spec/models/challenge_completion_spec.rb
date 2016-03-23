@@ -17,8 +17,17 @@
 require 'rails_helper'
 
 RSpec.describe ChallengeCompletion, type: :model do
-  context 'associations' do
+  context "associations" do
     it { should belong_to(:user) }
     it { should belong_to(:challenge) }
+  end
+
+  context "validations" do
+    it { should validate_presence_of :user }
+    it { should validate_presence_of :challenge }
+  end
+
+  it "has a valid factory" do
+    expect(build(:challenge_completion)).to be_valid
   end
 end
