@@ -1,5 +1,5 @@
 class SectionsController < ApplicationController
-  before_action :admin_access, only: [:create, :update, :destroy]
+  before_action :admin_access
 
   def new
     @resource = Resource.friendly.find(params[:resource_id])

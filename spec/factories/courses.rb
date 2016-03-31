@@ -21,6 +21,12 @@ FactoryGirl.define do
     excerpt { Faker::Lorem.sentence }
     description { Faker::Lorem.paragraph }
     published true
-    after(:create) { |course| course.course_phases.create(phase: Phase.published.first || create(:phase, published: true)) }
+
+    factory :course_with_phase do
+      after(:create) do |course|
+        path = Path.published.first || create(:path)
+        course.course_phases.create(phase: Phase.published.first || create(:phase, path: path, published: true))
+      end
+    end
   end
 end

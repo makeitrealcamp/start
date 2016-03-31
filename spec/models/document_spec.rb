@@ -18,8 +18,11 @@
 require 'rails_helper'
 
 RSpec.describe Document, type: :model do
-
   context 'associations' do
     it { should belong_to(:folder) }
+  end
+
+  it "has a valid factory" do
+    expect(build(:document)).to be_valid
   end
 end

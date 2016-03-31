@@ -22,13 +22,14 @@ require 'rails_helper'
 
 RSpec.describe Solution, type: :model do
 
-  let(:user) { create(:paid_user) }
+  let(:user) { create(:user) }
   let(:challenge) { create(:challenge) }
-  let(:solution) { create(:solution,challenge: challenge, user: user) }
+  let(:solution) { create(:solution, challenge: challenge, user: user) }
 
   before do
-    create(:level_1)
-    create(:level_2)
+    create(:level)
+    create(:level, required_points: 100)
+    create(:level, required_points: 200)
   end
 
   context 'associations' do
@@ -38,21 +39,21 @@ RSpec.describe Solution, type: :model do
   end
 
   describe "challenge completion" do
-    context "User completes a challenge and creates the correct amount of points" do
+    context "when user completes a challenge and creates the correct amount of points" do
       before do
         solution.update(status: Solution.statuses[:completed])
       end
-      it "should create a challenge_completion after a challenge is completed for the first time" do
+      it "creates a challenge_completion after a challenge is completed for the first time" do
         expect(ChallengeCompletion.find_by_challenge_id(challenge.id)).to_not eq(nil)
       end
 
-      it "should not create a challenge_completion after a challenge is completed for the second time" do
+      it "creates a challenge_completion after a challenge is completed for the second time" do
         solution.update(status: Solution.statuses[:failed])
         solution.update(status: Solution.statuses[:completed])
         expect(ChallengeCompletion.where(challenge_id: challenge.id).count).to eq(1)
       end
 
-      it "should not add points to a user for a challenge that was already completed" do
+      it "doesn't add points to a user for a challenge that was already completed" do
         expected_points = user.stats.total_points
 
         solution.update(status: Solution.statuses[:failed])
@@ -64,7 +65,7 @@ RSpec.describe Solution, type: :model do
   end
 
   describe "#as_json" do
-    it "should return hash" do
+    it "returns hash" do
       solution_json = solution.serializable_hash(
         methods: [:error_message, :url, :completed_at],
         include: [:documents]
@@ -74,7 +75,7 @@ RSpec.describe Solution, type: :model do
       expect(solution.as_json({}).class).to eq Hash
     end
 
-    it 'should return hash with user_hash' do
+    it 'returns hash with user_hash' do
       solution_json = solution.serializable_hash(
         methods: [:error_message, :url, :completed_at, :user_hash],
         include: [:documents]

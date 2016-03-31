@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
   before_action :private_access
   before_action :set_instance, only: [:index, :create]
 
-  # POST /:commentable_resource/:id/comments
   def create
     @comment = Comment.new(comment_params.merge(
       commentable: @instance, user: current_user
@@ -41,17 +40,17 @@ class CommentsController < ApplicationController
   end
 
   protected
-  def comment_params
-    params.permit(:text,:response_to_id)
-  end
-
-  def set_instance
-    klass = params[:commentable_resource].singularize.camelize.constantize
-    if klass.is_a? FriendlyId
-      @instance = klass.friendly.find(params[:id])
-    else
-      @instance = klass.find(params[:id])
+    def comment_params
+      params.permit(:text,:response_to_id)
     end
-  end
+
+    def set_instance
+      klass = params[:commentable_resource].singularize.camelize.constantize
+      if klass.is_a? FriendlyId
+        @instance = klass.friendly.find(params[:id])
+      else
+        @instance = klass.find(params[:id])
+      end
+    end
 
 end

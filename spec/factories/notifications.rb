@@ -21,7 +21,6 @@ FactoryGirl.define do
   factory :notification do
     user { create(:user) }
     status Notification.notification_types[:notice]
-    data { {message: Faker::Lorem.sentence} }
+    data { { message: Faker::Lorem.sentence } }
   end
-
 end

@@ -11,17 +11,17 @@
 #
 
 class Path < ActiveRecord::Base
-  validates :name, presence: true
-  validates :description, presence: true
-
   has_many :phases
 
   scope :for, -> user { user.paths.published unless user.is_admin? }
   scope :published, -> { where(published: true) }
 
+  validates :name, presence: true
+  validates :description, presence: true
+
   def courses
     Course.joins(:course_phases).joins(:phases)
-      .where("course_phases.phase_id" => phases.pluck(:id) ).uniq
+      .where("course_phases.phase_id" => phases.pluck(:id)).uniq
   end
 
   def challenges

@@ -1,184 +1,96 @@
 require 'rails_helper'
 
 RSpec.feature "Users", type: :feature do
+  scenario "activates account", js: true do
+    user = create(:user, status: User.statuses[:created])
 
-  let!(:user) { create(:paid_user) }
-  let!(:admin) { create(:admin) }
-  let!(:user_with_status_created){ create(:paid_user, status: User.statuses[:created]) }
+    login(user)
 
-  scenario "when is not logged in" do
-    expect { visit admin_users_path }.to raise_error
+    original_first_name = user.first_name
+    nickname = Faker::Internet.user_name(nil, %w(- _))
+    number = Faker::Number.number(10)
+    
+    fill_in "activate_user_mobile_number", with: number
+    fill_in "activate_user_nickname", with: nickname
+    click_button 'Activar Cuenta'
+    
+    expect(current_path).to eq signed_in_root_path
+    expect(page).to have_selector '.alert-notice'
+
+    user.reload
+    expect(user.status).to eq "active"
+    expect(user.nickname).to eq nickname
+    expect(user.mobile_number).to eq number
+    expect(user.first_name).to eq original_first_name
   end
 
-  context 'when accessed as user' do
-    scenario "not allow access" do
-      login(user)
-      expect { visit admin_users_path }.to raise_error ActionController::RoutingError
-    end
+  scenario "shows profile" do
+    user = create(:user)
+    create(:level, required_points: 0)
+    create(:level, required_points: 100)
+    create(:level, required_points: 200)
 
-    scenario "should not show link of admin", js: true do
-      login(user)
-      wait_for_ajax
-      expect(page).not_to have_content('Admin')
-      expect(current_path).to eq signed_in_root_path
-    end
+    login(user)
 
-    context 'when user is not active' do
-      scenario 'should redirect active form when they click on Temas', js: true do
-        login(user_with_status_created)
-        wait_for_ajax
-        click_link 'Temas'
-        expect(current_path).to eq activate_users_path
-      end
+    find('.avatar').click
+    click_link "Mi Perfil"
 
-      scenario 'should redirect active form when they click on Mi Perfil', js: true do
-        login(user_with_status_created)
-        wait_for_ajax
-        click_link 'Temas'
-        expect(current_path).to eq activate_users_path
-      end
-    end
-
-    context 'edit profile' do
-      scenario 'should redirect the active form when user is not active', js: true do
-        login(user_with_status_created)
-        wait_for_ajax
-        find('.avatar').click
-        click_link 'Editar Perfil'
-        expect(current_path).to eq activate_users_path
-      end
-
-      scenario "should redirect to the login  when is not logged in" do
-        visit edit_user_path(user)
-        expect(current_path).to eq login_path
-      end
-
-      scenario "show form edit profile", js: true do
-        login(user)
-        wait_for_ajax
-        find('.avatar').click
-        click_link 'Editar Perfil'
-        expect(current_path).to eq edit_user_path(user)
-      end
-
-      scenario "edit profile with valid input", js: true do
-        login(user)
-        wait_for_ajax
-        first_name = Faker::Name.first_name
-        mobile_number = Faker::Number.number(10)
-        birthday =  '01-01-2015'
-        find('.avatar').click
-        click_link 'Editar Perfil'
-
-        fill_in "user_first_name", with: first_name
-        fill_in "user_mobile_number", with: mobile_number
-        fill_in "user_birthday", with: birthday
-
-        click_button 'Actualizar Perfil'
-
-        user.reload
-        sleep(1.0)
-        expect(user.first_name).to eq first_name
-        expect(user.mobile_number).to eq mobile_number
-        expect(user.birthday.strftime('%F')).to eq '2015-01-01'
-        expect(current_path).to eq signed_in_root_path
-      end
-    end
+    expect(current_path).to eq user_profile_path(user.nickname)
   end
 
-  context 'when accessed as admin' do
-    context 'create user', js: true do
-      scenario 'with valid input ' do
-        login(admin)
-        wait_for_ajax
-        visit admin_users_path
-        click_link 'Nuevo usuario'
-        wait_for_ajax
+  scenario "edits profile" do
+    user = create(:user)
 
-        first_name = Faker::Name.first_name
-        last_name = Faker::Name.last_name
-        email = Faker::Internet.email
+    login(user)
 
-        find(:css, '.modal-dialog input#user_first_name').set(first_name)
-        find(:css, '.modal-dialog input#user_last_name').set(last_name)
-        find(:css, '.modal-dialog input#user_email').set(email)
-        find(:css, '.modal-dialog #user_gender_male').set(true)
-        click_button "Crear Usuario"
-        wait_for_ajax
-        user = User.find_by_email(email)
-        expect(user).not_to be_nil
-        expect(user.first_name).to eq first_name
-        expect(user.last_name).to eq last_name
-        expect(user.gender).to eq "male"
-        expect(page).to have_selector '.alert-success'
-      end
+    find('.avatar').click
+    click_link 'Editar Perfil'
 
-      scenario 'without valid input' do
-        login(admin)
-        wait_for_ajax
-        visit admin_users_path
-        click_link 'Nuevo usuario'
-        wait_for_ajax
-        click_button "Crear Usuario"
-        expect(page).to have_selector '.alert-danger'
-      end
-    end
+    first_name = Faker::Name.first_name
+    nickname = Faker::Internet.user_name(nil, %w(- _))
+    mobile_number = Faker::Number.number(10)
+    birthday = "01-01-2015"
+
+    fill_in "user_first_name", with: first_name
+    fill_in "user_nickname", with: nickname
+    fill_in "user_mobile_number", with: mobile_number
+    fill_in "user_birthday", with: birthday
+
+    click_button 'Actualizar Perfil'
+
+    expect(current_path).to eq signed_in_root_path
+
+    user.reload
+    expect(user.first_name).to eq first_name
+    expect(user.mobile_number).to eq mobile_number
+    expect(user.nickname).to eq nickname
+    expect(user.birthday.strftime('%F')).to eq '2015-01-01'
   end
 
-  describe 'account activation' do
-    scenario 'with valid input' do
-      original_first_name = user_with_status_created.first_name
-      nickname = Faker::Internet.user_name('Nancy')
-      number = Faker::Number.number(10)
-      activate_account(
-        nickname: nickname,
-        mobile_number: number
-      )
-      user_with_status_created.reload
-      expect(user_with_status_created.status).to eq "active"
-      expect(user_with_status_created.nickname).to eq nickname
-      expect(user_with_status_created.mobile_number).to eq number
-      expect(user_with_status_created.first_name).to eq original_first_name
-      expect(current_path).to eq signed_in_root_path
-      expect(page).to have_selector '.alert-notice'
-    end
+  scenario "changes visibility of profile", js: true do
+    user = create(:user, has_public_profile: true)
+    
+    # check that the profile is public
+    visit(user_profile_path(user.nickname))
+    expect(page).to_not have_selector(".update-profile-visibility")
 
-    context 'when without valid input' do
-      scenario 'with existing nickname' do
-        nickname = Faker::Internet.user_name('Nancy')
-        number = Faker::Number.number(10)
-        create(:user,nickname: nickname)
+    login(user)
+    visit(user_profile_path(user.nickname))
+    
+    # change to private
+    find('#user_has_public_profile_false').click
+    
+    expect(page).to_not have_selector(".share-url")
 
-        activate_account(
-          nickname: nickname,
-          mobile_number: number
-        )
+    user.reload
+    expect(user.has_public_profile).to eq false
+    
+    # change to public
+    find('#user_has_public_profile_true').click
+    
+    expect(page).to have_selector(".share-url")
 
-        user_with_status_created.reload
-        expect(user_with_status_created.status).to eq "created"
-        expect(user_with_status_created.nickname).to_not eq 'simon0191'
-        expect(page).to have_selector ".alert-error"
-        expect(current_path).to eq activate_users_path
-      end
-
-      scenario 'with nickname format is not valid' do
-        nickname = Faker::Internet.user_name('Nancy Johnson', %w(. _ -))
-        activate_account(
-          nickname: nickname
-        )
-        expect(user_with_status_created.status).to eq "created"
-        expect(page).to have_selector ".alert-error"
-        expect(current_path).to eq activate_users_path
-      end
-    end
+    user.reload
+    expect(user.has_public_profile).to eq true
   end
-end
-
-
-def activate_account(opts={})
-  login(user_with_status_created)
-  fill_in "activate_user_mobile_number", with: opts[:mobile_number]
-  fill_in "activate_user_birthday", with: opts[:birthday]
-  fill_in "activate_user_nickname", with: opts[:nickname]
-  click_button 'Activar Cuenta'
 end

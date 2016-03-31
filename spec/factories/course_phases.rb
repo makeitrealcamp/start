@@ -12,7 +12,7 @@
 FactoryGirl.define do
   factory :course_phase do
     course { create(:course, phases: []) }
-    phase { create(:phase,course_phases: []) }
+    phase { create(:phase, course_phases: []) }
   end
 
 end

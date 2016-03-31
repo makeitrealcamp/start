@@ -29,9 +29,6 @@
 require 'rails_helper'
 
 RSpec.describe Challenge, type: :model do
-  let(:challenge) { create(:challenge) }
-  subject { Challenge.new }
-
   context 'associations' do
     it { should belong_to(:course) }
     it { should have_many(:documents) }
@@ -46,17 +43,22 @@ RSpec.describe Challenge, type: :model do
     it "should update the slug after updating the name" do
       challenge = create(:challenge)
       old_slug = challenge.slug
-      challenge.name = challenge.name+" un nombre random"
+
+      # change the name of the challenge
+      challenge.name = "#{challenge.name} a random name"
       challenge.save
-      expect(challenge.slug).to eq("#{old_slug}-un-nombre-random")
+
+      expect(challenge.slug).to eq("#{old_slug}-a-random-name")
       expect(challenge.slug).to eq(challenge.friendly_id)
     end
   end
 
   context "#next_for_user" do
     it "returns the next challenge" do
-      user = create(:paid_user)
-      next_challenge = create(:challenge, course: challenge.course, row: 1)
+      user = create(:user_with_path)
+      course = create(:course_with_phase)
+      challenge = create(:challenge, course: course, row: 0)
+      next_challenge = create(:challenge, course: course, row: 10)
 
       expect(challenge.next_for_user(user)).to eq next_challenge
     end

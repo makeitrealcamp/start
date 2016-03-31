@@ -17,8 +17,17 @@
 require 'rails_helper'
 
 RSpec.describe LessonCompletion, type: :model do
-  context 'associations' do
+  context "associations" do
     it { should belong_to(:user) }
     it { should belong_to(:lesson) }
+  end
+
+  context "validations" do
+    it { should validate_presence_of :user }
+    it { should validate_presence_of :lesson }
+  end
+
+  it "has a valid factory" do
+    expect(build(:lesson_completion)).to be_valid
   end
 end

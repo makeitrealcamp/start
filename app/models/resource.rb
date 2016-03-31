@@ -41,7 +41,6 @@ class Resource < ActiveRecord::Base
   has_many :comments, as: :commentable # TODO: change to reviews
   has_many :resource_completions, dependent: :delete_all
 
-
   accepts_nested_attributes_for :sections, allow_destroy: true
 
   validates :course, :title, :description, presence: :true

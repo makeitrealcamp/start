@@ -12,7 +12,7 @@ class ActivateUserForm < BaseForm
 
   validates :nickname, presence: true
   validates :user, presence: true
-  validates :nickname, format: { with: /\A[a-zA-Z0-9]+\Z/ }
+  validates :nickname, format: { with: /\A[a-zA-Z0-9_\-]+\Z/ }
 
   validate :nickname_uniqueness
 

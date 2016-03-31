@@ -17,4 +17,7 @@
 class LessonCompletion < ActiveRecord::Base
   belongs_to :user
   belongs_to :lesson
+
+  validates :user, presence: true
+  validates :lesson, presence: true
 end

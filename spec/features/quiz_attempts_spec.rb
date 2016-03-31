@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "QuizAttempts", type: :feature do
-  let!(:user) { create(:paid_user) }
+  let!(:user) { create(:user) }
   let!(:course) { create(:course) }
   let!(:quiz) { create(:quiz, course: course, published: true) }
   let!(:multi_answer_question){ create(:multi_answer_question, quiz: quiz, published: true) }

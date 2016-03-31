@@ -22,7 +22,6 @@
 #
 
 class User < ActiveRecord::Base
-
   NOTIFICATION_SERVICE = Pusher
 
   attr_accessor :notifier
@@ -70,7 +69,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :nickname, uniqueness: true
-  validates :nickname, format: { with: /\A[a-zA-Z0-9]+\Z/ }, if: :nickname?
+  validates :nickname, format: { with: /\A[a-zA-Z0-9_\-]+\Z/ }, if: :nickname?
 
   enum status: [:created, :active]
   enum account_type: [:free_account, :paid_account, :admin_account]
@@ -78,7 +77,6 @@ class User < ActiveRecord::Base
   before_create :assign_random_nickname
   after_initialize :default_values
   after_save :check_user_level
-
 
   def self.commenters_of(commentable)
     joins(:comments).where(comments: {commentable_id: commentable.id,commentable_type: commentable.class.to_s}).uniq
@@ -122,7 +120,6 @@ class User < ActiveRecord::Base
     self.stats.progress_by_course(course) == 1.0
   end
 
-  #TODO: Remove params, are not using
   def has_access_to?(resource)
     self.is_admin? || self.paid_account?
   end
@@ -180,7 +177,7 @@ class User < ActiveRecord::Base
   end
 
   def notifier
-    @notifier ||= UserNotifier.new(self,User::NOTIFICATION_SERVICE)
+    @notifier ||= UserNotifier.new(self, User::NOTIFICATION_SERVICE)
   end
 
   def last_solution

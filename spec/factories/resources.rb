@@ -33,11 +33,12 @@ FactoryGirl.define do
     own false
     url { Faker::Internet.url}
     time_estimate {"#{Faker::Number.digit} days"}
-    association  :course, factory: :course
+    course
     published true
+    
     factory :video_course do
       type Resource.types[:course]
-      factory :published_video_course do
+      trait :published do
         published true
       end
     end

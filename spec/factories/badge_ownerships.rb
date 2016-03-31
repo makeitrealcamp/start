@@ -10,8 +10,8 @@
 #
 
 FactoryGirl.define do
-  factory :badge_ownerships do
-    association  :user, factory: :user
-    association  :badge, factory: :badge
+  factory :badge_ownership do
+    user
+    badge
   end
 end

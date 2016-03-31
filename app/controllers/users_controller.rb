@@ -17,13 +17,13 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    owner_or_admin_access(@user,@user)
+    owner_or_admin_access(@user, @user)
   end
 
   def update
     @user = User.find(params[:id])
     @is_own_profile = (@user == current_user)
-    owner_or_admin_access(@user,@user)
+    owner_or_admin_access(@user, @user)
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to signed_in_root_path, flash: { notice: "Tu perfil se ha actualizado" } }

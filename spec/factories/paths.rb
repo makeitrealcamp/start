@@ -15,7 +15,10 @@ FactoryGirl.define do
     name { Faker::Name.title }
     description { Faker::Hacker.say_something_smart }
     published true
-    after(:create) { |path| 3.times { create(:phase,path: path, published: true) } }
+
+    factory :path_with_phases do
+      after(:create) { |path| 3.times { create(:phase, path: path, published: true) } }
+    end
   end
 
 end

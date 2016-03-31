@@ -16,8 +16,8 @@
 
 FactoryGirl.define do
   factory :lesson_completion do
-    user nil
-lesson nil
+    user
+    lesson
   end
 
 end

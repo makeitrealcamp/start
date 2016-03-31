@@ -26,7 +26,7 @@ RSpec.describe Subscription, type: :model do
   context "validations" do
     it { should validate_presence_of :user }
     it { should belong_to :user }
-    it "should not allow more than 1 active subscription per user" do
+    it "doesn't allow more than 1 active subscription per user" do
       subscription.save
       invalid_subscription = subscription.user.subscriptions.build
       expect(invalid_subscription).to_not be_valid
@@ -35,21 +35,20 @@ RSpec.describe Subscription, type: :model do
   end
 
   context "factory" do
-    it "should have a valid factory" do
+    it "has a valid factory" do
       expect(build(:subscription)).to be_valid
     end
   end
 
-  context "After update" do
-    it "should change the user to paid_account when created" do
+  context "after update" do
+    it "changes the user to paid_account when created" do
       subscription.user = user_free
       subscription.save
 
       expect(user_free.reload.account_type).to eq("paid_account")
-
     end
 
-    it "should change the user to free_account when cancelled" do
+    it "changes the user to free_account when cancelled" do
       subscription.user = user_paid
       subscription.save
       subscription.cancel
@@ -57,7 +56,7 @@ RSpec.describe Subscription, type: :model do
       expect(user_paid.reload.account_type).to eq("free_account")
     end
 
-    it "should not modify the account type of an admin after cancellation" do
+    it "doesn't modify the account type of an admin after cancellation" do
       subscription.user = admin
       subscription.save
       expect(admin.reload.account_type).to eq("admin_account")
@@ -65,8 +64,6 @@ RSpec.describe Subscription, type: :model do
       subscription.cancel
 
       expect(admin.reload.account_type).to eq("admin_account")
-
     end
   end
-
 end

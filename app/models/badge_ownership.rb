@@ -19,8 +19,7 @@ class BadgeOwnership < ActiveRecord::Base
   after_create :notify_user
 
   private
-
     def notify_user
-      user.notifications.create!(notification_type: :badge_earned, data: {badge_id: badge.id})
+      user.notifications.create!(notification_type: :badge_earned, data: { badge_id: badge.id })
     end
 end

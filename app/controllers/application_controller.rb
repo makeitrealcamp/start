@@ -54,7 +54,6 @@ class ApplicationController < ActionController::Base
     end
 
     def admin_access
-      private_access
       unless signed_in? && current_user.is_admin?
         raise ActionController::RoutingError.new('Not Found')
       end

@@ -12,4 +12,7 @@
 class CoursePhase < ActiveRecord::Base
   belongs_to :phase
   belongs_to :course
+
+  validates :phase, presence: true
+  validates :course, presence: true
 end
