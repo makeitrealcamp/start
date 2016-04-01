@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.feature "Notifications", type: :feature do
-  let!(:user) { create(:user) }
-  let!(:course) { create(:course) }
-  let!(:challenge) { create(:challenge, course: course) }
+  let(:user) { create(:user) }
+  let(:course) { create(:course) }
+  let(:challenge) { create(:challenge, course: course) }
   let!(:solution) { create(:solution, user: user, challenge: challenge, status: :completed, completed_at: 1.week.ago) }
 
   scenario "user receives two notifications", js: true do
