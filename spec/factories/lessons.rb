@@ -23,7 +23,7 @@ FactoryGirl.define do
 
   factory :lesson do
     section
-    name { Faker::Lorem.word }
+    name { Faker::Name.title }
     video_url { Faker::Internet.url }
     description { Faker::Lorem.paragraph }
     row 1
