@@ -31,7 +31,7 @@ FactoryGirl.define do
       items.values[rand(items.size)]
     end
 
-    nickname { Faker::Internet.user_name(nil, %w(- _)) }
+    sequence(:nickname) { |n| "#{Faker::Internet.user_name(nil, %w(- _))}#{n}" }
     birthday { Faker::Time.between(2.days.ago, Time.now) }
     mobile_number { Faker::PhoneNumber.cell_phone }
 

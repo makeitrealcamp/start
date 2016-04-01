@@ -2,8 +2,7 @@ module LoginMacros
   def login(user)
     mock_auth_hash_slack(user)
     
-    visit root_path
-    click_link 'Ingresar'
+    visit login_path
     find('#sign-in-slack').click
 
     path = user.status == "active" ? signed_in_root_path : activate_users_path
