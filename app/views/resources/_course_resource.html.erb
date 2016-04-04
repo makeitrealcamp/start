@@ -11,20 +11,19 @@
 
   <p><%= resource.description %></p>
   <div class="sections">
+    <% resource.sections.each_with_index do |section, i| %>
+      <%= render partial: 'sections/section_row', locals: { resource: resource, section: section, i: i } %>
+    <% end %>
 
     <% if current_user.is_admin? %>
       <div class="row">
         <div class="col-sm-12 text-center new-lesson-btn">
-          <%= link_to new_course_resource_section_path(resource.course,resource), remote: true, class: "btn btn-success" do %>
+          <%= link_to new_course_resource_section_path(resource.course,resource), remote: true, class: "btn btn-primary" do %>
             <span class="glyphicon glyphicon-plus"></span>
             Nueva Sección
           <% end %>
         </div>
       </div>
-    <% end %>
-
-    <% resource.sections.each_with_index do |section, i| %>
-      <%= render partial: 'sections/section_row', locals: { resource: resource, section: section, i: i } %>
     <% end %>
   </div>
 </div>

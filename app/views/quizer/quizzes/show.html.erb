@@ -14,9 +14,9 @@
         <p>
           Ya comenzaste este quiz.
         </p>
-        <%= link_to "Continuar Quiz", ongoing_quiz_attempt_for_user_path(@quiz,current_user), class: "btn-go-to" %>
+        <%= link_to "Continuar Quiz", ongoing_quiz_attempt_for_user_path(@quiz,current_user), class: "btn btn-primary" %>
       <% else %>
-        <%= button_to "Comenzar Quiz", course_quizer_quiz_quiz_attempts_path(@course,@quiz), method: :post, class: "btn-action" %>
+        <%= button_to "Comenzar Quiz", course_quizer_quiz_quiz_attempts_path(@course,@quiz), method: :post, class: "btn btn-secondary" %>
       <% end %>
     </div>
   </div>

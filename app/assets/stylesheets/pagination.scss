@@ -1,0 +1,35 @@
+.pagination {
+  display: flex;
+
+  .previous_page, .current, a, .next_page {
+    background: white;
+    font-size: 14px;
+    line-height: 0;
+    padding: 15px 10px;
+    border: 1px solid #ddd;
+  }
+
+  .previous_page { @include border-left-radius(3px); }
+
+  .next_page { @include border-right-radius(3px); }
+
+  .current {
+    background: white;
+    color: $brand-secondary;
+    font-style: normal;
+    font-weight: bold;
+    border-left: none;
+  }
+
+  a {
+    color: #666;
+    text-decoration: none;
+
+    &:hover {
+      background: $brand-primary;
+      color: white;
+    }
+  }
+
+  .current, .next_page, a { border-left: none; }
+}

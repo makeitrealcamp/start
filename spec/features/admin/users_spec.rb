@@ -5,9 +5,9 @@ RSpec.feature "Users management", type: :feature do
 
   scenario "creates a user", js: true do
     login(admin)
-    
+
     visit admin_users_path
-    click_link 'Nuevo usuario'
+    click_link 'Nuevo alumno'
 
     first_name = Faker::Name.first_name
     last_name = Faker::Name.last_name
@@ -18,7 +18,7 @@ RSpec.feature "Users management", type: :feature do
     find(:css, '.modal-dialog input#user_email').set(email)
     find(:css, '.modal-dialog #user_gender_male').set(true)
     click_button "Crear Usuario"
-    
+
     expect(page).to have_selector '.alert-success'
 
     user = User.find_by_email(email)
