@@ -1,8 +1,8 @@
 <% if @user.valid? %>
-  $("#create-user-modal .alerts-container")
+  $("#user-modal .alerts-container")
     .html('<%= j render "shared/alert", msg: "Se a enviado un correo de bienvenida al correo #{@user.email}", type: "notice" %>');
-  $('#create-user-modal input').val('');
+  $('#user-modal input').val('');
 <% else %>
-  $("#create-user-modal .alerts-container")
+  $("#user-modal .alerts-container")
     .html('<%= j render "shared/flash_messages_form", object: @user %>');
 <% end %>

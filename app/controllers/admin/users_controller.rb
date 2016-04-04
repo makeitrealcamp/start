@@ -42,6 +42,15 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+  end
+
   def show
     @user = User.find(params[:id])
     @courses = Course.all
@@ -81,7 +90,7 @@ class Admin::UsersController < ApplicationController
     def user_params
       params.require(:user).permit(
         :first_name, :last_name, :email, :gender, :nickname, :account_type,
-        path_subscriptions_attributes: [:path_id,:id,:_destroy]
+        path_subscriptions_attributes: [:path_id, :id, :_destroy]
       )
     end
 end

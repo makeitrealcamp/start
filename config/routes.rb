@@ -132,7 +132,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'dashboard', to: 'dashboard#index'
     resources :paths, only: [:index, :new, :create, :update, :edit]
-    resources :users, only: [:index, :new, :create, :show] do
+    resources :users, only: [:index, :new, :create, :show, :edit, :update] do
       member do
         patch :suspend
         patch :reactivate

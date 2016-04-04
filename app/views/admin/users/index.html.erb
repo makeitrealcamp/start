@@ -41,22 +41,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @users.each do |user| %>
-          <tr id="user-<%= user.id %>">
-            <td>
-              <span class="name"><%= link_to full_name(user), user_profile_path(user.nickname) %></span>
-              <span class="email"><%= user.email %></span>
-            </td>
-            <td><%= status(user) %></td>
-            <td><%= user.paths.pluck(:name).join(", ") %></td>
-            <td class="text-center"><%= distance_of_time_in_words_to_now(user.last_active_at) unless user.last_active_at.nil? %></td>
-            <td class="text-center">
-              <span class="points"><%= user.stats.total_points %></span>
-              <span class="level"><%= user.level.name %></span>
-            </td>
-            <td class="text-right"><%= link_to '<span class="glyphicon glyphicon-user"></span>'.html_safe, admin_user_path(user) %></td>
-          </tr>
-          <% end %>
+          <%= render @users %>
         </tbody>
       </table>
     </div>
