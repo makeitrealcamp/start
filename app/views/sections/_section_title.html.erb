@@ -1,11 +1,15 @@
-<%= "Sección #{i} - #{section.title}" %>
+<span class="title-text"><%= "Sección #{i} - #{section.title}" %></span>
 <% if current_user.is_admin? %>
+  <%= link_to edit_course_resource_section_path(section.resource.course,section.resource,section, index: i), remote: true do %>
+    <span class="glyphicon glyphicon-pencil action action-edit"></span>
+  <% end %>
+  <%= link_to course_resource_section_path(section.resource.course,section.resource,section), remote: true, data:{ confirm: "Are you sure you want to delete this?"}, method: :delete do %>
+    <span class="glyphicon glyphicon-remove action action-remove"></span>
+  <% end %>
+
   <div class="pull-right">
-    <%= link_to edit_course_resource_section_path(section.resource.course,section.resource,section, index: i), remote: true do %>
-      <span class="glyphicon glyphicon-pencil action action-edit"></span>
-    <% end %>
-    <%= link_to course_resource_section_path(section.resource.course,section.resource,section), remote: true, data:{ confirm: "Are you sure you want to delete this?"}, method: :delete do %>
-      <span class="glyphicon glyphicon-remove action action-remove"></span>
+    <%= link_to new_course_resource_section_lesson_path(section.resource.course,section.resource,section), class: "btn btn-primary btn-xs" do %>
+      <span class="glyphicon glyphicon-plus"></span> Nueva Lección
     <% end %>
   </div>
 <% end %>

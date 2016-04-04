@@ -75,9 +75,22 @@
 }
 
 .sections {
+  .title-text { margin-right: 5px; }
+
   input.section-title {
     display: inline-block;
     max-width: 90%;
+  }
+
+  .btn-xs {
+    margin-top: -2px;
+    opacity: 0.6;
+
+    &:hover {
+      background: $brand-primary;
+      text-decoration: none;
+      opacity: 1;
+    }
   }
 
   .actions {
@@ -107,7 +120,7 @@
   }
 }
 .resource-section-title {
-  background-color: $btn-success-bg;
+  background-color: #303030;
   color: white;
   font-weight: 600;
 }

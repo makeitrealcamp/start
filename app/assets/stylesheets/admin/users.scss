@@ -1,0 +1,66 @@
+.users-list {
+  .users-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $brand-primary;
+
+    h1 { margin-bottom: 20px; }
+
+    .users-list-header-actions {
+      display: flex;
+      align-items: center;
+
+      .new-user { margin-left: 20px;}
+    }
+  }
+
+  .users {
+    td { vertical-align: middle; }
+    .name {
+      font-size: 21px;
+      text-decoration: none;
+    }
+    .email {
+      display: block;
+      color: #999;
+      font-size: 14px;
+    }
+
+    .points {
+      color: #999;
+      font-size: 21px;
+    }
+    .level {
+      display: block;
+      font-size: 14px;
+    }
+  }
+
+  .users-list-subheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    .users-list-search-form {
+      #q { min-width: 300px; }
+    }
+  }
+
+  .users-list-footer {
+    margin-bottom: 40px;
+
+    .pagination {
+      justify-content: flex-end;
+      margin-bottom: 5px;
+    }
+
+    .users-list-footer-records {
+      color: #999;
+      font-size: 13px;
+      text-align: right;
+    }
+  }
+}

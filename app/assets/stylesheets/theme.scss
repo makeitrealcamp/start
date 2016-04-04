@@ -1,12 +1,13 @@
+$brand-primary:                     #f04500; // orange
+$brand-secondary:                   #005e9f; // blue
+
 $font-size-base:                    16px;
 $font-family-sans-serif:            "Open Sans",sans-serif;
 $font-family-condensed:             "Open Sans Condensed", sans-serif;
 $body-bg:                           #f5f5f2;
 
-$btn-primary-bg:                    #64C3FF;
-$btn-primary-color:                 white;
-
-$btn-success-bg:                    #303030;
+$btn-secondary-color:              #fff !default;
+$btn-secondary-bg:                 $brand-secondary !default;
 
 $navbar-height:                     70px;
 $navbar-default-bg:                 #303030;
@@ -22,16 +23,18 @@ $navbar-default-brand-hover-color:  white;
 
 $grid-float-breakpoint:             830px;
 
-$link-color:                        #F04500;
+$link-color:                        $brand-primary;
 
 $nav-tabs-border-color:             #ddd;
 
-$btn-facebook: #48649F;
-$btn-twitter: #2795e9;
+$btn-facebook:                      #48649F;
+$btn-twitter:                       #2795e9;
 
-$border-radius-base:        0px !default;
-$border-radius-large:       0px !default;
-$border-radius-small:       0px !default;
+$border-radius-base:                3px !default;
+$border-radius-large:               3px !default;
+$border-radius-small:               3px !default;
 
-$progress-bar-success-bg:    #EB622A;
-$progress-border-radius:      4px;
+$progress-bar-success-bg:           #EB622A;
+$progress-border-radius:            4px;
+
+$input-height-base:                 40px;

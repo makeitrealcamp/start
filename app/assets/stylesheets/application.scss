@@ -9,6 +9,7 @@ $grid-float-breakpoint: 810px;
 @import "codemirror";
 @import "monokai";
 @import "pygments";
+@import "pagination";
 @import "pages";
 @import "sessions";
 @import "users";
@@ -29,6 +30,7 @@ $grid-float-breakpoint: 810px;
 @import "notifications";
 @import "paths";
 @import "admin/dashboard";
+@import "admin/users";
 @import "admin/solutions";
 @import "admin/badges";
 @import "admin/project_solutions";
@@ -73,7 +75,7 @@ html.turbolinks-progress-bar::before {
   color: white;
   font-size: 13px;
   padding: 4px;
-  border-radius: 5px;
+  border-radius: 3px;
   opacity: 0.4;
 
   &:hover { opacity: 1; }

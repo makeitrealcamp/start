@@ -18,8 +18,8 @@
           ¿Aceptas trabajar en este reto?
         </div>
         <div class="text-center">
-          <%= link_to '¡Sí, empezar a trabajar!', course_challenge_solutions_path(@challenge.course, @challenge),  method: :post, class: "btn-action" %><br>
-          <a href="http://procatinator.com/" class="btn-cancel">No, volver a mi zona de confort</a>
+          <%= link_to '¡Sí, empezar a trabajar!', course_challenge_solutions_path(@challenge.course, @challenge),  method: :post, class: "btn btn-primary" %><br>
+          <a href="http://procatinator.com/" class="btn btn-default">No, volver a mi zona de confort</a>
         </div>
       </div>
     <% else %>
@@ -37,12 +37,12 @@
           <div class="solution-buttons">
             <div style="float: left;">
               <% if  current_user.is_admin? || @solution.completed_at.present? %>
-                <%= link_to "<span class='glyphicon glyphicon-blackboard'></span> Ir a la discusión".html_safe, discussion_course_challenge_path(@challenge.course, @challenge), class: "btn-go-to" %>
+                <%= link_to "<span class='glyphicon glyphicon-blackboard'></span> Ir a la discusión".html_safe, discussion_course_challenge_path(@challenge.course, @challenge), class: "btn btn-secondary" %>
               <% end %>
             </div>
             <div class="text-right">
               <% if @challenge.preview? %><a href="#" class="btn-preview" target="_blank">Preview</a><% end %>
-              <%= submit_tag "Evaluar Solución", class: "btn-action" %>
+              <%= submit_tag "Evaluar Solución", class: "btn btn-primary" %>
             </div>
           </div>
         <% end %>

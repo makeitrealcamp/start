@@ -1,6 +1,6 @@
 h1 {
   font-family: "Open Sans Condensed", sans-serif;
-  font-size: 34px;
+  font-size: 32px;
   margin-bottom: 20px;
   font-weight: 700;
 
@@ -33,69 +33,35 @@ h2 {
 }
 
 .help-block { font-size: 14px; }
-.btn-action {
-  font-size: 16px;
+
+.btn {
+  font-family: $font-family-sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
   border: 0;
   padding: 10px 15px;
-  background: #f04500;
-  color: #fff;
-  border-radius: 3px;
-  font-weight: 600;
-  font-family: "Open Sans",sans-serif;
-  text-transform: uppercase;
-  font-size: 14px;
-  display: inline-block;
-  -webkit-transition: background 0.6s ease;
-  -moz-transition: background 0.6s ease;
-  -o-transition: background 0.6s ease;
-  transition: background 0.6s ease;
+
+  @include transition(background 0.4s ease);
+}
+
+.btn-primary {
   &:hover, &:active, &:focus {
-    background: #005e9f;
-    text-decoration: none;
-    color: #fff;
+    background: $brand-secondary;
   }
 }
-.btn-go-to {
-  font-size: 16px;
-  border: 0;
-  padding: 10px 15px;
-  background: #005e9f;
-  color: #fff;
-  border-radius: 3px;
-  font-weight: 600;
-  font-family: "Open Sans",sans-serif;
-  text-transform: uppercase;
-  font-size: 14px;
-  display: inline-block;
-  -webkit-transition: background 0.6s ease;
-  -moz-transition: background 0.6s ease;
-  -o-transition: background 0.6s ease;
-  transition: background 0.6s ease;
-  &:hover, &:focus, &:active {
-    background: #f04500;
+
+.btn-secondary {
+  @include button-variant($btn-secondary-color, $btn-secondary-bg, $btn-default-border);
+
+  &:hover {
+    background: $brand-primary;
     text-decoration: none;
-    color: #fff;
   }
 }
-.btn-cancel, .btn-preview {
-  font-size: 16px;
-  border: 0;
-  padding: 10px 15px;
-  background: #cac9c9;
-  color: #878787;
-  border-radius: 3px;
-  font-weight: 600;
-  font-family: "Open Sans",sans-serif;
-  text-transform: uppercase;
-  font-size: 14px;
-  display: inline-block;
-  -webkit-transition: background 0.6s ease;
-  -moz-transition: background 0.6s ease;
-  -o-transition: background 0.6s ease;
-  transition: background 0.6s ease;
-  &:hover, &:focus, &:active {
-    background: #e2e1e1;
-    color: #878787;
-    text-decoration: none;
-  }
+
+.btn-xs {
+  padding: 4px 5px;
+  font-size: 12px;
+  line-height: 1;
 }

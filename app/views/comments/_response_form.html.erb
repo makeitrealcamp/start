@@ -10,7 +10,7 @@
         <%= text_area_tag :text, nil, class: "form-control", rows: 2, required: true, placeholder: "Escribe una respuesta"  %>
         <%= hidden_field_tag :response_to_id, @comment.id %>
         <div class="text-right actions">
-          <%= link_to "Cancelar", cancel_edit_comment_path(@comment), class: "btn btn-default btn-cancel", remote: true %>
+          <%= link_to "Cancelar", cancel_edit_comment_path(@comment), class: "btn btn-default", remote: true %>
           <%= submit_tag "Responder", class: "btn btn-success", id: "btn-update" %>
         </div>
       <% end  %>

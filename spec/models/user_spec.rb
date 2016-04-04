@@ -97,7 +97,7 @@ RSpec.describe User, type: :model do
       # published challenge but not completed solution
       challenge2 = create(:challenge, course: course, published: true, restricted: true)
       create(:solution, user: user, challenge: challenge2, status: :created)
-      
+
       expect(user.stats.completed_challenges_by_course_count(course)).to eq 1
     end
   end
@@ -124,7 +124,7 @@ RSpec.describe User, type: :model do
       # completed unpublished resource
       resource1 = create(:resource, course: course, published: false)
       create(:resource_completion, user: user, resource: resource1)
-      
+
       # completed published resource
       resource2 = create(:resource, course: course, published: true)
       create(:resource_completion, user: user, resource: resource2)

@@ -1,18 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :admin_access
 
-  def new
-    @user = User.new
-    @user.path_subscriptions.build(path_id: Path.first.id) if Path.first
-  end
-
-  def create
-    @user = User.new(user_params.merge(status: :created))
-    if @user.save
-      @user.send_welcome_mail
-    end
-  end
-
   def index
     @users ||= User.all
 
@@ -26,7 +14,7 @@ class Admin::UsersController < ApplicationController
     end
 
     @users = @users.order('created_at DESC')
-      .paginate(page: params[:page], per_page: 200)
+      .paginate(page: params[:page], per_page: 20)
 
     @account_types = User.account_types.map do |type,id|
       account_type = {
@@ -40,6 +28,27 @@ class Admin::UsersController < ApplicationController
       end
       account_type
     end
+  end
+
+  def new
+    @user = User.new
+    @user.path_subscriptions.build(path_id: Path.first.id) if Path.first
+  end
+
+  def create
+    @user = User.new(user_params.merge(status: :created))
+    if @user.save
+      @user.send_welcome_mail
+    end
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
   end
 
   def show
@@ -81,7 +90,7 @@ class Admin::UsersController < ApplicationController
     def user_params
       params.require(:user).permit(
         :first_name, :last_name, :email, :gender, :nickname, :account_type,
-        path_subscriptions_attributes: [:path_id,:id,:_destroy]
+        path_subscriptions_attributes: [:path_id, :id, :_destroy]
       )
     end
 end

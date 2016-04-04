@@ -1,75 +1,57 @@
-<div id="users-list" class="container users">
+<div class="container users-list">
   <div class="row">
-    <div class="col-sm-6">
-      <h1>Estudiantes</h1>
-      <%= link_to "Nuevo usuario", new_admin_user_path,  remote: true, class: "btn btn-primary margin-bottom" %>
-    </div>
-    <div class="col-sm-6">
-      <%= form_tag(admin_users_path, method: "get",
-        class: "form-inline pull-right user-search-form") do %>
-        <div class="form-group">
-          <%= text_field_tag(:q, @q, class: "form-control", placeholder: "Email") %>
+    <div class="col-sm-12">
+      <div class="users-list-header">
+        <h1>Alumnos</h1>
+        <div class="users-list-header-actions">
+          <%= link_to "<span class='glyphicon glyphicon-plus'></span> Nuevo alumno".html_safe, new_admin_user_path, remote: true, class: "btn btn-primary new-user" %>
         </div>
-        <%= button_tag(nil, class: "btn btn-primary", name: nil) do %>
-          <span class="glyphicon glyphicon-search"></span>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-  <div class="row" style="margin-bottom: 20px;">
-    <div class="col-sm-6">
-      <div id="account-type-filter" class="btn-group">
-        <% @account_types.each do |a| %>
-          <%= account_type_filter_link(a) %>
-        <% end %>
       </div>
     </div>
-    <div class="col-sm-6">
-      <%= will_paginate @users, previous_label: "< Anterior",
-        next_label: "Siguiente >", class:"pull-right pagination" %>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="users-list-subheader">
+        <%= form_tag(admin_users_path, method: "get",
+          class: "form-inline users-list-search-form") do %>
+          <div class="form-group">
+            <%= text_field_tag(:q, @q, class: "form-control", placeholder: "Email") %>
+          </div>
+          <%= button_tag(nil, class: "btn btn-secondary", name: nil) do %>
+            <span class="glyphicon glyphicon-search"></span>
+          <% end %>
+        <% end %>
+        <%= will_paginate @users, previous_label: "&laquo;".html_safe, next_label: "&raquo;".html_safe, class:"pagination" %>
+      </div>
     </div>
   </div>
+
   <div class="row">
     <div class="col-sm-12">
       <table class="table users" id="table-users">
         <thead>
-        <tr>
-          <th><span class="glyphicon glyphicon-user"></span></th>
-          <th>Tipo De Usuario</th>
-          <th class="text-center">Fecha Registro</th>
-          <th class="text-center">Última Actividad</th>
-          <th class="text-center">Retos</th>
-          <th class="text-center">Recursos</th>
-          <th></th>
-        </tr>
+          <tr>
+            <th>Alumno</th>
+            <th>Estado</th>
+            <th>Programa</th>
+            <th class="text-center">Última Actividad</th>
+            <th class="text-center">Avance</th>
+            <th></th>
+          </tr>
         </thead>
         <tbody>
-        <% @users.each do |user| %>
-        <tr id="user-<%= user.id %>">
-          <td><%= link_to name(user), user_profile_path(user.nickname) %></td>
-          <td><%= user.account_type %> (<%= user.status %>)</td>
-          <td class="text-center"><%= l user.created_at, format: '%d %b %Y' %></td>
-          <td class="text-center"><%= distance_of_time_in_words_to_now(user.last_active_at) unless user.last_active_at.nil? %></td>
-          <td class="text-center"><%= user.solutions.completed.count %></td>
-          <td class="text-center"><%= user.resource_completions.count %></td>
-          <td class="text-right"><%= link_to "Show", admin_user_path(user) %></td>
-        </tr>
-        <% end %>
+          <%= render @users %>
         </tbody>
       </table>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-6">
-      <div id="account-type-filter" class="btn-group">
-        <% @account_types.each do |a| %>
-          <%= account_type_filter_link(a) %>
-        <% end %>
+    <div class="col-sm-12">
+      <div class="users-list-footer">
+        <%= will_paginate @users, previous_label: "&laquo;".html_safe, next_label: "&raquo;".html_safe, class:"pagination" %>
+        <div class="users-list-footer-records"><%= @users.size %> registros</div>
       </div>
-    </div>
-    <div class="col-sm-6">
-      <%= will_paginate @users, previous_label: "< Anterior",
-        next_label: "Siguiente >", class:"pull-right pagination" %>
     </div>
   </div>
 </div>
