@@ -22,22 +22,22 @@
           </div>
 
           <div class="form-group">
-            <%= f.label :email, "Correo electrónico" %>
+            <%= f.label :email, "Email" %>
             <%= f.text_field :email, class: "form-control" %>
           </div>
           <div class="form-group">
-            <%= f.label :account_type, "tipo de cuenta" %>
-            <%= f.select :account_type, options_for_select(["paid_account","admin_account"],"paid_account"),{},class: "form-control" %>
+            <%= f.label :account_type, "Tipo de cuenta" %>
+            <%= f.select :account_type, account_types, {}, class: "form-control" %>
           </div>
           <div class="form-group">
             <span class="radio-caption">Sexo:</span>
             <label class="radio-inline">
               <%= f.radio_button(:gender, :male) %>
-              <%= f.label(:true, "Masculino", class: "txt-bold") %>
+              <%= f.label(:true, "Hombre", class: "txt-bold") %>
             </label>
             <label class="radio-inline">
               <%= f.radio_button(:gender, :female) %>
-              <%= f.label(:false, "Femenino", class: "txt-bold") %>
+              <%= f.label(:false, "Mujer", class: "txt-bold") %>
             </label>
           </div>
           <div class="form-group">
