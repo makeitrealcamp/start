@@ -9,6 +9,10 @@ module Admin::UsersHelper
     statuses[user.status.to_sym] || "Indefinido"
   end
 
+  def account_types
+    [["Alumno", "paid_account"], ["Administrador", "admin_account"]]
+  end
+
   def account_type_filter_link(opts)
     classes = ["btn","btn-default","account-type-filter-btn"]
     classes += ["active","btn-primary"] if opts[:active] == true

@@ -43,7 +43,8 @@ RSpec.feature "Users management", type: :feature do
     find(:css, '.modal-dialog input#user_first_name').set(first_name)
     find(:css, '.modal-dialog input#user_last_name').set(last_name)
     find(:css, '.modal-dialog input#user_email').set(email)
-    find(:css, '.modal-dialog #user_gender_male').set(true)
+    find(:css, '.modal-dialog #user_gender_female').set(true)
+    select 'Administrador', from: "user_account_type"
     click_button "Actualizar Usuario"
 
     expect(page).to_not have_selector '.modal-dialog'
@@ -53,6 +54,7 @@ RSpec.feature "Users management", type: :feature do
     expect(user).not_to be_nil
     expect(user.first_name).to eq first_name
     expect(user.last_name).to eq last_name
-    expect(user.gender).to eq "male"
+    expect(user.account_type).to eq "admin_account"
+    expect(user.gender).to eq "female"
   end
 end

@@ -1,7 +1,7 @@
 <tr id="user-<%= user.id %>">
   <td>
     <span class="name"><%= link_to full_name(user), admin_user_path(user) %></span>
-    <span class="email"><%= user.email %></span>
+    <span class="email"><%= user.email %> <% if user.is_admin? %><span class="label label-secondary">Admin</span><% end %></span>
   </td>
   <td><%= status(user) %></td>
   <td><%= user.paths.pluck(:name).join(", ") %></td>
