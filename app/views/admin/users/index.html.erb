@@ -50,7 +50,7 @@
     <div class="col-sm-12">
       <div class="users-list-footer">
         <%= will_paginate @users, previous_label: "&laquo;".html_safe, next_label: "&raquo;".html_safe, class:"pagination" %>
-        <div class="users-list-footer-records"><%= @users.size %> registros</div>
+        <div class="users-list-footer-records"><%= @users_count %> registros</div>
       </div>
     </div>
   </div>
