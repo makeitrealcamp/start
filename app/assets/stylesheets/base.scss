@@ -65,3 +65,7 @@ h2 {
   font-size: 12px;
   line-height: 1;
 }
+
+.label-secondary {
+  @include label-variant($brand-secondary);
+}
