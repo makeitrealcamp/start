@@ -185,14 +185,11 @@ class User < ActiveRecord::Base
   end
 
   def next_challenge
-    # user has not completed nor attempted any challenge
-    if last_solution.nil?
+    if last_solution.nil? # user has not completed nor attempted any challenge
       Challenge.for(self).order_by_course_and_rank.first
-    # user's last action was a challenge completion
-    elsif last_solution.completed?
+    elsif last_solution.completed? # user's last action was a challenge completion
       find_next_challenge
-    # user attempted a challenge but it was not completed
-    else
+    else # user attempted a challenge but it was not completed
       last_solution.challenge
     end
   end
@@ -226,12 +223,47 @@ class User < ActiveRecord::Base
     end
 
     def find_next_challenge
-      current_challenge = last_solution.challenge
-      next_challenge = current_challenge.next_for_user(self)
-      if next_challenge
+      next_challenge = find_next_challenge_recursively(last_solution.challenge)
+      next_challenge || last_pending_challenge
+    end
+
+    def find_next_challenge_recursively(current_challenge)
+      next_challenge = next_challenge_after(current_challenge)
+
+      if next_challenge && !challenge_attempted?(next_challenge)
         next_challenge
-      else
-        solutions.pending.joins(:challenge).where('challenges.published = ?', true).order('updated_at ASC').take.try(:challenge)
+      elsif next_challenge
+        find_next_challenge_recursively(next_challenge)
       end
+    end
+
+    def challenge_attempted?(challenge)
+      solution = solutions.where(challenge: challenge).take
+      solution && !solution.created?
+    end
+
+    # returns the next published challenge after the one of the argument or nil
+    # if it is the last one
+    def next_challenge_after(challenge)
+      next_challenge_in_course = next_challenge_in_course_after(challenge)
+      if next_challenge_in_course
+        next_challenge_in_course
+      else
+        first_challenge_of_next_course(challenge.course)
+      end
+    end
+
+    # returns the next published challenge after the one of the argument in the
+    # same course or nil if it's the last one
+    def next_challenge_in_course_after(challenge)
+      challenge.course.challenges.for(self).order(:row).where("row > ?", challenge.row).take
+    end
+
+    def first_challenge_of_next_course(current_course)
+      Challenge.for(self).order_by_course_and_rank.where("courses.row > ?", current_course.row).take
+    end
+
+    def last_pending_challenge
+      solutions.pending.joins(:challenge).where('challenges.published = ?', true).order('updated_at ASC').take.try(:challenge)
     end
 end

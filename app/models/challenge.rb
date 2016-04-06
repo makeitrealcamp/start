@@ -57,7 +57,7 @@ class Challenge < ActiveRecord::Base
 
   def self.for(user)
     if user.is_admin?
-      all
+      published
     else
       published.where(id: user.available_paths.map{ |path| path.challenges.pluck(:id) }.flatten)
     end
@@ -80,19 +80,6 @@ class Challenge < ActiveRecord::Base
 
   def self.default_timeout_for_evaluation_strategy(strategy)
     default_timeouts[strategy.to_sym]
-  end
-
-  def next_for_user(user)
-    next_challenge_in_course = self.next_in_course_for_user(user)
-    if next_challenge_in_course
-      next_challenge_in_course
-    else
-      Challenge.for(user).order_by_course_and_rank.where("courses.row > ?", self.course.row).take
-    end
-  end
-
-  def next_in_course_for_user(user)
-    course.challenges.for(user).order(:row).where("row > ?", self.row).take
   end
 
   def name_with_course
