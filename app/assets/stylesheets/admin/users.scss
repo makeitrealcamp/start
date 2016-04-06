@@ -16,7 +16,21 @@
   }
 
   .users {
-    td { vertical-align: middle; }
+    td {
+      background: white;
+      vertical-align: middle;
+
+      &:first-child { border-left: 1px solid #ddd; }
+      &:last-child { border-right: 1px solid #ddd; }
+    }
+
+    .user-suspended {
+      td { opacity: 0.6; }
+      .user-status { color: #a94442; }
+    }
+
+    .user-inactive .user-status { color: #f0ad4e; }
+
     .name {
       font-size: 21px;
       text-decoration: none;

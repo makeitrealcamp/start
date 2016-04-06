@@ -14,7 +14,6 @@
 #  account_type   :integer
 #  nickname       :string
 #  level_id       :integer
-#  path_id        :integer
 #
 # Indexes
 #

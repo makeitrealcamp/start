@@ -12,7 +12,6 @@
 #  description   :string
 #  slug          :string
 #  published     :boolean
-#  phase_id      :integer
 #
 
 FactoryGirl.define do

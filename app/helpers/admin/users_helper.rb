@@ -9,6 +9,11 @@ module Admin::UsersHelper
     statuses[user.status.to_sym] || "Indefinido"
   end
 
+  def status_class(user)
+    statuses = { created: "user-inactive", active: "", suspended: "user-suspended" }
+    statuses[user.status.to_sym] || ""
+  end
+
   def account_types
     [["Alumno", "paid_account"], ["Administrador", "admin_account"]]
   end
