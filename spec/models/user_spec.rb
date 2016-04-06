@@ -157,8 +157,8 @@ RSpec.describe User, type: :model do
   end
 
   describe ".completed_challenges_count" do
-    let!(:user) { create(:user) }
-    let!(:course) { create(:course) }
+    let(:user) { create(:user) }
+    let(:course) { create(:course) }
 
     it "returns completed and published challenges count" do
       challenge = create(:challenge, course: course, published: true, restricted: true)
@@ -239,6 +239,54 @@ RSpec.describe User, type: :model do
       it "returns nil" do
         create(:point, points: 300, user: user)
         expect(user.next_level).to be_nil
+      end
+    end
+  end
+
+  describe ".next_challenge" do
+    context "when there are no solution" do
+      it "returns the first challenge" do
+        user = create(:user_with_path)
+
+        course1 = create(:course_with_phase, row: 0)
+        challenge1 = create(:challenge, course: course1)
+
+        course2 = create(:course_with_phase, row: 10)
+        challenge3 = create(:challenge, course: course2)
+
+        expect(user.next_challenge).to eq(challenge1)
+      end
+    end
+
+    context "when last solution is not completed" do
+      it "returns the challenge of last solution" do
+        user = create(:user_with_path)
+
+        course1 = create(:course_with_phase, row: 0)
+        challenge1 = create(:challenge, course: course1)
+        challenge2 = create(:challenge, course: course1)
+
+        create(:solution, user: user, challenge: challenge2, status: :created)
+
+        expect(user.next_challenge).to eq(challenge2)
+      end
+    end
+
+    context "when last solution is completed" do
+      it "returns the next challenge that hasn't been attempted" do
+        user = create(:user_with_path)
+
+        course1 = create(:course_with_phase, row: 0)
+        challenge1 = create(:challenge, course: course1) # this is going to be the last solved
+        challenge2 = create(:challenge, course: course1) # this is going to be solved
+
+        course2 = create(:course_with_phase, row: 10)
+        challenge3 = create(:challenge, course: course2) # this should be the next challenge
+
+        create(:solution, user: user, challenge: challenge1, status: :completed, updated_at: DateTime.current)
+        create(:solution, user: user, challenge: challenge2, status: :completed, updated_at: 1.month.ago)
+
+        expect(user.next_challenge).to eq(challenge3)
       end
     end
   end

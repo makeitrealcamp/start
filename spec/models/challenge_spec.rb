@@ -52,15 +52,4 @@ RSpec.describe Challenge, type: :model do
       expect(challenge.slug).to eq(challenge.friendly_id)
     end
   end
-
-  context "#next_for_user" do
-    it "returns the next challenge" do
-      user = create(:user_with_path)
-      course = create(:course_with_phase)
-      challenge = create(:challenge, course: course, row: 0)
-      next_challenge = create(:challenge, course: course, row: 10)
-
-      expect(challenge.next_for_user(user)).to eq next_challenge
-    end
-  end
 end
