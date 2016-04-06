@@ -2,7 +2,8 @@ class Admin::UsersController < ApplicationController
   before_action :admin_access
 
   def index
-    @users ||= User.all
+    @users = User.all
+    @users_count = User.all.count # we can't reuse @users here, it would trigger the query
 
     if params[:q]
       @q = params[:q]
