@@ -1,23 +1,20 @@
 Rails.application.routes.draw do
   root 'pages#home'
 
-  get "curriculum" => "pages#curriculum"
-  get "full_stack_web_developer" => "pages#full_stack_web_developer"
-  get "front_end_web_developer" => "pages#front_end_web_developer"
-  get "faq" => "pages#faq"
-  get "makers" => "pages#makers"
-  get "publicar" => "pages#publicar"
+  get "curriculum", to: "pages#curriculum"
+  get "full_stack_web_developer", to: "pages#full_stack_web_developer"
+  get "front_end_web_developer", to: "pages#front_end_web_developer"
+  get "faq", to: "pages#faq"
+  get "makers", to: "pages#makers"
+  get "publicar", to: "pages#publicar"
   get "scholarships", to: "pages#scholarships"
 
-  get 'thanks', to: 'pages#thanks', as: :thanks
   get 'handbook', to: 'pages#handbook', as: :handbook
 
   get  'login', to: 'sessions#new', as: :login
   post 'login', to: 'sessions#create'
   get  'auth/:provider/callback', to: 'sessions#create_with_omniauth', as: :login_omniauth
   delete 'logout', to: 'sessions#destroy'
-
-  get '/signup' => redirect(Prework::Application::APPLICATION_FORM_URL)
 
   post 'inscription_info', to: 'users#send_inscription_info', as: :inscription_info
 
