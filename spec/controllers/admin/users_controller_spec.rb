@@ -32,6 +32,26 @@ RSpec.describe Admin::UsersController, type: :controller do
       get :index
       expect(response).to render_template :index
     end
+
+    it "filters users by email" do
+      u1 = create(:user, email: "test1@example.com")
+      create(:user, email: "person1@example.com")
+      u2 = create(:user, email: "test2@example.com")
+      create(:user, email: "person2@example.com")
+
+      get :index, q: "tESt"
+      expect(assigns(:users)).to match_array([u1, u2])
+    end
+
+    it "filters users by name" do
+      create(:user, profile: { first_name: "John" })
+      u1 = create(:user, profile: { last_name: "Mellark" })
+      create(:user, profile: { first_name: "John", last_name: "Doe" })
+      u2 = create(:user, profile: { first_name: "Peter", last_name: "Mellark" })
+
+      get :index, q: "mella"
+      expect(assigns(:users)).to match_array([u1, u2])
+    end
   end
 
   describe "GET #new" do
@@ -98,6 +118,13 @@ RSpec.describe Admin::UsersController, type: :controller do
 
         it "sends welcome email" do
           expect { xhr :post, :create, user: atts }.to change { ActionMailer::Base.deliveries.count }.by(1)
+        end
+      end
+
+      context "when email has upper case letters" do
+        it "changes it to lower case" do
+          xhr :post, :create, user: atts.merge(email: "TeSt@exAmPle.com")
+          expect(assigns(:user).email).to eq("test@example.com")
         end
       end
 
