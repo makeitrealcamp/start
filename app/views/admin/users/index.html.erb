@@ -16,7 +16,7 @@
         <%= form_tag(admin_users_path, method: "get",
           class: "form-inline users-list-search-form") do %>
           <div class="form-group">
-            <%= text_field_tag(:q, @q, class: "form-control", placeholder: "Email") %>
+            <%= text_field_tag(:q, @q, class: "form-control", placeholder: "Busca por email o nombre") %>
           </div>
           <%= button_tag(nil, class: "btn btn-secondary", name: nil) do %>
             <span class="glyphicon glyphicon-search"></span>

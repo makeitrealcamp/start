@@ -3,16 +3,17 @@ class Admin::UsersController < ApplicationController
 
   def index
     @users = User.all
-    @users_count = User.all.count # we can't reuse @users here, it would trigger the query
 
     if params[:q]
       @q = params[:q]
-      @users = @users.where("email like ?","%#{params[:q]}%")
+      @users = @users.where("email ilike :q or profile -> 'first_name' ilike :q or profile -> 'last_name' ilike :q", q: "%#{params[:q]}%")
     end
 
     if params[:account_type]
       @users = @users.where(account_type: params[:account_type])
     end
+
+    @users_count = @users.count
 
     @users = @users.order('created_at DESC')
       .paginate(page: params[:page], per_page: 20)

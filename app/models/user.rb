@@ -75,6 +75,7 @@ class User < ActiveRecord::Base
   before_create :assign_random_nickname
   after_initialize :default_values
   after_save :check_user_level
+  before_save :downcase_email
 
   def self.commenters_of(commentable)
     joins(:comments).where(comments: {commentable_id: commentable.id,commentable_type: commentable.class.to_s}).uniq
@@ -217,6 +218,10 @@ class User < ActiveRecord::Base
       if self.level_id_was != self.level_id
         self.notifications.create!(notification_type: :level_up, data: {level_id: self.level_id})
       end
+    end
+
+    def downcase_email
+      self.email = self.email.downcase if self.email
     end
 
     def find_next_challenge
