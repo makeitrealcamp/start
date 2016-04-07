@@ -14,7 +14,6 @@
 #  account_type   :integer
 #  nickname       :string
 #  level_id       :integer
-#  path_id        :integer
 #
 # Indexes
 #
@@ -57,8 +56,7 @@ class User < ActiveRecord::Base
     motivation: :string,
     experience: :string,
     activated_at: :datetime,
-    github_username: :string,
-    suspended: :boolean
+    github_username: :string
 
   hstore_accessor :settings,
     info_requested_at: :datetime,
@@ -71,7 +69,7 @@ class User < ActiveRecord::Base
   validates :nickname, uniqueness: true
   validates :nickname, format: { with: /\A[a-zA-Z0-9_\-]+\Z/ }, if: :nickname?
 
-  enum status: [:created, :active]
+  enum status: [:created, :active, :suspended]
   enum account_type: [:free_account, :paid_account, :admin_account]
 
   before_create :assign_random_nickname
@@ -204,7 +202,6 @@ class User < ActiveRecord::Base
       self.status ||= :created
       self.has_public_profile ||= false
       self.account_type ||= User.account_types[:free_account]
-      self.suspended ||= false
       self.level ||= Level.for_points(0)
     end
 

@@ -38,11 +38,7 @@ class ApplicationController < ActionController::Base
 
     def private_access
       if signed_in?
-        if current_user.free_account?
-          sign_out
-          redirect_free_user
-          return
-        elsif current_user.suspended?
+        if current_user.suspended?
           sign_out
           redirect_suspended_user
           return
@@ -89,14 +85,8 @@ class ApplicationController < ActionController::Base
       response.headers["Content-Language"] = I18n.locale.to_s
     end
 
-    def redirect_free_user
-      redirect_to root_path, notice: %Q(
-        Make it Real ya no está disponible para usuarios gratuitos.
-        Si quieres ingresar al programa haz click en el botón ¡Aplica ahora!)
-    end
-
     def redirect_suspended_user
-      redirect_to root_path, notice: "Tu cuenta ha sido temporalmente suspendida."
+      redirect_to root_path, notice: "Tu cuenta está suspendida. Para reactivarla comunícate con nosotros a info@makeitreal.camp."
     end
 
 end
