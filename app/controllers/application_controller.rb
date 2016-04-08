@@ -53,7 +53,6 @@ class ApplicationController < ActionController::Base
       unless signed_in? && current_user.is_admin?
         raise ActionController::RoutingError.new('Not Found')
       end
-
     end
 
     def paid_access

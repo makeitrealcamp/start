@@ -29,6 +29,11 @@
       .user-status { color: #a94442; }
     }
 
+    .user-finished {
+      td { opacity: 0.6; }
+      .user-status { color: #5cb85c; }
+    }
+
     .user-inactive .user-status { color: #f0ad4e; }
 
     .name {

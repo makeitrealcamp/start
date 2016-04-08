@@ -60,18 +60,6 @@ class Admin::UsersController < ApplicationController
     @resources = Resource.find(resources_ids).group_by(&:course)
   end
 
-  def suspend
-    @user = User.find(params[:id])
-    @user.update!(suspended: true)
-    redirect_to :back, notice: "La cuenta de #{@user.email} ha sido suspendida"
-  end
-
-  def reactivate
-    @user = User.find(params[:id])
-    @user.update!(suspended: false)
-    redirect_to :back, notice: "La cuenta de #{@user.email} ha sido reactivada"
-  end
-
   private
 
     def generate_account_type_url(account_type)
@@ -92,7 +80,7 @@ class Admin::UsersController < ApplicationController
     def user_params
       params.require(:user).permit(
         :first_name, :last_name, :email, :gender, :nickname, :account_type,
-        path_subscriptions_attributes: [:path_id, :id, :_destroy]
+        :status, path_subscriptions_attributes: [:path_id, :id, :_destroy]
       )
     end
 end

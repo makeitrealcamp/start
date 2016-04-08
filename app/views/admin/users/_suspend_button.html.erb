@@ -1,4 +1,0 @@
-<%# require: user %>
-<%= form_for :user, url: suspend_admin_user_path(user), method: :patch do |f| %>
-  <%= f.button "Suspender cuenta", class: "btn btn-lg btn-danger", data: {confirm: "Este usuario no podrá acceder a la plataforma. ¿Estás seguro que deseas continuar?"} %>
-<% end %>
