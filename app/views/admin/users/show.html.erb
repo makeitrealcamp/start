@@ -28,16 +28,6 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-sm-9 col-sm-offset-3 susbcription-container">
-          <% if @user.suspended? %>
-            <%= render "admin/users/reactivate_button", user: @user %>
-          <% else %>
-            <%= render "admin/users/suspend_button", user: @user %>
-          <% end %>
-        </div>
-      </div>
-
       <div class="row solutions">
         <div class="col-sm-12">
           <hr>

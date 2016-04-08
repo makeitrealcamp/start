@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
   validates :nickname, uniqueness: true
   validates :nickname, format: { with: /\A[a-zA-Z0-9_\-]+\Z/ }, if: :nickname?
 
-  enum status: [:created, :active, :suspended]
+  enum status: [:created, :active, :suspended, :finished]
   enum account_type: [:free_account, :paid_account, :admin_account]
 
   before_create :assign_random_nickname

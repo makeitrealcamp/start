@@ -5,17 +5,21 @@ module Admin::UsersHelper
   end
 
   def status(user)
-    statuses = { created: "Sin activar", active: "Activo", suspended: "Suspendido" }
+    statuses = { created: "Sin activar", active: "Activo", suspended: "Suspendido", finished: "Finalizó" }
     statuses[user.status.to_sym] || "Indefinido"
   end
 
   def status_class(user)
-    statuses = { created: "user-inactive", active: "", suspended: "user-suspended" }
+    statuses = { created: "user-inactive", active: "", suspended: "user-suspended", finished: "user-finished" }
     statuses[user.status.to_sym] || ""
   end
 
   def account_types
     [["Alumno", "paid_account"], ["Administrador", "admin_account"]]
+  end
+
+  def user_statuses
+    [["Sin Activar", "created"], ["Activo", "active"], ["Suspendido", "suspended"], ["Finalizó", "finished"]]
   end
 
   def account_type_filter_link(opts)

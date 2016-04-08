@@ -29,6 +29,12 @@
             <%= f.label :account_type, "Tipo de cuenta" %>
             <%= f.select :account_type, account_types, {}, class: "form-control" %>
           </div>
+          <% unless @user.new_record? %>
+          <div class="form-group">
+            <%= f.label :status, "Estado" %>
+            <%= f.select :status, user_statuses, {}, class: "form-control" %>
+          </div>
+          <% end %>
           <div class="form-group">
             <span class="radio-caption">Sexo:</span>
             <label class="radio-inline">

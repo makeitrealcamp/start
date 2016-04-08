@@ -35,9 +35,9 @@ FactoryGirl.define do
     mobile_number { Faker::PhoneNumber.cell_phone }
 
     activated_at { Faker::Time.between(2.days.ago, Time.now) }
-    account_type  :paid_account
+    account_type :paid_account
 
-    status { User.statuses[:active] }
+    status :active
     level
 
     factory :user_with_path do
