@@ -289,4 +289,34 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe ".log_activity" do
+    context "when the user activates" do
+      it "logs the activity" do
+        user = create(:user, status: :created)
+        expect { user.activate! }.to change(ActivityLog, :count).by(1)
+      end
+    end
+
+    context "when the user is suspended" do
+      it "logs the activity" do
+        user = create(:user)
+        expect { user.suspended! }.to change(ActivityLog, :count).by(1)
+      end
+    end
+
+    context "when the user finishes" do
+      it "logs the activity" do
+        user = create(:user)
+        expect { user.finished! }.to change(ActivityLog, :count).by(1)
+      end
+    end
+
+    context "when the user is reactivated" do
+      it "logs the activity" do
+        user = create(:user, status: :suspended)
+        expect { user.active! }.to change(ActivityLog, :count).by(1)
+      end
+    end
+  end
 end

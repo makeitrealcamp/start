@@ -32,6 +32,7 @@ class Comment < ActiveRecord::Base
   default_scope { order("created_at DESC") }
 
   after_create :notify_commenters
+  after_create :log_activity
 
   def as_json(options)
     json = super(options.merge(
@@ -43,19 +44,18 @@ class Comment < ActiveRecord::Base
     !self.response_to.nil?
   end
 
-  def name_for_notification
-    "Comentario de #{commentable.name_for_notification}"
+  def to_s
+    "Comentario de #{commentable.to_s}"
   end
 
-  def url_for_notification
-    commentable.url_for_notification
+  def to_path
+    commentable.to_path
   end
 
   protected
-
     def validate_response_to_response
       if self.response_to && self.response_to.is_response?
-        errors.add(:response_to,"Response to a response is not allowed")
+        errors.add(:response_to, "Response to a response is not allowed")
       end
     end
 
@@ -66,11 +66,16 @@ class Comment < ActiveRecord::Base
       if is_response?
         commenters = commenters.where.not(id: response_to.user_id)
         unless response_to.user == self.user
-          response_to.user.notifications.create!(notification_type: :comment_response,data: {response_id: self.id})
+          response_to.user.notifications.create!(notification_type: :comment_response, data: { response_id: self.id })
         end
       end
       commenters.each do |commenter|
-        commenter.notifications.create!(notification_type: :comment_activity,data: {comment_id: self.id})
+        commenter.notifications.create!(notification_type: :comment_activity, data: { comment_id: self.id })
       end
+    end
+
+    def log_activity
+      description = "Comentó en #{commentable.to_html_description}"
+      ActivityLog.create(user: user, activity: self, description: description)
     end
 end

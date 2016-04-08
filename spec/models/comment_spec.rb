@@ -49,4 +49,10 @@ RSpec.describe Comment, type: :model do
       expect(response_to_response.errors).to have_key(:response_to)
     end
   end
+
+  describe ".log_activity" do
+    it "logs activity after create" do
+      expect { create(:comment) }.to change(ActivityLog, :count).by(1)
+    end
+  end
 end

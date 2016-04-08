@@ -38,4 +38,20 @@ class Project < ActiveRecord::Base
   def point_value
     self.difficulty_bonus + Project::BASE_POINTS
   end
+
+  def to_s
+    name
+  end
+
+  def to_path
+    "#{course.to_path}/projects/#{id}"
+  end
+
+  def to_html_link
+    "<a href='#{to_path}'>#{to_s}</a>"
+  end
+
+  def to_html_description
+    "el proyecto #{to_html_link} del tema #{course.to_html_link}"
+  end
 end

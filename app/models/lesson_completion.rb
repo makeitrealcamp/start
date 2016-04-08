@@ -20,4 +20,12 @@ class LessonCompletion < ActiveRecord::Base
 
   validates :user, presence: true
   validates :lesson, presence: true
+
+  after_create :log_activity
+
+  private
+    def log_activity
+      description = "Completó #{lesson.to_html_description}"
+      ActivityLog.create(user: user, activity: self, description: description)
+    end
 end

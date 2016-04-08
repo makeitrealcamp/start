@@ -33,6 +33,7 @@ class ProjectSolution < ActiveRecord::Base
   enum status: [:pending_review, :reviewed]
   after_initialize :default_values
   after_save :notify_mentors_if_pending_review
+  after_create :log_activity
 
   delegate :course, to: :project
 
@@ -47,12 +48,20 @@ class ProjectSolution < ActiveRecord::Base
     end
   end
 
-  def name_for_notification
-    "Solución para #{self.project.name}"
+  def to_s
+    "solución al proyecto #{self.project.name}"
   end
 
-  def url_for_notification
-    Rails.application.routes.url_helpers.course_project_project_solution_url(self.course,self.project, self)
+  def to_path
+    "#{project.to_path}"
+  end
+
+  def to_html_link
+    "<a href='#{to_path}'>#{to_s}</a>"
+  end
+
+  def to_html_description
+    "la #{to_html_link} del curso #{project.course.to_html_link}"
   end
 
   private
@@ -74,5 +83,10 @@ class ProjectSolution < ActiveRecord::Base
       if self.status == "pending_review" && self.status_was != "pending_review"
         notify_mentors
       end
+    end
+
+    def log_activity
+      description = "Envió una solución a #{project.to_html_description}"
+      ActivityLog.create(user: user, activity: self, description: description)
     end
 end

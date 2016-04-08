@@ -80,6 +80,7 @@ class User < ActiveRecord::Base
   before_create :assign_random_nickname
   after_initialize :default_values
   after_save :check_user_level
+  after_save :log_activity
   before_save :downcase_email
 
   def name
@@ -300,5 +301,17 @@ class User < ActiveRecord::Base
 
     def last_pending_challenge
       solutions.pending.joins(:challenge).where('challenges.published = ?', true).order('updated_at ASC').take.try(:challenge)
+    end
+
+    def log_activity
+      if status_was == "created" && status == "active" # the user is now active
+        ActivityLog.create(user: self, description: "Inició el programa")
+      elsif status_was == "active" && status == "suspended" # the account has been suspended
+        ActivityLog.create(user: self, description: "La cuenta ha sido suspendida")
+      elsif status_was == "active" && status == "finished" # the user finished the program
+        ActivityLog.create(user: self, description: "Terminó el programa!")
+      elsif status_was == "suspended" && status == "active" # the account has been reactivated
+        ActivityLog.create(user: self, description: "La cuenta ha sido reactivada")
+      end
     end
 end

@@ -6,13 +6,13 @@
   <% if current_user.has_access_to?(resource) %>
     <% section.lessons.each_with_index do |lesson, j| %>
       <div class="lesson list-group-item" id="lesson_<%=lesson.id %>" data-sortable="true" data-resource-id="<%= lesson.id %>" data-location="<%= url_for([resource.course, resource, section, lesson]) %>" >
-        <%= link_to "Lección #{j} - #{lesson.name}", course_resource_section_lesson_path(resource.course,resource,section,lesson) %>
+        <%= link_to "Lección #{j} - #{lesson.name}", course_resource_section_lesson_path(resource.course, resource, section, lesson) %>
           <div class="pull-right actions">
             <% if current_user.is_admin? %>
               <%= link_to edit_course_resource_section_lesson_path(resource.course,resource,section,lesson) do %>
                 <span class="glyphicon glyphicon-pencil action action-edit"></span>
               <% end %>
-              <%= link_to course_resource_section_lesson_path(resource.course,resource,section,lesson),  remote: true, data:{ confirm: "Are you sure you want to delete this?"}, method: :delete do %>
+              <%= link_to course_resource_section_lesson_path(resource.course, resource, section, lesson), remote: true, data: { confirm: "Are you sure you want to delete this?" }, method: :delete do %>
                 <span class="glyphicon glyphicon-remove action action-remove"></span>
               <% end %>
             <% end %>

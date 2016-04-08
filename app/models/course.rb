@@ -20,7 +20,7 @@ class Course < ActiveRecord::Base
 
   extend FriendlyId
   friendly_id :name
-  
+
   has_many :resources
   has_many :challenges
   has_many :projects
@@ -56,6 +56,18 @@ class Course < ActiveRecord::Base
 
   def phase_for_path(path)
     phases.published.where(path_id: path.id).take
+  end
+
+  def to_s
+    name
+  end
+
+  def to_path
+    "/courses/#{slug}"
+  end
+
+  def to_html_link
+    "<a href='#{to_path}'>#{to_s}</a>"
   end
 
   private

@@ -17,15 +17,15 @@ RSpec.describe "Commentables" do
     commentables << Comment
   end
 
-  it "should implement 'name' method" do
+  it "should implement 'to_s' method" do
     commentables.each do |model|
-      expect(model.method_defined? :name_for_notification).to eq(true), "#{model.name} should implement #name_for_notification"
+      expect(model.method_defined? :to_s).to eq(true), "#{model.name} should implement #to_s"
     end
   end
 
-  it "should implement 'url' method" do
+  it "should implement 'to_path' method" do
     commentables.each do |model|
-      expect(model.method_defined? :url_for_notification).to eq(true), "#{model.name} should implement #url_for_notification"
+      expect(model.method_defined? :to_path).to eq(true), "#{model.name} should implement #to_path"
     end
   end
 end

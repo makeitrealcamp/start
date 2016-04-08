@@ -35,10 +35,11 @@ class Solution < ActiveRecord::Base
 
   after_initialize :default_values
   after_create :create_documents
+  after_save :log_activity
   after_update :create_user_points!
 
-  scope :evaluated, -> { where(status: [Solution.statuses[:completed], Solution.statuses[:failed] ]) }
-  scope :pending, -> { where(status: [Solution.statuses[:created], Solution.statuses[:failed] ]) }
+  scope :evaluated, -> { where(status: [Solution.statuses[:completed], Solution.statuses[:failed]]) }
+  scope :pending, -> { where(status: [Solution.statuses[:created], Solution.statuses[:failed]]) }
 
   def evaluate
     if self.challenge.ruby_embedded?
@@ -60,7 +61,6 @@ class Solution < ActiveRecord::Base
       self.error_message = "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp"
       self.save!
     end
-
   end
 
   def as_json(options)
@@ -92,7 +92,6 @@ class Solution < ActiveRecord::Base
   end
 
   private
-
     def default_values
       self.status ||= :created
       self.attempts ||= 0
@@ -104,4 +103,16 @@ class Solution < ActiveRecord::Base
       end
     end
 
+    def log_activity
+      if status_was.nil? && status == "created"
+        description = "Inició #{challenge.to_html_description}"
+        ActivityLog.create(user: user, activity: self, description: description)
+      elsif status_was == "created" && status == "failed"
+        description = "Intentó #{challenge.to_html_description}"
+        ActivityLog.create(user: user, activity: self, description: description)
+      elsif (status_was == "created" || status_was == "failed") && status == "completed"
+        description = "Completó #{challenge.to_html_description}"
+        ActivityLog.create(user: user, activity: self, description: description)
+      end
+    end
 end

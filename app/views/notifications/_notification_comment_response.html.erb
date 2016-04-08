@@ -7,10 +7,10 @@
   </div>
 
   <div class="col-xs-9">
-    <%= link_to comment.commentable.url_for_notification, class: "comment-link" do %>
+    <%= link_to comment.commentable.to_path, class: "comment-link" do %>
       <strong><%= comment.user.first_name || comment.user.nickname %></strong>
       &nbsp;ha respondido a tu comentario en
-      <strong><%= comment.commentable.name_for_notification %></strong>
+      <strong><%= comment.commentable.to_s %></strong>
     <% end %>
   </div>
 </div>

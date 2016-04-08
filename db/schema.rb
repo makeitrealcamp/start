@@ -18,6 +18,18 @@ ActiveRecord::Schema.define(version: 20160924013724) do
   enable_extension "hstore"
   enable_extension "unaccent"
 
+  create_table "activity_logs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "activity_id"
+    t.string   "activity_type"
+    t.text     "description"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "activity_logs", ["activity_type", "activity_id"], name: "index_activity_logs_on_activity_type_and_activity_id", using: :btree
+  add_index "activity_logs", ["user_id"], name: "index_activity_logs_on_user_id", using: :btree
+
   create_table "auth_providers", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "provider"
@@ -402,6 +414,7 @@ ActiveRecord::Schema.define(version: 20160924013724) do
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
   add_index "versions", ["transaction_id"], name: "index_versions_on_transaction_id", using: :btree
 
+  add_foreign_key "activity_logs", "users"
   add_foreign_key "auth_providers", "users"
   add_foreign_key "challenge_completions", "challenges"
   add_foreign_key "challenge_completions", "users"

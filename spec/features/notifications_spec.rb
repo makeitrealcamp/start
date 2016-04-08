@@ -36,9 +36,9 @@ RSpec.feature "Notifications", type: :feature do
   scenario "user has three pages of notifications", js: true do
     # we need to create the notifications before mocking the notification service
     create_list(:notification, (Notification::PER_PAGE * 3) - user.notifications.count, user: user)
-    
+
     mock_notifications_service(page)
-    
+
     login(user)
 
     # show the first page
@@ -62,7 +62,7 @@ RSpec.feature "Notifications", type: :feature do
 
   scenario "tells the user that the resource is no longer available", js: true do
     mock_notifications_service(page)
-    
+
     login(user)
     user.notifications.create!(notification_type: Notification.notification_types[:comment_activity], data: { comment_id: 0 })
     find(:css,".notifications-btn").click
@@ -74,17 +74,17 @@ RSpec.feature "Notifications", type: :feature do
   end
 
   context 'when there is a notification about a comment in a challenge', js: true do
-    scenario 'the notification redirects to the discussion of the challenge' do
+    scenario 'the notification redirects to the challenge' do
       user1 = create(:user)
       mock_notifications_service(page)
       login(user)
-      
+
       comment = create(:comment, user: user, commentable: challenge)
       user.notifications.create!(notification_type: Notification.notification_types[:comment_activity], data: { comment_id: comment.id })
 
       find(:css, ".notifications-btn").click
       all(".comment-link").first.click
-      expect(current_path).to eq discussion_course_challenge_path(course, challenge)
+      expect(current_path).to eq course_challenge_path(course, challenge)
     end
   end
 end

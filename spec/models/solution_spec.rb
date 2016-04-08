@@ -64,7 +64,7 @@ RSpec.describe Solution, type: :model do
     end
   end
 
-  describe "#as_json" do
+  describe ".as_json" do
     it "returns hash" do
       solution_json = solution.serializable_hash(
         methods: [:error_message, :url, :completed_at],
@@ -82,6 +82,51 @@ RSpec.describe Solution, type: :model do
       )
       expect(solution.as_json({include_user_level: true})).to eq solution_json
       expect(solution.as_json({include_user_level: true}).class).to eq Hash
+    end
+  end
+
+  describe ".log_activity" do
+    context "when created" do
+      it "logs the activity" do
+        expect { solution }.to change(ActivityLog, :count).by(1)
+
+        activity_log = ActivityLog.last
+        expect(activity_log.description).to start_with "Inició"
+      end
+    end
+
+    context "when a user makes an attempt" do
+      it "logs the activity" do
+        solution # we need to trigger the let
+        expect { solution.failed! }.to change(ActivityLog, :count).by(1)
+
+        activity_log = ActivityLog.last
+        expect(activity_log.description).to start_with "Intentó"
+      end
+    end
+
+    context "when a user completes the solution the first time" do
+      it "logs the activity" do
+        solution # we need to trigger the let
+        expect { solution.completed! }.to change(ActivityLog, :count).by(1)
+
+        activity_log = ActivityLog.last
+        expect(activity_log.description).to start_with "Completó"
+      end
+    end
+
+    context "when a user completes a completed solution" do
+      it "doesn't logs the activity" do
+        solution.completed!
+        expect { solution.completed! }.to_not change(ActivityLog, :count)
+      end
+    end
+
+    context "when a user attempts a completed solution" do
+      it "doesn't logs the activity" do
+        solution.completed!
+        expect { solution.failed! }.to_not change(ActivityLog, :count)
+      end
     end
   end
 end

@@ -20,12 +20,11 @@
         <% else %>
           <p>Algunos de los retos que solucionaste:</p>
           <% @solved_challenges.limit(3).each do |c| %>
-            <p><%= link_to c.name_for_notification, c.url_for_notification %></p>
+            <p><%= link_to c.to_s, c.to_path %></p>
           <% end %>
         <% end %>
       </td>
     </tr>
-
     <tr>
       <td class="text-left" style="border: 1px solid #ddd;padding: 10px;text-align: left">Recursos completados</td>
       <td style="border: 1px solid #ddd;padding: 10px;text-align: right"><%= @completed_resources.count %></td>
@@ -35,12 +34,11 @@
         <% else %>
           <p>Algunos de los recursos que completaste:</p>
           <% @completed_resources.limit(3).each do |r| %>
-            <p><%= link_to r.name_for_notification, r.url_for_notification %></p>
+            <p><%= link_to r.to_s, r.to_path %></p>
           <% end %>
         <% end %>
       </td>
     </tr>
-
     <tr>
       <td class="text-left" style="border: 1px solid #ddd;padding: 10px;text-align: left">Proyectos terminados</td>
       <td style="border: 1px solid #ddd;padding: 10px;text-align: right"><%= @finished_projects.count %></td>
@@ -51,12 +49,11 @@
           <p>Algunos de los proyectos que terminaste:</p>
           <% @finished_projects.limit(3).each do |p| %>
             <% project_solution = @user.project_solutions.find_by_project_id(p.id) %>
-            <p><%= link_to project_solution.name_for_notification, project_solution.url_for_notification %></p>
+            <p><%= link_to project_solution.to_s, project_solution.to_path %></p>
           <% end %>
         <% end %>
       </td>
     </tr>
-
     <tr>
       <td class="text-left" style="border: 1px solid #ddd;padding: 10px;text-align: left">Medallas recibidas</td>
       <td style="border: 1px solid #ddd;padding: 10px;text-align: right"><%= @received_badges.count %></td>
@@ -71,7 +68,6 @@
         <% end %>
       </td>
     </tr>
-
     <tr>
       <td class="text-left" style="border: 1px solid #ddd;padding: 10px;text-align: left">Puntos recibidos</td>
       <td style="border: 1px solid #ddd;padding: 10px;text-align: right"><%= @received_points.sum(:points) %></td>
@@ -83,7 +79,6 @@
         <% end %>
       </td>
     </tr>
-
     <tr>
       <td class="text-left" style="border: 1px solid #ddd;padding: 10px;text-align: left">Puntos para avanzar al siguiente nivel</td>
       <td style="border: 1px solid #ddd;padding: 10px;text-align: right"><%= @points_needed_for_next_level %></td>
@@ -91,7 +86,6 @@
           :D
       </td>
     </tr>
-
     <tr>
       <td class="text-left" style="border: 1px solid #ddd;padding: 10px;text-align: left">Notificaciones sin leer</td>
       <td style="border: 1px solid #ddd;padding: 10px;text-align: right"><%= @unread_notifications.count %></td>
@@ -99,7 +93,6 @@
         <%= link_to "Revisar notificaciones", root_url, {:style => 'color: #ff4300'} %>
       </td>
     </tr>
-
   </tbody>
 </table>
 

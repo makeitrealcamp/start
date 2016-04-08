@@ -33,4 +33,8 @@ class Section < ActiveRecord::Base
   def next(user)
     self.resource.sections.where('row > ?', self.row).first
   end
+
+  def to_path
+    "#{resource.to_path}/sections/#{id}"
+  end
 end
