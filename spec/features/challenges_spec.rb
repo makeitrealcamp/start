@@ -49,4 +49,18 @@ RSpec.feature "Challenges", type: :feature do
     expect(page).to have_selector('.challenge', count: 2)
     expect(Challenge.count).to eq 2
   end
+
+  scenario "preview challenge", js: true do
+    challenge.update(preview: true)
+    solution = create(:solution, user: user, challenge: challenge, status: :created)
+    document = solution.documents.create(name: 'index.html')
+
+    login(user)
+    visit course_challenge_path(course, challenge)
+
+    new_window = window_opened_by { click_link "Preview" }
+    within_window new_window do
+      expect(page.current_path).to eq(preview_solution_path(id: solution.id, file: document.name))
+    end
+  end
 end

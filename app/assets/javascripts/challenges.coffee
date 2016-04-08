@@ -43,7 +43,7 @@ class SolutionView extends Backbone.View
 
     Dispatcher.on("timer:save-files", @save_files_handler)
     Dispatcher.on("editors:change", =>
-      $('.btn-preview').addClass('disabled');
+      $('#btn-preview').addClass('disabled');
       @files_changed = true;
     )
 
@@ -56,7 +56,7 @@ class SolutionView extends Backbone.View
     $('#submit-solution').on("ajax:beforeSend", @evaluate);
 
   events: ->
-    'click .btn-preview': 'preview'
+    'click #btn-preview': 'preview'
 
   preview: (e) =>
     file = @find_html_file()
@@ -97,7 +97,7 @@ class SolutionView extends Backbone.View
       contentType: "application/json"
       data: JSON.stringify(data)
     ).done( =>
-      $('.btn-preview').removeClass("disabled");
+      $('#btn-preview').removeClass("disabled");
     ).fail( ->
       console.log("No se pudo guardar los archivos ...")
     ).always( =>
