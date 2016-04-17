@@ -86,7 +86,7 @@ class ProjectSolution < ActiveRecord::Base
     end
 
     def log_activity
-      description = "Envió una solución a #{project.to_html_description}"
-      ActivityLog.create(user: user, activity: self, description: description)
+      description = "Publicó una solución a #{project.to_html_description}"
+      ActivityLog.create(name: "published-project", user: user, activity: self, description: description)
     end
 end

@@ -6,6 +6,7 @@
 #  user_id       :integer
 #  activity_id   :integer
 #  activity_type :string
+#  name          :string
 #  description   :text
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null

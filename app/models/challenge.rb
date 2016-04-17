@@ -94,6 +94,14 @@ class Challenge < ActiveRecord::Base
     self.difficulty_bonus + Challenge::BASE_POINTS
   end
 
+  def is_github_repo?
+    self.ruby_git? || self.rails_git? || self.sinatra_git?
+  end
+
+  def is_github_pr?
+    self.ruby_git_pr?
+  end
+
   def to_s
     name
   end

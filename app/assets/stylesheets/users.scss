@@ -12,29 +12,49 @@
 
 .profile-page {
   .img-wrapper {
-    padding: 0 10px 10px 0;
+    float: left;
 
     .gravatar {
-      max-width: 100%;
-      border-radius: 5px;
+      width: 100px;
+      border-radius: 50px;
     }
+  }
+
+  .info {
+    padding-left: 130px;
   }
 
   .first-name {
     font-size: 32px;
     font-family: "Open Sans Condensed", sans-serif;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
 
   .info-value {
     color: #999;
-    margin-bottom: 7px;
+    font-size: 14px;
+    margin-bottom: 5px;
   }
 
   .info-status {
-    color: #999;
-    font-size: 21px;
-    margin-top: 20px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .level-image {
+    margin-top: 15px;
+    width: 80px;
+  }
+
+  .level-points {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  .summary {
+    margin-top: 25px;
+    line-height: 1.6;
   }
 
   .details {
@@ -52,6 +72,12 @@
       text-align: center;
       .work-value { font-size: 28px; }
     }
+  }
+
+  .course-name {
+    display: block;
+    color: #666;
+    font-size: 14px;
   }
 
   h3 {

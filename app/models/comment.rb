@@ -76,6 +76,6 @@ class Comment < ActiveRecord::Base
 
     def log_activity
       description = "Comentó en #{commentable.to_html_description}"
-      ActivityLog.create(user: user, activity: self, description: description)
+      ActivityLog.create(name: "wrote-comment", user: user, activity: self, description: description)
     end
 end

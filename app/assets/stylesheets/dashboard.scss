@@ -76,9 +76,9 @@
     padding: 15px 20px;
     border-bottom: 1px solid #ccc;
 
-    img { 
+    img {
       float: left;
-      width: 30px; 
+      width: 30px;
     }
     .description {
       padding-left: 50px;
@@ -89,5 +89,21 @@
         font-size: 13px;
       }
     }
+  }
+}
+
+.box-tabs {
+  margin-bottom: 80px;
+
+  .nav-tabs li.active a {
+    background: white;
+  }
+
+  .tab-content .active {
+    background: white;
+    padding: 20px;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
   }
 }

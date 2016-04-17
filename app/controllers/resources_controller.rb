@@ -23,7 +23,7 @@ class ResourcesController < ApplicationController
 
     if @resource.markdown?
       description = "Abrió el recurso interno #{@resource.to_html_description}"
-      ActivityLog.create(user: current_user, activity: @resource, description: description)
+      ActivityLog.create(name: "viewed-markdown-resource", user: current_user, activity: @resource, description: description)
     end
   end
 
@@ -55,7 +55,7 @@ class ResourcesController < ApplicationController
     resource = Resource.friendly.find(params[:id])
     if resource.url?
       description = "Abrió el recurso externo #{resource.to_html_description}"
-      ActivityLog.create(user: current_user, activity: resource, description: description)
+      ActivityLog.create(name: "opened-external-resource", user: current_user, activity: resource, description: description)
 
       redirect_to resource.url
     else

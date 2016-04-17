@@ -26,6 +26,6 @@ class LessonCompletion < ActiveRecord::Base
   private
     def log_activity
       description = "Completó #{lesson.to_html_description}"
-      ActivityLog.create(user: user, activity: self, description: description)
+      ActivityLog.create(name: "completed-lesson", user: user, activity: self, description: description)
     end
 end

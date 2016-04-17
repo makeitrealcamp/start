@@ -14,6 +14,11 @@ module Admin::UsersHelper
     statuses[user.status.to_sym] || ""
   end
 
+  def project_solution_status(solution)
+    statuses = { pending_review: "Sin revisar", reviewed: "Revisado" }
+    statuses[solution.status.to_sym] || ""
+  end
+
   def account_types
     [["Alumno", "paid_account"], ["Administrador", "admin_account"]]
   end

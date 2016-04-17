@@ -58,13 +58,13 @@ class Quizer::QuizAttempt < ActiveRecord::Base
 
     def log_start_activity
       description = "Inició #{quiz.to_html_description}"
-      ActivityLog.create(user: user, activity: self, description: description)
+      ActivityLog.create(name: "started-quiz", user: user, activity: self, description: description)
     end
 
     def log_end_activity
       if finished?
         description = "Finalió #{quiz.to_html_description} con un puntaje de #{score}"
-        ActivityLog.create(user: user, activity: self, description: description)
+        ActivityLog.create(name: "finished-quiz", user: user, activity: self, description: description)
       end
     end
 end

@@ -6,6 +6,7 @@
 #  user_id       :integer
 #  activity_id   :integer
 #  activity_type :string
+#  name          :string
 #  description   :text
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
@@ -21,5 +22,6 @@ class ActivityLog < ActiveRecord::Base
   belongs_to :activity, polymorphic: true
 
   validates :user, presence: true
+  validates :name, presence: true
   validates :description, presence: true
 end

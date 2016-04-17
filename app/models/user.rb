@@ -46,6 +46,7 @@ class User < ActiveRecord::Base
   has_many :quiz_attempts, class_name: '::Quizer::QuizAttempt'
   has_many :path_subscriptions
   has_many :paths, -> { uniq }, through: :path_subscriptions
+  has_many :activity_logs
 
   hstore_accessor :profile,
     first_name: :string,
@@ -53,10 +54,6 @@ class User < ActiveRecord::Base
     gender: :string,
     birthday: :date,
     mobile_number: :string,
-    optimism: :string,
-    mindset: :string,
-    motivation: :string,
-    experience: :string,
     activated_at: :datetime,
     github_username: :string
 
@@ -305,13 +302,13 @@ class User < ActiveRecord::Base
 
     def log_activity
       if status_was == "created" && status == "active" # the user is now active
-        ActivityLog.create(user: self, description: "Inició el programa")
+        ActivityLog.create(name: "enrolled", user: self, description: "Inició el programa")
       elsif status_was == "active" && status == "suspended" # the account has been suspended
-        ActivityLog.create(user: self, description: "La cuenta ha sido suspendida")
+        ActivityLog.create(name: "account-suspended", user: self, description: "La cuenta ha sido suspendida")
       elsif status_was == "active" && status == "finished" # the user finished the program
-        ActivityLog.create(user: self, description: "Terminó el programa!")
+        ActivityLog.create(name: "completed-program", user: self, description: "Terminó el programa!")
       elsif status_was == "suspended" && status == "active" # the account has been reactivated
-        ActivityLog.create(user: self, description: "La cuenta ha sido reactivada")
+        ActivityLog.create(name:"account-reactivated", user: self, description: "La cuenta ha sido reactivada")
       end
     end
 end

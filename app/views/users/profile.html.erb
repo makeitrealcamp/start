@@ -1,4 +1,4 @@
-<div class="container profile-view">
+<div class="container profile-view default-top-padding">
   <div class="row">
     <div class="col-sm-12 col-md-12 profile-status profile-header">
       <%= render "users/profile_header", user: @user, is_own_profile: @is_own_profile %>
@@ -8,9 +8,12 @@
       <div class="row">
         <div class="col-sm-6 col-md-4 my-data">
           <h2>Datos</h2>
-          <div class="profile-img"><img src="<%= Gravatar.new("#{@user.email}").image_url %>" class="img-circle" /></div>
+          <div class="profile-img">
+            <img src="<%= Gravatar.new("#{@user.email}").image_url %>" class="img-circle" />
+
+          </div>
           <span class="profile-name txt-bold">
-            <%= @user.first_name %>
+            <%= @user.name %>
           </span>
           <span class="profile-date">
             Se unió el <%= l(@user.created_at, format: '%d de %B de %Y') %>

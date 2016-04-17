@@ -6,6 +6,7 @@
 #  user_id       :integer
 #  activity_id   :integer
 #  activity_type :string
+#  name          :string
 #  description   :text
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
@@ -19,6 +20,7 @@
 FactoryGirl.define do
   factory :activity_log do
     user
+    name { Faker::Internet.slug('foo bar', '-') }
     description { Faker::Lorem.paragraph }
   end
 
