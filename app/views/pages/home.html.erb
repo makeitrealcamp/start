@@ -1,24 +1,20 @@
 <div class="new_site">
-  <%= render "navigation" %>
   <div class="intro">
+    <video autoplay loop poster="polina.jpg" id="bg-video">
+      <source src="<%= asset_path 'bg-video.mp4' %>" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
+    <%= render "navigation" %>
     <div class="container">
       <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
-          <h1 class="tagline">Especialízate en Desarrollo Web</h1>
-          <h2 class="tagline-support">Avanza tu carrera con un programa estructurado y personalizado</h2>
+          <h1 class="tagline">Conviértete en <br>Web Developer</h1>
+          <h2 class="tagline-support">Avanza de novato a experto con programas prácticos y el apoyo de mentores experimentados</h2>
         </div>
 
         <a href="javascript:;" class="know-more scroll">
-          Conoce nuestros programas
+          Ver Programas
         </a>
-
-        <div class="press">
-          <ul>
-            <li><%= link_to image_tag('01press.png'), 'https://www.youtube.com/watch?v=s6krDvVqH1A', target: '_blank', class: "press-link" %></li>
-            <li><%= link_to image_tag('02press.png'), 'http://pulsosocial.com/2014/08/26/make-it-real-mas-que-un-bootcamp-el-punto-de-partida-para-tu-emprendimiento/', target: '_blank', class: "press-link" %></li>
-            <li><%= link_to image_tag('03press.png'), 'http://www.elcolombiano.com/programadores_en_la_cima_de_la_tecnologia-BGEC_308090', target: '_blank', class: "press-link" %></li>
-          </ul>
-        </div>
       </div><!--/row -->
     </div><!--/container -->
   </div><!--/intro -->
@@ -27,424 +23,150 @@
   <div class="pitch">
     <div class="container">
       <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-          <h2><span class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="43" height="60" viewBox="0 0 43 60">
-              <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAA8CAMAAADIULPRAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAS1BMVEUAAAAjICAjICAjICAjICAjICAjICAjICAjICAjICAjICAjICAjICAjICAjICD/RgD/RgD/RgD/RgD/RgD/RgD/RgAjICD/RgAAAADoCQfaAAAAFnRSTlMARBFVIohmu8x3qu6Z3TMeIAzwYOFa/OIV2AAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAFLSURBVEjH7dXJdsMgDAVQhmAMHtKmrfv/f9qFJSQBwu62p9o4wdc5oKckxvJyRlZ18+DlJX2Im1baIO00slHaMLKHtPPQWmGPoU2iC4qN5yVzm2CttrC+cJsVu8I5Hswu5+Op2QP0Z2qSyKGxvkkDkkixtps7r3OThG3sYbY6DTiB6di1SsNh7B2L26uSCD274+fIJHzPYjvRAnFdC/nsIonNdG0SacCW1r615S5LYupbI9JYy466tpyGkliMYgN2iZLImvUsDUuvu7akSklYzfLxic3LytLZIYmoWxqfHQdHtZTVxFrStzQDK2u1YjOSGR/SLc6s46OhWPwu+DI4uoV3MVHzdAvrWxmcgRW/znlsPbdpbB23dmxxfPiSalei8cpOZMOV3cn6KwvjUwZnaPHfAQZH2P/6fT3f7ta7eX3frY8/bT9fd+vrB4GVhbfuqhAPAAAAAElFTkSuQmCC" width="43" height="60"/>
-            </svg>
+        <div class="col-md-12">
+          <h2>Preparamos a los creadores digitales que el mundo necesita ahora</h2>
 
-          </span>
-          Make it Real es un programa diseñado para entrenar a los programadores que el mercado global está buscando hoy.</h2>
+          <div class="row">
+            <div class="col-sm-4">
+              <span class="icon icon-lab"></span>
+              <h3>Aprende haciendo</h3>
+              <p>Hoy se valora más lo que has creado que los títulos y las certificaciones, tu portafolio será tu nueva carta de presentación.</p>
+            </div>
+            <div class="col-sm-4">
+              <span class="icon icon-users"></span>
+              <h3>Mentores experimentados</h3>
+              <p>Soluciona tus dudas, recibe apoyo cuando lo necesites y acelera tu aprendizaje con mentorías 1-a-1 en los temas que más se te dificulten.</p>
+            </div>
+            <div class="col-sm-4">
+              <span class="icon icon-target"></span>
+              <h3>Alcanza tus metas</h3>
+              <p>Encuentra el empleo de tus sueños o haz realidad tus ideas de negocio. El post-programa te prepara para esta nueva fase de tu vida.</p>
+            </div>
+          </div>
         </div>
       </div><!--/row -->
     </div><!--/container -->
   </div><!--/pitch -->
 
-  
+
   <div id="anchor" class="feature feature-programas">
-    <div class="container-fluid">
+    <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h3>Nuestros Programas</h3>
+          <h2>Nuestros Programas</h2>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-5 col-md-offset-1">
-          <div class="programa">
-            <span class="icon-developer">
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="165" height="165" viewBox="0 0 165 165">
-                <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG4AAABpCAMAAADsgOZxAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAYFBMVEUAAAAnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycAAAAUxXdKAAAAHnRSTlMA0FcwfmBCsM7wWIDo4MC27Pn3nOLY+xDTasQS2Ri6Ptr9AAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAN5JREFUaN7t2ssOgkAMhWEuMyIiAoLilfd/TNdTFh2YCSb6n10bki8pCSRNkylm0kTLlOXRYjy4XH3EOxYODg7u29yuWJ99KTsHjbNltTrFUTTqSuXqiMM8wcHBwf0X19T+aTvROJeioXJpb73TD6JxKZzSTDpn4w0zh4ODg4ODg4ODg4ODg4ODg4ODg/sxzoidZOvWw5J9ps7NNq5Xt+7aBevaRuVmAwkY5ixwcHBwm3PD6OR2H9fnoXNRz+JU7iku214m5C7urXEyQe9OBA4ODm57Luib6Sbz4KL+IT7QNlkamg2/nwAAAABJRU5ErkJggg==" x="26" y="33" width="110" height="105"/>
-              </svg>
-            </span>
-            <h4><%= link_to "Full stack web developer", full_stack_web_developer_path %></h4>
-            <p>En nuestro programa de full stack web developer aprenderás a crear aplicaciones Web con Ruby on Rails y bases de datos.</p>
-            <div class="text-center"><%= link_to "Más Información", full_stack_web_developer_path, class: "btn btn-main" %></div>
+        <div class="col-sm-4">
+          <div class="program-wrapper bootcamp-programs">
+            <h3>Presencial</h3>
+            <div class="programa">
+              <%= image_tag "front-end-red.png", height: 90 %>
+              <h4><%= link_to "Front End Bootcamp", front_end_on_site_path %></h4>
+              <p>Aprende a crear aplicaciones Web con AngularJS y React en 17 semanas (8 online, 9 presenciales).</p>
+              <div class="text-center"><%= link_to "Más Información", front_end_on_site_path, class: "btn btn-main" %></div>
+            </div>
           </div>
         </div>
 
-        <div class="col-md-5">
-          <div class="programa">
-            <span class="icon-developer">
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="165" height="165" viewBox="0 0 165 165">
-                <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJMAAABwCAMAAAAt67ILAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAk1BMVEUAAAAnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycnJycAAABkp88XAAAAL3RSTlMAcFcwzMBi4MTYYJJQN7DwgJg8oArykJ4QIHEVBtbQ6/jIVCoH5ZRA9r8oWA5KpapkSDQAAAABYktHRACIBR1IAAAACXBIWXMAAAsSAAALEgHS3X78AAABMklEQVR42u3a2VLCQBBAUUIIQURRUCRsigsKLvP/fyevgaSSoaczg977OKnqOlV57G4Z90UtYaYdO64jN8XSCYclmDBhqmvqprJ6Cqbooi/pMtUwJaI5A0yYMGHChAlTQKar6xNSNg2GN7bdGm1Taj0oxoQJkxvTaFyju2ZN/ftJVQ9m2rCp+h9mmDBhwoQJEyZMmDBhCsvUEW2mZyom4QZfw+QsTJgwnaVJ9dboNJPrS6N9c6lJN0yYMGHyYlqUX0ONfJmmZrkq7nHsz5SVfJlg+kOmp6SqtTvT89HwItNLVKNXV6boLT94Y4pMFrkwrfKP75gw/S/Th/Wl0VbbtLM+NdqnbGo8TJgwYcKECROm8E3LLNdnCKajNYJ/01d2mH9TYZjCN32XbKZ+PJpKE5l+AZ1Hq40r6t9sAAAAAElFTkSuQmCC" x="9" y="32" width="147" height="112"/>
-              </svg>
-            </span>
-            <h4><%= link_to "Front end web developer", front_end_web_developer_path %></h4>
-            <p>En nuestro programa de front end web developer aprenderás a crear aplicaciones Web con Angular JS.</p>
-            <div class="text-center"><%= link_to "Más Información", front_end_web_developer_path, class: "btn btn-main" %></div>
+        <div class="col-sm-8">
+          <div class="program-wrapper online-programs">
+            <h3>Online</h3>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="programa">
+                  <%= image_tag "full-stack-blue.png", height: 90 %>
+                  <h4><%= link_to "Full Stack Program", full_stack_online_path %></h4>
+                  <p>Aprende a crear aplicaciones Web con HTML, CSS, JavaScript, Ruby on Rails y Bases de Datos.</p>
+                  <div class="text-center"><%= link_to "Más Información", full_stack_online_path, class: "btn btn-main" %></div>
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="programa">
+                  <%= image_tag "front-end-blue.png", height: 90 %>
+                  <h4><%= link_to "Front End Program", front_end_online_path %></h4>
+                  <p>Aprende a crear aplicaciones Web con HTML, CSS, JavaScript, Angular JS y servicios externos.</p>
+                  <div class="text-center"><%= link_to "Más Información", front_end_online_path, class: "btn btn-main" %></div>
+                </div>
+              </div>
+            </div>
+            </div>
           </div>
         </div>
-      </div><!--/feature-programas -->
     </div>
-
   </div>
-
-  <div class="why">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <h3>¿Por qué make it real?</h3>
-        </div>
-        <div class="col-md-4">
-          <div class="reason">
-            <span class="icon-reason">
-              <%= image_tag("icon-portfolio-mir.png", class: "img-responsive") %>
-            </span>
-            <span class="reason-number">Construye tu portafolio</span>
-            <!-- <h4>Programador Aprendiz</h4> -->
-            <div class="deco-quote">
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="318" height="14" viewBox="0 0 318 14">
-                <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAAOCAMAAACB64AbAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA8FBMVEUAAABvb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb28AAABnb5fuAAAATnRSTlMAh0PzFM2TAVLpPg/FnwNi5TELu6sGdN4mB7C2CYbVGwSlvw2YyROZEqm8DIzSGLmtftgex51z3yUZ04tm5C0j3XhZ6DQuZU7qalVE4kVAkR1IAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAMJJREFUWMPlzsUOwkAQgOFFiy5aoLgVirtTrLi9/+NACCFAC5ceppN+h5XZZPOTq9YYyC9GE3SbDNEas8XKKL/Y7A7oOAScLjdVmnu8Pug0FPyBICufhsIR6DAkuGgs/jViEskUdBYa6Uw29zGgeb4AHYUILfLC25UtlSvQSagw1Vr9dfE3mhx0EDatdud5Ero9quorXeoPho99NJ4wKr/Spak4u6/zxRI6BKmVtCYbcQudgdZuf5CO0BGInc4X6IT/bpS9ZWS2pSfVAAAAAElFTkSuQmCC" width="318" height="14"/>
-              </svg>
-            </div>
-            <p>Hoy en día los empleadores valoran más lo que has creado que los títulos y las certificaciones.</p>
-
-          </div><!--/deco-quote -->
-        </div><!--/reason -->
-
-        <div class="col-md-4">
-          <div class="reason">
-            <span class="icon-reason">
-              <%= image_tag("icon-mentor-mir.png", class: "img-responsive") %>
-            </span>
-            <span class="reason-number">Mentores Experimentados</span>
-            <div class="deco-quote">
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="318" height="14" viewBox="0 0 318 14">
-                <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAAOCAMAAACB64AbAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA8FBMVEUAAABvb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb28AAABnb5fuAAAATnRSTlMAh0PzFM2TAVLpPg/FnwNi5TELu6sGdN4mB7C2CYbVGwSlvw2YyROZEqm8DIzSGLmtftgex51z3yUZ04tm5C0j3XhZ6DQuZU7qalVE4kVAkR1IAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAMJJREFUWMPlzsUOwkAQgOFFiy5aoLgVirtTrLi9/+NACCFAC5ceppN+h5XZZPOTq9YYyC9GE3SbDNEas8XKKL/Y7A7oOAScLjdVmnu8Pug0FPyBICufhsIR6DAkuGgs/jViEskUdBYa6Uw29zGgeb4AHYUILfLC25UtlSvQSagw1Vr9dfE3mhx0EDatdud5Ero9quorXeoPho99NJ4wKr/Spak4u6/zxRI6BKmVtCYbcQudgdZuf5CO0BGInc4X6IT/bpS9ZWS2pSfVAAAAAElFTkSuQmCC" width="318" height="14"/>
-              </svg>
-            </div>
-            <p>Recibe una educación personalizada que se adapta a tu ritmo y estilo de aprendizaje.</p>
-
-          </div><!--/deco-quote -->
-        </div><!--/reason -->
-
-
-        <div class="col-md-4">
-          <div class="reason">
-            <span class="icon-reason">
-              <%= image_tag("icon-hours-mir.png", class: "img-responsive") %>
-            </span>
-            <span class="reason-number">Horario Flexible</span>
-            <!--<h4>Web Developer Profesional</h4>-->
-            <div class="deco-quote">
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="318" height="14" viewBox="0 0 318 14">
-                <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAAOCAMAAACB64AbAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA8FBMVEUAAABvb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb28AAABnb5fuAAAATnRSTlMAh0PzFM2TAVLpPg/FnwNi5TELu6sGdN4mB7C2CYbVGwSlvw2YyROZEqm8DIzSGLmtftgex51z3yUZ04tm5C0j3XhZ6DQuZU7qalVE4kVAkR1IAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAMJJREFUWMPlzsUOwkAQgOFFiy5aoLgVirtTrLi9/+NACCFAC5ceppN+h5XZZPOTq9YYyC9GE3SbDNEas8XKKL/Y7A7oOAScLjdVmnu8Pug0FPyBICufhsIR6DAkuGgs/jViEskUdBYa6Uw29zGgeb4AHYUILfLC25UtlSvQSagw1Vr9dfE3mhx0EDatdud5Ero9quorXeoPho99NJ4wKr/Spak4u6/zxRI6BKmVtCYbcQudgdZuf5CO0BGInc4X6IT/bpS9ZWS2pSfVAAAAAElFTkSuQmCC" width="318" height="14"/>
-              </svg>
-            </div>
-            <p>Avanza a tu propio ritmo y en el horario que más te convenga.</p>
-          </div><!--/deco-quote -->
-        </div><!--/reason -->
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <span class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="45" height="61" viewBox="0 0 45 61">
-            <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAA9CAMAAAAOEhAzAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAATlBMVEUAAAD/////////////////////////////////////////////////////////RgD/RgD/RgD/RgD/RgD/RgD/RgD/RgD/////RgAAAACjiGzUAAAAF3RSTlMAZnciuxHuRIjMM92ZVapUcA7AIKjgHOQ5ed8AAAABYktHRACIBR1IAAAACXBIWXMAAAsSAAALEgHS3X78AAABWklEQVRIx+3Vy3aEIAwAUF4KKjh90///0i4mkQQIeLpts3LkwkQSVGlDQ1XBR61ymcZS6ZWN+kp7jm0e6ioVPdaO6zDWmettonems6CPrZO452NkbUgxUm3gXptJgnWohjEj6mzb2vhW+wNmFbw/76w9DdmFpjauow2MbUXDfNPT2BNNbXxPX8+EeMHpXX1W9UnYOl0N23pWtQl9jRtW1Sb1NfYQNhb8XAQNl5rV5lCCxibiLSVpz+oTr3/qa9zg58GHvrGSxuIlctxXJepA6pPK7gv6qh6fKWjaWK50jaDxyfZSGzXQ8br2JClJl8Yy5K6kS7XPkrao8URYvFiGGpbUljaBqPEEwJEOYw0DG9RGjzVu85X/WLMX9KEm2lAdZzpRbWZ6oXqfafqpwXfFQMei3VyTT6SZa/L59XONJyKXd7Ovp//H7+Pxcj9e1dv3/Xj/I/rj8358/QCd/5PAWPoF3wAAAABJRU5ErkJggg==" width="45" height="61"/>
-            </svg>
-          </span>
-        </div>
-      </div>
-    </div>  
-  </div><!--/why -->
-
-  <div class="feature feature-two">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <h3>Nuestra Comunidad</h3>
-        </div>
-        <div class="col-md-6 col-md-offset-3">
-          <div class="text">
-            <p>Recibe ayuda ilimitada de mentores y comparte con otros estudiantes a través de nuestro chat interno.</p>
-            <p>Sé parte de nuestra creciente comunidad aún después de que termines el programa. Sigue recibiendo ayuda cuando consigas un empleo o estés construyendo tus propios productos.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div><!--/feature-two -->
-
-  <div class="student-quotes">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <h3>lo que dicen de nosotros</h3>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <div id="carousel-quotes" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-              <li data-target="#carousel-quotes" data-slide-to="0" class="active"></li>
-              <li data-target="#carousel-quotes" data-slide-to="1"></li>
-              <li data-target="#carousel-quotes" data-slide-to="2"></li>
-            </ol>
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-              <div class="item active">
-                <img src="" alt="">
-                <div class="carousel-caption">
-                  <p>
-                    "En Make it Real logré cosas que nunca habría imaginado hacer. Fue una de las experiencias más intensas y desafiantes de toda mi vida."
-                  </p>
-                  <div class="deco-quote">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveaspectratio="xMidYMid" width="318" height="14" viewbox="0 0 318 14">
-                    <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAAOCAMAAACB64AbAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA8FBMVEUAAABvb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb28AAABnb5fuAAAATnRSTlMAh0PzFM2TAVLpPg/FnwNi5TELu6sGdN4mB7C2CYbVGwSlvw2YyROZEqm8DIzSGLmtftgex51z3yUZ04tm5C0j3XhZ6DQuZU7qalVE4kVAkR1IAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAMJJREFUWMPlzsUOwkAQgOFFiy5aoLgVirtTrLi9/+NACCFAC5ceppN+h5XZZPOTq9YYyC9GE3SbDNEas8XKKL/Y7A7oOAScLjdVmnu8Pug0FPyBICufhsIR6DAkuGgs/jViEskUdBYa6Uw29zGgeb4AHYUILfLC25UtlSvQSagw1Vr9dfE3mhx0EDatdud5Ero9quorXeoPho99NJ4wKr/Spak4u6/zxRI6BKmVtCYbcQudgdZuf5CO0BGInc4X6IT/bpS9ZWS2pSfVAAAAAElFTkSuQmCC" width="318" height="14"/>
-                    </svg>
-                  </div>
-                  <div class="carousel-quotes-image">
-                    <%= image_tag("people/02sebas.png") %>
-                  </div>
-                  <span class="author">- Sebastián Zapata, Ex-alumno y creador de <a target="_blank" href="http://kaizendevs.com/">Kaizen Devs.</a>
-                </div>
-              </div>
-
-              <div class="item">
-                <img src="" alt="">
-                <div class="carousel-caption">
-                  <p>
-                    "Make it Real me abrió las puertas a un nuevo mundo que hasta ahora empieza a ser explorado y en el que las mujeres podemos entrar a jugar un rol muy importante."
-                  </p>
-                  <div class="deco-quote">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveaspectratio="xMidYMid" width="318" height="14" viewbox="0 0 318 14">
-                    <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAAOCAMAAACB64AbAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA8FBMVEUAAABvb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb28AAABnb5fuAAAATnRSTlMAh0PzFM2TAVLpPg/FnwNi5TELu6sGdN4mB7C2CYbVGwSlvw2YyROZEqm8DIzSGLmtftgex51z3yUZ04tm5C0j3XhZ6DQuZU7qalVE4kVAkR1IAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAMJJREFUWMPlzsUOwkAQgOFFiy5aoLgVirtTrLi9/+NACCFAC5ceppN+h5XZZPOTq9YYyC9GE3SbDNEas8XKKL/Y7A7oOAScLjdVmnu8Pug0FPyBICufhsIR6DAkuGgs/jViEskUdBYa6Uw29zGgeb4AHYUILfLC25UtlSvQSagw1Vr9dfE3mhx0EDatdud5Ero9quorXeoPho99NJ4wKr/Spak4u6/zxRI6BKmVtCYbcQudgdZuf5CO0BGInc4X6IT/bpS9ZWS2pSfVAAAAAElFTkSuQmCC" width="318" height="14"/>
-                    </svg>
-                  </div>
-                  <div class="carousel-quotes-image">
-                    <%= image_tag("people/02sorel.png") %>
-                  </div>
-                  <span class="author">- Sorel de León, Ex-alumna <a target="_blank"href="http://yuxipacific.com/">(Yuxi Pacific).</a></span>
-                </div>
-              </div>
-
-              <div class="item">
-                <img src="" alt="">
-                <div class="carousel-caption">
-                  <p>
-                    "Todas las empresas que desarrollen software deberían tener sus ojos puestos en Make it Real, el talento que sale de allí es de primera."
-                  </p>
-                  <div class="deco-quote">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveaspectratio="xMidYMid" width="318" height="14" viewbox="0 0 318 14">
-                    <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAAOCAMAAACB64AbAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA8FBMVEUAAABvb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb28AAABnb5fuAAAATnRSTlMAh0PzFM2TAVLpPg/FnwNi5TELu6sGdN4mB7C2CYbVGwSlvw2YyROZEqm8DIzSGLmtftgex51z3yUZ04tm5C0j3XhZ6DQuZU7qalVE4kVAkR1IAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAMJJREFUWMPlzsUOwkAQgOFFiy5aoLgVirtTrLi9/+NACCFAC5ceppN+h5XZZPOTq9YYyC9GE3SbDNEas8XKKL/Y7A7oOAScLjdVmnu8Pug0FPyBICufhsIR6DAkuGgs/jViEskUdBYa6Uw29zGgeb4AHYUILfLC25UtlSvQSagw1Vr9dfE3mhx0EDatdud5Ero9quorXeoPho99NJ4wKr/Spak4u6/zxRI6BKmVtCYbcQudgdZuf5CO0BGInc4X6IT/bpS9ZWS2pSfVAAAAAElFTkSuQmCC" width="318" height="14"/>
-                    </svg>
-                  </div>
-                  <div class="carousel-quotes-image">
-                    <%= image_tag("people/02luis-hurtado.png") %>
-                  </div>
-                  <span class="author">- Luis Hurtado, Tech Leader de <a target="_blank" href="http://kommit.co/">Kommit.</a></span>
-                </div>
-              </div>
-            </div>
-            <!-- Controls -->
-            <a class="left carousel-control" href="#carousel-quotes" role="button" data-slide="prev">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="27" height="53" viewBox="0 0 27 53">
-              <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAA1CAMAAACHrGAhAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAM1BMVEUAAAD/RgD/RgD/RgD/RgD/RgD/RgD/RgD/RgD/RgD/RgD/RgD/RgD/RgD/RgD/RgAAAACQt2QtAAAAEHRSTlMAJaDIJiTJJyPKKCIpxVCiiLxyqQAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxIAAAsSAdLdfvwAAABXSURBVDjLxc5dDsAgCANgmIoy93P/2+4EsKQq9vVL2hJZ4cOmxDbluVQkkipADSOdTd6NM4y6RtJlEd2PSV7lHwqKbQAriroG4UNlADOIvAjThk1hB98PpgkD/cgaj/0AAAAASUVORK5CYII=" width="27" height="53"/>
-            </svg>
-            <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#carousel-quotes" role="button" data-slide="next">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="27" height="53" viewBox="0 0 27 53">
-              <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAA1CAMAAACHrGAhAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAM1BMVEUAAAD/RgD/RgD/RgD/RgD/RgD/RgD/RgD/RgD/RgD/RgD/RgD/RgD/RgD/RgD/RgAAAACQt2QtAAAAEHRSTlMAoCXIJskkJyPKKCIpUMWiKz/RMwAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxIAAAsSAdLdfvwAAABVSURBVDjLxc5LEsAgCANQxC/a1vvf1hPAIqLN9s0kocCkhqOB6RDmch3rBjYU5Qxam/0PlHEdHwvfDym1KGPUAKoYiTeBDwtACSR2puhdqBPrRFOnBYIzA/ZsCTnkAAAAAElFTkSuQmCC" width="27" height="53"/>
-            </svg>
-            <span class="sr-only">Next</span>
-            </a>
-          </div>
-        </div>
-      </div>
-        
-      <div class="row">
-        <div class="col-md-12">
-          <a href="<%= makers_path %>" class="more-quotes">
-            Conoce más opiniones
-            <span class="icon">
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="83" height="83" viewBox="0 0 83 83"><image xlink:href="data:img/png;base64,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" width="83" height="83"/></svg>
-            </span>
-          </a>
-        </div><!--/more-quotes -->
-      </div>
-    </div>
-  </div><!--/student-quotes -->
 
   <div class="feature feature-three">
     <div class="row">
       <div class="col-md-12">
-        <h3>El Equipo de make it real</h3>
+        <h2>EMPRESAS ALIADAS</h2>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <p class="text">Nuestro equipo cuenta con experiencia construyendo aplicaciones Web reales y su mayor motivación es ayudarte a convertirte en un Web Developer competente capaz de prosperar en el mundo real.</p>
+      <div class="col-sm-8 col-sm-offset-2">
+        <p class="text">Las que han creado nuestros estudiantes, las que los han contratado, a las que podrás aplicar y portales de trabajo especializados.</p>
       </div>
-
-      <div class="col-md-4">
-        <div class="mentor">
-          <%= image_tag("team/pic06.png") %>
-          <h4>Germán Escobar</h4>
-          <p>Programador y emprendedor con una <a href="http://germanescobar.net/2014/06/02/la-nueva-educacion/" target="_blank">visión particular de la educación.</a> Co-fundador de <a href="https://elibom.com" target="_blank">elibom.com.</a></p>
-          <div class="mentor-links">
-            <ul>
-              <li><%= link_to "http://github.com/germanescobar", target: '_blank', class: "mentor-link" do %>
-                <i class="fa fa-github"></i>
-                <% end %>
-              </li>
-              <li><%= link_to "https://co.linkedin.com/in/germanescobar", target: '_blank', class: "mentor-link" do %>
-                <i class="fa fa-linkedin"></i>
-                <% end %>
-              </li>
-              <li><%= link_to "http://twitter.com/germanescobar", target: '_blank', class: "mentor-link" do %>
-                <i class="fa fa-twitter"></i>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="mentor">
-          <%= image_tag("team/pic07.png") %>
-          <h4>Simón Soriano</h4>
-          <p>Voluntario de la Red de programación competitiva, mentor y desarrollador de Make it Real.</p>
-          <div class="mentor-links">
-            <ul>
-              <li><%= link_to "http://github.com/simon0191", target: '_blank', class: "mentor-link" do %>
-                <i class="fa fa-github"></i>
-                <% end %>
-              </li>
-              <li><%= link_to "https://co.linkedin.com/in/simonsoriano", target: '_blank', class: "mentor-link" do %>
-                <i class="fa fa-linkedin"></i>
-                <% end %>
-              </li>
-              <li><%= link_to "http://twitter.com/simon0191", target: '_blank', class: "mentor-link" do %>
-                <i class="fa fa-twitter"></i>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="mentor">
-          <%= image_tag("team/pic08.png") %>
-          <h4>Juan Gómez</h4>
-          <p>Mentor en Make it Real. Su rol es ayudar a sus estudiantes a aprender todo lo que él necesitó para convertirse en Desarrollador web.</p>
-          <div class="mentor-links">
-            <ul>
-              <li><%= link_to "http://github.com/juan267", target: '_blank', class: "mentor-link" do %>
-                <i class="fa fa-github"></i>
-                <% end %>
-              </li>
-              <li><%= link_to "https://co.linkedin.com/in/juangomez267", target: '_blank', class: "mentor-link" do %>
-                <i class="fa fa-linkedin"></i>
-                <% end %>
-              </li>
-              <li><%= link_to "http://twitter.com/ozu99", target: '_blank', class: "mentor-link" do %>
-                <i class="fa fa-twitter"></i>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="col-md-4">
-        <div class="mentor">
-          <%= image_tag("team/pic10.png") %>
-          <h4>Camilo Aguilar</h4>
-          <p>Fundador de Hooklift. Organizador de <a href="http://jsconf.co/" target="_blank">JSConf Colombia</a>. Advisor de <a href="http://coderise.org/" target="_blank">Coderise</a>.</p>
-          <div class="mentor-links">
-            <ul>
-              <li><%= link_to "http://github.com/c4milo", target: '_blank', class: "mentor-link" do %>
-                <i class="fa fa-github"></i>
-                <% end %>
-              </li>
-              <li><%= link_to "http://twitter.com/c4milo", target: '_blank', class: "mentor-link" do %>
-                <i class="fa fa-twitter"></i>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="col-md-4">
-        <div class="mentor">
-          <%= image_tag("team/pic11.png") %>
-          <h4>Julián Duque</h4>
-          <p>Desarrollador por Pasión. Co-organizador de <a href="http://medellinjs.org/">MedellinJS</a>. Instructor líder de <a href="http://coderise.org/" target="_blank">Coderise</a>.</p>
-          <div class="mentor-links">
-            <ul>
-              <li><%= link_to "http://github.com/julianduque", target: '_blank', class: "mentor-link" do %>
-                <i class="fa fa-github"></i>
-                <% end %>
-              </li>
-              <li><%= link_to "http://twitter.com/julian_duque", target: '_blank', class: "mentor-link" do %>
-                <i class="fa fa-twitter"></i>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="col-md-4">
-        <div class="mentor">
-          <%= image_tag("team/pic09.png") %>
-          <h4>Diana Vanegas</h4>
-          <p>Gerente de proyectos apasionada por las redes sociales y  estrategias de crecimiento.</p>
-          <div class="mentor-links">
-            <ul>
-              <li><%= link_to "https://www.linkedin.com/in/dianavanegas", target: '_blank', class: "mentor-link" do %>
-                <i class="fa fa-linkedin"></i>
-                <% end %>
-              </li>
-              <li><%= link_to "https://twitter.com/123_x_mi", target: '_blank', class: "mentor-link" do %>
-                <i class="fa fa-twitter"></i>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="col-md-4">
-        <div class="mentor">
-          <%= image_tag("team/pic12.png") %>
-          <h4>Jonathan Beltrán</h4>
-          <p>Desarrollador front-end. Se la pasa pensando en que internet en cualquier momento puede reinventar o destruir el mundo.</p>
-          <div class="mentor-links">
-            <ul>
-              <li><%= link_to "https://github.com/heyjoeb", target: '_blank', class: "mentor-link" do %>
-                <i class="fa fa-github"></i>
-                <% end %>
-              </li>
-              <li><%= link_to "http://co.linkedin.com/in/heyjoe/", target: '_blank', class: "mentor-link" do %>
-                <i class="fa fa-linkedin"></i>
-                <% end %>
-              </li>
-              <li><%= link_to "https://twitter.com/heyjoeb", target: '_blank', class: "mentor-link" do %>
-                <i class="fa fa-twitter"></i>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-
-
     </div>
+
+    <div class="row">
+      <div class="col-sm-3 col-sm-offset-1 text-center">
+        <a href="http://prodigious.com/" target="_blank"><%= image_tag "prodigious-logo.png" %></a>
+      </div>
+
+      <div class="col-sm-4 text-center">
+        <a href="http://monoku.co/" target="_blank"><%= image_tag "monoku-logo.png", height: 50 %></a>
+      </div>
+
+      <div class="col-sm-3 text-center">
+        <a href="http://kommit.co/" target="_blank"><%= image_tag "kommit-logo.jpg", height: 50 %></a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-2 text-center">
+        <a href="http://kaizendevs.co/" target="_blank"><%= image_tag "kaizen-devs-logo.png" %></a>
+      </div>
+
+      <div class="col-sm-4 text-center">
+        <a href="http://quincena.me/" target="_blank"><%= image_tag "quincename-logo.png" %></a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-2 text-center">
+        <a href="http://kaizendevs.co/" target="_blank"><%= image_tag "kaizen-devs-logo.png" %></a>
+      </div>
+
+      <div class="col-sm-4 text-center">
+        <a href="http://dreamjobs.com.co/" target="_blank"><%= image_tag "dreamjobs-logo.png", height: 50 %></a>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 100px;">
+      <div class="col-md-8 col-md-offset-2">
+        <p>¿Interesado en contratar a nuestros egresados? Escríbenos a <a href="mailto:info@makeitreal.camp">info@makeitreal.camp</a></p>
+      </div>
+    </div>
+
   </div><!--/feature-three -->
+
+  <div class="quote">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-5">
+          <%= image_tag "people/sebastian-zapata.jpg", width: "100%" %>
+        </div>
+        <div class="col-sm-7 text-center">
+          <p class="text">No se trata simplemente de escribir código, <a href="/">Make It Real</a> es un camino que va directo a transformar la manera en que aprendemos, vivimos y trabajamos cada día. Ha sido una de las experiencias mas intensas y productivas de toda mi vida.</p>
+          <p class="name">Sebastían Zapata Mardini</p>
+          <p class="position">Full Stack Ruby on Rails Developer y co-fundador de <a href="http://kaizendevs.co/" targer="_blank">KaizenDevs</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <div class="email">
@@ -473,12 +195,8 @@
       </div>
 
     </div>
-
-    <div class="icon-mir">
-      <%= image_tag("bgIconMir-black.png", class: "img-responsive") %>
-    </div>
   </div><!--/email -->
-  
+
   <%= render "footer" %>
 
 </div><!--/new_site -->

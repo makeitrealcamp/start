@@ -17,14 +17,7 @@ class PagesController < ApplicationController
     render layout: "application"
   end
 
-
   def curriculum
-  end
-
-  def full_stack_web_developer
-  end
-
-  def front_end_web_developer
   end
 
   def faq
@@ -40,7 +33,7 @@ class PagesController < ApplicationController
   end
 
   def publicar
-    
+
   end
 
 end

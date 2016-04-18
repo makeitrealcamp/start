@@ -59,9 +59,31 @@
 }
 
 
+video#bg-video, .video-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background: url(polina.jpg) no-repeat;
+    background-size: cover;
+}
+
+.video-overlay {
+   background: #222c37;
+   opacity: 0.8;
+}
+
 .new_site {
-  font-family: 'Karla', sans-serif;
-  height: 100%;
+  // font-family: 'Karla', sans-serif;
+
   a {
     -webkit-transition: opacity 0.6s ease;
     -moz-transition: opacity 0.6s ease;
@@ -85,19 +107,15 @@
   .nav > li > a:hover, .nav > li > a:focus {
     background: transparent;
   }
-  .navbar-brand {
-    margin-left: 0 !important;
-    margin-right: 10px;
-  }
   .navbar-nav > li > a {
     padding-left: 13px;
     padding-right: 13px;
   }
   .navbar {
     font-size: 16px;
-    background: #fff;
+    padding: 20px 35px;
     a {
-      color: #5f5f5f;
+      color: white;
     }
     .active {
       a {
@@ -139,55 +157,54 @@
     }
   }
   .intro {
-    background: image-url("introBg2.jpg") top center;
-    background-size: cover;
-    width: 100%;
     text-align: center;
     position: relative;
-    padding-top: 230px;
-    padding-bottom: 270px;
+    padding-bottom: 100px;
+    overflow: hidden;
+
+    @media (min-width: $screen-md-min) {
+      padding-bottom: 180px;
+    }
   }
-  
+
   .tagline {
-    font-size: 52px;
+    font-size: 44px;
     font-weight: 700;
     font-family: 'Karla', sans-serif;
-    color: #fff;
-    padding: 0 35px;
+    color: #f5f5f2;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-    @media (max-width: $screen-sm-min) {
-      font-size: 28px;
-      padding: 0;
-    }
-    @media ( max-width: 1200px ) and (max-height: 600px ) {
-      margin-top: 150px;
-    }
-    @media ( max-width: 1200px ) and (max-height: 400px ) {
-      margin-top: 50px;
+    margin-top: 50px;
+
+    @media (min-width: $screen-sm-min) {
+      font-size: 68px;
+      margin-top: 90px;
+      padding: 0 35px;
     }
   }
   .tagline-support {
-    font-weight: 400;
-    color: #fff;
-    margin-bottom: 45px;
+    font-size: 21px;
+    font-weight: 300;
+    line-height: 1.4;
+    color: #dedede;
+    margin-bottom: 60px;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-    @media (max-width: $screen-sm-min) {
-      font-size: 22px;
+
+    @media (min-width: $screen-sm-min) {
+      font-size: 24px;
+      padding: 0 35px;
+      margin-bottom: 75px;
     }
   }
 
   .know-more {
-    color: #ff4300;
+    color: white;
     font-weight: 400;
     display: inline-block;
-    background: #fff;
-    border: solid 1px #ffffff;
-    border-radius: 2px;
+    background: $brand_primary;
     font-family: 'Open Sans', sans-serif;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 10px 0;
-    width: 300px;
+    padding: 15px 60px;
     font-size: 18px;
   }
 
@@ -216,50 +233,60 @@
   }
 
   .pitch {
-    color: #ff4300;
+    background: white;
     text-align: center;
-    padding: 70px 0;
-    &.curriculum {
-      margin-top: 70px;
-      background: #1c1c1c;
-      h2 {
-        text-transform: uppercase;
-      }
-      p {
-        color: #fff;
-        font-size: 20px;
-        margin-top: 25px;
-        @media (max-width: $screen-sm-min) {
-          font-size: 18px;
-        }
-      }
-    }
-    &.faq {
-      margin-top: 70px;
-      background: #1c1c1c;
-      h2 {
-        text-transform: uppercase;
-      }
-    }
+    padding: 80px 0 100px;
+    font-size: 16px;
+
     h2 {
-      font-size: 28px;
+      font-size: 24px;
       font-family: 'Open Sans', sans-serif;
       font-weight: 300;
       margin: 0;
+      margin-bottom: 40px;
       line-height: 1.4em;
-      @media (max-width: $screen-sm-min) {
-        font-size: 24px;
+
+      @media (min-width: $screen-sm-min) {
+        font-size: 28px;
+        margin-bottom: 50px;
       }
     }
+
+    h3 {
+      font-size: 21px;
+      margin: 30px 0 20px;
+      font-weight: bold;
+
+      @media (min-width: $screen-sm-min) {
+        margin: 50px 0 20px;
+      }
+    }
+
+    p {
+      color: #666;
+      line-height: 1.6;
+      @media (min-width: $screen-md-min) {
+        font-size: 18px;
+        padding: 0 20px;
+      }
+    }
+
     .icon {
       display: block;
+      color: $brand-primary;
+      font-size: 48px;
+      margin-top: 50px;
       margin-bottom: 15px;
+
+      @media (min-width: $screen-sm-min) {
+        font-size: 62px;
+      }
     }
   }
 
   .feature {
-    margin-bottom: 50px;
     overflow: hidden;
+
     &.curriculum {
       margin-bottom: 105px;
       @media (max-width: $screen-md-min) {
@@ -275,27 +302,36 @@
         font-family: 'Open Sans', sans-serif;
         font-weight: 300;
       }
-      h3 {
+      h2 {
         @media (max-width: $screen-md-min) {
           font-size: 32px;
         }
       }
     }
-    h3 {
+    h2 {
       text-align: center;
       text-transform: uppercase;
       color: #ff4300;
-      font-family: 'Karla', sans-serif;
+      font-family: 'Open Sans Condensed', sans-serif;
       margin-top: 0;
-      padding-top: 120px;
-      margin-bottom: 50px;
-      font-size: 34px;
+      padding-top: 100px;
+      margin-bottom: 70px;
+      font-size: 38px;
       font-weight: 600;
       @media (max-width: $screen-md-min) {
         margin-bottom: 40px;
         font-size: 32px;
       }
     }
+
+    h3 {
+      text-align: center;
+      font-size: 21px;
+      font-weight: bold;
+      margin-top: 0;
+      margin-bottom: 40px;
+    }
+
     .text {
       font-size: 21px;
       @media (max-width: $screen-xs-min) {
@@ -306,189 +342,20 @@
       padding: 0;
     }
   }
-  .feature-one {
-    .text {
-      padding: 15% 10% 0 20%;
-      @media (max-width: $screen-md-min) {
-        margin-bottom: 30px;
-        padding: 0 8.5%;
-      }
-    }
-    .img-feature {
-      img {
-        @media (max-width: $screen-md-min) {
-          margin: 0 auto;
-          width: 80%;
-        }
-      }
-    }
-  }
-  .feature-two {
-    padding-top: 20px;
-    padding-bottom: 130px;
-    background: asset-url('bg-community.jpg') no-repeat center center;
-    background-size: cover;
-    margin-bottom: 0;
-    .img-feature {
-      img {
-        @media (max-width: $screen-md-min) {
-          margin: 0 auto;
-          width: 80%;
-        }
-      }
-    }
-    h3 {
-      color: #fff;
-      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-      margin-bottom: 50px;
-      font-family: "Karla",sans-serif;
-      font-size: 34px;
-      font-weight: 700;
-      padding-bottom: 10px;
-      @media (max-width: $screen-md-min) {
-        padding-top: 50px;
-      }
-    }
-    .text {
-      color: #fff;
-      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-      @media (max-width: $screen-md-min) {
-        width: 80%;
-        margin: 0 auto;
-      }
-    }
-  }
-  .student-quotes {
-    background: #1c1c1c;
-    text-align: center;
-    overflow: hidden;
-    padding-top: 30px;
-    @media (max-width: $screen-md-min) {
-      padding-bottom: 30px;
-      padding-top: 80px;
-    }
-    h3 {
-      text-align: center;
-      text-transform: uppercase;
-      font-family: 'Karla', sans-serif;
-      font-weight: 400;
-      margin-top: 120px;
-      margin-bottom: 80px;
-      color: #fff;
-      font-size: 34px;
-      font-weight: 700;
-      padding-bottom: 10px;
-      @media (max-width: $screen-md-min) {
-        margin-top: 80px;
-      }
-      @media (max-width: $screen-xs-min) {
-        font-size: 32px;
-      }
-    }
-    .carousel-caption {
-      position: relative;
-      margin-left: auto;
-      margin-right: auto;
-      font-size: 21px;
-      width: 75%;
-      left: 0;
-      right: 0;
-      .author {
-        color: #a5a5a5;
-        display: block;
-        font-size: 14px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 20px;
-        width: 80%;
-      }
-    }
-    .carousel-indicators {
-      bottom: 0;
-    }
-    .carousel-quotes-image {
-      margin-bottom: 25px;
-      img {
-        width: 85px;
-      }
-    }
-    .carousel-control.left {
-      background-image: none;
-    }
-    .carousel-control.right {
-      background-image: none;
-    }
-    .carousel-control {
-      opacity: 1;
-      -webkit-transition: opacity 0.6s ease;
-      -moz-transition: opacity 0.6s ease;
-      -o-transition: opacity 0.6s ease;
-      transition: opacity 0.6s ease;
-      &:hover {
-        opacity: 0.5;
-      }
-    }
-    .carousel-indicators .active, .carousel-indicators .pagination .current, .pagination .carousel-indicators .current {
-      opacity: 0.5;
-      background-color: #ff4300;
-      height: 1px;
-      margin: 0 10px;
-      width: 60px;
-    }
-    .carousel-indicators li {
-      background-color: #ff4300;
-      border: 0;
-      border-radius: 0;
-      height: 1px;
-      margin: 0 10px;
-      width: 60px;
-      -webkit-transition: opacity 0.6s ease;
-      -moz-transition: opacity 0.6s ease;
-      -o-transition: opacity 0.6s ease;
-      transition: opacity 0.6s ease;
-      &:hover {
-        opacity: 0.5;
-      }
-      @media (max-width: $screen-xs-min) {
-        display: none;
-      }
-    }
-  }
-  
-  .deco-quote {
-    margin: 30px 0;
-    @media (max-width: $screen-xs-min) {
-      display: none;
-    }
-  }
-  .more-quotes {
-    font-size: 18px;
-    text-align: center;
-    color: #fff;
-    margin-top: 60px;
-    display: inline-block;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-    margin-bottom: 100px;
-    .icon {
-      display: block;
-      margin-top: 15px;
-    }
-  }
 
   .feature-three {
-    margin-bottom: 100px;
-    border-top: solid 1px #dddddd;
-    @media (max-width: $screen-md-min) {
-      margin-bottom: 40px;
-    }
+    background: white;
+    padding-bottom: 100px;
+
+    h2 { color: #303030; }
+
     h3 {
       margin-bottom: 50px;
     }
     .text {
       font-size: 21px;
       text-align: center;
-      margin-bottom: 100px;
+      margin-bottom: 40px;
       width: 100%;
       @media (max-width: $screen-md-min) {
         width: 80%;
@@ -512,60 +379,73 @@
       line-height: 1.7em;
       font-size: 18px;
     }
-    .mentor {
-      text-align: center;
-      margin-bottom: 65px;
-      @media (max-width: $screen-md-min) {
-        margin-bottom: 80px;
-      }
-      .mentor-links {
-        text-align: left;
-        width: 80%;
-        margin: 15px auto 0;
-        @media (max-width: $screen-md-min) {
-          text-align: center;
-        }
-        ul {
-          list-style-type: none;
-          padding-left: 0;
-          text-align: center;
-        }
-        li {
-          display: inline-block;
-          font-size: 24px;
-          margin-right: 15px;
-          &:last-child {
-            margin-right: 0;
-          }
-        }
-      }
-    }
+
+    img { margin-top: 60px; }
   }
 
   .feature-programas {
-    border-top: 1px solid #dddddd;
-    margin-bottom: 150px;
+    background-color: white;
+    padding-bottom: 100px;
+    border-top: 1px solid darken(#f5f5f2, 15%);
+    border-bottom: 1px solid darken(#f5f5f2, 15%);
+
+    h2 { color: #303030; }
+
     h4 {
-      font-size: 26px;
-      font-weight: 600;
-      color: #ff4300;
+      font-size: 24px;
       font-family: 'Open Sans', sans-serif;
       text-align: center;
-      margin-top: 25px;
+      margin-top: 30px;
+      a { color: #303030; }
     }
+
+    .program-wrapper {
+      padding: 25px 0px;
+      margin-top: 30px;
+
+      h3 {
+        padding-bottom: 20px;
+        margin-bottom: 0;
+      }
+
+      img { margin-top: 40px; }
+
+      &.bootcamp-programs {
+        background: #F5E4E7;
+        border: 1px solid darken(#F5E4E7, 15%);
+
+        h3 {
+          color: #4A2525;
+          border-bottom: 1px solid darken(#F5E4E7, 15%);
+        }
+        h4 a { color: #4A2525; }
+        .programa p { color: #522727; }
+        .btn-main { background-color: #E33320; }
+      }
+
+      &.online-programs {
+        background: #DEF0FA;
+        border: 1px solid darken(#DEF0FA, 15%);
+
+        h3 {
+          color: #28374A;
+          border-bottom: 1px solid darken(#DEF0FA, 15%);
+        }
+        h4 a { color: #28374A; }
+        .programa p { color: #2D5170; }
+        .btn-main { background-color: $brand_secondary; }
+      }
+    }
+
     .programa {
       text-align: center;
-      @media (max-width: $screen-md-min) {
-        margin-bottom: 85px;
-      }
       p {
-        margin: 30px 0;
-        font-size: 21px;
-        
-        @media (max-width: $screen-md-min) {
-          width: 80%;
-          margin: 30px auto;
-        }
+        color: #666;
+        margin: 20px 0 30px;
+        font-size: 18px;
+        line-height: 1.6;
+        font-weight: 300;
+        padding: 0 20px;
       }
 
     }
@@ -574,41 +454,58 @@
       margin: 0 auto;
       width: 222px;
     }
+
+    .btn-main {
+      display: inline-block;
+      width: auto;
+      padding: 10px 30px;
+      border-radius: 0;
+      font-size: 16px;
+    }
   }
 
-  .why {
-    background: #1c1c1c;
-    text-align: center;
-    overflow: hidden;
-    margin-top: 150px;
-    @media (max-width: $screen-md-min) {
-      margin-top: 70px;
-    }
-    h3 {
-      text-align: center;
-      text-transform: uppercase;
-      font-family: 'Karla', sans-serif;
-      margin-top: 130px;
-      margin-bottom: 80px;
-      color: #fff;
-      font-size: 34px;
-      font-weight: 700;
-      padding-bottom: 10px;
-      @media (max-width: $screen-md-min) {
+  .quote {
+    background: #f5f5f2;
+
+    p.text {
+      margin-top: 40px;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.6;
+
+      @media (min-width: $screen-md-min) {
         margin-top: 80px;
-        font-size: 32px;
+        font-size: 21px;
+        padding: 0 35px;
+      }
+
+      @media (min-width: $screen-lg-min) {
+        margin-top: 100px;
       }
     }
-    .icon {
-      display: inline-block;
-      margin-top: 80px;
-      margin-bottom: 80px;
-      @media (max-width: $screen-md-min) {
-        margin-top: 40px;
-        margin-bottom: 50px;
+
+    p.name {
+      margin-top: 40px;
+      font-size: 16px;
+      font-weight: bold;
+
+      @media (min-width: $screen-md-min) {
+        margin-top: 60px;
+        font-size: 18px;
+      }
+
+      @media (min-width: $screen-lg-min) { margin-top: 80px; }
+    }
+
+    p.position {
+      margin-bottom: 40px;
+
+      @media (min-width: $screen-md-min) {
+        margin-bottom: 80px;
       }
     }
   }
+
   .reason {
     text-align: center;
     color: #fff;
@@ -662,9 +559,10 @@
 
   .email {
     overflow: hidden;
-    background: #1c1c1c;
+    background: #303030;
     padding-bottom: 100px;
     position: relative;
+
     h3 {
       text-align: center;
       text-transform: uppercase;
@@ -874,14 +772,12 @@
     font-weight: 700;
   }
   .btn-main {
-    background: transparent;
-    border: solid 1px #ff4300;
-    border-radius: 2px;
+    background: $brand_primary;
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     text-transform: uppercase;
     padding: 10px 0;
-    color: #ff4300;
+    color: white;
     width: 280px;
     font-size: 18px;
     display: block;
@@ -1482,7 +1378,7 @@
       }
     }
   }
-  
+
   .dropdown-menu > .active > a, .pagination .dropdown-menu > .current > a, .dropdown-menu > .active > a:hover, .pagination .dropdown-menu > .current > a:hover, .dropdown-menu > .active > a:focus, .pagination .dropdown-menu > .current > a:focus {
     background: transparent;
   }
@@ -1556,7 +1452,7 @@
       margin: 60px 0;
       padding: 20px;
 
-      h3 { 
+      h3 {
         font-family: "Open Sans Condensed", sans-serif;
         font-size: 24px;
         font-weight: bold;
@@ -1576,20 +1472,20 @@
         text-align: center;
       }
 
-      .ss-label { 
+      .ss-label {
         color: #999;
-        margin-bottom: 5px; 
+        margin-bottom: 5px;
       }
 
       .date {
-        .day { 
+        .day {
           font-size: 42px;
           margin-bottom: 4px;
         }
         .month-year {
           display: inline-block;
           line-height: 1;
-          .year { 
+          .year {
             display: block;
             font-size: 21px;
           }
@@ -1599,7 +1495,7 @@
       }
 
       .more-info {
-        > div { 
+        > div {
           margin-top: 40px;
           @media (min-width: $screen-sm-min) { padding: 0 25px; }
         }
@@ -1627,7 +1523,7 @@
       margin-top: 40px;
       padding: 65px 0;
 
-      @media (min-width: $screen-sm-min) { 
+      @media (min-width: $screen-sm-min) {
         margin-top: 60px;
         padding: 85px 0;
       }
@@ -1652,5 +1548,5 @@
         @media (min-width: $screen-sm-min) { font-size: 21px; }
       }
     }
-  }  
+  }
 }
