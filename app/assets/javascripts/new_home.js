@@ -1,7 +1,7 @@
 var ready;
 ready = function() {
   // scroll para bajar en la intro
-  $(".new_site .intro").on("click", ".scroll", function() {
+  $(".new-site .intro").on("click", ".scroll", function() {
     $("html,body").animate({
     scrollTop: $("#anchor").offset().top},
     "slow");
