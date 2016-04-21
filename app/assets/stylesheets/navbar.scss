@@ -1,4 +1,4 @@
-.navbar {
+.navbar-default {
   margin-bottom: 0;
 }
 
@@ -14,5 +14,64 @@
   img {
     width: 55px;
     border: 2px solid rgba(255, 255, 255, 0.6);
+  }
+}
+
+.navbar-transparent, .navbar-white {
+  font-size: 16px;
+  margin-bottom: 0;
+
+  .navbar-toggle {
+    .icon-bar {
+      background: #ff4300;
+    }
+  }
+
+  .dropdown-menu a {
+    color: #666;
+    width: 275px;
+    overflow: hidden;
+    @media (max-width: $screen-sm-min) {
+      width: 100%;
+    }
+  }
+}
+
+.navbar-transparent {
+  padding: 20px 35px;
+
+  a {
+    color: white;
+  }
+  .active {
+    a {
+      color: #ff4300;
+    }
+    .icon-menu {
+      color: #ff4300;
+      svg {
+        fill: #ff4300;
+      }
+    }
+  }
+}
+
+.navbar-white {
+  background: #fff;
+  padding: 15px 35px;
+
+  a {
+    color: #303030;
+  }
+  .active {
+    a {
+      color: #ff4300;
+    }
+    .icon-menu {
+      color: #ff4300;
+      svg {
+        fill: #ff4300;
+      }
+    }
   }
 }

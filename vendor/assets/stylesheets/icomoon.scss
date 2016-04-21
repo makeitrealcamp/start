@@ -23,8 +23,29 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-bootstrap:before {
+    content: "\e904";
+}
+.icon-mongodb:before {
+    content: "\e905";
+}
+.icon-jquery:before {
+    content: "\e906";
+}
+.icon-angular-alt:before {
+    content: "\e907";
+}
+.icon-nodejs:before {
+    content: "\e908";
+}
+.icon-reactjs:before {
+    content: "\e909";
+}
 .icon-uniF105:before {
     content: "\f105";
+}
+.icon-uniF124:before {
+    content: "\f124";
 }
 .icon-uniF13B:before {
     content: "\f13b";
