@@ -1,4 +1,4 @@
-<div class="new-site">
+<div class="new-site home">
   <div class="intro">
     <video autoplay loop id="bg-video">
       <source src="<%= asset_path 'bg-video.mov' %>" type="video/mp4">
@@ -6,7 +6,7 @@
     <div class="video-overlay"></div>
 
     <%= render "layouts/navbar/pages_transparent" %>
-    <div class="container">
+    <div class="container tagline-wrapper">
       <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
           <h1 class="tagline">Conviértete en <br>Web Developer</h1>
@@ -20,12 +20,11 @@
     </div><!--/container -->
   </div><!--/intro -->
 
-
-  <div class="pitch">
+  <section class="section section-white section-pitch">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h2>Preparamos a los creadores digitales que el mundo necesita ahora</h2>
+          <p class="intro-text">Preparamos a los creadores digitales que el mundo necesita ahora</p>
 
           <div class="row">
             <div class="col-sm-4">
@@ -47,10 +46,10 @@
         </div>
       </div><!--/row -->
     </div><!--/container -->
-  </div><!--/pitch -->
+  </section><!--/pitch -->
 
 
-  <div id="anchor" class="feature feature-programas">
+  <div id="anchor" class="section section-white section-bordered section-programs-list">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -62,7 +61,7 @@
         <div class="col-sm-4">
           <div class="program-wrapper bootcamp-programs">
             <h3>Presencial</h3>
-            <div class="programa">
+            <div class="program-details">
               <%= image_tag "front-end-red.png", height: 90 %>
               <h4><%= link_to "Front End Bootcamp", front_end_on_site_path %></h4>
               <p>Aprende a crear aplicaciones Web con AngularJS y React en 17 semanas (8 online, 9 presenciales).</p>
@@ -76,7 +75,7 @@
             <h3>Online</h3>
             <div class="row">
               <div class="col-sm-6">
-                <div class="programa">
+                <div class="program-details">
                   <%= image_tag "full-stack-blue.png", height: 90 %>
                   <h4><%= link_to "Full Stack Developer", full_stack_online_path %></h4>
                   <p>Aprende a crear aplicaciones Web con HTML, CSS, JavaScript, Ruby on Rails y Bases de Datos.</p>
@@ -85,7 +84,7 @@
               </div>
 
               <div class="col-sm-6">
-                <div class="programa">
+                <div class="program-details">
                   <%= image_tag "front-end-blue.png", height: 90 %>
                   <h4><%= link_to "Front End Developer", front_end_online_path %></h4>
                   <p>Aprende a crear aplicaciones Web con HTML, CSS, JavaScript, Angular JS y servicios externos.</p>

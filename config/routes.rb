@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get "makers", to: "pages#makers"
   get "publicar", to: "pages#publicar"
   get "scholarships", to: "pages#scholarships"
+  get "thanks", to: "pages#thanks"
 
   get 'handbook', to: 'pages#handbook', as: :handbook
 

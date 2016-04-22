@@ -21,9 +21,39 @@
   font-size: 16px;
   margin-bottom: 0;
 
+  .nav > li > a:hover, .nav > li > a:focus {
+    background: transparent;
+  }
+
+  .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+    background: transparent;
+    color: $brand_primary;
+  }
+
+  .navbar-nav > li > a {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
+  .icon-menu {
+    display: block;
+    float: left;
+    margin-right: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 32px;
+  }
+
+  .text-menu {
+    display: block;
+    float: left;
+    font-size: 14px;
+    margin-top: 15px;
+  }
+
   .navbar-toggle {
     .icon-bar {
-      background: #ff4300;
+      background: $brand_primary;
     }
   }
 
@@ -38,7 +68,7 @@
 }
 
 .navbar-transparent {
-  padding: 20px 35px;
+  padding: 20px 0;
 
   a {
     color: white;
@@ -54,11 +84,19 @@
       }
     }
   }
+
+  .open > .dropdown-menu {
+    background: white;
+  }
+
+  .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background: transparent;
+  }
 }
 
 .navbar-white {
   background: #fff;
-  padding: 15px 35px;
+  padding: 15px 0;
 
   a {
     color: #303030;
