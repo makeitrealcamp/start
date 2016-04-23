@@ -1,12 +1,13 @@
 <% content_for :head do %>
-  <meta property="og:title" content="Conoce nuestro programa Full Stack Online con Ruby on Rails" />
+  <meta property="og:title" content="Conoce nuestro programa online de Full Stack Web Development con Ruby on Rails" />
   <meta property="og:type" content="website" />
   <meta property="og:description" content="En este programa aprenderás cómo trabajar con todos los componentes de una aplicación: la base de datos, código en el servidor y código en el navegador." />
   <meta property="og:image" content="<%= image_url('01interna-programa.jpg') %>" />
 <% end %>
 
-<div class="new-site program ">
-  <%= render "layouts/navbar/pages_white" %>
+<div class="new-site program">
+  <%= render "layouts/navbar/pages_white", hide_login: true, show_apply: true, url: "https://makeitreal.typeform.com/to/KbayyW" %>
+  <%= render "pages/header_apply", url: "https://makeitreal.typeform.com/to/KbayyW" %>
 
   <div class="program-intro full-stack">
     <div class="container">

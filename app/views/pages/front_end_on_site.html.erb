@@ -1,5 +1,13 @@
+<% content_for :head do %>
+  <meta property="og:title" content="Conoce nuestro Bootcamp presencial de Front End Web Development" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="En este Bootcamp intensivo de 17 semanas (8 online, 9 presenciales) aprenderás a crear y mantener aplicaciones Web con HTML, CSS, JavaScript, AngularJS y React, entre otros." />
+  <meta property="og:image" content="<%= image_url('front-end-bootcamp-bg.jpg') %>" />
+<% end %>
+
 <div class="new-site program front-end-bootcamp">
-  <%= render "layouts/navbar/pages_white" %>
+  <%= render "layouts/navbar/pages_white", hide_login: true, show_apply: true, url: "https://makeitreal.typeform.com/to/KbayyW" %>
+  <%= render "pages/header_apply", url: "https://makeitreal.typeform.com/to/KbayyW" %>
 
   <div class="program-intro">
     <div class="container">
@@ -19,7 +27,7 @@
               <div class="bootcamp-info-item">
                 <span class="glyphicon glyphicon-calendar"></span>
                 <div class="bootcamp-info-date">
-                  Junio
+                  Julio
                   <span class="location-label">2016</span>
                 </div>
               </div>
@@ -114,7 +122,7 @@
 
 
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-sm-6 col-md-4">
           <div class="technology">
             <div class="title-container">
               <span class="icon icon-html5"></span>
@@ -124,17 +132,17 @@
           </div>
         </div><!--/technology -->
 
-        <div class="col-md-4">
+        <div class="col-sm-6 col-md-4">
           <div class="technology">
             <div class="title-container">
               <span class="icon icon-bootstrap"></span>
               <h4>Bootstrap</h4>
             </div>
-            <p>Aprende a utilizar y personalizar frameworks HTML, CSS y JavaScript para agilizar el desarrollo.</p>
+            <p>Aprende a utilizar y personalizar Bootstrap para agilizar el desarrollo.</p>
           </div>
         </div><!--/technology -->
 
-        <div class="col-md-4">
+        <div class="col-sm-6 col-md-4">
           <div class="technology">
             <div class="title-container">
               <span class="icon icon-github"></span>
@@ -144,7 +152,7 @@
           </div>
         </div><!--/technology -->
 
-        <div class="col-md-4">
+        <div class="col-sm-6 col-md-4">
           <div class="technology">
             <div class="title-container">
               <span class="icon alt icon-uniF148"></span>
@@ -154,7 +162,7 @@
           </div>
         </div><!--/technology -->
 
-        <div class="col-md-4">
+        <div class="col-sm-6 col-md-4">
           <div class="technology">
             <div class="title-container">
               <span class="icon alt icon-jquery"></span>
@@ -165,7 +173,7 @@
         </div><!--/technology -->
 
 
-        <div class="col-md-4">
+        <div class="col-sm-6 col-md-4">
           <div class="technology">
             <div class="title-container">
               <span class="icon alt icon-angular-alt"></span>
@@ -175,7 +183,7 @@
           </div>
         </div><!--/technology -->
 
-        <div class="col-md-4">
+        <div class="col-sm-6 col-md-4">
           <div class="technology">
             <div class="title-container">
               <span class="icon alt icon-reactjs"></span>
@@ -185,7 +193,7 @@
           </div>
         </div><!--/technology -->
 
-        <div class="col-md-4">
+        <div class="col-sm-6 col-md-4">
           <div class="technology">
             <div class="title-container">
               <span class="icon glyphicon glyphicon-phone"></span>
@@ -195,17 +203,17 @@
           </div>
         </div><!--/technology -->
 
-        <div class="col-md-4">
+        <div class="col-sm-6 col-md-4">
           <div class="technology">
             <div class="title-container">
               <span class="icon icon-gears"></span>
               <h4>REST API's</h4>
             </div>
-            <p>Aprende a consumir e integrar API's de servicios como Spotify, Github y Firebase, entre otros.</p>
+            <p>Aprende a consumir e integrar API's de servicios como Spotify y Firebase, entre otros.</p>
           </div>
         </div><!--/technology -->
 
-        <div class="col-md-4">
+        <div class="col-sm-6 col-md-4">
           <div class="technology">
             <div class="title-container">
               <span class="icon icon-nodejs"></span>
@@ -215,7 +223,7 @@
           </div>
         </div><!--/technology -->
 
-        <div class="col-md-4">
+        <div class="col-sm-6 col-md-4">
           <div class="technology">
             <div class="title-container">
               <span class="icon icon-code"></span>
@@ -225,7 +233,7 @@
           </div>
         </div><!--/technology -->
 
-        <div class="col-md-4">
+        <div class="col-sm-6 col-md-4">
           <div class="technology">
             <div class="title-container">
               <span class="icon glyphicon glyphicon-flash"></span>
@@ -235,7 +243,7 @@
           </div>
         </div><!--/technology -->
 
-        <div class="col-md-4">
+        <div class="col-sm-6 col-md-4">
           <div class="technology">
             <div class="title-container">
               <span class="icon icon-tree"></span>
@@ -245,7 +253,7 @@
           </div>
         </div><!--/technology -->
 
-        <div class="col-md-4">
+        <div class="col-sm-6 col-md-4">
           <div class="technology">
             <div class="title-container">
               <span class="icon icon-console"></span>

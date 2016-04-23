@@ -1,4 +1,20 @@
 .new-site.program {
+  .header-apply {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: white;
+    width: 100%;
+    padding: 17px 10px 10px;
+    z-index: 100;
+    box-shadow: 1px 0 7px #666;
+
+    .btn-primary {
+      float: right;
+    }
+  }
+
   .program-intro {
     padding-top: 80px;
     padding-bottom: 70px;

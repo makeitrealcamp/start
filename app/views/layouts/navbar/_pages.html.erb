@@ -1,4 +1,5 @@
 <% hide_login ||= false %>
+<% show_apply ||= false %>
 
 <header>
   <nav class="navbar navbar-static-top <%= class_name %>">
@@ -47,7 +48,10 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% unless hide_login %>
-          <li><%= link_to "Ingresar", login_path %></li>
+            <li><%= link_to "Ingresar", login_path %></li>
+          <% end %>
+          <% if show_apply %>
+            <li class="apply"><a href="<%= url %>" class="btn btn-primary">¡Aplica Ahora!</a></li>
           <% end %>
         </ul>
       </div>

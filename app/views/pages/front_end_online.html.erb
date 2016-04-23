@@ -1,12 +1,13 @@
 <% content_for :head do %>
-  <meta property="og:title" content="Conoce nuestro programa de Desarrollador Web Front End" />
+  <meta property="og:title" content="Conoce nuestro programa online de Front End Web Development" />
   <meta property="og:type" content="website" />
   <meta property="og:description" content="En este programa aprenderás a crear y mantener aplicaciones Web complejas que interactúan con servidores remotos." />
   <meta property="og:image" content="<%= image_url('04interna-programa.jpg') %>" />
 <% end %>
 
 <div class="new-site program">
-  <%= render "layouts/navbar/pages_white" %>
+  <%= render "layouts/navbar/pages_white", hide_login: true, show_apply: true, url: "https://makeitreal.typeform.com/to/KLIXZx" %>
+  <%= render "pages/header_apply", url: "https://makeitreal.typeform.com/to/KLIXZx" %>
 
   <div class="program-intro full-stack front-end">
     <div class="container">

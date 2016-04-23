@@ -1,5 +1,4 @@
-var ready;
-ready = function() {
+var ready = function() {
   // scroll para bajar en la intro
   $(".new-site .intro").on("click", ".scroll", function() {
     $("html,body").animate({

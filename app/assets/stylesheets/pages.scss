@@ -97,9 +97,8 @@
   }
   .learnings-program {
     .technology {
-      min-height: 200px;
+      height: 200px;
       overflow: hidden;
-      padding: 0 10%;
       margin-top: 20px;
 
       .title-container {
@@ -112,20 +111,26 @@
 
       p {
         color: #666;
-        font-size: 18px;
+        font-size: 16px;
         text-align: center;
+        margin: 0 auto;
+        max-width: 350px;
 
-        @media (min-width: $screen-md-min) { text-align: left; }
+        @media (min-width: $screen-md-min) {
+          font-size: 18px;
+          text-align: left;
+        }
       }
 
       h4 {
         float: none;
-        font-size: 21px;
+        font-size: 18px;
         margin-left: 0px;
         margin-top: 7px;
 
         @media (min-width: $screen-md-min) {
           float: left;
+          font-size: 21px;
           margin-left: 10px;
         }
       }
