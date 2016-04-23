@@ -17,7 +17,7 @@
   }
 }
 
-.navbar-transparent, .navbar-white {
+.navbar-transparent, .navbar-transparent-white, .navbar-white, .navbar-dark {
   font-size: 16px;
   margin-bottom: 0;
 
@@ -67,7 +67,7 @@
   }
 }
 
-.navbar-transparent {
+.navbar-transparent, .navbar-dark {
   padding: 20px 0;
 
   a {
@@ -94,8 +94,7 @@
   }
 }
 
-.navbar-white {
-  background: #fff;
+.navbar-transparent-white, .navbar-white {
   padding: 15px 0;
 
   a {
@@ -112,4 +111,14 @@
       }
     }
   }
+}
+
+.navbar-white { background: #fff; }
+
+.navbar-dark {
+  background: #303030;
+}
+
+.navbar-fixed {
+  position: fixed;
 }

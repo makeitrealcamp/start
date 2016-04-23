@@ -1,49 +1,62 @@
-.login {
-  padding-top: 30px;
-  margin-top: 100px;
-  .options {
-    margin-top: 30px;
+.login-page {
+  .login-welcome {
+    font-size: 24px;
+    font-weight: 300;
+    margin-top: 40px;
 
-    .option { margin: 15px 0; }
-  }
-  h1 {
-    color: #fff;
-    font-family: "Karla",sans-serif;
-    font-size: 34px;
-    font-weight: 600;
-    margin-bottom: 0;
-    margin-top: 0;
-    text-align: center;
-    text-transform: uppercase;
-  }
-  p {
-    text-align: center;
-    color: #fff;
-    margin: 30px 0;
-    font-size: 18px;
-  }
-  a {
-    color: #fff;
-    text-decoration: underline;
-    &:hover {
-      text-decoration: underline;
+    @media (min-width: $screen-sm-min) {
+      margin-top: 80px;
     }
+
+    span { color: $brand_secondary; }
   }
-  .btn-main {
-    color: #fff;
-    background: #ff4300;
-    font-weight: 400;
-    text-decoration: none;
-    &:hover {
-      text-decoration: none;
+
+  .login {
+    background: white;
+    margin: 40px auto 100px;
+
+    max-width: 450px;
+    border: 1px solid #ccc;
+
+    .login-body {
+      padding: 5px 25px 20px;
+    }
+
+    .login-footer {
+      background: #fbfbf9;
+      border-top: 1px solid #ccc;
+      padding: 0 0 5px;
+    }
+
+    p {
+      color: #666;
+      font-size: 16px;
+      text-align: center;
+      margin: 30px 0;
+
+      @media (min-width: $screen-sm-min) { font-size: 18px; }
+
+      &.small {
+        font-size: 14px;
+
+        @media (min-width: $screen-sm-min) { font-size: 16px; }
+      }
+    }
+
+    .btn-main {
       color: #fff;
+      background: #ff4300;
+      font-weight: 400;
+      text-decoration: none;
+      padding: 15px 0;
+
+      &:hover {
+        text-decoration: none;
+        color: #fff;
+      }
     }
   }
-}
-.expand.bg-login {
-  background: image-url("03interna-programa.jpg") center top;
-  margin-top: 0;
-  padding-top: 0;
+
 }
 
 .btn-social{

@@ -1,0 +1,225 @@
+.new-site.front-end-bootcamp {
+  .program-intro {
+    background: #D13221 image-url("front-end-bootcamp-bg.jpg") center center;
+    background-size: cover;
+  }
+
+  .bootcamp-info {
+    background: #f5f2f2;
+    color: #303030;
+    margin: 0 auto;
+    max-width: 400px;
+    box-shadow: 3px 3px 10px #7D2222;
+    text-align: center;
+
+    .bootcamp-info-title {
+      color: #303030;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 15px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .bootcamp-info-body { padding: 20px; }
+
+    p { font-weight: 300; }
+
+    .bootcamp-info-item {
+      display: inline-block;
+      width: 49%;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .bootcamp-info-date, .bootcamp-info-location {
+      display: inline-block;
+      color: #303030;
+      line-height: 1.2;
+
+      span.location-label {
+        display: block;
+        color: #999;
+      }
+    }
+
+    .bootcamp-info-date {
+      font-size: 22px;
+      margin-left: 10px;
+
+      span.location-label { font-size: 24px; }
+    }
+
+    .bootcamp-info-location {
+      font-size: 24px;
+      margin-left: 5px;
+
+      span.location-label { font-size: 18px; }
+    }
+
+    span.glyphicon {
+      display: inline-block;
+      color: #ddd;
+      font-size: 38px;
+      vertical-align: super;
+    }
+
+    .btn {
+      margin-top: 40px;
+      padding: 15px 55px;
+      width: 80%;
+    }
+  }
+
+  .section-pitch h3 { margin-top: 40px; }
+
+  // body of the target section
+  .bootcamp-target {
+    .bootcamp-quote {
+      background: white;
+      margin: 0 auto;
+      box-shadow: 2px 2px 5px #666;
+      padding: 25px;
+
+      p {
+        color: #666;
+        font-size: 16px;
+        line-height: 1.6;
+        border-bottom: 1px solid $brand_primary;
+        padding-bottom: 30px;
+        margin-bottom: 20px;
+      }
+
+      .bootcamp-quote-img {
+        float: left;
+
+        img { border: 1px solid #ccc; }
+      }
+
+      .bootcamp-quote-person {
+        padding-left: 110px;
+        margin-top: 15px;
+
+        .bootcamp-quote-person-name {
+          display: block;
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .bootcamp-target-details-intro {
+      color: #666;
+      font-weight: 600;
+    }
+
+    .bootcamp-target-details {
+      color: #666;
+      font-size: 18px;
+      line-height: 1.6;
+      padding: 0 30px;
+
+      ul {
+        list-style: none;
+        margin-top: 18px;
+        padding-left: 35px;
+
+        li {
+          margin-bottom: 10px;
+
+          &:before {
+            content: "✓";
+            color: #D13221;
+            font-size: 21px;
+            font-weight: bold;
+            padding-right: 15px;
+            margin-left: -30px;
+          }
+        }
+      }
+    }
+
+    .bootcamp-target-details-alt {
+      font-size: 16px;
+      color: #666;
+      margin-top: 30px;
+    }
+  }
+
+  .technology .title-container .icon {
+    color: #D13221;
+  }
+
+  .bootcamp-phases {
+    .bootcamp-phases-phase {
+      margin-top: 40px;
+
+      header {
+        .number {
+          display: inline-block;
+          position: absolute;
+          top: 0px;
+          left: 15px;
+          color: #D13221;
+          font-size: 28px;
+          font-weight: 600;
+          line-height: 0;
+          text-align: center;
+          height: 50px;
+          width: 50px;
+          border-radius: 50%;
+          border: 2px solid #D13221;
+          padding-top: 22px;
+
+          @media (min-width: $screen-md-min) { left: 10px; }
+        }
+      }
+
+      h3 {
+        font-size: 21px;
+        font-weight: 600;
+        text-align: left;
+        padding: 0 20px 0 65px;
+        margin-bottom: 20px;
+
+        @media (min-width: $screen-md-min) {
+          margin-bottom: 35px;
+        }
+
+        small {
+          display: block;
+          font-size: 18px;
+          margin-bottom: 5px;
+        }
+      }
+
+      p {
+        color: #666;
+        line-height: 1.6;
+        padding-left: 65px;
+
+        @media (min-width: $screen-md-min) { padding-left: 0px; }
+      }
+    }
+  }
+
+  .bootcamp-faq {
+    .question {
+      margin: 60px 0;
+
+      h3 {
+        color: #D13221;
+        font-size: 21px;
+        font-weight: 600;
+        line-height: 1.4;
+        text-align: left;
+        margin-bottom: 25px;
+      }
+
+      p, ul {
+        color: #666;
+        font-size: 18px;
+        line-height: 1.5;
+      }
+    }
+  }
+}

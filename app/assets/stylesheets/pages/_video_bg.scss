@@ -1,0 +1,21 @@
+video#bg-video, .video-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.video-overlay {
+   background: #222c37;
+   opacity: 0.8;
+}

@@ -1,3 +1,5 @@
+<% hide_login ||= false %>
+
 <header>
   <nav class="navbar navbar-static-top <%= class_name %>">
     <div class="container">
@@ -44,7 +46,9 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          <% unless hide_login %>
           <li><%= link_to "Ingresar", login_path %></li>
+          <% end %>
         </ul>
       </div>
       <!--/.nav-collapse -->
