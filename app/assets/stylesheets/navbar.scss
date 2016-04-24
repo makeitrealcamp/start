@@ -5,7 +5,7 @@
 
   &:hover, &:active, &:focus {
     color: white;
-    background: $brand_primary;
+    background: $brand_primary !important;
   }
 }
 

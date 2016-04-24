@@ -6,12 +6,12 @@
 <% end %>
 
 <div class="new-site scholarships">
-  <%= render "navigation" %>
-  <div class="feature-program">
+  <%= render "layouts/navbar/pages_white" %>
+  <div class="section section-transparent scholarships-header">
     <div class="container">
       <div class="row">
         <div class="col-md-8 col-md-offset-2 program-title text-center">
-          <h3>Becas de inclusión</h3>
+          <h2>Becas de inclusión</h2>
           <p class="subhead">En Make it Real estamos comprometidos con las minorías en tecnología. Por eso les ofrecemos esta oportunidad de ingresar a nuestros programas de desarrollo Web para que hagan parte de esta revolución educativa y laboral.</p>
         </div>
       </div>
@@ -32,6 +32,19 @@
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1">
         <div class="scholarship">
+          <div class="scholarship-overlay">
+            <h4>Beneficiarias</h4>
+            <div class="row">
+              <div class="col-sm-6 text-center">
+                <%= image_tag "people/monica-ibarra.jpg", alt: "Mónica Ibarra", class: "img-circle" %>
+                <p>Mónica Ibarra</p>
+              </div>
+              <div class="col-sm-6 text-center">
+                <%= image_tag "people/ana-maria-sosa.jpg", alt: "Ana María Sosa", class: "img-circle" %>
+                <p>Ana María Sosa</p>
+              </div>
+            </div>
+          </div>
           <h3>Dos becas para mujeres</h3>
           <div class="row">
             <div class="col-md-4 scholarship-detail">
@@ -77,25 +90,18 @@
               <p><strong>Completa para el programa <a href="front_end_web_developer" target="_blank">Front End Online</a>.</strong> Incluye acceso a la plataforma de aprendizaje, Slack, mentorías ilimitadas y apoyo post-programa.</p>
             </div>
           </div>
-
-          <div class="row">
-            <div class="col-sm-12 text-center">
-              <a href="https://makeitreal.typeform.com/to/Xbk5io" class="btn-cta">¡Aplica ahora!</a>
-            </div>
-          </div>
-
         </div>
       </div>
     </div>
   </div>
 
-  <div class="scholarship-dark">
+  <div class="section section-dark scholarship-dark">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <div class="col-md-8 col-md-offset-2">
             <div class="top-container">
-              <h3>PATROCINA UNA BECA</h3>
+              <h2>PATROCINA UNA BECA</h2>
               <p>Se eres una empresa o una persona y te interesa patrocinar una beca, escríbenos a <a href="mailto: info@makeitreal.camp">info@makeitreal.camp</a> y ayúdanos a que más personas puedan tener una educación que les brinde mejores oportunidades laborales.</p>
             </div>
           </div>

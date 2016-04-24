@@ -1,26 +1,11 @@
 .new-site.scholarships {
-  .feature-program {
+  .scholarships-header {
     background: image-url("multirace-hands.jpg") center top;
     background-size: cover;
-    padding-top: 180px;
 
-    @media (min-width: $screen-sm-min) { padding-top: 220px; }
-
-    .program-title {
-      h3 {
-        color: #fff;
-        font-family: "Karla",sans-serif;
-        font-size: 28px;
-        font-weight: 700;
-        margin-bottom: 50px;
-        padding-bottom: 10px;
-
-        @media (min-width: $screen-sm-min) { font-size: 34px; }
-      }
-    }
     .subhead {
-      color: #fff;
       font-size: 18px;
+      margin-bottom: 0;
 
       @media (min-width: $screen-sm-min) { font-size: 21px; }
     }
@@ -34,103 +19,118 @@
   }
 
   .scholarship-info {
+    font-size: 24px;
+    font-weight: 300;
     margin-top: 60px;
     color: #303030;
-    font-size: 18px;
   }
 
-  .scholarship {
-    background: #fff;
-    border: 1px solid #ccc;
-    margin: 60px 0;
-    padding: 20px;
+  .scholarship-list {
+    .scholarship {
+      position: relative;
+      background: #fff;
+      border: 1px solid #ccc;
+      margin: 60px 0;
+      padding: 20px;
 
-    h3 {
-      font-family: "Open Sans Condensed", sans-serif;
-      font-size: 24px;
-      font-weight: bold;
-      border-bottom: 1px solid #ff3300;
-      padding-bottom: 15px;
-      margin-top: 0;
-    }
+      .scholarship-overlay {
+        position: absolute;
+        background: rgba(48, 48, 48, 0.8);
+        color: white;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 100;
 
-    h4 {
-      color: #999;
-      font-size: 24px;
-      margin-bottom: 25px;
-    }
+        h4 {
+          padding-top: 50px;
+          color: white;
+          text-align: center;
+          margin-bottom: 60px;
+        }
 
-    .scholarship-detail {
-      margin-top: 30px;
-      text-align: center;
-    }
+        img {
+          width: 100px;
+          border: 3px solid white;
+          margin-bottom: 20px;
+        }
 
-    .ss-label {
-      color: #999;
-      margin-bottom: 5px;
-    }
-
-    .date {
-      .day {
-        font-size: 42px;
-        margin-bottom: 4px;
+        p { font-size: 18px; }
       }
-      .month-year {
-        display: inline-block;
-        line-height: 1;
-        .year {
-          display: block;
-          font-size: 21px;
+
+      h3 {
+        font-family: "Open Sans Condensed", sans-serif;
+        font-size: 24px;
+        font-weight: bold;
+        border-bottom: 1px solid #ff3300;
+        padding-bottom: 15px;
+        margin-top: 0;
+      }
+
+      h4 {
+        color: #999;
+        font-size: 24px;
+        margin-bottom: 25px;
+      }
+
+      .scholarship-detail {
+        margin-top: 30px;
+        text-align: center;
+      }
+
+      .ss-label {
+        color: #999;
+        margin-bottom: 5px;
+      }
+
+      .date {
+        .day {
+          font-size: 42px;
+          margin-bottom: 4px;
+        }
+        .month-year {
+          display: inline-block;
+          line-height: 1;
+          .year {
+            display: block;
+            font-size: 21px;
+          }
+        }
+
+        &.date-orange { color: #F04500; }
+      }
+
+      .more-info {
+        line-height: 1.6;
+        > div {
+          margin-top: 40px;
+          @media (min-width: $screen-sm-min) { padding: 0 25px; }
         }
       }
 
-      &.date-orange { color: #F04500; }
-    }
-
-    .more-info {
-      > div {
-        margin-top: 40px;
-        @media (min-width: $screen-sm-min) { padding: 0 25px; }
+      .btn-cta {
+        font-size: 16px;
+        padding: 10px 30px;
+        background: #f04500;
+        color: #fff;
+        border: solid 1px #f04500;
+        border-radius: 3px;
+        font-weight: 600;
+        font-family: "Open Sans",sans-serif;
+        text-transform: uppercase;
+        font-size: 16px;
+        margin-top: 25px;
+        display: inline-block;
       }
-    }
-
-    .btn-cta {
-      font-size: 16px;
-      padding: 10px 30px;
-      background: #f04500;
-      color: #fff;
-      border: solid 1px #f04500;
-      border-radius: 3px;
-      font-weight: 600;
-      font-family: "Open Sans",sans-serif;
-      text-transform: uppercase;
-      font-size: 16px;
-      margin-top: 25px;
-      display: inline-block;
     }
   }
 
   .scholarship-dark {
-    background: #1c1c1c image-url("bgIconMir-black.png") no-repeat 20% 30%;
-    color: white;
     margin-top: 40px;
-    padding: 65px 0;
 
     @media (min-width: $screen-sm-min) {
       margin-top: 60px;
-      padding: 85px 0;
-    }
-
-    h3 {
-      color: #fff;
-      font-family: "Karla",sans-serif;
-      font-size: 28px;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 50px;
-      padding-bottom: 10px;
-
-      @media (min-width: $screen-sm-min) { font-size: 34px; }
     }
 
     p {
