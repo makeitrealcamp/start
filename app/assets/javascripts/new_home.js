@@ -1,10 +1,9 @@
-var ready;
-ready = function() {
+var ready = function() {
   // scroll para bajar en la intro
-  $(".new_site .intro").on("click", ".scroll", function() {
+  $(".new-site .intro").on("click", ".scroll", function() {
     $("html,body").animate({
-    scrollTop: $("#anchor").offset().top - 75},
-    "slow");
+      scrollTop: $("#programs").offset().top + 80
+    }, "slow");
   });
 
   // agregar clase a div para poder meter imagen de background en login con slack

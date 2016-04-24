@@ -1,18 +1,24 @@
-<div class="new_site">
-  <%= render "pages/navigation" %>
-  <div class="container login">
+<div class="new-site login-page">
+  <%= render "layouts/navbar/pages_dark", hide_login: true %>
+  <div class="container">
+    <p class="text-center login-welcome">Hola, bienvenido a nuestra <span>plataforma de aprendizaje</span>!</p>
     <div class="row">
-      <div class="col-sm-6 col-sm-offset-3">
-        <h1 class="text-center">Ingreso</h1>
-        <p>Si eres estudiante de Make it Real, ingresa a la plataforma con tu cuenta de Slack. Si no eres estudiante, te invitamos a que conozcas nuestros programas de <%= link_to "Desarrollador Web Front End", front_end_web_developer_path %> y de <%= link_to "Desarrollador Web Full Stack en Ruby on Rails.", full_stack_web_developer_path %></p>
-        <%= form_tag controller: :sessions, action: :create do %>
-          <div class="btn-social row">
-              <%= link_to '<i class="fa fa-slack"></i> <span class="visible-lg-inline">Ingresar con </span>Slack'.html_safe, '/auth/slack', class: "btn btn-main", id: "sign-in-slack"  %>
+      <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+
+        <div class="login">
+          <div class="login-body">
+            <p>Si eres estudiante de <%= link_to "Make it Real", root_path %> ingresa con tu cuenta de Slack</p>
+            <%= form_tag controller: :sessions, action: :create do %>
+              <div class="btn-social row">
+                  <%= link_to '<i class="fa fa-slack"></i> INGRESAR'.html_safe, '/auth/slack', class: "btn btn-main", id: "sign-in-slack"  %>
+              </div>
+            <% end %>
           </div>
-        <% end %>
+          <div class="login-footer">
+            <p class="small">¿Aún no eres estudiante? Conoce <a href="/#anchor">nuestros programas</a></p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-

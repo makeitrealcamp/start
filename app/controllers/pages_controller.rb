@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   before_action :public_access, except: [:handbook]
+  before_action :save_referer, except: [:handbook]
 
   def home
   end
@@ -17,30 +18,13 @@ class PagesController < ApplicationController
     render layout: "application"
   end
 
-
-  def curriculum
+  def front_end_bootcamp
+    @typeform_url = "https://makeitreal.typeform.com/to/Cr9SSv?referer=#{session['referer']}"
   end
 
-  def full_stack_web_developer
-  end
-
-  def front_end_web_developer
-  end
-
-  def faq
-  end
-
-  def thanks
-  end
-
-  def makers
-  end
-
-  def pricing
-  end
-
-  def publicar
-    
-  end
+  private
+    def save_referer
+      session['referer'] = request.env["HTTP_REFERER"] || 'none' unless session['referer']
+    end
 
 end

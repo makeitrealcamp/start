@@ -1,0 +1,61 @@
+<% hide_login ||= false %>
+<% show_apply ||= false %>
+
+<header>
+  <nav class="navbar navbar-static-top <%= class_name %>">
+    <div class="container">
+      <div class="navbar-header">
+        <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <%= link_to image_tag("#{logo_path}", width: 180, alt: "Logo Make it Real"), root_path, class: "navbar-brand" %>
+      </div>
+      <div class="navbar-collapse collapse" id="navbar">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+              Programas <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="<%= 'active' if params[:action] == 'front_end_on_site' %>">
+                <%= link_to front_end_bootcamp_path do %>
+                  <span class="icon-menu"><%= image_tag "front-end-red.png", height: 25 %></span>
+                  <span class="text-menu">Front End Presencial</span>
+                <% end %>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li class="<%= 'active' if params[:action] == 'full_stack_online' %>">
+                <%= link_to full_stack_online_path do %>
+                  <span class="icon-menu"><%= image_tag "full-stack-blue.png", height: 28 %></span>
+                  <span class="text-menu">Full Stack Online</span>
+                <% end %>
+              </li>
+              <li class="<%= 'active' if params[:action] == 'front_end_online' %>">
+                <%= link_to front_end_online_path do %>
+                  <span class="icon-menu"><%= image_tag "front-end-blue.png", height: 25 %></span>
+                  <span class="text-menu">Front End Online</span>
+                <% end %>
+              </li>
+            </ul>
+          </li>
+          <li class="<%= 'active' if params[:action] == 'makers' %>"><%= link_to "Alumnos", makers_path %></li>
+          <li class="<%= 'active' if params[:action] == 'faq' %>"><%= link_to "FAQ", faq_path %></li>
+          <li><a href="http://blog.makeitreal.camp/">Blog</a></li>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% unless hide_login %>
+            <li><%= link_to "Ingresar", login_path %></li>
+          <% end %>
+          <% if show_apply %>
+            <li class="apply"><a href="<%= url %>" class="btn btn-primary">¡Aplica Ahora!</a></li>
+          <% end %>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </nav>
+</header>

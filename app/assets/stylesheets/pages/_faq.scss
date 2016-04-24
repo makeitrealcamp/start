@@ -1,0 +1,28 @@
+.new-site.faq {
+  .section-faq-header {
+    background: linear-gradient( rgba(34, 44, 55, 0.9), rgba(34, 44, 55, 0.9) ), image-url('faq-bg.jpg') no-repeat center center;
+    background-size: cover;
+    padding-bottom: 50px;
+  }
+
+  .faqs {
+    margin: 40px 0;
+
+    .question {
+      margin: 60px 0;
+
+      h3 {
+        color: $brand_secondary;
+        font-size: 21px;
+        font-weight: 600;
+        margin-bottom: 25px;
+      }
+      
+      p {
+        color: #666;
+        font-size: 18px;
+        line-height: 1.5;
+      }
+    }
+  }
+}

@@ -23,46 +23,84 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-bootstrap:before {
+    content: "\e904";
+}
+.icon-mongodb:before {
+    content: "\e905";
+}
+.icon-jquery:before {
+    content: "\e906";
+}
+.icon-angular-alt:before {
+    content: "\e907";
+}
+.icon-nodejs:before {
+    content: "\e908";
+}
+.icon-reactjs:before {
+    content: "\e909";
+}
+.icon-uniF105:before {
+    content: "\f105";
+}
+.icon-uniF124:before {
+    content: "\f124";
+}
 .icon-uniF13B:before {
-	content: "\f13b";
+    content: "\f13b";
 }
 .icon-uniF148:before {
-	content: "\f148";
+    content: "\f148";
+}
+.icon-uniF14C:before {
+    content: "\f14c";
 }
 .icon-uniE603:before {
-	content: "\e607";
+    content: "\e607";
 }
 .icon-quote-right:before {
-	content: "\e60b";
+    content: "\e60b";
 }
 .icon-quote-left:before {
-	content: "\e60a";
+    content: "\e60a";
+}
+.icon-support:before {
+    content: "\e903";
 }
 .icon-users:before {
-	content: "\e60e";
+    content: "\e60e";
+}
+.icon-lab:before {
+    content: "\e901";
+}
+.icon-target:before {
+    content: "\e902";
 }
 .icon-tree:before {
-	content: "\e605";
+    content: "\e605";
 }
 .icon-code:before {
-	content: "\e606";
+    content: "\e606";
 }
 .icon-console:before {
-	content: "\e608";
+    content: "\e608";
 }
 .icon-github:before {
-	content: "\e602";
+    content: "\e602";
+}
+.icon-github2:before {
+    content: "\e900";
 }
 .icon-html5:before {
-	content: "\e609";
+    content: "\e609";
 }
 .icon-css3:before {
-	content: "\e600";
+    content: "\e600";
 }
 .icon-envelope:before {
-	content: "\e604";
+    content: "\e604";
 }
 .icon-gears:before {
-	content: "\e603";
+    content: "\e603";
 }
-

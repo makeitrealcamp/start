@@ -1,13 +1,11 @@
-<div class="new_site">
-  <%= render "navigation" %>
-  <section class="section thank-you" style="margin-top: 75px;">
+<div class="new-site thank-you">
+  <%= render "layouts/navbar/pages_white" %>
+  <section class="section section-dark thank-you-header">
     <div class="container">
       <div class="row">
         <div class="col-sm-10 col-sm-offset-1">
-          <header class="text-center title"><h1>¡Gracias por aplicar a Make it Real!</h1></header>
-          <div class="col-sm-8 col-sm-offset-2 text-center">
-            <p class="p">En las próximas 24 a 48 horas nos estaremos comunicando contigo para informarte los pasos a seguir. Mientras tanto, te invitamos a revisar las preguntas frequentes que se encuentran debajo y conocer nuestro <a href="http://blog.makeitreal.camp" target="_blank">blog</a>.</p>
-          </div>
+          <header class="text-center title"><h2>¡Gracias por aplicar!</h2></header>
+          <p class="subhead">En las próximas 24 a 48 horas nos estaremos comunicando contigo para informarte los pasos a seguir. Mientras tanto, te compartimos nuestras preguntas frequentes y te invitamos conocer nuestro <a href="http://blog.makeitreal.camp" target="_blank">blog</a>.</p>
         </div>
       </div>
       <div class="col-sm-12 text-center">
@@ -22,68 +20,8 @@
     </div>
   </section>
 
+  <%= render "faqs" %>
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="container">
-        <div class="faqs">
-          <div class="col-md-8 col-md-offset-2">
-            <section class="question">
-              <h3>¿Qué hace a Make it Real diferente?</h3>
-              <p>Make it Real es un programa estructurado, apoyado de mentores y una increíble comunidad, pero con la flexibilidad horaria y la dedicación que más te convenga.</p>
-              <p>Hemos diseñado cuidadosamente el programa para que aprendas las habilidades que se requieren para convertirte en Desarrollador Web y puedas construir y desplegar aplicaciones complejas y robustas.</p>
-            </section><!--/question -->
-
-            <section class="question">
-              <h3>¿Cuánto tiempo debo dedicar?</h3>
-              <p>Lo mínimo que debes dedicar para completarlo en un año es 15 a 20 horas por semana. Sin embargo, si le dedicas 80 horas a la semana podrías completarlo en 3 meses o antes. Tu decides.</p>
-            </section><!--/question -->
-
-            <section class="question">
-              <h3>¿Me van a ayudar a encontrar empleo?</h3>
-              <p>Constantemente estamos publicando nuevas ofertas de empleo y es muy probable que consigas un empleo al terminar el programa. Aunque no brindamos ninguna garantía, la mayoría de nuestros estudiantes han conseguido empleo en los primeros 3 meses después de finalizarlo.</p>
-            </section><!--/question -->
-
-            <section class="question">
-              <h3>¿Por qué están haciendo esto?</h3>
-              <p>Porque creemos que el sistema de educación formal no se ha adaptado a las necesidades del mundo actual. Queremos mostrar que existen mejores formas de aprender a programar que ingresar a una universidad y que los títulos no son la única forma de conseguir trabajo.</p>
-              <p>Pero nuestra mayor motivación es que más gente aprenda a programar y mejore su calidad de vida. La programación nos permite trabajar desde donde queramos y en la mayoría de casos en horarios flexibles. Eso abre muchas posibilidades para viajar, compartir en familia, y lo más importante: intentar mejorar el mundo.</p>
-            </section><!--/question -->
-
-            <section class="question">
-              <h3>¿Por qué un programa virtual y no presencial?</h3>
-              <p>Son varias las razones así que hemos escrito un <a href="">post completo</a> explicándolas.</p>
-            </section><!--/question -->
-
-            <section class="question">
-              <h3>¿Cómo sé si este programa es para mi?</h3>
-              <p>Si sientes que el programa no es para ti y te retiras en los primeros 15 días, recibirás un reembolso completo. Si cancelas después, recibirás un reembolso parcial según tu avance en la plataforma.</p>
-            </section><!--/question -->
-
-            <section class="question">
-              <h3>¿Cuáles son los requerimientos?</h3>
-              <p>Lo único que necesitas es un computador (con cualquier sistema operativo) y una buena conexión a Internet para ver los videos. Una advertencia: la mayoría de recursos están en Inglés. Es preferible si al menos lo entiendes escrito. Pero si no, no te preocupes, puedes usar un traductor si es necesario y buscar otros recursos por tu cuenta.</p>
-            </section><!--/question -->
-
-            <section class="question">
-              <h3>¿Qué pasa si no lo completo durante el año?</h3>
-              <p>El objetivo es que lo completes. Pero si por alguna razón no lo puedes hacer deberás pagar mensualmente para mantener activa la plataforma. Aún no hemos definido el costo.</p>
-              <p>Nuestra recomendación es que pienses bien si le puedes dedicar el tiempo antes de tomar la decisión.</p>
-            </section><!--/question -->
-
-            <section class="question">
-              <h3>¿Por qué Ruby on Rails?</h3>
-              <p>Por varias razones. La primera es que no importa con qué tecnología aprendas, el mundo de la programación se mueve muy rápido y en algunos años la mayoría de tecnologías actuales serán obsoletas. El objetivo del programa es que aprendas a aprender.</p>
-              <p>Seleccionamos Ruby on Rails porque es un framework muy expresivo, fácil de aprender y con una gran comunidad de desarrolladores en el mundo.</p>
-              <p>No tenemos nada en contra de otros lenguajes y frameworks de programación, pero creemos que Rails tiene el balance perfecto entre madurez y facilidad de aprendizaje. Además, una vez que aprendas Rails, tus conocimientos pueden ser rápidamente transferidos a otros frameworks de programación similares en otros lenguajes como Django (Python), Laravel (PHP) o Express.js (Node.js).</p>
-            </section><!--/question -->
-          </div>
-        </div><!--/pitch faqs -->
-      </div>
-
-      <%= render "footer" %>
-
-    </div><!--/row -->
-  </div><!--/contianer-fluid -->
+  <%= render "footer" %>
   <%= render "utils/sign_up_analytics" %>
 </div>

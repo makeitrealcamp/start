@@ -1,0 +1,58 @@
+.handbook {
+  color: #303030;
+  margin-bottom: 60px;
+
+  h1, h2, h3 { text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7); }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 40px;
+
+    @media (min-width: $screen-sm-min) { margin-bottom: 80px; }
+  }
+
+  h2 {
+    font-size: 24px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+
+    @media (min-width: $screen-sm-min) { font-size: 28px; }
+  }
+
+  h3 {
+    font-size: 21px;
+    margin-top: 24px;
+    margin-bottom: 18px;
+
+    @media (min-width: $screen-sm-min) { font-size: 24px; font-weight: 600; }
+  }
+
+  blockquote p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+
+  p, ol, ul {
+    color: #303030;
+    font-size: 16px;
+    line-height: 1.7;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
+
+    @media (min-width: $screen-sm-min) {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+  }
+
+  ol li { margin-bottom: 15px; }
+
+  img {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+}

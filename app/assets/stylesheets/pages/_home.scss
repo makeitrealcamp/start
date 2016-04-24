@@ -1,0 +1,122 @@
+.new-site.home {
+  .intro {
+    position: relative;
+    padding-bottom: 100px;
+    overflow: hidden;
+
+    .tagline-wrapper { text-align: center; }
+
+    @media (min-width: $screen-md-min) { padding-bottom: 180px; }
+  }
+
+  .tagline {
+    font-size: 44px;
+    font-weight: 700;
+    font-family: 'Karla', sans-serif;
+    color: #f5f5f2;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    margin-top: 50px;
+
+    @media (min-width: $screen-sm-min) {
+      font-size: 68px;
+      margin-top: 90px;
+      padding: 0 35px;
+    }
+  }
+
+  .tagline-support {
+    font-size: 21px;
+    font-weight: 300;
+    line-height: 1.4;
+    color: #dedede;
+    margin-bottom: 60px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+
+    @media (min-width: $screen-sm-min) {
+      font-size: 24px;
+      padding: 0 35px;
+      margin-bottom: 75px;
+    }
+  }
+
+  .know-more {
+    color: white;
+    font-weight: 400;
+    display: inline-block;
+    background: $brand_primary;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 60px;
+    font-size: 18px;
+  }
+
+  .section.section-programs-list {
+    text-align: center;
+
+    .program-wrapper {
+      padding: 25px 0px;
+      margin: 40px auto 0;
+      max-width: 400px;
+
+      @media (min-width: $screen-md-min) {
+        margin-top: 20px;
+        max-width: inherit;
+      }
+
+      h3 {
+        padding-bottom: 20px;
+        margin-bottom: 0;
+      }
+
+      img { margin-top: 40px; }
+
+      .program-details {
+        text-align: center;
+
+        p {
+          color: #666;
+          margin: 20px 0 30px;
+          font-size: 18px;
+          line-height: 1.6;
+          font-weight: 300;
+          padding: 0 20px;
+        }
+      }
+
+      &.bootcamp-programs {
+        background: #F5E4E7;
+        border: 1px solid darken(#F5E4E7, 15%);
+
+        h3 {
+          color: #4A2525;
+          border-bottom: 1px solid darken(#F5E4E7, 15%);
+        }
+        h4 a { color: #4A2525; }
+        .program-details p { color: #522727; }
+        .btn-main { background-color: #E33320; }
+      }
+
+      &.online-programs {
+        background: #E1EEF5;
+        border: 1px solid darken(#E1EEF5, 15%);
+
+        h3 {
+          color: #28374A;
+          border-bottom: 1px solid darken(#E1EEF5, 15%);
+        }
+        h4 a { color: #28374A; }
+        .program-details p { color: #2D5170; }
+        .btn-main { background-color: $brand_secondary; }
+      }
+
+      .btn-main {
+        display: inline-block;
+        width: auto;
+        padding: 10px 30px;
+        border-radius: 0;
+        font-size: 16px;
+      }
+    }
+  }
+}

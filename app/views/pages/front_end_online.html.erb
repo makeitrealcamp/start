@@ -1,19 +1,20 @@
 <% content_for :head do %>
-  <meta property="og:title" content="Conoce nuestro programa de Desarrollador Web Front End" /> 
+  <meta property="og:title" content="Conoce nuestro programa online de Front End Web Development" />
   <meta property="og:type" content="website" />
   <meta property="og:description" content="En este programa aprenderás a crear y mantener aplicaciones Web complejas que interactúan con servidores remotos." />
   <meta property="og:image" content="<%= image_url('04interna-programa.jpg') %>" />
 <% end %>
 
-<div class="new_site">
-  <%= render "navigation" %>
+<div class="new-site program">
+  <%= render "layouts/navbar/pages_white", hide_login: true, show_apply: true, url: "https://makeitreal.typeform.com/to/KLIXZx" %>
+  <%= render "pages/header_apply", url: "https://makeitreal.typeform.com/to/KLIXZx" %>
 
   <div class="program-intro full-stack front-end">
     <div class="container">
       <div class="row">
         <div class="col-md-6 tagline-program">
-          <h1>Desarrollador Web Front End</h1>
-          <p>En este programa aprenderás a crear y mantener aplicaciones Web complejas que interactúan con servidores remotos</p>
+          <h1>Front End Web Developer</h1>
+          <p>En este programa aprenderás a crear y mantener aplicaciones Web complejas con HTML, CSS, JavaScript y AngularJS que interactúan con servidores remotos</p>
           <a href="https://makeitreal.typeform.com/to/KLIXZx" class="btn-cta">¡Aplica ahora!</a>
         </div><!--/tagline-program -->
 
@@ -54,12 +55,12 @@
   </div><!--/program-intro -->
 
 
-  <div class="feature-program data-program">
+  <div class="section data-program">
     <div class="container">
       <div class="row">
 
-      <div class="col-md-12 title-program">
-        <h3>Incluye</h3>
+      <div class="col-md-12 program-title">
+        <h2>Incluye</h2>
       </div>
 
       <div class="col-md-3">
@@ -89,18 +90,18 @@
           <p>Horas de dedicación semanal mínimas durante un año. Avanza a tu ritmo.</p>
         </div>
       </div>
-        
+
       </div><!--/row -->
     </div><!--/container -->
   </div><!--/data-program -->
 
 
 
-  <div class="feature-program target-program">
+  <div class="section target-program">
     <div class="container">
       <div class="row">
-        <div class="col-md-12 title-program text-center">
-          <h3>¿A quién está dirigido?</h3>
+        <div class="col-md-12 program-title text-center">
+          <h2>¿A quién está dirigido?</h2>
           <p class="subhead">Avanza tu carrera con un programa estructurado y guiado por mentores</p>
         </div>
 
@@ -138,60 +139,30 @@
   </div><!--/target-program -->
 
 
-  <div class="feature-program mentories-program front-end">
+  <div class="section section-transparent mentories-program">
     <div class="container">
       <div class="row">
-        <div class="col-md-8 col-md-offset-2 title-program text-center">
+        <div class="col-md-8 col-md-offset-2 program-title text-center">
           <h3>Mentorías uno a uno</h3>
           <p class="subhead">Al ingresar a Make it Real te asignamos un mentor principal el cuál estará pendiente de tu progreso y listo para solucionar tus dudas para que puedas aprovechar al máximo nuestro programa.</p>
         </div>
-        
+
       </div><!--/row -->
     </div><!--/container -->
   </div><!--/mentories-program -->
 
 
-  <div class="feature-program learnings-program">
+  <div class="section learnings-program">
     <div class="container">
       <div class="row">
 
-      <div class="col-md-8 col-md-offset-2 title-program text-center">
-        <h3>Lo que aprenderás en el programa</h3>
+      <div class="col-md-8 col-md-offset-2 program-title text-center">
+        <h2>Lo que aprenderás en el programa</h2>
         <p class="subhead">Te enseñaremos las tecnologías y habilidades necesarias para convertirte en un profesional o emprendedor exitoso.</p>
       </div>
 
-      <div class="col-md-8 col-md-offset-2 skill-program text-center">
-        <h3 class="feature-program-skill">Habilidades</h3>
-      </div>
-
-      <div class="col-md-4 each-learning-program text-center">
-        <div class="learning-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="125" height="125" viewBox="0 0 125 125"><image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH0AAAB9CAMAAAC4XpwXAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABuVBMVEUAAAAAXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AAABGkryqAAAAkXRSTlMADjtigqK90eXwBDdyrODoyrejkIqAGmSu8rGDVCsKFGjD/uykYCQBQ6f54o05AgZh1PagbObfbs9VPc7XWBPta+mYEg2h2T4z3ZYJ+E0DkswfC7IIyYEV0/3c+lZOSQXYcLou6sBTRHuwGyKIOOdeyww6qIalIRytfkHSacIRMJopFrhzS9qbMRBXQOFQKKbQ7YtiHQAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAX6SURBVGje5VtpWxpJEG5BFFFRQbxRFBEVBRRFUXQAFe9bFKNJzLWJue+sMWo0mmST3WTrH+8MCHJPF9M+82HrAwzdVfXOMN3V1VXVhOCpQKEsVBUVq0tAoBJ1cZGqUKkoyEMTkjSlZeVaAbOiskqnrzYYDNV6XVVlhdCkLS8r1VwfdE1tXT2P29DYZGxO6Wo2NjU28PdQX1dbcx3QLabWNjC3Wzpy8HRY2s3Q1mpqYQtt7ezqBltPr12U097bY4Purk4rM2yHsw/6XQpahVaFqx/6nA422AOD4B7CjeiCITcMDkjHtyttMOzBD2WNZxhsSvE3lZNGRsE7lt87tI55YXREAva4Czhf/lNY4+PANZ6vtMcPgQkJN0/IRAD8nrwkJ6cgOC0JW6DpIExN4sVmZmFuXjI4IfNzMDuDFXIucIsMsAVa5BacKIGlZVhZZQROyOoKLC/Rs6+tg26DGTghGzpYX6NlHg/BJjs7LZB1E0KUU28rvG1hii2QZTu8RQV+Y2eXOTghuzs3KODHwzs3rwGckJs7YdE/fy20fR1PHnn67ZDI0FtaB/bvPEYWWM898ZZhE6VwAMW9Ccu5up2gQ021W3ALw27VgTN778zCCsrI3PYG9m5jBDZWFrLa/MlZDmde79wld++gJFa52Wwr3hTgFpYts5EYzVRGJE6LMJW5wwNzKEUkIIyh5QBOaA4yuhvj/iBuPb93X3B8Ju7fQ0nNB/2ZjI4LkJ7MA1/ky/cAJzYNrvTGEUD+hX+Eo/6mJtyEEwxAmqdrH+VwDuSG++Hl1UM3zheY4EZT/Xwl+HBP8Gg/frn/CCfqA2Vyg8Pmxfntj7kn8esn3GOUrMZrS95kDcAY7v5VTxN+PFXhhMcgaX1wDA7jXKlnzxNN1uTzZyhp6/Bg4sM7AbfjsIaS12FLCHfznsTVxtrnxr31Fy+TR6395QuUvMbdd3W7nTCEEn6lfp3S8lr9CqVhCDrj12/6ccGBt+/Smt69RWko6O+KXbZ0u1Ci77kPaW0fuPcoHa7uWGjJBAqU5J8HGRoP6lA6FGC6vGq1oUbsR22mtXBe+xGjxGprjV7UtPVg5JYOM7vcu4eInSIhPW3RsGIt9GLEPh1l6Tj6hFHTC7WR7zozJrR07D/J0nPiP0bosZsjA0VT3465Z/3nrF2f9RhF7fWChStF7V5OubOsfWfcKUKTBUr5zzLoQMh8Oc/Ref4FoakDyvjP8gqEyEUwV/jTEbxA6Koo5z+0DfQCjq+51V98RcRmG7S8xYVGeoHzKhGGqnMqPRFqhALe5NG7pGdmsWF1aj6j0iRQE2/glWCk5v8mPqX036i1GXnnshCaadm/+/8S5Tn2f6dV1wyFREU/5I9MFEymIwqmKFWoSFElLfMPqmVk6fAHrcLKIlIsNoxjNK/9ScX382/azWhVMVHrKHkPvP/E6Vda76+rTu8BpUadmpRQLg2O3/tx2jOkdRv2rrp/U5ocfQmBaso7TYQy0DSJUjUQyEOMEbrhf44u63unHfPXgM6Peer5zh6dn+/Uto49Om/r6O08c3TeziPWONbo/BqHWN8ZowvrO8a3YYsu+DYYv44tuuDXoXxapuiCT4vy55miC/48bi/DEj2yl8Ht49ihR/dxuD0sO/ToHha5f2eGHt2/I2MXrNAvYxfYuA0j9FjcBhmzYoQei1lh43VM0OPxOnSskgX6VawSG6dlgX4Vp0XHqKWjJ8So0fF56eiJ8XlsbkIyelJuApuXkYyelJfB5qSkoqfkpJD5OKnoKfk4ZC5SInpaLhKXh5WInpaHxeWgpaFnyEGj8u/S0DPk31G1B5LQM9YeYOoupKBnqbtA1JxIQZ/LZtio620koGett6GvNcofPUetEXWdVd7oueqsqGvMDIGTVArQoOeuMaOtrzP9m04mCjmR+jqZawvlrauUuaZU5npamWuJZa6jlrmGXOb6eSLv2QEi87kJmc+MEHnPyxCZzwoRec9JEZnPiBF5z8dF8GU8GxhR2PlGtnOREZLxTGiUZDwPGyUZzwLHiN056P8A26F057iKnu0AAAAASUVORK5CYII=" width="125" height="125"/></svg>
-        </div>
-        <h4>Autonomía</h4>
-      </div><!--/each-learning-program -->
-
-      <div class="col-md-4 each-learning-program text-center">
-        <div class="learning-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="125" height="125" viewBox="0 0 125 125"><image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH0AAAB9CAMAAAC4XpwXAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAACuFBMVEUAAAAAXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AXp8AAAB+knnwAAAA5nRSTlMADjtigqK90eXwBDdyrODoyrejkIqAGmSu8rGDVCsKFGjD/uykYCQBQ6f54o05AgZh1PagbObfbs9VPc7XWBPta+mYEg2h2T4z3ZYJ+E0DkswfC7IIyYEV0/3c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" width="125" height="125"/></svg>
-        </div>
-        <h4>Solución de problemas</h4>
-      </div><!--/each-learning-program -->
-
-      <div class="col-md-4 each-learning-program text-center">
-        <div class="learning-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="125" height="125" viewBox="0 0 125 125"><image xlink:href="data:img/png;base64,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" width="125" height="125"/></svg>
-        </div>
-        <h4>Comunicación</h4>
-      </div><!--/each-learning-program -->
-
-      <div class="col-md-12 technologies-">
+      <div class="col-md-12 technologies">
         <div class="row">
-          <div class="col-md-8 col-md-offset-2 skill-program text-center">
-            <h3 class="feature-program-skill">Tecnologías</h3>
-          </div>
-
-
           <div class="col-md-4">
               <div class="technology">
                 <div class="title-container">
@@ -274,19 +245,18 @@
           </div><!--/row -->
       </div><!--/technologies- -->
 
-      
-        
+
+
       </div><!--/row -->
     </div><!--/container -->
   </div><!--/learnings-program -->
 
 
-  <div class="feature-program applications-program">
+  <div class="section section-dark applications-program">
     <div class="container">
       <div class="row">
-
-        <div class="col-md-8 col-md-offset-2 title-program text-center">
-          <h3>Construye aplicaciones reales</h3>
+        <div class="col-md-8 col-md-offset-2 program-title text-center">
+          <h2>Construye aplicaciones reales</h2>
           <p class="subhead">Estas son algunas de las aplicaciones que construirás durante el programa</p>
         </div>
 
@@ -335,30 +305,27 @@
   </div><!--/applicationss-program -->
 
 
-  <div class="feature-program project-program front-end">
+  <div class="section section-transparent project-program">
     <div class="container">
       <div class="row">
-
-        <div class="col-md-8 col-md-offset-2 title-program text-center">
+        <div class="col-md-8 col-md-offset-2 program-title text-center">
           <h3>Tu proyecto personal</h3>
           <p class="subhead">Al ingresar a Make it Real te asignamos un mentor principal el cuál estará pendiente de tu progreso y también estará listo para solucionar tus dudas para que puedas aprovechar al máximo nuestro programa.</p>
         </div>
-        
       </div><!--/row -->
     </div><!--/container -->
   </div><!--/project-program -->
 
-  
-  <div class="feature-program price-program">
+  <div class="section price-program">
     <div class="container-fluid">
       <div class="row">
         <div class="pricing">
-          <div class="col-md-8 col-md-offset-2 title-program text-center">
-            <h3>Precio de lanzamiento</h3>
+          <div class="col-md-8 col-md-offset-2 program-title text-center">
+            <h2>Precio</h2>
           </div>
           <div class="container">
             <div class="row">
-              
+
               <div class="col-md-6">
                 <div id="financing-usd" class="financing">
                   <%= render "price_box", currency: "USD" ,first_payment: 179, monthly_payment: 99,
@@ -372,7 +339,6 @@
 
               <div class="col-md-5 col-md-offset-1">
                 <div class="financing-quote">
-                  <h4>Lo que dicen de nosotros</h4>
                   <div id="student-says-1" class="student-says">
                     <p>"Make it Real me abrió un mar de oportunidades laborales como Desarrollador Web y un sin fin de posibilidades de materializar ideas de negocio. Definitivamente te ayuda a abrir la mente."</p>
                     <div class="student-data">
@@ -429,9 +395,6 @@
                 <% end %>
               </div>
             </div>
-            <div class="icon-mir">
-              <%= image_tag("bgIconMir-black.png", class: "img-responsive") %>
-            </div>
           </div>
         </div><!--/pricing -->
 
@@ -440,22 +403,13 @@
   </div><!--/price-program -->
 
 
-
-
-
- 
-
-
-  
-
-
   <div class="container-fluid">
     <div class="row">
       <%= render "footer" %>
     </div>
   </div>
+</div>
 
-</div><!--/new_site -->
 <script type="text/javascript">
   $(document).on("ready page:load", window.ready_pricing);
   $(document).on("page:before-change", function() {

@@ -1,88 +1,17 @@
-<div class="new_site">
-  <%= render "navigation" %>
-  <div class="pitch faq">
+<div class="new-site faq">
+  <%= render "layouts/navbar/pages_white", hide_login: true %>
+  <div class="section section-dark section-faq-header">
     <div class="container">
       <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-          <h2><span class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="45" height="61" viewBox="0 0 45 61">
-              <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAA9CAMAAAAOEhAzAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAATlBMVEUAAAD/////////////////////////////////////////////////////////RgD/RgD/RgD/RgD/RgD/RgD/RgD/RgD/////RgAAAACjiGzUAAAAF3RSTlMAZnciuxHuRIjMM92ZVapUcA7AIKjgHOQ5ed8AAAABYktHRACIBR1IAAAACXBIWXMAAAsSAAALEgHS3X78AAABWklEQVRIx+3Vy3aEIAwAUF4KKjh90///0i4mkQQIeLpts3LkwkQSVGlDQ1XBR61ymcZS6ZWN+kp7jm0e6ioVPdaO6zDWmettonems6CPrZO452NkbUgxUm3gXptJgnWohjEj6mzb2vhW+wNmFbw/76w9DdmFpjauow2MbUXDfNPT2BNNbXxPX8+EeMHpXX1W9UnYOl0N23pWtQl9jRtW1Sb1NfYQNhb8XAQNl5rV5lCCxibiLSVpz+oTr3/qa9zg58GHvrGSxuIlctxXJepA6pPK7gv6qh6fKWjaWK50jaDxyfZSGzXQ8br2JClJl8Yy5K6kS7XPkrao8URYvFiGGpbUljaBqPEEwJEOYw0DG9RGjzVu85X/WLMX9KEm2lAdZzpRbWZ6oXqfafqpwXfFQMei3VyTT6SZa/L59XONJyKXd7Ovp//H7+Pxcj9e1dv3/Xj/I/rj8358/QCd/5PAWPoF3wAAAABJRU5ErkJggg==" width="45" height="61"/>
-            </svg>
-          </span>
-          Preguntas Frecuentes</h2>
+        <div class="col-md-10 col-md-offset-1 text-center">
+          <h2>Preguntas Frecuentes</h2>
         </div>
       </div><!--/row -->
     </div><!--/container -->
   </div><!--/pitch faq -->
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="container">
-        <div class="faqs">
-          <div class="col-md-8 col-md-offset-2">
-            <section class="question">
-              <h3>¿Qué hace a Make it Real diferente?</h3>
-              <p>Make it Real es un programa muy estructurado, apoyado de mentores y una increíble comunidad, pero con la flexibilidad horaria y la dedicación que más te convenga.</p>
-              <p>Hemos diseñado cuidadosamente el programa para que aprendas las habilidades que se requieren para convertirte en Desarrollador Web y puedas construir y desplegar aplicaciones complejas y robustas.</p>
-              <p>Nuestro programa es muy personalizado. Cuando ingresas te reúnes con un mentor experimentado que va a estar pendiente de tu progreso, te responderá tus dudas, aclarará conceptos y te ayudará a avanzar en tu proyecto personal.</p>
-            </section><!--/question -->
+  <%= render "faqs" %>
 
-            <section class="question">
-              <h3>¿Cuánto tiempo debo dedicar?</h3>
-              <p>Lo mínimo que debes dedicar para completarlo en un año es:<br>Para Front End 10 horas a la semana y para Full Stack entre 15 y 20 horas a la semana. Sin embargo, puedes avanzar más rápido si así lo deseas.</p>
-            </section><!--/question -->
+  <%= render "footer" %>
 
-            <section class="question">
-              <h3>¿Me van a ayudar a encontrar empleo?</h3>
-              <p>Sí. Aunque no brindamos ninguna garantía, nuestro programa está diseñado para que consigas un empleo al terminar el programa. Estamos constantemente formalizando alianzas con empresas interesadas en contratar a nuestros estudiantes. La mayoría de estudiantes que ha terminado el programa ha conseguido empleo en los primeros 3 meses después de finalizarlo.</p>
-            </section><!--/question -->
-
-            <section class="question">
-              <h3>¿Por qué están haciendo esto?</h3>
-              <p>Porque creemos que el sistema de educación formal no se ha adaptado a las necesidades del mundo actual. Queremos mostrar que existen mejores formas de aprender a programar que ingresar a una universidad y que los títulos no son la única forma de conseguir trabajo.</p>
-              <p>Pero nuestra mayor motivación es que más gente aprenda a programar y mejore su calidad de vida. La programación nos permite trabajar desde donde queramos y en la mayoría de casos en horarios flexibles. Eso abre muchas posibilidades para viajar, compartir en familia, y lo más importante: intentar mejorar el mundo.</p>
-            </section><!--/question -->
-
-            <section class="question">
-              <h3>¿Por qué un programa virtual y no presencial?</h3>
-              <p>Porque cada persona aprende a un ritmo diferente. Un programa virtual le permite a cada estudiante avanzar a su propio ritmo acompañado de un mentor que guía su aprendizaje y, al mismo tiempo, interactuar con otros estudiantes en diferentes niveles de conocimiento.</p>
-            </section><!--/question -->
-
-            <section class="question">
-              <h3>¿Cómo sé si este programa es para mí?</h3>
-              <p>Si sientes que el programa no es para ti y te retiras en los primeros 15 días, recibirás un reembolso completo. Si cancelas después, recibirás un reembolso parcial según tu avance en la plataforma. Cero riesgo.</p>
-            </section><!--/question -->
-
-            <section class="question">
-              <h3>¿Cuáles son los requerimientos?</h3>
-              <p>Lo único que necesitas es un computador (con cualquier sistema operativo) y una buena conexión a Internet para ver los videos. Una advertencia: la mayoría de recursos están en Inglés. Es preferible si al menos lo entiendes escrito. Pero si no, no te preocupes, puedes usar un traductor si es necesario y buscar otros recursos por tu cuenta.</p>
-            </section><!--/question -->
-
-            <section class="question">
-              <h3>¿Qué pasa si no lo completo durante el año?</h3>
-              <p>El objetivo es que lo completes. Pero si por alguna razón no lo puedes hacer deberás pagar mensualmente para mantener activa la plataforma. Aún no hemos definido el costo.</p>
-              <p>Nuestra recomendación es que pienses bien si le puedes dedicar el tiempo antes de tomar la decisión.</p>
-            </section><!--/question -->
-
-            <section class="question">
-              <h3>¿Por qué Ruby on Rails?</h3>
-              <p>Por varias razones. La primera es que no importa con qué tecnología aprendas, el mundo de la programación se mueve muy rápido y en algunos años la mayoría de tecnologías actuales serán obsoletas. El objetivo del programa es que aprendas a aprender.</p>
-              <p>Seleccionamos Ruby on Rails porque es un framework muy expresivo, fácil de aprender y con una gran comunidad de desarrolladores en el mundo.</p>
-              <p>No tenemos nada en contra de otros lenguajes y frameworks de programación, pero creemos que Rails tiene el balance perfecto entre madurez y facilidad de aprendizaje. Además, una vez que aprendas Rails, tus conocimientos pueden ser rápidamente transferidos a otros frameworks de programación similares en otros lenguajes como Django (Python), Laravel (PHP) o Express.js (Node.js).</p>
-            </section><!--/question -->
-
-            <section class="question">
-              <h3>¿Por qué AngularJS?</h3>
-              <p>El desarrollo Front End es quizá el área del desarrollo Web que más rápido está evolucionando actualmente. Hemos seleccionado AngularJS porque es lo que más nos han pedido las empresas. Sin embargo, nuestro enfoque es que aprendas JavaScript (y el patrón MVC) muy bien para que te puedas adaptar a cualquier nuevo framework o librería.</p>
-            </section><!--/question -->
-          </div>
-        </div><!--/pitch faqs -->
-      </div>
-
-      <%= render "footer" %>
-    </div><!--/row -->
-  </div><!--/contianer-fluid -->
-
-
-
-</div><!--/new_site -->
+</div><!--/new-site -->
