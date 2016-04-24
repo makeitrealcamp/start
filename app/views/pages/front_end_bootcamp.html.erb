@@ -6,8 +6,8 @@
 <% end %>
 
 <div class="new-site program front-end-bootcamp">
-  <%= render "layouts/navbar/pages_white", hide_login: true, show_apply: true, url: "https://makeitreal.typeform.com/to/KbayyW" %>
-  <%= render "pages/header_apply", url: "https://makeitreal.typeform.com/to/KbayyW" %>
+  <%= render "layouts/navbar/pages_white", hide_login: true, show_apply: true, url: @typeform_url %>
+  <%= render "pages/header_apply", url: @typeform_url %>
 
   <div class="program-intro">
     <div class="container">
@@ -40,7 +40,7 @@
                 </div>
               </div>
 
-              <a href="https://makeitreal.typeform.com/to/KbayyW" class="btn btn-primary">¡Aplica Ahora!</a>
+              <a href="<%= @typeform_url %>" class="btn btn-primary">¡Aplica Ahora!</a>
             </div>
           </div>
         </div>
@@ -363,5 +363,4 @@
   <%= render "pages/main_quote" %>
   <%= render "pages/capture_email" %>
   <%= render "footer" %>
-
 </div>

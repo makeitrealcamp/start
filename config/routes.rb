@@ -2,14 +2,13 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   get "curriculum", to: "pages#curriculum"
-  get "front-end-bootcamp", to: "pages#front_end_on_site", as: :front_end_on_site
+  get "front-end-bootcamp", to: "pages#front_end_bootcamp", as: :front_end_bootcamp
   get "full-stack-online", to: "pages#full_stack_online", as: :full_stack_online
   get "front-end-online", to: "pages#front_end_online", as: :front_end_online
   get "full_stack_web_developer", to: redirect('/full-stack-online')
   get "front_end_web_developer", to: redirect('/front-end-online')
   get "faq", to: "pages#faq"
   get "makers", to: "pages#makers"
-  get "publicar", to: "pages#publicar"
   get "scholarships", to: "pages#scholarships"
   get "thanks", to: "pages#thanks"
 
