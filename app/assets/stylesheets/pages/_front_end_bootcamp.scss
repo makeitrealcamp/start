@@ -44,7 +44,8 @@
 
     .bootcamp-info-date {
       font-size: 22px;
-      margin-left: 10px;
+
+      @media (min-width: $screen-sm-min) { margin-left: 10px; }
 
       span.location-label { font-size: 24px; }
     }
@@ -57,10 +58,16 @@
     }
 
     span.glyphicon {
-      display: inline-block;
+      display: block;
       color: #ddd;
-      font-size: 38px;
+      font-size: 32px;
       vertical-align: super;
+      margin-bottom: 10px;
+
+      @media (min-width: $screen-sm-min) {
+        display: inline-block;
+        font-size: 38px;
+      }
     }
 
     .btn {

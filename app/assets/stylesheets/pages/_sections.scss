@@ -85,7 +85,7 @@
     background: #303030;
 
     h2, h3 { color: white; }
-    p, p.subhead { color: #ccc; }
+    p, p.subhead, ul { color: #ccc; }
   }
 
   .section.section-bordered {
@@ -115,33 +115,7 @@
     background: white;
     padding-bottom: 100px;
 
-    .text {
-      font-size: 21px;
-      text-align: center;
-      margin-bottom: 40px;
-      width: 100%;
-      @media (max-width: $screen-md-min) {
-        width: 80%;
-        margin-left: auto;
-        margin-right: auto;
-      }
-    }
-    h4 {
-      font-size: 26px;
-      font-weight: 600;
-      color: #ff4300;
-      font-family: 'Open Sans', sans-serif;
-      text-align: center;
-      margin-bottom: 25px;
-      margin-top: 35px;
-    }
-    p {
-      text-align: center;
-      width: 80%;
-      margin: 0 auto 20px;
-      line-height: 1.7em;
-      font-size: 18px;
-    }
+    p.subhead { margin-bottom: 30px; }
 
     img { margin-top: 60px; }
   }
@@ -336,15 +310,6 @@
         font-size: 14px;
         color: #929292;
       }
-      ul {
-        margin-bottom: 60px;
-        text-align: left;
-      }
-      li {
-        font-size: 18px;
-        margin-bottom: 15px;
-        list-style-image: image-url("bulletMir.png");
-      }
 
       .top-container {
         z-index: 1;
@@ -413,23 +378,35 @@
         }
       }
     }
+  }
 
-    .benefits {
-      h3 {
-        color: #fff;
-        font-family: "Karla",sans-serif;
-        font-size: 34px;
-        font-weight: 700;
-        margin-bottom: 50px;
-        padding-bottom: 10px;
-      }
-      .btn-main {
-        background: #f04500 none repeat scroll 0 0;
-        border: 1px solid #f04500;
-        color: #fff;
-        font-size: 16px;
-        font-weight: 600;
-      }
+  .section-benefits {
+    h3 {
+      color: #fff;
+      font-family: "Karla",sans-serif;
+      font-size: 34px;
+      font-weight: 700;
+      margin-bottom: 50px;
+      padding: 100px 0 10px;
+    }
+
+    ul {
+      margin-bottom: 60px;
+      text-align: left;
+    }
+
+    li {
+      font-size: 18px;
+      margin-bottom: 15px;
+      list-style-image: image-url("bulletMir.png");
+    }
+
+    .btn-main {
+      background: #f04500 none repeat scroll 0 0;
+      border: 1px solid #f04500;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
     }
   }
 
@@ -456,19 +433,6 @@
       @media (max-width: $screen-lg-min) {
         margin-top: 10px;
       }
-    }
-  }
-
-  .benefits {
-    background: #1c1c1c;
-    overflow: hidden;
-    min-height: 600px;
-    h4 {
-      font-size: 28px;
-      margin-top: 100px;
-      margin-bottom: 60px;
-      font-family: "Karla",sans-serif;
-      font-size: 38px;
     }
   }
 
