@@ -123,6 +123,8 @@
   // main quote of the home and program pages
   .section-quote {
     background: #f5f5f2;
+    border-top: 1px solid darken(#f5f5f2, 15%);
+    border-bottom: 1px solid darken(#f5f5f2, 15%);
 
     p.text {
       margin-top: 40px;
