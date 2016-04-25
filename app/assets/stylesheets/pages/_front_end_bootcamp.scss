@@ -229,4 +229,52 @@
       }
     }
   }
+
+  .bootcamp-pricing {
+    .price {
+      color: #D13221;
+      font-size: 32px;
+      font-weight: 600;
+    }
+
+    .price-financing {
+      color: #666;
+      font-size: 18px;
+      line-height: 1.6;
+      text-align: left;
+      margin-top: 40px;
+
+      @media (min-width: $screen-sm-min) { margin-top: 0px;}
+    }
+
+    .price-details {
+      color: #999;
+      font-size: 14px;
+      margin: 20px auto 0;
+      max-width: 450px;
+
+      @media (min-width: $screen-sm-min) { margin-top: 30px;}
+    }
+  }
+
+  .bootcamp-magnet {
+    padding-top: 70px;
+    padding-bottom: 70px;
+
+    p.intro-text {
+      margin-bottom: 50px;
+    }
+
+    p.subhead {
+      color: #ddd;
+      font-size: 18px;
+      font-weight: 300;
+      margin-bottom: 60px;
+    }
+
+    .btn {
+      border-radius: 0;
+      padding: 15px 40px;
+    }
+  }
 }
