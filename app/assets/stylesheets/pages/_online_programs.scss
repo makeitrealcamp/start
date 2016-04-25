@@ -1,0 +1,250 @@
+.new-site {
+  .full-stack {
+    background: image-url("01interna-programa.jpg") center center;
+    background-size: cover;
+  }
+
+  .bullets-program {
+    text-align: center;
+    margin-top: 60px;
+
+    @media (min-width: $screen-sm-min) { text-align: left; }
+    @media (min-width: $screen-md-min) { margin-top: 0; }
+
+    ul {
+      list-style-type: none;
+      @media (max-width: $screen-md-min) {
+        padding-left: 0;
+      }
+    }
+
+    li {
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+    .icon-bullet-program {
+      float: left;
+      width: 20%;
+    }
+    .content-bullet-program {
+      @media (min-width: $screen-sm-min) {
+        float: left;
+        width: 80%;
+      }
+    }
+    h2 {
+      color: #fff;
+      font-family: "Open Sans",sans-serif;
+      font-weight: 300;
+      margin-bottom: 10px;
+      margin-top: 0;
+      padding-bottom: 5px;
+      text-transform: uppercase;
+    }
+  }
+
+  .data-program {
+    .each-data-program {
+      text-align: center;
+      border: 1px solid #dddddd;
+      border-radius: 4px;
+      margin: 0 auto 20px;
+      padding: 15px;
+      height: 200px;
+      max-width: 400px;
+      overflow: hidden;
+      background: #fff;
+      @media (max-width: $screen-md-min) {
+        height: auto;
+      }
+
+      p {
+        font-size: 16px;
+      }
+    }
+    .data-number {
+      color: #005e9f;
+      display: block;
+      font-size: 48px;
+    }
+  }
+  .target-program {
+      border-top: solid 1px #dddddd;
+  }
+  .each-target-program {
+    text-align: center;
+
+    p {
+      font-weight: 300;
+      line-height: 1.6;
+      padding: 20px;
+    }
+  }
+  .target-profile {
+    font-size: 18px;
+  }
+  .target-icon {
+    width: 90px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .mentories-program {
+    background: image-url("02interna-programa.jpg") center center;
+    background-size: cover;
+    padding-top: 70px;
+
+    .subhead { color: #fff;  }
+
+    .program-title {
+      h3 {
+        color: #fff;
+        font-family: "Karla",sans-serif;
+        font-size: 34px;
+        font-weight: 700;
+        margin-bottom: 50px;
+        padding-bottom: 10px;
+      }
+    }
+  }
+
+  .skill-program {
+    .feature-program-skill {
+      font-size: 30px;
+      margin-bottom: 50px;
+      text-transform: none;
+    }
+  }
+
+  .each-learning-program {
+    margin-bottom: 30px;
+
+    @media (max-width: $screen-md-min) { margin-bottom: 75px; }
+  }
+
+  .learnings-program {
+    .technology {
+      height: 200px;
+      overflow: hidden;
+      margin-top: 20px;
+
+      .title-container {
+        text-align: center;
+        margin-bottom: 10px;
+        overflow: hidden;
+
+        @media (min-width: $screen-md-min) { text-align: left; }
+      }
+
+      p {
+        color: #666;
+        font-size: 16px;
+        text-align: center;
+        margin: 0 auto;
+        max-width: 350px;
+
+        @media (min-width: $screen-md-min) {
+          font-size: 18px;
+          text-align: left;
+        }
+      }
+
+      h4 {
+        float: none;
+        font-size: 18px;
+        margin-left: 0px;
+        margin-top: 7px;
+
+        @media (min-width: $screen-md-min) {
+          float: left;
+          font-size: 21px;
+          margin-left: 10px;
+        }
+      }
+
+      .icon {
+        float: none;
+        color: #005e9f;
+        font-size: 42px;
+
+        @media (min-width: $screen-md-min) { float: left; }
+      }
+    }
+  }
+
+  .applications-program {
+    h4 {
+      color: #ff4300;
+    }
+    .each-application-program {
+      margin-bottom: 50px;
+      @media (max-width: $screen-md-min) {
+        margin-bottom: 100px;
+      }
+      p {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .project-program {
+    background: image-url("03interna-programa.jpg") center top;
+    background-size: cover;
+    padding: 100px 0;
+
+    .program-title {
+      h3 {
+        color: #fff;
+        font-family: "Karla",sans-serif;
+        font-size: 34px;
+        font-weight: 700;
+        margin-bottom: 50px;
+        padding-bottom: 10px;
+      }
+    }
+    .subhead {
+      color: #fff;
+    }
+    .btn-main {
+      display: inline-block;
+      color: #fff;
+      width: auto;
+      padding: 10px 20px;
+      margin-top: 0;
+
+      @media (min-width: $screen-md-min) { margin-top: 50px; }
+    }
+  }
+
+
+  .email-program {
+    background: #303030;
+    border-top: 0;
+    padding-bottom: 40px;
+
+    .email {
+      padding-bottom: 230px;
+
+      &.form-control { padding-bottom: 10px; }
+    }
+  }
+
+
+    .mentories-program {
+      &.front-end {
+        background: image-url("01interna-programa.jpg") center center;
+        background-size: cover;
+      }
+    }
+    .project-program {
+      &.front-end {
+        background: image-url("02interna-programa.jpg") center center;
+        background-size: cover;
+      }
+    }
+    .full-stack {
+      &.front-end {
+        background: image-url("04interna-programa.jpg") center bottom;
+        background-size: cover;
+      }
+    }
+}
