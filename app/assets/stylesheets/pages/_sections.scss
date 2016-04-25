@@ -84,7 +84,7 @@
   .section.section-dark {
     background: #303030;
 
-    h2, h3 { color: white; }
+    h2, h3, p.intro-text { color: white; }
     p, p.subhead, ul { color: #ccc; }
   }
 
@@ -123,6 +123,8 @@
   // main quote of the home and program pages
   .section-quote {
     background: #f5f5f2;
+    border-top: 1px solid darken(#f5f5f2, 15%);
+    border-bottom: 1px solid darken(#f5f5f2, 15%);
 
     p.text {
       margin-top: 40px;
