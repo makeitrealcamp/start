@@ -22,6 +22,12 @@ class PagesController < ApplicationController
     @typeform_url = "https://makeitreal.typeform.com/to/Cr9SSv?referer=#{session['referer']}"
   end
 
+  def send_web_developer_guide
+    PagesMailer.web_developer_guide(SubscriberForm.new(params)).deliver_now
+
+    render :web_developer_guide
+  end
+
   private
     def save_referer
       session['referer'] = request.env["HTTP_REFERER"] || 'none' unless session['referer']

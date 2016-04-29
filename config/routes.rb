@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get "makers", to: "pages#makers"
   get "scholarships", to: "pages#scholarships"
   get "thanks", to: "pages#thanks"
+  get "como-convertirte-en-web-developer", to: "pages#web_developer_guide", as: :web_developer_guide
+  post "como-convertirte-en-web-developer", to: "pages#send_web_developer_guide"
 
   get 'handbook', to: 'pages#handbook', as: :handbook
 

@@ -1,0 +1,46 @@
+<div class="new-site web-developer-guide">
+  <%= render "layouts/navbar/pages_dark", hide_login: true %>
+  <section class="section section-white section-book">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 text-center col-md-push-6">
+          <%= image_tag "web-developer-guide-book.png" %>
+        </div>
+        <div class="col-md-6 col-md-pull-6">
+          <p>Conoce qué hace un Desarrollador Web, qué tecnologías debe aprender, cómo consigue su primer empleo y por dónde empieza su aprendizaje. <strong>Descarga este e-book completamente gratis</strong>!</p>
+
+          <%= form_tag do %>
+            <div class="form-group">
+              <label for="first_name">Nombre *</label>
+              <div class="row">
+                <div class="col-xs-6"><input type="text" id="first_name" name="first_name" class="form-control" placeholder="Nombre" required></div>
+                <div class="col-xs-6"><input type="text" id="last_name" name="last_name" class="form-control" placeholder="Apellido" required></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-group">
+                <label for="email">E-mail *</label>
+                <input type="text" id="email" name="email" class="form-control" placeholder="Ingresa tu email" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="goal">Selecciona la opción que te describa mejor *</label>
+              <select name="profile" id="profile" class="form-control" required>
+                <option value=""><< Selecciona >></option>
+                <option value="change-career">Quiero cambiar de carrera</option>
+                <option value="engineer-studying">Estudio Sistemas (o algo relacionado) y quiero complementar</option>
+                <option value="improve">Quiero actualizar/mejorar mis conocimientos en programación</option>
+                <option value="entrepreneur">Soy emprendedor</option>
+              </select>
+            </div>
+            <div>
+              <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Descargar libro</button>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%= render "footer" %>
+</div>

@@ -1,0 +1,29 @@
+.new-site.web-developer-guide {
+  .section-book {
+    padding-top: 60px;
+
+    .intro-text {
+      margin-top: 30px;
+      margin-bottom: 15px;
+
+      strong { font-weight: normal; }
+    }
+
+    p {
+      margin-top: 50px;
+    }
+
+    form {
+      margin-top: 40px;
+    }
+
+    img {
+      width: 100%;
+      max-width: 300px;
+
+      @media (min-width: $screen-md-min) {
+        max-width: 500px;
+      }
+    }
+  }
+}
