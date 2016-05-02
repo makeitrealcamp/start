@@ -23,8 +23,20 @@ class PagesController < ApplicationController
   end
 
   def send_web_developer_guide
-    PagesMailer.web_developer_guide(SubscriberForm.new(params)).deliver_now
+    subscriber = SubscriberForm.new(params)
 
+    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_APP_ID'], api_key: ENV['INTERCOM_KEY'])
+    user = intercom.users.create(email: subscriber.email, name: "#{subscriber.first_name} #{subscriber.last_name}", signed_up_at: Time.now.to_i, custom_attributes: { "User Goal" => subscriber.goal })
+    intercom.events.create(
+      event_name: "requested-developer-guide", created_at: Time.now.to_i,
+      email: subscriber.email,
+      metadata: {
+        ip: request.remote_ip
+      }
+    )
+    PagesMailer.web_developer_guide(subscriber).deliver_now
+
+    @email_sent = true
     render :web_developer_guide
   end
 

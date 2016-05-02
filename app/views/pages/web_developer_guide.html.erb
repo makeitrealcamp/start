@@ -7,6 +7,9 @@
           <%= image_tag "web-developer-guide-book.png" %>
         </div>
         <div class="col-md-6 col-md-pull-6">
+          <% if @email_sent %>
+            <div class="alert alert-info" role="alert"><strong>Tu libro va en camino!</strong> En unos minutos recibirás un correo electrónico con el link de descarga.</div>
+          <% end %>
           <p>Conoce qué hace un Desarrollador Web, qué tecnologías debe aprender, cómo consigue su primer empleo y por dónde empieza su aprendizaje. <strong>Descarga este e-book completamente gratis</strong>!</p>
 
           <%= form_tag do %>
@@ -25,12 +28,12 @@
             </div>
             <div class="form-group">
               <label for="goal">Selecciona la opción que te describa mejor *</label>
-              <select name="profile" id="profile" class="form-control" required>
+              <select name="goal" id="goal" class="form-control" required>
                 <option value=""><< Selecciona >></option>
                 <option value="change-career">Quiero cambiar de carrera</option>
-                <option value="engineer-studying">Estudio Sistemas (o algo relacionado) y quiero complementar</option>
-                <option value="improve">Quiero actualizar/mejorar mis conocimientos en programación</option>
-                <option value="entrepreneur">Soy emprendedor</option>
+                <option value="complement-career">Estudio Sistemas (o algo relacionado) y quiero complementar</option>
+                <option value="improve-skills">Quiero actualizar/mejorar mis conocimientos en programación</option>
+                <option value="create-products">Soy emprendedor</option>
               </select>
             </div>
             <div>
