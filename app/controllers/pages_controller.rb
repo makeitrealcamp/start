@@ -40,6 +40,24 @@ class PagesController < ApplicationController
     render :web_developer_guide
   end
 
+  def download_web_developer_guide
+    if params[:email].blank?
+      redirect_to root_path
+      return
+    end
+
+    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_APP_ID'], api_key: ENV['INTERCOM_KEY'])
+    intercom.events.create(
+      event_name: "downloaded-developer-guide", created_at: Time.now.to_i,
+      email: params[:email],
+      metadata: {
+        ip: request.remote_ip
+      }
+    )
+
+    redirect_to "https://s3.amazonaws.com/makeitreal/e-books/convertirte-en-desarrollador-web.pdf"
+  end
+
   private
     def save_referer
       session['referer'] = request.env["HTTP_REFERER"] || 'none' unless session['referer']
