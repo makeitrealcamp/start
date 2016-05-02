@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby "2.2.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -74,6 +75,7 @@ gem 'date_supercharger'
 gem 'json-schema'
 gem 'simple_timeout'
 gem 'gretel'
+gem 'intercom', '~> 3.4.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

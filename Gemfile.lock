@@ -199,6 +199,8 @@ GEM
     httpclient (2.6.0.1)
     i18n (0.7.0)
     ice_nine (0.11.1)
+    intercom (3.4.0)
+      json (~> 1.8)
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -447,6 +449,7 @@ DEPENDENCIES
   gravatar-ultimate
   gretel
   hstore_accessor
+  intercom (~> 3.4.0)
   jbuilder (~> 2.0)
   jquery-rails
   json-schema
@@ -489,3 +492,6 @@ DEPENDENCIES
   web-console (~> 2.0)
   will_paginate
   zeroclipboard-rails
+
+BUNDLED WITH
+   1.11.2
