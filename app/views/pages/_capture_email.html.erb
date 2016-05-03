@@ -1,11 +1,19 @@
 <div class="section section-dark section-email">
   <div class="container">
+    <h2>Mantente informado</h2>
+    <p class="subhead">Recibe contenido exclusivo, información de nuestros Bootcamps, talleres y otros eventos. Además, descarga nuestro e-book completamente gratis!</p>
     <div class="row">
-      <div class="col-sm-6 col-md-5 col-md-offset-1 text-center"><%= image_tag "web-developer-guide-book.png" %></div>
-      <div class="col-sm-6 col-md-5 text-center">
-        <h3>Mantente informado</h3>
-        <p>Recibe información de nuestros Bootcamps, talleres y otros eventos. Además, descarga nuestro e-book completamente gratis!</p>
-        <%= link_to "Suscribirme y descargar e-book", web_developer_guide_path, class: "btn btn-main" %>
+      <div class="col-sm-6 text-center">
+        <%= image_tag "web-developer-guide-book.png" %>
+      </div>
+      <div class="col-sm-6">
+
+        <%= form_tag web_developer_guide_path, id: "web-developer-guide-form", remote: true do %>
+          <%= render "capture_email_form" %>
+          <div>
+            <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Suscribirme y descargar libro</button>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

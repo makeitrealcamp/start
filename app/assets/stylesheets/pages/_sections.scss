@@ -174,7 +174,6 @@
   // email capture section of the home and program pages
   .section-email {
     position: relative;
-    padding-top: 100px;
     padding-bottom: 100px;
 
     img {
@@ -193,13 +192,22 @@
 
       @media (min-width: $screen-sm-min) { font-size: 28px; }
     }
-    p {
-      font-size: 16px;
-      text-align: center;
-      margin: 0 auto 50px;
-      max-width: 500px;
 
-      @media (min-width: $screen-sm-min) { font-size: 18px; }
+    form {
+      margin-top: 40px;
+
+      @media (min-width: $screen-sm-min) { margin-top: 20px; }
+
+      label {
+        color: white;
+        font-weight: normal;
+      }
+
+      .form-control {
+        background: #444;
+        color: #ccc;
+        border-color: #555;
+      }
     }
 
     .btn-main {
@@ -210,6 +218,18 @@
       padding: 10px 20px;
 
       @media (min-width: $screen-sm-min) { font-size: 16px; }
+    }
+
+    .thank-web-developer-guide {
+      text-align: center;
+      margin-top: 40px;
+
+      @media (min-width: $screen-sm-min) { text-align: left; }
+    }
+    .thank-action {
+      margin-top: 20px;
+
+      @media (min-width: $screen-sm-min) { margin-top: 40px; }
     }
   }
 
