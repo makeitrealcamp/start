@@ -35,8 +35,13 @@ class PagesController < ApplicationController
     )
     PagesMailer.web_developer_guide(subscriber).deliver_now
 
-    @email_sent = true
-    render :web_developer_guide
+    respond_to do |format|
+      format.html do
+        @email_sent = true
+        render :web_developer_guide
+      end
+      format.js
+    end
   end
 
   def download_web_developer_guide
