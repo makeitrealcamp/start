@@ -1,5 +1,4 @@
 class PagesController < ApplicationController
-  before_action :public_access, except: [:handbook]
   before_action :save_referer, except: [:handbook]
 
   def home
@@ -62,5 +61,4 @@ class PagesController < ApplicationController
     def save_referer
       session['referer'] = request.env["HTTP_REFERER"] || 'none' unless session['referer']
     end
-
 end
