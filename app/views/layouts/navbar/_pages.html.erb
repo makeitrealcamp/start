@@ -47,10 +47,10 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <% unless hide_login %>
+          <% unless hide_login && !signed_in? %>
             <li><%= link_to "Ingresar", login_path %></li>
           <% end %>
-          <% if show_apply %>
+          <% if show_apply && !signed_in? %>
             <li class="apply hidden-xs hidden-sm"><a href="<%= url %>" class="btn btn-primary">¡Aplica Ahora!</a></li>
           <% end %>
         </ul>
