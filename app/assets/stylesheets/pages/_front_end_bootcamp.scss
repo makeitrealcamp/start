@@ -2,6 +2,7 @@
   .program-intro {
     background: #D13221 image-url("front-end-bootcamp-bg.jpg") center center;
     background-size: cover;
+    margin-bottom: 60px;
   }
 
   .bootcamp-info {
@@ -43,7 +44,7 @@
     }
 
     .bootcamp-info-date {
-      font-size: 22px;
+      font-size: 20px;
 
       @media (min-width: $screen-sm-min) { margin-left: 10px; }
 
@@ -77,6 +78,32 @@
     }
   }
 
+  .section.section-dates-phases {
+    padding-top: 20px;
+    border-bottom: 1px solid darken(#f5f5f2, 15%);
+    padding-bottom: 70px;
+
+    @media (min-width: $screen-sm-min) { padding-top: 40px; }
+
+    .img-horizontal {
+      width: 95%;
+      max-width: 800px;
+
+      @media (min-width: $screen-md-min) { width: 80%; }
+    }
+
+    .img-vertical { max-width: 290px; }
+
+    .exp {
+      color: #999;
+      font-size: 14px;
+      margin-top: 50px;
+    }
+  }
+
+  .section.section-pitch {
+    padding-top: 60px;
+  }
   .section-pitch h3 { margin-top: 40px; }
 
   // body of the target section
