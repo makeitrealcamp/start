@@ -57,7 +57,7 @@ class Challenge < ActiveRecord::Base
 
   def self.for(user)
     if user.is_admin?
-      published
+      all
     else
       published.where(id: user.available_paths.map{ |path| path.challenges.pluck(:id) }.flatten)
     end
