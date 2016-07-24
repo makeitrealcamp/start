@@ -33,7 +33,7 @@ class PagesController < ApplicationController
       ip: request.remote_ip
     }
     CreateLeadJob.perform_later(data)
-    redirect_to "/thanks-online"
+    redirect_to "/thanks-front-end-online"
   end
 
   def create_full_stack_online_lead
@@ -48,7 +48,7 @@ class PagesController < ApplicationController
       ip: request.remote_ip
     }
     CreateLeadJob.perform_later(data)
-    redirect_to "/thanks-online"
+    redirect_to "/thanks-full-stack-online"
   end
 
   def send_web_developer_guide

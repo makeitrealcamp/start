@@ -8,7 +8,6 @@ class CreateLeadJob < ActiveJob::Base
     country = data[:country]
     mobile = data[:mobile]
 
-    puts "INTERCOM_APP_ID: #{ENV['INTERCOM_APP_ID']}"
     intercom = Intercom::Client.new(app_id: ENV['INTERCOM_APP_ID'], api_key: ENV['INTERCOM_KEY'])
     user = intercom.users.create(email: email, name: "#{first_name} #{last_name}",
       custom_attributes: {
