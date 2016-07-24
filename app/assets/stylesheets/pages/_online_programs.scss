@@ -92,8 +92,9 @@
     background: image-url("02interna-programa.jpg") center center;
     background-size: cover;
     padding-top: 70px;
+    padding-bottom: 0;
 
-    .subhead { color: #fff;  }
+    .subhead { color: #fff; }
 
     .program-title {
       h3 {
@@ -169,6 +170,57 @@
         @media (min-width: $screen-md-min) { float: left; }
       }
     }
+
+    .program-module {
+      background: white;
+      margin-top: 20px;
+      border: 1px solid #ddd;
+
+      .module-title {
+        padding: 20px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        height: 90px;
+      }
+
+      .module-body {
+        padding: 15px 20px;
+        text-align: left;
+        overflow: hidden;
+      }
+
+      p {
+        color: #666;
+        font-size: 16px;
+      }
+
+      h4 {
+        float: left;
+        font-size: 21px;
+        margin-left: 15px;
+        margin-top: 3px;
+        margin-bottom: 0;
+        text-align: left;
+        margin-left: 10px;
+
+        small {
+          display: block;
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+      }
+
+      .icon {
+        float: left;
+        color: #005e9f;
+        font-size: 48px;
+      }
+
+      ul {
+        font-size: 14px;
+        padding-left: 20px;
+      }
+    }
   }
 
   .applications-program {
@@ -215,7 +267,6 @@
     }
   }
 
-
   .email-program {
     background: #303030;
     border-top: 0;
@@ -227,24 +278,4 @@
       &.form-control { padding-bottom: 10px; }
     }
   }
-
-
-    .mentories-program {
-      &.front-end {
-        background: image-url("01interna-programa.jpg") center center;
-        background-size: cover;
-      }
-    }
-    .project-program {
-      &.front-end {
-        background: image-url("02interna-programa.jpg") center center;
-        background-size: cover;
-      }
-    }
-    .full-stack {
-      &.front-end {
-        background: image-url("04interna-programa.jpg") center bottom;
-        background-size: cover;
-      }
-    }
 }
