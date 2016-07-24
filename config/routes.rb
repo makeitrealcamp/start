@@ -12,8 +12,9 @@ Rails.application.routes.draw do
   get "faq", to: "pages#faq"
   get "makers", to: "pages#makers"
   get "scholarships", to: "pages#scholarships"
-  get "thanks", to: "pages#thanks"
-  get "thanks-online", to: "pages#thanks_online"
+  get "thanks-front-end-bootcamp", to: "pages#thanks_bootcamp"
+  get "thanks-front-end-online", to: "pages#thanks_online"
+  get "thanks-full-stack-online", to: "pages#thanks_online"
   get "como-convertirte-en-web-developer", to: "pages#web_developer_guide", as: :web_developer_guide
   post "como-convertirte-en-web-developer", to: "pages#send_web_developer_guide"
   get "download-web-developer-guide", to: "pages#download_web_developer_guide", as: :download_web_developer_guide
