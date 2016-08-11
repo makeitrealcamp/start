@@ -1,0 +1,22 @@
+.new-site.job-guarantee {
+
+  .section-job-header {
+    background: linear-gradient( rgba(34, 44, 55, 0.9), rgba(34, 44, 55, 0.9) ), image-url('faq-bg.jpg') no-repeat center center;
+    background-size: cover;
+    padding-bottom: 50px;
+  }
+
+  .job-guarantee-body {
+    margin-top: 60px;
+
+    h3 {
+      font-size: 24px;
+      margin: 30px auto 20px; 
+    }
+
+    p, ul {
+      color: #333;
+      line-height: 1.6;
+    }
+  }
+}
