@@ -54,15 +54,10 @@ class PagesController < ApplicationController
   def send_web_developer_guide
     subscriber = SubscriberForm.new(params)
 
-    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_APP_ID'], api_key: ENV['INTERCOM_KEY'])
-    user = intercom.users.create(email: subscriber.email, name: "#{subscriber.first_name} #{subscriber.last_name}", custom_attributes: { "User Goal" => subscriber.goal })
-    intercom.events.create(
-      event_name: "requested-developer-guide", created_at: Time.now.to_i,
-      email: subscriber.email,
-      metadata: {
-        ip: request.remote_ip
-      }
-    )
+    person = { pid: cookies[:dp_pid], email: subscriber.email, first_name: subscriber.first_name,
+        last_name: subscriber.last_name, user_goal: subscriber.goal }
+    ConvertLoop.event_logs.send(name: "requested-developer-guide", person: person)
+
     PagesMailer.web_developer_guide(subscriber).deliver_now
 
     respond_to do |format|
@@ -80,14 +75,9 @@ class PagesController < ApplicationController
       return
     end
 
-    intercom = Intercom::Client.new(app_id: ENV['INTERCOM_APP_ID'], api_key: ENV['INTERCOM_KEY'])
-    intercom.events.create(
-      event_name: "downloaded-developer-guide", created_at: Time.now.to_i,
-      email: params[:email],
-      metadata: {
-        ip: request.remote_ip
-      }
-    )
+    person = { email: params[:email] }
+    metadata = { ip: request.remote_ip }
+    ConvertLoop.event_logs.send(name: "downloaded-developer-guide", person: person, metadata: metadata)
 
     redirect_to "https://s3.amazonaws.com/makeitreal/e-books/convertirte-en-desarrollador-web.pdf"
   end
