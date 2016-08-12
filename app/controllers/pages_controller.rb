@@ -23,6 +23,7 @@ class PagesController < ApplicationController
 
   def create_front_end_online_lead
     data = {
+      pid: cookies[:dp_pid],
       program: "Front End Online",
       event: "filled-front-end-online-form",
       first_name: params['first-name'],
@@ -38,6 +39,7 @@ class PagesController < ApplicationController
 
   def create_full_stack_online_lead
     data = {
+      pid: cookies[:dp_pid],
       program: "Full Stack Online",
       event: "filled-full-stack-online-form",
       first_name: params['first-name'],
