@@ -75,7 +75,7 @@ gem 'date_supercharger'
 gem 'json-schema'
 gem 'simple_timeout'
 gem 'gretel'
-gem 'convertloop', '0.1.0'
+gem 'convertloop', '0.1.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
