@@ -1,111 +1,59 @@
 <% content_for :head do %>
-  <meta property="og:title" content="Conoce nuestro programa online de Full Stack Web Development con Ruby on Rails" />
+  <meta property="og:title" content="Conviérte en Web Developer en 12 semanas" />
   <meta property="og:type" content="website" />
-  <meta property="og:description" content="En este programa aprenderás cómo trabajar con todos los componentes de una aplicación: la base de datos, código en el servidor y código en el navegador." />
-  <meta property="og:image" content="<%= image_url('01interna-programa.jpg') %>" />
+  <meta property="og:description" content="En este programa aprenderás a trabajar con todos los componentes de una aplicación: la base de datos, código en el servidor y código en el navegador." />
+  <meta property="og:image" content="<%= image_url('full-stack-medellin.cover.jpg') %>" />
 <% end %>
 
-<div class="new-site program">
-  <%= render "layouts/navbar/pages_white", hide_login: true, show_apply: false %>
-  <%= render "pages/header_start_now" %>
+<div class="new-site program full-stack-medellin">
+  <%= render "layouts/navbar/pages_white", hide_login: true, show_apply: false, url: @typeform_url %>
+  <%= render "pages/header_register", url: @typeform_url %>
 
-  <div class="program-intro full-stack">
+  <div class="program-intro">
     <div class="container">
       <div class="row">
         <div class="col-md-6 tagline-program">
-          <h1>Full Stack Web Developer</h1>
-          <p>En este programa aprenderás a trabajar con todos los componentes de una aplicación Web: la base de datos, código en el servidor (Ruby on Rails) y código en el navegador (HTML, CSS, JavaScript)</p>
+          <h1><small>Medellín Edition</small>Full Stack Web Developer</h1>
+          <p>En este curso presencial <strong>de 12 semanas</strong> aprenderás a trabajar con todos los componentes de una aplicación Web: la base de datos, código en el servidor (Ruby on Rails) y código en el navegador (HTML, CSS, JavaScript)</p>
         </div><!--/tagline-program -->
 
-        <div class="col-md-6 bullets-program">
-          <form id="form-start-now" action="/full-stack-online" method="post">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <input type="text" id="first-name" name="first-name" class="form-control" placeholder="Nombre">
+        <div class="col-md-6">
+          <div class="medellin-info">
+            <div class="medellin-info-title">Fecha Inicio</div>
+
+            <div class="medellin-info-body">
+              <div class="medellin-info-date">
+                 Septiembre 20, 2016
+              </div>
+              <div class="medellin-info-schedule">
+                <div class="schedule-data">
+                  6pm a 9pm
+                  <span class="schedule-label">Martes a Viernes</span>
+                </div>
+                <div class="schedule-data">
+                  9am a 12m
+                  <span class="schedule-label">Sábados</span>
                 </div>
               </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <input type="text" id="last-name" name="last-name" class="form-control" placeholder="Apellido">
-                </div>
+
+              <div class="medellin-info-location">
+                <span class="glyphicon glyphicon-map-marker"></span>
+                Medellín, Colombia
               </div>
-            </div>
 
-            <div class="form-group">
-              <input type="email" id="email" name="email" class="form-control" placeholder="Email">
+              <button type="button" class="btn btn-primary btn-register">¡Regístrate!</button>
             </div>
-            <div class="form-group">
-              <select class="form-control" id="country" name="country">
-                <option value="" selected>País de residencia *</option>
-                <option value="AR" data-code="54">Argentina</option>
-                <option value="BO" data-code="591">Bolivia</option>
-                <option value="CL" data-code="56">Chile</option>
-                <option value="CO" data-code="57">Colombia</option>
-                <option value="CR" data-code="506">Costa Rica</option>
-                <option value="EC" data-code="593">Ecuador</option>
-                <option value="SV" data-code="503">El Salvador</option>
-                <option value="ES" data-code="34">España</option>
-                <option value="US" data-code="1">Estados Unidos</option>
-                <option value="GT" data-code="502">Guatemala</option>
-                <option value="HN" data-code="504">Honduras</option>
-                <option value="MX" data-code="52">México</option>
-                <option value="NI" data-code="505">Nicaragua</option>
-                <option value="PA" data-code="507">Panamá</option>
-                <option value="PY" data-code="595">Paraguay</option>
-                <option value="PE" data-code="51">Perú</option>
-                <option value="PR" data-code="1">Puerto Rico</option>
-                <option value="DO" data-code="1">República Dominicana</option>
-                <option value="UY" data-code="598">Uruguay</option>
-                <option value="VE" data-code="58">Venezuela</option>
-              </select>
-            </div>
-            <div class="form-group" id="mobile-wrapper" style="display: none;">
-              <div class="input-group">
-                <span class="input-group-addon" id="mobile-code">+57</span>
-                <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Celular">
-              </div>
-            </div>
-
-            <div>
-              <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-              <button type="submit" class="btn btn-primary btn-lg btn-block">Comienza ahora</button>
-            </div>
-          </form>
-        </div><!--/bullets-program -->
-
+          </div>
+        </div>
       </div><!--/row -->
     </div><!--/container -->
   </div><!--/program-intro -->
-
-  <div class="container">
-    <p class="intro text-center" style="margin: 20px 0;"><strong>Nuestra nueva garantía: </strong> consigues empleo o te devolvemos el dinero. <a href="http://blog.makeitreal.camp/trabajo-garantizado/" target="_blank">Más información</a></p>
-  </div>
-
-  <div class="section section-white section-pitch">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-4">
-          <h3>Aprende haciendo</h3>
-          <p>Adquiere los conocimientos y las habilidades necesarias para que te conviertas en un(a) Desarrollador(a) Web competente.</p>
-        </div>
-        <div class="col-sm-4">
-          <h3>Mentores experimentados</h3>
-          <p>Soluciona tus dudas, recibe apoyo cuando lo necesites y acelera tu aprendizaje con mentorías 1-a-1 en los temas que más se te dificulten.</p>
-        </div>
-        <div class="col-sm-4">
-          <h3>Alcanza tus metas</h3>
-          <p>Encuentra el empleo de tus sueños o haz realidad tus ideas de negocio. El post-programa te prepara para esta nueva fase de tu vida.</p>
-        </div>
-      </div>
-    </div>
-  </div><!--/pitch -->
 
   <div class="section learnings-program">
     <div class="container">
       <div class="row">
         <div class="col-md-8 col-md-offset-2 program-title text-center">
-          <h2>Lo que aprenderás en el programa</h2>
+          <h2>Lo que aprenderás</h2>
           <p class="subhead">Conoce y domina las tecnologías y habilidades necesarias para convertirte en un desarrollador Web Full Stack profesional</p>
         </div>
       </div>
@@ -418,160 +366,82 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
-  <section class="section section-transparent mentories-program">
+  <%= render "faqs_medellin" %>
+
+  <section class="section section-dark medellin-magnet">
     <div class="container">
       <div class="row">
-        <div class="col-md-8 col-md-offset-2 program-title text-center">
-          <h3>Mentorías uno a uno</h3>
-          <p class="subhead">Al ingresar a Make it Real te asignamos un mentor principal el cuál estará pendiente de tu progreso y listo para solucionar tus dudas para que puedas aprovechar al máximo nuestro programa.</p>
-        </div>
-      </div><!--/row -->
-    </div><!--/container -->
-  </section><!--/mentories-program -->
-
-  <section class="section section-white data-program">
-    <div class="container">
-      <div class="col-md-12 program-title">
-        <h2>Incluye</h2>
-      </div>
-      <div class="row">
-        <div class="col-sm-6 col-md-3">
-          <div class="each-data-program">
-            <span class="data-number">+120</span>
-            <p>Retos autoevaluados para que aprendas mientras los resuelves</p>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-md-3">
-          <div class="each-data-program">
-            <span class="data-number">+110</span>
-            <p>Videos que te guiarán en la construcción de aplicaciones, ¡no videos aburridos!</p>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-md-3">
-          <div class="each-data-program">
-            <span class="data-number">10</span>
-            <p>Proyectos evaluados por mentores experimentados con retroalimentación.</p>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-md-3">
-          <div class="each-data-program">
-            <span class="data-number">+800</span>
-            <p>Horas de aprendizaje práctico. Avanza a tu propio ritmo.</p>
-          </div>
-        </div>
-
-      </div><!--/row -->
-    </div><!--/container -->
-  </section><!--/data-program -->
-
-  <section class="section section-quotes" style="padding-bottom: 0;">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-6 col-md-6 col-lg-4">
-          <div class="each-quote">
-            <p>"Make it Real es la respuesta a la necesidad de una nueva educación, es una mezcla ideal entre tecnología e interacción humana."</p>
-            <div class="student-data">
-              <div class="profile-img">
-                <%= image_tag "people/hamilton-alvarez.jpg", alt: "Hamilton Alvarez", class: "img-circle" %>
-              </div>
-              <span class="profile-name txt-bold">Hamilton Alvarez</span>
-              <span class="profile-status">Full Stack Web Developer</span>
-              <span class="profile-link">
-                <a href="https://github.com/mejialvarez" target="_blank">
-                  <i class="fa fa-github"></i>
-                </a>
-              </span>
-            </div><!--/student-data -->
-          </div> <!--/each-quote -->
-        </div><!--/col-md-6 -->
-
-        <div class="col-sm-6 col-md-6 col-lg-4">
-          <div class="each-quote">
-            <p>"Make it Real para mi ha sido la mejor experiencia de aprendizaje de mi vida, vas a tu ritmo, hay un gurú que te explica en caso que no entiendas y tienes recursos infinitos."</p>
-            <div class="student-data">
-              <div class="profile-img">
-                <%= image_tag "people/leslie-restrepo.jpg", alt: "Leslie Restrepo", class: "img-circle" %>
-              </div>
-              <span class="profile-name txt-bold">Leslie Restrepo</span>
-              <span class="profile-status">JohnHenry.net</span>
-              <span class="profile-link">
-                <a href="http://www.johnhenry.net/" target="_blank">
-                  <i class="fa fa-globe"></i>
-                </a>
-              </span>
-            </div><!--/student-data -->
-          </div> <!--/each-quote -->
-        </div><!--/col-md-6 -->
-
-        <div class="col-sm-6 col-md-6 col-lg-4">
-          <div class="each-quote">
-            <p>"El equipo de Make it Real siempre está dispuesto a enseñar, clarificar y repetir, ya sea a través de mentorías personalizadas o encuentros virtuales."</p>
-            <div class="student-data">
-              <div class="profile-img">
-                <%= image_tag "people/juan-david-aristizabal.jpg", alt: "Juan David Aristizabal", class: "img-circle" %>
-              </div>
-              <span class="profile-name txt-bold">Juan David Aristizabal</span>
-              <span class="profile-status">Full Stack Web Developer</span>
-              <span class="profile-link">
-                <a href="https://github.com/juandavidac" target="_blank">
-                  <i class="fa fa-github"></i>
-                </a>
-              </span>
-            </div><!--/student-data -->
-          </div> <!--/each-quote -->
-        </div><!--/col-md-6 -->
-      </div>
-
-      <div class="row" style="margin-top: 40px;">
-        <div class="col-sm-12">
-          <p class="text-center"><a href="/makers">Conoce más opiniones de nuestros estudiantes</a></p>
+        <div class="col-sm-10 col-sm-offset-1 text-center">
+          <p class="intro-text">¿Quieres cambiar tu futuro?</p>
+          <p class="subhead">Regístrate ahora y asegura tu cupo en esta edición. Te garantizamos la educación de la más alta calidad! </p>
+          <button class="btn btn-primary btn-register">¡REGÍSTRATE!</a>
         </div>
       </div>
     </div>
   </section>
+  <%= render "footer" %>
 
-  <section class="section section-dark section-benefits">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <div class="top-container">
-            <h3>Los beneficios que recibirás</h3>
-            <ul>
-              <li>Acceso por un año a la plataforma (retos, cursos, recursos online y material adicional).</li>
-              <li>Mentorías ilimitadas por Hangout o Skype con mentores experimentados.</li>
-              <li>Acceso de por vida a Slack (nuestro chat interno). Sigue recibiendo apoyo de tus mentores y otros estudiantes aún cuando termines el programa.</li>
-              <li>Simulación de entrevista para que te prepares para esta nueva etapa de tu vida.</li>
-              <li>Acceso a la red de empleadores.</li>
-              <li>Garantía de trabajo (aplican condiciones)</li>
-            </ul>
+  <div class="modal fade" id="registration-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="
+          " class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Formulario de Registro</h4>
+        </div>
+        <form id="form-start-now" action="/full-stack-medellin" method="post">
+          <div class="modal-body">
+            <p>Regístrate para recibir toda la información y precios:  </p>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <input type="text" id="first-name" name="first-name" class="form-control" placeholder="Nombre">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <input type="text" id="last-name" name="last-name" class="form-control" placeholder="Apellido">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <input type="email" id="email" name="email" class="form-control" placeholder="Email">
+            </div>
+
+            <div class="form-group" id="mobile-wrapper">
+              <div class="input-group">
+                <span class="input-group-addon" id="mobile-code">+57</span>
+                <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Celular">
+              </div>
+            </div>
+
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12 text-center">
-          <a href="#" class="btn btn-lg btn-primary btn-start-now">¡Comienza Ahora!</a>
-        </div>
-      </div>
-    </div>
-  </section>
+          <div class="modal-footer">
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Registrarme</button>
+          </div>
+        </form>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>
 
-  <div class="container-fluid">
-    <div class="row">
-      <%= render "footer" %>
-    </div>
-  </div>
-
-</div><!--/new-site -->
 <script type="text/javascript">
-  $(document).on("ready page:load", window.initProgramPage);
+  $(document).on("ready page:load", window.initMedellinProgramPage);
+  $(document).on("ready page:load", function() {
+    $('.btn-register').on('click', function(e) {
+      e.preventDefault();
+
+      $('#registration-modal').modal().on('shown.bs.modal', function (e) {
+        $('#first-name').focus();
+      });
+    });
+  });
   $(document).on("page:before-change", function() {
-    $(document).off("ready page:load", window.initProgramPage);
+    $(document).off("ready page:load", window.initMedellinProgramPage);
   });
 </script>
