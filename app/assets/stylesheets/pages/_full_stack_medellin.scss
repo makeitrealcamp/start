@@ -124,7 +124,42 @@
     }
   }
 
+  .section-location {
+    position: relative;
+    background: #005e9f image-url("coecoworking-map.jpg") 20% center;
+    background-size: cover;
+
+    padding-bottom: 0;
+    height: 300px;
+
+    img { width: 100%; }
+    .location-data {
+      position: absolute;
+      bottom: 0;
+      background: rgba(48, 48, 48, 0.7);
+      color: white;
+      font-size: 18px;
+      padding: 15px 30px;
+      width: 100%;
+
+      .location-dir {
+        color: #ccc;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+
+      a {
+        color: white;
+
+        &:hover, &:active { text-decoration: underline; }
+      }
+    }
+  }
+
   #registration-modal {
+    .modal-dialog {
+      max-width: 450px;
+    }
     #form-start-now {
       padding: 0;
       max-width: none;
@@ -134,9 +169,9 @@
       }
     }
     .modal-body {
-      padding: 20px 40px 15px;
+      padding: 20px 20px 15px;
       p { margin-bottom: 20px; }
     }
-    .modal-footer { padding: 20px 40px;}
+    .modal-footer { padding: 20px 20px;}
   }
 }
