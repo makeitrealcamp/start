@@ -125,13 +125,19 @@
   }
 
   .section-mentors {
+    padding-bottom: 50px;
     .profile-image img { width: 150px; border: 1px solid #f04500; }
     .profile {
-      margin-top: 20px;
+      margin-bottom: 50px;
 
-      h3 small {
-        display: block;
-        margin-top: 7px;
+      h3 {
+        margin-top: 20px;
+        margin-bottom: 30px;
+
+        small {
+          display: block;
+          margin-top: 7px;
+        }
       }
 
       p {
