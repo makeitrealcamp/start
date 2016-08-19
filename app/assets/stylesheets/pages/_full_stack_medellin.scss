@@ -1,0 +1,177 @@
+.new-site.full-stack-medellin {
+  .program-intro {
+    background: #005e9f image-url("medellin-1-blue.jpg") center center;
+    background-size: cover;
+
+    h1 small {
+      display: block;
+      color: #DFE6F5;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .tagline-program {
+      @media (min-width: $screen-md-min) { margin-top: 20px; }
+    }
+  }
+
+  .medellin-info {
+    background: #f5f2f2;
+    color: #303030;
+    margin: 0 auto;
+    max-width: 400px;
+    box-shadow: 3px 3px 10px #0F2754;
+    text-align: center;
+
+    .medellin-info-title {
+      color: #303030;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 15px;
+      border-bottom: 1px solid #ccc;
+
+      span.glyphicon {
+        vertical-align: top;
+        margin-right: 10px;
+      }
+    }
+
+    .medellin-info-body { padding: 20px; }
+
+    p { font-weight: 300; }
+
+    .medellin-info-date {
+      font-size: 21px;
+      margin-top: 15px;
+    }
+
+    .medellin-info-schedule {
+      font-size: 18px;
+      margin-top: 30px;
+
+      .schedule-data { margin-bottom: 15px; }
+
+      .schedule-label {
+        display: block;
+        color: #666;
+        font-size: 16px;
+      }
+    }
+
+    .medellin-info-location {
+      color: #666;
+      font-size: 21px;
+      margin-top: 30px;
+    }
+
+    span.glyphicon {
+      color: #ddd;
+      font-size: 18px;
+
+      @media (min-width: $screen-sm-min) {
+        display: inline-block;
+        font-size: 24px;
+      }
+    }
+
+    .btn {
+      margin-top: 40px;
+      padding: 15px 55px;
+      width: 80%;
+    }
+  }
+
+  .medellin-faq {
+    .question {
+      margin: 60px 0;
+
+      h3 {
+        color: #D13221;
+        font-size: 21px;
+        font-weight: 600;
+        line-height: 1.4;
+        text-align: left;
+        margin-bottom: 25px;
+      }
+
+      p, ul {
+        color: #666;
+        font-size: 18px;
+        line-height: 1.5;
+      }
+    }
+  }
+
+  .medellin-magnet {
+    padding-top: 70px;
+    padding-bottom: 70px;
+
+    p.intro-text {
+      margin-bottom: 50px;
+    }
+
+    p.subhead {
+      color: #ddd;
+      font-size: 18px;
+      font-weight: 300;
+      margin-bottom: 60px;
+    }
+
+    .btn {
+      border-radius: 0;
+      padding: 15px 40px;
+    }
+  }
+
+  .section-location {
+    position: relative;
+    background: #005e9f image-url("coecoworking-map.jpg") 20% center;
+    background-size: cover;
+
+    padding-bottom: 0;
+    height: 300px;
+
+    img { width: 100%; }
+    .location-data {
+      position: absolute;
+      bottom: 0;
+      background: rgba(48, 48, 48, 0.7);
+      color: white;
+      font-size: 18px;
+      padding: 15px 30px;
+      width: 100%;
+
+      .location-dir {
+        color: #ccc;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+
+      a {
+        color: white;
+
+        &:hover, &:active { text-decoration: underline; }
+      }
+    }
+  }
+
+  #registration-modal {
+    .modal-dialog {
+      max-width: 450px;
+    }
+    #form-start-now {
+      padding: 0;
+      max-width: none;
+
+      .has-error .help-block {
+        color: #a94442;
+      }
+    }
+    .modal-body {
+      padding: 20px 20px 15px;
+      p { margin-bottom: 20px; }
+    }
+    .modal-footer { padding: 20px 20px;}
+  }
+}

@@ -53,6 +53,22 @@ class PagesController < ApplicationController
     redirect_to "/thanks-full-stack-online"
   end
 
+  def create_full_stack_medellin_lead
+    data = {
+      pid: cookies[:dp_pid],
+      program: "Full Stack Medellin",
+      event: "filled-full-stack-medellin-form",
+      first_name: params['first-name'],
+      last_name: params['last-name'],
+      email: params['email'],
+      country: "CO",
+      mobile: params['mobile'],
+      ip: request.remote_ip
+    }
+    CreateLeadJob.perform_later(data)
+    redirect_to "/thanks-full-stack-medellin"
+  end
+
   def send_web_developer_guide
     subscriber = SubscriberForm.new(params)
 

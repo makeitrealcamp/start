@@ -171,6 +171,18 @@
     }
   }
 
+  .section-mentors {
+    .profile-image img { width: 150px; border: 1px solid #f04500; }
+    .profile {
+      margin-top: 20px;
+
+      h3 small {
+        display: block;
+        margin-top: 7px;
+      }
+    }
+  }
+
   // email capture section of the home and program pages
   .section-email {
     position: relative;
