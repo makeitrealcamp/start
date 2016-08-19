@@ -124,6 +124,23 @@
     }
   }
 
+  .section-mentors {
+    .profile-image img { width: 150px; border: 1px solid #f04500; }
+    .profile {
+      margin-top: 20px;
+
+      h3 small {
+        display: block;
+        margin-top: 7px;
+      }
+
+      p {
+        font-size: 16px;
+        @media (min-width: $screen-sm-min) { padding: 0 30px; }
+      }
+    }
+  }
+
   .section-location {
     position: relative;
     background: #005e9f image-url("coecoworking-map.jpg") 20% center;
@@ -173,5 +190,77 @@
       p { margin-bottom: 20px; }
     }
     .modal-footer { padding: 20px 20px;}
+  }
+
+  .target-audience {
+    .audience-quote {
+      background: #f5f5f2;
+      margin: 0 auto;
+      box-shadow: 2px 2px 5px #666;
+      padding: 25px;
+
+      p {
+        color: #666;
+        font-size: 16px;
+        line-height: 1.6;
+        border-bottom: 1px solid $brand_primary;
+        padding-bottom: 30px;
+        margin-bottom: 20px;
+      }
+
+      .audience-quote-img {
+        float: left;
+
+        img { border: 1px solid #ccc; }
+      }
+
+      .audience-quote-person {
+        padding-left: 110px;
+        margin-top: 15px;
+
+        .audience-quote-person-name {
+          display: block;
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .audience-target-details-intro {
+      color: #666;
+      font-weight: 600;
+    }
+
+    .audience-target-details {
+      color: #666;
+      font-size: 16px;
+      line-height: 1.6;
+      padding: 0 30px;
+
+      ul {
+        list-style: none;
+        margin-top: 18px;
+        padding-left: 35px;
+
+        li {
+          margin-bottom: 10px;
+
+          &:before {
+            content: "✓";
+            color: #D13221;
+            font-size: 21px;
+            font-weight: bold;
+            padding-right: 15px;
+            margin-left: -30px;
+          }
+        }
+      }
+    }
+
+    .audience-target-details-alt {
+      font-size: 14px;
+      color: #666;
+      margin-top: 30px;
+    }
   }
 }
