@@ -54,7 +54,7 @@
   </section><!--/pitch -->
 
 
-  <div id="programs" class="section section-white section-bordered section-programs-list">
+  <div id="programs" class="section section-bordered section-programs-list">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -62,44 +62,148 @@
         </div>
       </div>
 
+      <div class="row program-divider">
+        <div class="col-sm-12 text-left">
+          <div class="divider-line"></div>
+          <div class="divider-label">ONLINE</div>
+        </div>
+      </div>
+
       <div class="row">
-        <div class="col-md-4">
-          <div class="program-wrapper bootcamp-programs">
-            <h3>Presencial</h3>
-            <div class="program-details">
-              <%= image_tag "front-end-red.png", height: 90 %>
-              <h4><%= link_to "Front End Bootcamp", front_end_bootcamp_path %></h4>
-              <p>Aprende a crear aplicaciones Web con AngularJS y React en 17 semanas (8 online, 9 presenciales).</p>
-              <div class="text-center"><%= link_to "Más Información", front_end_bootcamp_path, class: "btn btn-main" %></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-8">
-          <div class="program-wrapper online-programs">
-            <h3>Online</h3>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="program-details">
-                  <%= image_tag "full-stack-blue.png", height: 90 %>
-                  <h4><%= link_to "Full Stack Developer", full_stack_online_path %></h4>
+        <div class="col-sm-6">
+          <div class="program-wrapper">
+            <%= link_to full_stack_online_path do %>
+              <div class="program-info program-online">
+                <div class="program-header">
+                  <%= image_tag "01interna-programa.jpg" %>
+                  <div class="program-header-title">
+                    <div class="program-name">FULL STACK <br>WEB DEVELOPER</div>
+                  </div>
+                </div>
+                <div class="program-body">
                   <p>Aprende a crear aplicaciones Web con HTML, CSS, JavaScript, Ruby on Rails y Bases de Datos.</p>
-                  <div class="text-center"><%= link_to "Más Información", full_stack_online_path, class: "btn btn-main" %></div>
-                </div>
-              </div>
 
-              <div class="col-md-6">
-                <div class="program-details">
-                  <%= image_tag "front-end-blue.png", height: 90 %>
-                  <h4><%= link_to "Front End Developer", front_end_online_path %></h4>
-                  <p>Aprende a crear aplicaciones Web con HTML, CSS, JavaScript, Angular JS y servicios externos.</p>
-                  <div class="text-center"><%= link_to "Más Información", front_end_online_path, class: "btn btn-main" %></div>
+                  <div class="row program-details">
+                    <div class="col-sm-6">
+                      <div class="details-label">FECHA DE INICIO</div>
+                      <div class="details-value">El día que tu decides</div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="details-label">DEDICACIÓN:</div>
+                      <div class="details-value">15 horas/semana, avanza a tu propio ritmo</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="program-footer">
+                  <button type="button" class="btn btn-default btn-block">Más información</button>
                 </div>
               </div>
-            </div>
-            </div>
+            <% end %>
           </div>
         </div>
+        <div class="col-sm-6">
+          <div class="program-wrapper">
+            <%= link_to front_end_online_path do %>
+              <div class="program-info program-online">
+                <div class="program-header">
+                  <%= image_tag "03interna-programa.jpg" %>
+                  <div class="program-header-title">
+                    <div class="program-name">FRONT END <br>WEB DEVELOPER</div>
+                  </div>
+                </div>
+                <div class="program-body">
+                  <p>Aprende a crear aplicaciones Web con HTML, CSS, JavaScript, Angular y servicios externos.</p>
+                  <div class="row program-details">
+                    <div class="col-sm-6">
+                      <div class="details-label">FECHA DE INICIO</div>
+                      <div class="details-value">El día que tu decides</div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="details-label">DEDICACIÓN:</div>
+                      <div class="details-value">10 horas/semana, avanza a tu propio ritmo</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="program-footer">
+                  <button type="button" class="btn btn-default btn-block">Más información</button>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row program-divider" style="margin-top: 60px;">
+        <div class="col-sm-12 text-left">
+          <div class="divider-line"></div>
+          <div class="divider-label">PRESENCIALES</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="program-wrapper">
+            <%= link_to front_end_bootcamp_path do %>
+              <div class="program-info program-online">
+                <div class="program-header">
+                  <%= image_tag "bogota-colombia-dark.jpg" %>
+                  <div class="program-location">Bogotá</div>
+                  <div class="program-header-title">
+                    <div class="program-name">FRONT END WEB <br>DEVELOPER BOOTCAMP</div>
+                  </div>
+                </div>
+                <div class="program-body">
+                  <p>Aprende a crear aplicaciones Web y móviles con Angular, Ionic, React y React Native.</p>
+                  <div class="row program-details">
+                    <div class="col-sm-6">
+                      <div class="details-label">FECHA DE INICIO</div>
+                      <div class="details-value">12 Septiembre, 2016 (fase presencial)</div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="details-label">DEDICACIÓN</div>
+                      <div class="details-value">Lunes a Viernes de 8:30am a 6:00pm (tiempo completo)</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="program-footer">
+                  <button type="button" class="btn btn-default btn-block">Más información</button>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="program-wrapper">
+            <%= link_to full_stack_medellin_path do %>
+              <div class="program-info program-online">
+                <div class="program-header">
+                  <%= image_tag "medellin-1-square-dark.jpg" %>
+                  <div class="program-location">Medellín</div>
+                  <div class="program-header-title">
+                    <div class="program-name">FULL STACK <br>WEB DEVELOPER</div>
+                  </div>
+                </div>
+                <div class="program-body">
+                  <p>Aprende a crear aplicaciones Web con HTML, CSS, JavaScript, Ruby on Rails y Bases de Datos.</p>
+                  <div class="row program-details">
+                    <div class="col-sm-5">
+                      <div class="details-label">FECHA DE INICIO</div>
+                      <div class="details-value">20 Septiembre, 2016</div>
+                    </div>
+                    <div class="col-sm-7">
+                      <div class="details-label">DEDICACIÓN</div>
+                      <div class="details-value">Lunes a Viernes de 6pm a 9pm y Sábados de 9am a 12m</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="program-footer">
+                  <button type="button" class="btn btn-default btn-block">Más información</button>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
