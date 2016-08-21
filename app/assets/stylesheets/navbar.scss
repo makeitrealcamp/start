@@ -41,6 +41,19 @@
     color: $brand_primary;
   }
 
+  .dropdown-menu > .program-menu-divider {
+    margin-top: -23px;
+
+    span {
+      background: white;
+      color: #999;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 0 10px;
+      margin-left: 10px;
+    }
+  }
+
   .navbar-nav > li > a {
     padding-left: 13px;
     padding-right: 13px;
@@ -70,7 +83,7 @@
 
   .dropdown-menu a {
     color: #666;
-    width: 275px;
+    width: 300px;
     overflow: hidden;
     @media (max-width: $screen-sm-min) {
       width: 100%;
