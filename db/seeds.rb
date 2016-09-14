@@ -1,3 +1,13 @@
+Level.create(name: "Teclado Blanco", required_points: 0, image_url: "https://s3.amazonaws.com/makeitreal/levels/nivelBlanco%402x.png")
+Level.create(name: "Teclado Amarillo", required_points: 1000, image_url: "https://s3.amazonaws.com/makeitreal/levels/nivelAmarillo%402x.png")
+Level.create(name: "Teclado Naranja", required_points: 2500, image_url: "https://s3.amazonaws.com/makeitreal/levels/nivelNaranja%402x.png")
+Level.create(name: "Teclado Verde", required_points: 4500, image_url: "https://s3.amazonaws.com/makeitreal/levels/nivelVerde%402x.png")
+Level.create(name: "Teclado Azul", required_points: 7500, image_url: "https://s3.amazonaws.com/makeitreal/levels/nivelAzul%402x.png")
+Level.create(name: "Teclado Purpura", required_points: 10500, image_url: "https://s3.amazonaws.com/makeitreal/levels/nivelPurpura%402x.png")
+Level.create(name: "Teclado Café", required_points: 13500, image_url: "https://s3.amazonaws.com/makeitreal/levels/nivelCafe%402x.png")
+Level.create(name: "Teclado Rojo", required_points: 16500, image_url: "https://s3.amazonaws.com/makeitreal/levels/nivelRojo%402x.png")
+Level.create(name: "Teclado Negro", required_points: 20000, image_url: "https://s3.amazonaws.com/makeitreal/levels/nivelNegro%402x.png")
+
 intro = Course.create(name: "Una nueva mentalidad", time_estimate: "2 horas", row_position: 1, published: true,
   description: "Para poder aprender cualquier habilidad, primero debemos cambiar nuestra mentalidad. La barrera no es intelectual, es emocional.",
   excerpt: "Aprender a programar es difícil. Difícil como aprender un nuevo idioma o un instrumento. Se requiere práctica y paciencia.")
@@ -30,7 +40,7 @@ c2 = Challenge.create(course: html, name: "Ordenando el desorden", row_position:
   instructions: "Estas son las instrucciones del challenge.", evaluation: "def evaluate(files); return 'Siempre mal'; end")
 Document.create(folder: c2, name: "index.html", content: "")
 
-User.create(email: "admin@makeitreal.camp", account_type: User.account_types[:admin_account])
+User.create(email: "german.escobar@makeitreal.camp", account_type: User.account_types[:admin_account])
 
 User.create(email: "user_free@makeitreal.camp",account_type: User.account_types[:free_account])
 
