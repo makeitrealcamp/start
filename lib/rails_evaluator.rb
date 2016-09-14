@@ -18,7 +18,7 @@ class RailsEvaluator < BaseDockerEvaluator
       "-v", "#{prefix_path}/bundler-cache:/ukku/bundler-cache",
       "makeitrealcamp/mir-evaluator", "/bin/bash", "-c", "-l", "'/root/rails.sh #{repo}'"]
 
-    execution = DockerExecution.new(command.join(" "),solution.challenge.timeout)
+    execution = DockerExecution.new(command.join(" "), solution.challenge.timeout)
     execution.start!
 
     if execution.success?

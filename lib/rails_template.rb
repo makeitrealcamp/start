@@ -1,6 +1,6 @@
 gem_group :test do
-  gem 'rspec-rails', '~> 3.2.1'
-  gem 'shoulda-matchers', '~> 2.8.0'
+  gem 'rspec-rails', '~> 3.5.2'
+  gem 'shoulda-matchers', github: 'germanescobar/shoulda-matchers'
   gem 'capybara', '~> 2.4.4'
   gem "selenium-webdriver", '~>2.45.0'
   gem 'poltergeist', '~> 1.6.0'
