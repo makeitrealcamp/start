@@ -1,7 +1,0 @@
-$('.banner a').html("Reenviar información");
-$('.banner p').html("Te hemos enviado la información a <strong><%= current_user.email %></strong>. Si en unos minutos aún no la has recibido, haz click en el siguiente enlace:");
-$('.banner-loading').hide();
-
-<% if @first_request %>
-  ga('send', 'event', { eventCategory: 'users', eventAction: 'request_info' });
-<% end %>

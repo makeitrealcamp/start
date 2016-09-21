@@ -1,7 +1,7 @@
 <tr id="user-<%= user.id %>" class="<%= status_class(user) %>">
   <td>
     <span class="name"><%= link_to full_name(user), admin_user_path(user) %></span>
-    <span class="email"><%= user.email %> <% if user.is_admin? %><span class="label label-secondary">Admin</span><% end %></span>
+    <span class="email"><%= user.email %><% if user.password? %> <i class="fa fa-key" data-toggle="tooltip" data-placement="bottom" title="Este usuario accede con email y contraseña"></i><% end %> <% if user.is_admin? %><span class="label label-secondary">Admin</span><% end %></span>
   </td>
   <td class="user-status"><%= status(user) %></td>
   <td><%= user.paths.pluck(:name).join(", ") %></td>
@@ -13,5 +13,6 @@
   <td class="text-right">
     <%= link_to '<span class="glyphicon glyphicon-user"></span>'.html_safe, user_profile_path(user.nickname), class: "btn btn-primary btn-xs", data: { toggle: "tooltip", placement: "bottom" }, title: "Página de perfil" %>
     <%= link_to '<span class="glyphicon glyphicon-edit"></span>'.html_safe, edit_admin_user_path(user), remote: true, class: "btn btn-primary btn-xs", data: { toggle: "tooltip", placement: "bottom" }, title: "Editar usuario" %>
+    <% if user.created? %><%= link_to '<span class="glyphicon glyphicon-send"></span>'.html_safe, activation_resend_email_admin_user_path(user), method: :post, class: "btn btn-primary btn-xs", data: { toggle: "tooltip", placement: "bottom", confirm: "Deseas reenviar el correo de activación a #{user.email}?" }, title: "Reenviar correo de activación" %><% end %>
   </td>
 </tr>

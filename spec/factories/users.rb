@@ -2,18 +2,20 @@
 #
 # Table name: users
 #
-#  id             :integer          not null, primary key
-#  email          :string(100)
-#  roles          :string           is an Array
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  last_active_at :datetime
-#  profile        :hstore
-#  status         :integer
-#  settings       :hstore
-#  account_type   :integer
-#  nickname       :string
-#  level_id       :integer
+#  id              :integer          not null, primary key
+#  email           :string(100)
+#  roles           :string           is an Array
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  last_active_at  :datetime
+#  profile         :hstore
+#  status          :integer
+#  settings        :hstore
+#  account_type    :integer
+#  nickname        :string
+#  level_id        :integer
+#  password_digest :string
+#  access_type     :integer          default(0)
 #
 # Indexes
 #
@@ -51,6 +53,10 @@ FactoryGirl.define do
     factory :admin_with_path do
       account_type  User.account_types[:admin_account]
       after(:create) { |user| user.path_subscriptions.create(path: Path.published.first || create(:path,published: true))}
+    end
+
+    factory :user_password do
+      access_type User.access_types[:password]
     end
   end
 end

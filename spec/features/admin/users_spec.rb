@@ -50,8 +50,7 @@ RSpec.feature "Users management", type: :feature do
     expect(page).to_not have_selector '.modal-dialog'
     expect(page).to have_selector '.alert-success'
 
-    user = User.find_by_email(email)
-    expect(user).not_to be_nil
+    user.reload
     expect(user.first_name).to eq first_name
     expect(user.last_name).to eq last_name
     expect(user.account_type).to eq "admin_account"

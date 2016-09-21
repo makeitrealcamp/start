@@ -26,11 +26,15 @@ Rails.application.routes.draw do
   get 'handbook', to: 'pages#handbook', as: :handbook
 
   get  'login', to: 'sessions#new', as: :login
+  get  'on-site/login', to: 'sessions#new_onsite', as: :login_onsite
   post 'login', to: 'sessions#create'
   get  'auth/:provider/callback', to: 'sessions#create_with_omniauth', as: :login_omniauth
   delete 'logout', to: 'sessions#destroy'
 
   post 'inscription_info', to: 'users#send_inscription_info', as: :inscription_info
+
+  resource :password, only: [:edit, :update]
+  resource :password_reset, except: [:index, :show]
 
   resources :users do
     collection do
@@ -143,7 +147,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'dashboard', to: 'dashboard#index'
     resources :paths, only: [:index, :new, :create, :update, :edit]
-    resources :users, only: [:index, :new, :create, :show, :edit, :update]
+    resources :users, only: [:index, :new, :create, :show, :edit, :update] do
+      post 'activation/resend-email', action: 'resend_activation_email', on: :member
+    end
     resources :solutions, only: [:index]
     resources :comments, only: [:index, :destroy]
     resources :project_solutions, only: [:index] do

@@ -15,4 +15,23 @@ module LoginMacros
 
     expect(current_path).to eq(path)
   end
+
+  def login_password(user)
+    visit login_onsite_path
+
+    fill_in "email", with: user.email
+    fill_in "password", with: user.password
+
+    click_on "Ingresar"
+
+    path = if user.created?
+      activate_users_path
+    elsif user.suspended?
+      root_path
+    else # active or finished
+      signed_in_root_path
+    end
+
+    expect(current_path).to eq(path)
+  end
 end

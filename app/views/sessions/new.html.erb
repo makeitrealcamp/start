@@ -1,18 +1,19 @@
 <div class="new-site login-page">
   <%= render "layouts/navbar/pages_dark", hide_login: true %>
+  <% flash.each do |type, msg| %>
+    <%= render "shared/alert", msg: msg, type: type %>
+  <% end %>
   <div class="container">
-    <p class="text-center login-welcome">Hola, bienvenido a nuestra <span>plataforma de aprendizaje</span>!</p>
     <div class="row">
       <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 
         <div class="login">
           <div class="login-body">
-            <p>Si eres estudiante de <%= link_to "Make it Real", root_path %> ingresa con tu cuenta de Slack</p>
-            <%= form_tag controller: :sessions, action: :create do %>
-              <div class="btn-social row">
-                  <%= link_to '<i class="fa fa-slack"></i> INGRESAR'.html_safe, '/auth/slack', class: "btn btn-main", id: "sign-in-slack"  %>
-              </div>
-            <% end %>
+            <p>Si eres estudiante online de <%= link_to "Make it Real", root_path %> ingresa con tu cuenta de Slack</p>
+            <div class="btn-social">
+              <%= link_to '<i class="fa fa-slack"></i> INGRESAR'.html_safe, '/auth/slack', class: "btn btn-main", id: "sign-in-slack"  %>
+            </div>
+            <span class="login-onsite-text text-center">Si eres estudiante presencial <%= link_to "ingresa aquí", login_onsite_path %>.</span>
           </div>
           <div class="login-footer">
             <p class="small">¿Aún no eres estudiante? Conoce <a href="/#anchor">nuestros programas</a></p>

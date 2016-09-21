@@ -17,12 +17,11 @@
 <body class="expand">
   <%= render "layouts/navbar/app" %>
   <div class="content-wrapper expand">
-    <%= render "utils/alerts" %>
     <%= breadcrumbs style: :bootstrap %>
+    <%= render "utils/alerts" %>
     <%= yield %>
   </div>
 
   <div class="overlay"></div>
-  <%= render "utils/help_modal" %>
 </body>
 </html>

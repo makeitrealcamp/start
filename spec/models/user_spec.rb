@@ -2,18 +2,20 @@
 #
 # Table name: users
 #
-#  id             :integer          not null, primary key
-#  email          :string(100)
-#  roles          :string           is an Array
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  last_active_at :datetime
-#  profile        :hstore
-#  status         :integer
-#  settings       :hstore
-#  account_type   :integer
-#  nickname       :string
-#  level_id       :integer
+#  id              :integer          not null, primary key
+#  email           :string(100)
+#  roles           :string           is an Array
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  last_active_at  :datetime
+#  profile         :hstore
+#  status          :integer
+#  settings        :hstore
+#  account_type    :integer
+#  nickname        :string
+#  level_id        :integer
+#  password_digest :string
+#  access_type     :integer          default(0)
 #
 # Indexes
 #
@@ -60,7 +62,6 @@ RSpec.describe User, type: :model do
   context 'default_values' do
     it "should be initialized with default values" do
       user = User.new
-      expect(user.roles).to eq(["user"])
       expect(user.status).to eq("created")
       expect(user.has_public_profile).to eq(false)
       expect(user.account_type).to eq("free_account")

@@ -18,6 +18,10 @@ module Admin::UsersHelper
     [["Alumno", "paid_account"], ["Administrador", "admin_account"]]
   end
 
+  def access_types
+    [["Slack", "slack"], ["Email y contraseña", "password"]]
+  end
+
   def user_statuses
     [["Sin Activar", "created"], ["Activo", "active"], ["Suspendido", "suspended"], ["Finalizó", "finished"]]
   end
