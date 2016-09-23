@@ -2,10 +2,10 @@
   .login-welcome {
     font-size: 24px;
     font-weight: 300;
-    margin-top: 40px;
+    margin-top: 30px;
 
     @media (min-width: $screen-sm-min) {
-      margin-top: 80px;
+      margin-top: 60px;
     }
 
     span { color: $brand_secondary; }
@@ -13,7 +13,7 @@
 
   .login {
     background: white;
-    margin: 40px auto 100px;
+    margin: 80px auto 100px;
 
     max-width: 450px;
     border: 1px solid #ccc;
@@ -43,6 +43,8 @@
       }
     }
 
+    form { margin-bottom: 20px; }
+
     .btn-main {
       color: #fff;
       background: #ff4300;
@@ -54,6 +56,16 @@
         text-decoration: none;
         color: #fff;
       }
+    }
+
+    .login-onsite-text {
+      display: block;
+      color: #666;
+      font-size: 14px;
+      margin-top: 5px;
+      margin-bottom: 20px;
+
+      > div { margin-bottom: 5px; }
     }
   }
 

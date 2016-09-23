@@ -2,18 +2,20 @@
 #
 # Table name: users
 #
-#  id             :integer          not null, primary key
-#  email          :string(100)
-#  roles          :string           is an Array
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  last_active_at :datetime
-#  profile        :hstore
-#  status         :integer
-#  settings       :hstore
-#  account_type   :integer
-#  nickname       :string
-#  level_id       :integer
+#  id              :integer          not null, primary key
+#  email           :string(100)
+#  roles           :string           is an Array
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  last_active_at  :datetime
+#  profile         :hstore
+#  status          :integer
+#  settings        :hstore
+#  account_type    :integer
+#  nickname        :string
+#  level_id        :integer
+#  password_digest :string
+#  access_type     :integer          default(0)
 #
 # Indexes
 #
@@ -23,6 +25,7 @@
 class User < ActiveRecord::Base
   NOTIFICATION_SERVICE = Pusher
 
+  has_secure_password validations: false
   attr_accessor :notifier
 
   belongs_to :level
@@ -59,18 +62,21 @@ class User < ActiveRecord::Base
     github_username: :string
 
   hstore_accessor :settings,
-    info_requested_at: :datetime,
-    has_public_profile: :boolean
+    has_public_profile: :boolean,
+    password_reset_token: :string,
+    password_reset_sent_at: :datetime
 
   accepts_nested_attributes_for :path_subscriptions, allow_destroy: true
 
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+  validates :password, presence: true, length: { within: 6..40 }, if: -> { password? && password_digest_changed? }
   validates :nickname, uniqueness: true
   validates :nickname, format: { with: /\A[a-zA-Z0-9_\-]+\Z/ }, if: :nickname?
 
   enum status: [:created, :active, :suspended, :finished]
   enum account_type: [:free_account, :paid_account, :admin_account]
+  enum access_type: [:slack, :password]
 
   before_create :assign_random_nickname
   after_initialize :default_values
@@ -148,12 +154,6 @@ class User < ActiveRecord::Base
     Gravatar.new(self.email).image_url
   end
 
-  def send_inscription_info
-    UserMailer.inscription_info(self).deliver_now
-    self.info_requested_at = Time.current
-    save!
-  end
-
   def active_subscription
     self.subscriptions.active.first
   end
@@ -166,13 +166,33 @@ class User < ActiveRecord::Base
 
   def activate!
     self.update!(
+      password_reset_token: nil,
+      password_reset_sent_at: nil,
       status: User.statuses[:active],
       activated_at: Time.current
     )
   end
 
-  def send_welcome_mail
-    SubscriptionsMailer.welcome_mail(self).deliver_now
+  def send_welcome_email
+    if self.slack?
+      SubscriptionsMailer.welcome_slack(self).deliver_now
+    else
+      generate_token
+      self.password_reset_sent_at = Time.current
+      save!
+      SubscriptionsMailer.activate(self).deliver_now
+    end
+  end
+
+  def send_password_reset
+    generate_token
+    self.password_reset_sent_at = Time.current
+    save!
+    UserMailer.password_reset(self).deliver_now
+  end
+
+ def has_valid_password_reset_token?
+   (!!self.password_reset_sent_at) && (self.password_reset_sent_at >= 2.hours.ago)
   end
 
   def notifier
@@ -199,12 +219,17 @@ class User < ActiveRecord::Base
 
   private
     def default_values
-      self.roles ||= ["user"]
       self.status ||= :created
       self.has_public_profile ||= false
       self.account_type ||= User.account_types[:free_account]
       self.level ||= Level.for_points(0)
     end
+
+    def generate_token
+       begin
+         self.password_reset_token = SecureRandom.urlsafe_base64
+       end while User.exists?(["settings -> 'password_reset_token' = '#{self.settings['password_reset_token']}'"])
+     end
 
     def assign_random_nickname
       if self.nickname.blank?

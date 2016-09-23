@@ -1,0 +1,11 @@
+<% if @reset_request.valid? %>
+  $('#change-password-modal .alerts-container').html(
+    '<%= j render "shared/alert", msg: "¡La ayuda va en camino! Revisa tu correo y sigue las instrucciones para reestablecer tu contraseña", type: "notice" %>'
+  );
+  $('#change-password-modal input[type=email]').val('');
+<% else %>
+  $('#change-password-modal .alerts-container').html(
+    '<%= j render "shared/flash_messages_form", object: @reset_request %>'
+  )
+
+<% end %>

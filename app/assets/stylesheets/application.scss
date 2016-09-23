@@ -55,18 +55,21 @@ html.turbolinks-progress-bar::before {
 
 .expand { height: 100%; }
 .overflow { overflow-y: auto; }
+.default-top-padding { padding-top: 30px; }
 
 .breadcrumb {
   background-color: $body-bg;
-  margin-top: -15px;
   border-bottom: 1px solid #ddd;
+  // margin-top: -15px;
+  padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 50px;
+  margin-bottom: 0;
 }
 
 .content-wrapper {
   margin-top: -141px;
-  padding-top: 171px;
+  padding-top: 141px;
   &.no-scroll {
     overflow: hidden;
   }

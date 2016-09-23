@@ -40,7 +40,17 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params.merge(status: :created))
     if @user.save
-      @user.send_welcome_mail
+      @user.send_welcome_email
+    end
+  end
+
+  def resend_activation_email
+    user = User.find(params[:id])
+    if user && user.created?
+      user.send_welcome_email
+      redirect_to admin_users_path, notice: "El correo de activación ha sido reenviado a #{user.email}"
+    else
+      redirect_to admin_users_path, flash: { error: "El usuario no fue encontrado o ya se encuentra activo" }
     end
   end
 
@@ -80,7 +90,7 @@ class Admin::UsersController < ApplicationController
     def user_params
       params.require(:user).permit(
         :first_name, :last_name, :email, :gender, :nickname, :account_type,
-        :status, path_subscriptions_attributes: [:path_id, :id, :_destroy]
+        :access_type, :status, path_subscriptions_attributes: [:path_id, :id, :_destroy]
       )
     end
 end

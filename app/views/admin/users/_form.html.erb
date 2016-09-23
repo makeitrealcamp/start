@@ -11,29 +11,46 @@
 
       <%= form_for [:admin, @user], remote: true do |f| %>
         <div class="modal-body">
-          <div class="form-group">
-            <%= f.label :first_name, "Nombres" %>
-            <%= f.text_field :first_name, class: "form-control" %>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :last_name, "Apellidos" %>
-            <%= f.text_field :last_name, class: "form-control" %>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <%= f.label :first_name, "Nombres" %>
+                <%= f.text_field :first_name, class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <%= f.label :last_name, "Apellidos" %>
+                <%= f.text_field :last_name, class: "form-control" %>
+              </div>
+            </div>
           </div>
 
           <div class="form-group">
             <%= f.label :email, "Email" %>
             <%= f.text_field :email, class: "form-control" %>
           </div>
-          <div class="form-group">
-            <%= f.label :account_type, "Tipo de cuenta" %>
-            <%= f.select :account_type, account_types, {}, class: "form-control" %>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <%= f.label :account_type, "Tipo de cuenta" %>
+                <%= f.select :account_type, account_types, {}, class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <%= f.label :access_type, "Forma de acceso" %>
+                <%= f.select :access_type, access_types, {}, class: "form-control" %>
+              </div>
+            </div>
           </div>
+
           <% unless @user.new_record? %>
-          <div class="form-group">
-            <%= f.label :status, "Estado" %>
-            <%= f.select :status, user_statuses, {}, class: "form-control" %>
-          </div>
+            <div class="form-group">
+              <%= f.label :status, "Estado" %>
+              <%= f.select :status, user_statuses, {}, class: "form-control" %>
+            </div>
           <% end %>
           <div class="form-group">
             <span class="radio-caption">Sexo:</span>

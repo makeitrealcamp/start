@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406205134) do
+ActiveRecord::Schema.define(version: 20160921103844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -364,10 +364,10 @@ ActiveRecord::Schema.define(version: 20160406205134) do
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",          limit: 100
-    t.string   "roles",                                   array: true
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "email",           limit: 100
+    t.string   "roles",                                                array: true
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.datetime "last_active_at"
     t.hstore   "profile"
     t.integer  "status"
@@ -375,6 +375,8 @@ ActiveRecord::Schema.define(version: 20160406205134) do
     t.integer  "account_type"
     t.string   "nickname"
     t.integer  "level_id"
+    t.string   "password_digest"
+    t.integer  "access_type",                 default: 0
   end
 
   add_index "users", ["level_id"], name: "index_users_on_level_id", using: :btree
