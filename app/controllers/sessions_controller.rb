@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:email])
-     if user && user.password? && !user.suspended? && user.authenticate(params[:password])
+     if user && user.password? && !user.suspended? && user.password_digest && user.authenticate(params[:password])
        sign_in(user)
        redirect_to signed_in_root_path
      else

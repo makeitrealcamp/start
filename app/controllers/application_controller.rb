@@ -85,7 +85,7 @@ class ApplicationController < ActionController::Base
     end
 
     def redirect_suspended_user
-      redirect_to root_path, notice: "Tu cuenta está suspendida. Para reactivarla comunícate con nosotros a info@makeitreal.camp."
+      redirect_to login_path, notice: "Tu cuenta está suspendida. Para reactivarla comunícate con nosotros a info@makeitreal.camp."
     end
 
 end

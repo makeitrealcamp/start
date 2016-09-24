@@ -1,29 +1,52 @@
 require 'rails_helper'
 
 RSpec.feature "Sign In", type: :feature do
-  let!(:user) { create(:user) }
+  context "with Slack access" do
+    scenario "redirects to activation form" do
+      user = create(:user, status: User.statuses[:created])
 
-  scenario "redirects user to activation form" do
-    user.created!
+      login(user)
+      expect(current_path).to eq activate_users_path
+    end
 
-    login(user)
-    expect(current_path).to eq activate_users_path
+    scenario "handles authentication error" do
+      user = create(:user)
+      OmniAuth.config.mock_auth[:slack] = :invalid_credentials
+
+      visit login_path
+      find('#sign-in-slack').click
+
+      expect(current_path).to eq login_path
+      expect(page).to have_selector '.alert-error'
+    end
+
+    scenario "redirects suspended user to login path" do
+      user = create(:user, password: "test12345", status: User.statuses[:suspended])
+
+      login(user)
+      expect(current_path).to eq login_path
+    end
   end
 
-  scenario "handles authentication error", js: true do
-    OmniAuth.config.mock_auth[:slack] = :invalid_credentials
+  context "with email/password access" do
+    scenario "redirects to activation form" do
+      user = create(:user_password, password: "test12345", status: User.statuses[:created])
 
-    visit login_path
-    find('#sign-in-slack').click
+      login_password(user)
+      expect(current_path).to eq activate_users_path
+    end
 
-    expect(current_path).to eq login_path
-    expect(page).to have_selector '.alert-error'
-  end
+    scenario "handles authentication error" do
+      user = create(:user_password)
 
-  scenario "redirects suspended user to root path" do
-    user.suspended!
+      visit login_onsite_path
+      fill_in "email", with: user.email
+      fill_in "password", with: "wrong"
 
-    login(user)
-    expect(current_path).to eq root_path
+      click_on "Ingresar"
+
+      expect(current_path).to eq login_onsite_path
+      expect(page).to have_selector '.alert-error'
+    end
   end
 end
