@@ -8,7 +8,7 @@ module LoginMacros
     path = if user.created?
       activate_users_path
     elsif user.suspended?
-      root_path
+      login_path
     else # active or finished
       signed_in_root_path
     end
@@ -27,7 +27,7 @@ module LoginMacros
     path = if user.created?
       activate_users_path
     elsif user.suspended?
-      root_path
+      login_path
     else # active or finished
       signed_in_root_path
     end
