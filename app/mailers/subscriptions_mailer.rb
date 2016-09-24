@@ -1,4 +1,6 @@
 class SubscriptionsMailer < ApplicationMailer
+  include Roadie::Rails::Automatic
+  
   def activate(user)
      @user = user
      mail to: @user.email, subject: "¡#{genderize("Bienvenido", "Bienvenida", @user)} a Make it Real! Activa tu cuenta"

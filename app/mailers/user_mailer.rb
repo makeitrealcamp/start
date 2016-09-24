@@ -11,7 +11,7 @@ class UserMailer < ApplicationMailer
     @solution = solution
     @maker = solution.user
     @project = solution.project
-    mail to: @user.email, subject: "El maker #{@maker.email} hizo una solución al proyecto #{@project.name} "
+    mail to: @user.email, subject: "[Solución] #{@maker.name} hizo una solución al proyecto #{@project.name} "
   end
 
   def weekly_summary_email(user)

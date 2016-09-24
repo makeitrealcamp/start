@@ -1,14 +1,16 @@
 <p>Hola<%= @user.first_name? ? " #{@user.first_name}" : "" %>,</p>
 
-<p><%= genderize("Bienvenido", "Bienvenida", @user) %> a Make it Real, un programa en el que te convertirás en <%= genderize("Desarrollador", "Desarrolladora", @user) %> Web, ya sea para encontrar un mejor empleo o crear tu propia startup.</p>
+<p><strong>¡<%= genderize("Bienvenido", "Bienvenida", @user) %> a Make it Real!</strong> Estamos muy emocionados de que hagas parte de nuestra comunidad y te agradecemos por haber depositado tu confianza en nosotros.</p>
 
-<p>El primer paso es activar tu cuenta en la plataforma haciendo click en el siguiente link:</p>
+<p>El primer paso es activar tu cuenta en la plataforma de aprendizaje haciendo click en el siguiente botón:</p>
 
-<p><%= link_to activate_users_url(token: @user.password_reset_token), activate_users_url(token: @user.password_reset_token) %></p>
+<div class="button-wrapper">
+  <%= link_to "Activar mi cuenta", activate_users_url(token: @user.password_reset_token), class: "button" %>
+</div>
 
 <p>Si tienes alguna pregunta o inquietud simplemente responde este correo y con gusto la atenderé.</p>
 
 <p>Cordial saludo,</p>
 
-<p style="margin-left: 30px;">Diana Vanegas<br>
+<p class="signature">Diana Vanegas<br>
 makeitreal.camp</p>

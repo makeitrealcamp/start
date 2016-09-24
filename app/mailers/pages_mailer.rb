@@ -1,4 +1,5 @@
 class PagesMailer < ApplicationMailer
+  include Roadie::Rails::Automatic
 
   def web_developer_guide(subscriber)
     @subscriber = subscriber

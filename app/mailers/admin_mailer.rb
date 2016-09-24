@@ -1,4 +1,6 @@
 class AdminMailer < ApplicationMailer
+  include Roadie::Rails::Automatic
+
   def new_lead(program, first_name, last_name, email, country, mobile)
     @program = program
     @first_name = first_name
