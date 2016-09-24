@@ -1,7 +1,20 @@
-Hola<%= @user.first_name? ? " #{@user.first_name}" : "" %>,<br>
-<br />
+<p>Hola<%= @user.first_name? ? " #{@user.first_name}" : "" %>,</p>
 
-El maker  <strong><%= link_to @maker.email, user_profile_url(@maker.nickname) %></strong> ha subido una solución al proyecto <strong><%= @project.name %></strong>, para ver la solución
-debes hacer click en el siguiente link:
-<br />
-<%= link_to course_project_project_solution_url(@project.course, @project, @solution), course_project_project_solution_url(@project.course, @project, @solution)  %>
+<p>El maker <%= link_to @maker.email, user_profile_url(@maker.nickname) %> ha publicado una solución al proyecto <strong><%= @project.name %></strong>:</p>
+
+<p><strong>Resumen:</strong></p>
+<blockquote><%= @solution.summary %></blockquote>
+
+<p><strong>Repositorio:</strong> <a href="https://github.com/<%= @solution.repository %>" target="_blank">https://github.com/<%= @solution.repository %></a></p>
+<p><strong>URL:</strong> <a href="<%= @solution.url %>" target="_blank"><%= @solution.url %></a></p>
+
+<div class="button-wrapper">
+  <%= link_to "Ir a la solución en la plataforma", course_project_project_solution_url(@project.course, @project, @solution), class: "button" %>
+</div>
+
+<p>Te deseo un muy buen día,</p>
+
+<p class="signature">
+  <strong>Plataforma de Aprendizaje</strong><br>
+  <strong>makeitreal.camp</strong>
+</p>

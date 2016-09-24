@@ -82,6 +82,15 @@ class User < ActiveRecord::Base
   after_save :check_user_level
   before_save :downcase_email
 
+  def name
+    name = ""
+    name += self.first_name if self.first_name
+    name += " #{self.last_name}" if self.last_name
+
+    name = self.email if name.blank?
+    name
+  end
+
   def self.commenters_of(commentable)
     joins(:comments).where(comments: {commentable_id: commentable.id,commentable_type: commentable.class.to_s}).uniq
   end
