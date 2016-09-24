@@ -4,7 +4,6 @@
 #
 #  id              :integer          not null, primary key
 #  email           :string(100)
-#  roles           :string           is an Array
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  last_active_at  :datetime
