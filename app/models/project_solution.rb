@@ -33,7 +33,7 @@ class ProjectSolution < ActiveRecord::Base
   enum status: [:pending_review, :reviewed]
   after_initialize :default_values
   after_save :notify_mentors_if_pending_review
-  after_create :log_activity
+  after_save :log_activity
 
   delegate :course, to: :project
 
@@ -86,7 +86,15 @@ class ProjectSolution < ActiveRecord::Base
     end
 
     def log_activity
-      description = "Publicó una solución a #{project.to_html_description}"
-      ActivityLog.create(name: "published-project", user: user, activity: self, description: description)
+      if status_was.nil? && status == "pending_review"
+        description = "Publicó una #{self.to_html_description}"
+        ActivityLog.create(name: "published-project", user: user, activity: self, description: description)
+      elsif status_was == "pending_review" && status == "reviewed"
+        description = "Recibió una calificación a la #{self.to_html_description}"
+        ActivityLog.create(name: "received-project-grade", user: user, activity: self, description: description)
+      else
+        description = "Actualizó la #{self.to_html_description}"
+        ActivityLog.create(name: "republished-project", user: user, activity: self, description: description)
+      end
     end
 end

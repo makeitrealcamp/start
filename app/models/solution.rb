@@ -106,13 +106,13 @@ class Solution < ActiveRecord::Base
     def log_activity
       if status_was.nil? && status == "created"
         description = "Inició #{challenge.to_html_description}"
-        ActivityLog.create(name: "started-challenge", user: user, activity: self, description: description)
-      elsif status_was == "created" && status == "failed"
+        ActivityLog.create!(name: "started-challenge", user: user, activity: self, description: description)
+      elsif status == "failed" && status_was != "completed"
         description = "Intentó #{challenge.to_html_description}"
-        ActivityLog.create(name: "attempted-challenge", user: user, activity: self, description: description)
+        ActivityLog.create!(name: "attempted-challenge", user: user, activity: self, description: description)
       elsif (status_was == "created" || status_was == "failed") && status == "completed"
         description = "Completó #{challenge.to_html_description}"
-        ActivityLog.create(name: "completed-challenge", user: user, activity: self, description: description)
+        ActivityLog.create!(name: "completed-challenge", user: user, activity: self, description: description)
       end
     end
 end

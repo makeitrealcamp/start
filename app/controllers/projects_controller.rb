@@ -7,7 +7,6 @@ class ProjectsController < ApplicationController
   # GET /courses/:course_id/projects/:id
   def show
     @project_solution = @project.project_solutions.find_or_initialize_by(user_id: current_user.id)
-    ActivityLog.create(name: "viewed-project", user: current_user, activity: @project, description: "Entró a ver #{@project.to_html_description}")
   end
 
   # GET /courses/:course_id/projects/new
@@ -17,7 +16,6 @@ class ProjectsController < ApplicationController
   end
 
   # POST /courses/:course_id/projects
-
   def create
     @course = Course.friendly.find(params[:course_id])
     @project = @course.projects.new(project_params)

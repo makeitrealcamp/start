@@ -24,4 +24,16 @@ class ActivityLog < ActiveRecord::Base
   validates :user, presence: true
   validates :name, presence: true
   validates :description, presence: true
+
+  after_create :send_event
+
+  private
+    def send_event
+      unless Rails.env.test?
+        ConvertLoopJob.perform_later(name: self.name,
+            ocurred_at: self.created_at.utc.to_i,
+            person: { email: self.user.email },
+            metadata: { "activity-description" => self.description })
+      end
+    end
 end

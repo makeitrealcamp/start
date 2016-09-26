@@ -17,10 +17,9 @@ RSpec.describe ProjectsController, type: :controller do
       let(:user) { create(:user) }
       before { controller.sign_in(user) }
 
-      it "logs the activity" do
-        expect {
-          get :show, id: project.id, course_id: project.course_id
-        }.to change(ActivityLog, :count).by(1)
+      it "renders the template" do
+        get :show, id: project.id, course_id: project.course_id
+        expect(response).to render_template :show
       end
     end
   end
