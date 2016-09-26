@@ -24,10 +24,12 @@ class Quizer::QuizAttempt < ActiveRecord::Base
 
   validate :validate_unique_attempt_per_user
 
-  enum status: [:ongoing,:finished]
+  enum status: [:ongoing, :finished]
+
   after_initialize :defaults
   after_create :assign_questions
-
+  after_create :log_start_activity
+  after_save :log_end_activity
 
   def update_quiz_attempt_score!
     self.score = question_attempts.sum(:score)/questions.count.to_f
@@ -51,6 +53,18 @@ class Quizer::QuizAttempt < ActiveRecord::Base
       possible_questions = quiz.questions.published
       possible_questions.shuffle[0...5].each do |question|
         question.create_attempt!(quiz_attempt: self)
+      end
+    end
+
+    def log_start_activity
+      description = "Inició #{quiz.to_html_description}"
+      ActivityLog.create(name: "started-quiz", user: user, activity: self, description: description)
+    end
+
+    def log_end_activity
+      if finished?
+        description = "Finalió #{quiz.to_html_description} con un puntaje de #{score}"
+        ActivityLog.create(name: "finished-quiz", user: user, activity: self, description: description)
       end
     end
 end

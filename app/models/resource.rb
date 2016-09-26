@@ -34,7 +34,7 @@ class Resource < ActiveRecord::Base
   self.inheritance_column = nil
 
   enum type: [:url, :markdown, :course]
-  enum category: [:blog_post,:video_tutorial,:reading,:game,:tutorial,:documentation]
+  enum category: [:blog_post, :video_tutorial, :reading, :game, :tutorial, :documentation]
 
   belongs_to :course
   has_many :sections, dependent: :delete_all
@@ -69,12 +69,16 @@ class Resource < ActiveRecord::Base
     title
   end
 
-  def name_for_notification
-    title
+  def to_path
+    "#{course.to_path}/resources/#{slug}"
   end
 
-  def url_for_notification
-    Rails.application.routes.url_helpers.course_resource_url(self.course,self)
+  def to_html_link
+    "<a href='#{to_path}'>#{title}</a>"
+  end
+
+  def to_html_description
+    "#{to_html_link} del tema #{course.to_html_link}"
   end
 
   private

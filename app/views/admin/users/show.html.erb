@@ -1,124 +1,167 @@
-<div class="container profile-page">
+<div class="container profile-page default-top-padding">
   <div class="row">
     <div class="col-sm-9">
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="img-wrapper"><img src="<%= Gravatar.new("#{@user.email}").image_url(s: 200) %>" class="gravatar" /></div>
-        </div>
-        <div class="col-sm-5">
-          <div class="info">
-            <div class="first-name"><%= @user.first_name %></div>
-            <div class="info-value"><span class="glyphicon glyphicon-envelope"></span> <%= @user.email %></div>
-            <div class="info-value"><span class="glyphicon glyphicon-time"></span> Se unió el <%= l @user.created_at, format: '%d %b, %Y' %></div>
-            <div class="info-status"><%= @user.status %></div>
-            <% if @user.suspended? %>
-              <span class="label label-warning"><div class="glyphicon glyphicon-warning-sign"></div> &nbsp;Usuario Suspendido</span>
-            <% end %>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <% if @user.active? && current_user.is_admin? %>
-          <div class="details">
-            <div class="detail-value"><strong>Optimismo:</strong> <%= @user.optimism %></div>
-            <div class="detail-value"><strong>Motivación:</strong> <%= @user.motivation %></div>
-            <div class="detail-value"><strong>Mentalidad:</strong> <%= @user.mindset %></div>
-            <div class="detail-value"><strong>Experience:</strong> <%= @user.experience %></div>
-          </div>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="row solutions">
-        <div class="col-sm-12">
-          <hr>
-          <h3>Progreso</h3>
-          <div id="progress-chart" style="height: 250px;" data-chart='<%= progress_data(@user) %>'></div>
-          <table class="table table-bordered">
-            <tr>
-              <th>Reto</th>
-              <th class="text-center">Completado</th>
-              <th class="text-center">Intentos</th>
-              <th></th>
-            </tr>
-            <% @user.solutions.evaluated.order('updated_at DESC').each do |solution| %>
-              <tr>
-                <td><%= solution.challenge.name %></td>
-                <td class="text-center"><%= solution.completed_at.nil? ? "" : l(solution.completed_at, format: '%d %h, %Y %H:%M') %></td>
-                <td class="text-center"><%= solution.attempts %></td>
-                <td class="text-center">
-                  <% if solution.challenge.ruby_git? %>
-                    <a href="<%= solution.repository %>" target="_blank">Show</a>
-                  <% else %>
-                    <a href="#" class="solution-files" data-id="<%= solution.id %>">Show</a>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-          </table>
-        </div>
-      </div>
-
-       <div class="row resources">
-        <div class="col-sm-12">
-          <hr>
-          <h3>Recursos completados</h3>
-          <% @resources.each do |course, resources| %>
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title"><%= course.name %></h4>
-              </div>
-              <table class="table">
-                <tr>
-                  <th>Recurso</th>
-                  <th class="text-center">Completado</th>
-                </tr>
-                <% resources.each do |resource| %>
-                  <tr>
-                    <td><%= resource.title %></td>
-                    <td class="text-center"><%= l(@user.resource_completed_at(resource), format: '%d %h, %Y %H:%M') %></td>
-                  </tr>
-                <% end %>
-              </table>
+      <div class="box clearfix">
+        <div class="row">
+          <div class="col-sm-9">
+            <div class="img-wrapper">
+              <img src="<%= Gravatar.new("#{@user.email}").image_url(s: 200) %>" class="gravatar" />
             </div>
-          <% end %>
+            <div class="info">
+              <div class="first-name"><%= @user.name %></div>
+              <div class="info-value"><span class="glyphicon glyphicon-envelope"></span> <%= @user.email %></div>
+              <div class="info-value">
+                <% if @user.github_username? %>
+                  <%= link_to "http://github.com/#{@user.github_username}", class:"profile-github" do %>
+                    <i class="fa fa-github"></i> <%= "github.com/#{@user.github_username}" %>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="info-value"><span class="glyphicon glyphicon-time"></span> Se unió el <%= l @user.created_at, format: '%d %b, %Y' %></div>
+            </div>
+          </div>
+          <div class="col-sm-3 text-right">
+            <div class="level text-center">
+              <%= image_tag @user.level.image_url, class: "level-image" %>
+              <div class="level-points"><%= @user.stats.total_points %> puntos</div>
+            </div>
+          </div>
+        </div>
+        <div class="row summary">
+          <div class="col-sm-12">
+            <p>El estudiante se encuentra <strong><%= status(@user).downcase %></strong>.
+              <% if @user.last_active_at.nil? %>
+                No ha ingresado a la plataforma.
+              <% else %>
+                Su último acceso fue hace <strong><%= distance_of_time_in_words_to_now(@user.last_active_at) %></strong>, su última actividad hace <strong><%= distance_of_time_in_words_to_now(@user.activity_logs.order('created_at DESC').take.created_at) %></strong>. En total ha completado <strong><%= @user.stats.completed_challenges_count %> retos</strong> y ha publicado <strong><%= @user.stats.completed_projects_count %> proyectos</strong>.
+              <% end %>
+              </p>
+          </div>
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="box">
+            <h2>Progreso</h2>
+            <div id="progress-chart" style="height: 250px;" data-chart='<%= progress_data(@user) %>'></div>
+          </div>
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="box-tabs">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#activity" aria-controls="activity" role="tab" data-toggle="tab">Actividad</a></li>
+              <li role="presentation"><a href="#projects" aria-controls="projects" role="tab" data-toggle="tab">Proyectos</a></li>
+              <li role="presentation"><a href="#challenges" aria-controls="challenges" role="tab" data-toggle="tab">Retos</a></li>
+            </ul>
 
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="activity">
+                <table class="table">
+                  <thead>
+                    <th>Fecha</th>
+                    <th>Descripción</th>
+                  </thead>
+                  <tbody>
+                    <% @user.activity_logs.order('created_at DESC').limit(200).each do |activity| %>
+                      <tr>
+                        <td><%= l activity.created_at, format: '%d %h, %Y %H:%M' %></td>
+                        <td><%= activity.description.html_safe %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="projects">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Publicado</th>
+                      <th>Proyecto</th>
+                      <th>URL</th>
+                      <th>Estado</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @user.project_solutions.each do |solution| %>
+                      <tr>
+                        <td><%= l solution.created_at, format: '%d %h, %Y %H:%M' %></td>
+                        <td>
+                          <%= link_to solution.project.name, course_project_project_solution_path(solution.project.course, solution.project, solution) %>
+                          <span class="course-name"><%= solution.project.course.name %></span>
+                        </td>
+                        <td>
+                          <%= link_to "https://github.com/#{solution.repository}", class: "link" do %>
+                            <i class="fa fa-github"></i>
+                            <%= solution.repository %>
+                          <% end %><br>
+                          <% unless solution.url.blank? %>
+                            <%= link_to solution.url do %>
+                              <i class="fa fa-globe"></i>
+                              <%= solution.url %>
+                            <% end %>
+                          <% end %>
+                        </td>
+                        <td><%= project_solution_status(solution) %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="challenges">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Reto</th>
+                      <th class="text-center">Iniciado</th>
+                      <th class="text-center">Completado</th>
+                      <th class="text-center">Intentos</th>
+                      <th>Solución</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @user.solutions.order('updated_at DESC').each do |solution| %>
+                      <tr>
+                        <td>
+                          <%= link_to solution.challenge.name, course_challenge_path(solution.challenge.course, solution.challenge) %>
+                          <span class="course-name"><%= solution.challenge.course.name %></span>
+                        </td>
+                        <td class="text-center"><%= l solution.created_at, format: '%d %h, %Y %H:%M' %></td>
+                        <td class="text-center"><%= solution.completed_at.nil? ? "" : l(solution.completed_at, format: '%d %h, %Y %H:%M') %></td>
+                        <td class="text-center"><%= solution.attempts %></td>
+                        <td>
+                          <% if solution.challenge.is_github_repo? %>
+                            <a href="https://github.com/<%= solution.repository %>" target="_blank"><i class="fa fa-github"></i> Ir al Repo</a>
+                          <% elsif solution.challenge.is_github_pr? %>
+                            <a href="https://github.com/<%= solution.repository %>/pull/<%= solution.pull_request %>" target="_blank"><i class="fa fa-github"></i> Ir al PR</a>
+                          <% else %>
+                            <a href="#" class="solution-files" data-id="<%= solution.id %>">Ver archivos</a>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="col-sm-3">
-      <div class="row work">
-        <div class="col-xs-6">
-          <div class="work-box">
-            <div class="work-value"><%= @user.solutions.completed.count %></div>
-            <div class="work-label">Retos</div>
-          </div>
-        </div>
-        <div class="col-xs-6">
-          <div class="work-box">
-            <div class="work-value"><%= @user.resource_completions.count %></div>
-            <div class="work-label">Recursos</div>
-          </div>
-        </div>
-      </div>
       <% @courses.each_with_index do |course, i| %>
         <div class="row">
           <div class="col-sm-12">
             <div class="course">
               <div class="title"><%= course.name %></div>
               <%= progress_bar(progress: @user.stats.progress_by_course(course)) %>
-              <div class="row info">
-                <div class="col-xs-6 info-item">
-                  <span class="info-item-value"><%= @user.solutions.completed.joins(:challenge).where('challenges.course_id = ?', course.id).count %>/<%= course.challenges.published.count %></span>
-                  <span class="info-item-label">Retos</span>
-                </div>
-                <div class="col-xs-6 info-item">
-                  <span class="info-item-value"><%= course.resources.published.count %></span>
-                  <span class="info-item-label">Recursos</span>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -136,17 +179,19 @@
     <div class="modal-content">
       <div class="modal-body">
         <ul class="nav nav-tabs" role="tablist">
-          {{ _.each(documents, function(document) { }}
-            <li class="active file-tab">
-              <a href="editor-{{= document.id }}" role="tab" data-toggle="tab">{{= document.name }}</a>
+          {{ _.each(documents, function(document, index) { }}
+            <li class="{{ if (index == 0) { }}active{{ } }} file-tab">
+              <a href="#document-{{= document.id }}" role="tab" data-toggle="tab">{{= document.name }}</a>
             <li>
           {{ }); }}
         </ul>
-        {{ _.each(documents, function(document) { }}
-          <div role="tabpanel" class="tab-pane active expand">
+        <div class="tab-content">
+        {{ _.each(documents, function(document, index) { }}
+          <div id="document-{{= document.id }}" role="tabpanel" class="tab-pane {{ if (index == 0) { }}active{{ } }} expand">
             <textarea id="editor-{{= document.id }}">{{= document.content }}</textarea>
           </div>
         {{ }); }}
+        </div>
       </div>
     </div>
   </div>

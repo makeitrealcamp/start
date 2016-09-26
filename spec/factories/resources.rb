@@ -28,14 +28,14 @@ FactoryGirl.define do
   factory :resource do
     title { Faker::Name.title}
     description { Faker::Lorem.paragraph}
-    type Resource.types[:url]
+    type :url
     category Resource.categories[:documentation]
     own false
     url { Faker::Internet.url}
     time_estimate {"#{Faker::Number.digit} days"}
     course
     published true
-    
+
     factory :video_course do
       type Resource.types[:course]
       trait :published do

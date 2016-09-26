@@ -66,6 +66,8 @@ Rails.application.routes.draw do
     end
 
     resources :resources, except: [:index] do
+      get :open, on: :member # opens an external resource
+      
       resource :completion, controller: 'resource_completion', only: [:create, :destroy]
       resources :sections, except: [:index] do
         resources :lessons, except: [:index] do

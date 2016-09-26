@@ -94,12 +94,28 @@ class Challenge < ActiveRecord::Base
     self.difficulty_bonus + Challenge::BASE_POINTS
   end
 
-  def name_for_notification
+  def is_github_repo?
+    self.ruby_git? || self.rails_git? || self.sinatra_git?
+  end
+
+  def is_github_pr?
+    self.ruby_git_pr?
+  end
+
+  def to_s
     name
   end
 
-  def url_for_notification
-    Rails.application.routes.url_helpers.discussion_course_challenge_path(self.course, self)
+  def to_path
+    "#{course.to_path}/challenges/#{slug}"
+  end
+
+  def to_html_link
+    "<a href='#{to_path}'>#{to_s}</a>"
+  end
+
+  def to_html_description
+    "el reto #{to_html_link} del tema #{course.to_html_link}"
   end
 
   private

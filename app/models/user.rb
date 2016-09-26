@@ -46,6 +46,7 @@ class User < ActiveRecord::Base
   has_many :quiz_attempts, class_name: '::Quizer::QuizAttempt'
   has_many :path_subscriptions
   has_many :paths, -> { uniq }, through: :path_subscriptions
+  has_many :activity_logs
 
   hstore_accessor :profile,
     first_name: :string,
@@ -53,10 +54,6 @@ class User < ActiveRecord::Base
     gender: :string,
     birthday: :date,
     mobile_number: :string,
-    optimism: :string,
-    mindset: :string,
-    motivation: :string,
-    experience: :string,
     activated_at: :datetime,
     github_username: :string
 
@@ -80,6 +77,7 @@ class User < ActiveRecord::Base
   before_create :assign_random_nickname
   after_initialize :default_values
   after_save :check_user_level
+  after_save :log_activity
   before_save :downcase_email
 
   def name
@@ -300,5 +298,21 @@ class User < ActiveRecord::Base
 
     def last_pending_challenge
       solutions.pending.joins(:challenge).where('challenges.published = ?', true).order('updated_at ASC').take.try(:challenge)
+    end
+
+    def log_activity
+      if status_was == "created" && status == "active" # the user is now active
+        ConvertLoop.people.create_or_update(email: self.email, first_name: self.first_name, last_name: self.last_name, add_tags: ['Student', 'Active']) unless Rails.env.test?
+        ActivityLog.create(name: "enrolled", user: self, description: "Inició el programa")
+      elsif status_was == "active" && status == "suspended" # the account has been suspended
+        ConvertLoop.people.create_or_update(email: self.email, add_tags: ['Suspended'], remove_tags: ['Active']) unless Rails.env.test?
+        ActivityLog.create(name: "account-suspended", user: self, description: "La cuenta ha sido suspendida")
+      elsif status_was == "active" && status == "finished" # the user finished the program
+        ConvertLoop.people.create_or_update(email: self.email, add_tags: ['Finished'], remove_tags: ['Active']) unless Rails.env.test?
+        ActivityLog.create(name: "completed-program", user: self, description: "Terminó el programa!")
+      elsif status_was == "suspended" && status == "active" # the account has been reactivated
+        ConvertLoop.people.create_or_update(email: self.email, add_tags: ['Active'], remove_tags: ['Suspended']) unless Rails.env.test?
+        ActivityLog.create(name:"account-reactivated", user: self, description: "La cuenta ha sido reactivada")
+      end
     end
 end

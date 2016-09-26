@@ -15,7 +15,6 @@ class LessonsController < ApplicationController
     else
       render :new
     end
-
   end
 
   # GET /courses/:course_id/resources/:resource_id/sections/:section_id/lessons/:id
@@ -49,13 +48,9 @@ class LessonsController < ApplicationController
   # POST /courses/:course_id/resources/:resource_id/sections/:section_id/lessons/:id/complete
   def complete
     @lesson = Lesson.find(params[:id])
-
-    if @lesson.free_preview? || current_user.has_access_to?(@lesson.resource)
-      unless current_user.has_completed_lesson?(@lesson)
-        LessonCompletion.create(user: current_user,lesson: @lesson)
-      end
+    unless current_user.has_completed_lesson?(@lesson)
+      LessonCompletion.create(user: current_user,lesson: @lesson)
     end
-
     redirect_to next_path(@lesson)
   end
 
@@ -72,10 +67,9 @@ class LessonsController < ApplicationController
   end
 
   private
-
-  def lesson_params
-    params.require(:lesson).permit(:name, :video_url, :description, :info, :section_id, :free_preview, :video_duration)
-  end
+    def lesson_params
+      params.require(:lesson).permit(:name, :video_url, :description, :info, :section_id, :free_preview, :video_duration)
+    end
 
     def next_path(lesson)
       next_lesson = lesson.next(current_user)

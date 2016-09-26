@@ -47,21 +47,8 @@ class Lesson < ActiveRecord::Base
     end
   end
 
-
   def resource
     self.section.resource
-  end
-
-  def to_s
-    name
-  end
-
-  def name_for_notification
-    name
-  end
-
-  def url_for_notification
-    Rails.application.routes.url_helpers.course_resource_section_lesson_url(self.course,self.resource, self.section,self)
   end
 
   def next(user)
@@ -76,5 +63,21 @@ class Lesson < ActiveRecord::Base
     end
 
     lesson
+  end
+
+  def to_s
+    name
+  end
+
+  def to_path
+    "#{section.to_path}/lessons/#{id}"
+  end
+
+  def to_html_link
+    "<a href='#{to_path}'>#{name}</a>"
+  end
+
+  def to_html_description
+    "la lección #{to_html_link} del curso #{resource.to_html_link} del tema #{resource.course.to_html_link}"
   end
 end

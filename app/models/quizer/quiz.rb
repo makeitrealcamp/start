@@ -53,6 +53,22 @@ class Quizer::Quiz < ActiveRecord::Base
       .score
   end
 
+  def to_s
+    name
+  end
+
+  def to_path
+    "#{course.to_path}/quizzes/#{slug}"
+  end
+
+  def to_html_link
+    "<a href='#{to_path}'>#{to_s}</a>"
+  end
+
+  def to_html_description
+    "el quiz #{to_html_link} del tema #{course.to_html_link}"
+  end
+
   private
 
     def defaults

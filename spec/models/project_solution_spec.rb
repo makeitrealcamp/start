@@ -87,6 +87,13 @@ RSpec.describe ProjectSolution, type: :model do
         project_solution.update(summary: Faker::Lorem.sentence)
       end
     end
+  end
 
+  describe ".log_activity" do
+    context "when the solution is created" do
+      it "logs the activity" do
+        expect { create(:project_solution) }.to change(ActivityLog, :count).by(1)
+      end
+    end
   end
 end

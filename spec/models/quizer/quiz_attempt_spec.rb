@@ -19,10 +19,6 @@
 require 'rails_helper'
 
 RSpec.describe Quizer::QuizAttempt, type: :model do
-
-  let!(:quiz_attempt) { create(:quiz_attempt, status: Quizer::QuizAttempt.statuses[:ongoing]) }
-  let(:question_attempts) { build_list(:question_attempt,10, quiz_attempt: quiz_attempt) }
-
   context 'associations' do
     it { should belong_to(:user) }
     it { should belong_to(:quiz) }
@@ -30,33 +26,37 @@ RSpec.describe Quizer::QuizAttempt, type: :model do
     it { should have_many(:questions) }
   end
 
-
   it "has a valid factory" do
-    quiz_attempt = build(:quiz_attempt)
-    expect(quiz_attempt).to be_valid
+    expect(build(:quiz_attempt)).to be_valid
   end
 
-  it "should not allow create more than one ongoing quiz_attempt for the same quiz and user" do
-    invalid_quiz_attempt = build(:quiz_attempt,
-      user: quiz_attempt.user,quiz: quiz_attempt.quiz,
-      status: Quizer::QuizAttempt.statuses[:ongoing]
-    )
-    expect(invalid_quiz_attempt).to_not be_valid
-    expect(invalid_quiz_attempt.errors).to have_key(:user)
+  describe ".create" do
+    let(:quiz_attempt) { create(:quiz_attempt, status: :ongoing) }
+
+    it "doesn't allow to create more than one ongoing quiz attempt for the same quiz and user" do
+      invalid_quiz_attempt = build(:quiz_attempt,
+        user: quiz_attempt.user,quiz: quiz_attempt.quiz,
+        status: Quizer::QuizAttempt.statuses[:ongoing]
+      )
+      expect(invalid_quiz_attempt).to_not be_valid
+      expect(invalid_quiz_attempt.errors).to have_key(:user)
+    end
+
+    it "allows to create a quiz attempt if there are no ongoing quizzes_attempts" do
+      quiz_attempt.finished!
+      other_quiz_attempt = build(:quiz_attempt,
+        user: quiz_attempt.user,quiz: quiz_attempt.quiz,
+        status: Quizer::QuizAttempt.statuses[:ongoing]
+      )
+      expect(other_quiz_attempt).to be_valid
+    end
   end
 
-  it "should allow create a quiz_attempt if there are no ongoing quizzes_attempts" do
-    quiz_attempt.finished!
-    other_quiz_attempt = build(:quiz_attempt,
-      user: quiz_attempt.user,quiz: quiz_attempt.quiz,
-      status: Quizer::QuizAttempt.statuses[:ongoing]
-    )
-    expect(other_quiz_attempt).to be_valid
-  end
+  describe ".score" do
+    let(:quiz_attempt) { create(:quiz_attempt, status: :ongoing) }
+    let(:question_attempts) { build_list(:question_attempt, 10, quiz_attempt: quiz_attempt) }
 
-  describe "#score" do
-
-    it "should return 1 if all the questions attempts have score 1" do
+    it "returns 1 if all the questions attempts have score 1" do
       question_attempts.each do |q|
         expect(q).to receive(:calculate_score).and_return(1.0)
         q.save!
@@ -64,7 +64,7 @@ RSpec.describe Quizer::QuizAttempt, type: :model do
       expect(quiz_attempt.score).to eq(1.0)
     end
 
-    it "should return 0 if all the questions attempts have score 0" do
+    it "returns 0 if all the questions attempts have score 0" do
       question_attempts.each do |q|
         expect(q).to receive(:calculate_score).and_return(0.0)
         q.save!
@@ -72,7 +72,7 @@ RSpec.describe Quizer::QuizAttempt, type: :model do
       expect(quiz_attempt.score).to eq(0.0)
     end
 
-    it "should return the average of the scores of the question attempts" do
+    it "returns the average of the scores of the question attempts" do
       scores = (0...10).map { rand }
       scores_avg = scores.sum/scores.length.to_f
       question_attempts.each_with_index do |q,i|
@@ -81,7 +81,16 @@ RSpec.describe Quizer::QuizAttempt, type: :model do
       end
       expect(quiz_attempt.score).to be_within(0.001).of(scores_avg)
     end
-
   end
 
+  describe ".log_activity" do
+    it "logs the activity on create" do
+      expect { create(:quiz_attempt) }.to change(ActivityLog, :count).by(1)
+    end
+
+    it "logs the activity on finish" do
+      quiz_attempt = create(:quiz_attempt)
+      expect { quiz_attempt.finished! }.to change(ActivityLog, :count).by(1)
+    end
+  end
 end

@@ -30,4 +30,10 @@ RSpec.describe LessonCompletion, type: :model do
   it "has a valid factory" do
     expect(build(:lesson_completion)).to be_valid
   end
+
+  describe ".log_activity" do
+    it "logs the activity on create" do
+      expect { create(:lesson_completion) }.to change(ActivityLog, :count).by(1)
+    end
+  end
 end

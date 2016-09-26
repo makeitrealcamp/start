@@ -16,7 +16,6 @@ class ProjectsController < ApplicationController
   end
 
   # POST /courses/:course_id/projects
-
   def create
     @course = Course.friendly.find(params[:course_id])
     @project = @course.projects.new(project_params)
