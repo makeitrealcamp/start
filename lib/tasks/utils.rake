@@ -30,6 +30,21 @@ namespace :utils do
     Solution.all.each do |solution|
       description = "Inició #{solution.challenge.to_html_description}"
       ActivityLog.create(name: "started-challenge", user: solution.user, activity: solution, description: description, created_at: solution.created_at)
+
+      solution.versions.each do |version|
+        reified_solution = version.reify
+        if reified_solution.failed?
+          description = "Intentó #{solution.challenge.to_html_description}"
+          ActivityLog.create!(name: "attempted-challenge", user: solution.user, activity: solution, description: description, created_at: reified_solution.updated_at)
+        elsif reified_solution.completed?
+          break
+        end
+      end
+
+      if solution.completed_at
+        description = "Completó #{solution.challenge.to_html_description}"
+        ActivityLog.create!(name: "completed-challenge", user: solution.user, activity: solution, description: description, created_at: solution.completed_at)
+      end
     end
 
     Comment.all.each do |comment|
