@@ -72,6 +72,8 @@ class Comment < ActiveRecord::Base
       commenters.each do |commenter|
         commenter.notifications.create!(notification_type: :comment_activity, data: { comment_id: self.id })
       end
+
+      EmailCommentJob.set(wait: 5.minutes).perform_later(self.id)
     end
 
     def log_activity

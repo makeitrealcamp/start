@@ -1,0 +1,14 @@
+<p>Hola<%= @user && @user.first_name? ? " #{@user.first_name}" : "" %>,</p>
+
+<p><%= @comment.user.name %> ha dejado el siguiente comentario en <strong><%= @comment.commentable.to_s %></strong>:</p>
+
+<blockquote><%= @comment.text %></blockquote>
+
+<p>Para responder este comentario <%= link_to "haz click acá", url_for(@comment.commentable.to_path) %></p>
+
+<p>Que tengas un muy buen día,</p>
+
+<p class="signature">
+  <strong>Equipo de soporte</strong><br>
+  <strong>makeitreal.camp</strong>
+</p>

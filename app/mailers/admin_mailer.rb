@@ -11,4 +11,11 @@ class AdminMailer < ApplicationMailer
 
     mail to: "carolina.hernandez@makeitreal.camp", subject: "[Nuevo Lead #{program}] #{first_name} #{last_name} (#{country}: #{mobile})"
   end
+
+  def new_comment(email, admin, comment)
+    @user = admin
+    @comment = comment
+
+    mail to: email, subject: "#{@comment.user.name} ha dejado un comentario en #{@comment.commentable.to_s}"
+  end
 end
