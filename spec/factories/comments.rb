@@ -20,7 +20,7 @@
 FactoryGirl.define do
   factory :comment do
     text { Faker::Lorem.paragraph }
-    association  :user, factory: :user
-    association  :commentable, factory: :challenge
+    user
+    association :commentable, factory: :challenge
   end
 end

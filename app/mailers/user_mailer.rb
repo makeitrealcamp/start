@@ -30,4 +30,11 @@ class UserMailer < ApplicationMailer
     @points_needed_for_next_level = user.stats.points_needed_for_next_level
     mail to: @user.email, subject: "Un resumen de tu semana en Make it Real"
   end
+
+  def comment_response(comment)
+    @user = comment.response_to.user
+    @comment = comment
+
+    mail to: @user.email, subject: "Tienes una nueva respuesta en tu comentario"
+  end
 end

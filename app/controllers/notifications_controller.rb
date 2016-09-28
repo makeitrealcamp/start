@@ -5,7 +5,6 @@ class NotificationsController < ApplicationController
     @notification = Notification.find(params[:id])
     owner_or_admin_access(@notification)
     @unread_count = current_user.notifications.unread.count
-
   end
 
   def index
