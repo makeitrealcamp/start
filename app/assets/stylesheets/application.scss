@@ -63,8 +63,15 @@ html.turbolinks-progress-bar::before {
   // margin-top: -15px;
   padding-top: 20px;
   padding-bottom: 20px;
-  padding-left: 50px;
   margin-bottom: 0;
+  font-size: 14px;
+  overflow: hidden;
+  white-space: nowrap;
+
+  @media(min-width: $screen-sm-min) {
+    padding-left: 50px;
+    font-size: 16px;
+  }
 }
 
 .content-wrapper {

@@ -202,8 +202,10 @@ blockquote {
   .nav-tabs > li {
     &.active > a { background: white; }
     > a {
-      font-size: 25px;
       font-family: 'Open Sans Condensed',sans-serif;
+      font-size: 18px;
+
+      @media(min-width: $screen-sm-min) { font-size: 25px; }
     }
   }
 
@@ -228,9 +230,14 @@ blockquote {
 
   .tab-exp {
     color: #999;
-    font-size: 21px;
+    font-size: 18px;
     font-weight: 300;
     margin-bottom: 30px;
+    padding: 0 15px;
+
+    @media(min-width: $screen-sm-min) {
+      font-size: 21px;
+    }
   }
 
   .section-header {
@@ -257,10 +264,14 @@ blockquote {
       line-height: 1.6;
 
       td {
-        padding: 15px 20px 20px;
+        padding: 5px 10px 10px;
         margin-bottom: 20px;
         border-bottom: 1px solid #ddd;
         background: white;
+
+        @media(min-width: $screen-sm-min) {
+          padding: 15px 20px 20px;
+        }
       }
 
       td.resource-info {
@@ -301,13 +312,14 @@ blockquote {
         }
 
         .icon-container {
-          width: 14px;
-          margin: 5px auto 0;
+          width: 13px;
+          margin: 6px auto 0;
         }
       }
       td.resource-additional {
-        width: 110px;
         text-align: right;
+
+        @media(min-width: $screen-sm-min) { width: 110px; }
 
         span { display: block; }
         .resource-status {

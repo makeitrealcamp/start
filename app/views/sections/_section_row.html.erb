@@ -19,7 +19,7 @@
           </div>
 
           <span class="lesson-status glyphicon glyphicon-ok <%= 'completed' if current_user.has_completed_lesson?(lesson)%> "></span>
-          <span class="lesson-duration"><%= video_duration(lesson) %></span>
+          <span class="lesson-duration hidden-xs"><%= video_duration(lesson) %></span>
 
       </div>
     <% end %>
