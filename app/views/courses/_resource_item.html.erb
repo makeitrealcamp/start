@@ -25,7 +25,7 @@
     <%= link_to_toggle_completed resource if resource.self_completable? %>
     <span class="time-estimate"><%= resource.time_estimate %></span>
     <% if resource.category %>
-      <span class="label label-default resource-tag <%=resource.category%>"><i class="fa <%=resource.category%>"></i><%= t("resources.categories.#{resource.category}") %></span>
+      <span class="label label-default resource-tag <%=resource.category%> hidden-xs"><i class="fa <%=resource.category%>"></i><%= t("resources.categories.#{resource.category}") %></span>
     <% end %>
   </td>
 </tr>
