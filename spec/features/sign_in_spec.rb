@@ -48,5 +48,11 @@ RSpec.feature "Sign In", type: :feature do
       expect(current_path).to eq login_onsite_path
       expect(page).to have_selector '.alert-error'
     end
+
+    scenario "sucess login" do
+      user = create(:user_password, email: "PepePerez@example.com")
+      login_password(user)
+      expect(current_path).to eq signed_in_root_path
+    end
   end
 end
