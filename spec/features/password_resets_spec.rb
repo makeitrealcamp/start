@@ -1,20 +1,38 @@
 require 'rails_helper'
 
 RSpec.feature "PasswordResets", type: :feature do
-  scenario "sends password reset", js: true do
-    user = create(:user_password)
-    visit login_onsite_path
+  context 'sends password reset' do
+    scenario "without letter capital", js: true do
+      user = create(:user_password)
+      visit login_onsite_path
 
-    click_link 'Olvidé mi contraseña'
+      click_link 'Olvidé mi contraseña'
 
-    find(:css, '.modal-dialog input[type="email"]').set(user.email)
-    click_button 'Restablecer Contraseña'
+      find(:css, '.modal-dialog input[type="email"]').set(user.email)
+      click_button 'Restablecer Contraseña'
 
-    expect(page).to have_selector '.alert-notice'
+      expect(page).to have_selector '.alert-notice'
 
-    user.reload
-    expect(user.password_reset_token).not_to be_nil
-    expect(user.password_reset_sent_at).not_to be_nil
+      user.reload
+      expect(user.password_reset_token).not_to be_nil
+      expect(user.password_reset_sent_at).not_to be_nil
+    end
+
+    scenario "with letter capital", js: true do
+      user = create(:user_password, email: 'PepePerez@example.com')
+      visit login_onsite_path
+
+      click_link 'Olvidé mi contraseña'
+
+      find(:css, '.modal-dialog input[type="email"]').set(user.email)
+      click_button 'Restablecer Contraseña'
+
+      expect(page).to have_selector '.alert-notice'
+
+      user.reload
+      expect(user.password_reset_token).not_to be_nil
+      expect(user.password_reset_sent_at).not_to be_nil
+    end
   end
 
   scenario "updates password" do

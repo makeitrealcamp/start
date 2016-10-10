@@ -7,7 +7,7 @@ class PasswordResetsController < ApplicationController
   def create
     @reset_request = PasswordResetRequestForm.new(password_reset_request_params)
     if @reset_request.valid?
-      user = User.find_by_email(@reset_request.email)
+      user = User.find_by_email(@reset_request.email.downcase)
       user.send_password_reset
     end
   end

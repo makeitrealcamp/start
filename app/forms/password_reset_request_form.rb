@@ -7,6 +7,7 @@ class PasswordResetRequestForm < BaseForm
 
   private
     def existence_of_email
-      errors[:email] << "no ha sido encontrado o no tiene acceso por contraseña" unless User.exists?(email: self.email, access_type: User.access_types['password'])
+      email = self.email.downcase
+      errors[:email] << "no ha sido encontrado o no tiene acceso por contraseña" unless User.exists?(email: email, access_type: User.access_types['password'])
     end
 end
