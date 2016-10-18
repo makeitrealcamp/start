@@ -7,7 +7,7 @@
 #  title         :string(100)
 #  description   :string
 #  row           :integer
-#  type          :integer
+#  type_old      :integer
 #  url           :string
 #  time_estimate :string(50)
 #  created_at    :datetime         not null
@@ -18,6 +18,7 @@
 #  video_url     :string
 #  category      :integer
 #  own           :boolean
+#  type          :string(100)
 #
 # Indexes
 #
@@ -27,18 +28,16 @@
 require 'rails_helper'
 
 RSpec.describe Resource, type: :model do
-  let(:subject) {create(:subject) }
-  let(:resource) { create(:resource, subject: subject) }
-  subject { Resource.new }
 
   context 'associations' do
+    subject { build(:external_url) }
     it { should belong_to(:subject) }
     it { should have_many(:resource_completions) }
   end
 
   context "friendly_id" do
     it "should update the slug after updating the name" do
-      resource = create(:resource)
+      resource = create(:external_url)
       old_slug = resource.slug
       resource.title = resource.title+" un nombre random"
       resource.save
@@ -48,20 +47,20 @@ RSpec.describe Resource, type: :model do
   end
 
   context 'validations' do
+    subject { build(:external_url) }
     it { should validate_presence_of :title }
-    context 'when type is url' do
-      before { subject.type = "url" }
+    context 'when type is ExternalUrl' do
       it { should validate_presence_of :url }
       it { should should_not allow_value('url.com').for(:url)}
     end
 
     context 'when type is markdown' do
-      before { subject.type = "markdown" }
+      subject { build(:markdown) }
       it { should validate_presence_of :content }
     end
   end
 
   it "has a valid factory" do
-    expect(build(:resource)).to be_valid
+    expect(build(:external_url)).to be_valid
   end
 end

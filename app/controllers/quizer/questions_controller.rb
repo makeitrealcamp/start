@@ -37,7 +37,7 @@ module Quizer
       end
 
       def set_quiz
-        @quiz = Quiz.friendly.find(params[:quiz_id])
+        @quiz = Quiz.friendly.find(params[:resource_id])
       end
 
       def set_quiz_attempt

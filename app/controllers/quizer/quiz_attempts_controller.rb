@@ -1,6 +1,6 @@
 module Quizer
   class QuizAttemptsController < ApplicationController
-    include QuizzesHelper
+    include ResourcesHelper
 
     before_action :private_access
     before_action :set_subject
@@ -14,7 +14,7 @@ module Quizer
       if @quiz.is_being_attempted_by_user?(current_user)
         redirect_to ongoing_quiz_attempt_for_user_path(@quiz,current_user)
       elsif @quiz_attempt = @quiz.quiz_attempts.create(user: current_user)
-        redirect_to subject_quizer_quiz_quiz_attempt_path(@subject,@quiz,@quiz_attempt.reload)
+        redirect_to subject_resource_quiz_attempt_path(@subject, @quiz, @quiz_attempt.reload)
       else
         flash[:error] = "Algo salió mal"
         redirect_to :back
@@ -23,7 +23,7 @@ module Quizer
 
     def finish
       @quiz_attempt.finished!
-      redirect_to quiz_attempt_results_path(@quiz_attempt)
+      redirect_to results_subject_resource_quiz_attempt_path(@quiz_attempt.quiz.subject, @quiz_attempt.quiz, @quiz_attempt)
     end
 
     def results
@@ -38,7 +38,7 @@ module Quizer
       end
 
       def set_quiz
-        @quiz = Quiz.friendly.find(params[:quiz_id])
+        @quiz = Quiz.friendly.find(params[:resource_id])
       end
 
       def set_quiz_attempt

@@ -5,32 +5,35 @@ RSpec.feature "Quizzes", type: :feature do
   let(:subject) { create(:subject) }
 
   scenario "lists all quizzes" do
-    create(:quiz, subject: subject, published: true)
-    create(:quiz, subject: subject, published: false)
+    create(:quiz, subject: subject, title: "Quiz 1", published: true)
+    create(:quiz, subject: subject, title: "Quiz 2", published: false)
 
     login(admin)
 
     visit subject_path(subject)
-    click_link "Quizzes"
+    click_link "Recursos"
 
-    expect(page).to have_selector('.quiz', count: 2)
+    expect(page).to have_content("Quiz 1")
+    expect(page).to have_content("Quiz 2")
     expect(page).to have_css('.actions') # shows buttons to edit and delete
   end
 
   scenario "creates a quiz" do
     login(admin)
 
-    visit new_subject_quizer_quiz_path(subject)
+    visit new_subject_resource_path(subject)
 
-    name = Faker::Name.title
+    title = Faker::Name.title
     expect {
-      fill_in 'quizer_quiz_name', with: name
-      find(:css, "#quizer_quiz_published").set(true)
-      click_button 'Crear Quiz'
+      fill_in 'resource_title', with: title
+      fill_in 'resource_description', with: Faker::Lorem.paragraph
+      select "Quiz", from: 'resource_type'
+      find(:css, "#resource_published").set(true)
+      click_button 'Crear Resource'
     }.to change(Quizer::Quiz, :count).by 1
 
     quiz = Quizer::Quiz.last
-    expect(quiz.name).to eq name
+    expect(quiz.title).to eq title
     expect(quiz.published?).to eq true
   end
 
@@ -39,15 +42,15 @@ RSpec.feature "Quizzes", type: :feature do
 
     login(admin)
 
-    visit edit_subject_quizer_quiz_path(subject, quiz)
+    visit edit_subject_resource_path(subject, quiz)
 
-    name = Faker::Name::title
-    fill_in 'quizer_quiz_name', with: name
-    find(:css, "#quizer_quiz_published").set(false)
-    click_button 'Actualizar Quiz'
+    title = Faker::Name::title
+    fill_in 'resource_title', with: title
+    find(:css, "#resource_published").set(false)
+    click_button 'Actualizar Resource'
 
     quiz.reload
-    expect(quiz.name).to eq name
+    expect(quiz.title).to eq  title
     expect(quiz.published?).to eq false
   end
 end

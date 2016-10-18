@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Admin lesson management", type: :feature do
   let(:admin) { create(:admin) }
   let(:subject) { create(:subject) }
-  let(:resource) { create(:resource, type: "course", content: Faker::Lorem.paragraph, subject: subject) }
+  let(:resource) { create(:video_course, content: Faker::Lorem.paragraph, subject: subject) }
   let(:section) { create(:section, resource: resource) }
 
   scenario "creates a lesson" do

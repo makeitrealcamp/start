@@ -45,7 +45,7 @@ RSpec.feature "Resource management", type: :feature do
   end
 
   scenario "edit resource with valid input" do
-    resource = create(:resource, subject: subject)
+    resource = create(:external_url, subject: subject)
     create(:resource, subject: subject)
 
     login(admin)
@@ -56,7 +56,6 @@ RSpec.feature "Resource management", type: :feature do
     url = Faker::Internet.url
     fill_in 'resource_title', with: title
     fill_in 'resource_description', with: description
-    select "External URL", from: 'resource_type'
     fill_in 'resource_url', with: url
     fill_in 'resource_time_estimate', with: "#{Faker::Number.digit} days"
     click_button  'Actualizar Resource'
@@ -67,7 +66,6 @@ RSpec.feature "Resource management", type: :feature do
     expect(resource.title).to eq title
     expect(resource.description).to eq description
     expect(resource.url).to eq url
-    expect(resource.type).to eq Resource.types.keys.first
   end
 
   scenario "deletes a resource", js: true do

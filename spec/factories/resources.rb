@@ -7,7 +7,7 @@
 #  title         :string(100)
 #  description   :string
 #  row           :integer
-#  type          :integer
+#  type_old      :integer
 #  url           :string
 #  time_estimate :string(50)
 #  created_at    :datetime         not null
@@ -18,6 +18,7 @@
 #  video_url     :string
 #  category      :integer
 #  own           :boolean
+#  type          :string(100)
 #
 # Indexes
 #
@@ -28,7 +29,6 @@ FactoryGirl.define do
   factory :resource do
     title { Faker::Name.title}
     description { Faker::Lorem.paragraph}
-    type :url
     category Resource.categories[:documentation]
     own false
     url { Faker::Internet.url}
@@ -36,8 +36,26 @@ FactoryGirl.define do
     subject
     published true
 
-    factory :video_subject do
-      type Resource.types[:course]
+    factory :external_url, class: ExternalUrl do
+      trait :published do
+        published true
+      end
+    end
+
+    factory :video_course, class: Course do
+      trait :published do
+        published true
+      end
+    end
+
+    factory :markdown, class: MarkdownDocument do
+      trait :published do
+        published true
+      end
+    end
+
+    factory :quiz, class: Quizer::Quiz do
+      type "Quizer::Quiz"
       trait :published do
         published true
       end

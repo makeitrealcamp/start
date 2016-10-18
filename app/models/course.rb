@@ -25,22 +25,10 @@
 #  index_resources_on_subject_id  (subject_id)
 #
 
-require 'rails_helper'
+class Course < Resource
+  has_many :sections, foreign_key: :resource_id, dependent: :delete_all
 
-RSpec.describe Quizer::Quiz, type: :model do
-
-  context 'associations' do
-    it { should belong_to(:subject) }
-    it { should have_many(:questions) }
-    it { should have_many(:quiz_attempts) }
-  end
-
-  context 'validations' do
-    it { validate_presence_of(:name) }
-    it { validate_presence_of(:course) }
-  end
-
-  it "should have a valid factory" do
-    expect(build(:quiz)).to be_valid
+  def self.model_name
+    Resource.model_name
   end
 end

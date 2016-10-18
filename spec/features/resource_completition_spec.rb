@@ -49,7 +49,7 @@ RSpec.feature "Resource completion", type: :feature do
 
   context "when user completes last resource (and subject) and there are no more subjects" do
     scenario "redirects to subject page", js: true do
-      resource = create(:resource)
+      resource = create(:external_url)
       login(user)
 
       visit subject_resource_path(resource.subject, resource)

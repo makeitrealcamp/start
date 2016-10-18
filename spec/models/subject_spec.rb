@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: courses
+# Table name: subjects
 #
 #  id            :integer          not null, primary key
 #  name          :string(50)

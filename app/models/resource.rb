@@ -7,7 +7,7 @@
 #  title         :string(100)
 #  description   :string
 #  row           :integer
-#  type          :integer
+#  type_old      :integer
 #  url           :string
 #  time_estimate :string(50)
 #  created_at    :datetime         not null
@@ -18,6 +18,7 @@
 #  video_url     :string
 #  category      :integer
 #  own           :boolean
+#  type          :string(100)
 #
 # Indexes
 #
@@ -31,21 +32,13 @@ class Resource < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title
 
-  self.inheritance_column = nil
-
-  enum type: [:url, :markdown, :course, :quiz]
   enum category: [:blog_post, :video_tutorial, :reading, :game, :tutorial, :documentation]
 
   belongs_to :subject
-  has_many :sections, dependent: :delete_all
   has_many :comments, as: :commentable # TODO: change to reviews
   has_many :resource_completions, dependent: :delete_all
 
-  accepts_nested_attributes_for :sections, allow_destroy: true
-
   validates :subject, :title, :description, presence: :true
-  validates :url, presence: true, format: { with: URI.regexp }, if: :url?
-  validates :content, presence: true, if: :markdown?
 
   scope :for, -> user { published unless user.is_admin? }
   scope :published, -> { where(published: true) }
@@ -62,7 +55,30 @@ class Resource < ActiveRecord::Base
   end
 
   def self_completable?
-    ["markdown","url"].include? self.type
+    url? || markdown?
+  end
+
+  def type_name
+    return "url" if url?
+    return "markdown" if markdown?
+    return "course" if course?
+    return "quiz" if quiz?
+  end
+
+  def url?
+    self.type == "ExternalUrl"
+  end
+
+  def markdown?
+    self.type == "MarkdownDocument"
+  end
+
+  def course?
+    self.type == "Course"
+  end
+
+  def quiz?
+    self.type == "Quizer::Quiz"
   end
 
   def to_s
@@ -84,7 +100,7 @@ class Resource < ActiveRecord::Base
   private
     def default_values
       self.published ||= false
-      self.type ||= :url
+      self.type ||= "ExternalUrl"
     rescue ActiveModel::MissingAttributeError => e
       # ranked_model makes partial selects and this error is thrown
     end

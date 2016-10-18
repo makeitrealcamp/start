@@ -74,17 +74,18 @@ Rails.application.routes.draw do
           post :complete, on: :member
         end
       end
+      resources :quiz_attempts, only: [:create, :show], controller: 'quizer/quiz_attempts' do
+        member do
+          patch :finish
+          get :results
+        end
+        resources :question_attempts, only: [:update], controller: 'quizer/question_attempts'
+      end
+      resources :questions, only: [:index, :new, :create, :edit, :update], controller: 'quizer/questions'
     end
     namespace :quizer, path: '/' do
       resources :quizzes do
-        resources :questions, only: [:index,:new,:create,:edit,:update]
-        resources :quiz_attempts, only: [:create, :show] do
-          member do
-            patch :finish
-            get :results
-          end
-          resources :question_attempts, only: [:update]
-        end
+
       end
     end
   end

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Sections", type: :feature do
   let(:admin) { create(:admin) }
   let(:subject) { create(:subject) }
-  let(:resource) { create(:resource, type: "course", subject: subject) }
+  let(:resource) { create(:video_course, subject: subject) }
 
   scenario "creates a new section", js: true do
     login(admin)

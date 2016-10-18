@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161017221448) do
+ActiveRecord::Schema.define(version: 20161018050108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -289,24 +289,11 @@ ActiveRecord::Schema.define(version: 20161017221448) do
   add_index "quiz_attempts", ["quiz_id"], name: "index_quiz_attempts_on_quiz_id", using: :btree
   add_index "quiz_attempts", ["user_id"], name: "index_quiz_attempts_on_user_id", using: :btree
 
-  create_table "quizzes", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "row"
-    t.string   "slug"
-    t.integer  "subject_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean  "published"
-  end
-
-  add_index "quizzes", ["subject_id"], name: "index_quizzes_on_subject_id", using: :btree
-
   create_table "resources", force: :cascade do |t|
     t.integer  "subject_id"
     t.string   "title",         limit: 100
     t.string   "description"
     t.integer  "row"
-    t.integer  "type"
     t.string   "url"
     t.string   "time_estimate", limit: 50
     t.datetime "created_at",                null: false
@@ -317,13 +304,14 @@ ActiveRecord::Schema.define(version: 20161017221448) do
     t.string   "video_url"
     t.integer  "category"
     t.boolean  "own"
+    t.string   "type",          limit: 100
   end
 
   add_index "resources", ["subject_id"], name: "index_resources_on_subject_id", using: :btree
 
   create_table "resources_users", id: false, force: :cascade do |t|
-    t.integer  "user_id",     null: false
-    t.integer  "resource_id", null: false
+    t.integer  "resource_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -434,10 +422,9 @@ ActiveRecord::Schema.define(version: 20161017221448) do
   add_foreign_key "projects", "subjects"
   add_foreign_key "question_attempts", "questions"
   add_foreign_key "question_attempts", "quiz_attempts"
-  add_foreign_key "questions", "quizzes"
-  add_foreign_key "quiz_attempts", "quizzes"
+  add_foreign_key "questions", "resources", column: "quiz_id"
+  add_foreign_key "quiz_attempts", "resources", column: "quiz_id"
   add_foreign_key "quiz_attempts", "users"
-  add_foreign_key "quizzes", "subjects"
   add_foreign_key "resources", "subjects"
   add_foreign_key "solutions", "challenges"
   add_foreign_key "solutions", "users"

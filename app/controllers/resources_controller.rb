@@ -34,7 +34,7 @@ class ResourcesController < ApplicationController
   def update
     @resource = Resource.friendly.find(params[:id])
     if @resource.update(resource_params)
-      redirect_to subject_resource_path(@resource.subject,@resource), notice: "Recurso actualizado"
+      redirect_to subject_resource_path(@resource.subject, @resource), notice: "Recurso actualizado"
     else
       render :edit
     end

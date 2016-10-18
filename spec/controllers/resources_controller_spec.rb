@@ -4,7 +4,7 @@ RSpec.describe ResourcesController, type: :controller do
   render_views
 
   describe "GET #show" do
-    let(:resource) { create(:resource) }
+    let(:resource) { create(:external_url) }
 
     context "when not signed in" do
       it "redirects to login" do
@@ -18,10 +18,10 @@ RSpec.describe ResourcesController, type: :controller do
       before { controller.sign_in(user) }
 
       it "logs the activity if the resource is markdown" do
-        resource.update(type: :markdown, content: "Hey")
+        markdown = create(:markdown, content: "Hey")
 
         expect {
-          get :show, id: resource.slug, subject_id: resource.subject_id
+          get :show, id: markdown.slug, subject_id: markdown.subject_id
         }.to change(ActivityLog, :count).by(1)
       end
 
@@ -34,7 +34,7 @@ RSpec.describe ResourcesController, type: :controller do
   end
 
   describe "GET #open" do
-    let(:resource) { create(:resource) }
+    let(:resource) { create(:external_url) }
 
     context "when not signed in" do
       it "redirects to login" do

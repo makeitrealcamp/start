@@ -18,17 +18,16 @@ class Section < ActiveRecord::Base
   include RankedModel
   ranks :row, with_same: :resource_id
 
-  belongs_to :resource
+  belongs_to :resource, class_name: "Course"
   has_many :lessons, dependent: :delete_all
-  accepts_nested_attributes_for :lessons, allow_destroy: true
 
   validates :title, presence: true
 
   default_scope { rank(:row) }
-  delegate :subject, to: :resource
+  delegate :course, to: :resource
 
-  alias_method :subject, :resource
-  alias_method :subject=, :resource=
+  alias_method :course, :resource
+  alias_method :course=, :resource=
 
   def next(user)
     self.resource.sections.where('row > ?', self.row).first

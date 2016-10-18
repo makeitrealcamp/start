@@ -56,14 +56,9 @@ crumb :project_solution do |project_solution|
   parent :project_solutions, project_solution.project
 end
 
-crumb :quizzes do |subject|
-  link "Quizzes", subject_path(subject, tab: "quizzes")
-  parent :subject, subject
-end
-
 crumb :quiz do |quiz|
-  link quiz.name, [quiz.subject, quiz]
-  parent :quizzes, quiz.subject
+  link quiz.title, [quiz.subject, quiz]
+  parent :resources, quiz.subject
 end
 
 crumb :quiz_questions do |quiz|

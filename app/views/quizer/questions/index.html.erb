@@ -1,9 +1,9 @@
 <% breadcrumb :quiz_questions, @quiz %>
 
-<div class="container">
+<div class="container default-top-padding">
   <div class="row margin-bottom">
     <div class="col-xs-12">
-      <%= form_tag(new_subject_quizer_quiz_question_path(@subject, @quiz), method: "get", remote: true, class: 'form-inline') do %>
+      <%= form_tag(new_subject_resource_question_path(@subject, @quiz), method: "get", remote: true, class: 'form-inline') do %>
         <div class="form-group">
           <%= label_tag "Tipo" %>
           <%= select_tag :type, question_type_options, class: "form-control"%>

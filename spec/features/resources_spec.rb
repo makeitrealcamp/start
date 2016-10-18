@@ -5,7 +5,7 @@ RSpec.feature "Resources", type: :feature do
   let(:subject) { create(:subject) }
 
   scenario "shows a resource with Markdown content" do
-    resource = create(:resource, type: "markdown", content: "Hello World", subject: subject)
+    resource = create(:markdown, :published, subject: subject, content: "Hello World")
 
     login(user)
     visit subject_path(subject)

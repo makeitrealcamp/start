@@ -29,9 +29,6 @@
           <% if current_user.is_admin? || @subject.projects.for(current_user).count > 0 %>
             <li role="presentation" class="<%= "active" if @tab == :projects %>"><a href="#projects" aria-controls="projects" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-road hidden-xs" aria-hidden="true"></span> Proyectos</a></li>
           <% end %>
-          <% if current_user.is_admin? || @subject.quizzes.for(current_user).count > 0 %>
-            <li role="presentation" class="<%= "active" if @tab == :quizzes %>"><a href="#quizzes" aria-controls="quizzes" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-list-alt hidden-xs" aria-hidden="true"></span> Quizzes</a></li>
-          <% end %>
         </ul>
 
         <!-- Tab panes -->
@@ -48,13 +45,6 @@
               <%= render 'projects_section' %>
             </div><!-- /projects tab -->
           <% end %>
-
-          <% if current_user.is_admin? || @subject.quizzes.for(current_user).count > 0 %>
-            <div role="tabpanel" class="tab-pane quizzes <%= "active" if @tab == :quizzes %>" id="quizzes">
-              <%= render 'quizzes_section' %>
-            </div><!-- /projects tab -->
-          <% end %>
-
         </div><!-- /tab content -->
 
         </div>
