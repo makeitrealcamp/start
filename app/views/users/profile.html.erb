@@ -72,24 +72,24 @@
           <% end %>
         </div>
 
-        <% Course.published.all.each_with_index do |course,i| %>
-          <% progress = @user.stats.progress_by_course(course)%>
+        <% Subject.published.all.each_with_index do |subject, i| %>
+          <% progress = @user.stats.progress_by_subject(subject)%>
           <% if i % 2 == 0 %><div class="clearfix visible-xs"></div><% end %>
           <% if i % 3 == 0 %><div class="clearfix visible-sm"></div><% end %>
           <% if i % 4 == 0 %><div class="clearfix visible-md visible-lg"></div><% end %>
           <div class="col-xs-6 col-sm-4 col-md-3">
             <div class="course-status">
-              <span class="course-name"><%= course.name %></span>
+              <span class="course-name"><%= subject.name %></span>
               <div class="progress">
                 <%= progress_bar(progress: progress, show_percentage: true) %>
               </div>
               <% if @is_own_profile %>
                 <% if progress == 0 %>
-                  <%= link_to "iniciar", course_path(course) %>
+                  <%= link_to "iniciar", subject_path(subject) %>
                 <% elsif progress == 1 %>
                   <p class="text-muted">finalizado</p>
                 <% else %>
-                  <%= link_to "continuar", course_path(course) %>
+                  <%= link_to "continuar", subject_path(subject) %>
                 <% end %>
               <% end %>
             </div>

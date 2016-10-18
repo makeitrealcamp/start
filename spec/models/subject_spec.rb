@@ -16,7 +16,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Course, type: :model do
+RSpec.describe Subject, type: :model do
 
   context 'associations' do
     it { should have_many(:resources) }
@@ -29,19 +29,19 @@ RSpec.describe Course, type: :model do
   end
 
   it "has a valid factory" do
-    expect(build(:course)).to be_valid
+    expect(build(:subject)).to be_valid
   end
 
   context "friendly_id" do
     it "should update the slug after updating the name" do
-      course = create(:course)
+      subject = create(:subject)
 
-      # change the name of the course
-      course.name = "a random name"
-      course.save
+      # change the name of the subject
+      subject.name = "a random name"
+      subject.save
 
-      expect(course.slug).to eq("a-random-name")
-      expect(course.slug).to eq(course.friendly_id)
+      expect(subject.slug).to eq("a-random-name")
+      expect(subject.slug).to eq(subject.friendly_id)
     end
   end
 end

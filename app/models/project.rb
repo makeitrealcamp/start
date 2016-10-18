@@ -3,7 +3,7 @@
 # Table name: projects
 #
 #  id                    :integer          not null, primary key
-#  course_id             :integer
+#  subject_id            :integer
 #  name                  :string
 #  explanation_text      :text
 #  explanation_video_url :string
@@ -15,18 +15,18 @@
 #
 # Indexes
 #
-#  index_projects_on_course_id  (course_id)
+#  index_projects_on_subject_id  (subject_id)
 #
 
 class Project < ActiveRecord::Base
   include RankedModel
-  ranks :row, with_same: :course_id
+  ranks :row, with_same: :subject_id
 
   validates :name, presence: true
   validates :explanation_text, presence: true
-  validates :course, presence: true
+  validates :subject, presence: true
 
-  belongs_to :course
+  belongs_to :subject
   has_many :project_solutions
   has_many :points, as: :pointable
 
@@ -44,7 +44,7 @@ class Project < ActiveRecord::Base
   end
 
   def to_path
-    "#{course.to_path}/projects/#{id}"
+    "#{subject.to_path}/projects/#{id}"
   end
 
   def to_html_link
@@ -52,6 +52,6 @@ class Project < ActiveRecord::Base
   end
 
   def to_html_description
-    "el proyecto #{to_html_link} del tema #{course.to_html_link}"
+    "el proyecto #{to_html_link} del tema #{subject.to_html_link}"
   end
 end

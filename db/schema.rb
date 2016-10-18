@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160924152154) do
+ActiveRecord::Schema.define(version: 20161017221448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20160924152154) do
     t.text     "description"
     t.integer  "required_points"
     t.string   "image_url"
-    t.integer  "course_id"
+    t.integer  "subject_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "giving_method"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20160924152154) do
   add_index "challenge_completions", ["user_id"], name: "index_challenge_completions_on_user_id", using: :btree
 
   create_table "challenges", force: :cascade do |t|
-    t.integer  "course_id"
+    t.integer  "subject_id"
     t.string   "name",                limit: 100
     t.text     "instructions"
     t.text     "evaluation"
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20160924152154) do
     t.integer  "timeout"
   end
 
-  add_index "challenges", ["course_id"], name: "index_challenges_on_course_id", using: :btree
+  add_index "challenges", ["subject_id"], name: "index_challenges_on_subject_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.integer  "commentable_id"
@@ -106,22 +106,10 @@ ActiveRecord::Schema.define(version: 20160924152154) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "course_phases", force: :cascade do |t|
-    t.integer  "course_id"
+    t.integer  "subject_id"
     t.integer  "phase_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "courses", force: :cascade do |t|
-    t.string   "name",          limit: 50
-    t.integer  "row"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.string   "time_estimate", limit: 50
-    t.string   "excerpt"
-    t.string   "description"
-    t.string   "slug"
-    t.boolean  "published"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -226,7 +214,7 @@ ActiveRecord::Schema.define(version: 20160924152154) do
 
   create_table "points", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "course_id"
+    t.integer  "subject_id"
     t.integer  "points"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -234,8 +222,8 @@ ActiveRecord::Schema.define(version: 20160924152154) do
     t.string   "pointable_type"
   end
 
-  add_index "points", ["course_id"], name: "index_points_on_course_id", using: :btree
   add_index "points", ["pointable_type", "pointable_id"], name: "index_points_on_pointable_type_and_pointable_id", using: :btree
+  add_index "points", ["subject_id"], name: "index_points_on_subject_id", using: :btree
 
   create_table "project_solutions", force: :cascade do |t|
     t.integer  "user_id"
@@ -252,7 +240,7 @@ ActiveRecord::Schema.define(version: 20160924152154) do
   add_index "project_solutions", ["user_id"], name: "index_project_solutions_on_user_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
-    t.integer  "course_id"
+    t.integer  "subject_id"
     t.string   "name"
     t.text     "explanation_text"
     t.string   "explanation_video_url"
@@ -263,7 +251,7 @@ ActiveRecord::Schema.define(version: 20160924152154) do
     t.integer  "difficulty_bonus",      default: 0
   end
 
-  add_index "projects", ["course_id"], name: "index_projects_on_course_id", using: :btree
+  add_index "projects", ["subject_id"], name: "index_projects_on_subject_id", using: :btree
 
   create_table "question_attempts", force: :cascade do |t|
     t.integer  "quiz_attempt_id"
@@ -305,16 +293,16 @@ ActiveRecord::Schema.define(version: 20160924152154) do
     t.string   "name"
     t.integer  "row"
     t.string   "slug"
-    t.integer  "course_id"
+    t.integer  "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean  "published"
   end
 
-  add_index "quizzes", ["course_id"], name: "index_quizzes_on_course_id", using: :btree
+  add_index "quizzes", ["subject_id"], name: "index_quizzes_on_subject_id", using: :btree
 
   create_table "resources", force: :cascade do |t|
-    t.integer  "course_id"
+    t.integer  "subject_id"
     t.string   "title",         limit: 100
     t.string   "description"
     t.integer  "row"
@@ -331,7 +319,7 @@ ActiveRecord::Schema.define(version: 20160924152154) do
     t.boolean  "own"
   end
 
-  add_index "resources", ["course_id"], name: "index_resources_on_course_id", using: :btree
+  add_index "resources", ["subject_id"], name: "index_resources_on_subject_id", using: :btree
 
   create_table "resources_users", id: false, force: :cascade do |t|
     t.integer  "user_id",     null: false
@@ -365,6 +353,18 @@ ActiveRecord::Schema.define(version: 20160924152154) do
   add_index "solutions", ["challenge_id"], name: "index_solutions_on_challenge_id", using: :btree
   add_index "solutions", ["properties"], name: "solutions_gin_properties", using: :gin
   add_index "solutions", ["user_id"], name: "index_solutions_on_user_id", using: :btree
+
+  create_table "subjects", force: :cascade do |t|
+    t.string   "name",          limit: 50
+    t.integer  "row"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "time_estimate", limit: 50
+    t.string   "excerpt"
+    t.string   "description"
+    t.string   "slug"
+    t.boolean  "published"
+  end
 
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
@@ -419,7 +419,7 @@ ActiveRecord::Schema.define(version: 20160924152154) do
   add_foreign_key "auth_providers", "users"
   add_foreign_key "challenge_completions", "challenges"
   add_foreign_key "challenge_completions", "users"
-  add_foreign_key "challenges", "courses"
+  add_foreign_key "challenges", "subjects"
   add_foreign_key "comments", "users"
   add_foreign_key "lesson_completions", "lessons"
   add_foreign_key "lesson_completions", "users"
@@ -428,17 +428,17 @@ ActiveRecord::Schema.define(version: 20160924152154) do
   add_foreign_key "path_subscriptions", "paths"
   add_foreign_key "path_subscriptions", "users"
   add_foreign_key "phases", "paths"
-  add_foreign_key "points", "courses"
+  add_foreign_key "points", "subjects"
   add_foreign_key "project_solutions", "projects"
   add_foreign_key "project_solutions", "users"
-  add_foreign_key "projects", "courses"
+  add_foreign_key "projects", "subjects"
   add_foreign_key "question_attempts", "questions"
   add_foreign_key "question_attempts", "quiz_attempts"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "quiz_attempts", "quizzes"
   add_foreign_key "quiz_attempts", "users"
-  add_foreign_key "quizzes", "courses"
-  add_foreign_key "resources", "courses"
+  add_foreign_key "quizzes", "subjects"
+  add_foreign_key "resources", "subjects"
   add_foreign_key "solutions", "challenges"
   add_foreign_key "solutions", "users"
   add_foreign_key "subscriptions", "users"

@@ -35,7 +35,7 @@ class Lesson < ActiveRecord::Base
   scope :free_preview, -> { where(free_preview: true) }
   default_scope { rank(:row) }
 
-  delegate :course, :resource, to: :section
+  delegate :subject, :resource, to: :section
 
   def self.for(user)
     if user.is_admin?
@@ -78,6 +78,6 @@ class Lesson < ActiveRecord::Base
   end
 
   def to_html_description
-    "la lección #{to_html_link} del curso #{resource.to_html_link} del tema #{resource.course.to_html_link}"
+    "la lección #{to_html_link} del curso #{resource.to_html_link} del tema #{resource.subject.to_html_link}"
   end
 end

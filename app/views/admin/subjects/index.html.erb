@@ -1,12 +1,12 @@
 <div class="container admin-courses-container">
   <div class="row">
     <div class="col-xs-12">
-      <%= link_to courses_path, class: "link" do %>
+      <%= link_to subjects_path, class: "link" do %>
         <span class="glyphicon glyphicon-chevron-left"></span>
         Volver
       <% end %>
       <h1>Cursos</h1>
-      <%= link_to "Nuevo Curso", new_course_path, class: "btn btn-success margin-bottom" %>
+      <%= link_to "Nuevo Tema", new_subject_path, class: "btn btn-success margin-bottom" %>
       <p class="text-muted margin-bottom">
         Los cursos se deben organizar en conjunto porque pueden pertenecer a varias fases
       </p>
@@ -20,20 +20,20 @@
             </tr>
           </thead>
           <tbody>
-            <% @courses.order(:row).each_with_index do |course,index| %>
-              <tr id="course-<%= course.id %>" class="course" data-index="<%= index %>" data-sortable="true" data-resource-id="<%=course.id %>">
+            <% @subjects.order(:row).each_with_index do |subject, index| %>
+              <tr id="course-<%= subject.id %>" class="course" data-index="<%= index %>" data-sortable="true" data-resource-id="<%=subject.id %>">
                 <td>
-                  <%= course.name %>
+                  <%= subject.name %>
                 </td>
                 <td>
-                  <% course.phases.each do |phase| %>
+                  <% subject.phases.each do |phase| %>
                     <span class="phase-label label label-default" style="background-color: <%= phase.color %>">
                       <%= "#{phase.path.name} - #{phase.name}" %>
                     </span>
                   <% end %>
                 </td>
                 <td>
-                  <%= link_to edit_course_path(course), class: "btn btn-info" do %>
+                  <%= link_to edit_subject_path(subject), class: "btn btn-info" do %>
                     <span class="glyphicon glyphicon-pencil"></span>
                   <% end %>
                 </td>
@@ -48,7 +48,7 @@
 <script type="text/javascript">
   (function() {
     var sortables = [
-      new SortableView({el: ".courses",resource:"admin/courses"}),
+      new SortableView({ el: ".courses", resource: "admin/subjects" }),
     ];
     $(document).on("page:before-change", function() {
       _.each(sortables, function(sortable) {

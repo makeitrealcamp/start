@@ -27,11 +27,11 @@ namespace :mir do
       "jQuery y AJAX" => [26,27,28]
     }
     ActiveRecord::Base.transaction do
-      badges_data.each do |course_name,url_nums|
-        if c = Course.find_by_name(course_name)
+      badges_data.each do |subject_name,url_nums|
+        if c = Subject.find_by_name(subject_name)
           url_nums.each_with_index do |url_num, i|
             c.badges.create(
-              name: "#{course_name} #{levels[i]}",
+              name: "#{subject_name} #{levels[i]}",
               giving_method: "points",
               required_points: 30000, # Required points should be adjusted manually after running this script
               image_url: "https://s3.amazonaws.com/makeitreal/badges/emblem_mir_#{'%02d' % url_num}%402x.png"

@@ -127,8 +127,8 @@ class User < ActiveRecord::Base
     complete.created_at
   end
 
-  def finished?(course)
-    self.stats.progress_by_course(course) == 1.0
+  def finished?(subject)
+    self.stats.progress_by_subject(subject) == 1.0
   end
 
   def has_access_to?(resource)
@@ -211,7 +211,7 @@ class User < ActiveRecord::Base
 
   def next_challenge
     if last_solution.nil? # user has not completed nor attempted any challenge
-      Challenge.for(self).order_by_course_and_rank.first
+      Challenge.for(self).order_by_subject_and_rank.first
     elsif last_solution.completed? # user's last action was a challenge completion
       find_next_challenge
     else # user attempted a challenge but it was not completed
@@ -278,22 +278,22 @@ class User < ActiveRecord::Base
     # returns the next published challenge after the one of the argument or nil
     # if it is the last one
     def next_challenge_after(challenge)
-      next_challenge_in_course = next_challenge_in_course_after(challenge)
-      if next_challenge_in_course
-        next_challenge_in_course
+      next_challenge_in_subject = next_challenge_in_subject_after(challenge)
+      if next_challenge_in_subject
+        next_challenge_in_subject
       else
-        first_challenge_of_next_course(challenge.course)
+        first_challenge_of_next_subject(challenge.subject)
       end
     end
 
     # returns the next published challenge after the one of the argument in the
-    # same course or nil if it's the last one
-    def next_challenge_in_course_after(challenge)
-      challenge.course.challenges.for(self).order(:row).where("row > ?", challenge.row).take
+    # same subject or nil if it's the last one
+    def next_challenge_in_subject_after(challenge)
+      challenge.subject.challenges.for(self).order(:row).where("row > ?", challenge.row).take
     end
 
-    def first_challenge_of_next_course(current_course)
-      Challenge.for(self).order_by_course_and_rank.where("courses.row > ?", current_course.row).take
+    def first_challenge_of_next_subject(current_subject)
+      Challenge.for(self).order_by_subject_and_rank.where("subjects.row > ?", current_subject.row).take
     end
 
     def last_pending_challenge

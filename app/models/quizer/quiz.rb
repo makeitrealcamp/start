@@ -6,30 +6,30 @@
 #  name       :string
 #  row        :integer
 #  slug       :string
-#  course_id  :integer
+#  subject_id :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  published  :boolean
 #
 # Indexes
 #
-#  index_quizzes_on_course_id  (course_id)
+#  index_quizzes_on_subject_id  (subject_id)
 #
 
 class Quizer::Quiz < ActiveRecord::Base
   include RankedModel
-  ranks :row, with_same: :course_id
+  ranks :row, with_same: :subject_id
 
   extend FriendlyId
   friendly_id :name
 
-  belongs_to :course
+  belongs_to :subject
   has_many :questions
   has_many :quiz_attempts
   has_many :users, -> { uniq }, through: :quiz_attempts
 
   validates :name, presence: true
-  validates :course, presence: true
+  validates :subject, presence: true
 
   after_initialize :defaults
 
@@ -58,7 +58,7 @@ class Quizer::Quiz < ActiveRecord::Base
   end
 
   def to_path
-    "#{course.to_path}/quizzes/#{slug}"
+    "#{subject.to_path}/quizzes/#{slug}"
   end
 
   def to_html_link
@@ -66,7 +66,7 @@ class Quizer::Quiz < ActiveRecord::Base
   end
 
   def to_html_description
-    "el quiz #{to_html_link} del tema #{course.to_html_link}"
+    "el quiz #{to_html_link} del tema #{subject.to_html_link}"
   end
 
   private

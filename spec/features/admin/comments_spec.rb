@@ -5,11 +5,11 @@ RSpec.feature "Comments management", type: :feature do
 
   scenario "deletes a comment", js: true do
     user = create(:user_with_path)
-    challenge = create(:challenge, course: create(:course))
+    challenge = create(:challenge, subject: create(:subject))
     comment = create(:comment, user: user, commentable: challenge)
 
     login(admin)
-    
+
     visit(admin_comments_path)
     expect(page).to have_selector("#comment-#{comment.id}")
 

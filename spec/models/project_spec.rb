@@ -3,7 +3,7 @@
 # Table name: projects
 #
 #  id                    :integer          not null, primary key
-#  course_id             :integer
+#  subject_id            :integer
 #  name                  :string
 #  explanation_text      :text
 #  explanation_video_url :string
@@ -15,14 +15,14 @@
 #
 # Indexes
 #
-#  index_projects_on_course_id  (course_id)
+#  index_projects_on_subject_id  (subject_id)
 #
 
 require 'rails_helper'
 
 RSpec.describe Project, type: :model do
   context 'associations' do
-    it { should belong_to(:course) }
+    it { should belong_to(:subject) }
     it { should have_many(:project_solutions) }
     it { should have_many(:points) }
   end
@@ -30,7 +30,7 @@ RSpec.describe Project, type: :model do
   context 'validations' do
     it { should validate_presence_of :name }
     it { should validate_presence_of :explanation_text }
-    it { should validate_presence_of :course }
+    it { should validate_presence_of :subject }
   end
 
   it "has a valid factory" do

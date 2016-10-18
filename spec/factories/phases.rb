@@ -26,7 +26,7 @@ FactoryGirl.define do
     published true
     path
 
-    factory :phase_with_courses do
+    factory :phase_with_subjects do
       after(:create) { |phase| create_list(:course_phase, 3, phase: phase) }
     end
   end

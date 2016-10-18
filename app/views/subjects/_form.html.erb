@@ -1,8 +1,8 @@
 <div class="container course-form-page">
   <div class="row">
-    <%= form_for @course do |f| %>
+    <%= form_for @subject do |f| %>
       <div class="col-sm-10 col-sm-offset-1">
-        <%= render 'shared/flash_messages_form', object: @course %>
+        <%= render 'shared/flash_messages_form', object: @subject %>
         <h1>Editar Curso</h1>
         <div class="form-group">
           <%= f.label :name %>
@@ -42,7 +42,7 @@
         </div>
 
         <div class="actions text-right">
-          <%= link_to "Cancelar", admin_courses_path, class: "btn btn-default" %>
+          <%= link_to "Cancelar", admin_subjects_path, class: "btn btn-default" %>
           <%= f.submit class: "btn btn-primary"%>
         </div>
       </div>

@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: courses
+# Table name: subjects
 #
 #  id            :integer          not null, primary key
 #  name          :string(50)
@@ -14,7 +14,7 @@
 #  published     :boolean
 #
 
-class Course < ActiveRecord::Base
+class Subject < ActiveRecord::Base
   include RankedModel
   ranks :row
 
@@ -36,7 +36,7 @@ class Course < ActiveRecord::Base
 
   scope :for, -> user {
     unless user.is_admin?
-      published.where(id: Path.for(user).map(&:courses).flatten.map(&:id))
+      published.where(id: Path.for(user).map(&:subjects).flatten.map(&:id))
     end
   }
   scope :published, -> { where(published: true) }
@@ -45,11 +45,11 @@ class Course < ActiveRecord::Base
 
   def next(path=nil)
     if path.nil?
-      Course.published.order(:row).where('row > ?', self.row).first
+      Subject.published.order(:row).where('row > ?', self.row).first
     else
       current_phase = phase_for_path(path)
       if current_phase
-        current_phase.courses.published.order(:row).where('row > ?', self.row).first
+        current_phase.subjects.published.order(:row).where('row > ?', self.row).first
       end
     end
   end
@@ -63,7 +63,7 @@ class Course < ActiveRecord::Base
   end
 
   def to_path
-    "/courses/#{slug}"
+    "/subjects/#{slug}"
   end
 
   def to_html_link

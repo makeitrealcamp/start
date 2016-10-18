@@ -2,23 +2,23 @@ require 'rails_helper'
 
 RSpec.feature "Question management", type: :feature do
   let(:admin) { create(:admin) }
-  let(:course) { create(:course) }
-  let(:quiz) { create(:quiz, course: course) }
+  let(:subject) { create(:subject) }
+  let(:quiz) { create(:quiz, subject: subject) }
 
   scenario "lists questions of a quiz" do
     create_list(:open_question, 3, quiz: quiz)
 
     login(admin)
-    visit course_quizer_quiz_path(course, quiz)
+    visit subject_quizer_quiz_path(subject, quiz)
 
     click_link 'Preguntas'
-    expect(current_path).to eq course_quizer_quiz_questions_path(course, quiz)
+    expect(current_path).to eq subject_quizer_quiz_questions_path(subject, quiz)
   end
 
   scenario "creates a question", js: true do
     login(admin)
-    visit course_quizer_quiz_questions_path(course, quiz)
-    
+    visit subject_quizer_quiz_questions_path(subject, quiz)
+
     question = 'why?'
     answer_correct = 'answer correct 1'
     wrong_answer = 'wrong answer 1'
@@ -49,7 +49,7 @@ RSpec.feature "Question management", type: :feature do
 
     login(admin)
 
-    visit course_quizer_quiz_questions_path(course, quiz)
+    visit subject_quizer_quiz_questions_path(subject, quiz)
     find(:css, "tr#question-#{question.id} a span.glyphicon-pencil").click
     wait_for_ajax
 
@@ -58,7 +58,7 @@ RSpec.feature "Question management", type: :feature do
     fill_in 'question_text', with: text
     fill_in 'question_correct_answer', with: answer
     click_button 'Guardar'
-    
+
     expect(page).to have_no_css('#question-modal')
 
     question.reload

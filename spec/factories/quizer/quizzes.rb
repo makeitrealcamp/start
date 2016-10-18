@@ -18,7 +18,7 @@
 FactoryGirl.define do
   factory :quiz, class: Quizer::Quiz do
     name { Faker::Name.title }
-    course { create(:course) }
+    subject { create(:subject) }
     published true
   end
 

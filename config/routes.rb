@@ -49,7 +49,7 @@ Rails.application.routes.draw do
 
   resources :phases, only: [:new,:create,:edit,:update]
 
-  resources :courses, except: [:destroy] do
+  resources :subjects, except: [:destroy] do
     patch 'update_position', on: :member
 
     resources :challenges, except: [:index, :destroy] do
@@ -67,7 +67,7 @@ Rails.application.routes.draw do
 
     resources :resources, except: [:index] do
       get :open, on: :member # opens an external resource
-      
+
       resource :completion, controller: 'resource_completion', only: [:create, :destroy]
       resources :sections, except: [:index] do
         resources :lessons, except: [:index] do
@@ -139,7 +139,7 @@ Rails.application.routes.draw do
   end
 
   get 'dashboard', to: redirect('/phases', status: 301)
-  get 'courses', to: redirect('/phases', status: 301)
+  get 'subjects', to: redirect('/phases', status: 301)
 
   resources :resources, only: [:edit, :update, :destroy] do
     patch 'update_position', on: :member
@@ -164,7 +164,7 @@ Rails.application.routes.draw do
     resources :levels
     resources :badge_ownerships, only: [:new, :create]
 
-    resources :courses, only:[:index] do
+    resources :subjects, only:[:index] do
       patch 'update_position', on: :member
     end
   end

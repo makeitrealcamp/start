@@ -87,7 +87,7 @@ class Solution < ActiveRecord::Base
   def create_user_points!
     if self.completed? && !self.user.has_completed_challenge?(self.challenge)
       self.user.challenge_completions.create!(challenge: self.challenge)
-      self.user.points.create!(course: self.challenge.course, points: self.challenge.point_value, pointable: self.challenge)
+      self.user.points.create!(subject: self.challenge.subject, points: self.challenge.point_value, pointable: self.challenge)
     end
   end
 

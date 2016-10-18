@@ -29,12 +29,12 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-6">
-        <%= link_to "<span class='glyphicon glyphicon-arrow-left'></span> <span class='hidden-xs'>Volver a #{@resource.course.name}</span>".html_safe, @resource.course, class: "btn btn-link" %>
+        <%= link_to "<span class='glyphicon glyphicon-arrow-left'></span> <span class='hidden-xs'>Volver a #{@resource.subject.name}</span>".html_safe, @resource.subject, class: "btn btn-link" %>
       </div>
       <div class="col-xs-6 text-right">
         <div class="finish">
           <% if @resource.self_completable? %>
-            <%= link_to "<span class='glyphicon glyphicon-ok'></span> <span class='hidden-xs'>Completar y Continuar</span>".html_safe, course_resource_completion_path(course_id: @resource.course.id, resource_id: @resource.id), class: "btn btn-primary", method: :post %>
+            <%= link_to "<span class='glyphicon glyphicon-ok'></span> <span class='hidden-xs'>Completar y Continuar</span>".html_safe, subject_resource_completion_path(subject_id: @resource.subject.id, resource_id: @resource.id), class: "btn btn-primary", method: :post %>
           <% end %>
         </div>
       </div>

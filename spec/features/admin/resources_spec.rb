@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.feature "Resource management", type: :feature do
   let(:admin) { create(:admin) }
-  let(:course) { create(:course) }
+  let(:subject) { create(:subject) }
 
   scenario "creates an external resource" do
     login(admin)
-    
-    visit course_path(course)
+
+    visit subject_path(subject)
     click_link "Nuevo Recurso"
 
     expect{
@@ -21,13 +21,13 @@ RSpec.feature "Resource management", type: :feature do
 
     resource = Resource.last
     expect(resource).not_to be_nil
-    expect(current_path).to eq course_resource_path(course, resource)
+    expect(current_path).to eq subject_resource_path(subject, resource)
   end
 
   scenario "creates a Markdown resource" do
     login(admin)
-    
-    visit course_path(course)
+
+    visit subject_path(subject)
     click_link "Nuevo Recurso"
 
     expect{
@@ -41,15 +41,15 @@ RSpec.feature "Resource management", type: :feature do
 
     resource = Resource.last
     expect(resource).not_to be_nil
-    expect(current_path).to eq course_resource_path(course, resource)
+    expect(current_path).to eq subject_resource_path(subject, resource)
   end
 
   scenario "edit resource with valid input" do
-    resource = create(:resource, course: course)
-    create(:resource, course: course)
+    resource = create(:resource, subject: subject)
+    create(:resource, subject: subject)
 
     login(admin)
-    visit edit_course_resource_path(course, resource)
+    visit edit_subject_resource_path(subject, resource)
 
     title = Faker::Name.title
     description =  Faker::Lorem.paragraph
@@ -62,8 +62,8 @@ RSpec.feature "Resource management", type: :feature do
     click_button  'Actualizar Resource'
 
     resource.reload
-    expect(current_path).to eq course_resource_path(course, resource)
-    
+    expect(current_path).to eq subject_resource_path(subject, resource)
+
     expect(resource.title).to eq title
     expect(resource.description).to eq description
     expect(resource.url).to eq url
@@ -71,16 +71,16 @@ RSpec.feature "Resource management", type: :feature do
   end
 
   scenario "deletes a resource", js: true do
-    resource = create(:resource, course: course)
-    create(:resource, course: course)
+    resource = create(:resource, subject: subject)
+    create(:resource, subject: subject)
 
     login(admin)
-    visit course_path(course, tab: 'resources')
+    visit subject_path(subject, tab: 'resources')
     all('.resources span.action-remove', count: 2).first.click
     page.driver.browser.switch_to.alert.accept
     wait_for_ajax
 
-    expect(course.resources.count).to eq 1
+    expect(subject.resources.count).to eq 1
     expect(page).to have_selector('.resources tr', count: 1)
   end
 end

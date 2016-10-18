@@ -5,7 +5,7 @@
 <% end %>
 
 <div class="next-challenge">
-  <%= link_to "#{@challenge.course.name} - #{@challenge.name}", [@challenge.course, @challenge] %>
+  <%= link_to "#{@challenge.subject.name} - #{@challenge.name}", [@challenge.subject, @challenge] %>
 </div>
 
 <% if current_user.solutions.empty? %>
@@ -16,7 +16,7 @@
 <p>O continúa con alguno de los retos que tienes pendientes:</p>
 <ul>
   <% @pending_challenges.each do |challenge| %>
-    <li><%= link_to "#{challenge.course.name} - #{challenge.name}", [challenge.course, challenge] %></li>
+    <li><%= link_to "#{challenge.subject.name} - #{challenge.name}", [challenge.subject, challenge] %></li>
   <% end %>
 </ul>
 <% end %>

@@ -3,7 +3,7 @@
 # Table name: resources
 #
 #  id            :integer          not null, primary key
-#  course_id     :integer
+#  subject_id    :integer
 #  title         :string(100)
 #  description   :string
 #  row           :integer
@@ -21,18 +21,18 @@
 #
 # Indexes
 #
-#  index_resources_on_course_id  (course_id)
+#  index_resources_on_subject_id  (subject_id)
 #
 
 require 'rails_helper'
 
 RSpec.describe Resource, type: :model do
-  let(:course) {create(:course) }
-  let(:resource) { create(:resource, course: course) }
+  let(:subject) {create(:subject) }
+  let(:resource) { create(:resource, subject: subject) }
   subject { Resource.new }
 
   context 'associations' do
-    it { should belong_to(:course) }
+    it { should belong_to(:subject) }
     it { should have_many(:resource_completions) }
   end
 

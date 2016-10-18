@@ -3,7 +3,7 @@ module Quizer
     include QuizzesHelper
 
     before_action :private_access
-    before_action :set_course
+    before_action :set_subject
     before_action :set_quiz
     before_action :set_quiz_attempt, only: [:show,:finish,:results]
 
@@ -14,7 +14,7 @@ module Quizer
       if @quiz.is_being_attempted_by_user?(current_user)
         redirect_to ongoing_quiz_attempt_for_user_path(@quiz,current_user)
       elsif @quiz_attempt = @quiz.quiz_attempts.create(user: current_user)
-        redirect_to course_quizer_quiz_quiz_attempt_path(@course,@quiz,@quiz_attempt.reload)
+        redirect_to subject_quizer_quiz_quiz_attempt_path(@subject,@quiz,@quiz_attempt.reload)
       else
         flash[:error] = "Algo salió mal"
         redirect_to :back
@@ -33,8 +33,8 @@ module Quizer
     end
 
     private
-      def set_course
-        @course = Course.friendly.find(params[:course_id])
+      def set_subject
+        @subject = Subject.friendly.find(params[:subject_id])
       end
 
       def set_quiz

@@ -2,15 +2,15 @@ require 'rails_helper'
 
 RSpec.feature "Badges management", type: :feature do
   let!(:admin )    { create(:admin) }
-  let!(:course)    { create(:course) }
+  let!(:subject)    { create(:subject) }
   let!(:badge)     { create(:points_badge) }
 
   scenario "creates a badge" do
     login(admin)
-    
+
     visit admin_badges_path
     click_link  'Nueva insignia'
-    
+
     name = Faker::Name::name
     description = Faker::Lorem.paragraph
     image_url =  Faker::Avatar.image
@@ -21,12 +21,12 @@ RSpec.feature "Badges management", type: :feature do
       fill_in 'badge_image_url', with: image_url
       select 'Points', from: "badge_giving_method"
       fill_in 'badge_required_points', with: required_points
-      select course.name, from: "badge_course_id"
+      select subject.name, from: "badge_subject_id"
       click_button 'Crear insignia'
     }.to change(Badge, :count).by 1
 
     expect(current_path).to eq admin_badges_path
-    
+
     badge  = Badge.last
     expect(badge).not_to be nil
     expect(badge.name).to eq name
@@ -35,13 +35,13 @@ RSpec.feature "Badges management", type: :feature do
     expect(badge.giving_method).to eq "points"
     expect(badge.required_points).to eq required_points
     expect(Badge.count).to eq 2
-    expect(badge.course).to eq course
+    expect(badge.subject).to eq subject
   end
 
   scenario "edits a badge", js: true do
     login(admin)
 
-    badge = create(:badge, giving_method: "points", required_points: 100, course: course)
+    badge = create(:badge, giving_method: "points", required_points: 100, subject: subject)
     visit admin_badges_path
 
     all(:css, '.badges .glyphicon.glyphicon-pencil').last.click
@@ -54,9 +54,9 @@ RSpec.feature "Badges management", type: :feature do
     fill_in 'badge_description', with: description
     fill_in 'badge_image_url', with: image_url
     fill_in 'badge_required_points', with: required_points
-    select course.name, from: "badge_course_id"
+    select subject.name, from: "badge_subject_id"
     click_button 'Actualizar insignia'
-    
+
     badge.reload
     expect(current_path).to eq  admin_badges_path
 
@@ -67,10 +67,10 @@ RSpec.feature "Badges management", type: :feature do
 
   scenario "deletes a badge", js: true do
     login(admin)
-    
+
     create(:badge)
     visit admin_badges_path
-    
+
     all(:css, '.badges .glyphicon.glyphicon-remove').last.click
     page.driver.browser.switch_to.alert.accept
     wait_for_ajax
@@ -98,7 +98,7 @@ RSpec.feature "Badges management", type: :feature do
     expect(user.badges.exists?(manual_badge.id)).to eq(true)
     expect(page).to have_no_css('#new_badge_ownership')
     expect(page).to have_css("#badge-#{manual_badge.id}")
-    
+
     find(:css,".add-emblem").click
     expect(page).to have_no_css('#new_badge_ownership')
     within(:css,"#badge-modal") do

@@ -2,25 +2,25 @@ require 'rails_helper'
 
 RSpec.feature "Quizzes", type: :feature do
   let(:admin) { create(:admin) }
-  let(:course) { create(:course) }
+  let(:subject) { create(:subject) }
 
   scenario "lists all quizzes" do
-    create(:quiz, course: course, published: true)
-    create(:quiz, course: course, published: false)
-    
+    create(:quiz, subject: subject, published: true)
+    create(:quiz, subject: subject, published: false)
+
     login(admin)
 
-    visit course_path(course)
+    visit subject_path(subject)
     click_link "Quizzes"
-    
+
     expect(page).to have_selector('.quiz', count: 2)
     expect(page).to have_css('.actions') # shows buttons to edit and delete
   end
 
   scenario "creates a quiz" do
     login(admin)
-    
-    visit new_course_quizer_quiz_path(course)
+
+    visit new_subject_quizer_quiz_path(subject)
 
     name = Faker::Name.title
     expect {
@@ -35,17 +35,17 @@ RSpec.feature "Quizzes", type: :feature do
   end
 
   scenario "updates a quiz" do
-    quiz = create(:quiz, course: course)
+    quiz = create(:quiz, subject: subject)
 
     login(admin)
-    
-    visit edit_course_quizer_quiz_path(course, quiz)
+
+    visit edit_subject_quizer_quiz_path(subject, quiz)
 
     name = Faker::Name::title
     fill_in 'quizer_quiz_name', with: name
     find(:css, "#quizer_quiz_published").set(false)
     click_button 'Actualizar Quiz'
-    
+
     quiz.reload
     expect(quiz.name).to eq name
     expect(quiz.published?).to eq false

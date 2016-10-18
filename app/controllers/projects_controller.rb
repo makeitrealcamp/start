@@ -4,44 +4,44 @@ class ProjectsController < ApplicationController
   before_action :paid_access, only:[:show]
   before_action :set_project, only: [:show,:edit,:update,:destroy]
 
-  # GET /courses/:course_id/projects/:id
+  # GET /subjects/:subject_id/projects/:id
   def show
     @project_solution = @project.project_solutions.find_or_initialize_by(user_id: current_user.id)
   end
 
-  # GET /courses/:course_id/projects/new
+  # GET /subjects/:subject_id/projects/new
   def new
-    course = Course.friendly.find(params[:course_id])
-    @project = course.projects.new
+    subject = Subject.friendly.find(params[:subject_id])
+    @project = subject.projects.new
   end
 
-  # POST /courses/:course_id/projects
+  # POST /subjects/:subject_id/projects
   def create
-    @course = Course.friendly.find(params[:course_id])
-    @project = @course.projects.new(project_params)
+    @subject = Subject.friendly.find(params[:subject_id])
+    @project = @subject.projects.new(project_params)
 
     if @project.save
-      redirect_to @course, anchor: "projects"
+      redirect_to @subject, anchor: "projects"
     else
       render :new
     end
   end
 
-  # GET /courses/:course_id/projects/:id/edit
+  # GET /subjects/:subject_id/projects/:id/edit
   def edit
   end
 
-  # PATCH /courses/:course_id/projects/:id
+  # PATCH /subjects/:subject_id/projects/:id
   def update
     @project = Project.find(params[:id])
     if @project.update(project_params)
-      redirect_to course_project_path(@project.course,@project), anchor: "projects", notice: "Proyecto actualizado"
+      redirect_to subject_project_path(@project.subject,@project), anchor: "projects", notice: "Proyecto actualizado"
     else
       render :edit
     end
   end
 
-  # DELETE /courses/:course_id/projects/:id
+  # DELETE /subjects/:subject_id/projects/:id
   def destroy
     @project.destroy
   end

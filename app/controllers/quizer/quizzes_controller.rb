@@ -2,7 +2,7 @@ module Quizer
   class QuizzesController < ApplicationController
     before_action :private_access
     before_action :admin_access, except: [:show]
-    before_action :set_course, except: [:update_position]
+    before_action :set_subject, except: [:update_position]
     before_action :set_quiz, only: [:destroy,:update,:edit,:show]
 
     def show
@@ -11,14 +11,14 @@ module Quizer
     end
 
     def new
-      @quiz = @course.quizzes.build
+      @quiz = @subject.quizzes.build
     end
 
     def create
       @quiz = Quizer::Quiz.new(quiz_params)
       if @quiz.save
         flash[:notice] = "Quiz creado"
-        redirect_to course_path(@quiz.course,anchor: "quizzes")
+        redirect_to subject_path(@quiz.subject,anchor: "quizzes")
       else
         render :new
       end
@@ -30,7 +30,7 @@ module Quizer
     def update
       if @quiz.update(quiz_params)
         flash[:notice] = "Quiz actualizado"
-        redirect_to course_path(@quiz.course,anchor: "quizzes")
+        redirect_to subject_path(@quiz.subject,anchor: "quizzes")
       else
         render :edit
       end
@@ -48,11 +48,11 @@ module Quizer
 
     private
       def quiz_params
-        params.require(:quizer_quiz).permit(:name, :published,:course_id)
+        params.require(:quizer_quiz).permit(:name, :published,:subject_id)
       end
 
-      def set_course
-        @course = Course.friendly.find(params[:course_id])
+      def set_subject
+        @subject = Subject.friendly.find(params[:subject_id])
       end
 
       def set_quiz

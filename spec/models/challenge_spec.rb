@@ -3,7 +3,7 @@
 # Table name: challenges
 #
 #  id                  :integer          not null, primary key
-#  course_id           :integer
+#  subject_id          :integer
 #  name                :string(100)
 #  instructions        :text
 #  evaluation          :text
@@ -23,14 +23,14 @@
 #
 # Indexes
 #
-#  index_challenges_on_course_id  (course_id)
+#  index_challenges_on_subject_id  (subject_id)
 #
 
 require 'rails_helper'
 
 RSpec.describe Challenge, type: :model do
   context 'associations' do
-    it { should belong_to(:course) }
+    it { should belong_to(:subject) }
     it { should have_many(:documents) }
   end
 

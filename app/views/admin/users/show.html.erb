@@ -92,8 +92,8 @@
                       <tr>
                         <td><%= l solution.created_at, format: '%d %h, %Y %H:%M' %></td>
                         <td>
-                          <%= link_to solution.project.name, course_project_project_solution_path(solution.project.course, solution.project, solution) %>
-                          <span class="course-name"><%= solution.project.course.name %></span>
+                          <%= link_to solution.project.name, subject_project_project_solution_path(solution.project.subject, solution.project, solution) %>
+                          <span class="course-name"><%= solution.project.subject.name %></span>
                         </td>
                         <td>
                           <%= link_to "https://github.com/#{solution.repository}", class: "link" do %>
@@ -128,8 +128,8 @@
                     <% @user.solutions.order('updated_at DESC').each do |solution| %>
                       <tr>
                         <td>
-                          <%= link_to solution.challenge.name, course_challenge_path(solution.challenge.course, solution.challenge) %>
-                          <span class="course-name"><%= solution.challenge.course.name %></span>
+                          <%= link_to solution.challenge.name, subject_challenge_path(solution.challenge.subject, solution.challenge) %>
+                          <span class="course-name"><%= solution.challenge.subject.name %></span>
                         </td>
                         <td class="text-center"><%= l solution.created_at, format: '%d %h, %Y %H:%M' %></td>
                         <td class="text-center"><%= solution.completed_at.nil? ? "" : l(solution.completed_at, format: '%d %h, %Y %H:%M') %></td>
@@ -156,16 +156,16 @@
     </div>
 
     <div class="col-sm-3">
-      <% @courses.each_with_index do |course, i| %>
+      <% @subjects.each_with_index do |subject, i| %>
         <div class="row">
           <div class="col-sm-12">
             <div class="course">
-              <div class="title"><%= course.name %></div>
-              <%= progress_bar(progress: @user.stats.progress_by_course(course)) %>
+              <div class="title"><%= subject.name %></div>
+              <%= progress_bar(progress: @user.stats.progress_by_subject(subject)) %>
             </div>
           </div>
         </div>
-        <% if i != @courses.size - 1 %>
+        <% if i != @subjects.size - 1 %>
           <div class="course-divider"><div></div></div>
         <% end %>
       <% end %>

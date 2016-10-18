@@ -3,7 +3,7 @@
 # Table name: resources
 #
 #  id            :integer          not null, primary key
-#  course_id     :integer
+#  subject_id    :integer
 #  title         :string(100)
 #  description   :string
 #  row           :integer
@@ -21,29 +21,29 @@
 #
 # Indexes
 #
-#  index_resources_on_course_id  (course_id)
+#  index_resources_on_subject_id  (subject_id)
 #
 
 class Resource < ActiveRecord::Base
   include RankedModel
-  ranks :row, with_same: :course_id
+  ranks :row, with_same: :subject_id
 
   extend FriendlyId
   friendly_id :title
 
   self.inheritance_column = nil
 
-  enum type: [:url, :markdown, :course]
+  enum type: [:url, :markdown, :course, :quiz]
   enum category: [:blog_post, :video_tutorial, :reading, :game, :tutorial, :documentation]
 
-  belongs_to :course
+  belongs_to :subject
   has_many :sections, dependent: :delete_all
   has_many :comments, as: :commentable # TODO: change to reviews
   has_many :resource_completions, dependent: :delete_all
 
   accepts_nested_attributes_for :sections, allow_destroy: true
 
-  validates :course, :title, :description, presence: :true
+  validates :subject, :title, :description, presence: :true
   validates :url, presence: true, format: { with: URI.regexp }, if: :url?
   validates :content, presence: true, if: :markdown?
 
@@ -54,7 +54,7 @@ class Resource < ActiveRecord::Base
   after_initialize :default_values
 
   def next
-    self.course.resources.published.where('row > ?', self.row).first
+    self.subject.resources.published.where('row > ?', self.row).first
   end
 
   def last?
@@ -70,7 +70,7 @@ class Resource < ActiveRecord::Base
   end
 
   def to_path
-    "#{course.to_path}/resources/#{slug}"
+    "#{subject.to_path}/resources/#{slug}"
   end
 
   def to_html_link
@@ -78,7 +78,7 @@ class Resource < ActiveRecord::Base
   end
 
   def to_html_description
-    "#{to_html_link} del tema #{course.to_html_link}"
+    "#{to_html_link} del tema #{subject.to_html_link}"
   end
 
   private

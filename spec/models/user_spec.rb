@@ -71,98 +71,98 @@ RSpec.describe User, type: :model do
     expect(build(:user)).to be_valid
   end
 
-  describe ".completed_challenges_by_course_count" do
+  describe ".completed_challenges_by_subject_count" do
     let!(:user) { create(:user) }
-    let!(:course) { create(:course) }
+    let!(:subject) { create(:subject) }
 
     context "when user has no completed challenges" do
       it "returns 0" do
-        create(:challenge, course: course, published: false, restricted: true)
-        create(:challenge, course: course, published: true, restricted: true)
+        create(:challenge, subject: subject, published: false, restricted: true)
+        create(:challenge, subject: subject, published: true, restricted: true)
 
-        expect(user.stats.completed_challenges_by_course_count(course)).to eq 0
+        expect(user.stats.completed_challenges_by_subject_count(subject)).to eq 0
       end
     end
 
     it "includes only completed solutions of published challenges" do
       # published challenge with completed solution
-      challenge = create(:challenge, course: course, published: true, restricted: true)
+      challenge = create(:challenge, subject: subject, published: true, restricted: true)
       create(:solution, user: user, challenge: challenge, status: :completed)
 
       # unpublished challenge with completed solution
-      challenge1 = create(:challenge, course: course, published: false, restricted: true)
+      challenge1 = create(:challenge, subject: subject, published: false, restricted: true)
       create(:solution, user: user, challenge: challenge1, status: :completed)
 
       # published challenge but not completed solution
-      challenge2 = create(:challenge, course: course, published: true, restricted: true)
+      challenge2 = create(:challenge, subject: subject, published: true, restricted: true)
       create(:solution, user: user, challenge: challenge2, status: :created)
 
-      expect(user.stats.completed_challenges_by_course_count(course)).to eq 1
+      expect(user.stats.completed_challenges_by_subject_count(subject)).to eq 1
     end
   end
 
-  describe ".completed_resources_by_course_count" do
+  describe ".completed_resources_by_subject_count" do
     let!(:user) { create(:user) }
-    let!(:course) { create(:course) }
+    let!(:subject) { create(:subject) }
 
     context "when user has no completed resources" do
       it "returns 0" do
-        create(:resource, course: course, published: true)
-        create(:resource, course: course, published: false)
-        create(:resource, course: course, published: true)
+        create(:resource, subject: subject, published: true)
+        create(:resource, subject: subject, published: false)
+        create(:resource, subject: subject, published: true)
 
-        expect(user.stats.completed_resources_by_course_count(course)).to eq 0
+        expect(user.stats.completed_resources_by_subject_count(subject)).to eq 0
       end
     end
 
     it "includes only completed published resources" do
       # completed publised resource
-      resource  = create(:resource, course: course, published: true)
+      resource  = create(:resource, subject: subject, published: true)
       create(:resource_completion, user: user, resource: resource)
 
       # completed unpublished resource
-      resource1 = create(:resource, course: course, published: false)
+      resource1 = create(:resource, subject: subject, published: false)
       create(:resource_completion, user: user, resource: resource1)
 
       # completed published resource
-      resource2 = create(:resource, course: course, published: true)
+      resource2 = create(:resource, subject: subject, published: true)
       create(:resource_completion, user: user, resource: resource2)
 
-      expect(user.stats.completed_resources_by_course_count(course)).to eq 2
+      expect(user.stats.completed_resources_by_subject_count(subject)).to eq 2
     end
   end
 
-  describe ".progress_by_course" do
+  describe ".progress_by_subject" do
     let!(:user) { create(:user) }
-    let!(:course) { create(:course) }
+    let!(:subject) { create(:subject) }
 
     it 'returns 1.0 when the total is 0' do
-      expect(user.stats.progress_by_course(course)).to eq 1.0
+      expect(user.stats.progress_by_subject(subject)).to eq 1.0
     end
 
     it "returns percentage" do
-      challenge = create(:challenge, course: course, published: true, restricted: true)
-      challenge1 = create(:challenge, course: course, published: false, restricted: true)
+      challenge = create(:challenge, subject: subject, published: true, restricted: true)
+      challenge1 = create(:challenge, subject: subject, published: false, restricted: true)
       create(:solution, user: user, challenge: challenge, status: :completed)
 
-      project  = create(:project, course: course, published: true)
-      project1 = create(:project, course: course, published: false)
-      project2 = create(:project, course: course, published: true)
+      project  = create(:project, subject: subject, published: true)
+      project1 = create(:project, subject: subject, published: false)
+      project2 = create(:project, subject: subject, published: true)
 
       project_solution = create(:project_solution, user: user, project: project)
 
-      expect(user.stats.progress_by_course(course)).to be < 1.0
+      expect(user.stats.progress_by_subject(subject)).to be < 1.0
     end
   end
 
   describe ".completed_challenges_count" do
     let(:user) { create(:user) }
-    let(:course) { create(:course) }
+    let(:subject) { create(:subject) }
 
     it "returns completed and published challenges count" do
-      challenge = create(:challenge, course: course, published: true, restricted: true)
-      challenge1 = create(:challenge, course: course, published: false, restricted: true)
-      challenge2 = create(:challenge, course: course, published: true, restricted: true)
+      challenge = create(:challenge, subject: subject, published: true, restricted: true)
+      challenge1 = create(:challenge, subject: subject, published: false, restricted: true)
+      challenge2 = create(:challenge, subject: subject, published: true, restricted: true)
       #when the challenge is published does count as completed
       create(:solution, user: user, challenge: challenge, status: :completed)
       #when the challenge is not published does not count as completed
@@ -174,7 +174,7 @@ RSpec.describe User, type: :model do
     end
 
     it "returns UNIQ completed challenges count" do
-      challenge = create(:challenge, course: course, published: true, restricted: true)
+      challenge = create(:challenge, subject: subject, published: true, restricted: true)
       create(:solution, user: user, challenge: challenge, status: :completed)
       create(:solution, user: user, challenge: challenge, status: :completed)
       create(:solution, user: user, challenge: challenge, status: :completed)
@@ -185,11 +185,11 @@ RSpec.describe User, type: :model do
 
   describe ".total_points" do
     let!(:user) { create(:user) }
-    let!(:course) { create(:course) }
+    let!(:subject) { create(:subject) }
 
     it "sums user's total points" do
-      user.points.create(course_id: course.id, points: 10)
-      user.points.create(course_id: course.id, points: 10)
+      user.points.create(subject_id: subject.id, points: 10)
+      user.points.create(subject_id: subject.id, points: 10)
       expect(user.stats.total_points).to eq 20
     end
   end
@@ -247,11 +247,11 @@ RSpec.describe User, type: :model do
       it "returns the first challenge" do
         user = create(:user_with_path)
 
-        course1 = create(:course_with_phase, row: 0)
-        challenge1 = create(:challenge, course: course1)
+        subject1 = create(:subject_with_phase, row: 0)
+        challenge1 = create(:challenge, subject: subject1)
 
-        course2 = create(:course_with_phase, row: 10)
-        challenge3 = create(:challenge, course: course2)
+        subject2 = create(:subject_with_phase, row: 10)
+        challenge3 = create(:challenge, subject: subject2)
 
         expect(user.next_challenge).to eq(challenge1)
       end
@@ -261,9 +261,9 @@ RSpec.describe User, type: :model do
       it "returns the challenge of last solution" do
         user = create(:user_with_path)
 
-        course1 = create(:course_with_phase, row: 0)
-        challenge1 = create(:challenge, course: course1)
-        challenge2 = create(:challenge, course: course1)
+        subject1 = create(:subject_with_phase, row: 0)
+        challenge1 = create(:challenge, subject: subject1)
+        challenge2 = create(:challenge, subject: subject1)
 
         create(:solution, user: user, challenge: challenge2, status: :created)
 
@@ -275,12 +275,12 @@ RSpec.describe User, type: :model do
       it "returns the next challenge that hasn't been attempted" do
         user = create(:user_with_path)
 
-        course1 = create(:course_with_phase, row: 0)
-        challenge1 = create(:challenge, course: course1) # this is going to be the last solved
-        challenge2 = create(:challenge, course: course1) # this is going to be solved
+        subject1 = create(:subject_with_phase, row: 0)
+        challenge1 = create(:challenge, subject: subject1) # this is going to be the last solved
+        challenge2 = create(:challenge, subject: subject1) # this is going to be solved
 
-        course2 = create(:course_with_phase, row: 10)
-        challenge3 = create(:challenge, course: course2) # this should be the next challenge
+        subject2 = create(:subject_with_phase, row: 10)
+        challenge3 = create(:challenge, subject: subject2) # this should be the next challenge
 
         create(:solution, user: user, challenge: challenge1, status: :completed, updated_at: DateTime.current)
         create(:solution, user: user, challenge: challenge2, status: :completed, updated_at: 1.month.ago)

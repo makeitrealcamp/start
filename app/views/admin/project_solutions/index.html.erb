@@ -28,7 +28,7 @@
         <tbody>
           <% @solutions.each do |sol| %>
             <tr>
-              <td> <%= link_to sol.project.name, course_project_path(sol.project.course,sol.project)%> </td>
+              <td> <%= link_to sol.project.name, subject_project_path(sol.project.subject, sol.project)%></td>
               <td> <%= link_to "#{sol.user.first_name} - (#{sol.user.email})", user_profile_path(sol.user.nickname)%> </td>
               <td> <%= sol.updated_at %></td>
               <td>
@@ -40,7 +40,7 @@
               </td>
               <td><%= sol.point_value %></td>
               <td>
-                <%= link_to [sol.project.course,sol.project,sol], class: "btn btn-lg btn-info" do %>
+                <%= link_to [sol.project.subject, sol.project,sol], class: "btn btn-lg btn-info" do %>
                   <span class="glyphicon glyphicon-chevron-right"></span>
                 <% end %>
               </td>

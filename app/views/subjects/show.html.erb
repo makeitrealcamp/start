@@ -1,18 +1,18 @@
-<% breadcrumb :course, @course %>
+<% breadcrumb :subject, @subject %>
 
 <div class="container course-page default-top-padding">
   <div class="row">
     <div class="col-sm-12 header">
       <% if current_user.is_admin? %>
       <div class="actions">
-        <%= link_to "<span class='glyphicon glyphicon-pencil'></span> &nbsp;Editar Curso".html_safe, edit_course_path(@course), class: "btn btn-success btn-xs edit-course-btn" %>
+        <%= link_to "<span class='glyphicon glyphicon-pencil'></span> &nbsp;Editar Curso".html_safe, edit_subject_path(@subject), class: "btn btn-success btn-xs edit-course-btn" %>
       </div>
       <% end %>
       <div class="course-header">
-        <h1><%= @course.name %></h1>
-        <div style="margin-bottom: 20px;"><%= markdown @course.excerpt %></div>
+        <h1><%= @subject.name %></h1>
+        <div style="margin-bottom: 20px;"><%= markdown @subject.excerpt %></div>
         <span>Progreso:</span>
-        <%= progress_bar(progress: current_user.stats.progress_by_course(@course)) %>
+        <%= progress_bar(progress: current_user.stats.progress_by_subject(@subject)) %>
       </div>
     </div>
   </div>
@@ -22,14 +22,14 @@
       <div role="tabpanel">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-          <% if current_user.is_admin? || @course.challenges.for(current_user).count > 0 %>
+          <% if current_user.is_admin? || @subject.challenges.for(current_user).count > 0 %>
             <li role="presentation" class="<%= "active" if @tab == :challenges %>"><a href="#challenges" aria-controls="challenges" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-fire hidden-xs" aria-hidden="true"></span> Retos</a></li>
           <% end %>
           <li role="presentation" class="<%= "active" if @tab == :resources %>"><a href="#resources" aria-controls="resources" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-folder-open hidden-xs" aria-hidden="true"></span> Recursos</a></li>
-          <% if current_user.is_admin? || @course.projects.for(current_user).count > 0 %>
+          <% if current_user.is_admin? || @subject.projects.for(current_user).count > 0 %>
             <li role="presentation" class="<%= "active" if @tab == :projects %>"><a href="#projects" aria-controls="projects" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-road hidden-xs" aria-hidden="true"></span> Proyectos</a></li>
           <% end %>
-          <% if current_user.is_admin? || @course.quizzes.for(current_user).count > 0 %>
+          <% if current_user.is_admin? || @subject.quizzes.for(current_user).count > 0 %>
             <li role="presentation" class="<%= "active" if @tab == :quizzes %>"><a href="#quizzes" aria-controls="quizzes" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-list-alt hidden-xs" aria-hidden="true"></span> Quizzes</a></li>
           <% end %>
         </ul>
@@ -43,13 +43,13 @@
           <div role="tabpanel" class="tab-pane resources <%= "active" if @tab == :resources %>" id="resources">
             <%= render 'resources_section' %>
           </div><!-- tab resources -->
-          <% if current_user.is_admin? || @course.projects.for(current_user).count > 0 %>
+          <% if current_user.is_admin? || @subject.projects.for(current_user).count > 0 %>
             <div role="tabpanel" class="tab-pane projects <%= "active" if @tab == :projects %>" id="projects">
               <%= render 'projects_section' %>
             </div><!-- /projects tab -->
           <% end %>
 
-          <% if current_user.is_admin? || @course.quizzes.for(current_user).count > 0 %>
+          <% if current_user.is_admin? || @subject.quizzes.for(current_user).count > 0 %>
             <div role="tabpanel" class="tab-pane quizzes <%= "active" if @tab == :quizzes %>" id="quizzes">
               <%= render 'quizzes_section' %>
             </div><!-- /projects tab -->

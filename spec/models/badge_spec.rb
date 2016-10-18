@@ -7,7 +7,7 @@
 #  description     :text
 #  required_points :integer
 #  image_url       :string
-#  course_id       :integer
+#  subject_id      :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  giving_method   :integer
@@ -17,7 +17,7 @@ require 'rails_helper'
 
 RSpec.describe Badge, type: :model do
   context 'associations' do
-    it { should belong_to(:course) }
+    it { should belong_to(:subject) }
     it { should have_many(:badge_ownerships).dependent(:destroy) }
   end
 

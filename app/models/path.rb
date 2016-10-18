@@ -19,17 +19,17 @@ class Path < ActiveRecord::Base
   validates :name, presence: true
   validates :description, presence: true
 
-  def courses
-    Course.joins(:course_phases).joins(:phases)
+  def subjects
+    Subject.joins(:course_phases).joins(:phases)
       .where("course_phases.phase_id" => phases.pluck(:id)).uniq
   end
 
   def challenges
-    Challenge.where(course_id: courses.pluck(:id))
+    Challenge.where(subject_id: subjects.pluck(:id))
   end
 
   def first_challenge
-    challenges.published.order_by_course_and_rank.first
+    challenges.published.order_by_subjet_and_rank.first
   end
 
 end

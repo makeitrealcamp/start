@@ -32,8 +32,8 @@
           </div>
 
           <div class="form-group">
-            <%= f.label :course %>
-            <%= f.collection_select(:course_id, Course.all, :id, :name, { prompt: 'Select to course' }, { class: "form-control"}) %>
+            <%= f.label :subject_id %>
+            <%= f.collection_select(:subject_id, Subject.all, :id, :name, { prompt: 'Select a subject' }, { class: "form-control"}) %>
           </div>
         </div>
 

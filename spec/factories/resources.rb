@@ -3,7 +3,7 @@
 # Table name: resources
 #
 #  id            :integer          not null, primary key
-#  course_id     :integer
+#  subject_id    :integer
 #  title         :string(100)
 #  description   :string
 #  row           :integer
@@ -21,7 +21,7 @@
 #
 # Indexes
 #
-#  index_resources_on_course_id  (course_id)
+#  index_resources_on_subject_id  (subject_id)
 #
 
 FactoryGirl.define do
@@ -33,10 +33,10 @@ FactoryGirl.define do
     own false
     url { Faker::Internet.url}
     time_estimate {"#{Faker::Number.digit} days"}
-    course
+    subject
     published true
 
-    factory :video_course do
+    factory :video_subject do
       type Resource.types[:course]
       trait :published do
         published true

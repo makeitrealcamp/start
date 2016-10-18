@@ -9,7 +9,7 @@
 <p><strong>URL:</strong> <a href="<%= @solution.url %>" target="_blank"><%= @solution.url %></a></p>
 
 <div class="button-wrapper">
-  <%= link_to "Ir a la solución en la plataforma", course_project_project_solution_url(@project.course, @project, @solution), class: "button" %>
+  <%= link_to "Ir a la solución en la plataforma", subject_project_project_solution_url(@project.subject, @project, @solution), class: "button" %>
 </div>
 
 <p>Te deseo un muy buen día,</p>

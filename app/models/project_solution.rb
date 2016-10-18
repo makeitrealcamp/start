@@ -35,7 +35,7 @@ class ProjectSolution < ActiveRecord::Base
   after_save :notify_mentors_if_pending_review
   after_save :log_activity
 
-  delegate :course, to: :project
+  delegate :subject, to: :project
 
   def point_value
     self.project.points.where(user: self.user).sum(:points)
@@ -61,7 +61,7 @@ class ProjectSolution < ActiveRecord::Base
   end
 
   def to_html_description
-    "la #{to_html_link} del curso #{project.course.to_html_link}"
+    "la #{to_html_link} del curso #{project.subject.to_html_link}"
   end
 
   private

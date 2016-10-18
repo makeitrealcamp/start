@@ -3,7 +3,7 @@
 # Table name: challenges
 #
 #  id                  :integer          not null, primary key
-#  course_id           :integer
+#  subject_id          :integer
 #  name                :string(100)
 #  instructions        :text
 #  evaluation          :text
@@ -23,12 +23,12 @@
 #
 # Indexes
 #
-#  index_challenges_on_course_id  (course_id)
+#  index_challenges_on_subject_id  (subject_id)
 #
 
 FactoryGirl.define do
   factory :challenge do
-    course { create(:course) }
+    subject { create(:subject) }
     name { Faker::Name.title }
     instructions { Faker::Lorem.paragraph }
     published true

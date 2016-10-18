@@ -5,13 +5,13 @@ class UserStats
     @user = user
   end
 
-  def progress_by_course(course)
-    challenges_count = course.challenges.published.count
-    projects_count = course.projects.published.count
+  def progress_by_subject(subject)
+    challenges_count = subject.challenges.published.count
+    projects_count = subject.projects.published.count
     total = challenges_count + projects_count
     return 1.0 if total == 0
 
-    user_completed = completed_challenges_by_course_count(course) + completed_projects_by_course_count(course)
+    user_completed = completed_challenges_by_subject_count(subject) + completed_projects_by_subject_count(subject)
     user_completed.to_f/total.to_f
   end
 
@@ -25,24 +25,24 @@ class UserStats
     @user.resources.published.count
   end
 
-  def completed_resources_by_course_count(course)
-    completed_resources_by_course(course).count
+  def completed_resources_by_subject_count(subject)
+    completed_resources_by_subject(subject).count
   end
 
   def completed_challenges_count
     @user.completed_challenges.published.count
   end
 
-  def completed_challenges_by_course_count(course)
-    completed_challenges_by_course(course).count
+  def completed_challenges_by_subject_count(subject)
+    completed_challenges_by_subject(subject).count
   end
 
   def completed_projects_count
     @user.projects.published.count
   end
 
-  def completed_projects_by_course_count(course)
-    completed_projects_by_course(course).count
+  def completed_projects_by_subject_count(subject)
+    completed_projects_by_subject(subject).count
   end
 
   def points_needed_for_next_level
@@ -63,8 +63,8 @@ class UserStats
     @user.points.sum(:points)
   end
 
-  def points_per_course(course)
-    @user.points.where(course: course).sum(:points)
+  def points_per_subject(subject)
+    @user.points.where(subject: subject).sum(:points)
   end
 
   def solved_challenges(beginning_of_week, end_of_week)
@@ -89,16 +89,16 @@ class UserStats
 
 
   private
-    def completed_resources_by_course(course)
-      @user.resources.published.where(course_id: course.id)
+    def completed_resources_by_subject(subject)
+      @user.resources.published.where(subject_id: subject.id)
     end
 
-    def completed_challenges_by_course(course)
-      @user.completed_challenges.published.where(course_id: course.id)
+    def completed_challenges_by_subject(subject)
+      @user.completed_challenges.published.where(subject_id: subject.id)
     end
 
-    def completed_projects_by_course(course)
-      @user.projects.published.where(course_id: course.id)
+    def completed_projects_by_subject(subject)
+      @user.projects.published.where(subject_id: subject.id)
     end
 
 end

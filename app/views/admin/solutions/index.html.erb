@@ -11,9 +11,9 @@
         <div class="row">
           <div class="col-sm-5">
             <div class="form-group">
-              <%= select_tag :challenge_id, options_from_collection_for_select(Challenge.by_course, "id", "name_with_course", params[:challenge_id]), prompt: "<<Todos los retos>>", class: "form-control", onchange: "$('form').submit()" %>
+              <%= select_tag :challenge_id, options_from_collection_for_select(Challenge.by_subject, "id", "name_with_subject", params[:challenge_id]), prompt: "<<Todos los retos>>", class: "form-control", onchange: "$('form').submit()" %>
             </div>
-          </div> 
+          </div>
         </div>
       <% end %>
     </div>
@@ -35,7 +35,7 @@
         <tbody>
           <% @solutions.each do |solution| %>
             <tr>
-              <td><%= solution.challenge.name %> <span class="secondary"><%= solution.challenge.course.name %></span></td>
+              <td><%= solution.challenge.name %> <span class="secondary"><%= solution.challenge.subject.name %></span></td>
               <td><%= solution.user.email %> <span class="secondary"><%= solution.user.first_name %></span></td>
               <td><%= solution.completed_at.nil? ? "" : l(solution.completed_at, format: '%d %h, %Y %H:%M') %></td>
               <td class="text-center"><%= solution.attempts %></td>
