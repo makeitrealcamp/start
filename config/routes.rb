@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   get '/u/:nickname', to: 'users#profile', as: :user_profile
 
   get '/dashboard', to: 'dashboard#index', as: :signed_in_root
+  get "/courses", to: redirect('/subjects')
 
   resources :phases, only: [:new,:create,:edit,:update]
 
