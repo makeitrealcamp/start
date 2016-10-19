@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   get '/u/:nickname', to: 'users#profile', as: :user_profile
 
   get '/dashboard', to: 'dashboard#index', as: :signed_in_root
+  get "/courses", to: redirect('/subjects')
 
   resources :phases, only: [:new,:create,:edit,:update]
 
@@ -82,11 +83,6 @@ Rails.application.routes.draw do
         resources :question_attempts, only: [:update], controller: 'quizer/question_attempts'
       end
       resources :questions, only: [:index, :new, :create, :edit, :update], controller: 'quizer/questions'
-    end
-    namespace :quizer, path: '/' do
-      resources :quizzes do
-
-      end
     end
   end
 
