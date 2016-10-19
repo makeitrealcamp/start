@@ -1,14 +1,14 @@
 <p class="text-center"><strong>¡Vas muy bien <%= current_user.first_name %>!</strong> Continúa trabajando en el reto:</p>
 
 <div class="next-challenge">
-  <%= link_to "#{@challenge.course.name} - #{@challenge.name}", [@challenge.course, @challenge] %>
+  <%= link_to "#{@challenge.subject.name} - #{@challenge.name}", [@challenge.subject, @challenge] %>
 </div>
 
 <% if @pending_challenges.any? %>
 <p>Otros retos que tienes pendientes:</p>
 <ul>
   <% @pending_challenges.each do |challenge| %>
-    <li><%= link_to "#{challenge.course.name} - #{challenge.name}", [challenge.course, challenge] %></li>
+    <li><%= link_to "#{challenge.subject.name} - #{challenge.name}", [challenge.subject, challenge] %></li>
   <% end %>
 </ul>
 <% end %>

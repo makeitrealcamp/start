@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.feature "Notifications", type: :feature do
   let(:user) { create(:user) }
-  let(:course) { create(:course) }
-  let(:challenge) { create(:challenge, course: course) }
+  let(:subject) { create(:subject) }
+  let(:challenge) { create(:challenge, subject: subject) }
   let!(:solution) { create(:solution, user: user, challenge: challenge, status: :completed, completed_at: 1.week.ago) }
 
   scenario "user receives two notifications", js: true do
@@ -84,7 +84,7 @@ RSpec.feature "Notifications", type: :feature do
 
       find(:css, ".notifications-btn").click
       all(".comment-link").first.click
-      expect(current_path).to eq course_challenge_path(course, challenge)
+      expect(current_path).to eq subject_challenge_path(subject, challenge)
     end
   end
 end

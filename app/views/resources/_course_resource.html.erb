@@ -3,7 +3,7 @@
   <h1>
     <%= resource.title %>
     <% if current_user.is_admin? %>
-      <%= link_to edit_course_resource_path(resource.course,resource), nil do %>
+      <%= link_to edit_subject_resource_path(resource.subject, resource), nil do %>
         <%= content_tag(:span, nil, class: "glyphicon glyphicon-pencil action action-edit" )%>
       <% end %>
     <% end %>
@@ -18,7 +18,7 @@
     <% if current_user.is_admin? %>
       <div class="row">
         <div class="col-sm-12 text-center new-lesson-btn">
-          <%= link_to new_course_resource_section_path(resource.course,resource), remote: true, class: "btn btn-primary" do %>
+          <%= link_to new_subject_resource_section_path(resource.subject, resource), remote: true, class: "btn btn-primary" do %>
             <span class="glyphicon glyphicon-plus"></span>
             Nueva Sección
           <% end %>

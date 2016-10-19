@@ -11,22 +11,22 @@ class LessonsController < ApplicationController
     @section = Section.find(params[:section_id])
     @lesson = @section.lessons.new(lesson_params)
     if @lesson.save
-      redirect_to course_resource_path(@lesson.resource.course, @lesson.resource), notice: "La Lección  <strong>#{@lesson.name}</strong> ha sido creado"
+      redirect_to subject_resource_path(@lesson.resource.subject, @lesson.resource), notice: "La Lección  <strong>#{@lesson.name}</strong> ha sido creado"
     else
       render :new
     end
   end
 
-  # GET /courses/:course_id/resources/:resource_id/sections/:section_id/lessons/:id
+  # GET /subjects/:subject_id/resources/:resource_id/sections/:section_id/lessons/:id
   def show
     @lesson = Lesson.find(params[:id])
-    @course = @lesson.section.resource.course
+    @subject = @lesson.section.resource.subject
     @resource = @lesson.section.resource
     if @lesson.free_preview? || current_user.has_access_to?(@lesson.resource)
       render :show
     else
       flash[:error] = "Debes suscribirte para tener acceso a todas las lecciones"
-      redirect_to course_resource_path(@lesson.resource.course,@lesson.resource)
+      redirect_to subject_resource_path(@lesson.resource.subject,@lesson.resource)
     end
   end
 
@@ -39,13 +39,13 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
     @section = Section.find(params[:section_id])
     if @lesson && @lesson.update(lesson_params)
-      redirect_to course_resource_path(@lesson.resource.course, @lesson.resource), notice: "La Lección  <strong>#{@lesson.name}</strong> ha sido actualizado"
+      redirect_to subject_resource_path(@lesson.resource.subject, @lesson.resource), notice: "La Lección  <strong>#{@lesson.name}</strong> ha sido actualizado"
     else
       render :edit
     end
   end
 
-  # POST /courses/:course_id/resources/:resource_id/sections/:section_id/lessons/:id/complete
+  # POST /subjects/:subject_id/resources/:resource_id/sections/:section_id/lessons/:id/complete
   def complete
     @lesson = Lesson.find(params[:id])
     unless current_user.has_completed_lesson?(@lesson)
@@ -74,9 +74,9 @@ class LessonsController < ApplicationController
     def next_path(lesson)
       next_lesson = lesson.next(current_user)
       if next_lesson
-        course_resource_section_lesson_path(next_lesson.section.resource.course, next_lesson.section.resource, next_lesson.section, next_lesson)
+        subject_resource_section_lesson_path(next_lesson.section.resource.subject, next_lesson.section.resource, next_lesson.section, next_lesson)
       else
-        course_resource_path(lesson.resource.course, lesson.resource)
+        subject_resource_path(lesson.resource.subject, lesson.resource)
       end
     end
 end

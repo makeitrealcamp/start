@@ -27,7 +27,7 @@ class Phase < ActiveRecord::Base
 
   belongs_to :path
   has_many :course_phases
-  has_many :courses, -> { uniq }, through: :course_phases
+  has_many :subjects, -> { uniq }, through: :course_phases
 
   after_initialize :default_values
 

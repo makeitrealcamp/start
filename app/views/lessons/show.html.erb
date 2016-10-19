@@ -23,12 +23,12 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-6">
-        <%= link_to "<span class='glyphicon glyphicon-arrow-left'></span> <span class='hidden-xs'>Volver a  curso #{@lesson.resource.title}</span>".html_safe, course_resource_path(@course, @resource) , class: "btn btn-link" %>
+        <%= link_to "<span class='glyphicon glyphicon-arrow-left'></span> <span class='hidden-xs'>Volver a  curso #{@lesson.resource.title}</span>".html_safe, subject_resource_path(@subject, @resource) , class: "btn btn-link" %>
       </div>
 
       <div class="col-xs-6 text-right">
         <div class="finish">
-          <%= button_to complete_course_resource_section_lesson_path(@course, @resource, @lesson.section, @lesson), class: "btn btn-primary" do %>
+          <%= button_to complete_subject_resource_section_lesson_path(@subject, @resource, @lesson.section, @lesson), class: "btn btn-primary" do %>
             <span class='glyphicon glyphicon-ok'></span> <span class='hidden-xs'>Completar y Continuar</span>
           <% end %>
         </div>

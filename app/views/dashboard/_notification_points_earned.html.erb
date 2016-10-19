@@ -3,7 +3,7 @@
 
 <%= notification.user.first_name %> ha ganado <strong><%= point.points %> puntos</strong>
 <% if point.pointable_type == "Challenge" %>
-  por resolver el reto <strong><%= point.pointable.course.name %> - <%= point.pointable.name %></strong>
+  por resolver el reto <strong><%= point.pointable.subject.name %> - <%= point.pointable.name %></strong>
 <% elsif point.pointable_type == "Project" %>
-  por su solución para el proyecto <strong><%= point.pointable.course.name %> <%= point.pointable.name %></strong>
+  por su solución para el proyecto <strong><%= point.pointable.subject.name %> <%= point.pointable.name %></strong>
 <% end %>

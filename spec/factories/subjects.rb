@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: courses
+# Table name: subjects
 #
 #  id            :integer          not null, primary key
 #  name          :string(50)
@@ -15,16 +15,16 @@
 #
 
 FactoryGirl.define do
-  factory :course do
+  factory :subject do
     name { Faker::Name.title }
     excerpt { Faker::Lorem.sentence }
     description { Faker::Lorem.paragraph }
     published true
 
-    factory :course_with_phase do
-      after(:create) do |course|
+    factory :subject_with_phase do
+      after(:create) do |subject|
         path = Path.published.first || create(:path)
-        course.course_phases.create(phase: Phase.published.first || create(:phase, path: path, published: true))
+        subject.course_phases.create(phase: Phase.published.first || create(:phase, path: path, published: true))
       end
     end
   end

@@ -2,16 +2,16 @@ require 'rails_helper'
 
 RSpec.feature "Resources", type: :feature do
   let(:user) { create(:user_with_path) }
-  let(:course) { create(:course) }
+  let(:subject) { create(:subject) }
 
   scenario "shows a resource with Markdown content" do
-    resource = create(:resource, type: "markdown", content: "Hello World", course: course)
+    resource = create(:markdown, :published, subject: subject, content: "Hello World")
 
     login(user)
-    visit course_path(course)
+    visit subject_path(subject)
     click_link resource.title
 
-    expect(current_path).to eq course_resource_path(course, resource)
+    expect(current_path).to eq subject_resource_path(subject, resource)
     expect(page).to have_content("Hello World")
   end
 
@@ -19,7 +19,7 @@ RSpec.feature "Resources", type: :feature do
     resource = create(:resource, own: true, category: Resource.categories[:video_tutorial])
 
     login(user)
-    visit course_path(resource.course)
+    visit subject_path(resource.subject)
 
     within("tr#resource_#{resource.id}") do
       expect(page).to have_selector(".label-mir")
@@ -31,7 +31,7 @@ RSpec.feature "Resources", type: :feature do
     resource = create(:resource, url: "http://localhost:3000/")
 
     login(user)
-    visit course_resource_path(resource.course, resource)
+    visit subject_resource_path(resource.subject, resource)
 
     new_window = window_opened_by { click_link "Haz click acá para abrirlo" }
     within_window new_window do

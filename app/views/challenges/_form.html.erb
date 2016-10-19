@@ -1,14 +1,14 @@
 <div class="container-fluid expand default-top-padding">
   <div class="row expand new-challenge-page">
-    <%= form_for [@challenge.course, @challenge], html: { class: "expand" } do |f| %>
+    <%= form_for [@challenge.subject, @challenge], html: { class: "expand" } do |f| %>
 
       <!-- left side -->
       <div class="col-md-5 expand overflow">
         <h1><%= @challenge.new_record? ? "Crear Reto" : "Editar Reto" %></h1>
 
         <div class="form-group">
-          <%= f.label :course %>
-          <%= f.collection_select :course_id, Course.all, :id, :name, { prompt: true }, {class: 'form-control'} %>
+          <%= f.label :subject %>
+          <%= f.collection_select :subject_id, Subject.all, :id, :name, { prompt: true }, {class: 'form-control'} %>
         </div>
         <div class="form-group">
           <%= f.label :name %>
@@ -94,7 +94,7 @@
           </div>
 
           <div class="action-buttons text-right">
-            <%= link_to "Volver", @challenge.course, class: "btn btn-default" %>
+            <%= link_to "Volver", @challenge.subject, class: "btn btn-default" %>
             <%= f.submit @challenge.new_record? ? "Crear Reto" : "Editar Reto", class: "btn btn-primary" %>
           </div>
         </div>

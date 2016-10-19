@@ -1,0 +1,44 @@
+<%# required: question_attempt %>
+<% question = question_attempt.question %>
+<% quiz = question.quiz %>
+<% subject = quiz.subject %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <p class="question">
+        <%= markdown question.text %>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <%= form_for :question_attempt, url: "#dummy",
+        html: { class: "single-answer-question-attempt" } do |f| %>
+        <table class="table table-striped">
+          <tbody>
+            <% question.mixed_answers_with_hashes.each do |option, hash| %>
+              <tr class="row">
+                <td class="col-xs-1">
+                  <% if hash == question_attempt.question.answer_hash %>
+                    <% if question_attempt.is_correct? %>
+                      <span class="text-success glyphicon glyphicon-ok"></span>
+                    <% else %>
+                      <span class="text-danger glyphicon glyphicon-remove"></span>
+                    <% end %>
+                  <% end %>
+                </td>
+                <td class="col-xs-1">
+                  <%= f.radio_button(:answers, hash, { checked: (question_attempt.question.answer_hash == hash), disabled: true }) %>
+                </td>
+                <td class="col-xs-10">
+                  <%= markdown option %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

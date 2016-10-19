@@ -2,8 +2,8 @@
 #
 # Table name: resources_users
 #
-#  user_id     :integer          not null
-#  resource_id :integer          not null
+#  resource_id :integer
+#  user_id     :integer
 #  created_at  :datetime
 #  updated_at  :datetime
 #

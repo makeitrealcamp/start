@@ -1,79 +1,34 @@
 # == Schema Information
 #
-# Table name: courses
+# Table name: resources
 #
 #  id            :integer          not null, primary key
-#  name          :string(50)
+#  subject_id    :integer
+#  title         :string(100)
+#  description   :string
 #  row           :integer
+#  type_old      :integer
+#  url           :string
+#  time_estimate :string(50)
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  time_estimate :string(50)
-#  excerpt       :string
-#  description   :string
+#  content       :text
 #  slug          :string
 #  published     :boolean
+#  video_url     :string
+#  category      :integer
+#  own           :boolean
+#  type          :string(100)
+#
+# Indexes
+#
+#  index_resources_on_subject_id  (subject_id)
 #
 
-class Course < ActiveRecord::Base
-  include RankedModel
-  ranks :row
+class Course < Resource
+  has_many :sections, foreign_key: :resource_id, dependent: :delete_all
 
-  extend FriendlyId
-  friendly_id :name
-
-  has_many :resources
-  has_many :challenges
-  has_many :projects
-  has_many :points
-  has_many :quizzes, class_name: 'Quizer::Quiz'
-  has_many :course_phases
-  has_many :phases, -> { uniq }, through: :course_phases
-  has_many :badges, dependent: :destroy
-
-  accepts_nested_attributes_for :course_phases, allow_destroy: true
-
-  validates :name, presence: true
-
-  scope :for, -> user {
-    unless user.is_admin?
-      published.where(id: Path.for(user).map(&:courses).flatten.map(&:id))
-    end
-  }
-  scope :published, -> { where(published: true) }
-
-  after_initialize :default_values
-
-  def next(path=nil)
-    if path.nil?
-      Course.published.order(:row).where('row > ?', self.row).first
-    else
-      current_phase = phase_for_path(path)
-      if current_phase
-        current_phase.courses.published.order(:row).where('row > ?', self.row).first
-      end
-    end
+  def self.model_name
+    Resource.model_name
   end
-
-  def phase_for_path(path)
-    phases.published.where(path_id: path.id).take
-  end
-
-  def to_s
-    name
-  end
-
-  def to_path
-    "/courses/#{slug}"
-  end
-
-  def to_html_link
-    "<a href='#{to_path}'>#{to_s}</a>"
-  end
-
-  private
-    def default_values
-      self.published ||= false
-    rescue ActiveModel::MissingAttributeError => e
-      # ranked_model makes partial selects and this error is thrown
-    end
 end

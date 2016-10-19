@@ -4,7 +4,7 @@
 #
 #  id             :integer          not null, primary key
 #  user_id        :integer
-#  course_id      :integer
+#  subject_id     :integer
 #  points         :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
@@ -13,12 +13,12 @@
 #
 # Indexes
 #
-#  index_points_on_course_id                        (course_id)
 #  index_points_on_pointable_type_and_pointable_id  (pointable_type,pointable_id)
+#  index_points_on_subject_id                       (subject_id)
 #
 
 class Point < ActiveRecord::Base
-  belongs_to :course
+  belongs_to :subject
   belongs_to :user
   belongs_to :pointable, polymorphic: true
 
@@ -41,8 +41,8 @@ class Point < ActiveRecord::Base
     def check_user_badges!
       new_badges = Badge.granted_by_points
         .where.not(id: self.user.badges)
-        .where(course_id: self.course)
-        .where("required_points <= ?",self.user.stats.points_per_course(self.course))
+        .where(subject_id: self.subject)
+        .where("required_points <= ?",self.user.stats.points_per_subject(self.subject))
       user.badges << new_badges
     end
 

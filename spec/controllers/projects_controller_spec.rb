@@ -8,7 +8,7 @@ RSpec.describe ProjectsController, type: :controller do
 
     context "when not signed in" do
       it "redirects to login" do
-        get :show, id: project.id, course_id: project.course_id
+        get :show, id: project.id, subject_id: project.subject_id
         expect(response).to redirect_to login_path
       end
     end
@@ -18,7 +18,7 @@ RSpec.describe ProjectsController, type: :controller do
       before { controller.sign_in(user) }
 
       it "renders the template" do
-        get :show, id: project.id, course_id: project.course_id
+        get :show, id: project.id, subject_id: project.subject_id
         expect(response).to render_template :show
       end
     end

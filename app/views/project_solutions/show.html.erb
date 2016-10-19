@@ -40,7 +40,7 @@
         <% end %>
         <% if @project_solution.user == current_user %>
           <div class="request-revision">
-            <% request_path = request_revision_course_project_project_solution_path(@project_solution.project.course,@project_solution.project,@project_solution) %>
+            <% request_path = request_revision_subject_project_project_solution_path(@project_solution.project.subject, @project_solution.project, @project_solution) %>
             <%= button_to request_path, class: "btn btn-success", method: :patch do %>
               Solicitar Revisión
               <i class="fa fa-hand-o-up"></i>

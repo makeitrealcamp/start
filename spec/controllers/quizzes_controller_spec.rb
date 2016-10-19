@@ -8,7 +8,7 @@ RSpec.describe Quizer::QuizzesController, type: :controller do
 
     context "when not signed in" do
       it "redirects to login" do
-        get :show, id: quiz.id, course_id: quiz.course_id
+        get :show, id: quiz.id, subject_id: quiz.subject_id
         expect(response).to redirect_to :login
       end
     end
@@ -18,19 +18,19 @@ RSpec.describe Quizer::QuizzesController, type: :controller do
       before { controller.sign_in(user) }
 
       it "renders template show" do
-        get :show, id: quiz.id, course_id: quiz.course_id
+        get :show, id: quiz.id, subject_id: quiz.subject_id
         expect(response).to render_template :show
       end
     end
   end
 
   describe "POST #create" do
-    let(:course) { create(:course) }
+    let(:subject) { create(:subject) }
     let(:atts) { attributes_for(:quiz) }
 
     context "when not signed in" do
       it "redirects to login" do
-        post :create, course_id: course.id,  quiz: atts
+        post :create, subject_id: subject.id,  quiz: atts
         expect(response).to redirect_to :login
       end
     end

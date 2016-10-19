@@ -1,6 +1,6 @@
 <div class="container resource-form-page">
   <div class="row">
-    <%= form_for [@resource.course, @resource]  do |f| %>
+    <%= form_for [@resource.subject, @resource]  do |f| %>
       <div class="col-sm-10 col-sm-offset-1">
         <%= render 'shared/flash_messages_form', object: @resource  %>
 
@@ -17,7 +17,7 @@
 
         <div class="form-group">
           <%= f.label :type %>
-          <%= f.select :type, types_resources, {}, { class: 'form-control' } %>
+          <%= f.select :type, types_resources, {}, { class: 'form-control', disabled: !@resource.new_record? } %>
         </div>
 
         <div class="form-group">
@@ -28,18 +28,18 @@
 
         <div class="form-group">
           <%= f.label :category %>
-          <%= f.select :category, resource_categories, {:include_blank => true}, { class: 'form-control' } %>
+          <%= f.select :category, resource_categories, { include_blank: true }, { class: 'form-control' } %>
         </div>
 
         <!-- url form -->
-        <div class="form-group resource-type-form url-field type-url-form">
+        <div class="form-group resource-type-form url-field type-ExternalUrl-form">
           <%= f.label :url %>
           <%= f.text_field :url, class: "form-control" %>
         </div>
         <!--/ url form -->
 
         <!-- markdown form -->
-        <div class="resource-type-form content-field type-markdown-form">
+        <div class="resource-type-form content-field type-MarkdownDocument-form">
           <div class="form-group">
             <%= f.label :video_url %>
             <%= f.text_field :video_url, class: "form-control" %>
@@ -64,7 +64,7 @@
         </div>
 
         <div class="actions text-right">
-          <%= link_to "Cancelar", @course, class: "btn btn-default" %>
+          <%= link_to "Cancelar", @subject, class: "btn btn-default" %>
           <%= f.submit class: "btn btn-primary"%>
         </div>
       </div>

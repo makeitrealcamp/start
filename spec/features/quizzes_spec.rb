@@ -2,48 +2,49 @@ require 'rails_helper'
 
 RSpec.feature "Quizzes", type: :feature do
   let(:user) { create(:user) }
-  let(:course) { create(:course) }
+  let(:subject) { create(:subject) }
 
   scenario "lists published quizzes" do
-    create(:quiz, course: course, published: true)
-    create(:quiz, course: course, published: false)
+    create(:quiz, subject: subject, title: "Quiz 1", published: true)
+    create(:quiz, subject: subject, title: "Quiz 2", published: false)
 
     login(user)
-    
-    visit course_path(course)
-    click_link "Quizzes"
 
-    expect(page).to have_selector('.quiz', count: 1)
+    visit subject_path(subject)
+    click_link "Recursos"
+
+    expect(page).to have_content("Quiz 1")
+    expect(page).to_not have_content("Quiz 2")
     expect(page).to have_no_css('.actions') # shouldn't show buttons to edit and delete quiz
   end
 
   scenario "shows a quiz" do
-    quiz = create(:quiz, course: course, published: true)
+    quiz = create(:quiz, subject: subject, published: true)
 
     login(user)
-    
-    visit course_path(course)
-    click_link "Quizzes"
-    
-    click_link quiz.name
+
+    visit subject_path(subject)
+    click_link "Recursos"
+
+    click_link quiz.title
 
     expect(page).to have_no_css("a.btn.btn-info")
-    expect(current_path).to eq course_quizer_quiz_path(course, quiz)
+    expect(current_path).to eq subject_resource_path(subject, quiz)
   end
 
   scenario "attempts a quiz" do
-    quiz = create(:quiz, course: course)
-    
-    login(user)
-    
-    visit course_path(course)
-    click_link "Quizzes"
-    expect(page).to have_content(quiz.name)
+    quiz = create(:quiz, subject: subject)
 
-    click_link quiz.name
+    login(user)
+
+    visit subject_path(subject)
+    click_link "Recursos"
+    expect(page).to have_content(quiz.title)
+
+    click_link quiz.title
     click_button 'Comenzar Quiz'
 
     attempt = quiz.quiz_attempts.last
-    expect(current_path).to eq course_quizer_quiz_quiz_attempt_path(course, quiz, attempt)
+    expect(current_path).to eq subject_resource_quiz_attempt_path(subject, quiz, attempt)
   end
 end

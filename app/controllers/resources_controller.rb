@@ -3,16 +3,16 @@ class ResourcesController < ApplicationController
   before_action :admin_access, except: [:show, :open]
 
   def new
-    @course = Course.friendly.find(params[:course_id])
-    @resource = @course.resources.new
+    @subject = Subject.friendly.find(params[:subject_id])
+    @resource = @subject.resources.new
   end
 
   def create
-    @course = Course.friendly.find(params[:course_id])
-    @resource = @course.resources.new(resource_params)
+    @subject = Subject.friendly.find(params[:subject_id])
+    @resource = @subject.resources.new(resource_params)
 
     if @resource.save
-      redirect_to course_resource_path(@resource.course, @resource)
+      redirect_to subject_resource_path(@resource.subject, @resource)
     else
       render :new
     end
@@ -34,7 +34,7 @@ class ResourcesController < ApplicationController
   def update
     @resource = Resource.friendly.find(params[:id])
     if @resource.update(resource_params)
-      redirect_to course_resource_path(@resource.course,@resource), notice: "Recurso actualizado"
+      redirect_to subject_resource_path(@resource.subject, @resource), notice: "Recurso actualizado"
     else
       render :edit
     end
@@ -60,7 +60,7 @@ class ResourcesController < ApplicationController
       redirect_to resource.url
     else
       # in case someone tries to open another resource
-      redirect_to course_resource_path(resource.course, resource)
+      redirect_to subject_resource_path(resource.subject, resource)
     end
   end
 

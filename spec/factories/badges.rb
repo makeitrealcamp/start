@@ -7,7 +7,7 @@
 #  description     :text
 #  required_points :integer
 #  image_url       :string
-#  course_id       :integer
+#  subject_id      :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  giving_method   :integer
@@ -22,7 +22,7 @@ FactoryGirl.define do
 
     factory :points_badge do
       giving_method "points"
-      association  :course, factory: :course
+      association :subject, factory: :subject
       required_points 100
     end
   end

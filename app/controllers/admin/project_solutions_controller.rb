@@ -21,7 +21,7 @@ class Admin::ProjectSolutionsController < ApplicationController
     @user = @project_solution.user
 
     @user.points.create(
-      course: @project_solution.project.course,
+      subject: @project_solution.project.subject,
       points: assign_points_params[:points],
       pointable: @project_solution.project
     )

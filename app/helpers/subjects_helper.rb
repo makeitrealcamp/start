@@ -1,4 +1,4 @@
-module CoursesHelper
+module SubjectsHelper
   def progress_bar(opts = {})
     type = (opts[:type] || "success").to_s
     progress = (opts[:progress] || 1).to_f
@@ -38,24 +38,24 @@ module CoursesHelper
       method = :delete
     end
 
-    link_to "<span class='glyphicon glyphicon-ok-circle'></span>".html_safe, course_resource_completion_path(course_id: resource.course.id, resource_id: resource.id), class: "resource-status #{css_class}", data: { "resource-id" => resource.id }, remote: true, method: method
+    link_to "<span class='glyphicon glyphicon-ok-circle'></span>".html_safe, subject_resource_completion_path(subject_id: resource.subject.id, resource_id: resource.id), class: "resource-status #{css_class}", data: { "resource-id" => resource.id }, remote: true, method: method
   end
 
-  def challenges_msg(course)
-    evaluated = current_user.solutions.evaluated.joins(:challenge).where('challenges.course_id = ?', course.id).count
-    failed = current_user.solutions.failed.joins(:challenge).where('challenges.course_id = ?', course.id).count
+  def challenges_msg(subject)
+    evaluated = current_user.solutions.evaluated.joins(:challenge).where('challenges.subject_id = ?', subject.id).count
+    failed = current_user.solutions.failed.joins(:challenge).where('challenges.subject_id = ?', subject.id).count
     if evaluated == 0
       "Los retos. ¿#{current_user.gender == "female" ? "Curiosa" : "Curioso"} por conocer el primero? Inténtalo."
     elsif failed > 0
       "Recuerda que si no estás luchando con los retos no estás aprendiendo nada nuevo."
-    elsif evaluated == course.challenges.published.count
+    elsif evaluated == subject.challenges.published.count
       "Has completado todos los retos de este curso. ¡Felicitaciones!"
     else
       "¿Estás #{current_user.gender == "female" ? "preparada" : "preparado"} para el siguiente reto?"
     end
   end
 
-  def projects_msg(course)
+  def projects_msg(subject)
     phrases = [
       "Vas a aprender nuevas habilidades que te van a convertir en un profesional más competitivo.",
       "Vas a tener algo de que hablar en entrevistas de trabajo... o en fiestas.",

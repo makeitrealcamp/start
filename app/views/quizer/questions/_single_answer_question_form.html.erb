@@ -1,0 +1,32 @@
+<%# required: question_form, form %>
+<div class="form-group">
+  <%= form.label :text, "Texto de la pregunta" %>
+  <%= form.text_area :text, class: "form-control" %>
+</div>
+<div class="correct-answers">
+  <%= form.label :answer, "Respuesta" %>
+  <%= form.text_area :answer, class: "form-control" %>
+</div>
+<div class="wrong-answers">
+  <%= form.label "Respuestas incorrectas" %>
+  <% question_form.wrong_answers.each do |wrong_answer| %>
+    <%= render "multi_answer_question_answer", form: form, answer: wrong_answer, type: :wrong_answers %>
+  <% end %>
+</div>
+<div class="form-group">
+  <button class="add-wrong-answer btn btn-info" type="button"><span class="glyphicon glyphicon-plus"></span></button>
+</div>
+
+<script type="x/template" id="single-answer-question-answer-template">
+  <%= render "single_answer_question_answer", form: form, answer: "{{=answer}}", type: "{{=type}}" %>
+</script>
+
+<script type="text/javascript">
+  (function() {
+    var view = new SingleAnswerQuestionForm({el: "#question-modal"})
+
+    $("#question-form").on("hidden.bs.modal", function() {
+      view.remove();
+    });
+  })();
+</script>

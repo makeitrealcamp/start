@@ -1,0 +1,48 @@
+<%# required: question_attempt %>
+<% question = question_attempt.question %>
+<% quiz = question.quiz %>
+<% subject = quiz.subject %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <p class="question">
+        <%= markdown question.text %>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <%= form_for :question_attempt,url: question_attempt_path(question_attempt),
+          method: :patch, remote: true,
+          html: { class: "single-answer-question-attempt", id: "question-attempt-#{question_attempt.id}" } do |f| %>
+
+        <table class="table table-striped">
+          <tbody>
+            <% question.mixed_answers_with_hashes.each do |option, hash| %>
+              <tr class="row">
+                <td class="col-xs-1">
+                  <%= f.radio_button(:answers, hash, { checked: (question_attempt.answer == hash) }) %>
+                </td>
+                <td class="col-xs-11">
+                  <%= markdown option %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  (function() {
+    var view = new SingleAnswerQuestionAttempt({el: "#question-attempt-<%= question_attempt.id %>"})
+
+    $(document).on("page:before-change", function() {
+      view.remove();
+    });
+  })();
+
+</script>

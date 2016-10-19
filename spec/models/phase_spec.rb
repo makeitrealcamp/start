@@ -23,7 +23,7 @@ require 'rails_helper'
 RSpec.describe Phase, type: :model do
   context 'associations' do
     it { should belong_to(:path) }
-    it { should have_many(:courses) }
+    it { should have_many(:subjects) }
   end
 
   context "validations" do

@@ -1,0 +1,58 @@
+<%# require: resource %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="text-center">
+        <h1>Quiz: <%= resource.title %></h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="row margin-bottom">
+    <div class="col-md-8 col-md-offset-2 text-center">
+      <% if resource.is_being_attempted_by_user?(current_user) %>
+        <p>
+          Ya comenzaste este quiz.
+        </p>
+        <%= link_to "Continuar Quiz", ongoing_quiz_attempt_for_user_path(resource, current_user), class: "btn btn-primary" %>
+      <% else %>
+        <%= button_to "Comenzar Quiz", subject_resource_quiz_attempts_path(resource.subject, resource), method: :post, class: "btn btn-secondary" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row margin-bottom">
+    <div class="col-md-8 col-md-offset-2 text-center">
+      <% if current_user.is_admin? %>
+        <%= link_to "Preguntas", subject_resource_questions_path(resource.subject, resource), class: "btn btn-info" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h2>Resultados anteriores</h2>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Puntaje</th>
+              <th>Detalle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% resource.finished_attempts(current_user).each do |quiz_attempt| %>
+              <tr id="quiz-attempt-<%= quiz_attempt.id %>">
+                <td><%= quiz_attempt.created_at.strftime("%Y-%m-%d") %></td>
+                <td><%= "%.2f\%" % (quiz_attempt.score*100) %></td>
+                <td>
+                  <%= link_to "Resultados >", quiz_attempt_results_path(quiz_attempt) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

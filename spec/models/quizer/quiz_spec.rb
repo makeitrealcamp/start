@@ -1,19 +1,28 @@
 # == Schema Information
 #
-# Table name: quizzes
+# Table name: resources
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  row        :integer
-#  slug       :string
-#  course_id  :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  published  :boolean
+#  id            :integer          not null, primary key
+#  subject_id    :integer
+#  title         :string(100)
+#  description   :string
+#  row           :integer
+#  type_old      :integer
+#  url           :string
+#  time_estimate :string(50)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  content       :text
+#  slug          :string
+#  published     :boolean
+#  video_url     :string
+#  category      :integer
+#  own           :boolean
+#  type          :string(100)
 #
 # Indexes
 #
-#  index_quizzes_on_course_id  (course_id)
+#  index_resources_on_subject_id  (subject_id)
 #
 
 require 'rails_helper'
@@ -21,7 +30,7 @@ require 'rails_helper'
 RSpec.describe Quizer::Quiz, type: :model do
 
   context 'associations' do
-    it { should belong_to(:course) }
+    it { should belong_to(:subject) }
     it { should have_many(:questions) }
     it { should have_many(:quiz_attempts) }
   end

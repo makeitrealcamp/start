@@ -3,7 +3,7 @@
 # Table name: challenges
 #
 #  id                  :integer          not null, primary key
-#  course_id           :integer
+#  subject_id          :integer
 #  name                :string(100)
 #  instructions        :text
 #  evaluation          :text
@@ -23,7 +23,7 @@
 #
 # Indexes
 #
-#  index_challenges_on_course_id  (course_id)
+#  index_challenges_on_subject_id  (subject_id)
 #
 
 class Challenge < ActiveRecord::Base
@@ -31,14 +31,14 @@ class Challenge < ActiveRecord::Base
   has_paper_trail on: [:update, :destroy]
 
   include RankedModel
-  ranks :row, with_same: :course_id
+  ranks :row, with_same: :subject_id
 
   extend FriendlyId
   friendly_id :name
 
   enum evaluation_strategy: [:ruby_embedded, :phantomjs_embedded, :ruby_git, :rails_git, :sinatra_git, :ruby_git_pr, :async_phantomjs_embedded]
 
-  belongs_to :course
+  belongs_to :subject
   has_many :documents, as: :folder
   has_many :comments, as: :commentable
   has_many :solutions
@@ -63,12 +63,12 @@ class Challenge < ActiveRecord::Base
     end
   end
 
-  def self.order_by_course_and_rank
-    joins(:course).order(["courses.row","challenges.row"])
+  def self.order_by_subject_and_rank
+    joins(:subject).order(["subjects.row","challenges.row"])
   end
 
-  def self.by_course
-    Course.all.inject([]) { |memo, course| memo += where(course: course) }
+  def self.by_subject
+    Subject.all.inject([]) { |memo, subject| memo += where(subject: subject) }
   end
 
   def self.default_timeouts
@@ -82,8 +82,8 @@ class Challenge < ActiveRecord::Base
     default_timeouts[strategy.to_sym]
   end
 
-  def name_with_course
-    "#{course.name} - #{name}"
+  def name_with_subject
+    "#{subject.name} - #{name}"
   end
 
   def to_s
@@ -107,7 +107,7 @@ class Challenge < ActiveRecord::Base
   end
 
   def to_path
-    "#{course.to_path}/challenges/#{slug}"
+    "#{subject.to_path}/challenges/#{slug}"
   end
 
   def to_html_link
@@ -115,7 +115,7 @@ class Challenge < ActiveRecord::Base
   end
 
   def to_html_description
-    "el reto #{to_html_link} del tema #{course.to_html_link}"
+    "el reto #{to_html_link} del tema #{subject.to_html_link}"
   end
 
   private

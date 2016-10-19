@@ -1,40 +1,44 @@
 # == Schema Information
 #
-# Table name: quizzes
+# Table name: resources
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  row        :integer
-#  slug       :string
-#  course_id  :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  published  :boolean
+#  id            :integer          not null, primary key
+#  subject_id    :integer
+#  title         :string(100)
+#  description   :string
+#  row           :integer
+#  type_old      :integer
+#  url           :string
+#  time_estimate :string(50)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  content       :text
+#  slug          :string
+#  published     :boolean
+#  video_url     :string
+#  category      :integer
+#  own           :boolean
+#  type          :string(100)
 #
 # Indexes
 #
-#  index_quizzes_on_course_id  (course_id)
+#  index_resources_on_subject_id  (subject_id)
 #
 
-class Quizer::Quiz < ActiveRecord::Base
-  include RankedModel
-  ranks :row, with_same: :course_id
-
-  extend FriendlyId
-  friendly_id :name
-
-  belongs_to :course
+class Quizer::Quiz < Resource
   has_many :questions
   has_many :quiz_attempts
   has_many :users, -> { uniq }, through: :quiz_attempts
 
-  validates :name, presence: true
-  validates :course, presence: true
-
   after_initialize :defaults
 
-  scope :published, -> { where(published: true) }
-  scope :for, -> user { published unless user.is_admin? }
+  def self.model_name
+    Resource.model_name
+  end
+
+  def finished_attempts(user)
+    user.quiz_attempts.where(quiz_id: self.id).finished.order('created_at DESC')
+  end
 
   def is_being_attempted_by_user?(user)
     user.quiz_attempts.where(quiz_id: self.id).ongoing.any?
@@ -51,22 +55,6 @@ class Quizer::Quiz < ActiveRecord::Base
       .order("score DESC")
       .first
       .score
-  end
-
-  def to_s
-    name
-  end
-
-  def to_path
-    "#{course.to_path}/quizzes/#{slug}"
-  end
-
-  def to_html_link
-    "<a href='#{to_path}'>#{to_s}</a>"
-  end
-
-  def to_html_description
-    "el quiz #{to_html_link} del tema #{course.to_html_link}"
   end
 
   private

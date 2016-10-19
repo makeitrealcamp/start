@@ -2,7 +2,7 @@ module Quizer
   class QuestionsController < ApplicationController
     before_action :admin_access
 
-    before_action :set_course
+    before_action :set_subject
     before_action :set_quiz
     before_action :set_question, only: [:update,:edit]
 
@@ -32,12 +32,12 @@ module Quizer
 
     private
 
-      def set_course
-        @course = Course.friendly.find(params[:course_id])
+      def set_subject
+        @subject = Subject.friendly.find(params[:subject_id])
       end
 
       def set_quiz
-        @quiz = Quiz.friendly.find(params[:quiz_id])
+        @quiz = Quiz.friendly.find(params[:resource_id])
       end
 
       def set_quiz_attempt

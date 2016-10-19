@@ -2,23 +2,23 @@ crumb :root do
   link "Inicio", root_path
 end
 
-crumb :courses do
-  link "Temas", courses_path
+crumb :subjects do
+  link "Temas", subjects_path
 end
 
-crumb :course do |course|
-  link course.name, course
-  parent :courses
+crumb :subject do |subject|
+  link subject.name, subject
+  parent :subjects
 end
 
-crumb :challenges do |course|
-  link "Retos", course_path(course, tab: "challenges")
-  parent :course, course
+crumb :challenges do |subject|
+  link "Retos", subject_path(subject, tab: "challenges")
+  parent :subject, subject
 end
 
 crumb :challenge do |challenge|
-  link challenge.name, course_challenge_path(challenge.course,challenge)
-  parent :challenges, challenge.course
+  link challenge.name, subject_challenge_path(challenge.subject,challenge)
+  parent :challenges, challenge.subject
 end
 
 crumb :challenge_discussion do |challenge|
@@ -26,28 +26,28 @@ crumb :challenge_discussion do |challenge|
   parent :challenge, challenge
 end
 
-crumb :resources do |course|
-  link "Recursos", course_path(course, tab: "resources")
-  parent :course, course
+crumb :resources do |subject|
+  link "Recursos", subject_path(subject, tab: "resources")
+  parent :subject, subject
 end
 
 crumb :resource do |resource|
   link resource.title, resource
-  parent :resources, resource.course
+  parent :resources, resource.subject
 end
 
-crumb :projects do |course|
-  link "Proyectos", course_path(course, tab: "projects")
-  parent :course, course
+crumb :projects do |subject|
+  link "Proyectos", subject_path(subject, tab: "projects")
+  parent :subject, subject
 end
 
 crumb :project do |project|
-  link project.name, [project.course, project]
-  parent :projects, project.course
+  link project.name, [project.subject, project]
+  parent :projects, project.subject
 end
 
 crumb :project_solutions do |project|
-  link "Soluciones", course_project_project_solutions_path(project.course, project)
+  link "Soluciones", subject_project_project_solutions_path(project.subject, project)
   parent :project, project
 end
 
@@ -56,14 +56,9 @@ crumb :project_solution do |project_solution|
   parent :project_solutions, project_solution.project
 end
 
-crumb :quizzes do |course|
-  link "Quizzes", course_path(course, tab: "quizzes")
-  parent :course, course
-end
-
 crumb :quiz do |quiz|
-  link quiz.name, [quiz.course, quiz]
-  parent :quizzes, quiz.course
+  link quiz.title, [quiz.subject, quiz]
+  parent :resources, quiz.subject
 end
 
 crumb :quiz_questions do |quiz|

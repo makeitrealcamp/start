@@ -1,5 +1,5 @@
 <%# required: question %>
-<% course = question.quiz.course %>
+<% subject = question.quiz.subject %>
 <% quiz = question.quiz %>
 <tr id="question-<%= question.id %>">
   <td class="col-xs-1"><%= question.id %></td>
@@ -10,7 +10,7 @@
   </td>
   <td><%= question.text %></td>
   <td>
-    <%= link_to edit_course_quizer_quiz_question_path(course,quiz,question), remote: true, class: "btn btn-xs btn-info" do %>
+    <%= link_to edit_subject_resource_question_path(subject, quiz, question), remote: true, class: "btn btn-xs btn-info" do %>
       <span class="glyphicon glyphicon-pencil"></span>
     <% end %>
   </td>

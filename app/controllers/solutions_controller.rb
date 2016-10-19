@@ -5,7 +5,7 @@ class SolutionsController < ApplicationController
   def create
     @challenge = Challenge.friendly.find(params[:challenge_id])
     current_user.solutions.create(challenge: @challenge)
-    redirect_to course_challenge_path(@challenge.course, @challenge)
+    redirect_to subject_challenge_path(@challenge.subject, @challenge)
   end
 
   def show
@@ -42,7 +42,7 @@ class SolutionsController < ApplicationController
   def reset
     challenge = Challenge.friendly.find(params[:id])
     solution = current_user.reset_solution(challenge)
-    redirect_to  course_challenge_path(challenge.course, challenge)
+    redirect_to  subject_challenge_path(challenge.subject, challenge)
   end
 
   private

@@ -1,5 +1,4 @@
 class MultiAnswerQuestionForm extends Backbone.View
-
   events:
     "click .add-correct-answer" : "add_correct_answer"
     "click .add-wrong-answer" : "add_wrong_answer"
@@ -20,4 +19,23 @@ class MultiAnswerQuestionForm extends Backbone.View
     $remove_btn = $(event.currentTarget)
     $remove_btn.parents(".answer").remove()
 
+class SingleAnswerQuestionForm extends Backbone.View
+  events:
+    "click .add-wrong-answer" : "add_wrong_answer"
+    "click .remove-answer" : "remove_answer"
+
+  add_wrong_answer: ->
+    @add_answer("wrong_answers")
+
+  add_answer: (type)->
+    type_class = type.replace(/_/g,'-')
+    template = _.template($("#single-answer-question-answer-template").html())
+    @$el.find(".#{type_class}").append(template({ type: type, answer:"" }))
+
+  remove_answer: (event)->
+    $remove_btn = $(event.currentTarget)
+    $remove_btn.parents(".answer").remove()
+
+
 window.MultiAnswerQuestionForm = MultiAnswerQuestionForm
+window.SingleAnswerQuestionForm = SingleAnswerQuestionForm

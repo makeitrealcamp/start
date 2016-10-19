@@ -1,9 +1,9 @@
 module ProjectsHelper
   def project_solution_form_url
     if @project_solution.new_record?
-     course_project_project_solutions_path(@project.course,@project)
+     subject_project_project_solutions_path(@project.subject,@project)
    else
-     course_project_project_solution_path(@project.course,@project,@project_solution)
+     subject_project_project_solution_path(@project.subject,@project,@project_solution)
    end
   end
 
@@ -14,5 +14,5 @@ module ProjectsHelper
       :patch
     end
   end
-  
+
 end

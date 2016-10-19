@@ -3,13 +3,13 @@ class ChallengesController < ApplicationController
   before_action :admin_access, except:[:show, :discussion]
 
   def new
-    course = Course.friendly.find(params[:course_id])
-    @challenge = course.challenges.new
+    subject = Subject.friendly.find(params[:subject_id])
+    @challenge = subject.challenges.new
   end
 
   def create
     @challenge = Challenge.create(challenge_params)
-    redirect_to course_path(@challenge.course), notice: "El reto <strong>#{@challenge.name}</strong> ha sido creado"
+    redirect_to subject_path(@challenge.subject), notice: "El reto <strong>#{@challenge.name}</strong> ha sido creado"
   end
 
   def edit
@@ -18,7 +18,7 @@ class ChallengesController < ApplicationController
 
   def update
     @challenge = Challenge.friendly.update(params[:id], challenge_params)
-    redirect_to course_challenge_path(@challenge.course,@challenge), notice: "El reto <strong>#{@challenge.name}</strong> ha sido actualizado"
+    redirect_to subject_challenge_path(@challenge.subject,@challenge), notice: "El reto <strong>#{@challenge.name}</strong> ha sido actualizado"
   end
 
   def update_position
@@ -43,7 +43,7 @@ class ChallengesController < ApplicationController
     solution = load_solution
     if (solution.nil? || solution.completed_at.blank?) && !current_user.is_admin?
       flash[:error] = "Debes completar el reto para poder ver la discusión"
-      redirect_to course_challenge_path(@challenge.course, @challenge)
+      redirect_to subject_challenge_path(@challenge.subject, @challenge)
     end
   end
 
@@ -54,7 +54,7 @@ class ChallengesController < ApplicationController
 
     def challenge_params
       params.require(:challenge).permit(
-        :course_id, :name, :instructions, :evaluation_strategy, :published, :timeout,
+        :subject_id, :name, :instructions, :evaluation_strategy, :published, :timeout,
         :evaluation, :solution_text, :solution_video_url,:difficulty_bonus, :restricted, :preview, :pair_programming,
         documents_attributes: [:id, :name, :content, :_destroy])
     end

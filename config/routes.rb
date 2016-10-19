@@ -49,7 +49,7 @@ Rails.application.routes.draw do
 
   resources :phases, only: [:new,:create,:edit,:update]
 
-  resources :courses, except: [:destroy] do
+  resources :subjects, except: [:destroy] do
     patch 'update_position', on: :member
 
     resources :challenges, except: [:index, :destroy] do
@@ -67,24 +67,25 @@ Rails.application.routes.draw do
 
     resources :resources, except: [:index] do
       get :open, on: :member # opens an external resource
-      
+
       resource :completion, controller: 'resource_completion', only: [:create, :destroy]
       resources :sections, except: [:index] do
         resources :lessons, except: [:index] do
           post :complete, on: :member
         end
       end
+      resources :quiz_attempts, only: [:create, :show], controller: 'quizer/quiz_attempts' do
+        member do
+          patch :finish
+          get :results
+        end
+        resources :question_attempts, only: [:update], controller: 'quizer/question_attempts'
+      end
+      resources :questions, only: [:index, :new, :create, :edit, :update], controller: 'quizer/questions'
     end
     namespace :quizer, path: '/' do
       resources :quizzes do
-        resources :questions, only: [:index,:new,:create,:edit,:update]
-        resources :quiz_attempts, only: [:create, :show] do
-          member do
-            patch :finish
-            get :results
-          end
-          resources :question_attempts, only: [:update]
-        end
+
       end
     end
   end
@@ -139,7 +140,7 @@ Rails.application.routes.draw do
   end
 
   get 'dashboard', to: redirect('/phases', status: 301)
-  get 'courses', to: redirect('/phases', status: 301)
+  get 'subjects', to: redirect('/phases', status: 301)
 
   resources :resources, only: [:edit, :update, :destroy] do
     patch 'update_position', on: :member
@@ -164,7 +165,7 @@ Rails.application.routes.draw do
     resources :levels
     resources :badge_ownerships, only: [:new, :create]
 
-    resources :courses, only:[:index] do
+    resources :subjects, only:[:index] do
       patch 'update_position', on: :member
     end
   end

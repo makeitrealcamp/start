@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe SectionsController, type: :controller do
-  let(:course) { create(:course) }
-  let(:resource) { create(:resource, type: "course", course: course) }
-  let(:path_params) { { resource_id: resource.id, course_id: course.id } }
+  let(:subject) { create(:subject) }
+  let(:resource) { create(:resource, type: "Course", subject: subject) }
+  let(:path_params) { { resource_id: resource.id, subject_id: subject.id } }
 
   describe "GET #new" do
     context "when not signed in" do

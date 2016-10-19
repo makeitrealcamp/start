@@ -1,9 +1,9 @@
-<% breadcrumb :quiz, @quiz %>
+<% breadcrumb :resource, @quiz %>
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="text-center">
-        <h1>Quiz: <%= @quiz.name %></h1>
+        <h1>Quiz: <%= @quiz.title %></h1>
       </div>
     </div>
   </div>
@@ -14,16 +14,16 @@
         <p>
           Ya comenzaste este quiz.
         </p>
-        <%= link_to "Continuar Quiz", ongoing_quiz_attempt_for_user_path(@quiz,current_user), class: "btn btn-primary" %>
+        <%= link_to "Continuar Quiz", ongoing_quiz_attempt_for_user_path(@quiz, current_user), class: "btn btn-primary" %>
       <% else %>
-        <%= button_to "Comenzar Quiz", course_quizer_quiz_quiz_attempts_path(@course,@quiz), method: :post, class: "btn btn-secondary" %>
+        <%= button_to "Comenzar Quiz", subject_resource_quiz_attempts_path(@subject, @quiz), method: :post, class: "btn btn-secondary" %>
       <% end %>
     </div>
   </div>
   <div class="row margin-bottom">
     <div class="col-md-8 col-md-offset-2 text-center">
       <% if @current_user.is_admin? %>
-        <%= link_to "Preguntas", course_quizer_quiz_questions_path(@course,@quiz), class: "btn btn-info" %>
+        <%= link_to "Preguntas", subject_resource_questions_path(@subject, @quiz), class: "btn btn-info" %>
       <% end %>
     </div>
   </div>
