@@ -1,0 +1,610 @@
+<% content_for :head do %>
+  <meta property="og:title" content="Conviérte en Web Developer en 12 semanas" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="En este programa aprenderás a trabajar con todos los componentes de una aplicación: la base de datos, código en el servidor y código en el navegador." />
+  <meta property="og:image" content="<%= image_url('bogota-colombia-big.jpg') %>" />
+<% end %>
+
+<div class="new-site program full-stack-bogota">
+  <%= render "layouts/navbar/pages_white", hide_login: true, show_apply: false, url: @typeform_url %>
+  <%= render "pages/header_register", url: @typeform_url %>
+
+  <div class="program-intro">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 tagline-program">
+          <h1><small>Bogotá Edition</small>Full Stack Web Developer</h1>
+          <p>En este curso presencial <strong>de 12 semanas</strong> aprenderás a trabajar con todos los componentes de una aplicación Web: la base de datos, código en el servidor (Ruby on Rails) y código en el navegador (HTML, CSS, JavaScript)</p>
+        </div><!--/tagline-program -->
+
+        <div class="col-md-6">
+          <div class="medellin-info">
+            <div class="medellin-info-title">Fecha Inicio</div>
+
+            <div class="medellin-info-body">
+              <div class="medellin-info-date">
+                 Febrero 7, 2017
+              </div>
+              <div class="medellin-info-schedule">
+                <div class="schedule-data">
+                  6pm a 9pm
+                  <span class="schedule-label">Martes a Viernes</span>
+                </div>
+                <div class="schedule-data">
+                  9am a 12m
+                  <span class="schedule-label">Sábados</span>
+                </div>
+              </div>
+
+              <div class="medellin-info-location">
+                <span class="glyphicon glyphicon-map-marker"></span>
+                Bogotá, Colombia
+              </div>
+
+              <button type="button" class="btn btn-primary btn-register">¡Regístrate!</button>
+            </div>
+          </div>
+        </div>
+      </div><!--/row -->
+    </div><!--/container -->
+  </div><!--/program-intro -->
+
+  <a name="audience"></a>
+  <div class="section section-bordered section-white target-audience">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>¿A quién está dirigido?</h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <p class="subhead">Buscamos personas recursivas y motivadas que deseen convertirse en Full Stack Web Developers.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-5 col-sm-offset-1 hidden-xs hidden-sm">
+          <div class="audience-quote">
+            <p>"En Make it Real logré pasar de solo tener ideas de negocio a tener la capacidad de hacerlas realidad."</p>
+
+            <div class="clearfix">
+              <div class="audience-quote-img"><%= image_tag "people/juan-felipe-rodriguez.jpg", width: 90, class: "img-circle" %></div>
+              <div class="audience-quote-person">
+                <a href="https://co.linkedin.com/pub/juan-felipe-rodr%C3%ADguez-cuervo/57/707/427" target="_blank" class="audience-quote-person-name">Juan Felipe Rodriguez</a>
+                <span>Co-fundador de <a href="http://quincena.me/" target="_blank">Quincename</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 audience-target-details">
+          <p class="audience-target-details-intro">Nuestro programa es ideal para personas que:</p>
+
+          <ul>
+            <li>Quieren cambiar de carrera.</li>
+            <li>Estudiaron Ingeniería de Sistemas, o alguna carrera similar (Electrónica, Mecatrónica, etc.), y desean avanzar su carrera.</li>
+            <li>Emprendedores digitales que quieren hacer sus ideas realidad.</li>
+          </ul>
+
+          <p class="audience-target-details-alt">¿No estás en Medellín? Conoce <%= link_to "nuestros programas online", root_path %>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a name="curriculum"></a>
+  <div class="section learnings-program">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 program-title text-center">
+          <h2>Lo que aprenderás</h2>
+          <p class="subhead">Conoce y domina las tecnologías y habilidades necesarias para convertirte en un desarrollador Web Full Stack profesional</p>
+        </div>
+      </div>
+
+      <div class="row technologies">
+        <div class="col-sm-6">
+          <div class="program-module">
+            <div class="module-title">
+              <span class="icon icon-html5"></span>
+              <h4><small>Módulo 1</small> HTML5 y CSS3</h4>
+            </div>
+            <div class="module-body">
+              <p>Crea sitios y aplicaciones que se adaptan a la pantalla de diferentes dispositivos.</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <ul>
+                    <li>Sintaxis y elementos de HTML</li>
+                    <li>Sintaxis de CSS (reglas, selectores, propiedades)</li>
+                    <li>Box model</li>
+                    <li>Embeber media, video y audio</li>
+                    <li>Display</li>
+                    <li>Técnicas de posicionamiento</li>
+                    <li>Selectores avanzados de CSS</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul>
+                    <li>Nuevas características de HTML5 y CSS3</li>
+                    <li>Cascada, especificidad y herencia</li>
+                    <li>Responsive design (media queries, mobile first)</li>
+                    <li>Flexbox</li>
+                    <li>Mejores prácticas</li>
+                    <li>Sass</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="program-module">
+            <div class="module-title">
+              <span class="icon alt icon-bootstrap"></span>
+              <h4><small>Módulo 2</small> Bootstrap</h4>
+            </div>
+            <div class="module-body">
+              <p>Aprende a utilizar y personalizar Bootstrap para agilizar el desarrollo.</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <ul>
+                    <li>Introducción</li>
+                    <li>Tipografía y formato a elementos HTML (tablas, formularios, etc.)</li>
+                    <li>Componentes</li>
+                    <li>Alineación</li>
+                    <li>Manejo de la grilla</li>
+                    <li>Mobile first</li>
+                    <li>Personalización</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="program-module">
+            <div class="module-title">
+              <span class="icon icon-github"></span>
+              <h4><small>Módulo 3</small> Git y Github</h4>
+            </div>
+            <div class="module-body">
+              <p>Maneja los cambios de tu código y colabora con otros programadores.</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <ul>
+                    <li>Creación de repositorios</li>
+                    <li>Commits</li>
+                    <li>Ramas y etiquetas (tags)</li>
+                    <li>El espacio de trabajo (estados de los archivos)</li>
+                    <li>Repositorios remotos</li>
+                    <li>Merging</li>
+                    <li>Github (forking, pull requests, issues, etc.)</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul>
+                    <li>La estructura del repositorio</li>
+                    <li>Tracking branches y remote tracking branches</li>
+                    <li>Rebasing y stashing</li>
+                    <li>Reflog</li>
+                    <li>Flujos de trabajo en equipo</li>
+                    <li>Reescribir la historia (amend, reset, rebase -i)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="program-module">
+            <div class="module-title">
+              <span class="icon icon-uniF120" ></span>
+              <h4><small>Módulo 4</small> Ruby</h4>
+            </div>
+            <div class="module-body">
+              <p>Aprende en profundidad este lenguaje de programación enfocado en la simplicidad y la productividad.</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <ul>
+                    <li>Variables, tipos de datos y operadores</li>
+                    <li>Arreglos, condicionales y iteradores</li>
+                    <li>Métodos</li>
+                    <li>Recursividad</li>
+                    <li>Colecciones</li>
+                    <li>Bloques</li>
+                    <li>Expresiones regulares</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul>
+                    <li>Programación orientada a objetos</li>
+                    <li>Módulos</li>
+                    <li>Duck typing y monkey patching</li>
+                    <li>Metaprogramming</li>
+                    <li>Testing</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="program-module">
+            <div class="module-title">
+              <span class="icon icon-gears"></span>
+              <h4><small>Módulo 5</small> HTTP y Sinatra</h4>
+            </div>
+            <div class="module-body">
+              <p>Domina el protocolo HTTP y conoce Sinatra, una librería de Ruby que te preparará para iniciar con Rails.</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <ul>
+                    <li>Fundamentos de HTTP</li>
+                    <li>Modelo cliente servidor</li>
+                    <li>Instalación de Sinatra</li>
+                    <li>Rutas</li>
+                    <li>Rutas con variables</li>
+                    <li>El hash params</li>
+                    <li>El query string</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul>
+                    <li>Verbos y respuestas HTTP</li>
+                    <li>Generación de vistas con ERB</li>
+                    <li>Cookies y sesiones HTTP</li>
+                    <li>Encabezados HTTP</li>
+                    <li>Manejo del Caché</li>
+                    <li>Arquitectura REST</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="program-module">
+            <div class="module-title">
+              <span class="icon icon-uniF13B" ></span>
+              <h4><small>Módulo 6</small> Ruby on Rails I</h4>
+            </div>
+            <div class="module-body">
+              <p>Aprende en profundidad este framework Web ideal para crear aplicaciones que interactúan con Bases de Datos.</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <ul>
+                    <li>Introducción a Bases de Datos</li>
+                    <li>El patrón MVC</li>
+                    <li>Active Record</li>
+                    <li>Migraciones</li>
+                    <li>Asociaciones</li>
+                    <li>El enrutador y controladores</li>
+                    <li>Validación de modelos</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul>
+                    <li>Vistas y formularios</li>
+                    <li>Registro y autenticación de usuarios</li>
+                    <li>El Asset Pipeline</li>
+                    <li>Generadores</li>
+                    <li>Despliegue en Heroku</li>
+                    <li>Action Mailer</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="program-module">
+            <div class="module-title">
+              <span class="icon icon-uniF148" style="font-size: 56px;"></span>
+              <h4><small>Módulo 7</small> JavaScript</h4>
+            </div>
+            <div class="module-body">
+              <p>Aprende en profundidad el lenguaje más popular y versatil del mundo.</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <ul>
+                    <li>Historia y características</li>
+                    <li>Variables, tipos de datos y operadores</li>
+                    <li>Condicionales y iteradores</li>
+                    <li>Funciones</li>
+                    <li>Recursividad</li>
+                    <li>Expresiones regulares</li>
+                    <li>Objetos y prototipos</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul>
+                    <li>This, call, apply y bind</li>
+                    <li>Hoisting</li>
+                    <li>Scope</li>
+                    <li>Closures</li>
+                    <li>Programación funcional</li>
+                    <li>ECMAScript 2015</li>
+                    <li>Testing</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="program-module">
+            <div class="module-title">
+              <span class="icon icon-jquery"></span>
+              <h4><small>Módulo 8</small> JQuery y AJAX</h4>
+            </div>
+            <div class="module-body">
+              <p>Aprende a crear aplicaciones dinámicas y en tiempo real sobre el navegador.</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <ul>
+                    <li>El DOM (Document Object Model)</li>
+                    <li>Selección y manipulación de elementos</li>
+                    <li>Eventos</li>
+                    <li>Developer Tools</li>
+                    <li>Cookies y Local Storage</li>
+                    <li>Plugins de jQuery</li>
+                    <li>El protocolo HTTP</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul>
+                    <li>Formatos de intercambio de información (XML y JSON)</li>
+                    <li>Llamados AJAX</li>
+                    <li>Promesas</li>
+                    <li>Web Sockets</li>
+                    <li>CORS y JSONP</li>
+                    <li>REST API's y Firebase</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="program-module">
+            <div class="module-title">
+              <span class="icon icon-uniF13B" ></span>
+              <h4><small>Módulo 9</small> Ruby on Rails II</h4>
+            </div>
+            <div class="module-body">
+              <p>Profundiza en los temas más avanzados de Rails y crea aplicaciones robustas.</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <ul>
+                    <li>Creación de un API REST</li>
+                    <li>Background Jobs</li>
+                    <li>Web Sockets</li>
+                    <li>Gráficas</li>
+                    <li>Geolocalización</li>
+                    <li>JavaScript con Rails</li>
+                    <li>Despliegue en Heroku</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul>
+                    <li>Despliegue en AWS</li>
+                    <li>Testing</li>
+                    <li>Scrum</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a name="mentors"></a>
+  <div class="section section-white section-bordered section-mentors">
+    <div class="container">
+      <h2>Conoce a tus mentores</h2>
+
+      <div class="row">
+        <div class="col-sm-6 clearfix">
+          <div class="profile-image text-center">
+            <%= image_tag "people/german-escobar.png", class: "img-circle" %>
+          </div>
+
+          <div class="profile">
+            <h3>Germán Escobar <small>Curriculum Developer</small></h3>
+            <p class="text-center">Programador y emprendedor con una <a href="http://germanescobar.net/2014/06/02/la-nueva-educacion/" target="_blank">visión particular de la educación</a>. Co-fundador de <a href="http://elibom.com/?utm_source=full-stack-medellin&utm_medium=web&utm_campaign=Make%20it%20Real" target="_blank">elibom.com</a> y fundador de <a href="http://www.makeitreal.camp/?utm_source=aprende-desarrollo-web&utm_medium=web&utm_campaign=inbound" target="_blank">makeitreal.camp</a>. Creador de <a href="http://infinanza.com/" target="_blank">infinanza.com</a> y <a href="http://lanuevaeducacion.co/" target="_blank">lanuevaeducacion.co</a>.</p>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="profile-image text-center">
+            <%= image_tag "people/juan-gomez-gray.jpg", class: "img-circle"%>
+          </div>
+          <div class="profile">
+            <h3>Juan Gomez <small>Mentor</small></h3>
+            <p class="text-center">Apasionado del emprendimiento y la programación. Mentor líder de los programas online y presenciales de <a href="/">Make it Real</a>. Creador de <a href="http://www.tunaranja.co/" target="_blank">Tu Naranja</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a name="location"></a>
+  <div class="section section-transparent section-location">
+    <div class="location-data">
+      <div class="container">
+        <a href="http://www.spacio.co/?utm_source=full-stack-bogota&utm_medium=web&utm_campaign=make-it-real" target="_blank">Spacio</a>
+        <div class="location-dir">Cra 15 # 91 - 30 Piso 4, Bogotá - <a href="https://www.google.com.co/maps/@4.6757941,-74.0530608,17z?hl=en" target="_blank">Google Maps</a></div>
+      </div>
+    </div>
+  </div>
+
+  <a name="students"></a>
+  <section class="section section-quotes" style="padding-bottom: 0;">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-4">
+          <div class="each-quote">
+            <p>"Make it Real me abrió un mar de oportunidades laborales como Desarrollador Web y un sin fin de posibilidades de materializar ideas de negocio."</p>
+            <div class="student-data">
+              <div class="profile-img">
+                <%= image_tag "people/daniel-llano.jpg", alt: "Daniel Llano", class: "img-circle" %>
+              </div>
+              <span class="profile-name txt-bold">Daniel Llano</span>
+              <span class="profile-status">Full Stack Web Developer en Velum Ventures</span>
+              <span class="profile-link">
+                <a href="https://co.linkedin.com/in/danielllano" target="_blank">
+                  <i class="fa fa-linkedin"></i>
+                </a>
+              </span>
+              <span class="profile-link">
+                <a href="https://github.com/danielllano" target="_blank">
+                  <i class="fa fa-github"></i>
+                </a>
+              </span>
+            </div><!--/student-data -->
+          </div> <!--/each-quote -->
+        </div><!--/col-md-6 -->
+
+        <div class="col-sm-6 col-md-6 col-lg-4">
+          <div class="each-quote">
+            <p>"Cuando encontré Make it Real no dudé en aplicar, es una decisión que ha impactado mi vida de manera positiva, la programación de alguna manera te da poderes, poderes de los buenos."</p>
+            <div class="student-data">
+              <div class="profile-img">
+                <%= image_tag "people/ricardo-rojas.jpg", alt: "Ricardo Rojas", class: "img-circle" %>
+              </div>
+              <span class="profile-name txt-bold">Ricardo Rojas</span>
+              <span class="profile-status">Full Stack Web Developer en Yuxi Pacific</span>
+              <span class="profile-link">
+                <a href="http://www.johnhenry.net/" target="_blank">
+                  <i class="fa fa-globe"></i>
+                </a>
+              </span>
+            </div><!--/student-data -->
+          </div> <!--/each-quote -->
+        </div><!--/col-md-6 -->
+
+        <div class="col-sm-6 col-md-6 col-lg-4">
+          <div class="each-quote">
+            <p>"Desarrollar software literalmente te cambia la vida y Make it Real me brindó la oportunidad de entrar a este mundo. Experiencia inolvidable!"</p>
+            <div class="student-data">
+              <div class="profile-img">
+                <%= image_tag "people/mixer-gutierrez.jpg", alt: "Mixer Gutierrez", class: "img-circle" %>
+              </div>
+              <span class="profile-name txt-bold">Mixer Gutierrez</span>
+              <span class="profile-status">Full Stack Web Developer en KOMMIT</span>
+              <span class="profile-link">
+                <a href="https://github.com/mixergtz" target="_blank">
+                  <i class="fa fa-github"></i>
+                </a>
+              </span>
+              <span class="profile-link">
+                <a href="http://mixergtz.github.io/" target="_blank">
+                  <i class="fa fa-globe"></i>
+                </a>
+              </span>
+            </div><!--/student-data -->
+          </div> <!--/each-quote -->
+        </div><!--/col-md-6 -->
+      </div>
+
+      <div class="row" style="margin-top: 40px;">
+        <div class="col-sm-12">
+          <p class="text-center"><a href="/makers">Conoce más opiniones de nuestros estudiantes</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <a name="faqs"></a>
+  <%= render "faqs_medellin" %>
+
+  <section class="section section-dark medellin-magnet">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1 text-center">
+          <p class="intro-text">¿Quieres cambiar tu futuro?</p>
+          <p class="subhead">Regístrate ahora y asegura tu cupo en esta edición. Te garantizamos la educación de la más alta calidad! </p>
+          <button class="btn btn-primary btn-register">¡REGÍSTRATE!</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <%= render "footer" %>
+
+  <div class="modal fade" id="registration-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="
+          " class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Formulario de Registro</h4>
+        </div>
+        <form id="form-start-now" action="/full-stack-bogota" method="post">
+          <div class="modal-body">
+            <p>Regístrate para recibir toda la información y precios:  </p>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <input type="text" id="first-name" name="first-name" class="form-control" placeholder="Nombre">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <input type="text" id="last-name" name="last-name" class="form-control" placeholder="Apellido">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <input type="email" id="email" name="email" class="form-control" placeholder="Email">
+            </div>
+
+            <div class="form-group" id="mobile-wrapper">
+              <div class="input-group">
+                <span class="input-group-addon" id="mobile-code">+57</span>
+                <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Celular">
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Registrarme</button>
+          </div>
+        </form>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>
+
+<script type="text/javascript">
+  $(document).on("ready page:load", window.initMedellinProgramPage);
+  $(document).on("ready page:load", function() {
+    $('.btn-register').on('click', function(e) {
+      e.preventDefault();
+
+      $('#registration-modal').modal().on('shown.bs.modal', function (e) {
+        $('#first-name').focus();
+      });
+    });
+  });
+  $(document).on("page:before-change", function() {
+    $(document).off("ready page:load", window.initMedellinProgramPage);
+  });
+</script>

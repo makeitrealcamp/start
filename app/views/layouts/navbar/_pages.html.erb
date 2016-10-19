@@ -36,7 +36,13 @@
               </li>
               <li role="separator" class="divider"></li>
               <li class="program-menu-divider"><span>PRESENCIALES</span></li>
-              <li class="<%= 'active' if params[:action] == 'front_end_on_site' %>">
+              <li class="<%= 'active' if params[:action] == 'full_stack_bogota' %>">
+                <%= link_to full_stack_bogota_path do %>
+                  <span class="icon-menu"><%= image_tag "full-stack-red.png", height: 25 %></span>
+                  <span class="text-menu">Full Stack en <strong>Bogotá</strong></span>
+                <% end %>
+              </li>
+              <li class="<%= 'active' if params[:action] == 'full_stack_medellin' %>">
                 <%= link_to full_stack_medellin_path do %>
                   <span class="icon-menu"><%= image_tag "full-stack-red.png", height: 25 %></span>
                   <span class="text-menu">Full Stack en <strong>Medellín</strong></span>

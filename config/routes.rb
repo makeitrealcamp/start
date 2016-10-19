@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post "front-end-online", to: "pages#create_front_end_online_lead"
   get "full-stack-medellin", to: "pages#full_stack_medellin"
   post "full-stack-medellin", to: "pages#create_full_stack_medellin_lead"
+  get "full-stack-bogota", to: "pages#full_stack_bogota"
+  post "full-stack-bogota", to: "pages#create_full_stack_bogota_lead"
   get "full_stack_web_developer", to: redirect('/full-stack-online')
   get "front_end_web_developer", to: redirect('/front-end-online')
   get "faq", to: "pages#faq"
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
   get "thanks-front-end-online", to: "pages#thanks_online"
   get "thanks-full-stack-online", to: "pages#thanks_online"
   get "thanks-full-stack-medellin", to: "pages#thanks_full_stack_medellin"
+  get "thanks-full-stack-bogota", to: "pages#thanks_full_stack_bogota"
   get "como-convertirte-en-web-developer", to: "pages#web_developer_guide", as: :web_developer_guide
   post "como-convertirte-en-web-developer", to: "pages#send_web_developer_guide"
   get "download-web-developer-guide", to: "pages#download_web_developer_guide", as: :download_web_developer_guide
