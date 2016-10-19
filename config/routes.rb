@@ -83,11 +83,6 @@ Rails.application.routes.draw do
       end
       resources :questions, only: [:index, :new, :create, :edit, :update], controller: 'quizer/questions'
     end
-    namespace :quizer, path: '/' do
-      resources :quizzes do
-
-      end
-    end
   end
 
   resources :lessons, only: [] do
