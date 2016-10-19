@@ -31,20 +31,14 @@ class Lesson < ActiveRecord::Base
   validates :video_url, presence: true
   validates :video_url, format: { with: URI.regexp }, if: :video_url?
 
-  scope :published, -> { where(section_id: Resource.published.map(&:sections).flatten.map(&:id)) }
+  scope :published, -> { where(section_id: Course.published.map(&:sections).flatten.map(&:id)) }
   scope :free_preview, -> { where(free_preview: true) }
   default_scope { rank(:row) }
 
   delegate :subject, :resource, to: :section
 
   def self.for(user)
-    if user.is_admin?
-      all
-    elsif user.paid_account?
-      published
-    else
-      free_preview.published
-    end
+    user.is_admin? ? all : published
   end
 
   def resource
