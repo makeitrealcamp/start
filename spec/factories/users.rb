@@ -42,7 +42,7 @@ FactoryGirl.define do
     level
 
     factory :user_with_path do
-      after(:create) { |user| user.path_subscriptions.create(path: Path.published.first || create(:path,published: true))}
+      after(:create) { |user| user.path_subscriptions.create(path: Path.published.first || create(:path, published: true)) }
     end
 
     factory :admin do
@@ -51,7 +51,7 @@ FactoryGirl.define do
 
     factory :admin_with_path do
       account_type  User.account_types[:admin_account]
-      after(:create) { |user| user.path_subscriptions.create(path: Path.published.first || create(:path,published: true))}
+      after(:create) { |user| user.path_subscriptions.create(path: Path.published.first || create(:path,published: true)) }
     end
 
     factory :user_password do
