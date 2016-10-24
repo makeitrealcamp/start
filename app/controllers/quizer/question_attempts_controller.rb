@@ -9,15 +9,22 @@ module Quizer
       form = @question_attempt.new_form(
         @question_attempt.form_type.sanitize_params(params)
       )
-      if form.save
-        head :ok
+      form.save
+
+      if @quiz_attempt.is_last_question?
+        @quiz_attempt.finished!
+        redirect_to results_subject_resource_quiz_attempt_path(@quiz_attempt.quiz.subject, @quiz_attempt.quiz, @quiz_attempt)
       else
-        head :internal_server_error
+        @quiz_attempt.next_question!
+        redirect_to next_subject_resource_quiz_attempt_question_attempts_path(@subject, @quiz, @quiz_attempt)
       end
     end
 
-    private
+    def next
+      @question_attempt = @quiz_attempt.current_question_attempt
+    end
 
+    private
       def set_subject
         @subject = Subject.friendly.find(params[:subject_id])
       end

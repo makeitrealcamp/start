@@ -2,13 +2,14 @@
 #
 # Table name: quiz_attempts
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer
-#  quiz_id    :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  status     :integer
-#  score      :decimal(, )
+#  id               :integer          not null, primary key
+#  user_id          :integer
+#  quiz_id          :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  status           :integer
+#  score            :decimal(, )
+#  current_question :integer          default(0)
 #
 # Indexes
 #
@@ -24,7 +25,7 @@ class Quizer::QuizAttempt < ActiveRecord::Base
 
   validate :validate_unique_attempt_per_user
 
-  enum status: [:ongoing, :finished]
+  enum status: [:ongoing, :finished, :cancelled]
 
   after_initialize :defaults
   after_create :assign_questions
@@ -32,12 +33,25 @@ class Quizer::QuizAttempt < ActiveRecord::Base
   after_save :log_end_activity
 
   def update_quiz_attempt_score!
-    self.score = question_attempts.sum(:score)/questions.count.to_f
+    self.score = question_attempts.sum(:score) / questions.count.to_f
     save!
   end
 
-  private
+  def current_question_attempt
+    self.question_attempts[self.current_question]
+  end
 
+  def next_question!
+    question_attempt = self.question_attempts[self.current_question]
+    self.increment!(:current_question)
+    question_attempt
+  end
+
+  def is_last_question?
+    current_question == (self.question_attempts.count - 1)
+  end
+
+  private
     def defaults
       self.status ||= Quizer::QuizAttempt.statuses[:ongoing]
       self.score ||= 0
@@ -50,8 +64,8 @@ class Quizer::QuizAttempt < ActiveRecord::Base
     end
 
     def assign_questions
-      possible_questions = quiz.questions.published
-      possible_questions.shuffle[0...5].each do |question|
+      questions = self.quiz.questions.published.shuffle
+      questions.each do |question|
         question.create_attempt!(quiz_attempt: self)
       end
     end
@@ -63,7 +77,7 @@ class Quizer::QuizAttempt < ActiveRecord::Base
 
     def log_end_activity
       if finished?
-        description = "Finalió #{quiz.to_html_description} con un puntaje de #{score}"
+        description = "Finalizó #{quiz.to_html_description} con un puntaje de #{score}"
         ActivityLog.create(name: "finished-quiz", user: user, activity: self, description: description)
       end
     end

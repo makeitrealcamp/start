@@ -1,0 +1,28 @@
+<%# required: question_attempt %>
+<% question = question_attempt.question %>
+<% quiz = question.quiz %>
+<% subject = quiz.subject %>
+
+<div class="question"><%= simple_markdown question.text %></div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Tu Respuesta</th>
+      <th>Respuesta Correcta</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <% if question_attempt.is_correct? %>
+          <span class="text-success glyphicon glyphicon-ok"></span>
+        <% else %>
+          <span class="text-danger glyphicon glyphicon-remove"></span>
+        <% end %>
+      </td>
+      <td><%= question_attempt.answer %></td>
+      <td><%= question_attempt.question.correct_answer %></td>
+    </tr>
+  </tbody>
+</table>

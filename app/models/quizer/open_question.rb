@@ -2,13 +2,14 @@
 #
 # Table name: questions
 #
-#  id         :integer          not null, primary key
-#  quiz_id    :integer
-#  type       :string
-#  data       :json
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  published  :boolean
+#  id          :integer          not null, primary key
+#  quiz_id     :integer
+#  type        :string
+#  data        :json
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  published   :boolean
+#  explanation :text
 #
 # Indexes
 #
@@ -40,7 +41,7 @@ class Quizer::OpenQuestion < Quizer::Question
     def data_schema
       {
         "type" => "object",
-        "required" => ["text","correct_answer"],
+        "required" => ["text", "correct_answer"],
         "properties" => {
           "text" => {
             "type" => "string",

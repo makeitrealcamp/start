@@ -1,0 +1,18 @@
+<%# required: question_attempt %>
+<% question = question_attempt.question %>
+<% quiz = question.quiz %>
+<% subject = quiz.subject %>
+
+<div class="question">
+  <%= simple_markdown question.text %>
+  <small>Selecciona todas las opciones que apliquen.</small>
+</div>
+
+<% question.mixed_answers.each do |option| %>
+  <div class="answer">
+    <%= f.check_box(:answers,
+      { multiple: true, checked: question_attempt.answers.include?(sha1(option)) },
+      sha1(option), "") %>
+    <label for="question_attempt_answers_<%= sha1(option) %>" class="answer-text"><%= simple_markdown option %></label>
+  </div>
+<% end %>

@@ -1,0 +1,18 @@
+<%# required: question_attempt %>
+<% question = question_attempt.question %>
+<% quiz = question.quiz %>
+<% subject = quiz.subject %>
+
+<div class="question"><%= simple_markdown question.text %></div>
+
+<% question.mixed_answers.each do |option| %>
+  <div class="answer">
+    <% if question_attempt.is_correct_answer?(option) %>
+      <span class="answer-result text-success glyphicon glyphicon-ok"></span>
+    <% else %>
+      <span class="answer-result text-danger glyphicon glyphicon-remove"></span>
+    <% end %>
+    <%= check_box_tag('answers', '1', question_attempt.answers.include?(sha1(option)), { disabled: true }) %>
+    <div class="answer-text"><%= simple_markdown option %></div>
+  </div>
+<% end %>

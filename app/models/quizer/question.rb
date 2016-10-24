@@ -2,13 +2,14 @@
 #
 # Table name: questions
 #
-#  id         :integer          not null, primary key
-#  quiz_id    :integer
-#  type       :string
-#  data       :json
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  published  :boolean
+#  id          :integer          not null, primary key
+#  quiz_id     :integer
+#  type        :string
+#  data        :json
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  published   :boolean
+#  explanation :text
 #
 # Indexes
 #
@@ -29,22 +30,22 @@ class Quizer::Question < ActiveRecord::Base
   end
 
   def attempt_type
-    (type+'Attempt').constantize
+    "#{type}Attempt".constantize
   end
 
   def form_type
-    (type+'Form').constantize
+    "#{type}Form".constantize
   end
 
   def create_attempt!(attributes)
-    attempt_type.create!({question: self}.merge(attributes))
+    attempt_type.create!({ question: self }.merge(attributes))
   end
 
   def new_form(attributes=nil)
     if attributes.nil?
       form_type.new(self)
     else
-      form_type.new({question: self}.merge(attributes))
+      form_type.new({ question: self }.merge(attributes))
     end
   end
 
@@ -65,8 +66,8 @@ class Quizer::Question < ActiveRecord::Base
     end
 
     def validate_data_schema
-      unless JSON::Validator.validate(data_schema,data,insert_defaults: true)
-        errors[:data] << JSON::Validator.fully_validate(data_schema,self.data,insert_defaults: true)
+      unless JSON::Validator.validate(data_schema,data, insert_defaults: true)
+        errors[:data] << JSON::Validator.fully_validate(data_schema, self.data, insert_defaults: true)
       end
     end
 

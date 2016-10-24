@@ -56,6 +56,46 @@
       padding: 10px;
     }
   }
+
+  .quiz-page {
+    .quiz-info-container {
+      background: white;
+      border: 1px solid #ddd;
+      margin-top: 40px;
+      padding: 20px 25px;
+
+      h1 {
+        font-size: 38px;
+        margin-top: 0;
+        margin-bottom: 40px;
+      }
+
+      p {
+        color: #666;
+        font-size: 16px;
+        font-weight: normal;
+        margin-bottom: 12px;
+
+        strong { font-weight: bold; }
+      }
+    }
+
+    .box {
+      margin-top: 30px;
+      h2 { margin-top: 0; }
+    }
+
+    .actions {
+      position: absolute;
+      top: 55px;
+      right: 30px;
+
+      .action {
+        padding: 5px 10px;
+        font-size: 12px;
+      }
+    }
+  }
 }
 
 .resource-page-footer {

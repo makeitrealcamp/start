@@ -25,9 +25,9 @@ class Quizer::MultiAnswerQuestionAttempt < Quizer::QuestionAttempt
     data["answers"]
   end
 
-  def is_correct_answer?(answer_hash)
-    correct_answer_selected = answers.include?(answer_hash) && question.correct_answers_hashes.include?(answer_hash)
-    wrong_answer_avoided = !answers.include?(answer_hash) && question.wrong_answers_hashes.include?(answer_hash)
+  def is_correct_answer?(answer)
+    correct_answer_selected = answers.include?(answer) && question.correct_answers.include?(answer)
+    wrong_answer_avoided = !answers.include?(answer) && question.wrong_answers.include?(answer)
     correct_answer_selected || wrong_answer_avoided
   end
 
@@ -39,9 +39,10 @@ class Quizer::MultiAnswerQuestionAttempt < Quizer::QuestionAttempt
     def calculate_score
       total = question.correct_answers.length + question.wrong_answers.length
       count = total
-      count -= question.correct_answers_hashes.count { |a| !answers.include?(a) }
-      count -= question.wrong_answers_hashes.count { |a| answers.include?(a) }
-      count/total.to_f
+      count -= SHA1.encode_array(question.correct_answers).count { |a| !self.answers.include?(a) }
+      count -= SHA1.encode_array(question.wrong_answers).count { |a| self.answers.include?(a) }
+
+      total == count ? 1.0 : 0.0
     end
 
     def data_schema

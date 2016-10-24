@@ -1,30 +1,60 @@
 <% breadcrumb :quiz_result, @quiz_attempt.quiz %>
 
-<div class="container quiz-attempt-result">
+<div class="container quiz-attempt">
   <div class="row">
-    <div class="col-xs-12">
-      <h1>Resultados para el quiz <strong><%= @quiz_attempt.quiz.title %></strong></h1>
-      <p>
-        Puntaje: <%= "%.2f\%" % (@quiz_attempt.score*100) %>
-      </p>
+    <div class="col-sm-10 col-sm-offset-1">
+      <h1 class="text-center"><%= @quiz_attempt.quiz.title %> <small>Resultados</small></h1>
+      <div class="attempt-metrics">
+        <div class="row">
+          <div class="col-sm-6 text-center">
+            <div class="metric-value <%= quiz_score_class(@quiz_attempt) %>"><%= number_to_percentage(@quiz_attempt.score * 100, precision: 0) %></div>
+            <div class="metric-label">PUNTAJE <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Esperamos que logres al menos el 90% de puntaje"></i></div>
+          </div>
+          <div class="col-sm-6 text-center">
+            <div class="metric-value <%= quiz_time_class(@quiz_attempt) %>"><%= (@quiz_attempt.updated_at - @quiz_attempt.created_at).to_i / 60 %></div>
+            <div class="metric-label">MINUTOS <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Esperamos que logres completarlo en menos de <%= @quiz_attempt.question_attempts.count %> minutos"></i></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-xs-12">
-      <h1><%= @quiz.title %></h1>
-    </div>
-  </div>
-
-  <% @quiz_attempt.question_attempts.each_with_index do |qa,i| %>
+  <% @quiz_attempt.question_attempts.each_with_index do |qa, i| %>
     <div class="row question">
-      <div class="col-xs-1">
-        <%= i %>
-      </div>
-      <div class="col-xs-11">
-        <%= render "#{qa.type.demodulize.underscore}_result", question_attempt: qa %>
+      <div class="col-sm-10 col-sm-offset-1">
+        <div class="question-wrapper <%= qa.score == 1 ? 'correct' : 'incorrect' %>">
+          <div class="question-header">
+            <div class="title"></div>
+            <div class="question-count">Pregunta <%= i + 1 %> de <%= @quiz.questions.published.size %></div>
+          </div>
+          <div class="question-body">
+            <%= render "quizer/question_attempts/#{qa.type.demodulize.underscore}_result", question_attempt: qa %>
+            <% if qa.question.explanation %>
+              <div class="explanation">
+                <a href="#" class="explanation-link" data-link="question-attempt-<%= qa.id %>">Mostrar explicación</a>
+                <div class="explanation-text" id="question-attempt-<%= qa.id %>"><%= simple_markdown qa.question.explanation %></div>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
-    <hr>
   <% end %>
 </div>
+
+<script>
+  $('.explanation-link').on('click', function(e) {
+    e.preventDefault();
+    var el = $(this).data('link');
+
+    if ($(this).hasClass("open")) {
+      $("#" + el).hide();
+      $(this).html("Mostrar explicación");
+    } else {
+      $("#" + el).show();
+      $(this).html("Ocultar explicación");
+    }
+
+    $(this).toggleClass("open");
+  });
+</script>

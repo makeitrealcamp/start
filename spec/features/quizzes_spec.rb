@@ -34,6 +34,7 @@ RSpec.feature "Quizzes", type: :feature do
 
   scenario "attempts a quiz" do
     quiz = create(:quiz, subject: subject)
+    create(:multi_answer_question, quiz: quiz)
 
     login(user)
 
@@ -42,9 +43,9 @@ RSpec.feature "Quizzes", type: :feature do
     expect(page).to have_content(quiz.title)
 
     click_link quiz.title
-    click_button 'Comenzar Quiz'
+    click_button 'Iniciar'
 
     attempt = quiz.quiz_attempts.last
-    expect(current_path).to eq subject_resource_quiz_attempt_path(subject, quiz, attempt)
+    expect(current_path).to eq next_subject_resource_quiz_attempt_question_attempts_path(subject, quiz, attempt)
   end
 end

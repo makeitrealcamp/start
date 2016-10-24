@@ -6,6 +6,7 @@ module Quizer
     attribute :wrong_answers, Array
     attribute :text, String
     attribute :published, Boolean
+    attribute :explanation, String
 
     validates :text, presence: true
     validates :question, presence: true
@@ -14,7 +15,7 @@ module Quizer
     def self.sanitize_params(params)
       params
         .require(:question)
-        .permit(:text, :published, :answer, wrong_answers: [])
+        .permit(:text, :published, :explanation, :answer, wrong_answers: [])
     end
 
     def initialize(question_or_attributes)
@@ -23,6 +24,7 @@ module Quizer
           question: question_or_attributes,
           text: question_or_attributes.text,
           published: question_or_attributes.published,
+          explanation: question_or_attributes.explanation,
           answer: question_or_attributes.answer,
           wrong_answers: question_or_attributes.wrong_answers
         )
@@ -41,7 +43,7 @@ module Quizer
           "wrong_answers" => @wrong_answers.reject(&:empty?)
         }
 
-        @question.update!(published: @published, data: new_data)
+        @question.update!(published: @published, explanation: @explanation, data: new_data)
       end
 
       def answers

@@ -7,7 +7,6 @@
 #  title         :string(100)
 #  description   :string
 #  row           :integer
-#  type_old      :integer
 #  url           :string
 #  time_estimate :string(50)
 #  created_at    :datetime         not null

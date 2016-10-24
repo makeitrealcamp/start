@@ -1,7 +1,7 @@
 module Quizer
-  class OpenQuestionAttemptForm < BaseForm
+  class SingleAnswerQuestionAttemptForm < BaseForm
     attribute :answer, String
-    attribute :question_attempt, OpenQuestionAttempt
+    attribute :question_attempt, SingleAnswerQuestionAttempt
 
     validates :answer, presence: true
     validates :question_attempt, presence: true
@@ -22,7 +22,6 @@ module Quizer
     end
 
     private
-
       def persist!
         old_data = @question_attempt.data || {}
         new_data = old_data.merge({ "answer" => @answer })

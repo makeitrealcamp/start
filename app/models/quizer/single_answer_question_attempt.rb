@@ -24,27 +24,27 @@ class Quizer::SingleAnswerQuestionAttempt < Quizer::QuestionAttempt
     data["answer"]
   end
 
+  def answer=(sha1)
+    data["answer"] = sha1
+  end
+
   def is_correct?
-    answer == question.answer_hash
+    answer == SHA1.encode(question.answer)
   end
 
   protected
     def defaults
-      self.data ||= { "answers" => "" }
+      self.data ||= { "answer" => "" }
     end
 
     def calculate_score
-      if is_correct?
-        1.0
-      else
-        0.0
-      end
+      is_correct? ? 1.0 : 0.0
     end
 
     def data_schema
       {
         "type" => "object",
-        "default" => {"answer" => ""},
+        "default" => { "answer" => "" },
         "required" => ["answer"],
         "properties" => {
           "answer" => {

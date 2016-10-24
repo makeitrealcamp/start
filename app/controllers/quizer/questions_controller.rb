@@ -4,19 +4,19 @@ module Quizer
 
     before_action :set_subject
     before_action :set_quiz
-    before_action :set_question, only: [:update,:edit]
+    before_action :set_question, only: [:update, :edit]
 
     def index
       @questions = @quiz.questions
     end
 
     def new
-      @question = Quizer::Question.new(type: params[:type],quiz: @quiz)
+      @question = Quizer::Question.new(type: params[:type], quiz: @quiz)
       @question_form = @question.new_form
     end
 
     def create
-      @question = Quizer::Question.new(type: params[:type],quiz: @quiz)
+      @question = Quizer::Question.new(type: params[:type], quiz: @quiz)
       @question_form = @question.new_form(@question.form_type.sanitize_params(params))
       @question_form.save
     end
