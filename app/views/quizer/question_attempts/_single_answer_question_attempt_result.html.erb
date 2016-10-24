@@ -1,0 +1,21 @@
+<%# required: question_attempt %>
+<% question = question_attempt.question %>
+<% quiz = question.quiz %>
+<% subject = quiz.subject %>
+
+<div class="question"><%= simple_markdown question.text %></div>
+<% question.mixed_answers.each do |option| %>
+  <div class="answer">
+    <% if option == question_attempt.question.answer %>
+      <% if question_attempt.is_correct? %>
+        <span class="answer-result text-success glyphicon glyphicon-ok"></span>
+      <% else %>
+        <span class="answer-result text-danger glyphicon glyphicon-remove"></span>
+      <% end %>
+    <% else %>
+      <span class="answer-result">&nbsp;</span>
+    <% end %>
+    <%= radio_button_tag("answer-#{question_attempt.id}", sha1(option), sha1(option) == question_attempt.answer, { disabled: true }) %>
+    <div class="answer-text"><%= simple_markdown option %></div>
+  </div>
+<% end %>

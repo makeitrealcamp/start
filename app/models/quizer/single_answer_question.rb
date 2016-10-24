@@ -2,13 +2,14 @@
 #
 # Table name: questions
 #
-#  id         :integer          not null, primary key
-#  quiz_id    :integer
-#  type       :string
-#  data       :json
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  published  :boolean
+#  id          :integer          not null, primary key
+#  quiz_id     :integer
+#  type        :string
+#  data        :json
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  published   :boolean
+#  explanation :text
 #
 # Indexes
 #
@@ -22,22 +23,6 @@ class Quizer::SingleAnswerQuestion < Quizer::Question
     answers = data["wrong_answers"]
     answers << data["answer"]
     answers.shuffle
-  end
-
-  def mixed_answers_with_hashes
-    mixed_answers.map { |a| [a, Digest::SHA1.hexdigest(a)] }
-  end
-
-  def mixed_answers_hashes
-    mixed_answers.map { |a| Digest::SHA1.hexdigest(a) }
-  end
-
-  def answer_hash
-    Digest::SHA1.hexdigest(data["answer"])
-  end
-
-  def wrong_answers_hashes
-    wrong_answers.map { |a| Digest::SHA1.hexdigest(a) }
   end
 
   def text=(text)

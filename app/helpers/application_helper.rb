@@ -8,8 +8,22 @@ module ApplicationHelper
     end
   end
 
-  def markdown(text,opts={})
-    renderer = HtmlWithPygments.new({hard_wrap: true, filter_html: false}.merge(opts))
+  def markdown(text, opts={})
+    renderer = HtmlWithPygments.new({ hard_wrap: true, filter_html: false }.merge(opts))
+    options = {
+      autolink: true,
+      no_intra_emphasis: true,
+      fenced_code_blocks: true,
+      lax_html_blocks: true,
+      strikethrough: true,
+      superscript: true
+    }
+
+    Redcarpet::Markdown.new(renderer, options).render(text).html_safe
+  end
+
+  def simple_markdown(text, opts={})
+    renderer = Redcarpet::Render::HTML.new({ hard_wrap: true, filter_html: false }.merge(opts))
     options = {
       autolink: true,
       no_intra_emphasis: true,
@@ -136,6 +150,10 @@ module ApplicationHelper
       end
       ret += " }"
     end.join(",") + "]"
+  end
+
+  def sha1(text)
+    SHA1.encode(text)
   end
 
 end

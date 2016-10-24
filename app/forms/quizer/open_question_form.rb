@@ -5,6 +5,7 @@ module Quizer
     attribute :text, String
     attribute :correct_answer, String
     attribute :published, Boolean
+    attribute :explanation, String
 
     validates :question, presence: true
     validates :text, presence: true
@@ -13,15 +14,16 @@ module Quizer
     def self.sanitize_params(params)
       params
         .require(:question)
-        .permit(:text,:published,:correct_answer)
+        .permit(:text, :published, :explanation, :correct_answer)
     end
-    
+
     def initialize(question_or_attributes)
       if question_or_attributes.is_a? Quizer::Question
         super(
           question: question_or_attributes,
           text: question_or_attributes.text,
           published: question_or_attributes.published,
+          explanation: question_or_attributes.explanation,
           correct_answer: question_or_attributes.correct_answer
         )
       else
@@ -38,7 +40,7 @@ module Quizer
           "text" => @text,
           "correct_answer" => @correct_answer
         }
-        @question.update!(published: @published,data: new_data )
+        @question.update!(published: @published, explanation: @explanation, data: new_data )
       end
   end
 end

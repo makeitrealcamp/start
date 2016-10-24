@@ -28,23 +28,22 @@ class Quizer::QuestionAttempt < ActiveRecord::Base
   after_save :update_quiz_attempt_score!
 
   def self.types
-    [Quizer::MultiAnswerQuestionAttempt,Quizer::OpenQuestionAttempt]
+    [Quizer::SingleAnswerQuestionAttempt, Quizer::MultiAnswerQuestionAttempt, Quizer::OpenQuestionAttempt]
   end
 
   def form_type
-    (type+'Form').constantize
+    "#{type}Form".constantize
   end
 
   def new_form(attributes=nil)
     if attributes.nil?
       form_type.new(self)
     else
-      form_type.new({question_attempt: self}.merge(attributes))
+      form_type.new({ question_attempt: self }.merge(attributes))
     end
   end
 
   protected
-
     def update_quiz_attempt_score!
       self.quiz_attempt.update_quiz_attempt_score!
     end
@@ -62,8 +61,8 @@ class Quizer::QuestionAttempt < ActiveRecord::Base
     end
 
     def validate_data_schema
-      unless JSON::Validator.validate(data_schema,data,insert_defaults: true)
-        errors[:data] << JSON::Validator.fully_validate(data_schema,data,insert_defaults: true)
+      unless JSON::Validator.validate(data_schema,data, insert_defaults: true)
+        errors[:data] << JSON::Validator.fully_validate(data_schema, data, insert_defaults: true)
       end
     end
 end

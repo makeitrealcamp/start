@@ -1,0 +1,12 @@
+<%# required: question_attempt %>
+<% question = question_attempt.question %>
+<% quiz = question.quiz %>
+<% subject = quiz.subject %>
+
+<div class="question"><%= simple_markdown question.text %></div>
+<% question.mixed_answers.each do |option| %>
+  <div class="answer">
+    <%= f.radio_button(:answer, sha1(option), { checked: sha1(question_attempt.answer) == sha1(option) }) %>
+    <label for="question_attempt_answer_<%= sha1(option) %>" class="answer-text"><%= simple_markdown option %></label>
+  </div>
+<% end %>

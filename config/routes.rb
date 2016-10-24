@@ -78,12 +78,15 @@ Rails.application.routes.draw do
           post :complete, on: :member
         end
       end
-      resources :quiz_attempts, only: [:create, :show], controller: 'quizer/quiz_attempts' do
+      resources :quiz_attempts, only: [:create], controller: 'quizer/quiz_attempts' do
+        post :reset, on: :collection
         member do
           patch :finish
           get :results
         end
-        resources :question_attempts, only: [:update], controller: 'quizer/question_attempts'
+        resources :question_attempts, only: [:update], controller: 'quizer/question_attempts' do
+          get :next, on: :collection # shows the next question attempt of a quiz
+        end
       end
       resources :questions, only: [:index, :new, :create, :edit, :update], controller: 'quizer/questions'
     end

@@ -26,7 +26,7 @@ class Quizer::OpenQuestionAttempt < Quizer::QuestionAttempt
   end
 
   def is_correct?
-    answer == question.correct_answer
+    answer == SHA1.encode(question.correct_answer)
   end
 
   protected
@@ -35,17 +35,13 @@ class Quizer::OpenQuestionAttempt < Quizer::QuestionAttempt
     end
 
     def calculate_score
-      if is_correct?
-        1.0
-      else
-        0.0
-      end
+      is_correct? ? 1.0 : 0.0
     end
 
     def data_schema
       {
         "type" => "object",
-        "default" => {"answer" => ""},
+        "default" => { "answer" => "" },
         "required" => ["answer"],
         "properties" => {
           "answer" => {

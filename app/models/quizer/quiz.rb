@@ -7,7 +7,6 @@
 #  title         :string(100)
 #  description   :string
 #  row           :integer
-#  type_old      :integer
 #  url           :string
 #  time_estimate :string(50)
 #  created_at    :datetime         not null
@@ -36,8 +35,20 @@ class Quizer::Quiz < Resource
     Resource.model_name
   end
 
+  def current_attempt(user)
+    user.quiz_attempts.where(quiz_id: self.id).ongoing.take
+  end
+
+  def last_attempt(user)
+    finished_attempts(user).take
+  end
+
   def finished_attempts(user)
     user.quiz_attempts.where(quiz_id: self.id).finished.order('created_at DESC')
+  end
+
+  def num_finished_attempts(user)
+    user.quiz_attempts.where(quiz_id: self.id).finished.count
   end
 
   def is_being_attempted_by_user?(user)
@@ -46,6 +57,10 @@ class Quizer::Quiz < Resource
 
   def has_been_attempted_by_user?(user)
     user.quiz_attempts.where(quiz_id: self.id).finished.any?
+  end
+
+  def is_or_has_been_attempted_by_user?(user)
+    user.quiz_attempts.where(quiz_id: self.id).any?
   end
 
   def best_score_of_user(user)

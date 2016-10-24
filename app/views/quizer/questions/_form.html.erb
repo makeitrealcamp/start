@@ -24,10 +24,14 @@
           <%= render "quizer/questions/#{question_form.class.name.demodulize.underscore}",
             question_form: question_form, form: f %>
 
-          <div class="modal-footer">
-            <%= f.button "Guardar", class: 'btn btn-primary'  %>
+          <div class="form-group">
+            <%= f.label :explanation %>
+            <%= f.text_area :explanation, class: "form-control" %>
           </div>
         </div><!-- .modal-body -->
+        <div class="modal-footer">
+          <%= f.button "Guardar", class: 'btn btn-primary'  %>
+        </div>
       <% end %>
     </div><!-- .modal-content -->
   </div><!-- .modal-dialog -->

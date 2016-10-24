@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018050108) do
+ActiveRecord::Schema.define(version: 20161023052925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -270,9 +270,10 @@ ActiveRecord::Schema.define(version: 20161018050108) do
     t.integer  "quiz_id"
     t.string   "type"
     t.json     "data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.boolean  "published"
+    t.text     "explanation"
   end
 
   add_index "questions", ["quiz_id"], name: "index_questions_on_quiz_id", using: :btree
@@ -280,10 +281,11 @@ ActiveRecord::Schema.define(version: 20161018050108) do
   create_table "quiz_attempts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "quiz_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "status"
     t.decimal  "score"
+    t.integer  "current_question", default: 0
   end
 
   add_index "quiz_attempts", ["quiz_id"], name: "index_quiz_attempts_on_quiz_id", using: :btree

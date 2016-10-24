@@ -1,5 +1,125 @@
-.quiz-attempt {  
-  .finish-quiz {
-    padding-bottom: 50px;
+.quiz-attempt {
+  margin-bottom: 60px;
+
+  .attempt-metrics {
+    margin-top: 60px;
+    margin-bottom: 30px;
+
+    .metric-value {
+      font-size: 38px;
+      font-weight: bold;
+
+      &.failed { color: #F20028; }
+      &.passed { color: #24BF53; }
+    }
+
+    .metric-label {
+      color: #999;
+      font-size: 14px;
+      line-height: 1;
+      font-weight: bold;
+
+      .fa {
+        color: #303030;
+        font-size: 16px;
+        margin-left: 5px;
+      }
+    }
+  }
+
+  .question-wrapper {
+    background: white;
+    margin-top: 40px;
+    border: 1px solid #eee;
+
+    &.correct { border-left: 2px solid #24BF53; }
+    &.incorrect { border-left: 2px solid #a94442; }
+
+    .question-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 25px;
+      color: #999;
+      border-bottom: 1px solid #eee;
+
+      .title {
+        font-family: $font-family-condensed;
+        font-size: 21px;
+        font-weight: 700;
+      }
+
+      .question-count {
+        font-size: 14px;
+      }
+    }
+
+    .question-body {
+      position: relative;
+      padding: 30px;
+
+      .question {
+        font-size: 21px;
+        font-weight: 300;
+        margin-bottom: 40px;
+
+        small {
+          display: block;
+          color: #999;
+          font-size: 16px;
+          font-weight: normal;
+        }
+      }
+
+      .answer {
+        display: flex;
+        padding: 15px 20px;
+
+        .answer-result {
+          display: inline-block;
+          text-align: center;
+          width: 20px;
+          margin-right: 10px;
+        }
+        .answer-text {
+          font-weight: normal;
+          margin-left: 15px;
+          width: 100%;
+
+          p { margin: 0; }
+          pre {
+            border: none;
+            background: transparent;
+            padding: 0;
+          }
+          code { background: transparent; }
+        }
+
+        &:nth-child(odd) {
+          background: #fafafa;
+        }
+      }
+
+      .explanation {
+        margin-top: 20px;
+        font-size: 14px;
+
+        .explanation-text {
+          display: none;
+          color: #999;
+          line-height: 1.6;
+          padding: 15px 15px 0;
+
+          pre { font-size: 14px; }
+        }
+      }
+    }
+
+    .question-footer {
+      padding: 20px 30px;
+      border-top: 1px solid #eee;
+    }
+
+
   }
 }

@@ -11,7 +11,7 @@ RSpec.feature "Question management", type: :feature do
     login(admin)
     visit subject_resource_path(subject, quiz)
 
-    click_link 'Preguntas'
+    click_link 'Editar preguntas'
     expect(current_path).to eq subject_resource_questions_path(subject, quiz)
   end
 
