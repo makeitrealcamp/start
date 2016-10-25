@@ -8,7 +8,7 @@
       <span class="text-succes glyphicon glyphicon-ok"></span>
     <% end %>
   </td>
-  <td><%= question.text %></td>
+  <td><%= markdown question.text %></td>
   <td>
     <%= link_to edit_subject_resource_question_path(subject, quiz, question), remote: true, class: "btn btn-xs btn-info" do %>
       <span class="glyphicon glyphicon-pencil"></span>
