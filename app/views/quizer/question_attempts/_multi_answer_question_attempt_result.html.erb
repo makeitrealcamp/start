@@ -7,10 +7,14 @@
 
 <% question.mixed_answers.each do |option| %>
   <div class="answer">
-    <% if question_attempt.is_correct_answer?(option) %>
+    <% if question.correct_answers.include?(option) && question_attempt.answers.include?(sha1(option)) %>
       <span class="answer-result text-success glyphicon glyphicon-ok"></span>
-    <% else %>
+    <% elsif question.wrong_answers.include?(option) && question_attempt.answers.include?(sha1(option)) %>
       <span class="answer-result text-danger glyphicon glyphicon-remove"></span>
+    <% elsif question.correct_answers.include?(option) && !question_attempt.answers.include?(sha1(option)) %>
+      <span class="answer-result text-danger glyphicon glyphicon-remove"></span>
+    <% else %>
+      <span class="answer-result">&nbsp;</span>
     <% end %>
     <%= check_box_tag('answers', '1', question_attempt.answers.include?(sha1(option)), { disabled: true }) %>
     <div class="answer-text"><%= simple_markdown option %></div>

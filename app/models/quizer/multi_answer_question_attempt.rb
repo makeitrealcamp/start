@@ -25,6 +25,10 @@ class Quizer::MultiAnswerQuestionAttempt < Quizer::QuestionAttempt
     data["answers"]
   end
 
+  def is_correct?
+    score == 1.0
+  end
+
   def is_correct_answer?(answer)
     correct_answer_selected = answers.include?(SHA1.encode(answer)) && question.correct_answers.include?(answer)
     wrong_answer_avoided = !answers.include?(SHA1.encode(answer)) && question.wrong_answers.include?(answer)
