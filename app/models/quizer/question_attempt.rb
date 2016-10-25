@@ -28,7 +28,7 @@ class Quizer::QuestionAttempt < ActiveRecord::Base
   after_save :update_quiz_attempt_score!
 
   def self.types
-    [Quizer::SingleAnswerQuestionAttempt, Quizer::MultiAnswerQuestionAttempt, Quizer::OpenQuestionAttempt]
+    [Quizer::SingleAnswerQuestionAttempt, Quizer::MultiAnswerQuestionAttempt, Quizer::OpenQuestionAttempt, Quizer::BooleanQuestionAttempt]
   end
 
   def form_type

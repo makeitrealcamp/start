@@ -31,10 +31,7 @@ module Quizer
       end
     end
 
-
-
     private
-
       def persist!
         new_data = {
           "text" => @text,

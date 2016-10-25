@@ -1,0 +1,33 @@
+<%# required: question_attempt %>
+<% question = question_attempt.question %>
+<% quiz = question.quiz %>
+<% subject = quiz.subject %>
+
+<div class="question"><%= simple_markdown question.text %></div>
+<div class="answer">
+  <% if question.correct_answer %>
+    <% if question_attempt.is_correct? %>
+      <span class="answer-result text-success glyphicon glyphicon-ok"></span>
+    <% else %>
+      <span class="answer-result text-danger glyphicon glyphicon-remove"></span>
+    <% end %>
+  <% else %>
+    <span class="answer-result">&nbsp;</span>
+  <% end %>
+  <%= radio_button_tag("answer-#{question_attempt.id}", true, question_attempt.answer, { disabled: true }) %>
+  <div class="answer-text">Verdadero</div>
+</div>
+
+<div class="answer">
+  <% if !question.correct_answer %>
+    <% if question_attempt.is_correct? %>
+      <span class="answer-result text-success glyphicon glyphicon-ok"></span>
+    <% else %>
+      <span class="answer-result text-danger glyphicon glyphicon-remove"></span>
+    <% end %>
+  <% else %>
+    <span class="answer-result">&nbsp;</span>
+  <% end %>
+  <%= radio_button_tag("answer-#{question_attempt.id}", false, !question_attempt.answer, { disabled: true }) %>
+  <div class="answer-text">Falso</div>
+</div>
