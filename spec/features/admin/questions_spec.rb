@@ -22,7 +22,7 @@ RSpec.feature "Question management", type: :feature do
     question = 'why?'
     answer_correct = 'answer correct 1'
     wrong_answer = 'wrong answer 1'
-    select "Quizer::MultiAnswerQuestion", from: 'type'
+    select "Respuesta Múltiple", from: 'type'
     click_button 'Agregar Pregunta'
     fill_in 'question_text', with: question
 

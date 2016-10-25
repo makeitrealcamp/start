@@ -2,8 +2,8 @@
 <% subject = question.quiz.subject %>
 <% quiz = question.quiz %>
 <tr id="question-<%= question.id %>">
-  <td class="col-xs-1"><%= question.id %></td>
-  <td class="col-xs-1">
+  <td><%= question.str_type %></td>
+  <td class="text-center">
     <% if question.published  %>
       <span class="text-succes glyphicon glyphicon-ok"></span>
     <% end %>

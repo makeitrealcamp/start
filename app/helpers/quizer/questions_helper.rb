@@ -18,7 +18,7 @@ module Quizer
     end
 
     def question_type_options
-      options_for_select(Quizer::Question.types.map { |t| [t.name, t.name] })
+      options_for_select(Quizer::Question.types.map { |t| [t.new.str_type, t.name] })
     end
   end
 end

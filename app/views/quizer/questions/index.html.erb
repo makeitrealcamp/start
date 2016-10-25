@@ -5,7 +5,6 @@
     <div class="col-xs-12">
       <%= form_tag(new_subject_resource_question_path(@subject, @quiz), method: "get", remote: true, class: 'form-inline') do %>
         <div class="form-group">
-          <%= label_tag "Tipo" %>
           <%= select_tag :type, question_type_options, class: "form-control"%>
         </div>
         <div class="form-group">
@@ -17,11 +16,11 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="table-responsive">
-        <table id="questions" class="table table-striped">
+        <table id="questions" class="table">
           <thead>
             <tr>
-              <th>Id</th>
-              <th>Publicada</th>
+              <th>Tipo</th>
+              <th class="text-center">Publicada</th>
               <th>Pregunta</th>
               <th>Acciones</th>
             </tr>

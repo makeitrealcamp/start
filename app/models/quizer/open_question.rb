@@ -29,7 +29,7 @@ class Quizer::OpenQuestion < Quizer::Question
   end
 
   def str_type
-    "Completa la Frase"
+    "Pregunta Abierta"
   end
 
   protected
