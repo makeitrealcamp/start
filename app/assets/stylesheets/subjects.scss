@@ -322,6 +322,14 @@ blockquote {
         @media(min-width: $screen-sm-min) { width: 110px; }
 
         span { display: block; }
+
+        .resource-completion {
+          color: #ddd;
+          font-size: 18px;
+          
+          &.completed { color: #28B038; }
+        }
+
         .resource-status {
           color: #ddd;
           font-size: 18px;
@@ -362,6 +370,9 @@ blockquote {
           &.game {
             background: #6633cc;
           }
+          &.quiz {
+            background: #ED1A1A;
+          }
 
           i {
             font-size: 1.2em;
@@ -383,6 +394,9 @@ blockquote {
             }
             &.tutorial {
               @extend .fa-wrench;
+            }
+            &.quiz {
+              @extend .fa-check-square-o;
             }
           }
         }

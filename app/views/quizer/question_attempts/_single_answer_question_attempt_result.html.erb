@@ -6,7 +6,7 @@
 <div class="question"><%= simple_markdown question.text %></div>
 <% question.mixed_answers.each do |option| %>
   <div class="answer">
-    <% if option == question_attempt.question.answer %>
+    <% if sha1(option) == question_attempt.answer %>
       <% if question_attempt.is_correct? %>
         <span class="answer-result text-success glyphicon glyphicon-ok"></span>
       <% else %>

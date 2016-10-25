@@ -5,7 +5,7 @@
 
 <div class="question"><%= simple_markdown question.text %></div>
 <div class="answer">
-  <% if question.correct_answer %>
+  <% if question_attempt.answer %>
     <% if question_attempt.is_correct? %>
       <span class="answer-result text-success glyphicon glyphicon-ok"></span>
     <% else %>
@@ -19,7 +19,7 @@
 </div>
 
 <div class="answer">
-  <% if !question.correct_answer %>
+  <% if !question_attempt.answer %>
     <% if question_attempt.is_correct? %>
       <span class="answer-result text-success glyphicon glyphicon-ok"></span>
     <% else %>

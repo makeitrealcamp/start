@@ -25,7 +25,7 @@
         <div class="question-wrapper <%= qa.score == 1 ? 'correct' : 'incorrect' %>">
           <div class="question-header">
             <div class="title"></div>
-            <div class="question-count">Pregunta <%= i + 1 %> de <%= @quiz.questions.published.size %></div>
+            <div class="question-count">Pregunta <%= i + 1 %> de <%= @quiz_attempt.question_attempts.size %></div>
           </div>
           <div class="question-body">
             <%= render "quizer/question_attempts/#{qa.type.demodulize.underscore}_result", question_attempt: qa %>
