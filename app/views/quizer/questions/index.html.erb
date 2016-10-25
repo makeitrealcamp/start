@@ -1,8 +1,8 @@
 <% breadcrumb :quiz_questions, @quiz %>
 
-<div class="container default-top-padding">
+<div class="container default-top-padding question-list">
   <div class="row margin-bottom">
-    <div class="col-xs-12">
+    <div class="col-sm-12">
       <%= form_tag(new_subject_resource_question_path(@subject, @quiz), method: "get", remote: true, class: 'form-inline') do %>
         <div class="form-group">
           <%= select_tag :type, question_type_options, class: "form-control"%>
@@ -14,25 +14,22 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12">
-      <div class="table-responsive">
-        <table id="questions" class="table">
-          <thead>
-            <tr>
-              <th>Tipo</th>
-              <th class="text-center">Publicada</th>
-              <th>Pregunta</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @questions.each do |q| %>
-              <%= render "question_row", question: q %>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-
+    <div class="col-sm-12">
+      <table id="questions" class="table">
+        <thead>
+          <tr>
+            <th>Tipo</th>
+            <th class="text-center">Publicada</th>
+            <th>Pregunta</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @questions.each do |q| %>
+            <%= render "question_row", question: q %>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

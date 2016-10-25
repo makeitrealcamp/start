@@ -7,7 +7,7 @@ module Quizer
     before_action :set_question, only: [:update, :edit]
 
     def index
-      @questions = @quiz.questions
+      @questions = @quiz.questions.order('created_at ASC')
     end
 
     def new
