@@ -8,11 +8,11 @@
         <div class="row">
           <div class="col-sm-6 text-center">
             <div class="metric-value <%= quiz_score_class(@quiz_attempt) %>"><%= number_to_percentage(@quiz_attempt.score * 100, precision: 0) %></div>
-            <div class="metric-label">PUNTAJE <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Esperamos que logres al menos el 90% de puntaje"></i></div>
+            <div class="metric-label">PUNTAJE <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Esperamos que logres un puntaje de al menos el 90% en este quiz"></i></div>
           </div>
           <div class="col-sm-6 text-center">
             <div class="metric-value <%= quiz_time_class(@quiz_attempt) %>"><%= (@quiz_attempt.updated_at - @quiz_attempt.created_at).to_i / 60 %></div>
-            <div class="metric-label">MINUTOS <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Esperamos que logres completarlo en menos de <%= @quiz_attempt.question_attempts.count %> minutos"></i></div>
+            <div class="metric-label">MINUTOS <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Esperamos que logres completar este quiz en menos de <%= @quiz_attempt.question_attempts.count %> minutos"></i></div>
           </div>
         </div>
       </div>

@@ -16,8 +16,7 @@
 #  index_questions_on_quiz_id  (quiz_id)
 #
 
-class Quizer::OpenQuestion < Quizer::Question
-
+class Quizer::BooleanQuestion < Quizer::Question
   after_initialize :defaults
 
   def correct_answer
@@ -29,16 +28,15 @@ class Quizer::OpenQuestion < Quizer::Question
   end
 
   def str_type
-    "Pregunta Abierta"
+    "Verdadero o Falso"
   end
 
   protected
-
     def defaults
       super
       self.data ||= {
         "text" => "",
-        "correct_answer" => ""
+        "correct_answer" => true
       }
     end
 
@@ -52,8 +50,8 @@ class Quizer::OpenQuestion < Quizer::Question
             "default" => ""
           },
           "correct_answer" => {
-            "type" => "string",
-            "default" => ""
+            "type" => "boolean",
+            "default" => true
           }
         }
       }

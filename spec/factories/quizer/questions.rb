@@ -34,4 +34,15 @@ FactoryGirl.define do
     end
   end
 
+  factory :boolean_question, class: Quizer::BooleanQuestion do
+    quiz { create(:quiz) }
+    published true
+    data do
+      {
+        "text" => "Earth is flat?",
+        "correct_answer" => true
+      }
+    end
+  end
+
 end

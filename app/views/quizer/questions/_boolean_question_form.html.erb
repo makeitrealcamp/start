@@ -1,0 +1,19 @@
+<%# required: question_form, form %>
+<div class="form-group">
+  <%= form.label :text, "Texto de la pregunta" %>
+  <%= form.text_area :text, class: "form-control" %>
+</div>
+<div class="row">
+  <div class="col-sm-6 text-center">
+    <div class="form-group">
+      <%= form.radio_button(:correct_answer, true, { checked: question_form.correct_answer }) %>
+      <label for="question_correct_answer_true" class="answer-text">Verdadero</label>
+    </div>
+  </div>
+  <div class="col-sm-6 text-center">
+    <div class="form-group">
+      <%= form.radio_button(:correct_answer, false, { checked: !question_form.correct_answer }) %>
+      <label for="question_correct_answer_false" class="answer-text">Falso</label>
+    </div>
+  </div>
+</div>

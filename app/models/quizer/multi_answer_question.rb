@@ -48,6 +48,10 @@ class Quizer::MultiAnswerQuestion < Quizer::Question
     data["text"]
   end
 
+  def str_type
+    "Respuesta Múltiple"
+  end
+
   protected
     def defaults
       super

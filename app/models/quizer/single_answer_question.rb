@@ -49,6 +49,10 @@ class Quizer::SingleAnswerQuestion < Quizer::Question
     data["wrong_answers"]
   end
 
+  def str_type
+    "Respuesta Única"
+  end
+
   protected
     def defaults
       super

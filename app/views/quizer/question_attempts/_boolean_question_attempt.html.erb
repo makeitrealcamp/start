@@ -1,0 +1,14 @@
+<%# required: question_attempt %>
+<% question = question_attempt.question %>
+<% quiz = question.quiz %>
+<% subject = quiz.subject %>
+
+<div class="question"><%= simple_markdown question.text %></div>
+<div class="answer">
+  <%= f.radio_button(:answer, true, { checked: false }) %>
+  <label for="question_attempt_answer_true" class="answer-text">Verdadero</label>
+</div>
+<div class="answer">
+  <%= f.radio_button(:answer, false, { checked: false }) %>
+  <label for="question_attempt_answer_false" class="answer-text">Falso</label>
+</div>
