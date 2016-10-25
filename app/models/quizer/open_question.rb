@@ -28,6 +28,10 @@ class Quizer::OpenQuestion < Quizer::Question
     data["text"]
   end
 
+  def str_type
+    "Completa la Frase"
+  end
+
   protected
 
     def defaults

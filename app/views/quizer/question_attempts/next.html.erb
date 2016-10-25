@@ -3,9 +3,10 @@
 <div class="container quiz-attempt">
   <div class="row question">
     <div class="col-sm-10 col-sm-offset-1">
+      <h1><%= @quiz.title %></h1>
       <div class="question-wrapper">
         <div class="question-header">
-          <div class="title"><%= @quiz.title %></div>
+          <div class="question-type"><%= @question_attempt.question.str_type %></div>
           <div class="question-count">Pregunta <%= @quiz_attempt.current_question + 1 %> de <%= @quiz.questions.published.size %></div>
         </div>
         <%= form_for :question_attempt, url: question_attempt_path(@question_attempt), method: :patch do |f| %>

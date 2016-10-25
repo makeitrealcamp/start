@@ -1,6 +1,11 @@
 .quiz-attempt {
   margin-bottom: 60px;
 
+  h1 {
+    color: #666;
+    font-size: 34px;
+  }
+
   .attempt-metrics {
     margin-top: 60px;
     margin-bottom: 30px;
@@ -43,10 +48,12 @@
       color: #999;
       border-bottom: 1px solid #eee;
 
-      .title {
+      .question-type {
         font-family: $font-family-condensed;
-        font-size: 21px;
+        color: #ccc;
+        font-size: 18px;
         font-weight: 700;
+        text-transform: uppercase;
       }
 
       .question-count {
@@ -61,14 +68,7 @@
       .question {
         font-size: 21px;
         font-weight: 300;
-        margin-bottom: 40px;
-
-        small {
-          display: block;
-          color: #999;
-          font-size: 16px;
-          font-weight: normal;
-        }
+        margin-bottom: 30px;
       }
 
       .answer {
