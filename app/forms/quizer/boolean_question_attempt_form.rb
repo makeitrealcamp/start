@@ -2,11 +2,12 @@ class Quizer::BooleanQuestionAttemptForm < BaseForm
   attribute :answer, Boolean
   attribute :question_attempt, Quizer::BooleanQuestionAttempt
 
-  validates :answer, presence: true
+  validates :answer, inclusion: [true, false]
   validates :question_attempt, presence: true
 
   def initialize(attempt_or_attributes)
     if attempt_or_attributes.is_a? Quizer::QuestionAttempt
+      puts "#{attempt_or_attributes}****************"
       super(
         question_attempt: attempt_or_attributes,
         answer: attempt_or_attributes.answer

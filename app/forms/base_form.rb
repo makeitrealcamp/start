@@ -19,7 +19,6 @@ class BaseForm
   end
 
   protected
-
     def persist!
       raise "persist! not defined. You should define persist! method for each form"
     end
