@@ -32,7 +32,7 @@
             <% if qa.question.explanation %>
               <div class="explanation">
                 <a href="#" class="explanation-link" data-link="question-attempt-<%= qa.id %>">Mostrar explicación</a>
-                <div class="explanation-text" id="question-attempt-<%= qa.id %>"><%= simple_markdown qa.question.explanation %></div>
+                <div class="explanation-text" id="question-attempt-<%= qa.id %>"><%= markdown qa.question.explanation %></div>
               </div>
             <% end %>
           </div>

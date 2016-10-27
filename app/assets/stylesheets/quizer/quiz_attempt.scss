@@ -69,6 +69,12 @@
         font-size: 21px;
         font-weight: 300;
         margin-bottom: 30px;
+
+        code { font-size: 18px; }
+        ul li {
+          font-size: 18px;
+          code { font-size: 14px;}
+        }
       }
 
       .answer {
@@ -111,6 +117,7 @@
           padding: 15px 15px 0;
 
           pre { font-size: 14px; }
+          li { margin-bottom: 4px; }
         }
       }
     }

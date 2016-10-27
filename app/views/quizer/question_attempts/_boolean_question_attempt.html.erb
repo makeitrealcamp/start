@@ -3,7 +3,7 @@
 <% quiz = question.quiz %>
 <% subject = quiz.subject %>
 
-<div class="question"><%= simple_markdown question.text %></div>
+<div class="question"><%= markdown question.text %></div>
 <div class="answer">
   <%= f.radio_button(:answer, true, { checked: false }) %>
   <label for="question_attempt_answer_true" class="answer-text">Verdadero</label>
