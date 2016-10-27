@@ -3,7 +3,7 @@
 <% quiz = question.quiz %>
 <% subject = quiz.subject %>
 
-<div class="question"><%= simple_markdown question.text %></div>
+<div class="question"><%= markdown question.text %></div>
 <% question.mixed_answers.each do |option| %>
   <div class="answer">
     <% if sha1(option) == question_attempt.answer %>

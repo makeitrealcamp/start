@@ -3,5 +3,5 @@
 <% quiz = question.quiz %>
 <% subject = quiz.subject %>
 
-<div class="question"><%= simple_markdown question.text %></div>
+<div class="question"><%= markdown question.text %></div>
 <%= f.text_area :answer, class: "form-control" %>
