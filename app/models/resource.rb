@@ -26,7 +26,7 @@
 
 class Resource < ActiveRecord::Base
   include RankedModel
-  ranks :row, with_same: :subject_id
+  ranks :row, with_same: :subject_id, class_name: 'Resource'
 
   extend FriendlyId
   friendly_id :title
