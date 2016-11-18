@@ -12,10 +12,10 @@ class EmailCommentJob < ActiveJob::Base
     end
 
     admins_emails = (ENV['MENTORS_EMAILS'] || "").split(",")
-    admins_emails.each do |email|
-      unless emails.include? email
-        admin = User.where(email: email).take
-        AdminMailer.new_comment(email, admin, comment).deliver_now
+    admins_emails.each do |admin_email|
+      unless emails.include?(admin_email) || comment.user.email == admin_email
+        admin = User.where(email: admin_email).take
+        AdminMailer.new_comment(admin_email, admin, comment).deliver_now
       end
     end
   end
