@@ -37,5 +37,6 @@ RSpec.feature "Resources", type: :feature do
     within_window new_window do
       expect(page.current_url).to eq("http://localhost:3000/")
     end
+    new_window.close
   end
 end

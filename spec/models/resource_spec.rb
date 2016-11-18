@@ -47,10 +47,10 @@ RSpec.describe Resource, type: :model do
 
   context 'validations' do
     subject { build(:external_url) }
-    it { should validate_presence_of :title }
+    it { is_expected.to validate_presence_of :title }
     context 'when type is ExternalUrl' do
-      it { should validate_presence_of :url }
-      it { should should_not allow_value('url.com').for(:url)}
+      it { is_expected.to validate_presence_of :url }
+      it { is_expected.not_to allow_value('url.com').for(:url) }
     end
 
     context 'when type is markdown' do

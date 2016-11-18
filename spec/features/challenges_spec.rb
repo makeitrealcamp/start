@@ -62,5 +62,6 @@ RSpec.feature "Challenges", type: :feature do
     within_window new_window do
       expect(page.current_path).to eq(preview_solution_path(id: solution.id, file: document.name))
     end
+    new_window.close
   end
 end
