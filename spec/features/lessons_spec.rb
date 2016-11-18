@@ -11,7 +11,9 @@ RSpec.feature "Lessons", type: :feature do
     login(user)
 
     click_link "Temas"
+    expect(page).to have_content subject.name
     all(:css, ".course").first.click
+    expect(page).to have_content resource.title
     find(:css, "#resources").click
     click_link resource.title, match: :first
     click_link lesson.name, match: :first

@@ -84,7 +84,7 @@ RSpec.feature "Notifications", type: :feature do
 
       find(:css, ".notifications-btn").click
       all(".comment-link").first.click
-      expect(current_path).to eq subject_challenge_path(subject, challenge)
+      wait_for { current_path }.to eq subject_challenge_path(subject, challenge)
     end
   end
 end

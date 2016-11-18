@@ -13,7 +13,7 @@ module LoginMacros
       signed_in_root_path
     end
 
-    expect(current_path).to eq(path)
+    wait_for { current_path }.to eq(path)
   end
 
   def login_password(user)

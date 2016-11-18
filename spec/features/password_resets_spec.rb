@@ -7,6 +7,7 @@ RSpec.feature "PasswordResets", type: :feature do
       visit login_onsite_path
 
       click_link 'Olvidé mi contraseña'
+      wait_for { page }.to have_selector '.modal-dialog'
 
       find(:css, '.modal-dialog input[type="email"]').set(user.email)
       click_button 'Restablecer Contraseña'
@@ -18,11 +19,12 @@ RSpec.feature "PasswordResets", type: :feature do
       expect(user.password_reset_sent_at).not_to be_nil
     end
 
-    scenario "with letter capital", js: true do
+    scenario "with capital letter", js: true do
       user = create(:user_password, email: 'PepePerez@example.com')
       visit login_onsite_path
 
       click_link 'Olvidé mi contraseña'
+      expect(page).to have_selector '.modal-dialog'
 
       find(:css, '.modal-dialog input[type="email"]').set(user.email)
       click_button 'Restablecer Contraseña'

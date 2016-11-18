@@ -52,7 +52,7 @@ RSpec.feature "Question management", type: :feature do
 
     visit subject_resource_questions_path(subject, quiz)
     find(:css, "tr#question-#{question.id} a span.glyphicon-pencil").click
-    wait_for_ajax
+    expect(page).to have_selector('#question-modal')
 
     text = 'what?'
     answer = 'answer correct'

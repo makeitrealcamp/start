@@ -10,7 +10,7 @@ RSpec.feature "Passwords", type: :feature do
     find('.avatar').click
     expect(page).to have_selector('.dropdown.open .avatar')
     click_link 'Cambiar Contraseña'
-    expect(page).to have_selector('.modal-dialog')
+    expect(page).to have_css('.modal-dialog')
 
     fill_in "Nueva Contraseña", with: "test0987"
     fill_in "Confirma Contraseña", with: "test0987"
