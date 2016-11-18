@@ -7,12 +7,12 @@ RSpec.feature "PasswordResets", type: :feature do
       visit login_onsite_path
 
       click_link 'Olvidé mi contraseña'
-      wait_for { page }.to have_selector '.modal-dialog'
+      wait_for { page }.to have_css '.modal-dialog'
 
       find(:css, '.modal-dialog input[type="email"]').set(user.email)
       click_button 'Restablecer Contraseña'
 
-      expect(page).to have_selector '.alert-notice'
+      expect(page).to have_css '.alert-notice'
 
       user.reload
       expect(user.password_reset_token).not_to be_nil
@@ -24,12 +24,12 @@ RSpec.feature "PasswordResets", type: :feature do
       visit login_onsite_path
 
       click_link 'Olvidé mi contraseña'
-      expect(page).to have_selector '.modal-dialog'
+      expect(page).to have_css '.modal-dialog'
 
       find(:css, '.modal-dialog input[type="email"]').set(user.email)
       click_button 'Restablecer Contraseña'
 
-      expect(page).to have_selector '.alert-notice'
+      expect(page).to have_css '.alert-notice'
 
       user.reload
       expect(user.password_reset_token).not_to be_nil

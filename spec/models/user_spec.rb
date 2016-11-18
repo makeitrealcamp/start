@@ -28,33 +28,33 @@ RSpec.describe User, type: :model do
   it { should define_enum_for :account_type }
 
   context "associations" do
-    it { should belong_to(:level) }
+    it { is_expected.to belong_to(:level) }
 
-    it { should have_many(:solutions).dependent(:destroy) }
-    it { should have_many(:challenges) }
-    it { should have_many(:resource_completions).dependent(:delete_all) }
-    it { should have_many(:lesson_completions) }
-    it { should have_many(:project_solutions) }
-    it { should have_many(:projects) }
-    it { should have_many(:points) }
-    it { should have_many(:challenge_completions).dependent(:delete_all) }
-    it { should have_many(:lesson_completions) }
-    it { should have_many(:auth_providers).dependent(:destroy) }
-    it { should have_many(:badge_ownerships).dependent(:destroy) }
-    it { should have_many(:badges) }
-    it { should have_many(:notifications) }
-    it { should have_many(:comments) }
-    it { should have_many(:quiz_attempts) }
-    it { should have_many(:path_subscriptions) }
-    it { should have_many(:paths) }
+    it { is_expected.to have_many(:solutions).dependent(:destroy) }
+    it { is_expected.to have_many(:challenges) }
+    it { is_expected.to have_many(:resource_completions).dependent(:delete_all) }
+    it { is_expected.to have_many(:lesson_completions) }
+    it { is_expected.to have_many(:project_solutions) }
+    it { is_expected.to have_many(:projects) }
+    it { is_expected.to have_many(:points) }
+    it { is_expected.to have_many(:challenge_completions).dependent(:delete_all) }
+    it { is_expected.to have_many(:lesson_completions) }
+    it { is_expected.to have_many(:auth_providers).dependent(:destroy) }
+    it { is_expected.to have_many(:badge_ownerships).dependent(:destroy) }
+    it { is_expected.to have_many(:badges) }
+    it { is_expected.to have_many(:notifications) }
+    it { is_expected.to have_many(:comments) }
+    it { is_expected.to have_many(:quiz_attempts) }
+    it { is_expected.to have_many(:path_subscriptions) }
+    it { is_expected.to have_many(:paths) }
   end
 
   context "validations" do
-    it { should validate_presence_of :email }
-    it { should validate_uniqueness_of :email }
-    it { should validate_uniqueness_of :nickname }
-    it { should should_not allow_value("email.example").for(:email) }
-    it { should should_not allow_value("lorem.ipsum").for(:nickname) }
+    it { is_expected.to validate_presence_of :email }
+    it { is_expected.to validate_uniqueness_of :email }
+    it { is_expected.to validate_uniqueness_of :nickname }
+    it { is_expected.not_to allow_value("email.example").for(:email) }
+    it { is_expected.not_to allow_value("lorem.ipsum").for(:nickname) }
     it { should allow_value("hello-nice_world").for(:nickname) }
   end
 
