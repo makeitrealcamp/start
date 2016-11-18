@@ -57,7 +57,11 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
-  Capybara.default_wait_time = 8
+  Capybara.register_driver :selenium do |app|
+    Capybara::Selenium::Driver.new(app, browser: :chrome)
+  end
+
+  Capybara.default_max_wait_time = 8
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
