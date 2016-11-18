@@ -36,7 +36,7 @@ module ApplicationHelper
     Redcarpet::Markdown.new(renderer, options).render(text).html_safe
   end
 
-  def embedded_video(src,opts = {}, html = {})
+  def embedded_video(src, opts = {}, html = {})
     user = opts[:user]
     uri = URI(src)
     id_video = src.split('/').last
@@ -45,7 +45,6 @@ module ApplicationHelper
       id_video = src.split('/').last
       content_tag :div do
         content_tag(:div, nil , id: "wistia_#{id_video}", class: "video-wistia") +
-        javascript_include_tag("//fast.wistia.com/assets/external/E-v1.js") +
         javascript_tag("Wistia.embed('#{id_video}', { trackEmail: '#{user.email}' });")
       end
     else
