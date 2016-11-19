@@ -102,5 +102,6 @@ group :test do
   gem 'selenium-webdriver', '3.0.0'
   gem 'codeclimate-test-reporter', require: nil
   gem 'rspec-wait', '0.0.9'
+  gem 'rspec-retry', '0.5.2'
 end
 gem 'sinatra', :require => nil

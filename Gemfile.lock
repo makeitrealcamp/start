@@ -292,6 +292,8 @@ GEM
       rspec-expectations (~> 3.5.0)
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
+    rspec-retry (0.5.2)
+      rspec-core (> 3.3, < 3.6)
     rspec-support (3.5.0)
     rspec-wait (0.0.9)
       rspec (>= 3, < 4)
@@ -423,6 +425,7 @@ DEPENDENCIES
   remote_syslog_logger
   roadie-rails (~> 1.0.6)
   rspec-rails (~> 3.5.2)
+  rspec-retry (= 0.5.2)
   rspec-wait (= 0.0.9)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
