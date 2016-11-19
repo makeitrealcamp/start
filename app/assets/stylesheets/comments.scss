@@ -17,6 +17,7 @@ $color_thunderbird_approx: #cc2424;
   color: $color_pale_sky_approx;
   font-size: 12px;
   margin: 0;
+  margin-bottom: 10px;
   line-height: 1.428571429;
 }
 
@@ -212,7 +213,7 @@ $color_thunderbird_approx: #cc2424;
             filter: alpha(opacity=60);
           }
         }
-        p {
+        p, ol, ul {
           @extend %comment_text;
           + p {
             margin-top: 15px;
