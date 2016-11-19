@@ -57,9 +57,9 @@ RSpec.feature "Badges management", type: :feature do
     select subject.name, from: "badge_subject_id"
     click_button 'Actualizar insignia'
 
-    badge.reload
     expect(current_path).to eq  admin_badges_path
 
+    badge.reload
     expect(badge.name).to eq name
     expect(badge.description).to eq description
     expect(badge.image_url).to eq image_url
