@@ -56,6 +56,8 @@ class Solution < ActiveRecord::Base
       GitPREvaluator.new.evaluate(self)
     elsif self.challenge.async_phantomjs_embedded?
       AsyncPhantomEvaluator.new(self).evaluate
+    elsif self.challenge.react_git?
+      ReactGitEvaluator.new(self).evaluate
     else
       self.status = :failed
       self.error_message = "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp"

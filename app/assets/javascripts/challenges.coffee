@@ -282,6 +282,9 @@ class ChallengeFormView extends Backbone.View
     else if evaluation_strategy == "ruby_git_pr"
       @evaluation_editor.setOption("mode", "ruby")
       @evaluation_editor.setValue("def evaluate(client, repo, pr_number)\n\nend")
+    else if evaluation_strategy == "react_git"
+      @evaluation_editor.setOption("mode", "javascript")
+      @evaluation_editor.setValue("import React from 'react';\nimport { shallow } from 'enzyme';\nimport App from './App';\n\nit('renders without crashing', () => {\n  shallow(<App />);\n});")
 
 window.InstructionsView = InstructionsView
 window.SolutionView = SolutionView
