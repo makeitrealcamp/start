@@ -4,7 +4,7 @@
 
 <blockquote><%= markdown @comment.text %></blockquote>
 
-<p>Para responder este comentario <%= link_to "haz click acá", url_for(@comment.commentable.to_path) %></p>
+<p>Para responder este comentario <%= link_to "haz click acá", url_for(@comment.commentable) %></p>
 
 <p>Que tengas un muy buen día,</p>
 
