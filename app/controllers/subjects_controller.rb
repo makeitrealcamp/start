@@ -48,7 +48,7 @@ class SubjectsController < ApplicationController
     def subject_params
       params.require(:subject).permit(:name, :description, :excerpt, :abstract,
         :time_estimate, :published, :visibility, :phase_id,
-        subject_phases_attributes: [:phase_id,:id,:_destroy]
+        course_phases_attributes: [:phase_id,:id,:_destroy]
         )
     end
 end
