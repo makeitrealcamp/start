@@ -192,8 +192,6 @@ GEM
       rails (>= 3.2.0)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
-    nokogiri-styles (0.1.2)
-      nokogiri
     oauth2 (1.2.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -211,7 +209,6 @@ GEM
     omniauth-slack (2.3.0)
       omniauth-oauth2 (~> 1.3.1)
     pg (0.19.0)
-    phantomjs (2.1.1.0)
     posix-spawn (0.3.12)
     public_suffix (2.0.4)
     pusher (1.3.0)
@@ -389,7 +386,6 @@ DEPENDENCIES
   codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
   convertloop (= 0.1.2)
-  css_parser
   database_cleaner
   date_supercharger
   docker-api
@@ -409,13 +405,10 @@ DEPENDENCIES
   letter_opener
   momentjs-rails
   nested_form_fields
-  nokogiri
-  nokogiri-styles
   octokit
   omniauth-slack
   paper_trail!
   pg
-  phantomjs
   pusher
   pygments.rb
   rails (= 4.2.0)
