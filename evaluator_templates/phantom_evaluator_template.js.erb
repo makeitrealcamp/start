@@ -14,6 +14,12 @@ function evaluate(index) {
   var evaluation = evaluations[index];
   page.viewportSize = evaluation.viewportSize || { width: 1024, height: 800 };
   var url = '<%=host%>:<%=port%>/' + evaluation.path;
+
+  page.onError = function(msg, trace) {
+    // swallow JavaScript errors, we had a problem in one challenge that
+    // embeded a video and it had some errors.
+  };
+
   page.open(url, function(status) {
     if (status != 'success') {
       console.log('No se pudo abrir ' + evaluation.path);
