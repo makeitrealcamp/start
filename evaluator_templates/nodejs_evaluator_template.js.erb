@@ -1,0 +1,20 @@
+var expect = require('chai').expect;
+var sinon = require('sinon');
+var fs = require('fs');
+var vm = require('vm');
+
+beforeEach(function() {
+  this.sinon = sinon.sandbox.create();
+  this.sinon.stub(console, 'log');
+});
+
+afterEach(function(){
+  this.sinon.restore();
+});
+
+function createScript(name) {
+  var program = fs.readFileSync('/ukku/data/solution_files/' + name, 'utf8');
+  return new vm.Script(program);
+}
+
+<%= evaluation %>

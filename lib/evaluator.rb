@@ -16,8 +16,12 @@ class Evaluator
     fail(solution, "Se ha exedido el tiempo máximo de ejecución de esta solución. Verifica que no haya ciclos infinitos en tu código.")
   end
 
-  def fail_unknown(solution,error)
-    fail(solution, "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp: #{error.message}".truncate(250))
+  def fail_unknown(solution, error)
+    message = "Hemos encontrado un error en el evaluador, favor reportar a tu mentor:\n\n"
+    message += "#{error.message}: \n"
+    message += "\t#{error.backtrace.join("\n\t")}"
+    message = message.gsub("/ukku/data/", "")
+    fail(solution, message.truncate(650))
   end
 
 end

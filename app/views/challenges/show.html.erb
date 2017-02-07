@@ -25,7 +25,7 @@
     <% else %>
       <div class="col-md-7 expand solution" data-solution-id="<%= @solution.id %>">
         <%= form_tag submit_solution_path(@solution.id), id: 'submit-solution', class: 'expand', remote: true do %>
-          <% if @challenge.ruby_embedded? || @challenge.phantomjs_embedded? || @challenge.async_phantomjs_embedded? %>
+          <% if @challenge.ruby_embedded? || @challenge.phantomjs_embedded? || @challenge.async_phantomjs_embedded? || @challenge.nodejs_embedded? %>
             <%= render 'embedded_files' %>
           <% elsif @challenge.ruby_git_pr? %>
             <%= render 'github_pr' %>
@@ -70,24 +70,34 @@
   </div>
 </script>
 
-<script type="x/template" id="notification-template">
+<script type="x/template" id="success-template">
   <div class="solution-eval">
     <div class="solution-eval-body">
-      <span class="glyphicon glyphicon-{{= icon }} icon" style="color: {{= color }}" aria-hidden="true"></span>
-      <h3>{{= title }}</h3>
-      <p>{{= message }}</p>
-      {{ if (status == "completed") { }}
-        <div class="won-points">Has ganado <strong><%=  @challenge.point_value %></strong> puntos.</div>
-        <%= render 'users/level_js' %>
-      {{ } }}
+      <span class="glyphicon glyphicon-ok-sign icon" style="color: #4DFF62;" aria-hidden="true"></span>
+      <h3>Reto Superado</h3>
+      <p><strong>¡Felicitaciones!</strong> Lo lograste.</p>
+      <div class="won-points">Has ganado <strong><%=  @challenge.point_value %></strong> puntos.</div>
+      <%= render 'users/level_js' %>
     </div>
 
     <div class="solution-eval-footer">
       <button type="button" class="btn btn-transparent close-overlay" data-dismiss="modal">Cerrar</button>
-      {{ if (status == "completed") { }}
-        <%= link_to "Continuar <span class='glyphicon glyphicon-chevron-right'></span>".html_safe,
+      <%= link_to "Continuar <span class='glyphicon glyphicon-chevron-right'></span>".html_safe,
         discussion_subject_challenge_path(@challenge.subject, @challenge), class: "btn btn-success" %>
-      {{ } }}
+    </div>
+  </div>
+</script>
+
+<script type="x/template" id="failed-template">
+  <div class="solution-eval">
+    <div class="solution-eval-body">
+      <span class="glyphicon glyphicon-exclamation-sign icon" style="color: #FF4242;" aria-hidden="true"></span>
+      <h3>Intenta Nuevamente</h3>
+      <pre><code>{{= message }}</code></pre>
+    </div>
+
+    <div class="solution-eval-footer">
+      <button type="button" class="btn btn-transparent close-overlay" data-dismiss="modal">Cerrar</button>
     </div>
   </div>
 </script>

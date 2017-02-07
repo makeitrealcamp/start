@@ -10,8 +10,8 @@ class SinatraEvaluator < BaseDockerEvaluator
     end
 
     # write spec file and spec_helper
-    create_shared_file("makeitreal_spec.rb",solution.challenge.evaluation)
-    create_shared_file("spec_helper.rb",File.read(SPEC_HELPER_PATH))
+    create_shared_file("makeitreal_spec.rb", solution.challenge.evaluation)
+    create_shared_file("spec_helper.rb", File.read(SPEC_HELPER_PATH))
 
     repo = "https://github.com/#{solution.repository}"
     command = [
@@ -19,7 +19,7 @@ class SinatraEvaluator < BaseDockerEvaluator
       "/bin/bash", "-c", "-l", "'/root/sinatra.sh #{repo}'"
     ].join(" ")
 
-    execution = DockerExecution.new(command,solution.challenge.timeout)
+    execution = DockerExecution.new(command, solution.challenge.timeout)
     execution.start!
 
     if execution.success?
@@ -30,7 +30,7 @@ class SinatraEvaluator < BaseDockerEvaluator
       elsif File.exist?(result_shared_path[:local_path])
         handle_test_failure(solution, result_shared_path[:local_path])
       else
-        fail(solution, "La evaluación falló por un problema desconocido :S. Repórtalo a info@makeitreal.camp enviando el URL con tu solución: " + status.to_s)
+        fail(solution, "La evaluación falló por un problema desconocido :S\n\nRepórtalo a tu mentor o a info@makeitreal.camp enviando el URL con tu solución e indicando el tema y el reto donde ocurrió: " + status.to_s)
       end
 
     end

@@ -220,6 +220,22 @@
     p { margin-bottom: 0; }
     p.em { font-size: 21px; }
 
+    pre {
+      text-align: left;
+      margin-top: 30px;
+      overflow-x: auto;
+      font-size: 14px;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      border: 1px solid #666;
+      max-height: 300px;
+
+      code {
+        word-wrap: normal;
+        white-space: pre;
+      }
+    }
+
     .row {
       margin: auto;
       border-bottom: solid 1px #999; border-top: solid 1px #999;

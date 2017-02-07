@@ -134,24 +134,19 @@ class SolutionView extends Backbone.View
     )
 
   display_alert: (solution) =>
-    template = _.template($('#notification-template').html());
+
     if solution.status == "completed"
-      data =
-        status: "completed"
-        title: "Reto Superado"
-        message: "<strong>¡Felicitaciones!</strong> Lo lograste."
-        color: "#4DFF62"
-        icon: "ok-sign"
-        user: solution.user_hash
+      template = _.template($('#success-template').html())
+      data = { user: solution.user_hash }
+
+      $template = $(template(data))
     else if solution.status == "failed"
-      data =
-        status: "failed"
-        title: "Intenta Nuevamente",
-        message: @html_escape(solution.error_message),
-        color: "#FF4242",
-        icon: "exclamation-sign"
-    $template = $(template(data))
-    $('.overlay').html($template);
+      template = _.template($('#failed-template').html())
+      data = { message: @html_escape(solution.error_message) }
+
+      $template = $(template(data))
+
+    $('.overlay').html($template)
 
   html_escape: (str) ->
     return String(str)
@@ -160,7 +155,8 @@ class SolutionView extends Backbone.View
             .replace(/'/g, '&#39;')
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;')
-            .replace(/(?:\r\n|\r|\n)/g, '<br />')
+            .replace(/(?:\r\n|\r|\n)/g, '<br/>')
+            .replace(/\s/g, '&nbsp;')
 
   remove: =>
     super()
@@ -285,6 +281,9 @@ class ChallengeFormView extends Backbone.View
     else if evaluation_strategy == "react_git"
       @evaluation_editor.setOption("mode", "javascript")
       @evaluation_editor.setValue("import React from 'react';\nimport { shallow } from 'enzyme';\nimport App from './App';\n\nit('renders without crashing', () => {\n  shallow(<App />);\n});")
+    else if evaluation_strategy == "nodejs_embedded"
+      @evaluation_editor.setOption("mode", "javascript")
+      @evaluation_editor.setValue("it('sums two numbers', function() {\n  expect(1 + 2).to.equal(3);\n});")
 
 window.InstructionsView = InstructionsView
 window.SolutionView = SolutionView
