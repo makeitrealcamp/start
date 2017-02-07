@@ -10,7 +10,7 @@ class BaseDockerEvaluator < Evaluator
     # we need change the prefix in development because boot2docker only shares de /Users path, not /tmp
     evaluation_folder_name = self.class.name.demodulize.underscore
     if Rails.env.production?
-      File.join("/app/tmp/ukku",evaluation_folder_name)
+      File.join("/app/tmp/ukku", evaluation_folder_name)
     else
       File.expand_path("~/.ukku/#{evaluation_folder_name}")
     end
@@ -18,7 +18,9 @@ class BaseDockerEvaluator < Evaluator
 
 
   def handle_error(solution, error_path)
-    fail(solution, File.read(error_path).truncate(255))
+    message = File.read(error_path)
+    message = message.gsub("/ukku/data/", "")
+    fail(solution, message.truncate(450))
   end
 
   def handle_test_failure(solution, result_path)
@@ -74,7 +76,7 @@ class BaseDockerEvaluator < Evaluator
 
   def create_shared_file(relative_path,content)
 
-    local_path = File.join(tmp_path,relative_path)
+    local_path = File.join(tmp_path, relative_path)
     dirname = File.dirname(local_path)
 
     unless File.directory?(dirname)
@@ -87,7 +89,7 @@ class BaseDockerEvaluator < Evaluator
     {
       relative_path: relative_path,
       local_path: local_path,
-      container_path: File.join(container_path,relative_path)
+      container_path: File.join(container_path, relative_path)
     }
   end
 
@@ -102,7 +104,7 @@ class BaseDockerEvaluator < Evaluator
 
   def create_solution_files
     solution.documents.map do |document|
-      create_shared_file(File.join(solution_files_shared_folder[:relative_path],document.name),document.content)
+      create_shared_file(File.join(solution_files_shared_folder[:relative_path], document.name), document.content)
     end
   end
 

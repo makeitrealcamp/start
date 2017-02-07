@@ -28,7 +28,7 @@ class PhantomEvaluator < BaseDockerEvaluator
       if File.exist?(error_shared_path[:local_path]) && !File.read(error_shared_path[:local_path]).empty?
         handle_error(solution, error_shared_path[:local_path])
       else
-        fail(solution, "La evaluación falló por un problema desconocido :S. Repórtalo a info@makeitreal.camp enviando el URL con tu solución.")
+        fail(solution, "La evaluación falló por un problema desconocido :S. Repórtalo a tu mentor o a info@makeitreal.camp indicando el tema y el reto donde ocurrió el error.")
       end
     end
   rescue SimpleTimeout::Error
@@ -46,7 +46,7 @@ class PhantomEvaluator < BaseDockerEvaluator
       create_shared_file("phantom_util.js",content)
     end
 
-    def create_evaluation_file(host,port)
+    def create_evaluation_file(host, port)
       template = File.read(PHANTOM_EVALUATOR_TEMPLATE_PATH)
       # required for template: host,port,phantom_util_path
       phantom_util_path = create_phantom_util_file[:container_path]

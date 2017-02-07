@@ -1,0 +1,12 @@
+#!/bin/bash
+# require: evaluation_file_path, result_file_path, error_file_path
+
+set -e
+set -x
+
+if [ ! -f <%= evaluation_file_path %> ]; then
+  echo "No se encontró el archivo de evaluación <%= evaluation_file_path %>." >> <%= error_file_path %>
+  exit 1
+fi
+
+mocha --reporter json <%= evaluation_file_path %> 1> <%= result_file_path %> 2> <%= error_file_path %>

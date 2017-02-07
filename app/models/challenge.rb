@@ -36,7 +36,7 @@ class Challenge < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name
 
-  enum evaluation_strategy: [:ruby_embedded, :phantomjs_embedded, :ruby_git, :rails_git, :sinatra_git, :ruby_git_pr, :async_phantomjs_embedded, :react_git]
+  enum evaluation_strategy: [:ruby_embedded, :phantomjs_embedded, :ruby_git, :rails_git, :sinatra_git, :ruby_git_pr, :async_phantomjs_embedded, :react_git, :nodejs_embedded]
 
   belongs_to :subject
   has_many :documents, as: :folder
@@ -74,7 +74,8 @@ class Challenge < ActiveRecord::Base
   def self.default_timeouts
     {
       ruby_embedded: 15, phantomjs_embedded: 30, ruby_git: 15, rails_git: 90,
-      sinatra_git: 90, ruby_git_pr: 15, async_phantomjs_embedded: 30
+      sinatra_git: 90, ruby_git_pr: 15, async_phantomjs_embedded: 30,
+      nodejs_embedded: 15
     }
   end
 

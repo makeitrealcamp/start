@@ -25,7 +25,7 @@ class ReactGitEvaluator < BaseDockerEvaluator
       elsif File.exist?(result_shared_path[:local_path])
         handle_test_failure(solution, result_shared_path[:local_path])
       else
-        fail(solution, "La evaluación falló por un problema desconocido :S. Repórtalo a info@makeitreal.camp enviando el URL con tu solución.")
+        fail(solution, "La evaluación falló por un problema desconocido :S. Repórtalo a tu mentor o a info@makeitreal.camp enviando el URL con tu solución e indicando el tema y el reto donde ocurrió.")
       end
 
     end
