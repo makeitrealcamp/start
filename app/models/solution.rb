@@ -86,6 +86,7 @@ class Solution < ActiveRecord::Base
     if user.next_level
       user_hash.merge!(next_level: true, required_points: user.next_level.required_points, next_level_image: user.next_level.image_url)
     end
+    user_hash
   end
 
   def create_user_points!

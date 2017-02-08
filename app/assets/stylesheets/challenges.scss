@@ -236,10 +236,17 @@
       }
     }
 
-    .row {
+    .level-section {
+      display: flex;
+      justify-content: space-around;
       margin: auto;
-      border-bottom: solid 1px #999; border-top: solid 1px #999;
+      border-top: solid 1px #999;
+      border-bottom: solid 1px #999;
       padding: 20px;
+
+      .level-image-container {
+        width: 70px;
+      }
     }
 
     .won-points { margin: 10px 0 15px; }
