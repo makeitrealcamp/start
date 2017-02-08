@@ -1,26 +1,22 @@
-<div class="row">
-  <div class="col-xs-2 col-sm-2 col-md-2">
-    <div class="level-image-container">
-      <img src = "{{= user.level_image }}" class="img-responsive" />
-    </div>
-  </div>
-
-  <div class="col-xs-8 col-sm-8 col-md-8">
-    <div class="progress">
-      <div class="progress-bar progress-bar-success"
-        role="progressbar"
-        style="width:{{= (user.level_progress*100).toFixed(2) }}%;opacity:0.6;background-color: red">
-          {{= (user.level_progress*100).toFixed(0) }}%
-      </div>
-    </div>
-    <div class="points-for-next-level">Te faltan <strong>{{= user.points_needed_for_next_level }}</strong> puntos para el siguiente nivel</div>
+<div class="level-section">
+  <div class="level-image-container">
+    <img src = "{{= user.level_image }}" class="img-responsive" />
   </div>
 
   {{ if (user.hasOwnProperty("next_level")) { }}
-    <div class="col-xs-2 col-sm-2 col-md-2">
-      <div class="level-image-container">
-        <img src = "{{= user.next_level_image }}" class="img-responsive" />
+    <div class="progress-wrapper">
+      <div class="progress">
+        <div class="progress-bar progress-bar-success"
+          role="progressbar"
+          style="width:{{= (user.level_progress*100).toFixed(2) }}%;opacity:0.6;background-color: red">
+            {{= (user.level_progress*100).toFixed(0) }}%
+        </div>
       </div>
+      <div class="points-for-next-level">Te faltan <strong>{{= user.points_needed_for_next_level }}</strong> puntos para el siguiente nivel</div>
+    </div>
+
+    <div class="level-image-container">
+      <img src = "{{= user.next_level_image }}" class="img-responsive" />
     </div>
   {{ } }}
 </div>
