@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :admin do
+  get 'charges/index'
+  end
+
   root 'pages#home'
 
   get "curriculum", to: "pages#curriculum"
@@ -13,6 +17,7 @@ Rails.application.routes.draw do
   post "full-stack-bogota", to: "pages#create_full_stack_bogota_lead"
   get "full_stack_web_developer", to: redirect('/full-stack-online')
   get "front_end_web_developer", to: redirect('/front-end-online')
+  get "cursos/react-redux", to: "pages#react_redux"
   get "faq", to: "pages#faq"
   get "makers", to: "pages#makers"
   get "scholarships", to: "pages#scholarships"
@@ -149,6 +154,12 @@ Rails.application.routes.draw do
     resource :completion, controller: 'resource_completion', only: [:create, :destroy]
   end
 
+  namespace :billing do
+    resources :charges, only: [:create, :update, :show] do
+      post :confirm, on: :collection
+    end
+  end
+
   namespace :admin do
     get 'dashboard', to: 'dashboard#index'
     resources :paths, only: [:index, :new, :create, :update, :edit]
@@ -162,6 +173,8 @@ Rails.application.routes.draw do
         post 'assign_points'
       end
     end
+
+    resources :charges, only: [:index, :show, :destroy]
 
     resources :badges
     resources :levels

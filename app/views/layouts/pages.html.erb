@@ -9,6 +9,7 @@
 
   <%= favicon_link_tag 'favicon.ico' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag("https://s3-us-west-2.amazonaws.com/epayco/v1.0/epayco.min.js") %>
   <%= csrf_meta_tags %>
 
   <%= render "utils/fb_pixel" %>

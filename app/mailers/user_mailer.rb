@@ -37,4 +37,22 @@ class UserMailer < ApplicationMailer
 
     mail to: @user.email, subject: "Tienes una nueva respuesta en tu comentario"
   end
+
+  def charge_instructions(charge)
+    @charge = charge
+
+    mail to: charge.email, subject: "Instrucciones de pago"
+  end
+
+  def charge_validation(charge)
+    @charge = charge
+
+    mail to: charge.email, subject: "Pago en proceso de validación"
+  end
+
+  def charge_rejected(charge)
+    @charge = charge
+
+    mail to: charge.email, subject: "Pago rechazado por la entidad financiera"
+  end
 end

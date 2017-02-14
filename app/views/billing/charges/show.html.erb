@@ -1,0 +1,94 @@
+<div class="container charge-page">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <%= link_to root_path do %>
+        <%= image_tag "logo-black.png", width: 160 %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <div class="charge-wrapper">
+        <div class="charge-header">
+          <%= charge_header_tag @charge %>
+        </div>
+
+        <div class="charge-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <h1><%= @charge.description %></h1>
+            </div>
+            <div class="col-sm-6 text-right">
+              <span class="charge-amount"><%= @charge.currency %> <%= number_to_currency @charge.amount, precision: 0 %></span>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="row" style="margin-top: 25px;">
+            <div class="col-sm-6">
+              <div class="field">
+                <span class="field-label">Referencia</span>
+                <span class="field-value"><%= @charge.uid %></span>
+              </div>
+              <div class="field">
+                <span class="field-label">Método de Pago</span>
+                <span class="field-value"><%= payment_method(@charge) %></span>
+              </div>
+            </div>
+            <div class="col-sm-6 text-right">
+              <div class="field">
+                <span class="field-label">Fecha de Creación</span>
+                <span class="field-value"><%= l @charge.created_at, format: "%d / %m / %Y" %></span>
+              </div>
+              <% if @charge.created? && @charge.deposit? %>
+                <div class="field">
+                  <span class="field-label">Fecha Límite de Pago</span>
+                  <span class="field-value"><%= l (@charge.created_at + 5.days), format: "%d / %m / %Y" %></span>
+                </div>
+              <% else %>
+              <div class="field">
+                <span class="field-label">Última Actualización</span>
+                <span class="field-value"><%= l @charge.updated_at.in_time_zone("Bogota"), format: "%d / %m / %Y %I:%M %p" %></span>
+              </div>
+              <% end %>
+            </div>
+          </div>
+
+          <hr>
+
+          <% if @charge.created? && @charge.deposit? %>
+            <div class="payment-instructions">
+              <h3>Instrucciones de Pago</h3>
+              <p>Realiza una consignación o transferencia a la <strong>Cuenta de Ahorros</strong> número <strong>379-284940-56</strong> de <strong>Bancolombia</strong> a nombre de <strong>La Nueva Educación SAS</strong> (Nit 900.752.738-8) por valor de <strong>$299,000 pesos colombianos</strong>.</p>
+              <p>Envía el comprobante a <a href="mailto:info@makeitreal.camp">info@makeitreal.camp</a> con el código de referencia: <strong><%= @charge.uid %></strong>.</p>
+              <p style="color: #666;"><strong>Nota: </strong> Asegúrate de realizar el pago antes de la fecha límite o de lo contrario el precio podría cambiar.</p>
+            </div>
+            <hr>
+
+            <p>Una vez que hayas realizado el pago y sea validado en nuestro sistema recibirás un correo con los datos de acceso.</p>
+          <% elsif @charge.created? && @charge.credit_card? %>
+            <h3>Detalles</h3>
+            <p>La transacción se encuentra <strong>en validación</strong> por la entidad financiera. Este proceso puede tomar de 1 a 6 horas. Estaremos pendientes y te informaremos cualquier actualización por correo electrónico.</p>
+          <% elsif @charge.rejected? && @charge.credit_card? %>
+            <h3>Detalles</h3>
+            <p>¡Lo sentimos! La transacción fue rechazada con el siguiente mensaje de error:</p>
+            <pre><code><%= @charge.error_message %></code></pre>
+            <p>Puedes intentarlo nuevamente <a href="/cursos/react-redux">haciendo click acá</a>.</p>
+            <hr>
+          <% elsif @charge.error? %>
+            <h3>Detalles</h3>
+            <p>¡Lo sentimos! Ocurrió el siguiente error en la transacción:</p>
+            <pre><code><%= @charge.error_message %></code></pre>
+            <p>Puedes intentarlo nuevamente <a href="/cursos/react-redux">haciendo click acá</a>.</p>
+            <hr>
+          <% elsif @charge.paid? && @charge.credit_card? %>
+            <p><strong>¡Muchas gracias por tu compra!</strong> En unos minutos recibirás un correo con los datos de acceso a la plataforma para que puedas iniciar tu aprendizaje lo antes posible.</p>
+          <% end %>
+
+          <p>Si tienes alguna pregunta o inquietud no dudes en comunicarte con nosotros a <a href="mailto:info@makeitreal.camp">info@makeitreal.camp</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

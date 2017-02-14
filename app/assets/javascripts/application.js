@@ -30,6 +30,7 @@
 //= require datepicker/bootstrap-datepicker
 //= require datepicker/bootstrap-datepicker.es.js
 //= require intlTelInput
+//= require jquery.payment
 //= require_tree .
 
 Turbolinks.enableProgressBar();

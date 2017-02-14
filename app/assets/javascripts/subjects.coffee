@@ -6,7 +6,11 @@ class ProfileQuestionsView extends Backbone.View
     @render()
 
   render: ->
-    $(@el).modal(backdrop: 'static')
+    $(@el).on('bs.modal.shown', ->
+      @.$('#card-number').payment('formatCardNumber')
+      @.$('#card-cvv').payment('formatCardCVC')
+      @.$('#card-exp').payment('formatCardExpiry')
+    ).modal(backdrop: 'static')
 
   events:
     "click .next": "navigate_next"
@@ -31,7 +35,10 @@ class ProfileQuestionsView extends Backbone.View
   validate: ->
     @.$('#questions-modal .form-group').removeClass('has-error')
     @.$('.option-alert').hide()
-    if @part == 1 then @input_text_is_valid(@.$('#user_first_name')) else @at_least_one_radio()
+    if @part == 1
+      @input_text_is_valid(@.$('#user_first_name'))
+    else
+      @at_least_one_radio()
 
   input_text_is_valid: (field) ->
     if field.val().replace(/\s+/, '').length == 0

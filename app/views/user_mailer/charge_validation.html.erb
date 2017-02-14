@@ -1,0 +1,14 @@
+<p>Hola <%= @charge.first_name %>,</p>
+
+<p>En este momento tu pago para el ingreso al curso de <strong>React y Redux</strong> se encuentra en proceso de validación por la entidad financiera. Este proceso toma generalmente de 1 a 6 horas.</p>
+
+<p>Una vez recibamos respuesta de la entidad financiera te informaremos el resultado por este medio.</p>
+
+<p>También puedes consultar el estado de tu pago <a href="<%= ENV['HOSTNAME'] %>/billing/charges/<%= @charge.uid %>">haciendo click acá</a>.</p>
+
+<p>Si tienes alguna pregunta o inquietud no dudes en comunicarte con nosotros respondiendo este correo. </p>
+
+<p class="signature">
+  <strong>Diana Vanegas</strong><br>
+  <strong>makeitreal.camp</strong>
+</p>
