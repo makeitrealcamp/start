@@ -1,0 +1,31 @@
+<p>Hola <%= @charge.first_name %>,</p>
+
+<p>Bienvenido(a) al curso de <strong>React y Redux</strong>. Haz click en el siguiente enlace para activar tu cuenta:</p>
+
+<div class="button-wrapper">
+  <%= link_to "Ingresar", activate_users_url(token: @charge.user.password_reset_token), class: "button" %>
+</div>
+
+<p>Una vez que hayas activado tu cuenta y te encuentres en la plataforma sigue estas instrucciones:</p>
+
+<ol>
+  <li>Ingresa a la opción <strong>Temas</strong> del menú principal.</li>
+  <li>Ingresa a <strong>React y Redux</strong>. Allí encontrarás 3 pestañas: retos, recursos y proyectos.</li>
+</ol>
+
+<p>El orden lo dedices tú. Sin embargo, si quieres algo más guiado te sugerimos el siguiente orden:</p>
+
+<ol>
+  <li>Completa el <strong>Curso Introductorio a React</strong>.</li>
+  <li>Empieza a resolver los retos.</li>
+  <li>Intenta resolver el Quiz.</li>
+  <li>Mira todos los videos del <strong>Curso de Redux y Testing</strong>.</li>
+  <li>Soluciona los proyectos.</li>
+</ol>
+
+<p>Si tienes alguna pregunta o inquietud no dudes en comunicarte con nosotros respondiendo este correo. </p>
+
+<p class="signature">
+  <strong>Diana Vanegas</strong><br>
+  <strong>makeitreal.camp</strong>
+</p>

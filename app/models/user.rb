@@ -190,6 +190,17 @@ class User < ActiveRecord::Base
     end
   end
 
+  def send_course_welcome_email(charge)
+    if self.created?
+      generate_token
+      self.password_reset_sent_at = Time.current
+      save!
+      SubscriptionsMailer.course_welcome(charge).deliver_later
+    else
+      SubscriptionsMailer.course(charge).deliver_later
+    end
+  end
+
   def send_password_reset
     generate_token
     self.password_reset_sent_at = Time.current

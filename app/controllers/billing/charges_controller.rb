@@ -30,9 +30,9 @@ class Billing::ChargesController < ApplicationController
 
     def send_pending_email(charge)
       if charge.credit_card?
-        UserMailer.charge_validation(charge).deliver_later
+        SubscriptionsMailer.charge_validation(charge).deliver_later
       elsif charge.deposit?
-        UserMailer.charge_instructions(charge).deliver_later
+        SubscriptionsMailer.charge_instructions(charge).deliver_later
       end
     end
 end
