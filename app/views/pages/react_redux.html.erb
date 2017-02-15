@@ -5,7 +5,7 @@
   <meta property="og:image" content="<%= image_url('react-redux.jpg') %>" />
 <% end %>
 
-<div class="new-site course react-online">
+<div class="new-site course react-redux">
   <%= render "layouts/navbar/pages_white", hide_login: true %>
   <%= render "pages/header_register", btn_text: "COMPRAR CURSO" %>
 
@@ -16,7 +16,7 @@
         <div class="col-md-6 tagline">
           <h1><small>ONLINE, A TU PROPIO RITMO</small>REACT Y REDUX</h1>
           <p>En este <strong>curso práctico</strong> aprenderás ES2015, React, Redux y pruebas automatizadas con Jest y Enzyme.</p>
-          <button class="btn btn-primary btn-register" style="margin-top: 30px;">COMPRAR ESTE CURSO</a>
+          <button class="btn btn-primary btn-register">COMPRAR ESTE CURSO</a>
         </div><!--/tagline-program -->
       </div><!--/row -->
     </div><!--/container -->
@@ -65,12 +65,11 @@
 
           <div class="aside inverted">
             <p class="text-center">Aprovecha nuestro precio de lanzamiento!</p>
-            <p style="text-align: center; font-size: 24px;">$299,000*</p>
+            <p class="price-tag">$299,000*</p>
 
             <div class="action-wrapper text-center">
               <button class="btn btn-primary btn-register">COMPRAR ESTE CURSO</button>
             </div>
-
 
             <p><small>* Pesos colombianos. Impuestos incluídos</small></p>
           </div>
@@ -265,7 +264,7 @@
 
           <div class="modal-body">
             <div class="step-1">
-              <p style="margin-bottom: 20px;">Ingresa los datos del estudiante:</p>
+              <p>Ingresa los datos del estudiante:</p>
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
@@ -282,8 +281,8 @@
                 <input type="email" id="email" name="charge[email]" class="form-control" placeholder="Email" data-epayco="card[email]">
               </div>
 
-              <p style="margin-top: 25px; font-weight: 600;">Selecciona la forma de pago:</p>
-              <div class="payment-method" style="display: flex; justify-content: space-around; margin: 20px 0;">
+              <p class="payment-method-title">Selecciona la forma de pago:</p>
+              <div class="payment-method">
                 <label class="radio-inline">
                   <input type="radio" name="charge[payment_method]" id="payment-method-card" value="credit_card" checked> Tarjeta de Crédito
                 </label>
@@ -294,7 +293,7 @@
             </div>
 
             <div class="step-2" style="display: none">
-              <p style="margin-bottom: 27px;">Ingresa los datos de pago:</p>
+              <p>Ingresa los datos de pago:</p>
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
@@ -333,12 +332,12 @@
               </div>
               <input type="hidden" id="epayco-month" data-epayco="card[exp_month]">
               <input type="hidden" id="epayco-year" data-epayco="card[exp_year]">
-              <p style="margin-top: 20px; font-size: 14px; color: #999;">Pago seguro a través de <a href="https://epayco.co/" target="_blank">ePayco</a></p>
+              <p class="secure-payment">Pago seguro a través de <a href="https://epayco.co/" target="_blank">ePayco</a></p>
             </div>
 
             <div class="step-3" style="display: none;">
               <div class="invoice-data">
-                <p class="instructions" style="margin-bottom: 27px; font-weight: bold;">Ingresa los datos para la elaboración de la factura:</p>
+                <p class="instructions">Ingresa los datos para la elaboración de la factura:</p>
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
@@ -415,7 +414,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default back" style="display: none; float: left;">&lt;&lt; Atrás</button>
+            <button type="button" class="btn btn-default back">&lt;&lt; Atrás</button>
             <button type="button" class="btn btn-primary btn-lg next">Continuar</button>
             <button type="button" class="btn btn-primary btn-lg finish" style="display: none;">FINALIZAR</button>
           </div>
