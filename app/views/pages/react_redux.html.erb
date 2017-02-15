@@ -1,3 +1,10 @@
+<% content_for :head do %>
+  <meta property="og:title" content="Curso de React y Redux" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="En este curso práctico aprenderás ES2015, React, Redux y pruebas automatizadas con Jest y Enzyme." />
+  <meta property="og:image" content="<%= image_url('react-redux.jpg') %>" />
+<% end %>
+
 <div class="new-site course react-online">
   <%= render "layouts/navbar/pages_white", hide_login: true %>
   <%= render "pages/header_register", btn_text: "COMPRAR CURSO" %>
