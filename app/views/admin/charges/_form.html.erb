@@ -1,0 +1,109 @@
+<div class="row">
+  <div class="col-sm-6">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, class: "form-control" %>
+  </div>
+  <div class="col-sm-6">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, class: "form-control" %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :email %>
+  <%= f.text_field :email, class: "form-control" %>
+</div>
+<hr>
+<div class="form-group">
+  <%= f.label :description %>
+  <%= f.text_field :description, class: "form-control" %>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-group">
+      <%= f.label :currency %>
+      <%= f.select :currency, options_for_select({ "Pesos Colombianos" => "COP", "Dólares" => "US" }), {}, class: "form-control" %>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-group">
+      <%= f.label :amount, "Valor" %>
+      <%= f.number_field :amount, class: "form-control" %>
+      <div class="help-block">Total incluídos impuestos</div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-group">
+      <%= f.label :tax_percentage %>
+      <%= f.number_field :tax_percentage, class: "form-control" %>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-group">
+      <%= f.label :tax %>
+      <%= f.number_field :tax, class: "form-control", step: 0.01 %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-group">
+      <%= f.label :status, "Estado" %>
+      <%= f.select :status, [["Pagada", "paid"], ["Creada", "created"], ["Pendiente", "pending"], ["Rechazada", "rejected"], ["Error", "error"]], {}, class: "form-control" %>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="form-group">
+  <%= f.label :customer_name, "Facturar a nombre de:" %>
+  <%= f.text_field :customer_name, class: "form-control" %>
+</div>
+<div class="form-group">
+  <%= f.label :customer_email, "Email:" %>
+  <%= f.text_field :customer_email, class: "form-control" %>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-group">
+      <%= f.label :customer_id_type, "Tipo de documento" %>
+      <%= f.select :customer_id_type, options_for_select(["CC", "CE", "Nit"]), {}, class: "form-control" %>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-group">
+      <%= f.label :customer_id, "Número de documento" %>
+      <%= f.text_field :customer_id, class: "form-control" %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-group">
+      <%= f.label :customer_country, "Pais" %>
+      <%= f.select :customer_country, countries_options, {}, class: "form-control" %>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-group">
+      <%= f.label :customer_id, "Número Móvil" %>
+      <%= f.text_field :customer_mobile, class: "form-control" %>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :address, "Dirección" %>
+  <%= f.text_field :customer_address, class: "form-control" %>
+</div>
+
+<script>
+  function updateTax() {
+    var taxPercentage = new Number($('#billing_charge_tax_percentage').val());
+    var amount = new Number($('#billing_charge_amount').val());
+    var tax = (taxPercentage * amount) / (1 + taxPercentage);
+    $('#billing_charge_tax').val(tax.toFixed(2));
+  }
+
+  $('#billing_charge_amount').on('change', updateTax);
+  $('#billing_charge_tax_percentage').on('change', updateTax);
+</script>

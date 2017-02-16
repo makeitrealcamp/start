@@ -41,13 +41,14 @@ class Billing::Charge < ActiveRecord::Base
     attempts: :integer,
     epayco_customer_id: :string,
     ip: :string,
-    epayco_ref: :string
+    epayco_ref: :string,
+    coupon: :string
 
   enum payment_method: [:credit_card, :pse, :deposit]
   enum status: [:created, :pending, :paid, :rejected, :error]
 
   before_create :generate_uid
-  before_create :default_values
+  after_initialize :default_values
 
   private
     def generate_uid
@@ -57,6 +58,9 @@ class Billing::Charge < ActiveRecord::Base
     end
 
     def default_values
-      self.attempts ||= 0;
+      self.attempts ||= 0
+      self.amount ||= 0
+      self.tax_percentage ||= 0.19
+      self.tax ||= 0
     end
 end

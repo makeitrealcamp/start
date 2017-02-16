@@ -35,6 +35,12 @@
                 <span class="field-label">Método de Pago</span>
                 <span class="field-value"><%= payment_method(@charge) %></span>
               </div>
+              <% if @charge.coupon %>
+                <div class="field">
+                  <span class="field-label">Cupón de descuento</span>
+                  <span class="field-value"><%= @charge.coupon %></span>
+                </div>
+              <% end %>
             </div>
             <div class="col-sm-6 text-right">
               <div class="field">
@@ -60,7 +66,7 @@
           <% if @charge.created? && @charge.deposit? %>
             <div class="payment-instructions">
               <h3>Instrucciones de Pago</h3>
-              <p>Realiza una consignación o transferencia a la <strong>Cuenta de Ahorros</strong> número <strong>379-284940-56</strong> de <strong>Bancolombia</strong> a nombre de <strong>La Nueva Educación SAS</strong> (Nit 900.752.738-8) por valor de <strong>$299,000 pesos colombianos</strong>.</p>
+              <p>Realiza una consignación o transferencia a la <strong>Cuenta de Ahorros</strong> número <strong>379-284940-56</strong> de <strong>Bancolombia</strong> a nombre de <strong>La Nueva Educación SAS</strong> (Nit 900.752.738-8) por valor de <strong><%= @charge.currency %> <%= number_to_currency @charge.amount, precision: 0 %></strong>.</p>
               <p>Envía el comprobante a <a href="mailto:info@makeitreal.camp">info@makeitreal.camp</a> con el código de referencia: <strong><%= @charge.uid %></strong>.</p>
               <p style="color: #666;"><strong>Nota: </strong> Asegúrate de realizar el pago antes de la fecha límite o de lo contrario el precio podría cambiar.</p>
             </div>

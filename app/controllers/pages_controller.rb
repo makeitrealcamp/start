@@ -4,6 +4,16 @@ class PagesController < ApplicationController
   def home
   end
 
+  def react_redux
+    @valid_coupon = false
+    if params[:coupon].present?
+      @coupon = Billing::Coupon.where(name: params[:coupon]).take
+      if @coupon && @coupon.expires_at > DateTime.current
+        @valid_coupon = true
+      end
+    end
+  end
+
   def handbook
     client = Octokit::Client.new(
       client_id:     ENV['GITHUB_KEY'],

@@ -1,0 +1,19 @@
+<div class="container charge-form">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <h1>Actualizar Pago</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <%= form_for @charge, url: { controller: "admin/charges", action: :update } do |f| %>
+        <%= render 'form', f: f %>
+
+        <div class="actions text-right">
+          <%= f.submit "Actualizar Pago", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

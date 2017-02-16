@@ -1,7 +1,7 @@
 class Billing::ChargesController < ApplicationController
 
   def create
-    charge = Billing::Charge.create!(charge_params.merge(description: "Curso de React y Redux", amount: 299000, tax: 47730, tax_percentage: 0.19, currency: "COP", ip: request.remote_ip))
+    charge = Billing::Charge.create!(charge_params.merge(charge_data))
 
     send_pending_email(charge)
     ChargeJob.perform_later(charge.id) if charge.credit_card?
@@ -25,7 +25,29 @@ class Billing::ChargesController < ApplicationController
 
   private
     def charge_params
-      params.require(:charge).permit(:first_name, :last_name, :email, :payment_method, :card_token, :customer_name, :customer_id_type, :customer_id, :customer_country, :customer_email, :customer_mobile, :customer_address)
+      params.require(:charge).permit(:first_name, :last_name, :email,
+          :payment_method, :card_token, :customer_name, :customer_id_type,
+          :customer_id, :customer_country, :customer_email,
+          :customer_mobile, :customer_address)
+    end
+
+    def charge_data
+      amount = 299000
+      tax = 47730
+
+      if params[:coupon].present?
+        coupon = Billing::Coupon.where(name: params[:coupon]).take
+        if coupon && coupon.is_valid?
+          amount = 149000
+          tax = 23865
+        end
+      end
+
+      data = { description: "Curso de React y Redux", amount: amount, tax: tax, tax_percentage: 0.19, currency: "COP", ip: request.remote_ip }
+      if params[:coupon].present? && coupon.is_valid?
+        data[:coupon] = params[:coupon]
+      end
+      data
     end
 
     def send_pending_email(charge)

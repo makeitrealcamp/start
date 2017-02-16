@@ -155,4 +155,30 @@ module ApplicationHelper
     SHA1.encode(text)
   end
 
+  def countries_options
+    options_for_select([
+      ["País de residencia *", ""],
+      ["Argentina", "AR", { data: { code: "54" } }],
+      ["Bolivia", "BO", { data: { code: "591" } }],
+      ["Chile", "CL", { data: { code: "56" } }],
+      ["Colombia", "CO", { data: { code: "57" } }],
+      ["Costa Rica", "CR", { data: { code: "506" } }],
+      ["Ecuador", "EC", { data: { code: "593" } }],
+      ["El Salvador", "SV", { data: { code: "503" } }],
+      ["España", "ES", { data: { code: "34" } }],
+      ["Estados Unidos", "US", { data: { code: "1" } }],
+      ["Guatemala", "GT", { data: { code: "502" } }],
+      ["Honduras", "HN", { data: { code: "504" } }],
+      ["México", "MX", { data: { code: "52" } }],
+      ["Nicaragua", "NI", { data: { code: "505" } }],
+      ["Panamá", "PA", { data: { code: "507" } }],
+      ["Paraguay", "PY", { data: { code: "595" } }],
+      ["Perú", "PE", { data: { code: "51" } }],
+      ["Puerto Rico", "PR", { data: { code: "1" } }],
+      ["República Dominicana", "DO", { data: { code: "1" } }],
+      ["Uruguay", "UY", { data: { code: "598" } }],
+      ["Venezuela", "VE", { data: { code: "58" } }],
+    ], "")
+  end
+
 end

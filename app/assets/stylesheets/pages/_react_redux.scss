@@ -19,22 +19,27 @@
     }
 
     .header-info {
-      padding: 10px;
+      padding: 5px 10px;
       margin-left: 15px;
 
       h3 {
         font-size: 21px;
         margin-top: 0;
-        margin-bottom: 10px;
+        margin-bottom: 7px;
       }
 
-      p {
+      p.price {
         color: $brand_primary;
         font-size: 18px;
         font-weight: 600;
         margin-bottom: 0;
 
         small { font-weight: normal; }
+
+        .old-price {
+          text-decoration: line-through;
+          opacity: 0.5;
+        }
       }
     }
 
@@ -217,6 +222,11 @@
         .price-tag {
           font-size: 24px;
           text-align: center;
+
+          .old-price {
+            text-decoration: line-through;
+            opacity: 0.5;
+          }
         }
 
       }

@@ -1,6 +1,7 @@
 <div class="container charges-page">
   <div class="charges-page-header">
     <h1>Pagos</h1>
+    <%= link_to "Registrar Pago", new_admin_charge_path, class: "btn btn-primary" %>
   </div>
 
   <div class="row">
@@ -11,6 +12,7 @@
             <th>Referencia</th>
             <th>Estudiante</th>
             <th>Descripción</th>
+            <th>Cupón</th>
             <th>Estado</th>
             <th>Fecha de Creación</th>
             <th></th>
@@ -28,6 +30,7 @@
                 <%= charge.description %>
                 <span class="small"><%= "#{charge.currency} #{number_to_currency(charge.amount, precision: 0)}" %></span>
               </td>
+              <td><%= charge.coupon %></td>
               <td>
                 <%= admin_status(charge) %>
                 <span class="small"><%= admin_payment_method(charge) %></span>

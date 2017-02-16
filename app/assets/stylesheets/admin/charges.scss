@@ -1,4 +1,10 @@
 .charges-page {
+  .charges-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   .charges-table {
     td {
       background: white;
@@ -14,4 +20,8 @@
       font-size: 14px;
     }
   }
+}
+
+.charge-form {
+  margin-bottom: 80px;
 }

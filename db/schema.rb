@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170212040607) do
+ActiveRecord::Schema.define(version: 20170215050048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,14 @@ ActiveRecord::Schema.define(version: 20170212040607) do
   end
 
   add_index "billing_charges", ["user_id"], name: "index_billing_charges_on_user_id", using: :btree
+
+  create_table "billing_coupons", force: :cascade do |t|
+    t.string   "name",       limit: 30
+    t.decimal  "discount"
+    t.datetime "expires_at",            null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
 
   create_table "challenge_completions", force: :cascade do |t|
     t.integer  "user_id"

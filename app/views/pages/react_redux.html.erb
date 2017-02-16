@@ -64,8 +64,18 @@
           </div>
 
           <div class="aside inverted">
-            <p class="text-center">Aprovecha nuestro precio de lanzamiento!</p>
-            <p class="price-tag">$299,000*</p>
+            <% if @valid_coupon %>
+              <p class="text-center">Esta promoción expira en <%= distance_of_time_in_words(DateTime.current, @coupon.expires_at) %>!</p>
+            <% else %>
+              <p class="text-center">Aprovecha este precio de lanzamiento!</p>
+            <% end %>
+            <p class="price-tag">
+              <% if @valid_coupon %>
+                <span class="old-price">$299,000</span> $149,000*
+              <% else %>
+                $299,000
+              <% end %>
+            </p>
 
             <div class="action-wrapper text-center">
               <button class="btn btn-primary btn-register">COMPRAR ESTE CURSO</button>
@@ -193,7 +203,7 @@
 
           <section class="question">
             <h3>¿Por qué no cobran una suscripción mensual?</h3>
-            <p>Porque valoramos la calidad por encima de la cantidad. En vez de tener mucho cursos de baja calidad preferimos enfocarnos en unos pocos cursos de la más alta calidad que mejoremos contínuamente.</p>
+            <p>Porque valoramos la calidad por encima de la cantidad. En vez de tener mucho cursos de baja calidad preferimos enfocarnos en unos pocos cursos de la más alta calidad.</p>
           </section><!--/question -->
 
           <section class="question">
@@ -231,7 +241,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-10 col-sm-offset-1 text-center">
-          <p class="subhead">Aprovecha nuestro precio de lanzamiento de tan solo COP$299,000. Te garantizamos la educación de la más alta calidad! </p>
+          <p class="subhead">Aprovecha nuestro precio de lanzamiento. Te garantizamos la educación de la más alta calidad!</p>
           <button class="btn btn-primary btn-register">¡TOMA ESTE CURSO AHORA!</a>
         </div>
       </div>
@@ -249,7 +259,11 @@
           </div>
           <div class="header-info">
             <h3>Curso de React y Redux</h3>
-            <p>$299,000 <small>COP</small></p>
+            <% if @valid_coupon %>
+              <p class="price"><span class="old-price">$299,000</span> $149,000 <small>COP</small></p>
+            <% else %>
+              <p class="price">$299,000 <small>COP</small></p>
+            <% end %>
           </div>
         </div>
 
@@ -418,6 +432,9 @@
             <button type="button" class="btn btn-primary btn-lg next">Continuar</button>
             <button type="button" class="btn btn-primary btn-lg finish" style="display: none;">FINALIZAR</button>
           </div>
+          <% if @valid_coupon %>
+            <input type="hidden" name="coupon" value="<%= @coupon.name %>">
+          <% end %>
         </form>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

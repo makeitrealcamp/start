@@ -174,7 +174,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :charges, only: [:index, :show, :destroy]
+    resources :charges
 
     resources :badges
     resources :levels
