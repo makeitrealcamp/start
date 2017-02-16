@@ -41,6 +41,7 @@ class ChargeJob < ActiveJob::Base
     logger.info result.inspect
     if !result["success"]
       charge.update(status: :error, error_message: "#{result["message"]}. #{result["data"]["description"]}")
+      # we don't send email when an error happen, usually the payment processor inform us
     else
       handle_valid_charge(charge, result)
     end
@@ -79,7 +80,7 @@ class ChargeJob < ActiveJob::Base
       dues: "12"
     }
 
-    attrs[:test] = "TRUE" if Rails.env.development?
+    attrs[:test] = "TRUE" unless Rails.env.production?
 
     HTTParty.post("https://api.secure.payco.co/payment/v1/charge/create",
         body: attrs.to_json,
@@ -89,27 +90,8 @@ class ChargeJob < ActiveJob::Base
   def handle_valid_charge(charge, result)
     if result["data"]["estado"] == "Aceptada"
       charge.update(status: :paid, epayco_ref: result["data"]["ref_payco"])
-
-      user = User.where(email: charge.email).take
-      unless user
-        user = User.create!(email: charge.email,
-                            first_name: charge.first_name,
-                            last_name: charge.last_name,
-                            status: :created,
-                            account_type: :paid_account,
-                            access_type: :password)
-      end
-      path = Path.find(ENV['REACT_REDUX_PATH_ID'])
-      user.paths << path
-
-      charge.update!(user: user)
-
-      user.send_course_welcome_email(charge)
-      ConvertLoop.people.create_or_update(email: charge.email, add_tags: ["React Redux"])
     elsif result["data"]["estado"] == "Rechazada" || result["data"]["estado"] == "Fallida"
       charge.update(status: :rejected, error_message: result["data"]["respuesta"])
-
-      SubscriptionsMailer.charge_rejected(charge).deliver_later
     end
   end
 end

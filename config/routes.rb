@@ -156,7 +156,7 @@ Rails.application.routes.draw do
 
   namespace :billing do
     resources :charges, only: [:create, :update, :show] do
-      post :confirm, on: :collection
+      post 'response', to: 'charges#confirm', on: :collection
     end
   end
 
