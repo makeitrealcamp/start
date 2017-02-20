@@ -43,4 +43,33 @@ RSpec.feature "Pages", type: :feature do
     expect(email.to).to include "carolina.hernandez@makeitreal.camp"
     expect(email.subject).to include "[Nuevo Lead Full Stack Online]"
   end
+
+  scenario "attemp to buy react-redux course with deposit", js: true do
+    ActionMailer::Base.deliveries.clear
+    visit cursos_react_redux_path
+
+    first('.btn-register').click
+
+    expect(page).to have_selector '#registration-modal'
+
+    fill_in "first-name", with: "Pedro"
+    fill_in "last-name", with: "Perez"
+    fill_in "email", with: "lead@example.com"
+    choose("Transferencia o depósito")
+
+    click_button "Continuar"
+
+    expect(page).to have_selector '.step-3'
+
+    fill_in "customer-id", with: "1234567"
+    select "Colombia", from: 'country'
+    fill_in "mobile", with: "123456789"
+    fill_in "invoice-address", with: "Cll 12 # 13 - 25"
+    click_button "FINALIZAR"
+
+    charge = Billing::Charge.last
+    expect(charge).to_not be_falsy
+
+    expect(current_path).to eq billing_charge_path(id: charge.uid)
+  end
 end

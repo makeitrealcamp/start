@@ -24,27 +24,15 @@ class Billing::ChargesController < ApplicationController
   def confirm
     @charge = Billing::Charge.where(uid: params[:x_id_invoice]).take
     if @charge.nil?
-      @error = "Error"
       render nothing: true, status: :unprocessable_entity
       return
     end
 
-    msg = "#{params[:x_cust_id_cliente]}^#{ENV['EPAYCO_SECRET']}^#{params[:x_ref_payco]}^#{params[:x_transaction_id]}^#{params[:x_amount]}^#{params[:x_currency_code]}"
-    signature = Digest::SHA256.hexdigest msg
-
-    data = {
-      epayco_approval_code: params[:x_approval_code],
-      epayco_transaction_date: params[:x_transaction_date],
-      epayco_franchise: params[:x_franchise],
-      epayco_card_number: params[:x_cardnumber],
-      epayco_bank_name: params[:x_bank_name]
-    }
-
     if signature == params[:x_signature]
       if params[:x_cod_response] == "1"
-        @charge.update!(data.merge(status: :paid))
+        @charge.update!(epayco_data.merge(status: :paid))
       elsif params[:x_cod_response] == "2" || params[:x_cod_response] == "4"
-        @charge.update!(data.merge(status: :rejected, error_message: params[:x_response_reason_text]))
+        @charge.update!(epayco_data.merge(status: :rejected, error_message: params[:x_response_reason_text]))
       else
         render nothing: true, status: :unprocessable_entity
         return
@@ -62,6 +50,21 @@ class Billing::ChargesController < ApplicationController
           :payment_method, :card_token, :customer_name, :customer_id_type,
           :customer_id, :customer_country, :customer_email,
           :customer_mobile, :customer_address)
+    end
+
+    def epayco_data
+      {
+        epayco_approval_code: params[:x_approval_code],
+        epayco_transaction_date: params[:x_transaction_date],
+        epayco_franchise: params[:x_franchise],
+        epayco_card_number: params[:x_cardnumber],
+        epayco_bank_name: params[:x_bank_name]
+      }
+    end
+
+    def signature
+      msg = "#{params[:x_cust_id_cliente]}^#{ENV['EPAYCO_SECRET']}^#{params[:x_ref_payco]}^#{params[:x_transaction_id]}^#{params[:x_amount]}^#{params[:x_currency_code]}"
+      Digest::SHA256.hexdigest msg
     end
 
     def charge_data
