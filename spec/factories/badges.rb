@@ -17,7 +17,7 @@ FactoryGirl.define do
   factory :badge do
     name { Faker::Name.title }
     description { Faker::Lorem.paragraph }
-    image_url Faker::Avatar.image
+    image_url "/test.png"
     giving_method "manually"
 
     factory :points_badge do
