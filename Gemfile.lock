@@ -153,6 +153,8 @@ GEM
       domain_name (~> 0.5)
     http-form_data (1.0.1)
     http_parser.rb (0.6.0)
+    httparty (0.14.0)
+      multi_xml (>= 0.5.2)
     httpclient (2.8.2.4)
     i18n (0.7.0)
     ice_nine (0.11.2)
@@ -398,6 +400,7 @@ DEPENDENCIES
   gravatar-ultimate
   gretel
   hstore_accessor
+  httparty
   jbuilder (~> 2.0)
   jquery-rails
   json-schema

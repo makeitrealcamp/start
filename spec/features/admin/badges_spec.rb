@@ -13,7 +13,7 @@ RSpec.feature "Badges management", type: :feature do
 
     name = Faker::Name::name
     description = Faker::Lorem.paragraph
-    image_url =  Faker::Avatar.image
+    image_url = "/test.png"
     required_points = 100
     expect {
       fill_in 'badge_name', with: name
@@ -48,7 +48,7 @@ RSpec.feature "Badges management", type: :feature do
 
     name = Faker::Name::name
     description = Faker::Lorem.paragraph
-    image_url =  Faker::Avatar.image
+    image_url = "/test.png"
     required_points = 100
     fill_in 'badge_name', with: name
     fill_in 'badge_description', with: description

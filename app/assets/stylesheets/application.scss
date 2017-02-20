@@ -31,6 +31,7 @@ $grid-float-breakpoint: 810px;
 @import "notifications";
 @import "paths";
 @import "admin/dashboard";
+@import "admin/charges";
 @import "admin/users";
 @import "admin/solutions";
 @import "admin/badges";
@@ -40,6 +41,7 @@ $grid-float-breakpoint: 810px;
 @import "quizer/quiz_attempt";
 @import "datepicker";
 @import "intlTelInput";
+@import "billing/charges";
 
 html, body{
 

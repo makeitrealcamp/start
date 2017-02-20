@@ -1,0 +1,46 @@
+<div class="container charges-page">
+  <div class="charges-page-header">
+    <h1>Pagos</h1>
+    <%= link_to "Registrar Pago", new_admin_charge_path, class: "btn btn-primary" %>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table charges-table">
+        <thead>
+          <tr>
+            <th>Referencia</th>
+            <th>Estudiante</th>
+            <th>Descripción</th>
+            <th>Cupón</th>
+            <th>Estado</th>
+            <th>Fecha de Creación</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @charges.each do |charge| %>
+            <tr>
+              <td><%= charge.uid %></td>
+              <td>
+                <%= "#{charge.first_name} #{charge.last_name}" %>
+                <span class="small"><%= charge.email %></span>
+              </td>
+              <td>
+                <%= charge.description %>
+                <span class="small"><%= "#{charge.currency} #{number_to_currency(charge.amount, precision: 0)}" %></span>
+              </td>
+              <td><%= charge.coupon %></td>
+              <td>
+                <%= admin_status(charge) %>
+                <span class="small"><%= admin_payment_method(charge) %></span>
+              </td>
+              <td><%= l charge.created_at, format: "%d/%m/%Y %I:%M %p" %></td>
+              <td><%= link_to '<span class="glyphicon glyphicon-search" aria-hidden="true"></span>'.html_safe, admin_charge_path(charge) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

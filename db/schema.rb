@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161023052925) do
+ActiveRecord::Schema.define(version: 20170215050048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,31 @@ ActiveRecord::Schema.define(version: 20161023052925) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "giving_method"
+  end
+
+  create_table "billing_charges", force: :cascade do |t|
+    t.string   "uid",            limit: 50
+    t.integer  "user_id"
+    t.integer  "payment_method",            default: 0
+    t.integer  "status",                    default: 0
+    t.string   "currency",       limit: 5
+    t.decimal  "amount"
+    t.decimal  "tax"
+    t.decimal  "tax_percentage"
+    t.string   "description"
+    t.hstore   "details"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "billing_charges", ["user_id"], name: "index_billing_charges_on_user_id", using: :btree
+
+  create_table "billing_coupons", force: :cascade do |t|
+    t.string   "name",       limit: 30
+    t.decimal  "discount"
+    t.datetime "expires_at",            null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "challenge_completions", force: :cascade do |t|
@@ -407,6 +432,7 @@ ActiveRecord::Schema.define(version: 20161023052925) do
 
   add_foreign_key "activity_logs", "users"
   add_foreign_key "auth_providers", "users"
+  add_foreign_key "billing_charges", "users"
   add_foreign_key "challenge_completions", "challenges"
   add_foreign_key "challenge_completions", "users"
   add_foreign_key "challenges", "subjects"

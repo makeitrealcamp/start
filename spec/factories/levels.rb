@@ -14,6 +14,6 @@ FactoryGirl.define do
   factory :level do
     name "Level X"
     required_points 0
-    image_url { Faker::Avatar.image }
+    image_url "/test.png"
   end
 end

@@ -1,0 +1,27 @@
+.charges-page {
+  .charges-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .charges-table {
+    td {
+      background: white;
+      vertical-align: top;
+
+      &:first-child { border-left: 1px solid #ddd; }
+      &:last-child { border-right: 1px solid #ddd; }
+    }
+
+    .small {
+      display: block;
+      color: #999;
+      font-size: 14px;
+    }
+  }
+}
+
+.charge-form {
+  margin-bottom: 80px;
+}

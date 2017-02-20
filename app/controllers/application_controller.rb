@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :record_user_activity
-  before_action :set_content_language
+  after_action :set_content_language
 
   def sign_in(user)
     cookies.permanent.signed[:user_id] = user.id
