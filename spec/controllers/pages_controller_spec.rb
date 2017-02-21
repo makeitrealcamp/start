@@ -15,6 +15,20 @@ RSpec.describe PagesController, type: :controller do
     end
   end
 
+  describe "GET #full_stack_medellin" do
+    it "responds with status code 200" do
+      get :full_stack_medellin
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
+  describe "GET #full_stack_bogota" do
+    it "responds with status code 200" do
+      get :full_stack_bogota
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
   describe "GET #react_redux" do
     it "responds with status code 200" do
       get :react_redux
