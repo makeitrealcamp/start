@@ -53,7 +53,7 @@ class ProjectSolution < ActiveRecord::Base
   end
 
   def to_path
-    "#{project.to_path}"
+    "#{self.project.to_path}/project_solutions/#{self.id}"
   end
 
   def to_html_link
@@ -61,7 +61,7 @@ class ProjectSolution < ActiveRecord::Base
   end
 
   def to_html_description
-    "la #{to_html_link} del curso #{project.subject.to_html_link}"
+    "la #{self.to_html_link} del curso #{self.project.subject.to_html_link}"
   end
 
   private

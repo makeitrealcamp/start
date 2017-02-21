@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-  get 'charges/index'
-  end
-
   root 'pages#home'
 
   get "curriculum", to: "pages#curriculum"
