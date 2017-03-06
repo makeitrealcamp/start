@@ -107,7 +107,8 @@ class PagesController < ApplicationController
         country: params['country'],
         mobile: params['mobile'],
         skype: params['skype'],
-        twitter: params['twitter']
+        twitter: params['twitter'],
+        portafolio_url: params['portafolio_url']
       },
       metadata: {
         scholarship: "Women March 2017",
