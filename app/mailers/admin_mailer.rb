@@ -12,6 +12,12 @@ class AdminMailer < ApplicationMailer
     mail to: "carolina.hernandez@makeitreal.camp", subject: "[Nuevo Lead #{program}] #{first_name} #{last_name} (#{country}: #{mobile})"
   end
 
+  def new_scholarship(data)
+    @data = data
+
+    mail to: "diana.vanegas@makeitreal.camp", subject: "[Beca] #{@data[:person][:first_name]} #{@data[:person][:last_name]}"
+  end
+
   def new_comment(email, admin, comment)
     @user = admin
     @comment = comment

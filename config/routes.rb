@@ -17,11 +17,13 @@ Rails.application.routes.draw do
   get "faq", to: "pages#faq"
   get "makers", to: "pages#makers"
   get "scholarships", to: "pages#scholarships"
+  post "scholarships", to: "pages#create_scholarship_application"
   get "thanks-front-end-bootcamp", to: "pages#thanks_bootcamp"
   get "thanks-front-end-online", to: "pages#thanks_online"
   get "thanks-full-stack-online", to: "pages#thanks_online"
   get "thanks-full-stack-medellin", to: "pages#thanks_full_stack_medellin"
   get "thanks-full-stack-bogota", to: "pages#thanks_full_stack_bogota"
+  get "thanks-scholarships", to: "pages#thanks_scholarships"
   get "como-convertirte-en-web-developer", to: "pages#web_developer_guide", as: :web_developer_guide
   post "como-convertirte-en-web-developer", to: "pages#send_web_developer_guide"
   get "download-web-developer-guide", to: "pages#download_web_developer_guide", as: :download_web_developer_guide
