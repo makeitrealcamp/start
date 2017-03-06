@@ -95,6 +95,34 @@ class PagesController < ApplicationController
     redirect_to "/thanks-full-stack-bogota"
   end
 
+  def create_scholarship_application
+    data = {
+      name: "filled-scholarship-form",
+      person: {
+        pid: cookies[:dp_pid],
+        email: params['email'],
+        first_name: params['first-name'],
+        last_name: params['last-name'],
+        age: params['age'],
+        country: params['country'],
+        mobile: params['mobile'],
+        skype: params['skype'],
+        twitter: params['twitter']
+      },
+      metadata: {
+        scholarship: "Women March 2017",
+        ip: request.remote_ip,
+        application_reason: params['application_reason'],
+        experience: params['experience'],
+        more_info: params['more_info']
+      }
+    }
+
+    ConvertLoopJob.perform_later(data)
+    AdminMailer.new_scholarship(data).deliver_later
+    redirect_to "/thanks-scholarships"
+  end
+
   def send_web_developer_guide
     subscriber = SubscriberForm.new(params)
 

@@ -1,0 +1,23 @@
+<p>Hola Dianis,</p>
+
+<p>Una persona aplicó a la beca <strong><%= @data[:metadata][:scholarship] %></strong>. Sus datos son los siguientes:</p>
+
+<ul>
+  <li><strong>Nombre:</strong> <%= @data[:person][:first_name] %></li>
+  <li><strong>Apellido:</strong> <%= @data[:person][:last_name] %></li>
+  <li><strong>Email:</strong> <%= @data[:person][:email] %></li>
+  <li><strong>País:</strong> <%= @data[:person][:country] %></li>
+  <li><strong>Móvil:</strong> <%= @data[:person][:mobile] %></li>
+  <li><strong>Skype:</strong> <%= @data[:person][:skype] %></li>
+  <li><strong>Twitter:</strong> <%= @data[:person][:twitter] %></li>
+  <li><strong>Edad:</strong> <%= @data[:person][:age] %></li>
+  <li><strong>Razón para aplicar:</strong> <%= @data[:metadata][:application_reason] %></li>
+  <li><strong>Experiencia:</strong> <%= @data[:metadata][:experience] %></li>
+  <li><strong>Más Info:</strong> <%= @data[:metadata][:more_info] %></li>
+</ul>
+
+<p>&nbsp;</p>
+<p>Cordial Saludo,</p>
+
+<p class="signature">Plataforma de Aprendizaje<br>
+makeitreal.camp</p>
