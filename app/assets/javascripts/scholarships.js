@@ -129,6 +129,11 @@
       isValid = false;
     }
 
+    if (!validateField($('#portafolio-url'), isBlank, "Campo requerido")) {
+      $('#portafolio-url').one('change', validateForm);
+      isValid = false;
+    }
+
     if (!validateField($('#more-info'), isBlank, "Campo requerido")) {
       $('#more-info').one('change', validateForm);
       isValid = false;
