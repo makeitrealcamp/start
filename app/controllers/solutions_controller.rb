@@ -30,6 +30,10 @@ class SolutionsController < ApplicationController
   end
 
   def preview
+    response.headers["Cache-Control"] = "no-cache, no-store"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+    
     solution = Solution.find(params[:id]).documents.where(name: params[:file]).take
     if solution
       render text: solution.content, content_type: content_type_file(params[:file])
