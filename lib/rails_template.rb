@@ -3,5 +3,6 @@ gem_group :test do
   gem 'shoulda-matchers', github: 'germanescobar/shoulda-matchers'
   gem 'capybara', '~> 2.12.1'
   gem "selenium-webdriver", '~>2.45.0'
+  gem 'poltergeist'
   gem 'phantomjs', github: 'germanescobar/phantomjs-gem', require: 'phantomjs/poltergeist'
 end
