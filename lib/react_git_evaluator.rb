@@ -11,7 +11,7 @@ class ReactGitEvaluator < BaseDockerEvaluator
     repo = "https://github.com/#{solution.repository}"
     command = [
       "docker", "run", "-d", "-v", "#{tmp_path}:#{container_path}",
-      "-v", "#{prefix_path}/npm-cache:/ukku/npm-cache",
+      "-v", "#{prefix_path}/yarn-cache:/ukku/yarn-cache",
       "makeitrealcamp/mir-evaluator", "/bin/bash", "-c", "-l", "'/root/react.sh #{repo}'"]
 
     execution = DockerExecution.new(command.join(" "), solution.challenge.timeout)
