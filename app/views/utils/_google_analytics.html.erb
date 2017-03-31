@@ -11,6 +11,8 @@
     window.optimizely = window.optimizely || [];
     window.optimizely.push("activateUniversalAnalytics");
 
-    ga('send', 'pageview');
+    ga('send', 'pageview', {
+      'dimension2': '<%= signed_in? ? "true" : "false" %>'
+    });
   </script>
 <% end %>
