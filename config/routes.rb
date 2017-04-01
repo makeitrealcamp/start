@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   post "full-stack-medellin", to: "pages#create_full_stack_medellin_lead"
   get "full-stack-bogota", to: "pages#full_stack_bogota"
   post "full-stack-bogota", to: "pages#create_full_stack_bogota_lead"
+  get "full-stack-barranquilla", to: "pages#full_stack_barranquilla"
+  post "full-stack-barranquilla", to: "pages#create_full_stack_barranquilla_lead"
   get "full_stack_web_developer", to: redirect('/full-stack-online')
   get "front_end_web_developer", to: redirect('/front-end-online')
   get "cursos/react-redux", to: "pages#react_redux"
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
   get "thanks-full-stack-online", to: "pages#thanks_online"
   get "thanks-full-stack-medellin", to: "pages#thanks_full_stack_medellin"
   get "thanks-full-stack-bogota", to: "pages#thanks_full_stack_bogota"
+  get "thanks-full-stack-barranquilla", to: "pages#thanks_full_stack_barranquilla"
   get "thanks-scholarships", to: "pages#thanks_scholarships"
   get "como-convertirte-en-web-developer", to: "pages#web_developer_guide", as: :web_developer_guide
   post "como-convertirte-en-web-developer", to: "pages#send_web_developer_guide"
