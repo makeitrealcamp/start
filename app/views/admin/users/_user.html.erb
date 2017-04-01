@@ -3,7 +3,14 @@
     <span class="name"><%= link_to full_name(user), admin_user_path(user) %></span>
     <span class="email"><%= user.email %><% if user.password? %> <i class="fa fa-key" data-toggle="tooltip" data-placement="bottom" title="Este usuario accede con email y contraseña"></i><% end %> <% if user.is_admin? %><span class="label label-secondary">Admin</span><% end %></span>
   </td>
-  <td class="user-status"><%= status(user) %></td>
+  <td class="user-status">
+    <span> <%= status(user) %></span>
+    <% if user.activated_at %>
+      <span class="date"> Desde <%= l user.activated_at,format: "%d/%m/%Y"  %></span>
+    <% end %>
+    
+  </td>
+
   <td><%= user.paths.pluck(:name).join(", ") %></td>
   <td class="text-center"><%= distance_of_time_in_words_to_now(user.last_active_at) unless user.last_active_at.nil? %></td>
   <td class="text-center">
