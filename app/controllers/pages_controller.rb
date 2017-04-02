@@ -95,6 +95,22 @@ class PagesController < ApplicationController
     redirect_to "/thanks-full-stack-bogota"
   end
 
+  def create_full_stack_barranquilla_lead
+    data = {
+      pid: cookies[:dp_pid],
+      program: "Full Stack Barranquilla",
+      event: "filled-full-stack-barranquilla-form",
+      first_name: params['first-name'],
+      last_name: params['last-name'],
+      email: params['email'],
+      country: "CO",
+      mobile: params['mobile'],
+      ip: request.remote_ip
+    }
+    CreateLeadJob.perform_later(data)
+    redirect_to "/thanks-full-stack-barranquilla"
+  end
+
   def create_scholarship_application
     data = {
       name: "filled-scholarship-form",

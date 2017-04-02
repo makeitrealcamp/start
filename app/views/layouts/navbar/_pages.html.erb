@@ -48,6 +48,12 @@
                   <span class="text-menu">Full Stack en <strong>Medellín</strong></span>
                 <% end %>
               </li>
+              <li class="<%= 'active' if params[:action] == 'full_stack_barranquilla' %>">
+                <%= link_to full_stack_barranquilla_path do %>
+                  <span class="icon-menu"><%= image_tag "full-stack-red.png", height: 25 %></span>
+                  <span class="text-menu">Full Stack en <strong>Barranquilla</strong></span>
+                <% end %>
+              </li>
             </ul>
           </li>
           <li class="<%= 'active' if params[:action] == 'makers' %>"><%= link_to "Alumnos", makers_path %></li>
