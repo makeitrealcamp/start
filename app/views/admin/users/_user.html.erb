@@ -4,11 +4,10 @@
     <span class="email"><%= user.email %><% if user.password? %> <i class="fa fa-key" data-toggle="tooltip" data-placement="bottom" title="Este usuario accede con email y contraseña"></i><% end %> <% if user.is_admin? %><span class="label label-secondary">Admin</span><% end %></span>
   </td>
   <td class="user-status">
-    <span> <%= status(user) %></span>
+    <span><%= status(user) %></span>
     <% if user.activated_at %>
-      <span class="date"> Desde <%= l user.activated_at,format: "%d/%m/%Y"  %></span>
+      <span class="date">Desde <%= l user.activated_at, format: "%d/%m/%Y" %></span>
     <% end %>
-    
   </td>
 
   <td><%= user.paths.pluck(:name).join(", ") %></td>
