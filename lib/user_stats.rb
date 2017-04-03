@@ -60,7 +60,7 @@ class UserStats
   end
 
   def total_points
-    @user.points.sum(:points)
+    @user.points.sum(:points) 
   end
 
   def points_per_subject(subject)

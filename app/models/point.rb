@@ -27,6 +27,7 @@ class Point < ActiveRecord::Base
   after_create :notify_user
   after_create :check_user_level!
   after_create :check_user_badges!
+  after_create :add_points_to_user
 
   private
 
@@ -48,5 +49,9 @@ class Point < ActiveRecord::Base
 
     def notify_user
       user.notifications.create!(notification_type: :points_earned, data: {point_id: self.reload.id})
+    end
+
+    def add_points_to_user
+      self.user.update(current_points: self.user.points.sum(:points))
     end
 end
