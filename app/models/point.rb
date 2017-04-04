@@ -24,15 +24,22 @@ class Point < ActiveRecord::Base
 
   validates :user, presence: true
 
-  after_create :notify_user
-  after_create :check_user_level!
-  after_create :check_user_badges!
-  after_create :add_points_to_user
+  after_create :handle_after_create
 
   private
+    def handle_after_create
+      add_points_to_user
+      check_user_level!
+      check_user_badges!
+      notify_user
+    end
+
+    def add_points_to_user
+      self.user.update(current_points: self.user.points.sum(:points))
+    end
 
     def check_user_level!
-      new_level = Level.for_points(user.stats.total_points)
+      new_level = Level.for_points(self.user.current_points)
       unless new_level.nil?
         user.level = new_level
         user.save!
@@ -48,10 +55,6 @@ class Point < ActiveRecord::Base
     end
 
     def notify_user
-      user.notifications.create!(notification_type: :points_earned, data: {point_id: self.reload.id})
-    end
-
-    def add_points_to_user
-      self.user.update(current_points: self.user.points.sum(:points))
+      user.notifications.create!(notification_type: :points_earned, data: { point_id: self.reload.id })
     end
 end
