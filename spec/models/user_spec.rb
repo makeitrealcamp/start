@@ -15,6 +15,7 @@
 #  level_id        :integer
 #  password_digest :string
 #  access_type     :integer          default(0)
+#  current_points  :integer          default(0)
 #
 # Indexes
 #

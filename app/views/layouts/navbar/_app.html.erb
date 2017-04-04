@@ -38,7 +38,7 @@
             <% end %>
             <li class="nav-user-level">
               <a href="http://blog.makeitreal.camp/2015/09/15/niveles-make-it-real/" target="_blank">
-                <%= @current_user.stats.total_points %> <span class="txt-small">pts.</span>
+                <%= @current_user.current_points %> <span class="txt-small">pts.</span>
                 <%= image_tag @current_user.level.image_url, class: "user-badge" %>
               </a>
             </li>

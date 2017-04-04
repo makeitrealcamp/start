@@ -34,18 +34,24 @@ RSpec.describe Point, type: :model do
 
   context "when a user earns points" do
     it "changes the user level if it has the next level required points" do
-      user.points.create(points: 100, subject: subject )
+      user.points.create(points: 100, subject: subject)
       expect(user.reload.level).to eq level_2
     end
 
     it "changes the user level if it has not reached the next level required points" do
-      user.points.create(points: 99, subject: subject )
+      user.points.create(points: 99, subject: subject)
       expect(user.reload.level).to eq level_1
     end
 
     it "assigns the correct level for the user amount of points even if it needs to skip levels" do
-      user.points.create(points: 1001, subject: subject )
+      user.points.create(points: 1001, subject: subject)
       expect(user.reload.level).to eq level_3
+    end
+
+    it "updates the current points of the user" do
+      current_points = user.current_points
+      user.points.create(points: 1000, subject: subject)
+      expect(user.reload.current_points).to eq current_points + 1000
     end
 
     describe "Badges assignment" do
