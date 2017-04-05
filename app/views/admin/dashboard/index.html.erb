@@ -1,29 +1,165 @@
-<div class="container admin-dashboard">
-  <div class="row metrics">
-    <div class="col-sm-4 metric">
-      <span class="value"><%= num_total_users %></span>
-      <span class="description">Usuarios Registrados</span>
-    </div>
-    <div class="col-sm-4 metric">
-      <span class="value"><%= num_active_users %></span>
-      <span class="description">Usuarios Activos</span>
-    </div>
-    <div class="col-sm-4 metric">
-      <span class="value"><%= num_challenges_solved %></span>
-      <span class="description">Retos Solucionados</span>
-    </div>
-  </div>
-
+<div class="container-fluid admin-dashboard">
   <div class="row">
-    <div class="col-sm-6">
-      <div id="registered-users-chart" style="height: 250px;" data-chart='<%= registered_users_data.to_json.html_safe %>'></div>
-    </div>
-    <div class="col-sm-6">
-      <div id="solved-challenges-chart" style="height: 250px;" data-chart='<%= solved_challenges_data.to_json.html_safe %>'></div>
+    <div class="col-sm-12">
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h4>Puntos - Últimos 7 meses</h4></div>
+          <div class="panel-body chart" id="progress-chart-past-months" style="height: 350px;" data-chart='<%= progress_data_past_months(current_user) %>'></div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h4>Puntos - <%= l(Time.now , format: "%B").titleize %></h4></div>
+          <div class="panel-body chart" id="progress-chart-present-month" style="height: 350px;" data-chart='<%= progress_data_actual_month(current_user) %>'></div>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h4>Última Actividad</h4></div>
+          <div class="panel-body users-activity">
+            <table class="table users" id="table-users">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Estudiante</th>
+                  <th>Descripción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @activity.each do |message| %>
+                  <tr>
+                    <td class="date">
+                      <span><%= l(message.created_at.in_time_zone("Bogota"), format: "%d/%m/%Y %I:%M %p") %></span>
+                    </td>
+                    <td class="user-info">
+                      <span class="name"><%= link_to full_name(message.user), admin_user_path(message.user) %></span>
+                      <span class="mail"><%= message.user.email %></span>
+                    </td>
+                    <td class="desc">
+                      <span><%= message.description.html_safe  %></span>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h4>Top 20 Estudiantes - <%= l(Time.now , format: "%B").titleize %></h4></div>
+          <div class="panel-body top">
+            <%= render "table_form", users: false %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h4>Top 20 Estudiantes - Activos</h4></div>
+          <div class="panel-body top">
+            <%= render "table_form", users: @users.where(status:'1').order('current_points DESC') %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h4>Atacados en Retos</h4></div>
+          <div class="panel-body stuck">
+            <table class="table users" id="table-users">
+              <thead>
+                <tr>
+                  <th>Estudiante</th>
+                  <th>Reto</th>
+                  <th class="text-center">Primer Intento</th>
+                  <th class="text-center">Último Intento</th>
+                  <th class="text-center">Intentos</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @solutions_stuck.each do |solution| %>
+                  <tr>
+                    <td class="user-info">
+                      <span class="name"><%= link_to full_name(solution.user), admin_user_path(solution.user) %></span>
+                      <span class="mail"><%= solution.user.email %></span>
+                    </td>
+                    <td class="challenge-info">
+                      <span class="challenge-name"><%= solution.challenge.name %></span>
+                      <span class="challenge-subject"><%= solution.challenge.subject.name %></span>
+                    </td>
+                    <td class="text-center">
+                      <span class="date"><%= l(solution.created_at.in_time_zone("Bogota"), format: "%d/%m/%Y %I:%M %p") %></span>
+                    </td>
+                    <td class="text-center">
+                      <span class="text-center date"><%= l(solution.updated_at.in_time_zone("Bogota"), format: "%d/%m/%Y %I:%M %p") %></span>
+                    </td>
+                    <td class="text-center">
+                      <span><%= solution.attempts %></span>
+                    </td>
+                    <td class="text-center">
+                      <% if solution.challenge.is_github_repo? %>
+                        <a href="https://github.com/<%= solution.repository %>" target="_blank"><i class="fa fa-github"></i> Ir al Repo</a>
+                      <% elsif solution.challenge.is_github_pr? %>
+                        <a href="https://github.com/<%= solution.repository %>/pull/<%= solution.pull_request %>" target="_blank"><i class="fa fa-github"></i> Ir al PR</a>
+                      <% else %>
+                        <a href="#" class="solution-files" data-id="<%= solution.id %>">Mostrar</a>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
+<script type="x/template" id="files-template">
+<div id="files-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <ul class="nav nav-tabs" role="tablist">
+          {{ _.each(documents, function(document, index) { }}
+            <li class="{{ if (index == 0) { }}active{{ } }} file-tab">
+              <a href="#document-{{= document.id }}" role="tab" data-toggle="tab">{{= document.name }}</a>
+            <li>
+          {{ }); }}
+        </ul>
+        <div class="tab-content">
+        {{ _.each(documents, function(document, index) { }}
+          <div id="document-{{= document.id }}" role="tabpanel" class="tab-pane {{ if (index == 0) { }}active{{ } }} expand">
+            <textarea id="editor-{{= document.id }}">{{= document.content }}</textarea>
+          </div>
+        {{ }); }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</script>
+
 <script>
+  var editorModes = <%= codemirror_modes.to_json.html_safe %>;
+  $('.solution-files').click(function() {
+    $.ajax({
+      url: "/solutions/" + $(this).data("id"),
+      contentType: "application/json",
+      dataType: "json"
+    }).done(function(data) {
+      var template = _.template($('#files-template').html());
+      $(template(data)).on('shown.bs.modal', function() {
+        _.each(data.documents, function(document) {
+          var ext = /(?:\.([^.]+))?$/.exec(document.name)[1];
+          editors.configure({ el: 'editor-' + document.id, opts: { mode: editorModes[ext] } });
+        });
+      }).on('hidden.bs.modal', function() {
+        $('#files-modal').remove();
+      }).modal();
+    });
+  });
+
   new AdminDashboardView();
 </script>

@@ -1,19 +1,28 @@
 class AdminDashboardView
   constructor: ->
     @generate_charts()
-
   generate_charts: ->
-    new CanvasJS.Chart('registered-users-chart',
+    CanvasJS.addColorSet('mir', ["#ff3300"])
+    new CanvasJS.Chart('progress-chart-past-months',
+      colorSet: "mir",
       data: [
-        type: "line",
-        dataPoints: $('#registered-users-chart').data('chart')
+        type: "column",
+        dataPoints: eval($('#progress-chart-past-months').data('chart'))
       ]
     ).render()
 
-    new CanvasJS.Chart('solved-challenges-chart',
+    new CanvasJS.Chart('progress-chart-present-month',
+      colorSet: "mir",
+
+      axisY: 
+        includeZero: false
+      axisX:
+        interval:3
+        intervalType: "day" 
+        valueFormatString: "MMM DD",
       data: [
-        type: "line",
-        dataPoints: $('#solved-challenges-chart').data('chart')
+        type: "area",
+        dataPoints: eval($('#progress-chart-present-month').data('chart'))
       ]
     ).render()
 
