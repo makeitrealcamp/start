@@ -5,7 +5,7 @@ before_action :admin_access
     @activity = ActivityLog.order('created_at DESC').limit(100)
     @top_active_users = User.where(status: User.statuses[:active]).order('current_points DESC')
     @top_users_current_month = top_users_current_month
-    @solutions_stuck = Solution.failed.order('attempts DESC').limit(40)
+    @solutions_stuck = Solution.failed.where("updated_at > ?", 20.days.ago).order('attempts DESC').limit(40)
   end
 
   private

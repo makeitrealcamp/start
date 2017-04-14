@@ -15,7 +15,7 @@
         <% @activity.each do |message| %>
           <tr>
             <td class="date">
-              <span><%= l(message.created_at.in_time_zone("Bogota"), format: "%d/%m/%Y %I:%M %p") %></span>
+              <span><%= l(message.created_at, format: "%d/%m/%Y %I:%M %p") %></span>
             </td>
             <td class="user-info">
               <span class="name"><%= link_to full_name(message.user), admin_user_path(message.user) %></span>

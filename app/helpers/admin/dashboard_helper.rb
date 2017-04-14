@@ -12,16 +12,15 @@ module Admin::DashboardHelper
   end
 
   def progress_data_past_months
-    data = (7).downto(1).map do |n| 
+    data = 6.downto(0).map do |i|
+      range = i.months.ago.beginning_of_month..i.months.ago.end_of_month
       {
-        month: l((Time.now + 1.month) - n.month, format: "%B").titleize, 
-        points: Point.where(created_at: (Time.now.beginning_of_month + 1.month) - n.month..(Time.now.end_of_month + 1.month) - n.month).sum(:points)
+        month: l(i.months.ago, format: "%B"),
+        points: Point.where(created_at: range).sum(:points)
       }
     end
 
-    "[" + data.map do |data|
-      "{ y: #{data[:points]}, label: '#{data[:month]}'}"
-    end.join(",") + "]"
+    data.to_json.html_safe
   end
 
   def accumulated_by_day(range)
