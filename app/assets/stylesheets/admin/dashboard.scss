@@ -1,18 +1,51 @@
 .admin-dashboard {
-  .metrics {
-    margin-bottom: 60px;
+  margin-top: 30px;
+  padding-left: 50px;
+  padding-right: 50px; 
 
-    .metric {
-      text-align: center;
+  .panel {
+    background-color: white;
+    padding: 0;
+    margin-bottom: 30px;
 
-      .value {
-        color: #666;
-        font-size: 34px;  
+    .panel-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .panel-body { padding: 0; }
+
+    .chart {
+      height: 300px;
+      margin: 20px 10px 5px;
+    }
+  }
+
+  .users-activity, .top, .stuck {
+    height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin:0;
+
+    table {
+      margin-bottom: 0;
+
+      th { font-size: 14px; }
+
+      td, th { vertical-align: middle; }
+
+      .date {
+        font-size: 16px;
       }
 
-      .description {
-        display: block;
-        color: #999;
+      .user-info, .challenge-info {
+        text-decoration: none;
+      
+        .mail, .challenge-subject { 
+          display: block;
+          font-size: 13px;
+          color: #999;
+        }
       }
     }
   }

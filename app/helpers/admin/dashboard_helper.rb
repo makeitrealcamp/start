@@ -11,21 +11,37 @@ module Admin::DashboardHelper
     Solution.completed.count
   end
 
-  def registered_users_data(start = 30.days.ago)
-    (start.to_date..Date.today).map do |date|
+  def progress_data_past_months
+    data = (7).downto(1).map do |n| 
       {
-        label: date,
-        y: User.where(created_at: date.beginning_of_day..date.end_of_day).count
+        month: l((Time.now + 1.month) - n.month, format: "%B").titleize, 
+        points: Point.where(created_at: (Time.now.beginning_of_month + 1.month) - n.month..(Time.now.end_of_month + 1.month) - n.month).sum(:points)
       }
     end
+
+    "[" + data.map do |data|
+      "{ y: #{data[:points]}, label: '#{data[:month]}'}"
+    end.join(",") + "]"
   end
 
-  def solved_challenges_data(start = 30.days.ago)
-    (start.to_date..Date.today).map do |date|
-      {
-        label: date,
-        y: Solution.completed_at_after(date.beginning_of_day).completed_at_before(date.end_of_day).count
-      }
+  def accumulated_by_day(range)
+    Point.accumulated_by_day(range)
+  end
+
+  def current_month_range
+    now = Time.zone.now
+    now.beginning_of_month..now.end_of_day
+  end
+
+  def past_month_range
+    m = 1.month.ago
+    m.beginning_of_month..m.end_of_month
+  end
+
+  def format_day(data)
+    data.map do |tx|
+      tx[:date] = l(tx[:date], format: "%d")
     end
+    data.to_json.html_safe
   end
 end

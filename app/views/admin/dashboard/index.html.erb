@@ -1,29 +1,90 @@
-<div class="container admin-dashboard">
-  <div class="row metrics">
-    <div class="col-sm-4 metric">
-      <span class="value"><%= num_total_users %></span>
-      <span class="description">Usuarios Registrados</span>
+<div class="container-fluid admin-dashboard">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Puntos - Últimos 7 meses</h3>
+        </div>
+        <div class="panel-body chart" id="progress-chart-past-months" data-chart='<%= progress_data_past_months %>'></div>
+      </div>
     </div>
-    <div class="col-sm-4 metric">
-      <span class="value"><%= num_active_users %></span>
-      <span class="description">Usuarios Activos</span>
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Puntos - <%= l(Time.now , format: "%B").titleize %></h3>
+        </div>
+        <div class="panel-body chart" id="month-acc" data-chart='<%= format_day(accumulated_by_day(current_month_range)) %>' data-chart2='<%= format_day(accumulated_by_day(past_month_range)) %>'></div>
+      </div>
     </div>
-    <div class="col-sm-4 metric">
-      <span class="value"><%= num_challenges_solved %></span>
-      <span class="description">Retos Solucionados</span>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <%= render "latest_activity" %>
     </div>
   </div>
 
   <div class="row">
     <div class="col-sm-6">
-      <div id="registered-users-chart" style="height: 250px;" data-chart='<%= registered_users_data.to_json.html_safe %>'></div>
+      <%= render "leaderboard_current_month" %>
     </div>
+
     <div class="col-sm-6">
-      <div id="solved-challenges-chart" style="height: 250px;" data-chart='<%= solved_challenges_data.to_json.html_safe %>'></div>
+      <%= render "leaderboard" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <%= render "stuck_in_challenges" %>
     </div>
   </div>
 </div>
 
+<script type="x/template" id="files-template">
+  <div id="files-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <ul class="nav nav-tabs" role="tablist">
+            {{ _.each(documents, function(document, index) { }}
+              <li class="{{ if (index == 0) { }}active{{ } }} file-tab">
+                <a href="#document-{{= document.id }}" role="tab" data-toggle="tab">{{= document.name }}</a>
+              <li>
+            {{ }); }}
+          </ul>
+          <div class="tab-content">
+          {{ _.each(documents, function(document, index) { }}
+            <div id="document-{{= document.id }}" role="tabpanel" class="tab-pane {{ if (index == 0) { }}active{{ } }} expand">
+              <textarea id="editor-{{= document.id }}">{{= document.content }}</textarea>
+            </div>
+          {{ }); }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+
 <script>
+  var editorModes = <%= codemirror_modes.to_json.html_safe %>;
+  $('.solution-files').click(function() {
+    $.ajax({
+      url: "/solutions/" + $(this).data("id"),
+      contentType: "application/json",
+      dataType: "json"
+    }).done(function(data) {
+      var template = _.template($('#files-template').html());
+      $(template(data)).on('shown.bs.modal', function() {
+        _.each(data.documents, function(document) {
+          var ext = /(?:\.([^.]+))?$/.exec(document.name)[1];
+          editors.configure({ el: 'editor-' + document.id, opts: { mode: editorModes[ext] } });
+        });
+      }).on('hidden.bs.modal', function() {
+        $('#files-modal').remove();
+      }).modal();
+    });
+  });
+
   new AdminDashboardView();
 </script>

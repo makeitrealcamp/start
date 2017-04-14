@@ -26,6 +26,17 @@ class Point < ActiveRecord::Base
 
   after_create :handle_after_create
 
+  def self.accumulated_by_day(range)
+    by_day = Point.where(created_at: range).group("date_trunc('day', created_at)").sum(:points)
+    by_day = Hash[by_day.map { |key, value| [key.to_date, value] }] # convert Time to Date
+
+    points = 0
+    (range.min.to_date..range.max.to_date).map do |date|
+      points += by_day.fetch(date, 0)
+      { date: date, points: points }
+    end
+  end
+
   private
     def handle_after_create
       add_points_to_user
