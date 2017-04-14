@@ -5,13 +5,16 @@ class AdminDashboardView
   generate_charts: ->
     CanvasJS.addColorSet('mir', ["#ff3300"])
 
-    new CanvasJS.Chart('progress-chart-past-months',
-      colorSet: "mir",
-      data: [
-        type: "column",
-        dataPoints: eval($('#progress-chart-past-months').data('chart'))
-      ]
-    ).render()
+    data = eval($('#progress-chart-past-months').data('chart'))
+    new CanvasJS.Chart('progress-chart-past-months', {
+      colorSet: "mir"
+      data: [{
+        type: "column"
+        dataPoints: data.map((point) ->
+          { y: parseInt(point['points']), label: point['month'] }
+        )
+      }]
+    }).render()
 
     data = eval($('#month-acc').data('chart'))
     data2 = eval($('#month-acc').data('chart2'))
@@ -25,7 +28,7 @@ class AdminDashboardView
         name: "Mes Anterior"
         color: "rgba(48, 48, 48, .6)"
         dataPoints: data2.map((point) ->
-          { y: parseFloat(point['points']), label: point['date'] }
+          { y: parseInt(point['points']), label: point['date'] }
         )
       }, {
         type: "area"

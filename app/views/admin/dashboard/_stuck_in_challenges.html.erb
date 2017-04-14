@@ -26,10 +26,10 @@
               <span class="challenge-subject"><%= solution.challenge.subject.name %></span>
             </td>
             <td class="text-center">
-              <span class="date"><%= l(solution.created_at.in_time_zone("Bogota"), format: "%d/%m/%Y %I:%M %p") %></span>
+              <span class="date"><%= l(solution.created_at, format: "%d/%m/%Y %I:%M %p") %></span>
             </td>
             <td class="text-center">
-              <span class="text-center date"><%= l(solution.updated_at.in_time_zone("Bogota"), format: "%d/%m/%Y %I:%M %p") %></span>
+              <span class="text-center date"><%= l(solution.updated_at, format: "%d/%m/%Y %I:%M %p") %></span>
             </td>
             <td class="text-center">
               <span><%= solution.attempts %></span>
