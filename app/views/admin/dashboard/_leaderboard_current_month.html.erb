@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Top 20 Estudiantes - <%= l(Time.now , format: "%B").titleize %></h3>
+  </div>
+  <div class="panel-body top">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center">Pos. #</th>
+          <th>Estudiante</th>
+          <th class="text-center">Puntos Mes Actual</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @top_users_current_month.each_with_index do |user, index| %>
+          <tr>
+            <td class="text-center"><%= index + 1 %></td>
+            <td class="user-info">
+              <span class="name"><%= link_to full_name(user[:user]), admin_user_path(user[:user]) %></span>
+              <span class="mail"><%= user[:user].email %></span>
+            </td>
+            <td class="text-center">
+              <span class="total_points"><%= user[:points] %></span>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

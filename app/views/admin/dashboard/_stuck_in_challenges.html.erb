@@ -1,0 +1,51 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Atacados en Retos</h3>
+  </div>
+  <div class="panel-body stuck">
+    <table class="table users" id="table-users">
+      <thead>
+        <tr>
+          <th>Estudiante</th>
+          <th>Reto</th>
+          <th class="text-center">Primer Intento</th>
+          <th class="text-center">Último Intento</th>
+          <th class="text-center">Intentos</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @solutions_stuck.each do |solution| %>
+          <tr>
+            <td class="user-info">
+              <span class="name"><%= link_to full_name(solution.user), admin_user_path(solution.user) %></span>
+              <span class="mail"><%= solution.user.email %></span>
+            </td>
+            <td class="challenge-info">
+              <span class="challenge-name"><%= solution.challenge.name %></span>
+              <span class="challenge-subject"><%= solution.challenge.subject.name %></span>
+            </td>
+            <td class="text-center">
+              <span class="date"><%= l(solution.created_at.in_time_zone("Bogota"), format: "%d/%m/%Y %I:%M %p") %></span>
+            </td>
+            <td class="text-center">
+              <span class="text-center date"><%= l(solution.updated_at.in_time_zone("Bogota"), format: "%d/%m/%Y %I:%M %p") %></span>
+            </td>
+            <td class="text-center">
+              <span><%= solution.attempts %></span>
+            </td>
+            <td class="text-center">
+              <% if solution.challenge.is_github_repo? %>
+                <a href="https://github.com/<%= solution.repository %>" target="_blank"><i class="fa fa-github"></i> Ir al Repo</a>
+              <% elsif solution.challenge.is_github_pr? %>
+                <a href="https://github.com/<%= solution.repository %>/pull/<%= solution.pull_request %>" target="_blank"><i class="fa fa-github"></i> Ir al PR</a>
+              <% else %>
+                <a href="#" class="solution-files" data-id="<%= solution.id %>">Mostrar</a>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

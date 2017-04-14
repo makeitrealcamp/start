@@ -72,6 +72,7 @@
   padding: 0;
   max-height: 950px;
   overflow: scroll;
+
   .entry {
     padding: 15px 20px;
     border-bottom: 1px solid #ccc;
@@ -80,6 +81,7 @@
       float: left;
       width: 30px;
     }
+    
     .description {
       padding-left: 50px;
 

@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Última Actividad</h3>
+  </div>
+  <div class="panel-body users-activity">
+    <table class="table users" id="table-users">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Estudiante</th>
+          <th>Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @activity.each do |message| %>
+          <tr>
+            <td class="date">
+              <span><%= l(message.created_at.in_time_zone("Bogota"), format: "%d/%m/%Y %I:%M %p") %></span>
+            </td>
+            <td class="user-info">
+              <span class="name"><%= link_to full_name(message.user), admin_user_path(message.user) %></span>
+              <span class="mail"><%= message.user.email %></span>
+            </td>
+            <td class="desc">
+              <span><%= message.description.html_safe  %></span>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
