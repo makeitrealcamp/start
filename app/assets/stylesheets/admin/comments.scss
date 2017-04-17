@@ -1,0 +1,21 @@
+.comments {
+  .comment-text {
+  	width: 45%;
+  }
+  &:before {
+    display: table;
+  }
+  td {
+  	margin: 0 5px;
+  	background: white;
+  	.email, .comment-type {
+      display: block;
+      color: #999;
+      font-size: 13px;
+      vertical-align: middle;
+    }
+    .show {
+    	display: block;
+    }
+  }
+}

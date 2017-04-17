@@ -1,0 +1,28 @@
+<thead>
+  <tr>
+    <th>Usuario</th>
+    <th class="text-center">Recurso</th>
+    <th class="text-center">Fecha</th>
+    <th class="text-center">Comentario</th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+  <% @comments.each do |comment| %>
+    <tr id="comment-<%= comment.id %>">
+      <td valign="bottom">
+        <span><%= comment.user.name %></span>
+        <span class="email"><%= comment.user.email %></span>
+      </td>
+      <td>
+        <span><%= link_to comment.commentable.to_s, comment.commentable.to_path, title: "Ir al Comentario" %></span>
+        <span class="comment-type"><%= comment.commentable.class %></span>
+      </td>
+      <td class="text-center"><%= l(comment.created_at.in_time_zone("Bogota"), format: "%d/%m/%Y %I:%M %p") %></td>
+      <td class="comment-text"><%= markdown(comment.text, filter_html: true, escape_html: true) %></td>
+      <td class="text-center">
+        <%= link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe, admin_comment_path(comment), remote: true, data: { confirm: "¿Estás seguro de eliminar este comentario?" }, method: :delete, title: "Eliminar Comentario" %>
+      </td>
+    </tr>
+  <% end %>
+</tbody>
