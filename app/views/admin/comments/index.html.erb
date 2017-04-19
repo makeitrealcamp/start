@@ -9,7 +9,18 @@
   <div class="row">
     <div class="col-sm-12">
       <table class="table comments">
-        <%= render "comments_list" %>
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th class="text-center">Recurso</th>
+            <th class="text-center">Fecha</th>
+            <th class="text-center">Comentario</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @comments, partial: "admin/coments/comment" %>
+        </tbody>
       </table>
     </div>
   </div>
