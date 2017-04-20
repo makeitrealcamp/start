@@ -13,7 +13,7 @@ RSpec.feature "Comments management", type: :feature do
     visit(admin_comments_path)
     expect(page).to have_selector("#comment-#{comment.id}")
 
-    find(:css, "#comment-#{comment.id} .comment-delete").click
+    find(:css, "#comment-#{comment.id} .delete-comment").click
     page.driver.browser.switch_to.alert.accept
 
     expect(page).to_not have_selector("#comment-#{comment.id}")
