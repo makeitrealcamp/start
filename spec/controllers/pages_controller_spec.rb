@@ -29,18 +29,6 @@ RSpec.describe PagesController, type: :controller do
     end
   end
 
-  describe "GET #react_redux" do
-    it "responds with status code 200" do
-      get :react_redux
-      expect(response).to have_http_status(:ok)
-    end
-
-    it "renders template" do
-      get :react_redux
-      expect(response).to render_template :react_redux
-    end
-  end
-
   describe "GET #thanks_online" do
     it "responds with status code 200" do
       get :thanks_online
