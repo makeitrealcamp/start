@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   post "full-stack-barranquilla", to: "pages#create_full_stack_barranquilla_lead"
   get "full_stack_web_developer", to: redirect('/full-stack-online')
   get "front_end_web_developer", to: redirect('/front-end-online')
-  get "cursos/react-redux", to: "pages#react_redux"
   get "faq", to: "pages#faq"
   get "makers", to: "pages#makers"
   get "scholarships", to: "pages#scholarships"
