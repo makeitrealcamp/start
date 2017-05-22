@@ -3,7 +3,8 @@ module ApplicationHelper
     def block_code(code, language)
       sha = Digest::SHA1.hexdigest(code)
       Rails.cache.fetch ["code", language, sha].join('-') do
-        Pygments.highlight(code, lexer: language)
+        lexer = Pygments::Lexer[language] || Pygments::Lexer['text']
+        lexer.highlight(code)
       end
     end
   end
