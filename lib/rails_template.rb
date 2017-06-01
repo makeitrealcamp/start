@@ -8,5 +8,5 @@ gem_group :test do
     gem "selenium-webdriver", '~>2.45.0'
   end
   gem 'poltergeist'
-  gem 'phantomjs', github: 'germanescobar/phantomjs-gem', require: 'phantomjs/poltergeist'
+  gem 'phantomjs', '2.1.1.0', require: 'phantomjs/poltergeist'
 end
