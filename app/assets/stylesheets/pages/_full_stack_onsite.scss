@@ -1,6 +1,14 @@
-.new-site.full-stack-barranquilla {
+.new-site.full-stack-onsite {
+
+  &.medellin .program-intro { background-image: image-url("medellin-1-blue.jpg"); }
+  &.bogota .program-intro { background-image: image-url("bogota-colombia-big.jpg"); }
+  &.barranquilla .program-intro { background-image: image-url("barranquilla.jpg"); }
+  &.cali .program-intro { background-image: image-url("cali.jpg"); }
+  &.bucaramanga .program-intro { background-image: image-url("bucaramanga.jpg"); }
+
   .program-intro {
-    background: #005e9f image-url("barranquilla.jpg") center center;
+    background-color: #005e9f;
+    background-position: center center;
     background-size: cover;
 
     h1 small {
@@ -149,7 +157,7 @@
 
   .section-location {
     position: relative;
-    background: #005e9f image-url("macondo-lab-map.jpg") 20% center;
+    background: #005e9f image-url("coecoworking-map.jpg") 20% center;
     background-size: cover;
 
     padding-bottom: 0;
