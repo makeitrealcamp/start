@@ -55,8 +55,6 @@
     text-align: center;
 
     .program-divider {
-      margin-bottom: 20px;
-
       .divider-line {
         border-top: 1px solid #ccc;
         margin-bottom: -13px;
@@ -82,7 +80,7 @@
     }
 
     .program-wrapper {
-      @media (min-width: $screen-md-min) { padding: 30px; }
+      @media (min-width: $screen-md-min) { padding: 20px 30px; }
 
       .program-info {
         border: 1px solid #ccc;
@@ -126,49 +124,61 @@
               @media (min-width: $screen-md-min) { font-size: 42px; }
             }
 
-            .program-type {
+            p {
               color: white;
-              font-size: 24px;
-              margin-bottom: 15px;
-            }
+              font-size: 14px;
+              margin: 10px 0 0;
 
-            .program-dedication {
-              font-size: 18px;
-              font-weight: 300;
+              @media (min-width: $screen-md-min) { font-size: 16px; }
             }
           }
         }
 
         .program-body {
-          padding: 20px;
-
-          p {
-            text-align: left;
-            font-size: 14px;
-
-            @media (min-width: $screen-md-min) { font-size: 16px; }
-          }
+          padding: 20px 20px 10px;
 
           .program-details {
             text-align: left;
 
             .details-label {
-              color: #f04500;
+              color: #666;
               font-size: 12px;
               font-weight: bold;
-              margin: 20px 0 5px;
+              margin-bottom: 5px;
             }
 
             .details-value {
               color: #303030;
               font-size: 13px;
+              margin-bottom: 15px;
 
               @media (min-width: $screen-md-min) { font-size: 14px; }
             }
           }
         }
 
-        .program-footer { padding: 10px; }
+        .program-footer {
+          padding: 0 20px 20px;
+
+          table {
+            td {
+              font-size: 14px;
+              vertical-align: middle;
+
+              // @media (min-width: $screen-md-min) { font-size: 16px; }
+
+              &.program-city {
+                font-weight: bold;
+                text-align: left;
+              }
+            }
+          }
+
+          a.btn {
+            text-transform: none;
+            padding: 8px 12px;
+          }
+        }
       }
     }
   }

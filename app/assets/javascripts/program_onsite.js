@@ -64,9 +64,9 @@
     return isValid;
   }
 
-  window.initMedellinProgramPage = function() {
+  window.initOnsiteProgram = function() {
     initForm();
-    
+
     $(window).on('scroll', function() {
       var scroll = $(window).scrollTop();
       if (scroll > 600) {
