@@ -1,5 +1,5 @@
 crumb :root do
-  link "Inicio", root_path
+  link "Inicio", dashboard_path
 end
 
 crumb :subjects do
