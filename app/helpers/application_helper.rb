@@ -42,24 +42,16 @@ module ApplicationHelper
     uri = URI(src)
     id_video = src.split('/').last
 
-    if uri.host == "fast.wistia.net"
-      id_video = src.split('/').last
-      content_tag :div do
-        content_tag(:div, nil , id: "wistia_#{id_video}", class: "video-wistia") +
-        javascript_tag("Wistia.embed('#{id_video}', { trackEmail: '#{user.email}' });")
-      end
-    else
-      html[:src] ||= uri
-      html[:allowtransparency] ||= true
-      html[:frameborder] ||= "0"
-      html[:scrolling] ||= "no"
-      html[:allowfullscreen] ||= true
-      html[:mozallowfullscreen] ||= true
-      html[:webkitallowfullscreen] ||= true
-      html[:oallowfullscreen] ||= true
-      html[:msallowfullscreen] ||= true
-      content_tag(:iframe, nil, html)
-    end
+    html[:src] ||= uri
+    html[:allowtransparency] ||= true
+    html[:frameborder] ||= "0"
+    html[:scrolling] ||= "no"
+    html[:allowfullscreen] ||= true
+    html[:mozallowfullscreen] ||= true
+    html[:webkitallowfullscreen] ||= true
+    html[:oallowfullscreen] ||= true
+    html[:msallowfullscreen] ||= true
+    content_tag(:iframe, nil, html)
   end
 
   def genderize(male, female, user=current_user)
