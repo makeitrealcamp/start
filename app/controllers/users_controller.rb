@@ -66,6 +66,7 @@ class UsersController < ApplicationController
   # /u/:nickname
   def profile
     @user = User.find_by_nickname!(params[:nickname])
+    @paths = @user.paths
     owner_or_admin_access(@user,@user) unless @user.has_public_profile?
     @is_own_profile = (@user == current_user)
   end
