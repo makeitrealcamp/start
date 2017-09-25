@@ -9,11 +9,11 @@ RSpec.feature "Users", type: :feature do
     original_first_name = user.first_name
     nickname = Faker::Internet.user_name(nil, %w(- _))
     number = Faker::Number.number(10)
-    
+
     fill_in "activate_user_mobile_number", with: number
     fill_in "activate_user_nickname", with: nickname
     click_button 'Activar Cuenta'
-    
+
     expect(current_path).to eq signed_in_root_path
     expect(page).to have_selector '.alert-notice'
 
@@ -25,7 +25,7 @@ RSpec.feature "Users", type: :feature do
   end
 
   scenario "shows profile" do
-    user = create(:user)
+    user = create(:user_with_path)
     create(:level, required_points: 0)
     create(:level, required_points: 100)
     create(:level, required_points: 200)
@@ -68,26 +68,26 @@ RSpec.feature "Users", type: :feature do
   end
 
   scenario "changes visibility of profile", js: true do
-    user = create(:user, has_public_profile: true)
-    
+    user = create(:user_with_path, has_public_profile: true)
+
     # check that the profile is public
     visit(user_profile_path(user.nickname))
     expect(page).to_not have_selector(".update-profile-visibility")
 
     login(user)
     visit(user_profile_path(user.nickname))
-    
+
     # change to private
     find('#user_has_public_profile_false').click
-    
+
     expect(page).to_not have_selector(".share-url")
 
     user.reload
     expect(user.has_public_profile).to eq false
-    
+
     # change to public
     find('#user_has_public_profile_true').click
-    
+
     expect(page).to have_selector(".share-url")
 
     user.reload

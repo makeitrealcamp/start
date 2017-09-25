@@ -80,7 +80,7 @@ RSpec.feature "Badges management", type: :feature do
   end
 
   scenario "assigns badge to user", js: true do
-    user = create(:user)
+    user = create(:user_with_path)
     manual_badge = create(:badge)
 
     login(admin)
