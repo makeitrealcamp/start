@@ -1,0 +1,57 @@
+<div class="container admin-challenges">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Retos</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <%= form_tag admin_challenges_path, method: :get do %>
+        <div class="row">
+          <div class="col-sm-5">
+            <div class="form-group">
+              <%= select_tag(
+                :subject_id,
+                options_from_collection_for_select(
+                  Subject.published,
+                  "id",
+                  "name",
+                  params[:subject_id]
+                ),
+                prompt: "<<Todos los temas>>",
+                class: "form-control",
+                onchange: "$('form').submit()"
+              ) %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table" id="challenges-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Usuarios</th>
+            <th>Efectividad</th>
+            <th>Promedio de intentos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @challenges.each do |challenge| %>
+            <tr>
+              <td><%= challenge.name %><span class="secondary"><%= challenge.subject.name %></span></td>
+              <td><span class="challenge-users"><%= challenge.solutions.count %></span></td>
+              <td><span class="challenge-effectiveness"><%= "#{challenge.solutions.where('status = 1').count} / #{challenge.solutions.where('attempts > 0').count}" %></span></td>
+              <td><span class="challenge-average"><%= challenge.solutions.average("attempts") %></span></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

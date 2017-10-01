@@ -190,6 +190,7 @@ Rails.application.routes.draw do
     resources :subjects, only:[:index] do
       patch 'update_position', on: :member
     end
+    resources :challenges, only: [:index]
   end
 
   resources :notifications, only: [:index,:show] do
