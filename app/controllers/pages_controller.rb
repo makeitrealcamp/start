@@ -28,7 +28,6 @@ class PagesController < ApplicationController
   end
 
   def front_end_bootcamp
-    @typeform_url = "https://makeitreal.typeform.com/to/Cr9SSv?referer=#{session['referer']}"
   end
 
   def create_front_end_online_lead
@@ -141,6 +140,38 @@ class PagesController < ApplicationController
     }
     CreateLeadJob.perform_later(data)
     redirect_to "/thanks-full-stack-cali"
+  end
+
+  def create_front_end_bogota_lead
+    data = {
+      pid: cookies[:dp_pid],
+      program: "Front End Bogota",
+      event: "filled-front-end-bogota-form",
+      first_name: params['first-name'],
+      last_name: params['last-name'],
+      email: params['email'],
+      country: "CO",
+      mobile: params['mobile'],
+      ip: request.remote_ip
+    }
+    CreateLeadJob.perform_later(data)
+    redirect_to "/thanks-front-end-bogota"
+  end
+
+  def create_front_end_medellin_lead
+    data = {
+      pid: cookies[:dp_pid],
+      program: "Front End Medellin",
+      event: "filled-front-end-medellin-form",
+      first_name: params['first-name'],
+      last_name: params['last-name'],
+      email: params['email'],
+      country: "CO",
+      mobile: params['mobile'],
+      ip: request.remote_ip
+    }
+    CreateLeadJob.perform_later(data)
+    redirect_to "/thanks-front-end-medellin"
   end
 
   def create_scholarship_application
