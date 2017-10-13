@@ -64,16 +64,16 @@
 
       .divider-label {
         display: inline-block;
-        padding: 0 20px;
-        margin-left: 20px;
+        // padding: 0 20px;
+        // margin-left: 20px;
         background: #f5f5f2;
         color: #666;
         font-weight: bold;
-        font-size: 18px;
+        font-size: 24px;
         font-family: 'Open Sans Condensed';
 
         @media (min-width: $screen-sm-min) {
-          font-size: 21px;
+          font-size: 28px;
           margin-left: 40px;
         }
       }
