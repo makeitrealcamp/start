@@ -69,8 +69,13 @@
 
     .medellin-info-location {
       color: #666;
-      font-size: 21px;
+      font-size: 18px;
       margin-top: 30px;
+
+      .address {
+        font-size: 14px;
+        margin-top: 3px;
+      }
     }
 
     span.glyphicon {
@@ -157,13 +162,21 @@
 
   .section-location {
     position: relative;
-    background: #005e9f image-url("coecoworking-map.jpg") 20% center;
+    background-color: #005e9f;
+    background-position: 35% center;
     background-size: cover;
 
     padding-bottom: 0;
     height: 300px;
 
+    &.coeco { background-image: image-url("coecoworking-map.jpg"); }
+    &.macondo { background-image: image-url("macondo-lab-map.jpg"); }
+    &.workandgobog1 { background-image: image-url("workandgo-bog1-map.jpg"); }
+    &.spacio { background-image: image-url("spacio-map.jpg"); }
+    &.workandgomed { background-image: image-url("workandgo-med-map.jpg"); }
+
     img { width: 100%; }
+
     .location-data {
       position: absolute;
       bottom: 0;

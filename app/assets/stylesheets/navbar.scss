@@ -42,8 +42,10 @@
     color: $brand_primary;
   }
 
+  .dropdown-menu .divider { margin: 15px 0; }
+
   .dropdown-menu > .program-menu-divider {
-    margin-top: -23px;
+    margin-top: -28px;
 
     span {
       background: white;
@@ -63,9 +65,9 @@
   .icon-menu {
     display: block;
     float: left;
-    margin-right: 15px;
-    padding-bottom: 10px;
-    padding-top: 10px;
+    margin-right: 12px;
+    padding-bottom: 5px;
+    padding-top: 5px;
     width: 32px;
   }
 
@@ -73,7 +75,7 @@
     display: block;
     float: left;
     font-size: 14px;
-    margin-top: 15px;
+    margin-top: 7px;
   }
 
   .navbar-toggle {
@@ -84,7 +86,8 @@
 
   .dropdown-menu a {
     color: #666;
-    width: 300px;
+    padding: 5px 15px;
+    width: 280px;
     overflow: hidden;
     @media (max-width: $screen-sm-min) {
       width: 100%;

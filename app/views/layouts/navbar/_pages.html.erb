@@ -25,27 +25,21 @@
               <li class="<%= 'active' if params[:action] == 'full_stack_online' %>">
                 <%= link_to full_stack_online_path do %>
                   <span class="icon-menu"><%= image_tag "full-stack-blue.png", height: 28 %></span>
-                  <span class="text-menu">Full Stack Web Developer</span>
+                  <span class="text-menu">Full Stack Online</span>
                 <% end %>
               </li>
               <li class="<%= 'active' if params[:action] == 'front_end_online' %>">
                 <%= link_to front_end_online_path do %>
                   <span class="icon-menu"><%= image_tag "front-end-blue.png", height: 25 %></span>
-                  <span class="text-menu">Front End Web Developer</span>
+                  <span class="text-menu">Front End Online</span>
                 <% end %>
               </li>
               <li role="separator" class="divider"></li>
-              <li class="program-menu-divider"><span>PRESENCIALES</span></li>
+              <li class="program-menu-divider"><span>FULL STACK PRESENCIAL</span></li>
               <li class="<%= 'active' if params[:action] == 'full_stack_bogota' %>">
                 <%= link_to full_stack_bogota_path do %>
                   <span class="icon-menu"><%= image_tag "full-stack-red.png", height: 25 %></span>
                   <span class="text-menu">Full Stack <strong>Bogotá</strong></span>
-                <% end %>
-              </li>
-              <li class="<%= 'active' if params[:action] == 'front_end_bogota' %>">
-                <%= link_to front_end_bogota_path do %>
-                  <span class="icon-menu"><%= image_tag "front-end-red.png", height: 25 %></span>
-                  <span class="text-menu">Front End <strong>Bogotá</strong></span>
                 <% end %>
               </li>
               <li class="<%= 'active' if params[:action] == 'full_stack_medellin' %>">
@@ -54,16 +48,24 @@
                   <span class="text-menu">Full Stack <strong>Medellín</strong></span>
                 <% end %>
               </li>
-              <li class="<%= 'active' if params[:action] == 'front_end_medellin' %>">
-                <%= link_to front_end_medellin_path do %>
-                  <span class="icon-menu"><%= image_tag "front-end-red.png", height: 25 %></span>
-                  <span class="text-menu">Front End <strong>Medellín</strong></span>
-                <% end %>
-              </li>
               <li class="<%= 'active' if params[:action] == 'full_stack_barranquilla' %>">
                 <%= link_to full_stack_barranquilla_path do %>
                   <span class="icon-menu"><%= image_tag "full-stack-red.png", height: 25 %></span>
                   <span class="text-menu">Full Stack <strong>Barranquilla</strong></span>
+                <% end %>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li class="program-menu-divider"><span>FRONT END PRESENCIAL</span></li>
+              <li class="<%= 'active' if params[:action] == 'front_end_bogota' %>">
+                <%= link_to front_end_bogota_path do %>
+                  <span class="icon-menu"><%= image_tag "front-end-red.png", height: 25 %></span>
+                  <span class="text-menu">Front End <strong>Bogotá</strong></span>
+                <% end %>
+              </li>
+              <li class="<%= 'active' if params[:action] == 'front_end_medellin' %>">
+                <%= link_to front_end_medellin_path do %>
+                  <span class="icon-menu"><%= image_tag "front-end-red.png", height: 25 %></span>
+                  <span class="text-menu">Front End <strong>Medellín</strong></span>
                 <% end %>
               </li>
             </ul>
