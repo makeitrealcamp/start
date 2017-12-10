@@ -37,6 +37,14 @@ $ rails db:schema:load
 $ rails db:seed
 ```
 
+To run tests you will need [chromedriver](https://sites.google.com/a/chromium.org/chromedriver/).
+
+To evaluate challenges you will need the [mir-evaluator](https://hub.docker.com/r/makeitrealcamp/mir-evaluator/), which you can download with the following command (assuming you already have [Docker](https://www.docker.com/) installed):
+
+```
+$ docker pull makeitrealcamp/mir-evaluator
+```
+
 ## Contributing
 
 The workflow for contributing to this project is the following:
