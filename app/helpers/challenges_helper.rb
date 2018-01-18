@@ -12,12 +12,13 @@ module ChallengesHelper
       ["Ruby (Embedded Files)", "ruby_embedded"],
       ["PhantomJS (Embedded Files)", "phantomjs_embedded"],
       ["Async PhantomJS (Embedded Files)", "async_phantomjs_embedded"],
+      ["Puppeteer (Embedded Files)", "puppeteer_embedded"],
       ["Ruby (Git)", "ruby_git"],
       ["Rails (Git)", "rails_git"],
       ["Sinatra (Git)", "sinatra_git"],
       ["Ruby (Git PR)", "ruby_git_pr"],
       ["React (Git)", "react_git"],
-      ["NodeJS (Embedded)", "nodejs_embedded"]
+      ["NodeJS (Embedded Files)", "nodejs_embedded"]
     ]
   end
 end

@@ -60,6 +60,8 @@ class Solution < ActiveRecord::Base
       ReactGitEvaluator.new(self).evaluate
     elsif self.challenge.nodejs_embedded?
       NodejsEvaluator.new(self).evaluate
+    elsif self.challenge.puppeteer_embedded?
+      PuppeteerEvaluator.new(self).evaluate
     else
       self.status = :failed
       self.error_message = "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp"

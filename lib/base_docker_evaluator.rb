@@ -60,8 +60,8 @@ class BaseDockerEvaluator < Evaluator
     relative_path = "error.txt"
     {
       relative_path: relative_path,
-      local_path: File.join(tmp_path,relative_path),
-      container_path: File.join(container_path,relative_path)
+      local_path: File.join(tmp_path, relative_path),
+      container_path: File.join(container_path, relative_path)
     }
   end
 
@@ -69,12 +69,12 @@ class BaseDockerEvaluator < Evaluator
     relative_path = "result.json"
     {
       relative_path: relative_path,
-      local_path: File.join(tmp_path,relative_path),
-      container_path: File.join(container_path,relative_path)
+      local_path: File.join(tmp_path, relative_path),
+      container_path: File.join(container_path, relative_path)
     }
   end
 
-  def create_shared_file(relative_path,content)
+  def create_shared_file(relative_path, content)
 
     local_path = File.join(tmp_path, relative_path)
     dirname = File.dirname(local_path)

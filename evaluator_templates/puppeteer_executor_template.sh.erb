@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+set -x
+
+if [ ! -f <%= evaluation_file_path %> ]; then
+  echo "No se encontró el archivo de evaluación <%= evaluation_file_path %>." >> <%= error_file_path %>
+  exit 1
+fi
+
+cd $(dirname <%= evaluation_file_path %>)
+PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn add puppeteer@1.0.0
+
+http-server -p <%= port %> <%= solution_files_folder %> & echo "Running server in localhost:<%= port %>..."
+node <%= evaluation_file_path %> &> <%= error_file_path %>
+
+if [ -s <%= error_file_path %> ]
+then
+  exit 1
+fi
