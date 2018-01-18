@@ -1,0 +1,43 @@
+const puppeteer = require('puppeteer');
+const evaluations = [];
+
+const open = (path, callback, viewportSize) => {
+  evaluations.push({ path: path, callback: callback, viewportSize: viewportSize });
+}
+
+const evaluate = async (page, evaluation) => {
+  if (!evaluation) {
+    return;
+  }
+
+  const url = '<%= host %>:<%= port %>/' + evaluation.path;
+  await page.goto(url);
+  const errorMsg = await page.evaluate(evaluation.callback);
+  if (errorMsg) {
+    throw errorMsg;
+  }
+}
+
+(async () => {
+  let browser;
+  try {
+    browser = await puppeteer.launch({ executablePath: '/root/chrome-linux/chrome', args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+    const page = await browser.newPage();
+
+    <%= evaluation %>
+
+    for (let evaluation of evaluations) {
+      await evaluate(page, evaluation);
+    }
+  } catch (e) {
+    console.log(e);
+  }
+
+  if (browser) {
+    try {
+      await browser.close();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+})();

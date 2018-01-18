@@ -284,6 +284,9 @@ class ChallengeFormView extends Backbone.View
     else if evaluation_strategy == "nodejs_embedded"
       @evaluation_editor.setOption("mode", "javascript")
       @evaluation_editor.setValue("it('sums two numbers', function() {\n  expect(1 + 2).to.equal(3);\n});")
+    else if evaluation_strategy == "puppeteer_embedded"
+      @evaluation_editor.setOption("mode", "javascript")
+      @evaluation_editor.setValue("open('index.html', () => {\n\n});")
 
 window.InstructionsView = InstructionsView
 window.SolutionView = SolutionView

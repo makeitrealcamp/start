@@ -8,15 +8,15 @@ Level.create(name: "Teclado Café", required_points: 13500, image_url: "https://
 Level.create(name: "Teclado Rojo", required_points: 16500, image_url: "https://s3.amazonaws.com/makeitreal/levels/nivelRojo%402x.png")
 Level.create(name: "Teclado Negro", required_points: 20000, image_url: "https://s3.amazonaws.com/makeitreal/levels/nivelNegro%402x.png")
 
-intro = Subject.create(name: "Una nueva mentalidad", time_estimate: "2 horas", row_position: 1, published: true,
+intro = Subject.create(name: "Una nueva mentalidad", slug: "una-nueva-mentalidad", time_estimate: "2 horas", row_position: 1, published: true,
   description: "Para poder aprender cualquier habilidad, primero debemos cambiar nuestra mentalidad. La barrera no es intelectual, es emocional.",
   excerpt: "Aprender a programar es difícil. Difícil como aprender un nuevo idioma o un instrumento. Se requiere práctica y paciencia.")
 
-html = Subject.create(name: "HTML y CSS", time_estimate: "40 horas", row_position: 2, published: true,
+html = Subject.create(name: "HTML y CSS", slug: "html-css", time_estimate: "40 horas", row_position: 2, published: true,
   description: "Aprende el lenguaje de marcado que define la estructura de las páginas Web, y el lenguaje de estilos que les da formato.",
   excerpt: "**HTML** es un lenguaje que nos permite definir **la estructura** de las páginas Web. **CSS** es un lenguaje que nos permite definir **el formato (los estilos)** de los elementos HTML.")
 
-ruby = Subject.create(name: "Ruby básico", time_estimate: "58 horas", row_position: 3, published: true,
+ruby = Subject.create(name: "Ruby básico", slug: "ruby-basico", time_estimate: "58 horas", row_position: 3, published: true,
   description: "Aprende las bases de este lenguaje de programación que es usado para crear aplicaciones Web como Twitter, Groupon, o Make it Real Start.",
   excerpt: "Ruby es un lenguaje de programación flexible y expresivo, ideal para principiantes que quieren aprender a programar.")
 
@@ -47,5 +47,7 @@ User.create(email: "user_free@makeitreal.camp",account_type: User.account_types[
 User.create(email: "user_paid@makeitreal.camp",account_type: User.account_types[:paid_account])
 
 Path.create(name: "Full-Stack", description: "Conviértete en un desarrollador Full-Stack.", published: true)
-
-Phase.create(name: "Programador Aprendiz", description: "Aprende los conceptos básicos del desarrollo web.", slug: "programador-aprendiz", published: true, color: "#3590BE", path_id: 1)
+phase = Phase.create(name: "Programador Aprendiz", description: "Aprende los conceptos básicos del desarrollo web.", slug: "programador-aprendiz", published: true, color: "#3590BE", path_id: 1)
+CoursePhase.create(phase: phase, subject: intro)
+CoursePhase.create(phase: phase, subject: html)
+CoursePhase.create(phase: phase, subject: ruby)

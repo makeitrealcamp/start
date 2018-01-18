@@ -36,7 +36,9 @@ class Challenge < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name
 
-  enum evaluation_strategy: [:ruby_embedded, :phantomjs_embedded, :ruby_git, :rails_git, :sinatra_git, :ruby_git_pr, :async_phantomjs_embedded, :react_git, :nodejs_embedded]
+  enum evaluation_strategy: [:ruby_embedded, :phantomjs_embedded,
+      :puppeteer_embedded, :ruby_git, :rails_git, :sinatra_git, :ruby_git_pr,
+      :async_phantomjs_embedded, :react_git, :nodejs_embedded]
 
   belongs_to :subject
   has_many :documents, as: :folder
