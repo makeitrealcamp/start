@@ -1,8 +1,8 @@
 const puppeteer = require('puppeteer');
 const evaluations = [];
 
-const open = (path, callback, viewportSize) => {
-  evaluations.push({ path: path, callback: callback, viewportSize: viewportSize });
+const open = (path, callback, viewportSize, setup) => {
+  evaluations.push({ path: path, callback: callback, viewportSize: viewportSize, setup: setup });
 }
 
 const evaluate = async (page, evaluation) => {
@@ -10,8 +10,13 @@ const evaluate = async (page, evaluation) => {
     return;
   }
 
+  await page.setViewport(evaluation.viewportSize || { width: 1024, height: 800 });
   const url = '<%= host %>:<%= port %>/' + evaluation.path;
   await page.goto(url);
+  if (evaluation.setup) {
+    await evaluation.setup(page);
+  }
+  await page.addScriptTag({ path: '<%= util_path %>' });
   const errorMsg = await page.evaluate(evaluation.callback);
   if (errorMsg) {
     throw errorMsg;

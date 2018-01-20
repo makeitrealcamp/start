@@ -1,5 +1,6 @@
 # encoding: UTF-8
 class PuppeteerEvaluator < BaseDockerEvaluator
+  UTIL_PATH = "evaluator_templates/phantom-util.js"
   EVALUATOR_TEMPLATE_PATH = "evaluator_templates/puppeteer_evaluator_template.js.erb"
   EXECUTOR_SCRIPT_TEMPLATE_PATH = "evaluator_templates/puppeteer_executor_template.sh.erb"
 
@@ -41,10 +42,17 @@ class PuppeteerEvaluator < BaseDockerEvaluator
     def create_evaluation_file(host, port)
       template = File.read(EVALUATOR_TEMPLATE_PATH)
 
+      util_path = create_util_file[:container_path]
+
       evaluation = self.solution.challenge.evaluation
       evaluator_content = ERB.new(template).result(binding)
 
       create_shared_file("evaluation.js", evaluator_content)
+    end
+
+    def create_util_file
+      content = File.read(UTIL_PATH)
+      create_shared_file("phantom_util.js", content)
     end
 
     def create_executor_file(evaluation_shared_path, port)
