@@ -39,9 +39,13 @@ class BaseDockerEvaluator < Evaluator
       FileUtils.chmod_R(0777, prefix_path)
     end
 
-    path = File.join(prefix_path,"user#{solution.user_id}-solution#{solution.id}")
+    path = File.join(prefix_path, "user#{solution.user_id}-solution#{solution.id}")
 
     FileUtils.rm_rf(path)
+    if File.exist?(path)
+      puts "Can't be! #{path} still exists, trying to delete it once more ..."
+      FileUtils.rm_rf(path)
+    end
     FileUtils.mkdir(path)
     FileUtils.chmod(0777, path)
 
