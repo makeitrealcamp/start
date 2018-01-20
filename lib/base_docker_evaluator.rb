@@ -16,7 +16,6 @@ class BaseDockerEvaluator < Evaluator
     end
   end
 
-
   def handle_error(solution, error_path)
     message = File.read(error_path)
     message = message.gsub("/ukku/data/", "")
@@ -42,10 +41,6 @@ class BaseDockerEvaluator < Evaluator
     path = File.join(prefix_path, "user#{solution.user_id}-solution#{solution.id}")
 
     FileUtils.rm_rf(path)
-    if File.exist?(path)
-      puts "Can't be! #{path} still exists, trying to delete it once more ..."
-      FileUtils.rm_rf(path)
-    end
     FileUtils.mkdir(path)
     FileUtils.chmod(0777, path)
 
