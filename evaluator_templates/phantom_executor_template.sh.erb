@@ -10,7 +10,7 @@ if [ ! -f <%= evaluation_file_path %> ]; then
 fi
 http-server -p <%= port %> <%= solution_files_folder %> & echo "Running server in localhost:<%= port %>..."
 
-ruby -e 'require "phantomjs"; print Phantomjs.run("<%= evaluation_file_path %>")' &> <%= error_file_path %>
+ruby -e 'require "phantomjs"; print Phantomjs.run("--ssl-protocol=any", "--ignore-ssl-errors=yes", "<%= evaluation_file_path %>")' &> <%= error_file_path %>
 
 if [ -s <%= error_file_path %> ]
 then
