@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   get "front-end-bogota", to: "pages#front_end_bogota"
   post "front-end-bogota", to: "pages#create_front_end_bogota_lead"
 
+  get "top", to: "pages#top"
+
   get "faq", to: "pages#faq"
   get "makers", to: "pages#makers"
   get "scholarships", to: "pages#scholarships"
