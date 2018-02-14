@@ -208,8 +208,11 @@ class PagesController < ApplicationController
 
     person = { pid: cookies[:dp_pid], email: subscriber.email, first_name: subscriber.first_name,
         last_name: subscriber.last_name, user_goal: subscriber.goal }
-    ConvertLoop.event_logs.send(name: "requested-developer-guide", person: person)
-
+    begin
+      ConvertLoop.event_logs.send(name: "requested-developer-guide", person: person)
+    rescue => e
+      Rails.logger.error "Couldn't send event requested-developer-guide to ConvertLoop: #{e.message}"
+    end
     PagesMailer.web_developer_guide(subscriber).deliver_now
 
     respond_to do |format|
@@ -229,7 +232,12 @@ class PagesController < ApplicationController
 
     person = { email: params[:email] }
     metadata = { ip: request.remote_ip }
-    ConvertLoop.event_logs.send(name: "downloaded-developer-guide", person: person, metadata: metadata)
+    begin
+      ConvertLoop.event_logs.send(name: "downloaded-developer-guide", person: person, metadata: metadata)
+    rescue => e
+      Rails.logger.error "Couldn't send event downloaded-developer-guide to ConvertLoop: #{e.message}"
+      Rails.logger.error "Backtrace: \n\t#{e.backtrace.join("\n\t")}"
+    end
 
     redirect_to "https://s3.amazonaws.com/makeitreal/e-books/convertirte-en-desarrollador-web.pdf"
   end

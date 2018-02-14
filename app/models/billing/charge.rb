@@ -78,7 +78,11 @@ class Billing::Charge < ActiveRecord::Base
     def handle_after_save
       if status_was != status && self.paid?
         self.user.send_course_welcome_email(self)
-        ConvertLoop.people.create_or_update(email: self.email, add_to_segments: ["React Redux"])
+        begin
+          ConvertLoop.people.create_or_update(email: self.email, add_to_segments: ["React Redux"])
+        rescue => e
+          Rails.logger.error "Couldn't send user #{self.email} to ConvertLoop: #{e.message}"
+        end
       elsif status_was != status && self.rejected?
         SubscriptionsMailer.charge_rejected(self).deliver_later
       end
