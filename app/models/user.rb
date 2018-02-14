@@ -314,17 +314,23 @@ class User < ActiveRecord::Base
 
     def log_activity
       if status_was == "created" && status == "active" # the user is now active
-        ConvertLoop.people.create_or_update(email: self.email, first_name: self.first_name, last_name: self.last_name, add_to_segments: ['Students', 'Active Students']) unless Rails.env.test?
+        notify_convertloop(email: self.email, first_name: self.first_name, last_name: self.last_name, add_to_segments: ['Students', 'Active Students']) unless Rails.env.test?
         ActivityLog.create(name: "enrolled", user: self, description: "Inició el programa")
       elsif status_was == "active" && status == "suspended" # the account has been suspended
-        ConvertLoop.people.create_or_update(email: self.email, add_to_segments: ['Suspended Students'], remove_from_segments: ['Active Students']) unless Rails.env.test?
+        notify_convertloop(email: self.email, add_to_segments: ['Suspended Students'], remove_from_segments: ['Active Students']) unless Rails.env.test?
         ActivityLog.create(name: "account-suspended", user: self, description: "La cuenta ha sido suspendida")
       elsif status_was == "active" && status == "finished" # the user finished the program
-        ConvertLoop.people.create_or_update(email: self.email, add_to_segments: ['Finished Students'], remove_from_segments: ['Active Students']) unless Rails.env.test?
+        notify_convertloop(email: self.email, add_to_segments: ['Finished Students'], remove_from_segments: ['Active Students']) unless Rails.env.test?
         ActivityLog.create(name: "completed-program", user: self, description: "Terminó el programa!")
       elsif status_was == "suspended" && status == "active" # the account has been reactivated
-        ConvertLoop.people.create_or_update(email: self.email, add_to_segments: ['Active Students'], remove_from_segments: ['Suspended Students']) unless Rails.env.test?
+        notify_convertloop(email: self.email, add_to_segments: ['Active Students'], remove_from_segments: ['Suspended Students']) unless Rails.env.test?
         ActivityLog.create(name:"account-reactivated", user: self, description: "La cuenta ha sido reactivada")
       end
+    end
+
+    def notify_convertloop(data)
+      ConvertLoop.people.create_or_update(data)
+    rescue
+      Rails.logger.error "Couldn't create or update user #{data[:email]} in ConvertLoop: #{e.message}"
     end
 end
