@@ -1,8 +1,6 @@
 .online-program {
   .full-stack-js {
-    background: #1976D2;
-    background-image: image-url("top-program-bg.jpg");
-    background-repeat: no-repeat;
+    background: #1976D2 image-url("top-program-bg.jpg") no-repeat center center;
     background-size: cover;
 
     .program-header {
@@ -21,7 +19,7 @@
         margin-bottom: 40px;
       }
 
-      p.program-description {
+      .program-description {
         font-size: 21px;
         text-align: center;
         margin-bottom: 60px;
@@ -39,7 +37,7 @@
         .icon {
           color: white;
           font-size: 32px;
-          margin: 0 20px;
+          margin: 0 15px;
         }
       }
     }
@@ -241,12 +239,25 @@
         color: #666;
 
         .duration-item {
-          padding: 20px 20px;
+          padding: 15px 20px 10px;
 
-          p { margin-bottom: 15px; }
+          .model {
+            margin-bottom: 20px;
 
-          ul { font-size: 14px; padding-left: 25px; }
-          li { margin-bottom: 10px; }
+            h4 {
+              font-size: 14px;
+              font-weight: bold;
+              margin-bottom: 10px;
+
+              @media (min-width: $screen-md-min) { font-size: 16px; }
+            }
+
+            p {
+              font-size: 14px;
+
+              @media (min-width: $screen-md-min) { font-size: 16px; }
+            }
+          }
         }
 
       }
