@@ -1,11 +1,11 @@
 <div class="online-program">
-  <div class="full-stack-js">
+  <div class="top">
     <%= render "layouts/navbar/pages_transparent" %>
 
     <div class="container">
       <div class="row">
         <div class="col-md-8 col-md-offset-2 program-header">
-          <h1 class="text-center">TOP</h1>
+          <h1 class="text-center" ><%= image_tag "top-icon.svg", height: 45, style: "margin-top: -9px; margin-right: 5px;" %> TOP</h1>
           <div class="text-center program-description">Un programa inmersivo online con Node.js, MongoDB y React que puedes tomar <strong>sin costo</strong> hasta que encuentres un empleo</div>
           <div class="text-center program-icons">
             <i class="icon icon-html5-alt"></i>
@@ -18,7 +18,7 @@
           <div class="text-center">
             <button type="button" class="btn btn-primary btn-lg apply-now-btn">APLICA AHORA</button>
           </div>
-        </div><!--/tagline-program -->
+        </div>
       </div>
     </div>
   </div>
@@ -29,7 +29,7 @@
         <div class="col-sm-7">
           <div style="padding-right: 20px;">
             <h2>¿A quién está dirigido?</h2>
-            <p class="lead">Personas que han empezado a aprender por su cuenta, les gusta enfrentar nuevos retos, manejan un Inglés intermedio (mínimo B1) y desean convertirse en desarrolladores Web.</p>
+            <p class="lead">Personas que han empezado a aprender por su cuenta, les gusta enfrentar nuevos retos, manejan un Inglés intermedio (<a href="http://www.uefap.com/test/" target="_blank">mínimo B1</a>) y desean convertirse en desarrolladores Web.</p>
           </div>
         </div>
         <div class="col-sm-5 mentors-wrapper">
@@ -104,73 +104,62 @@
     </div>
   </div>
 
-  <div class="section section-white section-duration">
+  <div class="section section-white section-details">
     <div class="container">
       <div class="row">
-        <div class="col-sm-6">
-          <h2>Dedicación y precio</h2>
-          <p>Selecciona el tiempo y el modelo que más te convenga</p>
-        </div>
-        <div class="col-sm-6">
-          <div class="price-wrapper">
-            <div class="price-label">TOTAL</div>
-            <div class="price">COP$8'900,000</div>
-            <div class="price-details">* Impuestos incluidos</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="duration-option text-center">
-            <header>
-              <div>Opción 1</div>
-              <div class="duration-time">12 semanas</div>
-              <div class="commitment">40 horas/semana</div>
-            </header>
-
-            <div class="duration-body text-left">
-              <div class="duration-item">
-                <div class="model">
-                  <h4>Modelo 1</h4>
-                  <p>$0 para empezar. Pagas 17% del salario por 2 años cuando encuentres empleo.</p>
-                </div>
-                <div class="model">
-                  <h4>Modelo 2</h4>
-                  <p>Pagas el 50% para empezar (hasta en 3 cuotas durante el programa) más el 17% del salario por 1 año cuando encuentres empleo.</p>
-                </div>
-                <div class="model">
-                  <h4>Modelo 3</h4>
-                  <p>Pagas el 100% hasta en 3 cuotas durante el programa.</p>
-                </div>
-              </div>
+        <div class="col-sm-6 col-md-4 col-md-offset-2">
+          <div class="text-center">
+            <div class="detail-wrapper">
+              <div class="detail-label">DURACIÓN</div>
+              <div class="detail-value">12 semanas</div>
             </div>
           </div>
         </div>
-        <div class="col-sm-6 text-center">
-          <div class="duration-option">
-            <header>
-              <div>Opción 2</div>
-              <div class="duration-time">24 semanas</div>
-              <div class="commitment">20 horas/semana</div>
-            </header>
-            <div class="duration-body text-left">
-              <div class="duration-item">
-                <div class="model">
-                  <h4>Modelo 1</h4>
-                  <p>Pagas el 50% para empezar (hasta en 3 cuotas durante el programa) más el 17% del salario por 1 año cuando encuentres empleo.</p>
-                </div>
-                <div class="model">
-                  <h4>Modelo 2</h4>
-                  <p>Pagas el 100% hasta en 3 cuotas durante el programa.</p>
-                </div>
-              </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="text-center">
+            <div class="detail-wrapper">
+              <div class="detail-label">DEDICACIÓN MÍNIMA</div>
+              <div class="detail-value">40 horas/semana</div>
             </div>
           </div>
         </div>
       </div>
 
-      <p style="font-size: 16px; margin-top: 60px;">Puedes iniciar el programa dentro de los dos siguientes meses después de haber sido aceptado(a) de acuerdo a la disponibilidad de los mentores.</p>
+      <div class="schemes">
+        <div class="scheme">
+          <header>Esquema 1</header>
+          <div class="scheme-body">
+            <div class="initial">
+              <div class="initial-value">COP$0</div>
+              <div class="initial-label">DE ENTRADA</div>
+            </div>
+            <div class="plus">+</div>
+            <div class="shared-income"><strong>17%</strong> de tus ingresos salariales por <strong>2 años</strong> cuando encuentres empleo</div>
+          </div>
+        </div>
+
+        <div class="scheme">
+          <header>Esquema 2</header>
+          <div class="scheme-body">
+            <div class="initial">
+              <div class="initial-value">COP$4'450,000</div>
+              <div class="initial-label">DE ENTRADA</div>
+            </div>
+            <div class="plus">+</div>
+            <div class="shared-income"><strong>17%</strong> de tus ingresos salariales por <strong>1 año</strong> cuando encuentres empleo</div>
+          </div>
+        </div>
+
+        <div class="scheme">
+          <header>Esquema 3</header>
+          <div class="scheme-body">
+            <div class="initial">
+              <div class="initial-value">COP$8'900,000</div>
+              <div class="initial-label">DE ENTRADA</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -195,7 +184,7 @@
             <span class="glyphicon glyphicon-comment method-icon"></span>
             <div>
               <h3>Trabajo individual</h3>
-              <p>Durante la semana el estudiante trabaja de manera individual y está en contacto con su mentor a través de chat.</p>
+              <p>Durante la semana el estudiante trabaja de manera individual con ayuda de su mentor que soluciona dudas por chat.</p>
             </div>
           </div>
 
@@ -231,7 +220,7 @@
       <div class="row">
         <div class="col-sm-6">
           <h3>¿Lo que me ofrecen es una beca o un préstamo?</h3>
-          <p>No es ni una beca ni un préstamo. No hay cuotas fijas ni intereses. No necesitas ninguna garantía. Si eres seleccionado(a) firmamos un contrato de ingresos compartidos en el que te comprometes a darnos un porcentaje de tus ingresos por un tiempo limitado. Es una inversión en tí.</p>
+          <p>No es ni una beca ni un préstamo. No hay cuotas fijas ni intereses. No necesitas ninguna garantía. Si eres seleccionado(a) se firma un acuerdo de ingresos compartidos en el que te comprometes a pagar un porcentaje de tus ingresos por un tiempo limitado. Es una inversión en tí.</p>
 
           <h3>¿En qué lugar se dictan las clases?</h3>
           <p>El programa es completamente online y no hay clases de la forma tradicional. Cada semana, en la videollamada con el mentor vas a recibir el trabajo práctico que deberás completar en la siguiente semana. Durante la semana vas a estar en comunicación con tu mentor por chat para solucionar dudas e inquietudes.</p>
@@ -254,7 +243,7 @@
             <li>Ser colombiano mayor de edad.</li>
             <li>Saber lo básico de HTML, CSS y JavaScript.</li>
             <li>Disponer del tiempo para dedicar al programa.</li>
-            <li>Tener mínimo un nivel intermedio de Inglés.</li>
+            <li>Tener un nivel intermedio de Inglés (<a href="http://www.uefap.com/test/" target="_blank">mínimo B1</a>).</li>
             <li>Contar con un computador personal y conexión a Internet.</li>
           </ul>
 

@@ -1,50 +1,55 @@
 .online-program {
-  .full-stack-js {
+  .top {
     background: #1976D2 image-url("top-program-bg.jpg") no-repeat center center;
     background-size: cover;
+  }
 
-    .program-header {
-      padding-top: 20px;
-      padding-bottom: 45px;
-      color: #f5f5f2;
+  .elite {
+    background: #780dca image-url("elite-program-bg.jpg") no-repeat center center;
+    background-size: cover;
+  }
 
-      @media (min-width: $screen-md-min) {
-        padding-top: 40px;
-        padding-bottom: 90px;
-      }
+  .program-header {
+    padding-top: 20px;
+    padding-bottom: 45px;
+    color: #f5f5f2;
 
-      h1 {
-        font-size: 62px;
-        line-height: 1.2;
-        margin-bottom: 40px;
-      }
-
-      .program-description {
-        font-size: 21px;
-        text-align: center;
-        margin-bottom: 60px;
-
-        @media (min-width: $screen-md-min) { font-size: 24px; }
-      }
-
-      .program-icons {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        margin: 0 auto 60px;
-        max-width: 600px;
-
-        .icon {
-          color: white;
-          font-size: 32px;
-          margin: 0 15px;
-        }
-      }
+    @media (min-width: $screen-md-min) {
+      padding-top: 40px;
+      padding-bottom: 90px;
     }
 
-    .apply-now-btn {
-      padding: 15px 40px;
+    h1 {
+      font-size: 62px;
+      line-height: 1.2;
+      margin-bottom: 40px;
     }
+
+    .program-description {
+      font-size: 21px;
+      text-align: center;
+      margin-bottom: 60px;
+
+      @media (min-width: $screen-md-min) { font-size: 24px; }
+    }
+
+    .program-icons {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 0 auto 60px;
+      max-width: 600px;
+
+      .icon {
+        color: white;
+        font-size: 32px;
+        margin: 0 15px;
+      }
+    }
+  }
+
+  .apply-now-btn {
+    padding: 15px 40px;
   }
 
   .section {
@@ -90,6 +95,29 @@
     &.section-dark {
       background: #343a40;
       h2, h3, p, .lead { color: #f5f5f2; }
+    }
+  }
+
+  .section-mentor {
+    .mentor-details {
+      display: flex;
+      align-items: flex-start;
+      margin-top: 60px;
+
+      img {
+        width: 70px;
+        border: 1px solid white;
+        margin-bottom: 20px;
+        margin: 0 20px 20px 10px;
+
+        @media (min-width: $screen-sm-min) {
+          width: 100px;
+          margin-left: 20px;
+          margin-right: 20px;
+        }
+      }
+
+      h3 { margin-bottom: 18px; }
     }
   }
 
@@ -151,6 +179,7 @@
   }
 
   .section-how-it-works {
+    background: image-url('pattern-1.png') repeat center center;
     .works-item {
       display: flex;
       margin-top: 40px;
@@ -184,82 +213,124 @@
     }
   }
 
-  .section-duration {
-
-    .price-wrapper {
-      margin-top: 30px;
+  .section-details {
+    .detail-wrapper {
+      margin-bottom: 40px;
       text-align: center;
 
-      @media (min-width: $screen-md-min) {
-        margin-top: 10px;
-        text-align: right;
-      }
+      @media (min-width: $screen-md-min) { margin-top: 10px; }
 
-      .price-label {
+      .detail-label {
         color: #f04500;
-        font-size: 18px;
-        font-weight: bold;
-      }
-
-      .price {
-        font-size: 24px;
-        font-weight: bold;
-        margin-top: 5px;
-      }
-
-      .price-details {
         font-size: 14px;
+        font-weight: bold;
+      }
+
+      .detail-value {
+        color: #666;
+        font-size: 24px;
+        margin-top: 5px;
+
+        @media (min-width: $screen-md-min) { font-size: 28px; }
+      }
+
+      .detail-exp {
         color: #999;
+        font-size: 14px;
+        text-align: center;
+        margin-top: 5px;
       }
     }
 
-    .duration-option {
-      background: #343a40;
-      color: #f5f5f2;
-      margin: 60px auto 0;
-      max-width: 400px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
+    .schemes {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
 
-      header { padding: 20px 25px; }
-
-      .duration-time {
-        color: #f5f5f2;
-        font-size: 28px;
-        font-weight: normal;
+      @media (min-width: $screen-sm-min) {
+        flex-direction: row;
+        align-items: stretch;
       }
 
-      .commitment {
-        color: #9EA6AD;
-        font-size: 18px;
-      }
+      .scheme {
+        color: #555;
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin: 40px 0 10px;
+        min-height: 250px;
 
-      .duration-body {
-        background: white;
-        color: #666;
+        @media (min-width: $screen-sm-min) { max-width: 300px; }
+        @media (min-width: $screen-md-min) { max-width: 280px; }
+        @media (min-width: $screen-lg-min) { max-width: 300px; }
 
-        .duration-item {
-          padding: 15px 20px 10px;
-
-          .model {
-            margin-bottom: 20px;
-
-            h4 {
-              font-size: 14px;
-              font-weight: bold;
-              margin-bottom: 10px;
-
-              @media (min-width: $screen-md-min) { font-size: 16px; }
-            }
-
-            p {
-              font-size: 14px;
-
-              @media (min-width: $screen-md-min) { font-size: 16px; }
-            }
-          }
+        header {
+          background: #f5f5f2;
+          font-weight: bold;
+          text-align: center;
+          padding: 10px;
+          border-bottom: 1px solid #ddd;
         }
 
+        .scheme-body {
+          padding: 25px 30px;
+
+          .initial-value { font-size: 24px; }
+          .initial-label {
+            color: #999;
+            font-size: 14px;
+          }
+
+          .plus {
+            font-size: 28px;
+            margin: 10px 0;
+          }
+
+          .shared-income {
+            color: #666;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  .section-quote {
+    background: image-url('pattern-1.png') repeat center center;
+
+    .quote {
+      color: #666;
+      font-size: 18px;
+      text-align: center;
+
+      @media (min-width: $screen-sm-min) { font-size: 21px; }
+    }
+
+    .quote-details {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+
+      img {
+        width: 80px;
+        margin-right: 30px;
+      }
+
+      .quote-name {
+        color: #555;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .quote-company {
+        color: #999;
+        font-size: 18px;
+        margin-top: 7px;
       }
     }
   }

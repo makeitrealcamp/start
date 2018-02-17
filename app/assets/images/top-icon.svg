@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="180px" viewBox="0 0 100 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>top-v1</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="top-v1">
+            <rect id="Rectangle" fill="#F04500" x="0" y="0" width="100" height="40"></rect>
+            <rect id="Rectangle" fill="#F5F5F2" x="0" y="70" width="100" height="40"></rect>
+            <rect id="Rectangle" fill="#F5F5F2" x="0" y="140" width="100" height="40"></rect>
+        </g>
+    </g>
+</svg>
