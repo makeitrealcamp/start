@@ -521,6 +521,41 @@
       }
     }
   }
+
+  #application-modal {
+    .modal-body {
+      color: #555;
+      line-height: 1.6;
+      padding: 20px 30px;
+
+      ul {
+        color: #666;
+        padding-left: 35px;
+
+        li {
+          margin-bottom: 13px;
+
+          small {
+            display: block;
+            color: #999;
+            font-size: 14px;
+          }
+        }
+      }
+
+      .form-group label { font-weight: 600; }
+    }
+
+    .modal-footer {
+      .back {
+        display: none;
+        float: left;
+        color: #999;
+        border: 1px solid #ccc;
+        padding: 9px 14px;
+      }
+    }
+  }
 }
 
 

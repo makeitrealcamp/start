@@ -2,7 +2,8 @@ var ready;
 ready = function() {
   $("[data-datetimepicker]").datepicker({
     language: "es",
-    format: "dd-mm-yyyy"
+    format: "dd/mm/yyyy",
+    orientation: 'bottom'
   });
 
   $("[data-intlTelInput]").intlTelInput();

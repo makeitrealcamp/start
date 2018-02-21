@@ -267,4 +267,182 @@
 
   <%= render "footer" %>
 
+  <div class="modal fade" id="application-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Formulario de aplicación</h4>
+        </div>
+
+        <div class="header-step">
+          <div class="header-step-1 active"></div>
+          <div class="header-step-2"></div>
+          <div class="header-step-3"></div>
+        </div>
+
+        <form id="application-form" action="/application/top" method="post">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+          <div class="modal-body">
+            <div class="step-1">
+              <p style="margin-bottom: 18px;"><strong>¡Gracias por tu interés en Make it Real!</strong> Antes de empezar asegúrate que cumples con los siguientes requisitos:</p>
+              <ul>
+                <li>
+                  Sabes lo básico de HTML, CSS y JavaScript.
+                  <small>Eres capaz de crear una página Web desde cero y conoces conceptos de programación como variables, condicionales, iteraciones, arreglos y funciones, entre otros.</small>
+                </li>
+                <li>
+                  Dispones del tiempo para realizar el programa.
+                  <small>El programa requiere una dedicación mínima de 40 horas por semana durante 12 semanas.</small>
+                </li>
+                <li>
+                  Manejas un nivel intermedio de Inglés.
+                  <small>Al menos debes entenderlo hablado y escrito, y puedes defenderte de forma básica.</small>
+                </li>
+              </ul>
+              <p style="margin-top: 25px; margin-bottom: 18px;">Si no puedes pagar la totalidad del programa debes cumplir además con el siguiente requisito:</p>
+              <ul>
+                <li>
+                  Eres residente colombiano(a) mayor de edad.
+                  <small>Debes poder trabajar en Colombia y vivir, o poderte trasladar, a alguna de las ciudades principales.</small>
+                </li>
+              </ul>
+              <div class="checkbox" style="margin-top: 30px;">
+                <label>
+                  <input type="checkbox" id="terms" name="applicant[accepted_terms]"> He leído y afirmo que cumplo con los requisitos para aplicar
+                </label>
+              </div>
+            </div>
+            <div class="step-2" style="display: none">
+              <p style="margin-bottom: 20px;">Completa la siguiente información:</p>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <input type="text" id="first-name" name="applicant[first_name]" class="form-control" placeholder="Nombres">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <input type="text" id="last-name" name="applicant[last_name]" class="form-control" placeholder="Apellidos">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="email" id="email" name="applicant[email]" class="form-control" placeholder="Email" data-epayco="card[email]">
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="birthday">Fecha de nacimiento</label>
+                    <input type="text" id="birthday" name="applicant[birthday]" class="form-control" placeholder="dd/mm/aaaa" data-datetimepicker="true">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="gender">Género</label>
+                    <select id="gender" class="form-control" name="applicant[gender]">
+                      <option value="">Selecciona</option>
+                      <option value="male">Hombre</option>
+                      <option value="female">Mujer</option>
+                      <option value="other">Otro</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="country">País de residencia</label>
+                    <select class="form-control" id="country" name="applicant[country]">
+                      <option value="" selected>Selecciona</option>
+                      <option value="AR" data-code="54">Argentina</option>
+                      <option value="BO" data-code="591">Bolivia</option>
+                      <option value="CL" data-code="56">Chile</option>
+                      <option value="CO" data-code="57">Colombia</option>
+                      <option value="CR" data-code="506">Costa Rica</option>
+                      <option value="EC" data-code="593">Ecuador</option>
+                      <option value="SV" data-code="503">El Salvador</option>
+                      <option value="ES" data-code="34">España</option>
+                      <option value="US" data-code="1">Estados Unidos</option>
+                      <option value="GT" data-code="502">Guatemala</option>
+                      <option value="HN" data-code="504">Honduras</option>
+                      <option value="MX" data-code="52">México</option>
+                      <option value="NI" data-code="505">Nicaragua</option>
+                      <option value="PA" data-code="507">Panamá</option>
+                      <option value="PY" data-code="595">Paraguay</option>
+                      <option value="PE" data-code="51">Perú</option>
+                      <option value="PR" data-code="1">Puerto Rico</option>
+                      <option value="DO" data-code="1">República Dominicana</option>
+                      <option value="UY" data-code="598">Uruguay</option>
+                      <option value="VE" data-code="58">Venezuela</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group" id="mobile-wrapper">
+                    <label for="mobile">&nbsp;</label>
+                    <div class="input-group">
+                      <span class="input-group-addon" id="mobile-code">+00</span>
+                      <input type="tel" class="form-control" id="mobile" name="applicant[mobile]" placeholder="Número móvil">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <input type="text" name="applicant[skype]" class="form-control" placeholder="Usuario de Skype (si tienes)">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <input type="text" name="applicant[twitter]" class="form-control" placeholder="Usuario de Twitter (si tienes)">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="text" name="applicant[url]" class="form-control" placeholder="Página personal o blog (si tienes)">
+              </div>
+            </div>
+
+            <div class="step-3" style="display: none;">
+              <p style="margin-bottom: 20px;">Completa la siguiente información:</p>
+              <div class="form-group">
+                <label for="goal">¿Por qué quieres participar en este programa inmersivo?</label>
+                <textarea id="goal" name="applicant[goal]" class="form-control" rows="4" placeholder="¿Cuál es tu motivación? ¿Cuál es tu objetivo al finalizarlo?"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="experience">¿Cuál es tu nivel de experiencia?</label>
+                <textarea id="experience" name="applicant[experience]" class="form-control" rows="4" placeholder="¿Cuál ha sido tu experiencia con la programación? Cuéntanos cómo has aprendido hasta ahora"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="additional">¿Algo más que nos quieras de ti?</label>
+                <textarea id="additional" name="applicant[additional]" class="form-control" rows="4" placeholder="Puede ser un hobby, alguna anécdota que te ejemplifique o algún logro personal"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default back">&lt;&lt; Atrás</button>
+            <button type="button" class="btn btn-primary btn-lg next">Continuar</button>
+            <button type="button" class="btn btn-primary btn-lg finish" style="display: none;">FINALIZAR</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script type="text/javascript">
+  $(document).on("ready page:load", function() {
+    var topProgramView = new TopProgramView();
+
+    $('.apply-now-btn').on('click', function(e) {
+      e.preventDefault();
+      topProgramView.render();
+    });
+  });
+</script>
