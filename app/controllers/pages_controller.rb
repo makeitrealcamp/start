@@ -242,8 +242,40 @@ class PagesController < ApplicationController
     redirect_to "https://s3.amazonaws.com/makeitreal/e-books/convertirte-en-desarrollador-web.pdf"
   end
 
+  def create_top_applicant
+    TopApplicant.create!(top_applicant_params)
+
+    data = {
+      name: "filled-top-application",
+      person: {
+        pid: cookies[:dp_pid],
+        email: top_applicant_params[:email],
+        first_name: top_applicant_params[:first_name],
+        last_name: top_applicant_params[:last_name],
+        birthday: top_applicant_params[:birthday],
+        country: top_applicant_params[:country],
+        mobile: top_applicant_params[:mobile],
+        skype: top_applicant_params[:skype],
+        twitter: top_applicant_params[:twitter],
+        portafolio_url: top_applicant_params[:url]
+      },
+      metadata: {
+        ip: request.remote_ip,
+        goal: top_applicant_params[:goal],
+        experience: top_applicant_params[:experience],
+        more_info: top_applicant_params[:additional]
+      }
+    }
+    ConvertLoopJob.perform_later(data)
+    redirect_to "/thanks-top"
+  end
+
   private
     def save_referer
       session['referer'] = request.env["HTTP_REFERER"] || 'none' unless session['referer']
+    end
+
+    def top_applicant_params
+      params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :skype, :twitter, :url, :goal, :experience, :additional)
     end
 end

@@ -27,6 +27,9 @@ Rails.application.routes.draw do
 
   get "top", to: "pages#top"
   get "elite", to: "pages#elite"
+  # get "courses/react-redux", to: "pages#react_redux"
+
+  post "application/top", to: "pages#create_top_applicant"
 
   get "faq", to: "pages#faq"
   get "makers", to: "pages#makers"
@@ -43,6 +46,7 @@ Rails.application.routes.draw do
   get "thanks-full-stack-cali", to: "pages#thanks_full_stack_onsite"
   get "thanks-front-end-medellin", to: "pages#thanks_full_stack_onsite"
   get "thanks-front-end-bogota", to: "pages#thanks_full_stack_onsite"
+  get "thanks-top", to: "pages#thanks_top"
 
   get "thanks-scholarships", to: "pages#thanks_scholarships"
   get "como-convertirte-en-web-developer", to: "pages#web_developer_guide", as: :web_developer_guide
