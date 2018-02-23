@@ -5,7 +5,7 @@ ruby "2.3.3"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.21.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # User Bootstrap
@@ -101,5 +101,6 @@ group :test do
   gem 'codeclimate-test-reporter', require: nil
   gem 'rspec-wait', '0.0.9'
   gem 'rspec-retry', '0.5.2'
+  gem 'rspec-sidekiq', '3.0.3'
 end
 gem 'sinatra', :require => nil

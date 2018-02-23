@@ -326,7 +326,7 @@ blockquote {
         .resource-completion {
           color: #ddd;
           font-size: 18px;
-          
+
           &.completed { color: #28B038; }
         }
 
@@ -380,24 +380,24 @@ blockquote {
             &.reading {
               @extend .fa-book;
             }
-            &.video_tutorial {
-              @extend .fa-file-video-o;
-            }
-            &.documentation {
-              @extend .fa-file-text-o;
-            }
+            // &.video_tutorial {
+            //   @extend .fa-file-video-o;
+            // }
+            // &.documentation {
+            //   @extend .fa-file-text-o;
+            // }
             &.game {
               @extend .fa-gamepad;
             }
-            &.blog_post {
-              @extend .fa-pencil-square-o;
-            }
+            // &.blog_post {
+            //   @extend .fa-pencil-square-o;
+            // }
             &.tutorial {
               @extend .fa-wrench;
             }
-            &.quiz {
-              @extend .fa-check-square-o;
-            }
+            // &.quiz {
+            //   @extend .fa-check-square-o;
+            // }
           }
         }
       }
