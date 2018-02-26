@@ -1,7 +1,7 @@
 // Place all the styles related to the admin/aplications controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.container{
+.aplication{
 	margin-top:150px;
 	border:solid black 1px
 }
@@ -15,7 +15,7 @@
 .name{
 	margin-top:10px;
 }
-.name,.details{
+.aplication_names, .details{
 	border:solid 1px black;
 }
 .details{
@@ -67,4 +67,3 @@
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
 }
-
