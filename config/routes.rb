@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :admin do
+  get 'aplications/index'
+  end
+
   root 'pages#home'
 
   get "curriculum", to: "pages#curriculum"
@@ -197,7 +201,7 @@ Rails.application.routes.draw do
         post 'assign_points'
       end
     end
-
+    resources :aplications
     resources :charges
 
     resources :badges
