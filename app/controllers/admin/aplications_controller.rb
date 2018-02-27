@@ -1,9 +1,9 @@
 class Admin::AplicationsController < ApplicationController
   def index
-    @participants = TopApplicant.all
+    @topApplicants = TopApplicant.all
   end
 
   def show
-    @participant = TopApplicant.find(params[:id])
+    @topApplicant = TopApplicant.find(params[:id])
   end
 end

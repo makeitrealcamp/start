@@ -1,1 +1,74 @@
-<h1>soy el show de aplicants</h1>
+<div class="container top_applicant_test">
+  <div class="col-sm-3">
+    <div class="row top_applicant_info">
+      <div class="">
+        <h1 class="top_applicant_name"><%=@topApplicant.first_name%> <%=@topApplicant.last_name%></h1>
+      </div>
+      <div class="">
+        <p><%=@topApplicant.email%></p>
+      </div>
+      <br>
+      <div class="top_applicant_block1">
+        <h4><strong>Fecha de Aplicación:</strong></h4>
+        <h6><%=@topApplicant.created_at%></h6>
+      </div>
+      <div class="top_applicant_block1">
+        <h4><strong>Última Actualización:</h4>
+        <h6><%=@topApplicant.updated_at%></h6>
+      </div>
+      <div class="top_applicant_block1">
+        <h4><strong>País:</strong></h4>
+        <h5.9><%=@topApplicant.country%></h6>
+      </div>
+      <div class="top_applicant_block1">
+        <h4><strong>Fecha de Nacimiento:</strong></h4>
+        <h6><%=@topApplicant.info["birthday"]%></h6>
+      </div>
+      <div class="top_applicant_block1">
+        <h4><strong>Género:</strong></h4>
+        <h6><%=@topApplicant.info["gender"]%></h6>
+      </div>
+      <div class="top_applicant_block1">
+        <h4><strong>Celular:</strong></h4>
+        <h6><%=@topApplicant.mobile%></h6>
+      </div>
+      <div class="top_applicant_block1">
+        <h4><strong>Skype:</strong></h4>
+        <h6><%=@topApplicant.info["skype"]%></h6>
+      </div>
+      <div class="top_applicant_block1">
+        <h4><strong>Twitter:</strong></h4>
+        <h6><%=@topApplicant.info["twitter"]%></h6>
+      </div>
+      <div class="top_applicant_block1">
+        <h4><strong>Url:</strong></h4>
+        <h6><%=@topApplicant.info["url"]%></h6>
+      </div>
+    </div>
+  </div>
+
+    <div class="col-sm-9">
+      <div class="row">
+        <div class="col-sm-2 col-sm-offset-9">
+          <p>Prueba Enviada</p>
+        </div>
+      </div>
+        <div class="row top_applicant_texts">
+          <div class="col-sm-12 col-sm-offset-2">
+          <div>
+            <h3><strong>Motivación:</strong></h3>
+            <h5><%=@topApplicant.info["goal"]%></h5>
+          </div>
+          <div>
+            <h3><strong>Experiencia:</strong></h3>
+            <h5><%=@topApplicant.info["experience"]%></h5>
+          </div>
+          <div>
+            <h3><strong>Info Adicional:</strong></h3>
+            <h5><%=@topApplicant.info["additional"]%></h5>
+          </div>
+          <hr style="border: solid 1px grey">
+        </div>
+      </div>
+    </div>
+  </div>

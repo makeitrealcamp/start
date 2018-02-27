@@ -42,12 +42,20 @@
 				</div>
 			 </div>
 
-<%@participants.each do |participant|%>
+<%@topApplicants.each do |topApplicant|%>
 			<div class="row aplication_names">
 					<div class="col-sm-3">
 						<ul>
-						 <li><%=participant.first_name%></li>
-						  <li><%=participant.email%></li>
+						 <li><%=topApplicant.first_name%></li>
+						 <li><%=topApplicant.last_name%></li>
+						  <li><%=topApplicant.email%></li>
+						  <li><%=topApplicant.goal%></li>
+						  <li><%=topApplicant.country%></li>
+						  <li><%=topApplicant.gender%></li>
+						  <li><%=topApplicant.twitter%></li>
+						  <li><%=topApplicant.birthday%></li>
+						  <li><%=topApplicant.additional%></li>
+						  <li><%=topApplicant.experience%></li>
 						   <li>Aplico</li>
 						</ul>
 					</div>
@@ -66,7 +74,7 @@
 						            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
 
 						              <li class="dropdown-submenu">
-                            <%=link_to "ver aplicación", admin_aplication_path(participant.id)%>
+                            <%=link_to "ver aplicación", admin_aplication_path(topApplicant.id)%>
 						                <a tabindex="-1" href="#">Enviar email</a>
 						                <ul class="dropdown-menu">
 						                  <li><a tabindex="-1" href="#">Email tipo 1</a></li>
@@ -88,8 +96,6 @@
 					</div>
 			</div>
       <%end%>
-
-
 				<div class="row details">
 					<div class="col-sm-12">
 					</div>
