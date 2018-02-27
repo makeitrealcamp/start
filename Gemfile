@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
-ruby "2.2.1"
+ruby "2.3.3"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'rails', '~> 4.2', '>= 4.2.5'
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.21.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # User Bootstrap
@@ -50,9 +50,9 @@ gem 'momentjs-rails'
 gem 'rails_12factor', group: :production
 
 gem 'omniauth-slack'
-gem 'font-awesome-sass'
+gem 'font-awesome-sass', '4.7.0'
 gem 'nested_form_fields'
-gem 'annotate', '~> 2.6.6'
+gem 'annotate'
 
 #windows specific
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
