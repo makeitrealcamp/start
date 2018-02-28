@@ -95,6 +95,20 @@
                     <hr style="border: solid 1px #dbdee1">
                 </li>
                     <% end %>
+                    <% if comment.comment_type =="cambio_de_estado" %>
+                <li><p class="topApplicant_date"> <%= comment.created_at.strftime("%B %d at %I:%M %p") %></p>
+                    <p><%=User.find(comment.user_id).email%> cambio el estado de: <strong> <%= comment.past_status %></strong> a: <strong>   <%= comment.current_status %></strong> </p>
+                    <p class="topApplicant_message"><%= comment.comment %></p>
+                    <hr style="border: solid 1px #dbdee1">
+                </li>
+                    <% end %>
+                    <% if comment.comment_type =="correo" %>
+                <li><p class="topApplicant_date"> <%= comment.created_at.strftime("%B %d at %I:%M %p") %></p>
+                    <p><%=User.find(comment.user_id).email%> envío un correo con asunto XXX: </p>
+                    <p class="topApplicant_message"><%= comment.comment %></p>
+                    <hr style="border: solid 1px #dbdee1">
+                </li>
+                    <% end %>
             <% end %>
 
             </ul>

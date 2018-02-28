@@ -14,9 +14,7 @@ class Admin::AplicationsController < ApplicationController
 
   def update
   	puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-    @topApplicant = TopApplicant.find(params[:id])
-    @topApplicant.update(:status => params[:status])
-    @text = aplication_params
+
 
   end
   private 
