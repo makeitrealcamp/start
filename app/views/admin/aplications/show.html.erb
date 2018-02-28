@@ -50,7 +50,7 @@
     <div class="col-sm-9">
       <div class="row">
         <div class="col-sm-2 col-sm-offset-9">
-          <p>Prueba Enviada</p>
+          <p id="topApplicant_status"><%= @topApplicant.status %></p>
         </div>
       </div>
         <div class="row top_applicant_texts">
@@ -74,8 +74,48 @@
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#send_email">
           Enviar email:
           </button>
-          <%= render "top_application_modals"%>
+          <%= render "top_application_modals", { topApplicant: @topApplicant }%>
+
+          <div class="form_comment_application">
+          <%= form_tag ("/admin/applicant_activities") do%>
+          <div class="form-group">
+            <%= hidden_field_tag :applicant_id, @topApplicant.id%>
+            <%= hidden_field_tag :comment_type, 1%>
+            <%= text_area_tag :comment,nil, class:"form-control input-lg", placeholder:"Ingresa un comentario"%>
+          </div>
+          <%= submit_tag "Agrega tu comentario", class:"btn btn-primary btn-block" %>
+          <% end %>
+          <div class="comments_applicant">
+            <ul class="top_applicant_ul">
+            <% @comments.each do |comment| %>
+             <% if comment.comment_type =="texto" %>
+                <li><p class="topApplicant_date"> <%= comment.created_at.strftime("%B %d at %I:%M %p") %></p>
+                    <p><%=User.find(comment.user_id).email%> dejo el siguiente comentario: </p>
+                    <p class="topApplicant_message"><%= comment.comment %></p>
+                    <hr style="border: solid 1px #dbdee1">
+                </li>
+                    <% end %>
+                    <% if comment.comment_type =="cambio_de_estado" %>
+                <li><p class="topApplicant_date"> <%= comment.created_at.strftime("%B %d at %I:%M %p") %></p>
+                    <p><%=User.find(comment.user_id).email%> cambio el estado de: <strong> <%= comment.past_status %></strong> a: <strong>   <%= comment.current_status %></strong> </p>
+                    <p class="topApplicant_message"><%= comment.comment %></p>
+                    <hr style="border: solid 1px #dbdee1">
+                </li>
+                    <% end %>
+                    <% if comment.comment_type =="correo" %>
+                <li><p class="topApplicant_date"> <%= comment.created_at.strftime("%B %d at %I:%M %p") %></p>
+                    <p><%=User.find(comment.user_id).email%> envío un correo con asunto XXX: </p>
+                    <p class="topApplicant_message"><%= comment.comment %></p>
+                    <hr style="border: solid 1px #dbdee1">
+                </li>
+                    <% end %>
+            <% end %>
+
+            </ul>
+          </div>
         </div>
+        </div>
+
       </div>
 
     </div>

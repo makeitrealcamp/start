@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
   before_action :set_instance, only: [:index, :create]
 
   def create
+    puts "11111111111111111111111111111111111111111111111"
     @comment = Comment.new(comment_params.merge(
       commentable: @instance, user: current_user
     ))

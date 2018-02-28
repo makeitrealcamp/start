@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'applicant_activity/index'
+
+  get 'applicant_activity/create'
+
+  get 'applicant_activity/update'
+
   namespace :admin do
   get 'aplications/index'
   end
@@ -202,6 +208,7 @@ Rails.application.routes.draw do
       end
     end
     resources :aplications
+    resources :applicant_activities 
     resources :charges
 
     resources :badges
@@ -212,6 +219,7 @@ Rails.application.routes.draw do
       patch 'update_position', on: :member
     end
   end
+  
 
   resources :notifications, only: [:index,:show] do
     collection do
