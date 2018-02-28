@@ -6,8 +6,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">Cambiar estado</h5>
       </div>
       <div class="modal-body">
-        <%= form_tag('/admin/aplications/1', method: => :put)%>
-
+        <%= form_tag('/admin/aplications/#{@topApplicant.id}', method: :patch) do%>
              <%= hidden_field_tag :task_id, @topApplicant.id%>
                <%= select_tag :status, options_for_select(TopApplicant.statuses.keys.to_a), class: "form-control form-control-lg",id: "top_aplication_state_select" %>
                <%= text_field :top_applicant, :comment, placeholder: "Deja un comentario (opcional)",class: "form-control form-control-lg", id: "top_application_comment_text" %>
@@ -15,7 +14,6 @@
       <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"> Cancelar
             </button>
-
             <%= submit_tag "Cambiar estado", class: "btn btn-large btn-primary" %>
           <% end %>
       </div>
