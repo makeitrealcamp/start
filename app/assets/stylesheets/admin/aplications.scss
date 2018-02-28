@@ -69,7 +69,11 @@
 }
 
 .top_applicant_texts{
-	margin-top:145px;
+	margin-top:67px;
+}
+#topApplicant_status{
+    padding-top:70px;
+    font-size:24px;
 }
 
 .top_applicant_info{
@@ -95,4 +99,21 @@
 }
 #top_aplication_state_select{
     margin-top:20px;
+}
+
+.form_comment_application{
+    margin-top:30px;
+}
+
+.comments_applicant{
+    margin-top:30px;
+}
+.topApplicant_date, .topApplicant_message{
+ color:#949DA8;
+}
+.topApplicant_message{
+ margin: 10px 0 10px 0;
+}
+.top_applicant_ul{
+    list-style-type: none
 }

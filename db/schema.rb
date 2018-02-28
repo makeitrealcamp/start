@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180219143418) do
+ActiveRecord::Schema.define(version: 20180228162352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 20180219143418) do
 
   add_index "activity_logs", ["activity_type", "activity_id"], name: "index_activity_logs_on_activity_type_and_activity_id", using: :btree
   add_index "activity_logs", ["user_id"], name: "index_activity_logs_on_user_id", using: :btree
+
+  create_table "applicant_activities", force: :cascade do |t|
+    t.integer  "applicant_id"
+    t.integer  "user_id"
+    t.integer  "comment_type"
+    t.text     "comment"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "applicants", force: :cascade do |t|
     t.string   "type",       limit: 30
