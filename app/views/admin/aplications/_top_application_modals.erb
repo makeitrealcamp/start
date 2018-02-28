@@ -9,13 +9,20 @@
         </button>
       </div>
 
-      <div class="">
-        <%=form_for @topApplicant do |f|%>
-          <%=label_tag(:user,"user" )%>
-          <%=f.collection_select :user.statuses, User.all, :statuses, :name, {}, class: "form-control"%>
-        <%end%>
-      </div>
       <div class="modal-body">
+        <%= form_for @application_top, remote: true do |f| %>
+        <div class="col-sm-6">
+              <%=label_tag(:type, "TopApplicant")%>
+              <%= f.collection_select :TopApplicant_id, TopApplicant.all,:id,:name, {}, class: "form-control"%>
+          </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <%=label_tag(:email, "Email")%>
+                <br>
+                <%=f.date_select :email, class:"email_field form-control"%>
+              </div>
+          </div>
+          <%end%>
        cambiar estado
       </div>
       <div class="modal-footer">
