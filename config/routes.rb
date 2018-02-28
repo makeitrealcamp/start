@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'applicant_activity/index'
+
+  get 'applicant_activity/create'
+
+  get 'applicant_activity/update'
+
   namespace :admin do
   get 'aplications/index'
   end

@@ -76,6 +76,14 @@
           </button>
           <%= render "top_application_modals", { topApplicant: @topApplicant }%>
         </div>
+        <div class="form_comment_application">
+          <%= form_tag admin_applicant_activity_path do%>
+          <div class="form-group">
+            <%= text_area_tag :body, class:"form-control input-lg", placeholder:"Ingresa un comentario"%>
+          </div>
+          <%= submit "Agrega tu comentario", class:"btn btn-primary btn-block" %>
+          <% end %>
+        </div>
       </div>
 
     </div>
