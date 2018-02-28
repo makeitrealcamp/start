@@ -209,6 +209,7 @@ Rails.application.routes.draw do
     end
     resources :aplications
     resources :applicant_activities 
+    resources :email_templates
     resources :charges
 
     resources :badges
