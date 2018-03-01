@@ -1,9 +1,38 @@
 <div class="container">
-	<div class="row" style="margin:100px">
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#send_email">
-          Crear un nuevo template
-          </button>
-          <%= render "email_templates"%>
-	</div>
+	<div class="row" >
+		<div class="col-sm-12">
+			<div class="email_templates_header">
+				<h1>Plantillas para envíar correos</h1>
+			<button type="button" class="btn_new_email_template btn btn-primary" data-toggle="modal" data-target="#send_email">
+				<span class='new_template_glyphicon glyphicon glyphicon-plus'></span>     Nueva plantilla
+			</button>
+		</div>
+			<%= render "email_templates"%>
+		</div>
+		<hr style="color:black">
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="email_table table users" id="table-users">
+					<thead>
+						<tr>
+							<th>Título</th>
+							<th>Asunto</th>
+							<th class="text-center">Mensaje</th>
+							<th>Ir a la plantilla</th>
+						</tr>
+					</thead>
+					<tbody class="body_email_template">
+						<%@templates.each do |template|%>
+						<tr>
+							<td class="title_email"><%=template.title%></td>
+							<td class="message_email"><%=template.subject%></td>
+							<td class="text-center body_email"><%=template.body[0..25]%></td>
+							<td class="text-center"><a href="/admin/email_templates/<%=template.id%>"><span class='glyphicon glyphicon-hand-right'></span></a></td>
+						</tr>
+						<%end%>
+					</tbody>
+				</table>
+			</div>
+		</div>
 </div>
-

@@ -11,6 +11,8 @@
 #  updated_at     :datetime         not null
 #  current_status :string
 #  past_status    :string
+#  subject        :string
+#  body           :text
 #
 
 class ApplicantActivity < ActiveRecord::Base
