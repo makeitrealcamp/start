@@ -6,7 +6,7 @@ class Admin::AplicationsController < ApplicationController
 
   def show
     @topApplicant = TopApplicant.find(params[:id])
-    @comments = ApplicantActivity.all
+    @comments = ApplicantActivity.all.order("created_at DESC")
   end
 
   def create

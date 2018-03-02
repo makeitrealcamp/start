@@ -15,5 +15,5 @@
 class EmailApplicationActivity < ApplicantActivity
   hstore_accessor :info,
   subject:        :string,
-  body:           :text
+  body:           :string
 end
