@@ -12,8 +12,8 @@
 #  info         :hstore
 #
 
-class ApplicantActivity < ActiveRecord::Base
-	belongs_to :user
-
-	enum comment_type:[:cambio_de_estado, :texto, :correo]
+class ChangeStatusApplicationActivity < ApplicantActivity
+  hstore_accessor :info,
+  current_status: :string,
+  past_status:    :string
 end

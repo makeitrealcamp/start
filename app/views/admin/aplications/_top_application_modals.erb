@@ -5,19 +5,18 @@
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Cambiar estado</h5>
       </div>
-      <div class="modal-body">
-        <%= form_tag ("/admin/applicant_activities") do%>
+      <%= form_tag ("/admin/applicant_activities") do%>
+        <div class="modal-body">
             <%= hidden_field_tag :applicant_id, @topApplicant.id%>
             <%= hidden_field_tag :comment_type, 0%>
                <%= select_tag :status, options_for_select(TopApplicant.statuses.keys.to_a), class: "form-control form-control-lg",id:"top_aplication_state_select" %>
                <%= text_area_tag :comment,nil, class:"form-control input-lg", placeholder:"Ingresa un comentario", id: "top_application_comment_text" %>
-      </div>
-      <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"> Cancelar
-            </button>
+          </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"> Cancelar </button>
             <%= submit_tag "Cambiar estado", class: "btn btn-large btn-primary" %>
-          <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
@@ -33,14 +32,17 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <%= form_tag ("/admin/applicant_activities") do%>
+      <%= form_tag admin_applicant_activities_path do%>
+        <div class="modal-body">
           <%= hidden_field_tag :applicant_id, @topApplicant.id%>
           <%= hidden_field_tag :comment_type, 2%>
+          <%=select_tag :email_template_id, options_from_collection_for_select(EmailTemplate.all, :id, :title)%>
+          <%=text_field_tag(:subject, EmailTemplate.first.subject, class: "form-control")%>
+          <%=text_field_tag(:body, @topApplicant.first_name, class: "form-control")%>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <%=submit_tag "Envíar correo", class: "btn btn-primary"%>
       </div>
       <%end%>
     </div>

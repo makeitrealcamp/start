@@ -12,8 +12,8 @@
 #  info         :hstore
 #
 
-class ApplicantActivity < ActiveRecord::Base
-	belongs_to :user
-
-	enum comment_type:[:cambio_de_estado, :texto, :correo]
+class EmailApplicationActivity < ApplicantActivity
+  hstore_accessor :info,
+  subject:        :string,
+  body:           :text
 end

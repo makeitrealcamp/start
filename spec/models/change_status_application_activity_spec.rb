@@ -12,8 +12,8 @@
 #  info         :hstore
 #
 
-class ApplicantActivity < ActiveRecord::Base
-	belongs_to :user
+require 'rails_helper'
 
-	enum comment_type:[:cambio_de_estado, :texto, :correo]
+RSpec.describe ChangeStatusApplicationActivity, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
 end
