@@ -9,4 +9,5 @@ if [ ! -f <%= evaluation_file_path %> ]; then
   exit 1
 fi
 
+export NODE_PATH=/usr/lib/node_modules
 mocha --reporter json <%= evaluation_file_path %> 1> <%= result_file_path %> 2> <%= error_file_path %>
