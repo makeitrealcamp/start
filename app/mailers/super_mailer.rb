@@ -1,0 +1,2 @@
+class SuperMailer < ApplicationMailer
+end

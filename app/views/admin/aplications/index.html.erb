@@ -55,7 +55,8 @@
 						<ul>
 						 <li class="medium_size_element_aplication"><%=topApplicant.status%></li>
 						 <li class="small_size_element_aplication"><%=topApplicant.updated_at.strftime("%B %d at %I:%M %p")%></li>
-						   <li class="small_size_element_aplication">2 comentarios</li>
+					
+						   <li class="small_size_element_aplication"> <%= ApplicantActivity.where(applicant_id:topApplicant.id).count %></li>
 						</ul>
 					</div>
 					<div class="col-sm-2">

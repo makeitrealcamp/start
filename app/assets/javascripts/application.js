@@ -31,7 +31,9 @@
 //= require datepicker/bootstrap-datepicker.es.js
 //= require intlTelInput
 //= require jquery.payment
-//= require_tree .
+//= require_tree 
+//= require admin/aplications
+//= require admin/applicant_activities
 
 Turbolinks.enableProgressBar();
 
@@ -52,3 +54,9 @@ _.templateSettings = {
   interpolate: /\{\{=(.+?)\}\}/g,
   evaluate: /\{\{(.+?)\}\}/g,
 };
+
+$( "#template_selector" ).change(function() {
+  console.log(this);
+});
+
+console.log("hola")

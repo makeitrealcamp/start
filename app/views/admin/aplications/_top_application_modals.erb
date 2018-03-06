@@ -32,13 +32,14 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <%= content_tag :div, class: "data_information", data: {templates: EmailTemplate.all} do %><% end %>
       <%= form_tag admin_applicant_activities_path do%>
         <div class="modal-body">
           <%= hidden_field_tag :applicant_id, @topApplicant.id%>
           <%= hidden_field_tag :comment_type, 2%>
-          <%=select_tag :email_template_id, options_from_collection_for_select(EmailTemplate.all, :id, :title)%>
-          <%=text_field_tag(:subject, EmailTemplate.first.subject, class: "form-control")%>
-          <%=text_field_tag(:body, @topApplicant.first_name, class: "form-control")%>
+          <%=select_tag :email_template_id, options_from_collection_for_select(EmailTemplate.all, :id, :title),id:"template_selector", class:" form-control btn btn-lg"%>
+          <%=text_field_tag(:subject, EmailTemplate.first.subject, class: "form-control", id:"email_subject_selector")%>
+          <%=text_field_tag(:body, EmailTemplate.first.body, class: "form-control",id:"email_body_selector")%>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -48,3 +49,18 @@
     </div>
   </div>
 </div>
+
+<script>
+  $( "#template_selector" ).change(function() {
+  console.log("Hola1")
+  var template_name = $("#template_selector :selected").text()
+  var templates = $('.data_information').data('templates')
+ console.log(templates)
+  new_template = templates.find(function(element){
+    return template_name == element.title
+  })
+  console.log(new_template)
+$("#email_subject_selector").val(new_template.subject)
+$("#email_body_selector").val(new_template.body)
+});
+</script>

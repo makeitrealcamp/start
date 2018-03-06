@@ -10,6 +10,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  info         :hstore
+#  type         :string
 #
 
 class ChangeStatusApplicationActivity < ApplicantActivity

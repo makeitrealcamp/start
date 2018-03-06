@@ -13,8 +13,6 @@ class Admin::AplicationsController < ApplicationController
   end
 
   def update
-  	puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-
 
   end
   private 
