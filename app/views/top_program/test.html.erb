@@ -1,0 +1,96 @@
+<div class="top-test-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <div class="logo-wrapper">
+          <%= image_tag "logo-black.png" %>
+        </div>
+
+        <div class="box">
+          <div class="box-header <%= @test.errors.any? ? "error": "info" %>">PRUEBA TÉCNICA</div>
+          <div class="box-body">
+            <p style="line-height: 1.6;">¡Muy bien! La prueba técnica se compone de 4 ejercicios (uno de HTML y CSS, y tres de JavaScript). No existe límite de tiempo pero ten en cuenta que en cualquier momento puede cambiar, así que entre más rápido la envíes mejor.</p>
+            <p><strong>Nota:</strong> Para volver a esta página puedes utilizar el vínculo que te llegó en el correo.</p>
+
+            <%= form_for @test, url: top_program_test_path do |f| %>
+              <%= hidden_field_tag :applicant_id, @test.applicant.id %>
+
+              <div class="question-wrapper">
+                <div class="title <%= "has-error" if @test.errors[:a1].any? %>">1. Crea una página Web y publícala en Github Pages</div>
+                <p>La página debe contar con los siguientes elementos: una imagen de fondo, tu foto circular con un borde blanco de 3 pixeles, tu nombre y lugar de residencia.</p>
+                <p>La página debe estar publicada en <a href="https://pages.github.com/" target="_blank">Github Pages</a>.</p>
+                <div class="form-group <%= "has-error" if @test.errors[:a1].any? %>">
+                  <%= f.text_field :a1, class: "form-control", placeholder: "https://github.com/usuario/repo" %>
+                  <% if @test.errors[:a1].any? %>
+                    <div class="help-block"><%= @test.errors[:a1].first %></div>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="question-wrapper">
+                <div class="title <%= "has-error" if @test.errors[:a2].any? %>">2. Cuenta los caracteres</div>
+                <p>Escribe una función en JavaScript llamada <code>count</code> que reciba dos parámetros: <code>str</code> y <code>char</code>. La función debe retornar el número de veces que aparece <code>char</code> en <code>str</code>.</p>
+                <p>Ejemplos:</p>
+                <pre class="examples"><code>count("Hello", "l"); // retorna 2
+count("Hola", "g");  // retorna 0</code></pre>
+
+                <div class="form-group <%= "has-error" if @test.errors[:a2].any? %>">
+                  <%= f.text_area :a2, class: "form-control", id: "a2" %>
+                  <% if @test.errors[:a2].any? %>
+                    <div class="help-block"><%= @test.errors[:a2].first %></div>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="question-wrapper">
+                <div class="title <%= "has-error" if @test.errors[:a3].any? %>">3. Filtra el arreglo</div>
+                <p>Escribe una función en JavaScript llamada <code>filter</code> que reciba un arreglo de números como parámetro y retorne un nuevo arreglo con los números mayores a 10.</p>
+
+                <div class="form-group <%= "has-error" if @test.errors[:a3].any? %>">
+                  <%= f.text_area :a3, class: "form-control", id: "a3" %>
+                  <% if @test.errors[:a3].any? %>
+                    <div class="help-block"><%= @test.errors[:a3].first %></div>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="question-wrapper">
+                <div class="title <%= "has-error" if @test.errors[:a4].any? %>">4. Calcula la hipotenusa</div>
+                <p>Escribe una función en JavaScript llamada <code>hypotenuse</code> que reciba dos parámetros: <code>a</code> y <code>b</code>, que representan los lados de un triángulo, y que retorne la hipotenusa.</p>
+
+                <div class="form-group <%= "has-error" if @test.errors[:a4].any? %>">
+                  <%= f.text_area :a4, class: "form-control", id: "a4" %>
+                  <% if @test.errors[:a4].any? %>
+                    <div class="help-block"><%= @test.errors[:a4].first %></div>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="actions text-right">
+                <button type="submit" class="btn btn-primary" name="button">Enviar</button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var options = {
+    mode: "javascript",
+    theme: 'monokai',
+    lineNumbers: true,
+    height: 100
+  };
+
+  var a2 = CodeMirror.fromTextArea(document.getElementById("a2"), options);
+  a2.setSize(null, 200);
+
+  var a3 = CodeMirror.fromTextArea(document.getElementById("a3"), options);
+  a3.setSize(null, 200);
+
+  var a4 = CodeMirror.fromTextArea(document.getElementById("a4"), options);
+  a4.setSize(null, 200);
+</script>

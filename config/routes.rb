@@ -68,6 +68,20 @@ Rails.application.routes.draw do
   resource :password, only: [:edit, :update]
   resource :password_reset, except: [:index, :show]
 
+  scope :top, as: "top_program" do
+    get :challenge, to: "top_program#challenge"
+    post :challenge, to: "top_program#submit_challenge"
+    get :test, to: "top_program#test"
+    post :test, to: "top_program#submit_test"
+    get :submitted, to: "top_program#submitted"
+  end
+
+
+  resources :interviews, only: [:new, :create] do
+    get :challenge, on: :collection
+    post :submit_challenge, on: :collection
+  end
+
   resources :users do
     collection do
       get :activate, action: 'activate_form'

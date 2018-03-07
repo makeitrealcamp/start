@@ -16,7 +16,13 @@
 #
 
 class TopApplicant < Applicant
+  enum status: [:applied, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :accepted, :enrolled, :not_enrolled, :rejected]
+
+  before_create :generate_uid
+
   hstore_accessor :info,
+    uid: :string,
+    valid_code: :boolean,
     accepted_terms: :boolean,
     birthday: :string,
     gender: :string,
@@ -27,5 +33,10 @@ class TopApplicant < Applicant
     experience: :string,
     additional: :string
 
-  enum status: [:applied, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :accepted, :enrolled, :not_enrolled, :rejected]
+  # protected
+    def generate_uid
+      begin
+        self.uid = SecureRandom.hex(4)
+      end while self.class.exists?(["info -> 'uid' = ?", self.uid])
+    end
 end

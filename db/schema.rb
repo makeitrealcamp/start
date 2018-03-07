@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180219143418) do
+ActiveRecord::Schema.define(version: 20180306213949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -404,6 +404,19 @@ ActiveRecord::Schema.define(version: 20180219143418) do
 
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
+  create_table "top_applicant_tests", force: :cascade do |t|
+    t.integer  "applicant_id"
+    t.string   "a1"
+    t.text     "a2"
+    t.text     "a3"
+    t.text     "a4"
+    t.text     "comments"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "top_applicant_tests", ["applicant_id"], name: "index_top_applicant_tests_on_applicant_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",           limit: 100
     t.datetime "created_at",                              null: false
@@ -471,5 +484,6 @@ ActiveRecord::Schema.define(version: 20180219143418) do
   add_foreign_key "solutions", "challenges"
   add_foreign_key "solutions", "users"
   add_foreign_key "subscriptions", "users"
+  add_foreign_key "top_applicant_tests", "applicants"
   add_foreign_key "users", "levels"
 end
