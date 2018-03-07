@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180306213949) do
+ActiveRecord::Schema.define(version: 20180307213248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,21 @@ ActiveRecord::Schema.define(version: 20180306213949) do
 
   add_index "activity_logs", ["activity_type", "activity_id"], name: "index_activity_logs_on_activity_type_and_activity_id", using: :btree
   add_index "activity_logs", ["user_id"], name: "index_activity_logs_on_user_id", using: :btree
+
+  create_table "applicant_activities", force: :cascade do |t|
+    t.integer  "applicant_id"
+    t.integer  "user_id"
+    t.integer  "comment_type"
+    t.text     "comment"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.hstore   "info"
+    t.string   "type"
+    t.string   "current_status"
+    t.string   "past_status"
+    t.string   "subject"
+    t.text     "body"
+  end
 
   create_table "applicants", force: :cascade do |t|
     t.string   "type",       limit: 30
@@ -160,6 +175,14 @@ ActiveRecord::Schema.define(version: 20180306213949) do
   end
 
   add_index "documents", ["folder_type", "folder_id"], name: "index_documents_on_folder_type_and_folder_id", using: :btree
+
+  create_table "email_templates", force: :cascade do |t|
+    t.string   "title"
+    t.string   "subject"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false

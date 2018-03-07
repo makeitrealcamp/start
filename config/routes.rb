@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+  namespace :admin do
+  get 'email_templates_controller/index'
+  end
+
+  namespace :admin do
+  get 'email_templates_controller/create'
+  end
+
+  namespace :admin do
+  get 'email_templates_controller/show'
+  end
+
+  namespace :admin do
+  get 'applicant_activities/create'
+  end
+
   get 'applications/index'
 
   get 'applications/show'
