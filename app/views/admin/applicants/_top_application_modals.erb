@@ -1,0 +1,66 @@
+<!-- Modal Cambiar Estado-->
+<div class="modal fade" id="change_state" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Cambiar estado</h5>
+      </div>
+      <%= form_tag ("/admin/applicant_activities") do%>
+        <div class="modal-body">
+            <%= hidden_field_tag :applicant_id, @topApplicant.id%>
+            <%= hidden_field_tag :comment_type, 0%>
+               <%= select_tag :status, options_for_select(TopApplicant.statuses.keys.to_a), class: "form-control form-control-lg",id:"top_aplication_state_select" %>
+               <%= text_area_tag :comment,nil, class:"form-control input-lg", placeholder:"Ingresa un comentario", id: "top_application_comment_text" %>
+          </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"> Cancelar </button>
+            <%= submit_tag "Cambiar estado", class: "btn btn-large btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Envíar Email-->
+<div class="modal fade" id="send_email" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Envíar Correo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= content_tag :div, class: "data_information", data: {templates: EmailTemplate.all} do %><% end %>
+      <%= form_tag admin_applicant_activities_path do%>
+        <div class="modal-body">
+          <%= hidden_field_tag :applicant_id, @topApplicant.id%>
+          <%= hidden_field_tag :comment_type, 2%>
+          <%=select_tag :email_template_id, options_from_collection_for_select(EmailTemplate.all, :id, :title),id:"template_selector", class:" form-control btn btn-lg"%>
+          <%=text_field_tag(:subject, EmailTemplate.first.subject, class: "form-control", id:"email_subject_selector")%>
+          <%=text_field_tag(:body, EmailTemplate.first.body, class: "form-control",id:"email_body_selector")%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <%=submit_tag "Envíar correo", class: "btn btn-primary"%>
+      </div>
+      <%end%>
+    </div>
+  </div>
+</div>
+
+<script>
+  $( "#template_selector" ).change(function() {
+  console.log("Hola1")
+  var template_name = $("#template_selector :selected").text()
+  var templates = $('.data_information').data('templates')
+ console.log(templates)
+  new_template = templates.find(function(element){
+    return template_name == element.title
+  })
+  console.log(new_template)
+$("#email_subject_selector").val(new_template.subject)
+$("#email_body_selector").val(new_template.body)
+});
+</script>

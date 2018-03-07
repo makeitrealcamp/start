@@ -1,0 +1,97 @@
+<div class="container aplication">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#">Top program</a></li>
+  </ul>
+  <br>
+  <div class="row first_row">
+		<div class="col-sm-3 left_ list">
+
+			<ul class="list-group">
+			 <li class="list-group-item">Aplico<span class="badge badge-primary badge-pill">14</span></li>
+			 <li class="list-group-item">Prueba enviada <span class="badge badge-primary badge-pill">14</span></li>
+			 <li class="list-group-item">Prueba recibida<span class="badge badge-primary badge-pill">14</span></li>
+			 <li class="list-group-item">Entrevista1<span class="badge badge-primary badge-pill">14</span></li>
+			 <li class="list-group-item">Entrevista2<span class="badge badge-primary badge-pill">14</span></li>
+			 <li class="list-group-item">Rechazado<span class="badge badge-primary badge-pill">14</span></li>
+			 <li class="list-group-item">Aceptado <span class="badge badge-primary badge-pill">14</span></li>
+			</ul>
+		</div>
+		<div class="col-sm-9" >
+			<div class="row">
+				<div class="col-md-5">
+					<form action="" class="search-form">
+             		  <div class="form-group has-feedback">
+              		     <label for="search" class="sr-only">Buscar</label>
+               		    <input type="text" class="form-control" name="search" id="search" placeholder="Buscar por nombre o email">
+                 	    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+           		  	  </div>
+           			</form>
+				</div>
+
+				<div class="col-md-3 col-md-offset-3">
+					<div class="dropdown">
+			            <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#" href="/page.html">
+			                Filtrar por estado <span class="caret"></span>
+			            </a>
+			            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+			              <li><a href="#">Activo</a></li>
+			              <li><a href="#">Inactivo</a></li>
+
+			            </ul>
+			        </div>
+				</div>
+			 </div>
+
+<%@topApplicants.each do |topApplicant|%>
+			<div class="row aplication_names">
+					<div class="col-sm-4">
+						<ul>
+						 <li class="medium_size_element_aplication"><%=topApplicant.first_name%> <%=topApplicant.last_name%></li>
+						  <li class="small_size_element_aplication"><%=topApplicant.email%></li>
+						  <li class="small_size_element_aplication"><%=topApplicant.created_at.strftime("%B %d at %I:%M %p")%></li>
+						</ul>
+					</div>
+					<div class="col-sm-4 col-md-offset-1" >
+						<ul>
+						 <li class="medium_size_element_aplication"><%=topApplicant.status%></li>
+						 <li class="small_size_element_aplication"><%=topApplicant.updated_at.strftime("%B %d at %I:%M %p")%></li>
+					
+						   <li class="small_size_element_aplication"> <%= ApplicantActivity.where(applicant_id:topApplicant.id).count %></li>
+						</ul>
+					</div>
+					<div class="col-sm-2">
+						<div class="dropdown">
+						            <a id="dLabel" role="button" data-toggle="dropdown" class=" btn_detail_aplicants btn btn-primary" data-target="#" href="/page.html">
+						                Ver Detalle <span class="caret"></span>
+						            </a>
+						            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+
+                          <li class="">
+                            <%=link_to "ver aplicación", admin_aplication_path(topApplicant.id)%>
+                            </li>
+						              <li class="dropdown-submenu">
+						                <a tabindex="-1" href="#">Enviar email</a>
+						                <ul class="dropdown-menu">
+						                  <li><a tabindex="-1" href="#">Email tipo 1</a></li>
+						                  <li><a tabindex="-1" href="#">Email tipo 2</a></li>
+						                </ul>
+						              </li>
+						              <li class="dropdown-submenu">
+						                <a tabindex="-1" href="#">Cambiar a estado</a>
+						                <ul class="dropdown-menu">
+						                  <li><a tabindex="-1" href="#">Activo</a></li>
+						                  <li><a tabindex="-1" href="#">Inactivo</a></li>
+						                </ul>
+						              </li>
+						              <li class="divider"></li>
+						              <li><a href="#">Editar</a></li>
+						              <li><a href="#">Eliminar</a></li>
+						            </ul>
+						        </div>
+					</div>
+			</div>
+      <%end%>
+				</div>
+		</div>
+	</div>
+</div>
