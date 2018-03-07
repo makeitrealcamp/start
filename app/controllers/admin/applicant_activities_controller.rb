@@ -19,9 +19,10 @@ class Admin::ApplicantActivitiesController < ApplicationController
 		elsif params[:comment_type].to_i == 1
 			@applicant_activity= ApplicantActivity.new(applicant_activity_params)
 			@applicant_activity.save
+
 		end
 
-		redirect_to admin_aplication_path(applicant_activity_params[:applicant_id])
+		redirect_to admin_applicant_path(applicant_activity_params[:applicant_id])
 	end
 
 	private

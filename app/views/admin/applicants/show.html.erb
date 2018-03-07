@@ -89,6 +89,7 @@
             <ul class="top_applicant_ul">
             <% @comments.each do |comment| %>
             <% user= User.find(comment.user_id) %>
+
              <% if comment.comment_type =="texto" %>
                 <li><p class="topApplicant_date"> <%= comment.created_at.strftime("%B %d at %I:%M %p") %></p>
                     <p><%=user.profile["first_name"] %> <%=user.profile["last_name"]%> dejo el siguiente comentario: </p>
