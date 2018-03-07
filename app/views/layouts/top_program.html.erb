@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Make it Real - Proceso de admisión</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Language" content="<%= I18n.locale.to_s %>">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Open+Sans+Condensed:300,700|Karla:300,400,700' rel='stylesheet' type='text/css'>
+
+  <%= favicon_link_tag 'favicon.ico' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  <%= render "utils/convertloop" %>
+
+  <%= yield :head %>
+</head>
+<body class="interviews-layout">
+  <%= yield %>
+</body>
+</html>

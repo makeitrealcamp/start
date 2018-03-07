@@ -1,0 +1,91 @@
+.challenge-page, .top-test-page, .top-message-page {
+  margin-top: 40px;
+
+  .logo-wrapper {
+    padding: 15px;
+
+    img { width: 180px; }
+  }
+
+  .box {
+    margin-top: 20px;
+    padding: 0;
+
+    .box-header {
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+      padding: 10px;
+
+      &.info {
+        background-color: #C4E3F2;
+        color: #31708f;
+      }
+
+      &.error {
+        background-color: #f2dede;
+        color: #a94442;
+      }
+    }
+
+    .box-body {
+      padding: 30px;
+    }
+  }
+}
+
+.challenge-page {
+  .box {
+    p {
+      color: #666;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    form {
+      max-width: 350px;
+      margin: 50px auto 0;
+
+      .actions { margin-top: 35px; }
+    }
+  }
+}
+
+.top-test-page {
+  p.intro {
+    color: #666;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .question-wrapper {
+    margin-top: 40px;
+
+    .title {
+      font-weight: 600;
+
+      &.has-error { color: #a94442; }
+    }
+
+    p {
+      color: #666;
+
+      line-height: 1.6;
+      margin-top: 7px;
+      padding-left: 15px;
+    }
+
+    pre.examples {
+      margin-left: 15px;
+    }
+
+    .form-group {
+      margin-top: 20px;
+      padding-left: 15px;
+    }
+  }
+
+  .actions {
+    margin-top: 60px;
+  }
+}
