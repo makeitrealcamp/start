@@ -1,0 +1,2 @@
+module Admin::ApplicantActivitiesHelper
+end

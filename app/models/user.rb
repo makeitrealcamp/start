@@ -48,6 +48,7 @@ class User < ActiveRecord::Base
   has_many :path_subscriptions
   has_many :paths, -> { uniq }, through: :path_subscriptions
   has_many :activity_logs
+  has_many :applicant_activities
 
   hstore_accessor :profile,
     first_name: :string,

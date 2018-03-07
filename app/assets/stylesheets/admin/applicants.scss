@@ -1,3 +1,140 @@
-// Place all the styles related to the admin/applications controller here.
+// Place all the styles related to the admin/aplications controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.aplication{
+	margin-top:150px;
+	
+}
+.nav.nav-tabs{
+	margin-top:-60px;
+}
+.first_row{
+	margin:30px;
+	margin-top:70px;
+}
+.name{
+	margin-top:10px;
+}
+.aplication_names, .details{
+	
+}
+.details{
+	padding-bottom:200px;
+}
+.left_list{
+	margin-right:20px;
+}
+
+
+.dropdown-submenu {
+    position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+.dropdown-submenu.pull-left {
+    float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+.top_applicant_texts{
+	margin-top:67px;
+}
+#topApplicant_status{
+    padding-top:70px;
+    font-size:24px;
+}
+
+.top_applicant_info{
+	margin-top: 20px;
+}
+
+.top_applicant_test{
+	margin:auto;
+	width: 70%;
+}
+
+.top_applicant_name{
+	margin-bottom: auto;
+}
+
+.top_applicant_block1{
+	margin-top: 35px;
+}
+#top_application_comment_text{
+    margin-top:30px;
+    padding-top:20px;
+    padding-bottom:200px;
+}
+#top_aplication_state_select{
+    margin-top:20px;
+}
+
+.form_comment_application{
+    margin-top:30px;
+}
+
+.comments_applicant{
+    margin-top:30px;
+}
+.topApplicant_date, .topApplicant_message{
+ color:#949DA8;
+}
+.topApplicant_message{
+ margin: 10px 0 10px 0;
+}
+.top_applicant_ul{
+    list-style-type: none
+}
+
+.aplication_names ul{
+	list-style-type: none;
+}
+
+.small_size_element_aplication{
+	font-size: 14px;
+}
+
+.medium_size_element_aplication{
+	font-weight: bold;
+}
+
+.btn_detail_aplicants{
+	margin-top: 16px;
+}
+
+.aplication_names{
+	padding-top: 10px;
+	margin-top: 15px;
+}
