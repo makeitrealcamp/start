@@ -18,6 +18,6 @@
 #
 
 class ApplicantActivity < ActiveRecord::Base
-		belongs_to :user
-		enum comment_type:[:cambio_de_estado, :texto, :correo]
+  belongs_to :user
+  enum comment_type:[:cambio_de_estado, :texto, :correo]
 end

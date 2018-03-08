@@ -8,8 +8,8 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <%= form_for ([:admin, @template]) do |f| %>
       <div class="modal-body">
-        <%= form_for ([:admin, @template]) do |f| %>
           <%=label_tag(:title, "Titulo")%>
           <%=f.text_field :title, class:"concept_field form-control form-control-lg"%>
           <%=label_tag(:subject, "Asunto")%>
