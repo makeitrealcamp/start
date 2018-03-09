@@ -17,7 +17,7 @@
 
               <div class="question-wrapper">
                 <div class="title <%= "has-error" if @test.errors[:a1].any? %>">1. Crea una página Web y publícala en Github Pages</div>
-                <p>La página debe contar con los siguientes elementos: una imagen de fondo, tu foto circular con un borde blanco de 3 pixeles, tu nombre y lugar de residencia.</p>
+                <p>La página debe contar con los siguientes elementos: una imagen de fondo, tu foto circular con un borde blanco de 5 pixeles, tu nombre y lugar de residencia. <a href="https://s3.amazonaws.com/makeitreal/images/top-test-example.jpg" target="_blank">Mira un ejemplo</a>. Busca una imagen en <a href="https://www.pexels.com" target="_blank">Pexels</a> o <a href="https://unsplash.com/" target="_blank">Unsplash</a> y utiliza una fuente de <a href="https://fonts.google.com/" target="_blank">Google Fonts</a>.</p>
                 <p>La página debe estar publicada en <a href="https://pages.github.com/" target="_blank">Github Pages</a>.</p>
                 <div class="form-group <%= "has-error" if @test.errors[:a1].any? %>">
                   <%= f.text_field :a1, class: "form-control", placeholder: "https://github.com/usuario/repo" %>
