@@ -7,19 +7,18 @@
   <div class="row first_row">
     <div class="col-sm-3 left_ list">
       <ul class="list-group">
-        <li class="list-group-item">Aplico<span class="badge badge-primary badge-pill">14</span></li>
-        <li class="list-group-item">Prueba enviada <span class="badge badge-primary badge-pill">14</span></li>
-        <li class="list-group-item">Prueba recibida<span class="badge badge-primary badge-pill">14</span></li>
-        <li class="list-group-item">Entrevista1<span class="badge badge-primary badge-pill">14</span></li>
-        <li class="list-group-item">Entrevista2<span class="badge badge-primary badge-pill">14</span></li>
-        <li class="list-group-item">Rechazado<span class="badge badge-primary badge-pill">14</span></li>
-        <li class="list-group-item">Aceptado <span class="badge badge-primary badge-pill">14</span></li>
+        <% TopApplicant.statuses.each do |status| %>
+          <li class="list-group-item statuses_list"><%= status[0] %><span class="badge badge-primary badge-pill"><%= count_application_status(status[0]) %></span></li>
+        <% end %>
       </ul>
+       <div class="new_email_template">
+        <%= link_to "<span class='glyphicon glyphicon-plus'> PLANTILLA DE CORREO</span> ".html_safe, admin_email_templates_path,class:"btn btn-primary"%> 
+      </div>
     </div>
     <div class="col-sm-9" >
       <div class="row">
         <div class="col-md-5">
-          <form action="" class="search-form">
+          <form action="/admin/applicants" class="search-form">
           <div class="form-group has-feedback">
             <label for="search" class="sr-only">Buscar</label>
             <input type="text" class="form-control" name="search" id="search" placeholder="Buscar por nombre o email">
@@ -32,8 +31,12 @@
           <div class="dropdown">
           <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#" href="/page.html">Filtrar por estado <span class="caret"></span> </a>
           <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-            <li><a href="#">Activo</a></li>
-            <li><a href="#">Inactivo</a></li>
+            <li><a href="/admin/applicants" class="list-group-item"> Todos </a></li>
+            <li>
+              <% TopApplicant.statuses.each do |status| %>
+                <a href="/admin/applicants?status=<%= status[0] %>" class="list-group-item"><%=status[0]%></a>
+              <% end %>
+            </li>
           </ul>
           </div>
         </div>
@@ -57,28 +60,12 @@
         </div>
         <div class="col-sm-2">
           <div class="dropdown">
-            <a id="dLabel" role="button" data-toggle="dropdown" class=" btn_detail_aplicants btn btn-primary" data-target="#" href="/page.html">Ver Detalle <span class="caret"></span></a>
+            <a id="dLabel" role="button" data-toggle="dropdown" class=" btn_detail_aplicants btn btn-primary" data-target="#" href="admin/applicants/<%= topApplicant.id %>.html">Ver Detalle <span class="caret"></span></a>
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
               <li class="">
               <%=link_to "ver aplicación", admin_applicant_path(topApplicant.id)%>
               </li>
-              <li class="dropdown-submenu">
-                <a tabindex="-1" href="#">Enviar email</a>
-                <ul class="dropdown-menu">
-                  <li><a tabindex="-1" href="#">Email tipo 1</a></li>
-                  <li><a tabindex="-1" href="#">Email tipo 2</a></li>
-                  </ul>
-                  </li>
-                  <li class="dropdown-submenu">
-                  <a tabindex="-1" href="#">Cambiar a estado</a>
-                  <ul class="dropdown-menu">
-                  <li><a tabindex="-1" href="#">Activo</a></li>
-                  <li><a tabindex="-1" href="#">Inactivo</a></li>
-                </ul>
-              </li>
-              <li class="divider"></li>
-              <li><a href="#">Editar</a></li>
-              <li><a href="#">Eliminar</a></li>
+              
             </ul>
           </div>
         </div>

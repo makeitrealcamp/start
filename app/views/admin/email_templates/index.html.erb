@@ -19,7 +19,8 @@
 							<th>Título</th>
 							<th>Asunto</th>
 							<th class="text-center">Mensaje</th>
-							<th>Ir a la plantilla</th>
+							<th class="text-center">Ir a la plantilla</th>
+              <th class="text-center">Borrar</th>
 						</tr>
 					</thead>
 					<tbody class="body_email_template">
@@ -29,6 +30,7 @@
 							<td class="message_email"><%=template.subject%></td>
 							<td class="text-center body_email"><%=template.body[0..25]%></td>
 							<td class="text-center"><a href="/admin/email_templates/<%=template.id%>"><span class='glyphicon glyphicon-hand-right'></span></a></td>
+              <td class="text-center"> <%= link_to "<span class='glyphicon glyphicon-trash'></span>".html_safe, admin_email_template_path(template.id), method: :delete  %> </td>
 						</tr>
 						<%end%>
 					</tbody>

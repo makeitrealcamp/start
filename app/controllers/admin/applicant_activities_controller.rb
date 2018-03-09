@@ -12,7 +12,7 @@ class Admin::ApplicantActivitiesController < ApplicationController
     elsif params[:comment_type].to_i == 2
       @topApplicant = TopApplicant.find(params[:applicant_id])
       @email_application_activity = EmailApplicationActivity.new(applicant_activity_params)
-      TopApplicantMailer.ApplicationActivity(@topApplicant,applicant_activity_params[:subject],applicant_activity_params[:body]).deliver
+      TopApplicantMailer.top_applicant_mail(@topApplicant,applicant_activity_params[:subject],applicant_activity_params[:body]).deliver
       @email_application_activity.save
     elsif params[:comment_type].to_i == 1
       @applicant_activity= ApplicantActivity.new(applicant_activity_params)
