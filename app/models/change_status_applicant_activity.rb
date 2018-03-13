@@ -15,5 +15,5 @@ class ChangeStatusApplicantActivity < ApplicantActivity
   hstore_accessor :info,
     from_status: :string,
     to_status: :string,
-    comment: :string
+    body: :string
 end

@@ -10,8 +10,7 @@
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Envíar Correo</h5>
         <div class="form-group">
-           What is the purpose of this content tag it seems that is doing nothing
-          <%= content_tag :div, class: "data_information", data: {templates: EmailTemplate.all} do %><% end %>
+          <%= content_tag :div, class: "data-information", data: {templates: EmailTemplate.all} do %><% end %>
         </div>
       </div>
       <div class="modal-body">
@@ -25,14 +24,14 @@
             <%=text_field_tag(:subject, EmailTemplate.first.subject, class: "form-control", id:"email_subject_selector")%>
           </div>
           <div class="form-group">
-            <%=text_area_tag(:body, EmailTemplate.first.body, class: "form-control",id:"email_body_selector",rows:"10")%>
+            <%=text_area_tag(:body, EmailTemplate.first.body, class: "form-control",id:"email-body-selector",rows:"10")%>
           </div>
         <% else %>
           <div class="form-group">
-            <%=text_field_tag(:subject, "Asunto", class: "form-control", id:"email_subject_selector")%>
+            <%=text_field_tag(:subject, "Asunto", class: "form-control", id:"email-subject-selector")%>
           </div>
           <div class="form-group">
-            <%=text_area_tag(:body, "Mensaje", class: "form-control",id:"email_body_selector",rows:"10")%>
+            <%=text_area_tag(:body, "Mensaje", class: "form-control",id:"email-body-selector",rows:"10")%>
           </div>
         <% end %>
       </div>
@@ -48,11 +47,11 @@
 <script>
   $( "#template_selector" ).change(function() {
     var template_name = $("#template_selector :selected").text()
-    var templates = $('.data_information').data('templates')
+    var templates = $('.data-information').data('templates')
     new_template = templates.find(function(element){
       return template_name == element.title
     })
-    $("#email_subject_selector").val(new_template.subject)
-    $("#email_body_selector").val(new_template.body)
+    $("#email-subject-selector").val(new_template.subject)
+    $("#email-body-selector").val(new_template.body)
   });
 </script>

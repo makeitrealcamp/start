@@ -89,8 +89,8 @@
 
               <%= form_for [:admin, @applicant, NoteApplicantActivity.new], remote: true do |f| %>
                 <div class="form-group">
-                  <%= f.text_area :comment, class:"form-control", placeholder: "Ingresa una nota" %>
-                </div>
+                  <%= f.text_area :body, class:"form-control", placeholder: "Ingresa una nota", id:"note-applicant-activity-comment" %>
+                </div> 
                 <div class="text-right">
                   <%= submit_tag "Agregar nota", class:"btn btn-primary" %>
                 </div>
@@ -98,6 +98,7 @@
 
               <div class="activities">
                 <% @applicant.activities.order('created_at DESC').each do |activity| %>
+
                   <%= render "activity", activity: activity %>
                 <% end %>
 
