@@ -1,143 +1,125 @@
-// Place all the styles related to the admin/aplications controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-.aplication{
-  margin-top:150px;
-}
-.nav.nav-tabs{
-  margin-top:-60px;
-}
-.first_row{
-  margin:30px;
-  margin-top:90px;
-}
-.name{
-  margin-top:10px;
-}
-.aplication_names, .details{
+.applicants-page {
+  margin-top: 40px;
 
-}
-.details{
-  padding-bottom:200px;
-}
-.left_list{
-  margin-right:20px;
-}
+  .nav-tabs > li.active > a { background: #f8f8f5; }
 
+  .tab-pane {
+    background: #f8f8f5;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-top: none;
+  }
 
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  -webkit-border-radius: 0 6px 6px 6px;
-  -moz-border-radius: 0 6px 6px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #ccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #fff;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  -webkit-border-radius: 6px 0 6px 6px;
-  -moz-border-radius: 6px 0 6px 6px;
-  border-radius: 6px 0 6px 6px;
-}
+  .filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-.top_applicant_texts{
-  margin-top:67px;
-}
-#topApplicant_status{
-  padding-top:70px;
-  font-size:24px;
-}
+    .form-group { margin-bottom: 0; }
+    #search-input { width: 300px; }
 
-.top_applicant_info{
-  margin-top: 20px;
-}
+    .btn-default {
+      text-transform: none;
+      border: 1px solid #ccc;
+    }
+  }
 
-.top_applicant_test{
-  margin:auto;
-  width: 70%;
-}
+  .table {
+    background: white;
+    margin-top: 20px;
 
-.top_applicant_name{
-  margin-bottom: auto;
-}
+    tr > td:first-child {
+      border-left: 1px solid #ddd;
+      padding-left: 15px;
+    }
+    tr > td:last-child { border-right: 1px solid #ddd; }
+    tr:last-child td { border-bottom: 1px solid #ddd; }
 
-.top_applicant_block1{
-  margin-top: 35px;
+    .cell-main {
+      color: #333;
+      font-size: 18px;
+    }
+    .cell-detail {
+      color: #666;
+      font-size: 14px;
+      margin-top: 3px;
+    }
+    .cell-action {
+      width: 70px;
+      vertical-align: middle;
+    }
+  }
 }
-#top_application_comment_text{
-  margin-top:30px;
-  padding-top:20px;
-  padding-bottom:200px;
-}
-#top_aplication_state_select{
-  margin-top:20px;
-}
+.applicant-page {
+  margin-top: 40px;
 
-.form_comment_application{
-  margin-top:30px;
-}
+  .top-actions {
+    padding: 0 15px 30px;
+  }
 
-.comments_applicant{
-  margin-top:30px;
-}
-.topApplicant_date, .topApplicant_message{
-  color:#949DA8;
-}
-.topApplicant_message{
-  margin: 10px 0 10px 0;
-}
-.top_applicant_ul{
-  list-style-type: none
-}
+  .applicant-wrapper {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 30px 35px;
+    margin-bottom: 60px;
 
-.aplication_names ul{
-list-style-type: none;
-}
+    .applicant-name {
+      font-family: "Open Sans Condensed", sans-serif;
+      font-size: 32px;
+      margin-bottom: 5px;
+    }
 
-.small_size_element_aplication{
-font-size: 14px;
-}
+    .applicant-email {
+      color: #666;
+      font-size: 18px;
+    }
 
-.medium_size_element_aplication{
-font-weight: bold;
-}
+    .applicant-details {
+      margin-top: 40px;
 
-.btn_detail_aplicants{
- margin-top: 16px;
-}
+      .applicant-detail {
+        color: #333;
+        margin-bottom: 25px;
 
-.aplication_names{
- padding-top: 10px;
- margin-top: 15px;
-}
+        .detail-label {
+          font-weight: 600;
+          margin-bottom: 5px;
+        }
+      }
+    }
 
-.statuses_list{
-  font-size: 14px
+    .applicant-status {
+      color: #666;
+      font-size: 21px;
+      font-weight: 600;
+      margin-top: 7px;
+    }
+
+    .activities {
+      margin-top: 40px;
+
+      hr { margin: 15px 0;}
+
+      .activity {
+        padding: 0 15px;
+
+        .activity-date {
+          color: #999;
+          font-size: 14px;
+          margin-bottom: 5px;
+        }
+
+        .activity-detail {
+          font-size: 14px;
+        }
+
+        .activity-comment {
+          color: #666;
+          font-size: 16px;
+          padding: 15px 15px 0;
+          white-space: pre-wrap;
+        }
+      }
+    }
+  }
 }

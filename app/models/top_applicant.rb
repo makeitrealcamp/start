@@ -28,4 +28,6 @@ class TopApplicant < Applicant
     additional: :string
 
   enum status: [:applied, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :accepted, :enrolled, :not_enrolled, :rejected]
+
+
 end

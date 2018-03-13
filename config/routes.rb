@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  
-
-  get 'applications/index'
-
-  get 'applications/show'
-
   root 'pages#home'
 
   get "curriculum", to: "pages#curriculum"
@@ -204,8 +198,11 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :applicants
-    resources :applicant_activities 
+    resources :top_applicants do
+      resources :note_applicant_activities, only: [:create]
+      resources :change_status_applicant_activities, only: [:new, :create]
+      resources :email_applicant_activities, only: [:new, :create]
+    end
     resources :email_templates
     resources :charges
 

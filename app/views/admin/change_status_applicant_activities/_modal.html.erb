@@ -1,0 +1,23 @@
+<div class="modal fade" id="change-status-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Cambiar estado</h4>
+      </div>
+      <%= form_for [:admin, @activity.applicant, @activity], remote: true do |f| %>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= f.select :to_status, options_for_select(applicant_status_options), {}, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_area :comment, class:"form-control", placeholder: "Ingresa un comentario" %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "Cambiar estado", class: "btn btn-large btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

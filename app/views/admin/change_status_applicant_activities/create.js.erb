@@ -1,0 +1,7 @@
+<% if @activity.valid? %>
+  $('#change-status-modal').modal('hide');
+  $('.activities').prepend('<%= j render "admin/top_applicants/activity", activity: @activity %>');
+  $('.applicant-status').html('<%= status_to_human(@activity.applicant.status).capitalize %>');
+<% else %>
+  alert("faltan las validaciones");
+<% end %>

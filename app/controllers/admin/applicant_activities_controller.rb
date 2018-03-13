@@ -1,5 +1,7 @@
 class Admin::ApplicantActivitiesController < ApplicationController
-  def create 
+  before_action :admin_access
+
+  def create
     if params[:comment_type].to_i == 0
       @topApplicant = TopApplicant.find(params[:applicant_id])
       params[:past_status]=@topApplicant.status
