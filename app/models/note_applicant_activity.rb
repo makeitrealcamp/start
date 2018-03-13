@@ -11,9 +11,7 @@
 #  type         :string
 #
 
-FactoryGirl.define do
-  factory :applicant_activity do
-    
-  end
-
+class NoteApplicantActivity < ApplicantActivity
+  hstore_accessor :info,
+    body: :string
 end

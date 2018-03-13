@@ -1,0 +1,116 @@
+<div class="applicant-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        <div class="top-actions">
+          <%= link_to "&larr; Volver a las aplicaciones".html_safe, admin_top_applicants_path %>
+        </div>
+
+        <div class="applicant-wrapper">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="applicant-name"><%= @applicant.full_name %></div>
+              <div class="applicant-email"><%= @applicant.email %></div>
+
+              <div class="applicant-details">
+                <div class="applicant-detail">
+                  <div class="detail-label">Fecha de aplicación:</div>
+                  <div class="detail-value"><%= @applicant.created_at %></div>
+                </div>
+
+                <div class="applicant-detail">
+                  <div class="detail-label">Última actualización:</div>
+                  <div class="detail-value"><%= @applicant.updated_at %></div>
+                </div>
+
+                <div class="applicant-detail">
+                  <div class="detail-label">País:</div>
+                  <div class="detail-value"><%= @applicant.country %></div>
+                </div>
+
+                <div class="applicant-detail">
+                  <div class="detail-label">Fecha de nacimiento:</div>
+                  <div class="detail-value"><%= @applicant.birthday %></div>
+                </div>
+
+                <div class="applicant-detail">
+                  <div class="detail-label">Género:</div>
+                  <div class="detail-value"><%= @applicant.gender %></div>
+                </div>
+
+                <div class="applicant-detail">
+                  <div class="detail-label">Movil:</div>
+                  <div class="detail-value"><%= @applicant.mobile %></div>
+                </div>
+
+                <div class="applicant-detail">
+                  <div class="detail-label">Skype:</div>
+                  <div class="detail-value"><%= @applicant.skype %></div>
+                </div>
+
+                <div class="applicant-detail">
+                  <div class="detail-label">Twitter:</div>
+                  <div class="detail-value"><%= @applicant.twitter %></div>
+                </div>
+
+                <div class="applicant-detail">
+                  <div class="detail-label">Url:</div>
+                  <div class="detail-value"><%= @applicant.url %></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="text-right" style="margin-bottom: 80px;">
+                <div class="applicant-status"><%= status_to_human(@applicant.status).capitalize %></div>
+              </div>
+              <div class="applicant-details">
+                <div class="applicant-detail">
+                  <div class="detail-label">Motivación</div>
+                  <div class="detail-value"><%= @applicant.goal %></div>
+                </div>
+
+                <div class="applicant-detail">
+                  <div class="detail-label">Experiencia</div>
+                  <div class="detail-value"><%= @applicant.experience %></div>
+                </div>
+
+                <div class="applicant-detail">
+                  <div class="detail-label">Info adicional</div>
+                  <div class="detail-value"><%= @applicant.additional %></div>
+                </div>
+              </div>
+
+              <hr>
+
+              <div style="margin-bottom: 15px;">
+                <%= link_to "Cambiar Estado", new_admin_top_applicant_change_status_applicant_activity_path(@applicant), class: "btn btn-link", remote: true %>
+                <a href="#" class="btn btn-link">Enviar Email</a>
+              </div>
+
+              <%= form_for [:admin, @applicant, NoteApplicantActivity.new], remote: true do |f| %>
+                <div class="form-group">
+                  <%= f.text_area :comment, class:"form-control", placeholder: "Ingresa una nota" %>
+                </div>
+                <div class="text-right">
+                  <%= submit_tag "Agregar nota", class:"btn btn-primary" %>
+                </div>
+              <% end %>
+
+              <div class="activities">
+                <% @applicant.activities.order('created_at DESC').each do |activity| %>
+                  <%= render "activity", activity: activity %>
+                <% end %>
+
+                <hr>
+                <div class="activity">
+                  <div class="activity-date"><%= @applicant.created_at.strftime("%b %d %I:%M %p") %></div>
+                  <div class="activity-detail"><%= @applicant.first_name %> <strong>aplicó</strong> al programa TOP</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
