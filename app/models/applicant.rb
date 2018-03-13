@@ -16,4 +16,12 @@
 #
 
 class Applicant < ActiveRecord::Base
+  has_many :activities, class_name: "ApplicantActivity"
+  has_many :note_activities, class_name: "NoteApplicantActivity"
+  has_many :email_activities, class_name: "EmailApplicantActivity"
+  has_many :change_status_activities, class_name: "ChangeStatusApplicantActivity"
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

@@ -1,2 +1,0 @@
-module Admin::ApplicantsHelper
-end

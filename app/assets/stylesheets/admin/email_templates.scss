@@ -1,89 +1,53 @@
-// Place all the styles related to the admin/email_templates controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.email-templates-page {
+  .email-templates-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-.container{
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
+  table {
+    background: white;
+    margin-top: 40px;
+    border: 1px solid #ddd;
+  }
 }
 
-.body_email_template td{
-  background-color: white;
-  vertical-align: middle;
-}
+.email-template-page {
+  .actions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0;
+  }
 
-.title_email{
-  color: #f04500;
-  font-size: 25px;
-  vertical-align: middle;
-}
+  .box-wrapper {
+    background: white;
+    border: 1px solid #ddd;
 
-.message_email{
-  color:#999;
-  vertical-align: middle !important;
-  padding-top: 15px;
-}
+    .box-header {
+      font-size: 18px;
+      padding: 15px 30px;
+      border-bottom: 1px solid #ddd;
+    }
 
-.body_email{
-  color: #999;
-  vertical-align: middle !important;
-}
+    .box-body {
+      padding: 30px;
 
-.glyphicon-hand-right{
-  vertical-align: middle !important;
-}
+      .field {
+        margin-bottom: 40px;
 
-.email_templates_header{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #f04500;
-}
+        .field-label {
+          color: #999;
+          font-size: 14px;
+          font-weight: 600;
+          margin-bottom: 15px;
+        }
 
-.btn_new_email_template{
-  display: flex;
-  align-items: center;
-}
-
-.email_table{
-  margin-top: 65px;
-}
-
-.show_subject{
-  border: solid 2px #DFD7E0;
-  margin-top: 20px;
-  margin-left: 10px;
-  border-radius: 5px;
-  padding: 7px;
-}
-
-.show_body{
-  border: solid 2px #DFD7E0;
-  margin-top: 20px;
-  margin-left: 10px;
-  border-radius: 5px;
-  padding: 15px;
-}
-
-#show_subject_email{
-  display: flex;
-}
-
-.btn_show_email{
-  float: right;
-  margin-right: 200px;
-  margin-top: 10px;
-}
-
-.new_template_glyphicon{
-  margin-right: 3px;
-}
-
-.new_email_template{
-  margin-bottom: 50px;
-}
-.new_email_template span{
-  font-weight: bold;
+        .field-value {
+          padding-left: 15px;
+          white-space: pre-wrap;
+        }
+      }
+    }
+  }
 }

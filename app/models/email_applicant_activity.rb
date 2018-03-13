@@ -11,9 +11,11 @@
 #  type         :string
 #
 
-FactoryGirl.define do
-  factory :applicant_activity do
-    
-  end
+class EmailApplicantActivity < ApplicantActivity
+  belongs_to :applicant
+  belongs_to :user
 
+  hstore_accessor :info,
+    subject: :string,
+    body: :string
 end

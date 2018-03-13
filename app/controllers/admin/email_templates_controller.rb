@@ -1,12 +1,16 @@
 class Admin::EmailTemplatesController < ApplicationController
+  before_action :admin_access
+
   def index
-    @template= EmailTemplate.new
-    @templates= EmailTemplate.all
+    @templates = EmailTemplate.all
+  end
+
+  def new
+    @template = EmailTemplate.new
   end
 
   def create
     @template = EmailTemplate.create(email_params)
-    redirect_to admin_email_templates_path
   end
 
   def show
@@ -14,8 +18,9 @@ class Admin::EmailTemplatesController < ApplicationController
   end
 
   def destroy
-    @template = EmailTemplate.find(params[:id]) 
-    @template.destroy
+    template = EmailTemplate.find(params[:id])
+    template.destroy
+
     redirect_to admin_email_templates_path
   end
 

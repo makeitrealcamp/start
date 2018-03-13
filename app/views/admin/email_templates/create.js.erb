@@ -1,0 +1,6 @@
+<% if @template.valid? %>
+  $('#email-template-modal').modal('hide');
+  $('table tbody').append("<%= j render @template %>");
+<% else %>
+  alert("debe ser algún error de validación");
+<% end %>

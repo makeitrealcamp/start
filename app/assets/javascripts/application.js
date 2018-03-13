@@ -52,3 +52,7 @@ _.templateSettings = {
   interpolate: /\{\{=(.+?)\}\}/g,
   evaluate: /\{\{(.+?)\}\}/g,
 };
+
+function invalidField(field, message) {
+  $(field).parents(".form-group").addClass("has-error").append('<span class="help-block">' + message + '</span>');
+}
