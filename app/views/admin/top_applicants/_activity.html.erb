@@ -2,7 +2,7 @@
 <div class="activity">
   <div class="activity-date"><%= activity.created_at.strftime("%b %d %I:%M %p") %></div>
   <div class="activity-detail"><%= generate_activity_detail(activity) %></div>
-  <% if activity.comment.present? %>
-  <div class="activity-comment"><%= activity.comment %></div>
+  <% if activity.info.present? %>
+  <div class="activity-comment"><%= activity.info["body"] %></div>
   <% end %>
 </div>

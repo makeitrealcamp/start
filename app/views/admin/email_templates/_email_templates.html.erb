@@ -1,30 +1,32 @@
 <!-- Modal Envíar Email-->
-<div class="modal fade" id="send_email" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Crea una nueva plantilla</h5>
+<div class="modal-email-template">
+  <div class="modal fade" id="send_email" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Crea una nueva plantilla</h5>
+        </div>
+        <%= form_for ([:admin, @template]) do |f| %>
+        <div class="modal-body">
+          <class class="form-group">
+            <%=label_tag(:title, "Titulo")%>
+            <%=f.text_field :title, class:"concept-field form-control form-control-lg"%>
+          </class>
+          <class class="form-group">
+            <%=label_tag(:subject, "Asunto")%>
+            <%=f.text_field :subject, class:"concept-field form-control form-control-lg"%>
+          </class>
+          <class class="form-group">
+            <%=label_tag(:body, "Cuerpo")%>
+            <%= f.text_area :body, class:"concept-field form-control form-control-lg", rows:"10"  %>
+          </class>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <%=f.submit "Guardar plantilla", class:"btn btn-primary"%>
+        </div>
+        <% end %>
       </div>
-      <%= form_for ([:admin, @template]) do |f| %>
-      <div class="modal-body">
-        <class class="form-group">
-          <%=label_tag(:title, "Titulo")%>
-          <%=f.text_field :title, class:"concept_field form-control form-control-lg"%>
-        </class>
-        <class class="form-group">
-          <%=label_tag(:subject, "Asunto")%>
-          <%=f.text_field :subject, class:"concept_field form-control form-control-lg"%>
-        </class>
-        <class class="form-group">
-          <%=label_tag(:body, "Cuerpo")%>
-          <%= f.text_area :body, class:"concept_field form-control form-control-lg", rows:"10"  %>
-        </class>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <%=f.submit "Guardar plantilla", class:"btn btn-primary"%>
-      </div>
-      <% end %>
     </div>
   </div>
 </div>

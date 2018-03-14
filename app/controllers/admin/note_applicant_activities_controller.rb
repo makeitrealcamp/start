@@ -8,6 +8,6 @@ class Admin::NoteApplicantActivitiesController < ApplicationController
 
   private
     def note_params
-      params.require(:note_applicant_activity).permit(:comment).merge(user: current_user)
+      params.require(:note_applicant_activity).permit(:body).merge(user: current_user)
     end
 end
