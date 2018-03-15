@@ -212,6 +212,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :top_applicants do
+      resources :note_applicant_activities, only: [:create]
+      resources :change_status_applicant_activities, only: [:new, :create]
+      resources :email_applicant_activities, only: [:new, :create]
+    end
+    resources :email_templates
     resources :charges
 
     resources :badges

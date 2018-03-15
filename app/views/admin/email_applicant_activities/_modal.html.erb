@@ -1,0 +1,28 @@
+<div class="modal fade" id="send-email-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Enviar Email</h4>
+      </div>
+      <%= form_for [:admin, @activity.applicant, @activity], remote: true do |f| %>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= select_tag :email_template, options_from_collection_for_select(EmailTemplate.all, :id, :title), class: "form-control", prompt: "Selecciona una plantilla" %>
+          </div>
+          <div class="fields">
+            <div class="form-group">
+              <%= f.text_field :subject, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.text_area :body, class: "form-control", rows: "10" %>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "Enviar", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

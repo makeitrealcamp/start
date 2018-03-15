@@ -1,0 +1,129 @@
+.applicants-page {
+  margin-top: 40px;
+
+  .nav-tabs > li.active > a { background: #f8f8f5; }
+
+  .tab-pane {
+    background: #f8f8f5;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-top: none;
+  }
+
+  .filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .form-group { margin-bottom: 0; }
+    #search-input { width: 300px; }
+
+    .btn-default {
+      text-transform: none;
+      border: 1px solid #ccc;
+    }
+  }
+
+  .table {
+    background: white;
+    margin-top: 20px;
+
+    tr > td:first-child {
+      border-left: 1px solid #ddd;
+      padding-left: 15px;
+    }
+    tr > td:last-child { border-right: 1px solid #ddd; }
+    tr:last-child td { border-bottom: 1px solid #ddd; }
+
+    .cell-main {
+      color: #333;
+      font-size: 18px;
+    }
+    .cell-detail {
+      color: #666;
+      font-size: 14px;
+      margin-top: 3px;
+    }
+    .cell-action {
+      width: 70px;
+      vertical-align: middle;
+    }
+  }
+}
+.applicant-page {
+  margin-top: 40px;
+
+  .top-actions {
+    padding: 0 15px 30px;
+  }
+
+  .applicant-wrapper {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 30px 35px;
+    margin-bottom: 60px;
+
+    .applicant-name {
+      font-family: "Open Sans Condensed", sans-serif;
+      font-size: 32px;
+      margin-bottom: 5px;
+    }
+
+    .applicant-email {
+      color: #666;
+      font-size: 18px;
+    }
+
+    .applicant-details {
+      margin-top: 40px;
+
+      .applicant-detail {
+        color: #333;
+        margin-bottom: 25px;
+
+        .detail-label {
+          font-weight: 600;
+          margin-bottom: 5px;
+        }
+      }
+    }
+
+    .applicant-status {
+      color: #666;
+      font-size: 21px;
+      font-weight: 600;
+      margin-top: 7px;
+    }
+
+    .activities {
+      margin-top: 40px;
+
+      hr { margin: 15px 0;}
+
+      .activity {
+        padding: 0 15px;
+
+        .activity-date {
+          color: #999;
+          font-size: 14px;
+          margin-bottom: 5px;
+        }
+
+        .activity-detail {
+          font-size: 14px;
+        }
+
+        .activity-comment {
+          color: #666;
+          font-size: 16px;
+          padding: 15px 15px 0;
+          white-space: pre-wrap;
+        }
+      }
+    }
+  }
+}
+
+#send-email-modal {
+  .fields { display: none; }
+}

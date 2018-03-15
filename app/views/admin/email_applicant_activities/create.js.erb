@@ -1,0 +1,6 @@
+<% if @activity.valid? %>
+  $('#send-email-modal').modal('hide');
+  $('.activities').prepend('<%= j render "admin/top_applicants/activity", activity: @activity %>');
+<% else %>
+  alert("algún error de validación");
+<% end %>

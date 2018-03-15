@@ -1,0 +1,8 @@
+<% if @activity.valid? %>
+  $('.activities').prepend('<%= j render "admin/top_applicants/activity", activity: @activity %>');
+  $('#note_applicant_activity_comment').val('');
+<% else %>
+  <% if @activity.errors[:body].any? %>
+    invalidField('#note_applicant_activity_body', '<%= @activity.errors[:body].first %>');
+  <% end %>
+<% end %>

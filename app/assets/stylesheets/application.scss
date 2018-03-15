@@ -32,6 +32,8 @@ $grid-float-breakpoint: 810px;
 @import "notifications";
 @import "paths";
 @import "admin/dashboard";
+@import "admin/applicants";
+@import "admin/email_templates";
 @import "admin/comments";
 @import "admin/charges";
 @import "admin/users";

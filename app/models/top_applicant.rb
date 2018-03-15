@@ -33,7 +33,7 @@ class TopApplicant < Applicant
     experience: :string,
     additional: :string
 
-  # protected
+  protected
     def generate_uid
       begin
         self.uid = SecureRandom.hex(4)
