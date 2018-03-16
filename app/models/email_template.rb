@@ -11,4 +11,7 @@
 #
 
 class EmailTemplate < ActiveRecord::Base
+  validates :title, presence:true
+  validates :body, presence: true
+  validates :subject, presence: true
 end

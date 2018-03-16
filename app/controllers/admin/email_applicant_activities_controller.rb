@@ -9,8 +9,9 @@ class Admin::EmailApplicantActivitiesController < ApplicationController
   def create
     applicant = TopApplicant.find(params[:top_applicant_id])
     @activity = applicant.email_activities.create(activity_params)
-
-    ApplicantMailer.email(applicant, @activity.subject, @activity.body).deliver
+    if @activity.valid? 
+      ApplicantMailer.email(applicant, @activity.subject, @activity.body).deliver
+    end  
   end
 
   private

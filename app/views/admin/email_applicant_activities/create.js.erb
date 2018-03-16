@@ -2,5 +2,14 @@
   $('#send-email-modal').modal('hide');
   $('.activities').prepend('<%= j render "admin/top_applicants/activity", activity: @activity %>');
 <% else %>
-  alert("algún error de validación");
+  <% if @activity.errors[:subject].any? %>
+    invalidField('.email-subject', '<%= @activity.errors[:subject].first %>');
+  <% else %>
+    validField('.email-subject')
+  <% end %>
+  <% if @activity.errors[:body].any? %>
+    invalidField('.email-body', '<%= @activity.errors[:body].first %>');
+  <% else %>
+    validField('.email-body')
+  <% end %>
 <% end %>
