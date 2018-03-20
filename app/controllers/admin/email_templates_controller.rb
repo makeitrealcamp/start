@@ -3,6 +3,7 @@ class Admin::EmailTemplatesController < ApplicationController
 
   def index
     @templates = EmailTemplate.all
+    @templates
   end
 
   def new
@@ -12,7 +13,7 @@ class Admin::EmailTemplatesController < ApplicationController
   def create
     @template = EmailTemplate.create(email_params)
   end
-
+ 
   def show
     @template = EmailTemplate.find(params[:id])
   end
@@ -28,4 +29,4 @@ class Admin::EmailTemplatesController < ApplicationController
   def email_params
     params.require(:email_template).permit(:title, :subject, :body)
   end
-end
+end 

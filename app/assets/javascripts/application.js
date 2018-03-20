@@ -54,5 +54,11 @@ _.templateSettings = {
 };
 
 function invalidField(field, message) {
-  $(field).parents(".form-group").addClass("has-error").append('<span class="help-block">' + message + '</span>');
+  if ($(field).parents(".form-group").hasClass("has-error")==false ){
+    $(field).parents(".form-group").addClass("has-error").append('<span class="help-block">' + message + '</span>');
+  }
+}
+function clearField(field) {
+  $(field).parents(".form-group").removeClass("has-error");
+  $(field).parents(".form-group").find(".help-block").remove();
 }

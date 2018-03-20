@@ -15,6 +15,8 @@ class EmailApplicantActivity < ApplicantActivity
   belongs_to :applicant
   belongs_to :user
 
+  validates :subject, :body, presence: true
+
   hstore_accessor :info,
     subject: :string,
     body: :string
