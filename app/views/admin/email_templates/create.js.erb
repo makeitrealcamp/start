@@ -1,6 +1,21 @@
+
 <% if @template.valid? %>
-  $('#email-template-modal').modal('hide');
+  $('#email-template-modal').modal('hide'); 
   $('table tbody').append("<%= j render @template %>");
 <% else %>
-  alert("debe ser algún error de validación");
-<% end %>
+  <% if @template.errors[:title].any? %>
+    invalidField('.template-title', '<%= @template.errors[:title].first %>');
+  <% else %>
+    clearField('.template-title');
+  <% end %>
+  <% if @template.errors[:subject].any? %>
+    invalidField('.template-subject', '<%= @template.errors[:subject].first %>');
+  <% else %>
+    clearField('.template-subject');
+  <% end %>
+  <% if @template.errors[:body].any? %>
+    invalidField('.template-body', '<%= @template.errors[:body].first %>');
+  <% else %>
+    clearField('.template-body');
+  <% end %>
+<%end%>
