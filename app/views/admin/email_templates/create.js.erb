@@ -4,18 +4,18 @@
   $('table tbody').append("<%= j render @template %>");
 <% else %>
   <% if @template.errors[:title].any? %>
-    invalidField('.templete-title', '<%= @template.errors[:title].first %>');
+    invalidField('.template-title', '<%= @template.errors[:title].first %>');
   <% else %>
-    validField('.templete-title')
+    clearField('.template-title');
   <% end %>
   <% if @template.errors[:subject].any? %>
-    invalidField('.templete-subject', '<%= @template.errors[:subject].first %>');
+    invalidField('.template-subject', '<%= @template.errors[:subject].first %>');
   <% else %>
-    validField('.templete-subject')
+    clearField('.template-subject');
   <% end %>
   <% if @template.errors[:body].any? %>
-    invalidField('.templete-body', '<%= @template.errors[:body].first %>');
+    invalidField('.template-body', '<%= @template.errors[:body].first %>');
   <% else %>
-    validField('.templete-body')
+    clearField('.template-body');
   <% end %>
 <%end%>

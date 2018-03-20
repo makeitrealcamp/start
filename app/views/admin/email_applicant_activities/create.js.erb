@@ -5,11 +5,11 @@
   <% if @activity.errors[:subject].any? %>
     invalidField('.email-subject', '<%= @activity.errors[:subject].first %>');
   <% else %>
-    validField('.email-subject')
+    clearField('.email-subject');
   <% end %>
   <% if @activity.errors[:body].any? %>
     invalidField('.email-body', '<%= @activity.errors[:body].first %>');
   <% else %>
-    validField('.email-body')
+    clearField('.email-body');
   <% end %>
 <% end %>
