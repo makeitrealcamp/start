@@ -45,6 +45,9 @@ count("Hola", "g");  // retorna 0</code></pre>
               <div class="question-wrapper">
                 <div class="title <%= "has-error" if @test.errors[:a3].any? %>">3. Filtra el arreglo</div>
                 <p>Escribe una función en JavaScript llamada <code>filter</code> que reciba un arreglo de números como parámetro y retorne un nuevo arreglo con los números mayores a 10.</p>
+                <p>Ejemplos:</p>
+                <pre class="examples"><code>filter([3, 12, 45, 7]); // retorna [12, 45]
+filter([3, 5]);         // retorna []</code></pre>
 
                 <div class="form-group <%= "has-error" if @test.errors[:a3].any? %>">
                   <%= f.text_area :a3, class: "form-control", id: "a3" %>
@@ -57,6 +60,9 @@ count("Hola", "g");  // retorna 0</code></pre>
               <div class="question-wrapper">
                 <div class="title <%= "has-error" if @test.errors[:a4].any? %>">4. Calcula la hipotenusa</div>
                 <p>Escribe una función en JavaScript llamada <code>hypotenuse</code> que reciba dos parámetros: <code>a</code> y <code>b</code>, que representan los lados de un triángulo, y que retorne la hipotenusa.</p>
+                <p>Ejemplos:</p>
+                <pre class="examples"><code>hypotenuse(3, 4);    // retorna 5
+hypotenuse(10, 13);  // retorna 16.401219466856727</code></pre>
 
                 <div class="form-group <%= "has-error" if @test.errors[:a4].any? %>">
                   <%= f.text_area :a4, class: "form-control", id: "a4" %>

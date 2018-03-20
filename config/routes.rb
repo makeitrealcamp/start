@@ -217,6 +217,7 @@ Rails.application.routes.draw do
       resources :change_status_applicant_activities, only: [:new, :create]
       resources :email_applicant_activities, only: [:new, :create]
     end
+    resources :top_applicant_tests, only: [:show]
     resources :email_templates
     resources :charges
 
