@@ -24,4 +24,12 @@ class AdminMailer < ApplicationMailer
 
     mail to: email, subject: "#{@comment.user.name} ha dejado un comentario en #{@comment.commentable.to_s}"
   end
+
+  def top_test_submitted(applicant)
+    @email = applicant.email
+    @first_name = applicant.first_name
+    @last_name = applicant.last_name
+    
+    mail to: "german.escobar@makeitreal.camp", subject: "[Top Program] Test submitted"
+  end
 end
