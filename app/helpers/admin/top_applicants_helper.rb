@@ -17,7 +17,11 @@ module Admin::TopApplicantsHelper
   end
 
   def generate_activity_detail(activity)
-    str = "#{activity.user.first_name} #{activity.user.last_name} "
+    str = if activity.user
+      "#{activity.user.first_name} #{activity.user.last_name} "
+    else
+      "La plataforma "
+    end
 
     if activity.type == "ChangeStatusApplicantActivity"
       str += "<strong>cambió el estado</strong> a <strong>#{status_to_human(activity.to_status)}</strong>"
