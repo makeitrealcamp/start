@@ -1,8 +1,9 @@
 clearField('#email_template_title');
 clearField('#email_template_subject');
 clearField('#email_template_body');
+
 <% if @template.valid? %>
-  $('#email-template-modal').modal('hide'); 
+  $('#email-template-modal').modal('hide');
   $('table tbody').append("<%= j render @template %>");
 <% else %>
   <% if @template.errors[:title].any? %>
