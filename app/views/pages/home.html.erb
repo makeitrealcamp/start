@@ -7,11 +7,6 @@
 
 <div class="new-site home">
   <div class="intro">
-    <video autoplay loop id="bg-video">
-      <source src="<%= asset_path 'bg-video.mov' %>" type="video/mp4">
-    </video>
-    <div class="video-overlay"></div>
-
     <%= render "layouts/navbar/pages_transparent" %>
     <div class="container tagline-wrapper">
       <div class="row">
@@ -20,210 +15,200 @@
           <h2 class="tagline-support">Programas virtuales y presenciales de la más alta calidad con la guía y el apoyo de mentores experimentados</h2>
         </div>
 
-        <a href="javascript:;" class="know-more scroll">Ver Programas</a>
-      </div><!--/row -->
-    </div><!--/container -->
-  </div><!--/intro -->
+        <a href="javascript:;" class="know-more scroll">Conoce los programas</a>
+      </div>
+    </div>
+  </div>
 
   <section class="section section-white section-pitch">
+    <div class="stripe"></div>
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <p class="intro-text">Preparamos a los <span>creadores digitales</span> que el mundo necesita ahora</p>
-
           <div class="row">
             <div class="col-sm-4">
-              <span class="icon icon-lab"></span>
-              <h3>Aprende haciendo</h3>
-              <p>Hoy se valora más lo que has creado que los títulos y las certificaciones, tu portafolio será tu nueva carta de presentación.</p>
+              <div class="feature">
+                <%= fa_icon "paint-brush", class: "fa-3x icon" %>
+                <h3>Aprende haciendo</h3>
+                <p>Hoy se valora más lo que has creado que los títulos y las certificaciones, tu portafolio será tu nueva carta de presentación.</p>
+              </div>
             </div>
             <div class="col-sm-4">
-              <span class="icon icon-users"></span>
-              <h3>Mentores experimentados</h3>
-              <p>Soluciona tus dudas, recibe apoyo cuando lo necesites y acelera tu aprendizaje con mentorías 1-a-1 en los temas que más se te dificulten.</p>
+              <div class="feature">
+                <%= fa_icon "road", class: "fa-3x icon" %>
+                <h3>Mentorías 1 a 1</h3>
+                <p>Soluciona tus dudas, recibe apoyo cuando lo necesites y acelera tu aprendizaje con sesiones 1-a-1 con mentores experimentados.</p>
+              </div>
             </div>
             <div class="col-sm-4">
-              <span class="icon icon-target"></span>
-              <h3>Alcanza tus metas</h3>
-              <p>Encuentra el empleo de tus sueños o haz realidad tus ideas de negocio. El post-programa te prepara para esta nueva fase de tu vida.</p>
-            </div>
-          </div>
-        </div>
-      </div><!--/row -->
-    </div><!--/container -->
-  </section><!--/pitch -->
-
-
-  <div id="programs" class="section section-bordered section-programs-list">
-    <div class="container">
-      <div class="row program-divider" style="margin-top: 60px;">
-        <div class="col-sm-12 text-left">
-          <div class="divider-label">PROGRAMAS ONLINE</div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="program-wrapper">
-            <%= link_to full_stack_online_path do %>
-              <div class="program-info program-online">
-                <div class="program-header">
-                  <%= image_tag "01interna-programa.jpg" %>
-                  <div class="program-header-title">
-                    <div class="program-name">FULL STACK <br>WEB DEVELOPER</div>
-                    <p>Aprende a crear aplicaciones Web con HTML, CSS, JavaScript, Ruby on Rails y Bases de Datos.</p>
-                  </div>
-                </div>
-                <div class="program-body">
-
-                  <div class="row program-details">
-                    <div class="col-sm-6">
-                      <div class="details-label">FECHA DE INICIO</div>
-                      <div class="details-value">El día que tu decidas</div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="details-label">DEDICACIÓN:</div>
-                      <div class="details-value">15 horas/semana, avanza a tu propio ritmo</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="program-footer">
-                  <button type="button" class="btn btn-primary">Más información</button>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-
-        <div class="col-sm-6">
-          <div class="program-wrapper">
-            <%= link_to front_end_online_path do %>
-              <div class="program-info program-online">
-                <div class="program-header">
-                  <%= image_tag "03interna-programa.jpg" %>
-                  <div class="program-header-title">
-                    <div class="program-name">FRONT END <br>WEB DEVELOPER</div>
-                    <p>Aprende a crear aplicaciones Web con HTML, CSS, JavaScript, AngularJS, React y servicios externos.</p>
-                  </div>
-                </div>
-                <div class="program-body">
-                  <div class="row program-details">
-                    <div class="col-sm-6">
-                      <div class="details-label">FECHA DE INICIO</div>
-                      <div class="details-value">El día que tu decidas</div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="details-label">DEDICACIÓN:</div>
-                      <div class="details-value">10 horas/semana, avanza a tu propio ritmo</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="program-footer">
-                  <button type="button" class="btn btn-primary">Más información</button>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-
-      <div class="row program-divider" style="margin-top: 30px;">
-        <div class="col-sm-12 text-left">
-          <div class="divider-label">PROGRAMAS PRESENCIALES</div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="program-wrapper">
-            <div class="program-info program-online">
-              <div class="program-header">
-                <%= image_tag "front-end-bootcamp-bg.jpg" %>
-                <div class="program-header-title">
-                  <div class="program-name">FULL STACK <br>WEB DEVELOPER</div>
-                  <p>Aprende a crear aplicaciones Web con HTML, CSS, JavaScript, Ruby on Rails y Bases de Datos.</p>
-                </div>
-              </div>
-              <div class="program-body">
-                <div class="row program-details">
-                  <div class="col-sm-5">
-                    <div class="details-label">DURACIÓN</div>
-                    <div class="details-value">9 Semanas</div>
-                  </div>
-                  <div class="col-sm-7">
-                    <div class="details-label">DEDICACIÓN</div>
-                    <div class="details-value">Lunes a Viernes de 6pm a 9pm</div>
-                  </div>
-                </div>
-              </div>
-              <div class="program-footer">
-                <table class="table">
-                  <tbody>
-                    <tr>
-                      <td class="program-city">Barranquilla</td>
-                      <td class="program-city-date">16 / 04 / 2018</td>
-                      <td class="text-right"><%= link_to "Info", full_stack_barranquilla_path, class: "btn btn-primary" %></td>
-                    </tr>
-                    <tr>
-                      <td class="program-city">Bogotá</td>
-                      <td class="program-city-date">07 / 05 / 2018</td>
-                      <td class="text-right"><%= link_to "Info", full_stack_bogota_path, class: "btn btn-primary" %></td>
-                    </tr>
-                    <tr>
-                      <td class="program-city">Medellín</td>
-                      <td class="program-city-date">04 / 06 / 2018</td>
-                      <td class="text-right"><%= link_to "Info", full_stack_medellin_path, class: "btn btn-primary" %></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6">
-          <div class="program-wrapper">
-            <div class="program-info program-online">
-              <div class="program-header">
-                <%= image_tag "front-end-bootcamp-bg.jpg" %>
-                <div class="program-header-title">
-                  <div class="program-name">FRONT END <br>WEB DEVELOPER</div>
-                  <p>Aprende a crear aplicaciones Web con HTML, CSS, JavaScript, React y Redux.</p>
-                </div>
-              </div>
-              <div class="program-body">
-                <div class="row program-details">
-                  <div class="col-sm-5">
-                    <div class="details-label">DURACIÓN</div>
-                    <div class="details-value">9 Semanas</div>
-                  </div>
-                  <div class="col-sm-7">
-                    <div class="details-label">DEDICACIÓN</div>
-                    <div class="details-value">Lunes a Viernes de 6pm a 9pm</div>
-                  </div>
-                </div>
-              </div>
-              <div class="program-footer">
-                <table class="table">
-                  <tbody>
-                    <tr>
-                      <td class="program-city">Bogotá</td>
-                      <td class="program-city-date">04 / 06 / 2018</td>
-                      <td class="text-right"><%= link_to "Info", front_end_bogota_path, class: "btn btn-primary" %></td>
-                    </tr>
-                    <tr>
-                      <td class="program-city">Medellín</td>
-                      <td class="program-city-date">18 / 06 / 2018</td>
-                      <td class="text-right"><%= link_to "Info", front_end_medellin_path, class: "btn btn-primary" %></td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div class="feature">
+                <%= fa_icon "rocket", class: "fa-3x icon" %>
+                <h3>Alcanza tus metas</h3>
+                <p>Encuentra el empleo de tus sueños o haz realidad tus ideas de negocio. El post-programa te prepara para esta nueva fase de tu vida.</p>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
+  <div id="programs" class="programs">
+    <div class="program program-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-10 col-md-8 col-lg-7 col-lg-offset-1">
+            <h2><%= image_tag "top-icon.svg", height: 28, style: "margin-top: -9px; margin-right: 5px;" %> TOP</h2>
+            <p class="description">Un programa sin costo hasta que encuentres un empleo</p>
+
+            <div class="features">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="feature">
+                    <div class="program-label">Formato</div>
+                    <div class="program-value">Online apoyado de mentores</div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="feature">
+                    <div class="program-label">Fecha de Inicio</div>
+                    <div class="program-value">Flexible</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="feature">
+                    <div class="program-label">Duración</div>
+                    <div class="program-value">12 semanas</div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="feature">
+                    <div class="program-label">Dedicación</div>
+                    <div class="program-value">Tiempo completo (40 horas/semana)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="program-action">
+              <%= link_to "Más Información", top_path, class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="program program-full-stack-online">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-10 col-md-8 col-lg-7 col-sm-offset-2 col-md-offset-4">
+            <h2><%= image_tag "full-stack-white.png", height: 38, style: "margin-top: -5px;" %> Full Stack Online</h2>
+            <p class="description">Si lo terminas y no encuentras empleo te devolvemos el dinero*</p>
+
+            <div class="features">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="feature">
+                    <div class="program-label">Formato</div>
+                    <div class="program-value">Online apoyado de mentores</div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="feature">
+                    <div class="program-label">Fecha de Inicio</div>
+                    <div class="program-value">Flexible</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="feature">
+                    <div class="program-label">Duración</div>
+                    <div class="program-value">Máximo 1 año</div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="feature">
+                    <div class="program-label">Dedicación</div>
+                    <div class="program-value">Mínimo 15 horas por semana</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="program-action">
+              <%= link_to "Más Información", full_stack_online_path, class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="program program-full-stack-onsite">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-lg-10 col-lg-offset-1">
+            <h2><%= image_tag "full-stack-white.png", height: 38, style: "margin-top: -5px;" %> Full Stack Presencial</h2>
+            <p class="description">Aprende Ruby on Rails en un ambiente más tradicional</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-md-6 col-lg-5 col-lg-offset-1">
+
+            <div class="features">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="feature">
+                    <div class="program-label">Formato</div>
+                    <div class="program-value">Presencial</div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="feature">
+                    <div class="program-label">Duración</div>
+                    <div class="program-value">9 semanas (+ 3 de prework)</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="feature">
+                    <div class="program-label">Dedicación</div>
+                    <div class="program-value">Lunes a Viernes 6pm a 9pm</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-md-6 col-lg-5">
+            <div class="onsite-dates">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td class="program-city">Barranquilla</td>
+                    <td class="program-city-date">16 / 04 / 2018</td>
+                    <td class="text-right"><%= link_to "Info", full_stack_barranquilla_path, class: "btn btn-primary" %></td>
+                  </tr>
+                  <tr>
+                    <td class="program-city">Bogotá</td>
+                    <td class="program-city-date">07 / 05 / 2018</td>
+                    <td class="text-right"><%= link_to "Info", full_stack_bogota_path, class: "btn btn-primary" %></td>
+                  </tr>
+                  <tr>
+                    <td class="program-city">Medellín</td>
+                    <td class="program-city-date">04 / 06 / 2018</td>
+                    <td class="text-right"><%= link_to "Info", full_stack_medellin_path, class: "btn btn-primary" %></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 
