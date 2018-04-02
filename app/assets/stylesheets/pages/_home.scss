@@ -49,8 +49,13 @@
     font-family: 'Open Sans', sans-serif;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 15px 60px;
-    font-size: 18px;
+    padding: 15px 20px;
+    font-size: 16px;
+
+    @media(min-width: $screen-sm-min) {
+      padding: 15px 40px;
+      font-size: 18px;
+    }
   }
 
   .section.section-pitch {
@@ -113,6 +118,7 @@
 
       &.program-top {
         background: image-url("top-wide-bg.jpg") no-repeat 90% 50%;
+        background-size: cover;
 
         p.description { color: #D3E7F5; }
         .feature .program-label { color: #D3E7F5; }
@@ -120,6 +126,7 @@
 
       &.program-full-stack-online {
         background: image-url("full-stack-wide-bg.jpg") no-repeat 0% 50%;
+        background-size: cover;
 
         p.description { color: #ccc; }
         .feature .program-label { color: #ccc; }
@@ -129,35 +136,43 @@
 
       &.program-full-stack-onsite {
         background: image-url("full-stack-onsite-wide-bg.jpg") no-repeat 80% 50%;
+        background-size: cover;
 
         p.description { color: #EDC5C5; }
         .feature .program-label { color: #EDC5C5; }
 
-        .onsite-dates table {
-          background: rgba(0, 0, 0, 0.3);
-          border: 1px solid #a99;
-          border-radius: 5px;
-          margin-top: 30px;
-          margin-bottom: 0;
+        .onsite-dates {
+          max-width: 600px;
+          margin: 0 auto;
 
-          @media(min-width: $screen-sm-min) { margin-top: 20px; }
+          @media(min-width: $screen-sm-min) { max-width: 400px; }
 
-          td {
-            font-size: 14px;
-            vertical-align: middle;
-            border-color: #a99;
+          table {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #a99;
+            border-radius: 5px;
+            margin-top: 30px;
+            margin-bottom: 0;
 
-            @media(min-width: $screen-md-min) {
-              padding-left: 20px;
-              padding-right: 20px;
+            @media(min-width: $screen-sm-min) { margin-top: 20px; }
+
+            td {
+              font-size: 14px;
+              vertical-align: middle;
+              border-color: #a99;
+
+              @media(min-width: $screen-md-min) {
+                padding-left: 20px;
+                padding-right: 20px;
+              }
+
+              &.program-city {
+                font-weight: bold;
+                text-align: left;
+              }
+
+              .btn { padding: 5px 15px; }
             }
-
-            &.program-city {
-              font-weight: bold;
-              text-align: left;
-            }
-
-            .btn { padding: 5px 15px; }
           }
         }
       }
