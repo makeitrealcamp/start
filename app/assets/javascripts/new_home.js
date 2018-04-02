@@ -2,7 +2,7 @@ var ready = function() {
   // scroll para bajar en la intro
   $(".new-site .intro").on("click", ".scroll", function() {
     $("html,body").animate({
-      scrollTop: $("#programs").offset().top + 80
+      scrollTop: $("#programs").offset().top
     }, "slow");
   });
 

@@ -1,12 +1,14 @@
 .new-site.home {
   .intro {
     position: relative;
+    background: linear-gradient(rgba(28, 28, 48, 0.77), rgba(28, 28, 48, 0.77)), image-url("home-bg.jpg") no-repeat 60% 50%;
+    background-size: cover;
     padding-bottom: 100px;
     overflow: hidden;
 
     .tagline-wrapper { text-align: center; }
 
-    @media (min-width: $screen-md-min) { padding-bottom: 180px; }
+    @media (min-width: $screen-md-min) { padding-bottom: 140px; }
   }
 
   .tagline {
@@ -26,7 +28,7 @@
 
   .tagline-support {
     font-size: 21px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.4;
     color: #dedede;
     margin-bottom: 60px;
@@ -51,132 +53,111 @@
     font-size: 18px;
   }
 
-  .section.section-programs-list {
-    text-align: center;
+  .section.section-pitch {
+    position: relative;
+    overflow: hidden;
 
-    .program-divider {
-      .divider-line {
-        border-top: 1px solid #ccc;
-        margin-bottom: -13px;
-
-        @media (min-width: $screen-sm-min) { margin-bottom: -16px; }
-      }
-
-      .divider-label {
-        display: inline-block;
-        // padding: 0 20px;
-        // margin-left: 20px;
-        background: #f5f5f2;
-        color: #666;
-        font-weight: bold;
-        font-size: 24px;
-        font-family: 'Open Sans Condensed';
-
-        @media (min-width: $screen-sm-min) {
-          font-size: 28px;
-          margin-left: 40px;
-        }
-      }
+    .stripe {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      background: #fbfbfa;
+      width: 400px;
+      height: 900px;
+      transform: rotate(20deg);
     }
 
-    .program-wrapper {
-      @media (min-width: $screen-md-min) { padding: 20px 30px; }
+    .feature {
+      .icon { color: #a5a5a2; }
+      p { color: #757572; }
+    }
+  }
 
-      .program-info {
-        border: 1px solid #ccc;
-        box-shadow: 3px 3px 10px #ccc;
-        background: white;
-        max-width: 450px;
-        margin: 30px auto;
+  .programs {
+    .program {
+      background-size: cover;
+      padding: 40px 0;
+      color: white;
+      border-bottom: 1px solid white;
 
-        .program-header {
-          position: relative;
+      h2 {
+        font-family: 'Open Sans Condensed';
+        font-size: 32px;
+        text-transform: uppercase;
+        margin: 0 0 7px;
 
-          img { width: 100% }
+        @media(min-width: $screen-sm-min) { font-size: 38px; }
+      }
 
-          .program-location {
-            position: absolute;
-            top: 0;
-            color: white;
-            font-size: 18px;
+      p.description {
+        @media(min-width: $screen-sm-min) { font-size: 18px; }
+      }
+
+      .features {
+        margin-top: 5px;
+        padding-left: 20px;
+
+        @media(min-width: $screen-sm-min) { padding-left: 0; }
+
+        .feature {
+          margin-top: 15px;
+
+          .program-label {
+            font-size: 14px;
             font-weight: bold;
-            padding: 20px;
-          }
-
-          .program-header-title {
-            position: absolute;
-            bottom: 0;
-            color: white;
-            text-align: left;
-            padding: 20px;
-            width: 100%;
-
-            .program-name, .program-type {
-              display: block;
-              font-family: 'Open Sans Condensed';
-              font-weight: bold;
-            }
-
-            .program-name {
-              line-height: 1.1;
-              font-size: 34px;
-
-              @media (min-width: $screen-md-min) { font-size: 42px; }
-            }
-
-            p {
-              color: white;
-              font-size: 14px;
-              margin: 10px 0 0;
-
-              @media (min-width: $screen-md-min) { font-size: 16px; }
-            }
           }
         }
+      }
 
-        .program-body {
-          padding: 20px 20px 10px;
+      .program-action { margin-top: 30px; }
 
-          .program-details {
-            text-align: left;
+      &.program-top {
+        background: image-url("top-wide-bg.jpg") no-repeat 90% 50%;
 
-            .details-label {
-              color: #666;
-              font-size: 12px;
+        p.description { color: #D3E7F5; }
+        .feature .program-label { color: #D3E7F5; }
+      }
+
+      &.program-full-stack-online {
+        background: image-url("full-stack-wide-bg.jpg") no-repeat 0% 50%;
+
+        p.description { color: #ccc; }
+        .feature .program-label { color: #ccc; }
+
+        @media (min-width: $screen-sm-min) { text-align: right; }
+      }
+
+      &.program-full-stack-onsite {
+        background: image-url("full-stack-onsite-wide-bg.jpg") no-repeat 80% 50%;
+
+        p.description { color: #EDC5C5; }
+        .feature .program-label { color: #EDC5C5; }
+
+        .onsite-dates table {
+          background: rgba(0, 0, 0, 0.3);
+          border: 1px solid #a99;
+          border-radius: 5px;
+          margin-top: 30px;
+          margin-bottom: 0;
+
+          @media(min-width: $screen-sm-min) { margin-top: 20px; }
+
+          td {
+            font-size: 14px;
+            vertical-align: middle;
+            border-color: #a99;
+
+            @media(min-width: $screen-md-min) {
+              padding-left: 20px;
+              padding-right: 20px;
+            }
+
+            &.program-city {
               font-weight: bold;
-              margin-bottom: 5px;
+              text-align: left;
             }
 
-            .details-value {
-              color: #303030;
-              font-size: 13px;
-              margin-bottom: 15px;
-
-              @media (min-width: $screen-md-min) { font-size: 14px; }
-            }
-          }
-        }
-
-        .program-footer {
-          padding: 0 20px 20px;
-
-          table {
-            td {
-              font-size: 14px;
-              vertical-align: middle;
-
-              // @media (min-width: $screen-md-min) { font-size: 16px; }
-
-              &.program-city {
-                font-weight: bold;
-                text-align: left;
-              }
-            }
-          }
-
-          a.btn {
-            text-transform: none;
-            padding: 8px 12px;
+            .btn { padding: 5px 15px; }
           }
         }
       }
