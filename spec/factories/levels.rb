@@ -12,8 +12,8 @@
 
 FactoryGirl.define do
   factory :level do
-    name "Level X"
+    name "Teclado Blanco"
     required_points 0
-    image_url "/test.png"
+    image_url "https://s3.amazonaws.com/makeitreal/levels/nivelBlanco%402x.png"
   end
 end

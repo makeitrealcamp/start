@@ -22,6 +22,7 @@ module LoginMacros
     fill_in "email", with: user.email
     fill_in "password", with: user.password
 
+    level = create(:level)
     click_on "Ingresar"
 
     path = if user.created?
