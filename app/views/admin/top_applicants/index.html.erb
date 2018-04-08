@@ -41,7 +41,7 @@
             <table class="table">
               <tbody>
                 <% @applicants.each do |applicant| %>
-                  <tr>
+                  <tr id="applicant-<%= applicant.id %>">
                     <td>
                       <div class="cell-main"><%= applicant.full_name %></div>
                       <div class="cell-detail"><%= applicant.email%></div>
