@@ -97,6 +97,7 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver', '3.0.0'
+  gem 'chromedriver-helper'
   gem 'codeclimate-test-reporter', require: nil
   gem 'rspec-wait', '0.0.9'
   gem 'rspec-retry', '0.5.2'
