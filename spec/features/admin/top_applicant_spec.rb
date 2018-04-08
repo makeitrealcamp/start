@@ -55,6 +55,8 @@ RSpec.feature "top_applicant", type: :feature do
   end
 
   scenario "admin can send an email to an applicant", js: true do
+    ActionMailer::Base.deliveries.clear
+    
     login(admin)
     visit admin_email_templates_path
 
