@@ -44,11 +44,14 @@ RSpec.feature "Pages", type: :feature do
     expect(email.subject).to include "[Nuevo Lead Full Stack Online]"
   end
 
-  scenario "send email to top applicant", js: true do
+  scenario "apply to the top program", js: true do
       visit  "/top"
 
-      find('button[type="button"]').click
-      find('input[type="checkbox"]').click
+      find('button.apply-now-btn').click
+      expect(page).to have_css("#application-modal")
+
+      sleep 0.5 # hack to wait for the animations of the modal
+      find('#terms').click
       find('.next[type="button"]').click
 
       fill_in "first-name", with: "Pedro"
@@ -70,7 +73,6 @@ RSpec.feature "Pages", type: :feature do
       find('.finish[type="button"]').click
 
       expect(current_path).to eq thanks_top_path
-
     end
 
 end

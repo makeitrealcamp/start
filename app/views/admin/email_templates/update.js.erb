@@ -1,0 +1,18 @@
+clearField('#email_template_title');
+clearField('#email_template_subject');
+clearField('#email_template_body');
+
+<% if @template.valid? %>
+  $('#email-template-modal').modal('hide');
+  $("#template-<%= @template.id %>").replaceWith("<%= j render @template %>");
+<% else %>
+  <% if @template.errors[:title].any? %>
+    invalidField('#email_template_title', '<%= @template.errors[:title].first %>');
+  <% end %>
+  <% if @template.errors[:subject].any? %>
+    invalidField('#email_template_subject', '<%= @template.errors[:subject].first %>');
+  <% end %>
+  <% if @template.errors[:body].any? %>
+    invalidField("#email_template_body", '<%= @template.errors[:body].first %>');
+  <% end %>
+<% end %>
