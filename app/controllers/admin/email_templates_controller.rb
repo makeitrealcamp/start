@@ -24,7 +24,6 @@ class Admin::EmailTemplatesController < ApplicationController
   def update
     @template = EmailTemplate.find(params[:id])
     @template.update(email_params)
-    @templates = EmailTemplate.all
   end
 
   def destroy

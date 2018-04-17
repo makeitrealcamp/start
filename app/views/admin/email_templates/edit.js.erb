@@ -1,2 +1,4 @@
-$('#modal-template').html("<%= j render 'modal' %>")
-$('.modal').modal('show')
+$('<%= j render "modal" %>').on('hidden.bs.modal', function (e) {
+  $(this).remove();
+  $('.modal-backdrop').remove();
+}).modal();

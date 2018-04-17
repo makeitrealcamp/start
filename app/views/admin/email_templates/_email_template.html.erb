@@ -1,9 +1,9 @@
-<tr>
+<tr id="template-<%= email_template.id %>">
   <td><%= email_template.title %></td>
   <td><%= email_template.subject %></td>
   <td class="text-right">
     <%= link_to "Ver", admin_email_template_path(email_template), class: "btn btn-primary" %>
-    <%= link_to "edit" , edit_admin_email_template_path(email_template.id), remote: true, class: "btn btn-primary" %>
+    <%= link_to "Editar", edit_admin_email_template_path(email_template.id), remote: true, class: "btn btn-primary" %>
     <%= link_to "<span class='glyphicon glyphicon-trash'></span>".html_safe, admin_email_template_path(email_template.id), method: :delete, class: "btn btn-primary", data: { confirm: "Estás seguro de eliminar esta plantilla?" }  %>
   </td>
 </tr>
