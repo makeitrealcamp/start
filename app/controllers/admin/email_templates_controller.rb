@@ -17,6 +17,16 @@ class Admin::EmailTemplatesController < ApplicationController
     @template = EmailTemplate.find(params[:id])
   end
 
+  def edit
+    @template = EmailTemplate.find(params[:id])
+  end
+
+  def update
+    @template = EmailTemplate.find(params[:id])
+    @template.update(email_params)
+    @templates = EmailTemplate.all
+  end
+
   def destroy
     template = EmailTemplate.find(params[:id])
     template.destroy

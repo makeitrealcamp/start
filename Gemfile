@@ -102,4 +102,5 @@ group :test do
   gem 'rspec-wait', '0.0.9'
   gem 'rspec-retry', '0.5.2'
 end
+
 gem 'sinatra', :require => nil
