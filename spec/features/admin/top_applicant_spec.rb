@@ -56,11 +56,12 @@ RSpec.feature "top_applicant", type: :feature do
 
   scenario "admin can send an email to an applicant", js: true do
     ActionMailer::Base.deliveries.clear
-    
+
     login(admin)
     visit admin_email_templates_path
 
     click_on "Nueva Plantilla"
+    expect(page).to have_css("#email-template-modal")
 
     expect {
       fill_in "email_template_title", with: "Plantilla 1"
@@ -82,5 +83,36 @@ RSpec.feature "top_applicant", type: :feature do
 
     email = ActionMailer::Base.deliveries
     expect(email.count).to eq(1)
+  end
+
+  scenario "admin can edit an email template to an applicant", js: true do
+    ActionMailer::Base.deliveries.clear
+
+    login(admin)
+    visit admin_email_templates_path
+
+    click_on "Nueva Plantilla"
+    expect(page).to have_css("#email-template-modal")
+
+    expect {
+      fill_in "email_template_title", with: "Plantilla 1"
+      fill_in "email_template_subject", with: "Citado a entrevista de inglés"
+      fill_in "email_template_body", with: "Cita con Juan Gomez el día viernes 9:00 COL"
+      click_on "Guardar Plantilla"
+      expect(page).to have_no_css("#email-template-modal")
+    }.to change(EmailTemplate, :count).by 1
+
+    visit admin_email_templates_path
+
+    click_on "Editar"
+    expect(page).to have_css("#email-template-modal")
+
+    expect {
+      fill_in "email_template_title", with: "Recordatorio"
+      fill_in "email_template_subject", with: "En pocos días comienzas"
+      fill_in "email_template_body", with: "Cita con Jefferson Bernal"
+      click_on "Guardar Plantilla"
+      expect(page).to have_no_css("#email-template-modal")
+    }.to change(EmailTemplate, :count).by 0
   end
 end
