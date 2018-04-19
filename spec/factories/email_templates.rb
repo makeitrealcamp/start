@@ -12,7 +12,9 @@
 
 FactoryGirl.define do
   factory :email_template do
-    
+    title "Plantilla 1"
+    subject "Este es el asunto"
+    body "Este es el cuerpo"
   end
 
 end
