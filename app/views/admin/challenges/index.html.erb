@@ -1,60 +1,46 @@
 <div class="container admin-challenges">
-  <div class="row">
-    <div class="col-xs-12">
-      <h1>Retos</h1>
-      <ul class="nav nav-tabs" role="tablist">
-        <% @paths.each_with_index do |path,i| %>
-          <li class="<%= 'active' if i == 0 %>" role="presentation">
-            <a href="#path-<%= path.id %>" role="tab" data-toggle="tab"><%= path.name %></a>
-          </li>
-        <% end %>
-      </ul>
+  <h1>Retos</h1>
+  <ul class="nav nav-tabs" role="tablist">
+    <% @paths.each_with_index do |path,i| %>
+      <li class="<%= 'active' if i == 0 %>" role="presentation">
+        <a href="#path-<%= path.id %>" role="tab" data-toggle="tab"><%= path.name %></a>
+      </li>
+    <% end %>
+  </ul>
 
-        <div class="tab-content">
-          <% @paths.each_with_index do |path,i| %>
-            <div role="tabpanel" class="path tab-pane  <%= 'active' if i == 0 %>" id="path-<%= path.id %>">
-              <% path.phases.for(current_user).order(:row).each do |phase| %>
-                <div id="phase-<%= phase.id %>" class="phase">
-                  <div class="row">
-                    <% phase.subjects.for(current_user).order(:row).each do |subject| %>
-                      <div class="col-sm-12">
-                        <div data-id="<%= subject.friendly_id %>">
-
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <table class="table table-condensed">
-                                  <thead>
-                                    <th> <h2 class="course-title"><%= subject.name %></h2> </th>
-                                    <tr>
-                                      <th>Nombre</th>
-                                      <th>Usuarios</th>
-                                      <th>Efectividad</th>
-                                      <th>Promedio de intentos</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <% subject.challenges.each_with_index do |challenge, percentage| %>
-                                    <tr>
-                                      <td><%= challenge.name %></td>
-                                      <td><span class="challenge-users"><%= challenge.solutions.count %></span></td>
-                                      <td> <%= percentage(challenge) %> </td>
-                                      <td> <%= attempts(challenge) %> </td>
-                                    </tr>
-                                    <% end %>
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
-
-                        </div>
-                      </div>
-                    <% end %>
-                  </div>
+    <div class="tab-content">
+      <% @paths.each_with_index do |path, i| %>
+        <div role="tabpanel" class="path tab-pane <%= 'active' if i == 0 %>" id="path-<%= path.id %>">
+          <% path.phases.published.order(:row).each do |phase| %>
+            <div class="phase">
+              <% phase.subjects.published.order(:row).each do |subject| %>
+                <div class="panel panel-default subject">
+                  <div class="panel-heading"><%= subject.name %></div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Nombre</th>
+                        <th class="text-center">Usuarios</th>
+                        <th class="text-center">Efectividad</th>
+                        <th class="text-center">Promedio de intentos</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% subject.challenges.each_with_index do |challenge, percentage| %>
+                      <tr>
+                        <td><%= challenge.name %></td>
+                        <td class="text-center"><span class="challenge-users"><%= challenge.solutions.where("attempts > ?", 1).count %></span></td>
+                        <td class="text-center"><%= challenge_effectiveness(challenge) %></td>
+                        <td class="text-center"><%= challenge_attempts_average(challenge) %></td>
+                      </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
                 </div>
               <% end %>
             </div>
           <% end %>
         </div>
+      <% end %>
     </div>
-  </div>
 </div>

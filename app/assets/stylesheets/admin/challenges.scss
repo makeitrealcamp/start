@@ -4,25 +4,25 @@
     color: #999;
   }
 
-  .challenge-users {
-    padding-left: 25px;
-  }
-
-  .challenge-effectiveness {
-    padding-left: 25px;
-  }
-
-  .challenge-average {
-    padding-left: 70px;
-  }
-
-  .challenge-effectiveness-red {
-    padding-left: 25px;
+  .critical {
     color: red;
   }
 
-  .challenge-average-red {
-    padding-left: 70px;
-    color: red;
+  table {
+    background: white;
+    border: 1px solid #ddd;
   }
+
+  .subject { margin-bottom: 40px; }
+
+  .panel-heading { font-weight: bold; }
+
+  .tab-content {
+    background: white;
+    padding: 25px 25px 0;
+    border: 1px solid #ddd;
+    border-top: none;
+  }
+
+  .nav-tabs > li.active > a { background: white; }
 }
