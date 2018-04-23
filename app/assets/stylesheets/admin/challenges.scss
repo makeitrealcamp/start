@@ -1,0 +1,28 @@
+.admin-challenges {
+  .secondary {
+    display: block;
+    color: #999;
+  }
+
+  .critical {
+    color: red;
+  }
+
+  table {
+    background: white;
+    border: 1px solid #ddd;
+  }
+
+  .subject { margin-bottom: 40px; }
+
+  .panel-heading { font-weight: bold; }
+
+  .tab-content {
+    background: white;
+    padding: 25px 25px 0;
+    border: 1px solid #ddd;
+    border-top: none;
+  }
+
+  .nav-tabs > li.active > a { background: white; }
+}

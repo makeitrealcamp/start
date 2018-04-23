@@ -42,6 +42,8 @@ Document.create(folder: c2, name: "index.html", content: "")
 
 User.create(email: "german.escobar@makeitreal.camp", account_type: User.account_types[:admin_account])
 
+User.create(email: "user1@example.com", account_type: User.account_types[:admin_account], access_type: User.access_types[:password], password: "test1234")
+
 User.create(email: "user_free@makeitreal.camp",account_type: User.account_types[:free_account])
 
 User.create(email: "user_paid@makeitreal.camp",account_type: User.account_types[:paid_account])
