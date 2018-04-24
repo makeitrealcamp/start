@@ -69,6 +69,8 @@ RSpec.feature "Pages", type: :feature do
       find('.next[type="button"]').click
       fill_in "goal", with: "mi motivación es aprender"
       fill_in "experience", with: "1 año"
+      fill_in "typical-day", with: "dormir"
+      fill_in "vision", with: "dormir más"
       fill_in "additional", with: "me gustan los animales"
       find('.finish[type="button"]').click
 

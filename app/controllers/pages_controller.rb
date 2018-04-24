@@ -260,6 +260,8 @@ class PagesController < ApplicationController
       ip: request.remote_ip,
       goal: top_applicant_params[:goal],
       experience: top_applicant_params[:experience],
+      typical_day: top_applicant_params[:typical_day],
+      vision: top_applicant_params[:vision],
       more_info: top_applicant_params[:additional]
     }
     ConvertLoopJob.perform_later(data)
@@ -272,6 +274,6 @@ class PagesController < ApplicationController
     end
 
     def top_applicant_params
-      params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :skype, :twitter, :url, :goal, :experience, :additional)
+      params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :skype, :twitter, :url, :goal, :experience, :typical_day, :vision, :additional)
     end
 end
