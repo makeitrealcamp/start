@@ -31,6 +31,8 @@ class TopApplicant < Applicant
     url: :string,
     goal: :string,
     experience: :string,
+    typical_day: :string,
+    vision: :string,
     additional: :string
 
   protected
