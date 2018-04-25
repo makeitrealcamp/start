@@ -26,13 +26,13 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <% subject.challenges.each_with_index do |challenge, percentage| %>
-                      <tr>
-                        <td><%= challenge.name %></td>
-                        <td class="text-center"><span class="challenge-users"><%= challenge.solutions.where("attempts > ?", 1).count %></span></td>
-                        <td class="text-center"><%= challenge_effectiveness(challenge) %></td>
-                        <td class="text-center"><%= challenge_attempts_average(challenge) %></td>
-                      </tr>
+                      <% subject.challenges.order(:row).each_with_index do |challenge, percentage| %>
+                        <tr class="<%= challenge.published? ? "" : "unpublished" %>">
+                          <td><%= challenge.name %></td>
+                          <td class="text-center"><span class="challenge-users"><%= challenge.solutions.where("attempts > ?", 0).count %></span></td>
+                          <td class="text-center"><%= challenge_effectiveness(challenge) %></td>
+                          <td class="text-center"><%= challenge_attempts_average(challenge) %></td>
+                        </tr>
                       <% end %>
                     </tbody>
                   </table>
