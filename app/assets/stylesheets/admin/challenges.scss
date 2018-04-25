@@ -11,6 +11,8 @@
   table {
     background: white;
     border: 1px solid #ddd;
+
+    tr.unpublished td { color: #999; }
   }
 
   .subject { margin-bottom: 40px; }
