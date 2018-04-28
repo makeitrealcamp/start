@@ -82,4 +82,8 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'makeitreal.camp'}
   Rails.application.default_url_options[:host] = 'makeitreal.camp'
 
+  Rails.application.configure do
+    config.lograge.enabled = true
+  end
+
 end
