@@ -181,6 +181,11 @@ GEM
       addressable (~> 2.3)
     letter_opener (1.6.0)
       launchy (~> 2.2)
+    lograge (0.10.0)
+      actionpack (>= 4)
+      activesupport (>= 4)
+      railties (>= 4)
+      request_store (~> 1.0)
     loofah (2.2.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -417,6 +422,7 @@ DEPENDENCIES
   json-schema
   launchy
   letter_opener
+  lograge (~> 0.10.0)
   momentjs-rails
   nested_form_fields
   octokit
