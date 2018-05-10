@@ -2,7 +2,7 @@
 
 <div class="new-site program full-stack-onsite bogota">
   <%= render "layouts/navbar/pages_white", hide_login: true %>
-  <%= render "pages/header_register" %>
+  <%= render "pages/header_register", btn_text: "¡Recibe la info!" %>
 
   <div class="program-intro">
     <div class="container">
@@ -18,7 +18,7 @@
 
             <div class="medellin-info-body">
               <div class="medellin-info-date">
-                 May 7, 2018
+                 May 28, 2018
               </div>
               <div class="medellin-info-schedule">
                 <div class="schedule-data">
@@ -32,7 +32,7 @@
                 <div class="address">Cra 15 # 91 - 30 Piso 4</div>
               </div>
 
-              <button type="button" class="btn btn-primary btn-register">¡Regístrate!</button>
+              <button type="button" class="btn btn-primary btn-register">¡Recibe toda la Info!</button>
             </div>
           </div>
         </div>
@@ -87,7 +87,7 @@
 
   <%= render "full_stack_onsite_faqs" %>
 
-  <%= render "full_stack_onsite_magnet" %>
+  <%= render "full_stack_onsite_magnet", btn_text: "¡Recibe toda la info!" %>
 
   <%= render "footer" %>
 
