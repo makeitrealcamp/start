@@ -12,6 +12,14 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
+  <script>
+  !function(t,c,e,n){
+    t.ChatConfigFn=n,t.ch=t.ch||function(){(t.ch.q=t.ch.q||[]).push(arguments)};
+    var h=c.createElement("script"),a=c.getElementsByTagName("script")[0];
+    h.async=1,h.src="https://masterchat.co/v1/chat.js",a.parentNode.insertBefore(h,a)
+  }(window,document,0,"ch");
+</script>
+
   <%= yield :head %>
 </head>
 <body class="expand">
@@ -23,5 +31,15 @@
   </div>
 
   <div class="overlay"></div>
+
+  <% if signed_in? && current_user.has_chat_access %>
+    <script>
+      function configureChat() {
+        ch("configure", { uid: "e86e789a", email: "<%= current_user.email%>", firstName: "<%= current_user.first_name %>", lastName: "<%= current_user.last_name %>" });
+      }
+      $(document).ready(configureChat);
+      $(document).on("page:load", configureChat);
+    </script>
+  <% end %>
 </body>
 </html>
