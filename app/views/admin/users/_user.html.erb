@@ -1,7 +1,12 @@
 <tr id="user-<%= user.id %>" class="<%= status_class(user) %>">
   <td>
     <span class="name"><%= link_to full_name(user), admin_user_path(user) %></span>
-    <span class="email"><%= user.email %><% if user.password? %> <i class="fa fa-key" data-toggle="tooltip" data-placement="bottom" title="Este usuario accede con email y contraseña"></i><% end %> <% if user.is_admin? %><span class="label label-secondary">Admin</span><% end %></span>
+    <span class="email">
+      <%= user.email %>
+      <% if user.has_chat_access %><i class="fa fa-comments" data-toggle="tooltip" data-placement="bottom" title="Este usuario tiene acceso al chat de mentores"></i><% end %>
+      <% if user.password? %><i class="fa fa-key" data-toggle="tooltip" data-placement="bottom" title="Este usuario accede con email y contraseña"></i><% end %>
+      <% if user.is_admin? %><span class="label label-secondary">Admin</span><% end %>
+    </span>
   </td>
   <td class="user-status">
     <span><%= status(user) %></span>

@@ -62,7 +62,8 @@ class User < ActiveRecord::Base
   hstore_accessor :settings,
     has_public_profile: :boolean,
     password_reset_token: :string,
-    password_reset_sent_at: :datetime
+    password_reset_sent_at: :datetime,
+    has_chat_access: :boolean
 
   accepts_nested_attributes_for :path_subscriptions, allow_destroy: true
 
