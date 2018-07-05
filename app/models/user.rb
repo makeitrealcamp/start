@@ -316,10 +316,12 @@ class User < ActiveRecord::Base
 
     def log_activity
       if status_was == "created" && status == "active" # the user is now active
-        notify_convertloop(email: self.email, first_name: self.first_name, last_name: self.last_name, add_to_segments: ['Students', 'Active Students']) unless Rails.env.test?
+        segments = ['Students', 'Active Students']
+        segments << self.slack? ? 'Virtual' : 'Presencial'
+        notify_convertloop(email: self.email, first_name: self.first_name, last_name: self.last_name, add_to_segments: segments) unless Rails.env.test?
         ActivityLog.create(name: "enrolled", user: self, description: "Inició el programa")
       elsif status_was == "active" && status == "suspended" # the account has been suspended
-        notify_convertloop(email: self.email, add_to_segments: ['Suspended Students'], remove_from_segments: ['Active Students']) unless Rails.env.test?
+        notify_convertloop(email: self.email, add_to_segments: ['Suspended Students'], remove_from_segments: ['Active Students', 'Virtual', 'Presencial']) unless Rails.env.test?
         ActivityLog.create(name: "account-suspended", user: self, description: "La cuenta ha sido suspendida")
       elsif status_was == "active" && status == "finished" # the user finished the program
         notify_convertloop(email: self.email, add_to_segments: ['Finished Students'], remove_from_segments: ['Active Students']) unless Rails.env.test?
