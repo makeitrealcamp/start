@@ -18,7 +18,7 @@
 #  index_phases_on_path_id  (path_id)
 #
 
-class Phase < ActiveRecord::Base
+class Phase < ApplicationRecord
   include RankedModel
   ranks :row, with_same: :path_id
 
@@ -27,7 +27,7 @@ class Phase < ActiveRecord::Base
 
   belongs_to :path
   has_many :course_phases
-  has_many :subjects, -> { uniq }, through: :course_phases
+  has_many :subjects, -> { distinct }, through: :course_phases
 
   after_initialize :default_values
 

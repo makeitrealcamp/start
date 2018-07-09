@@ -14,7 +14,7 @@
 #  index_challenge_completions_on_user_id       (user_id)
 #
 
-class ChallengeCompletion < ActiveRecord::Base
+class ChallengeCompletion < ApplicationRecord
   belongs_to :user
   belongs_to :challenge
 

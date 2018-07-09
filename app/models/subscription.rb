@@ -14,7 +14,7 @@
 #  index_subscriptions_on_user_id  (user_id)
 #
 
-class Subscription < ActiveRecord::Base
+class Subscription < ApplicationRecord
   belongs_to :user
   enum status: [:active,:cancelled]
 

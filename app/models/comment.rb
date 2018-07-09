@@ -17,7 +17,7 @@
 #  index_comments_on_user_id                              (user_id)
 #
 
-class Comment < ActiveRecord::Base
+class Comment < ApplicationRecord
   belongs_to :commentable, polymorphic: true
   belongs_to :user
   belongs_to :response_to, class_name: "Comment"

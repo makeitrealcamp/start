@@ -17,7 +17,7 @@
 #  index_points_on_subject_id                       (subject_id)
 #
 
-class Point < ActiveRecord::Base
+class Point < ApplicationRecord
   belongs_to :subject
   belongs_to :user
   belongs_to :pointable, polymorphic: true

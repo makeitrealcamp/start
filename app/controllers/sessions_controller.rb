@@ -22,9 +22,9 @@ class SessionsController < ApplicationController
   end
 
   def create_with_omniauth
-    if env['omniauth.auth'].info.email.blank?
-      url_omniauth_failure("No pudimos obtener el email de #{env['omniauth.auth'].provider.capitalize}. Por favor habilítalo")
-    elsif user = AuthProvider.omniauth(env['omniauth.auth'])
+    if request.env['omniauth.auth'].info.email.blank?
+      url_omniauth_failure("No pudimos obtener el email de #{request.env['omniauth.auth'].provider.capitalize}. Por favor habilítalo")
+    elsif user = AuthProvider.omniauth(request.env['omniauth.auth'])
       sign_in(user)
       redirect_to signed_in_root_path
     else

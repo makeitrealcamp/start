@@ -12,7 +12,7 @@ RSpec.describe Billing::ChargesController, type: :controller do
         ENV['REACT_REDUX_PATH_ID'] = path.id.to_s
         charge = create(:charge, :created_deposit)
 
-        get :show, id: charge.uid
+        get :show, params: { id: charge.uid }
         expect(response).to have_http_status(:ok)
       end
     end
@@ -21,7 +21,7 @@ RSpec.describe Billing::ChargesController, type: :controller do
       it "responds with status 200 OK" do
         charge = create(:charge, :paid_credit_card)
 
-        get :show, id: charge.uid
+        get :show, params: { id: charge.uid }
         expect(response).to have_http_status(:ok)
       end
     end
@@ -30,7 +30,7 @@ RSpec.describe Billing::ChargesController, type: :controller do
       it "responds with status 200 OK" do
         charge = create(:charge, :rejected_credit_card)
 
-        get :show, id: charge.uid
+        get :show, params: { id: charge.uid }
         expect(response).to have_http_status(:ok)
       end
     end
@@ -60,7 +60,7 @@ RSpec.describe Billing::ChargesController, type: :controller do
           x_signature: Digest::SHA256.hexdigest("9876^12345^1234^1234^100^COP")
         }
 
-        expect { post :confirm, data }.to change(User, :count).by(1)
+        expect { post :confirm, params: data }.to change(User, :count).by(1)
       end
     end
   end

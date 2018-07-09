@@ -14,7 +14,7 @@
 #  index_sections_on_resource_id  (resource_id)
 #
 
-class Section < ActiveRecord::Base
+class Section < ApplicationRecord
   include RankedModel
   ranks :row, with_same: :resource_id
 

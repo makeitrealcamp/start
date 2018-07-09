@@ -11,7 +11,7 @@
 #  type         :string
 #
 
-class ApplicantActivity < ActiveRecord::Base
+class ApplicantActivity < ApplicationRecord
   belongs_to :user
   belongs_to :applicant
 end

@@ -15,7 +15,7 @@
 #  updated_at :datetime         not null
 #
 
-class Applicant < ActiveRecord::Base
+class Applicant < ApplicationRecord
   has_many :activities, class_name: "ApplicantActivity"
   has_many :note_activities, class_name: "NoteApplicantActivity"
   has_many :email_activities, class_name: "EmailApplicantActivity"

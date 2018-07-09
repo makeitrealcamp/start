@@ -10,7 +10,7 @@
 #  published   :boolean          default(FALSE)
 #
 
-class Path < ActiveRecord::Base
+class Path < ApplicationRecord
   has_many :phases
 
   scope :for, -> user { user.paths.published unless user.is_admin? }
@@ -21,7 +21,7 @@ class Path < ActiveRecord::Base
 
   def subjects
     Subject.joins(:course_phases).joins(:phases)
-      .where("course_phases.phase_id" => phases.pluck(:id)).uniq
+      .where("course_phases.phase_id" => phases.pluck(:id)).distinct
   end
 
   def challenges

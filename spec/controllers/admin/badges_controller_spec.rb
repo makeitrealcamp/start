@@ -70,7 +70,7 @@ RSpec.describe Admin::BadgesController, type: :controller do
 
     context "when not signed in" do
       it "raises a routing error" do
-        expect { post :create, atts }.to raise_error ActionController::RoutingError
+        expect { post :create, params: atts }.to raise_error ActionController::RoutingError
       end
     end
 
@@ -81,7 +81,7 @@ RSpec.describe Admin::BadgesController, type: :controller do
       end
 
       it "raises a routing error" do
-        expect { post :create, atts }.to raise_error ActionController::RoutingError
+        expect { post :create, params: atts }.to raise_error ActionController::RoutingError
       end
     end
   end
@@ -91,7 +91,7 @@ RSpec.describe Admin::BadgesController, type: :controller do
 
     context "when not signed in" do
       it "raises a routing error" do
-        expect { get :edit, id: badge.id }.to raise_error ActionController::RoutingError
+        expect { get :edit, params: { id: badge.id } }.to raise_error ActionController::RoutingError
       end
     end
 
@@ -102,7 +102,7 @@ RSpec.describe Admin::BadgesController, type: :controller do
       end
 
       it "raises a routing error" do
-        expect { get :edit, id: badge.id }.to raise_error ActionController::RoutingError
+        expect { get :edit, params: { id: badge.id } }.to raise_error ActionController::RoutingError
       end
     end
   end
@@ -112,7 +112,7 @@ RSpec.describe Admin::BadgesController, type: :controller do
 
     context "when not signed in" do
       it "raises a routing error" do
-        expect { patch :update, id: badge.id }.to raise_error ActionController::RoutingError
+        expect { patch :update, params: { id: badge.id } }.to raise_error ActionController::RoutingError
       end
     end
 
@@ -123,7 +123,7 @@ RSpec.describe Admin::BadgesController, type: :controller do
       end
 
       it "raises a routing error" do
-        expect { patch :update, id: badge.id }.to raise_error ActionController::RoutingError
+        expect { patch :update, params: { id: badge.id } }.to raise_error ActionController::RoutingError
       end
     end
   end
@@ -133,7 +133,7 @@ RSpec.describe Admin::BadgesController, type: :controller do
 
     context "when not signed in" do
       it "raises a routing error" do
-        expect { delete :destroy, id: badge.id }.to raise_error ActionController::RoutingError
+        expect { delete :destroy, params: { id: badge.id } }.to raise_error ActionController::RoutingError
       end
     end
 
@@ -144,7 +144,7 @@ RSpec.describe Admin::BadgesController, type: :controller do
       end
 
       it "raises a routing error" do
-        expect { delete :destroy, id: badge.id }.to raise_error ActionController::RoutingError
+        expect { delete :destroy, params: { id: badge.id } }.to raise_error ActionController::RoutingError
       end
     end
   end

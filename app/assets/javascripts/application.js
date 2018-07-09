@@ -33,15 +33,13 @@
 //= require jquery.payment
 //= require_tree .
 
-Turbolinks.enableProgressBar();
-
-$(document).on("page:fetch", function() {
+$(document).on("turbolinks:before-visit", function() {
   $(document).off("page:before-change");
   Dispatcher.stopListening();
   save_files_timer.cancel();
 });
 
-$(document).on("page:change", function() {
+$(document).on("turbolinks:load", function() {
   $('[data-toggle="tooltip"]').tooltip();
   $('body').on('click', '.close-overlay', function() {
     $('.overlay').hide();

@@ -18,7 +18,7 @@
 #  index_projects_on_subject_id  (subject_id)
 #
 
-class Project < ActiveRecord::Base
+class Project < ApplicationRecord
   include RankedModel
   ranks :row, with_same: :subject_id
 

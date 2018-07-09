@@ -16,7 +16,7 @@
 #  index_questions_on_quiz_id  (quiz_id)
 #
 
-class Quizer::Question < ActiveRecord::Base
+class Quizer::Question < ApplicationRecord
   belongs_to :quiz
 
   validate :validate_data_schema

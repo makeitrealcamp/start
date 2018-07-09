@@ -14,7 +14,7 @@
 #  published     :boolean
 #
 
-class Subject < ActiveRecord::Base
+class Subject < ApplicationRecord
   include RankedModel
   ranks :row
 
@@ -27,7 +27,7 @@ class Subject < ActiveRecord::Base
   has_many :points
   has_many :quizzes, class_name: 'Quizer::Quiz'
   has_many :course_phases
-  has_many :phases, -> { uniq }, through: :course_phases
+  has_many :phases, -> { distinct }, through: :course_phases
   has_many :badges, dependent: :destroy
 
   accepts_nested_attributes_for :course_phases, allow_destroy: true

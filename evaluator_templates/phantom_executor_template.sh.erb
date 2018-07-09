@@ -1,5 +1,5 @@
 #!/bin/bash
-# require: evaluation_file_path, error_file_path,port,solution_files_folder
+# require: evaluation_file_path, error_file_path,port, solution_files_folder
 
 set -e
 set -x
@@ -8,7 +8,7 @@ if [ ! -f <%= evaluation_file_path %> ]; then
   echo "No se encontró el archivo de evaluación <%= evaluation_file_path %>." >> <%= error_file_path %>
   exit 1
 fi
-http-server -p <%= port %> <%= solution_files_folder %> & echo "Running server in localhost:<%= port %>..."
+http-server -p <%= port %> <%= solution_files_folder %> & echo "Running server in localhost: <%= port %>..."
 
 ruby -e 'require "phantomjs"; print Phantomjs.run("--ssl-protocol=any", "--ignore-ssl-errors=yes", "<%= evaluation_file_path %>")' &> <%= error_file_path %>
 

@@ -14,7 +14,7 @@
 #  index_lesson_completions_on_user_id    (user_id)
 #
 
-class LessonCompletion < ActiveRecord::Base
+class LessonCompletion < ApplicationRecord
   belongs_to :user
   belongs_to :lesson
 

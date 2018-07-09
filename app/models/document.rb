@@ -15,7 +15,7 @@
 #  index_documents_on_folder_type_and_folder_id  (folder_type,folder_id)
 #
 
-class Document < ActiveRecord::Base
+class Document < ApplicationRecord
   has_paper_trail on: [:update, :destroy]
 
   belongs_to :folder, polymorphic: true

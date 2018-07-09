@@ -18,7 +18,7 @@
 #  index_project_solutions_on_user_id     (user_id)
 #
 
-class ProjectSolution < ActiveRecord::Base
+class ProjectSolution < ApplicationRecord
   belongs_to :user
   belongs_to :project
   has_many :comments, as: :commentable

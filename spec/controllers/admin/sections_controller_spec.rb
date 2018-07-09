@@ -8,7 +8,7 @@ RSpec.describe SectionsController, type: :controller do
   describe "GET #new" do
     context "when not signed in" do
       it "raises a routing error" do
-        expect { xhr :get, :new, path_params }.to raise_error ActionController::RoutingError
+        expect { get :new, params: path_params, xhr: true }.to raise_error ActionController::RoutingError
       end
     end
 
@@ -19,7 +19,7 @@ RSpec.describe SectionsController, type: :controller do
       end
 
       it "raises a routing error" do
-        expect { xhr :get, :new, path_params }.to raise_error ActionController::RoutingError
+        expect { get :new, params: path_params, xhr: true }.to raise_error ActionController::RoutingError
       end
     end
 
@@ -30,7 +30,7 @@ RSpec.describe SectionsController, type: :controller do
       end
 
       it "renders template new" do
-        xhr :get, :new, path_params
+        get :new, params: path_params, xhr: true
         expect(response).to render_template :new
       end
     end
@@ -41,7 +41,7 @@ RSpec.describe SectionsController, type: :controller do
 
     context "when not signed in" do
       it "raises a routing error" do
-        expect { xhr :post, :create, path_params.merge(section: atts) }.to raise_error ActionController::RoutingError
+        expect { post :create, params: path_params.merge(section: atts), xhr: true }.to raise_error ActionController::RoutingError
       end
     end
 
@@ -52,7 +52,7 @@ RSpec.describe SectionsController, type: :controller do
       end
 
       it "raises a routing error" do
-        expect { xhr :post, :create, path_params.merge(section: atts) }.to raise_error ActionController::RoutingError
+        expect { post :create, params: path_params.merge(section: atts), xhr: true }.to raise_error ActionController::RoutingError
       end
     end
 
@@ -64,26 +64,26 @@ RSpec.describe SectionsController, type: :controller do
 
       context "with valid attributes" do
         it "renders template create" do
-          xhr :post, :create, path_params.merge(section: atts)
+          post :create, params: path_params.merge(section: atts), xhr: true
           expect(response).to render_template :create
         end
 
         it "creates the section" do
           expect {
-            xhr :post, :create, path_params.merge(section: atts)
+            post :create, params: path_params.merge(section: atts), xhr: true
           }.to change(Section, :count).by(1)
         end
       end
 
       context "with invalid attributes" do
         it "renders template create" do
-          xhr :post, :create, path_params.merge(section: { title: "" })
+          post :create, params: path_params.merge(section: { title: "" }), xhr: true
           expect(response).to render_template :create
         end
 
         it "doesn't creates the section" do
           expect {
-            xhr :post, :create, path_params.merge(section: { title: "" })
+            post :create, params: path_params.merge(section: { title: "" }), xhr: true
           }.to_not change(Section, :count)
         end
       end

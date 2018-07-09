@@ -12,7 +12,7 @@
 #  index_resources_users_on_resource_id_and_user_id  (resource_id,user_id) UNIQUE
 #
 
-class ResourceCompletion < ActiveRecord::Base
+class ResourceCompletion < ApplicationRecord
   self.table_name = "resources_users"
 
   belongs_to :user
