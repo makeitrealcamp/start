@@ -334,7 +334,7 @@ class User < ActiveRecord::Base
 
     def notify_convertloop(data)
       ConvertLoop.people.create_or_update(data)
-    rescue
+    rescue => e
       Rails.logger.error "Couldn't create or update user #{data[:email]} in ConvertLoop: #{e.message}"
     end
 end
