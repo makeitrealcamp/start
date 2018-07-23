@@ -1,6 +1,6 @@
 class SinatraEvaluator < BaseDockerEvaluator
 
-  SPEC_HELPER_PATH = "lib/spec_helper.rb"
+  SPEC_HELPER_PATH = "templates/spec_helper.rb"
 
   def evaluate
     # check if repository exists
