@@ -18,7 +18,7 @@
 #  solutions_gin_properties         (properties)
 #
 
-class Solution < ActiveRecord::Base
+class Solution < ApplicationRecord
   has_paper_trail on: [:update]
 
   belongs_to :user
@@ -70,7 +70,7 @@ class Solution < ActiveRecord::Base
   end
 
   def as_json(options)
-    methods = [:error_message, :url, :completed_at]
+    methods = [:error_message, :completed_at]
 
     if options.key?(:include_user_level)
       user = methods << :user_hash

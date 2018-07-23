@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
 
   protected
     def comment_params
-      params.permit(:text,:response_to_id)
+      params.permit(:text, :response_to_id)
     end
 
     def set_instance

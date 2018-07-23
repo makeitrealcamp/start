@@ -9,7 +9,7 @@
 #  updated_at :datetime         not null
 #
 
-class CoursePhase < ActiveRecord::Base
+class CoursePhase < ApplicationRecord
   belongs_to :phase
   belongs_to :subject
 

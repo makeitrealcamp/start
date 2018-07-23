@@ -24,7 +24,7 @@
 #  index_resources_on_subject_id  (subject_id)
 #
 
-class Resource < ActiveRecord::Base
+class Resource < ApplicationRecord
   include RankedModel
   ranks :row, with_same: :subject_id, class_name: 'Resource'
 

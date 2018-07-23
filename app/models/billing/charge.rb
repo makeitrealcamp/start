@@ -21,7 +21,7 @@
 #  index_billing_charges_on_user_id  (user_id)
 #
 
-class Billing::Charge < ActiveRecord::Base
+class Billing::Charge < ApplicationRecord
   belongs_to :user
 
   hstore_accessor :details,

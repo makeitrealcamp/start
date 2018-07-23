@@ -39,7 +39,7 @@ RSpec.describe Admin::UsersController, type: :controller do
       u2 = create(:user, email: "test2@example.com")
       create(:user, email: "person2@example.com")
 
-      get :index, q: "tESt"
+      get :index, params: { q: "tESt" }
       expect(assigns(:users)).to match_array([u1, u2])
     end
 
@@ -49,7 +49,7 @@ RSpec.describe Admin::UsersController, type: :controller do
       create(:user, profile: { first_name: "John", last_name: "Doe" })
       u2 = create(:user, profile: { first_name: "Peter", last_name: "Mellark" })
 
-      get :index, q: "mella"
+      get :index, params: { q: "mella" }
       expect(assigns(:users)).to match_array([u1, u2])
     end
   end
@@ -79,7 +79,7 @@ RSpec.describe Admin::UsersController, type: :controller do
       end
 
       it "renders template new" do
-        xhr :get, :new
+        get :new, xhr: true
         expect(response).to render_template :new
       end
     end
@@ -90,7 +90,7 @@ RSpec.describe Admin::UsersController, type: :controller do
 
     context "when not signed in" do
       it "raises a routing error" do
-        expect { post :create, atts }.to raise_error ActionController::RoutingError
+        expect { post :create, params: atts }.to raise_error ActionController::RoutingError
       end
     end
 
@@ -98,7 +98,7 @@ RSpec.describe Admin::UsersController, type: :controller do
       before { controller.sign_in(create(:user)) }
 
       it "raises a routing error" do
-        expect { post :create, user: atts }.to raise_error ActionController::RoutingError
+        expect { post :create, params: { user: atts } }.to raise_error ActionController::RoutingError
       end
     end
 
@@ -107,30 +107,30 @@ RSpec.describe Admin::UsersController, type: :controller do
 
       context "with valid input" do
         it "assigns a valid user" do
-          xhr :post, :create, user: atts
+          post :create, params: { user: atts }, xhr: true
           expect(assigns(:user)).to be_valid
         end
 
         it "renders template create" do
-          xhr :post, :create, user: atts
+          post :create, params: { user: atts }, xhr: true
           expect(response).to render_template :create
         end
 
         it "sends welcome email" do
-          expect { xhr :post, :create, user: atts }.to change { ActionMailer::Base.deliveries.count }.by(1)
+          expect { post :create, params: { user: atts }, xhr: true }.to change { ActionMailer::Base.deliveries.count }.by(1)
         end
       end
 
       context "when email has upper case letters" do
         it "changes it to lower case" do
-          xhr :post, :create, user: atts.merge(email: "TeSt@exAmPle.com")
+          post :create, params: { user: atts.merge(email: "TeSt@exAmPle.com") }, xhr: true
           expect(assigns(:user).email).to eq("test@example.com")
         end
       end
 
       context "with invalid input" do
         it "assigns an invalid user" do
-          xhr :post, :create, user: atts.merge(email: nil)
+          post :create, params: { user: atts.merge(email: nil) }, xhr: true
           expect(assigns(:user)).to_not be_valid
         end
       end
@@ -142,7 +142,7 @@ RSpec.describe Admin::UsersController, type: :controller do
 
     context "when not signed in" do
       it "raises a routing error" do
-        expect { get :edit, id: user.id }.to raise_error ActionController::RoutingError
+        expect { get :edit, params: { id: user.id } }.to raise_error ActionController::RoutingError
       end
     end
 
@@ -150,7 +150,7 @@ RSpec.describe Admin::UsersController, type: :controller do
       before { controller.sign_in(create(:user)) }
 
       it "raises a routing error" do
-        expect { get :edit, id: user.id }.to raise_error ActionController::RoutingError
+        expect { get :edit, params: { id: user.id } }.to raise_error ActionController::RoutingError
       end
     end
 
@@ -161,7 +161,7 @@ RSpec.describe Admin::UsersController, type: :controller do
       end
 
       it "renders template new" do
-        xhr :get, :edit, id: user.id
+        get :edit, params: { id: user.id }, xhr: true
         expect(response).to render_template :edit
       end
     end
@@ -173,7 +173,7 @@ RSpec.describe Admin::UsersController, type: :controller do
 
     context "when not signed in" do
       it "raises a routing error" do
-        expect { patch :update, id: user.id }.to raise_error ActionController::RoutingError
+        expect { patch :update, params: { id: user.id } }.to raise_error ActionController::RoutingError
       end
     end
 
@@ -181,7 +181,7 @@ RSpec.describe Admin::UsersController, type: :controller do
       before { controller.sign_in(create(:user)) }
 
       it "raises a routing error" do
-        expect { patch :update, id: user.id, user: atts }.to raise_error ActionController::RoutingError
+        expect { patch :update, params: { id: user.id, user: atts } }.to raise_error ActionController::RoutingError
       end
     end
 
@@ -190,7 +190,7 @@ RSpec.describe Admin::UsersController, type: :controller do
 
       context "with invalid input" do
         it "is not valid" do
-          xhr :patch, :update, id: user.id, user: atts.merge(email: nil)
+          patch :update, params: { id: user.id, user: atts.merge(email: nil) }, xhr: true
 
           expect(assigns(:user)).to_not be_valid
         end

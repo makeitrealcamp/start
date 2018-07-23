@@ -15,7 +15,7 @@
 #  index_auth_providers_on_user_id  (user_id)
 #
 
-class AuthProvider < ActiveRecord::Base
+class AuthProvider < ApplicationRecord
   belongs_to :user
 
   validates :uid, :provider, :user,  presence: true

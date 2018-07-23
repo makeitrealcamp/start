@@ -19,7 +19,7 @@
 #  index_lessons_on_section_id  (section_id)
 #
 
-class Lesson < ActiveRecord::Base
+class Lesson < ApplicationRecord
   include RankedModel
   ranks :row, with_same: :section_id
 

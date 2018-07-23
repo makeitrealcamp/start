@@ -10,7 +10,7 @@
 #  updated_at      :datetime         not null
 #
 
-class Level < ActiveRecord::Base
+class Level < ApplicationRecord
   has_many :users
 
   validates :name, presence: true

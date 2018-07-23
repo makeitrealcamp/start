@@ -10,7 +10,7 @@
 #  updated_at :datetime         not null
 #
 
-class Billing::Coupon < ActiveRecord::Base
+class Billing::Coupon < ApplicationRecord
 
   def is_valid?
     self.expires_at > DateTime.current

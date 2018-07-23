@@ -17,7 +17,7 @@
 #  index_activity_logs_on_user_id                        (user_id)
 #
 
-class ActivityLog < ActiveRecord::Base
+class ActivityLog < ApplicationRecord
   belongs_to :user
   belongs_to :activity, polymorphic: true
 

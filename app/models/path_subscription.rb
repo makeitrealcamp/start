@@ -12,7 +12,7 @@
 #  index_path_subscriptions_on_user_id  (user_id)
 #
 
-class PathSubscription < ActiveRecord::Base
+class PathSubscription < ApplicationRecord
   belongs_to :user
   belongs_to :path
 end

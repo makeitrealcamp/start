@@ -5,12 +5,12 @@ RSpec.describe PasswordResetsController, type: :controller do
 
   describe "GET #new" do
     it "responds with status code 200" do
-      xhr :get, :new
+      get :new, xhr: true
       expect(response).to have_http_status(:ok)
     end
 
     it "renders template" do
-      xhr :get, :new
+      get :new, xhr: true
       expect(response).to render_template :new
     end
   end
@@ -19,7 +19,7 @@ RSpec.describe PasswordResetsController, type: :controller do
     it "sends the reset email to user with password access" do
       user = create(:user_password)
       expect {
-        xhr :post, :create, password_reset_request: { email: user.email }
+        post :create, params: { password_reset_request: { email: user.email } }, xhr: true
       }.to change { ActionMailer::Base.deliveries.count }.by(1)
 
       email = ActionMailer::Base.deliveries.last
@@ -32,7 +32,7 @@ RSpec.describe PasswordResetsController, type: :controller do
       expect(user.password_reset_token).to be_nil
       expect(user.password_reset_sent_at).to be_nil
 
-      xhr :post, :create, password_reset_request: { email: user.email }
+      post :create, params: { password_reset_request: { email: user.email } }, xhr: true
 
       user.reload
       expect(user.password_reset_token).to_not be_nil
@@ -45,13 +45,13 @@ RSpec.describe PasswordResetsController, type: :controller do
       user = create(:user_password)
       user.send_password_reset
 
-      get :edit, token: user.password_reset_token
+      get :edit, params: { token: user.password_reset_token }
       expect(response).to have_http_status(:ok)
       expect(response).to render_template :edit
     end
 
     it "redirects to login if the token is invalid" do
-      get :edit, token: "invalid_token"
+      get :edit, params: { token: "invalid_token" }
       expect(response).to redirect_to(login_onsite_path)
     end
 
@@ -60,7 +60,7 @@ RSpec.describe PasswordResetsController, type: :controller do
       user.send_password_reset
       user.update!(password_reset_sent_at: 2.days.ago)
 
-      get :edit, token: user.password_reset_token
+      get :edit, params: { token: user.password_reset_token }
       expect(response).to redirect_to(login_onsite_path)
     end
   end
@@ -70,7 +70,7 @@ RSpec.describe PasswordResetsController, type: :controller do
       user = create(:user_password)
       user.send_password_reset
 
-      patch :update, password_reset: { token: user.password_reset_token, password: "test12345", password_confirmation: "test12345" }
+      patch :update, params: { password_reset: { token: user.password_reset_token, password: "test12345", password_confirmation: "test12345" } }
       expect(response).to redirect_to(login_onsite_path)
 
       user.reload
@@ -81,7 +81,7 @@ RSpec.describe PasswordResetsController, type: :controller do
       user = create(:user_password)
       user.send_password_reset
 
-      patch :update, password_reset: { token: user.password_reset_token, password: "", password_confirmation: "test12345" }
+      patch :update, params: { password_reset: { token: user.password_reset_token, password: "", password_confirmation: "test12345" } }
       expect(response).to render_template :edit
     end
   end

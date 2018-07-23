@@ -10,6 +10,6 @@
 #  updated_at :datetime         not null
 #
 
-class EmailTemplate < ActiveRecord::Base
+class EmailTemplate < ApplicationRecord
   validates :title, :subject, :body, presence:true
 end

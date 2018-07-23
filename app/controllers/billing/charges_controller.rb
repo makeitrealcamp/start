@@ -37,7 +37,7 @@ class Billing::ChargesController < ApplicationController
         render nothing: true, status: :unprocessable_entity
         return
       end
-      render nothing: true, status: :no_content
+      head :no_content
     else
       @error = "Error"
       render nothing: true, status: :unprocessable_entity

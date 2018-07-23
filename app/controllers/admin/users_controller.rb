@@ -78,7 +78,7 @@ class Admin::UsersController < ApplicationController
       else
         account_types << account_type.to_s
       end
-      params_clone = params.clone.reject { |k| ['action','controller'].include? k }
+      params_clone = params.to_unsafe_h.reject { |k| ['action','controller'].include? k }
 
       params_clone[:account_type] = account_types
       params_clone[:page] = 1

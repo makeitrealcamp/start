@@ -22,7 +22,7 @@
 #  index_users_on_level_id  (level_id)
 #
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   NOTIFICATION_SERVICE = Pusher
 
   has_secure_password validations: false
@@ -30,23 +30,23 @@ class User < ActiveRecord::Base
 
   belongs_to :level
   has_many :solutions, dependent: :destroy
-  has_many :challenges, -> { uniq }, through: :solutions
+  has_many :challenges, -> { distinct }, through: :solutions
   has_many :auth_providers, dependent: :destroy
   has_many :lesson_completions
   has_many :subscriptions
   has_many :project_solutions
-  has_many :projects, -> { uniq }, through: :project_solutions
+  has_many :projects, -> { distinct }, through: :project_solutions
   has_many :resource_completions, dependent: :delete_all
-  has_many :resources, -> { uniq }, through: :resource_completions
+  has_many :resources, -> { distinct }, through: :resource_completions
   has_many :points
   has_many :challenge_completions, dependent: :delete_all
   has_many :badge_ownerships, dependent: :destroy
-  has_many :badges, -> { uniq }, through: :badge_ownerships
+  has_many :badges, -> { distinct }, through: :badge_ownerships
   has_many :notifications
   has_many :comments
   has_many :quiz_attempts, class_name: '::Quizer::QuizAttempt'
   has_many :path_subscriptions
-  has_many :paths, -> { uniq }, through: :path_subscriptions
+  has_many :paths, -> { distinct }, through: :path_subscriptions
   has_many :activity_logs
   has_many :applicant_activities
 
@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
   end
 
   def self.commenters_of(commentable)
-    joins(:comments).where(comments: {commentable_id: commentable.id,commentable_type: commentable.class.to_s}).uniq
+    joins(:comments).where(comments: {commentable_id: commentable.id,commentable_type: commentable.class.to_s}).distinct
   end
 
   def self.with_public_profile
@@ -110,7 +110,7 @@ class User < ActiveRecord::Base
   end
 
   def completed_challenges
-    self.challenges.joins(:solutions).where('solutions.status = ?',Solution.statuses[:completed]).uniq
+    self.challenges.joins(:solutions).where('solutions.status = ?',Solution.statuses[:completed]).distinct
   end
 
   def stats

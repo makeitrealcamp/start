@@ -13,7 +13,7 @@
 #  giving_method   :integer
 #
 
-class Badge < ActiveRecord::Base
+class Badge < ApplicationRecord
   belongs_to :subject
   has_many :badge_ownerships, dependent: :destroy
 

@@ -17,7 +17,7 @@
 #  index_top_applicant_tests_on_applicant_id  (applicant_id)
 #
 
-class TopApplicantTest < ActiveRecord::Base
+class TopApplicantTest < ApplicationRecord
   belongs_to :applicant
 
   validates :applicant, :a1, :a2, :a3, :a4, presence: true

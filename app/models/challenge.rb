@@ -26,7 +26,7 @@
 #  index_challenges_on_subject_id  (subject_id)
 #
 
-class Challenge < ActiveRecord::Base
+class Challenge < ApplicationRecord
   BASE_POINTS = 100
   has_paper_trail on: [:update, :destroy]
 

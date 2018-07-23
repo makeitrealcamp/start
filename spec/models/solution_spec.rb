@@ -67,7 +67,7 @@ RSpec.describe Solution, type: :model do
   describe ".as_json" do
     it "returns hash" do
       solution_json = solution.serializable_hash(
-        methods: [:error_message, :url, :completed_at],
+        methods: [:error_message, :completed_at],
         include: [:documents]
       )
 
@@ -77,7 +77,7 @@ RSpec.describe Solution, type: :model do
 
     it 'returns hash with user_hash' do
       solution_json = solution.serializable_hash(
-        methods: [:error_message, :url, :completed_at, :user_hash],
+        methods: [:error_message, :completed_at, :user_hash],
         include: [:documents]
       )
       expect(solution.as_json({include_user_level: true})).to eq solution_json

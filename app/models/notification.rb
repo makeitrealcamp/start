@@ -17,14 +17,14 @@
 #  index_notifications_on_user_id     (user_id)
 #
 
-class Notification < ActiveRecord::Base
+class Notification < ApplicationRecord
   PER_PAGE = 10
 
   belongs_to :user
   enum status: [:read, :unread]
 
   # there must exists a partial por each notification_type!
-  enum notification_type: [ :notice, :level_up, :points_earned, 
+  enum notification_type: [ :notice, :level_up, :points_earned,
     :comment_activity, :comment_response, :badge_earned ]
 
   validates :user, presence: true

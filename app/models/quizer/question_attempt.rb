@@ -17,7 +17,7 @@
 #  index_question_attempts_on_quiz_attempt_id  (quiz_attempt_id)
 #
 
-class Quizer::QuestionAttempt < ActiveRecord::Base
+class Quizer::QuestionAttempt < ApplicationRecord
   belongs_to :quiz_attempt
   belongs_to :question
 

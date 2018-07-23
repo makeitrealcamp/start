@@ -9,7 +9,7 @@
 #  updated_at :datetime         not null
 #
 
-class BadgeOwnership < ActiveRecord::Base
+class BadgeOwnership < ApplicationRecord
   belongs_to :user
   belongs_to :badge
 

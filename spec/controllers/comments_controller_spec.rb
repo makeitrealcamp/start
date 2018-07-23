@@ -4,7 +4,7 @@ RSpec.describe CommentsController, type: :controller do
   render_views
 
   shared_examples "comment editor" do
-    before { xhr :get, :edit, id: comment.id }
+    before { get :edit, params: { id: comment.id }, xhr: true }
     it { expect(response).to be_success }
     it { expect(response).to render_template :edit }
   end
@@ -13,7 +13,7 @@ RSpec.describe CommentsController, type: :controller do
     it "updates the comment if the body is not empty" do
       text = "otro texto"
 
-      xhr :patch, :update, id: comment.id, text: text
+      patch :update, params: { id: comment.id, text: text }, xhr: true
       expect(response).to be_success
 
       comment.reload
@@ -23,7 +23,7 @@ RSpec.describe CommentsController, type: :controller do
     it "doesn't update the comment if the body is empty" do
       original_text = comment.text
 
-      xhr :patch, :update, id: comment.id, text: ""
+      patch :update, params: { id: comment.id, text: "" }, xhr: true
       expect(response).to be_success
 
       comment.reload
@@ -34,7 +34,7 @@ RSpec.describe CommentsController, type: :controller do
   shared_examples "comment deleter" do
     it "deletes the comment" do
       expect {
-        xhr :delete, :destroy, id: comment.id
+        delete :destroy, params: { id: comment.id }, xhr: true
       }.to change(Comment, :count).by(-1)
     end
   end
@@ -50,7 +50,7 @@ RSpec.describe CommentsController, type: :controller do
   describe "POST #create" do
     context "when not signed in" do
       it "redirects to login" do
-        xhr :post, :create, commentable_resource: "challenges", id: challenge.id, text: "hola mundo"
+        post :create, params: { commentable_resource: "challenges", id: challenge.id, text: "hola mundo" }, xhr: true
         expect(response).to redirect_to :login
       end
     end
@@ -60,13 +60,13 @@ RSpec.describe CommentsController, type: :controller do
 
       it "creates the comment if body is not empty" do
         expect {
-          xhr :post, :create, commentable_resource: "challenges", id: challenge.id, text: "hola mundo"
+          post :create, params: { commentable_resource: "challenges", id: challenge.id, text: "hola mundo" }, xhr: true
         }.to change(Comment, :count).by(1)
       end
 
       it "doesn't create the comment if body is empty" do
         expect {
-          xhr :post, :create, commentable_resource: "challenges", id: challenge.id, text: ""
+          post :create, params: { commentable_resource: "challenges", id: challenge.id, text: "" }, xhr: true
         }.to_not change(Comment, :count)
       end
     end
@@ -75,7 +75,7 @@ RSpec.describe CommentsController, type: :controller do
   describe "GET #edit" do
     context "when not signed in" do
       it "redirects to login" do
-        get :edit, id: comment.id
+        get :edit, params: { id: comment.id }
         expect(response).to redirect_to :login
       end
     end
@@ -93,7 +93,7 @@ RSpec.describe CommentsController, type: :controller do
     context "when user is not the owner of the comment" do
       it "raises a routing error" do
         controller.sign_in(other_user)
-        expect { xhr :get, :edit, id: comment.id }.to raise_error(ActionController::RoutingError)
+        expect { get :edit, params: { id: comment.id }, xhr: true }.to raise_error(ActionController::RoutingError)
       end
     end
   end
@@ -101,7 +101,7 @@ RSpec.describe CommentsController, type: :controller do
   describe "PATCH #update" do
     context "when not signed in" do
       it "redirects to login" do
-        xhr :patch, :update, id: comment.id, text: "hola mundo"
+        patch :update, params: { id: comment.id, text: "hola mundo" }, xhr: true
         expect(response).to redirect_to :login
       end
     end
@@ -123,7 +123,7 @@ RSpec.describe CommentsController, type: :controller do
         original_text = comment.text
 
         expect {
-          xhr :patch, :update, id: comment.id, text: "nuevo texto"
+          patch :update, params: { id: comment.id, text: "nuevo texto" }, xhr: true
         }.to raise_error(ActionController::RoutingError)
 
         comment.reload
@@ -135,7 +135,7 @@ RSpec.describe CommentsController, type: :controller do
   describe "DELETE #destroy" do
     context "when not signed in" do
       it "redirects to login" do
-        xhr :delete, :destroy, id: comment.id
+        delete :destroy, params: { id: comment.id }
         expect(response).to redirect_to :login
       end
     end
@@ -157,7 +157,7 @@ RSpec.describe CommentsController, type: :controller do
         original_text = comment.text
 
         expect {
-          xhr :delete, :destroy, id: comment.id
+          delete :destroy, params: { id: comment.id }, xhr: true
         }.to raise_error(ActionController::RoutingError)
 
         comment.reload

@@ -47,16 +47,16 @@ FactoryGirl.define do
     end
 
     factory :admin do
-      account_type  User.account_types[:admin_account]
+      account_type { User.account_types[:admin_account] }
     end
 
     factory :admin_with_path do
-      account_type  User.account_types[:admin_account]
+      account_type  { User.account_types[:admin_account] }
       after(:create) { |user| user.path_subscriptions.create(path: Path.published.first || create(:path,published: true)) }
     end
 
     factory :user_password do
-      access_type User.access_types[:password]
+      access_type { User.access_types[:password] }
     end
   end
 end

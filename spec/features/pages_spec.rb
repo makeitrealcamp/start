@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Pages", type: :feature do
+  include ActiveJob::TestHelper
 
   scenario "sign up to front end online program", js: true do
     ActionMailer::Base.deliveries.clear
@@ -16,11 +17,7 @@ RSpec.feature "Pages", type: :feature do
     find('button[type="submit"]').click
 
     expect(current_path).to eq thanks_front_end_online_path
-
-    expect(ActionMailer::Base.deliveries.count).to eq 1
-    email = ActionMailer::Base.deliveries.first
-    expect(email.to).to include "carolina.hernandez@makeitreal.camp"
-    expect(email.subject).to include "[Nuevo Lead Front End Online]"
+    expect(CreateLeadJob).to have_been_enqueued
   end
 
   scenario "sign up to full stack online program", js: true do
@@ -37,11 +34,7 @@ RSpec.feature "Pages", type: :feature do
     find('button[type="submit"]').click
 
     expect(current_path).to eq thanks_full_stack_online_path
-
-    expect(ActionMailer::Base.deliveries.count).to eq 1
-    email = ActionMailer::Base.deliveries.first
-    expect(email.to).to include "carolina.hernandez@makeitreal.camp"
-    expect(email.subject).to include "[Nuevo Lead Full Stack Online]"
+    expect(CreateLeadJob).to have_been_enqueued
   end
 
   scenario "apply to the top program", js: true do

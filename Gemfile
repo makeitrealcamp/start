@@ -1,8 +1,14 @@
 source 'https://rubygems.org'
-ruby "2.3.3"
+
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
+
+ruby '2.3.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2', '>= 4.2.5'
+gem 'rails', '5.0.7'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.21.0'
 # Use SCSS for stylesheets
@@ -12,14 +18,14 @@ gem 'bootstrap-sass', '~> 3.3.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 4.2'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks', '2.5.3'
+gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -47,8 +53,6 @@ gem 'will_paginate'
 gem 'table_print'
 gem 'momentjs-rails'
 
-gem 'rails_12factor', group: :production
-
 gem 'omniauth-slack'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.3'
 gem 'nested_form_fields'
@@ -64,7 +68,7 @@ gem 'zeroclipboard-rails'
 gem 'shareable', github: "simon0191/shareable"
 gem 'virtus'
 gem 'pusher'
-gem 'roadie-rails', '~> 1.0.6'
+gem 'roadie-rails', '~> 1.3'
 gem 'figaro'
 gem 'remote_syslog_logger'
 gem 'date_supercharger'
@@ -102,6 +106,5 @@ group :test do
   gem 'codeclimate-test-reporter', require: nil
   gem 'rspec-wait', '0.0.9'
   gem 'rspec-retry', '0.5.2'
+  gem 'rails-controller-testing', '~> 1.0', '>= 1.0.2'
 end
-
-gem 'sinatra', :require => nil
