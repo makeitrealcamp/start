@@ -1,5 +1,5 @@
 class RailsEvaluator < BaseDockerEvaluator
-  RAILS_TEMPLATE_PATH = "lib/rails_template.rb"
+  RAILS_TEMPLATE_PATH = "templates/rails_template.rb"
 
   def evaluate
     # check if repository exists
