@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe "Commentables" do
   before do
-    Rails.application.eager_load!
     class ActiveRecord::Base
       def self.has_many?(association)
         self.reflect_on_association(association) && self.reflect_on_association(association).macro == :has_many
