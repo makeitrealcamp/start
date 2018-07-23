@@ -21,7 +21,7 @@ module Prework
     config.i18n.available_locales = [:es, :en]
     config.i18n.default_locale = 'es'
 
-    config.autoload_paths += Dir["#{Rails.root}/lib"]
+    config.eager_load_paths << Rails.root.join('lib')
 
     config.generators do |generator|
       generator.view_specs false
