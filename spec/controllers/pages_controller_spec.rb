@@ -53,6 +53,13 @@ RSpec.describe PagesController, type: :controller do
     end
   end
 
+  describe "POST #send_web_developer_guide" do
+    it "responds with status code 200" do
+      post :send_web_developer_guide, params: { first_name: "Pedro", last_name: "Perez", email: "pedro@example.com", goal: "change-career" }
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
   describe "GET #handbook" do
     it "shows content" do
       fake_content = "fake content"

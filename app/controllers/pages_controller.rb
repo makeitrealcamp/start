@@ -204,7 +204,7 @@ class PagesController < ApplicationController
   end
 
   def send_web_developer_guide
-    subscriber = SubscriberForm.new(params)
+    subscriber = SubscriberForm.new(params.to_unsafe_hash)
 
     person = { pid: cookies[:dp_pid], email: subscriber.email, first_name: subscriber.first_name,
         last_name: subscriber.last_name, user_goal: subscriber.goal }
