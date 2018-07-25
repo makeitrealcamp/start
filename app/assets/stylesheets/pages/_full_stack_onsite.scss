@@ -1,8 +1,8 @@
 .new-site.full-stack-onsite {
 
-  &.medellin .program-intro { background-image: image-url("medellin-1-blue.jpg"); }
-  &.bogota .program-intro { background-image: image-url("bogota-colombia-big.jpg"); }
-  &.barranquilla .program-intro { background-image: image-url("barranquilla.jpg"); }
+  &.medellin .program-intro { background-image: linear-gradient(rgba(24, 78, 115, 0.8), rgba(24, 78, 115, 0.8)), image-url("medellin-1-blue.jpg"); }
+  &.bogota .program-intro { background-image: linear-gradient(rgba(48, 48, 48, 0.8), rgba(48, 48, 48, 0.8)), image-url("bogota-colombia-big.jpg"); }
+  &.barranquilla .program-intro { background-image: linear-gradient(rgba(150, 36, 23, 0.8), rgba(150, 36, 23, 0.8)), image-url("barranquilla.jpg"); }
   &.cali .program-intro { background-image: image-url("cali.jpg"); }
   &.bucaramanga .program-intro { background-image: image-url("bucaramanga.jpg"); }
 
@@ -21,6 +21,19 @@
 
     .tagline-program {
       @media (min-width: $screen-md-min) { margin-top: 20px; }
+
+      p { margin-bottom: 30px; }
+
+      .icons {
+        color: #fff;
+        margin-top: 20px;
+        font-size: 21px;
+        margin-bottom: 60px;
+
+        @media (min-width: $screen-md-min) { margin-bottom: 0; }
+
+        .icon { margin: 0 7px; }
+      }
     }
   }
 
@@ -31,9 +44,10 @@
     max-width: 400px;
     box-shadow: 3px 3px 10px #0F2754;
     text-align: center;
+    border-radius: 7px;
 
     .medellin-info-title {
-      color: #303030;
+      color: #005e9f;
       font-size: 18px;
       font-weight: 600;
       padding: 15px;
@@ -45,7 +59,7 @@
       }
     }
 
-    .medellin-info-body { padding: 20px; }
+    .medellin-info-body { padding: 20px 20px 30px; }
 
     p { font-weight: 300; }
 
@@ -97,15 +111,15 @@
 
   .medellin-faq {
     .question {
-      margin: 60px 0;
+      margin: 0 0 60px;
 
       h3 {
-        color: #D13221;
+        color: #666;
         font-size: 21px;
-        font-weight: 600;
+        font-weight: 400;
         line-height: 1.4;
         text-align: left;
-        margin-bottom: 25px;
+        margin-bottom: 22px;
       }
 
       p, ul {
@@ -121,13 +135,14 @@
     padding-bottom: 70px;
 
     p.intro-text {
-      margin-bottom: 50px;
+      margin-bottom: 0px;
     }
 
     p.subhead {
       color: #ddd;
       font-size: 18px;
       font-weight: 300;
+      margin-top: 20px;
       margin-bottom: 60px;
     }
 
@@ -222,10 +237,11 @@
 
   .target-audience {
     .audience-quote {
-      background: #f5f5f2;
+      background: #f7f7f9;
       margin: 0 auto;
-      box-shadow: 2px 2px 5px #666;
+      box-shadow: 5px 5px 15px #ccc;
       padding: 25px;
+      max-width: 450px;
 
       p {
         color: #666;
@@ -248,7 +264,6 @@
 
         .audience-quote-person-name {
           display: block;
-          font-size: 18px;
           font-weight: 600;
         }
       }
