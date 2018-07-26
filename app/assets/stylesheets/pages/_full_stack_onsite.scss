@@ -306,4 +306,29 @@
       margin-top: 30px;
     }
   }
+
+  .learnings-program .program-module {
+    .module-title {
+      height: auto;
+
+      @media (min-width: $screen-md-min) {
+        float: left;
+        padding: 30px;
+        border-bottom: none;
+        width: 280px;
+      }
+
+      h4 {
+        float: none;
+        color: $brand_primary;
+        margin-left: 0;
+
+        small {
+          color: #999;
+          font-weight: 600;
+          margin-top: 7px;
+        }
+      }
+    }
+  }
 }
