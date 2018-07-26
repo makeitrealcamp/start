@@ -741,13 +741,7 @@
         padding: 20px;
         text-align: left;
         border-bottom: 1px solid #ddd;
-
-        @media (min-width: $screen-md-min) {
-          float: left;
-          padding: 30px;
-          border-bottom: none;
-          width: 280px;
-        }
+        height: 90px;
       }
 
       .module-body {
@@ -770,17 +764,17 @@
       }
 
       h4 {
-        color: $brand_primary;
+        float: left;
         font-size: 21px;
+        margin-left: 10px;
         margin-top: 3px;
         margin-bottom: 0;
         text-align: left;
 
         small {
           display: block;
-          color: #999;
-          font-weight: 600;
-          margin-top: 7px;
+          font-weight: bold;
+          margin-bottom: 5px;
         }
       }
 
@@ -827,9 +821,9 @@
         padding-bottom: 10px;
       }
     }
-    .subhead {
-      color: #fff;
-    }
+
+    .subhead { color: #fff; }
+
     .btn-main {
       display: inline-block;
       color: #fff;
