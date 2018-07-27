@@ -78,10 +78,10 @@
     var initDashboardView = function() {
       dashboardView = new DashboardView();
     }
-    $(document).on("ready page:load",initDashboardView);
-    $(document).on("page:before-change",function() {
+    $(document).on("turbolinks:load",initDashboardView);
+    $(document).on("turbolinks:click",function() {
       dashboardView.remove();
-      $(document).off("ready page:load",initDashboardView);
+      $(document).off("turbolinks:load",initDashboardView);
     });
   })();
 </script>

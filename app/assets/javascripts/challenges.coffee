@@ -51,7 +51,7 @@ class SolutionView extends Backbone.View
     save_files_timer.start()
 
     # persist documents on this events
-    $(document).on("page:before-change", @save_files_handler)
+    $(document).on("turbolinks:click", @save_files_handler)
 
     $('#submit-solution').on("ajax:beforeSend", @evaluate);
 

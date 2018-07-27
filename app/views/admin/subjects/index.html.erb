@@ -50,7 +50,7 @@
     var sortables = [
       new SortableView({ el: ".courses", resource: "admin/subjects" }),
     ];
-    $(document).on("page:before-change", function() {
+    $(document).on("turbolinks:click", function() {
       _.each(sortables, function(sortable) {
         sortable.remove();
       })

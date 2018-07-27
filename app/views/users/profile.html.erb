@@ -139,7 +139,7 @@
   (function() {
     var profileView = new ProfileView({el: ".profile-view"});
 
-    $(document).on("page:before-change", function() {
+    $(document).on("turbolinks:click", function() {
       profileView.remove();
     });
 

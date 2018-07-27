@@ -5,7 +5,7 @@
       url = url.replace("XXX",data.notification_id);
       $.getScript(url);
     });
-    $(document).on("page:before-change", function() {
+    $(document).on("turbolinks:click", function() {
       Dispatcher.off("notifications:new");
     });
   })();

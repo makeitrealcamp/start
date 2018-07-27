@@ -44,8 +44,8 @@
 </div>
 
 <script type="text/javascript">
-  $(document).on("ready page:load", window.initOnsiteProgram);
-  $(document).on("ready page:load", function() {
+  $(document).on("turbolinks:load", window.initOnsiteProgram);
+  $(document).on("turbolinks:load", function() {
     $('.btn-register').on('click', function(e) {
       e.preventDefault();
 
@@ -54,7 +54,7 @@
       });
     });
   });
-  $(document).on("page:before-change", function() {
-    $(document).off("ready page:load", window.initMedellinProgramPage);
+  $(document).on("turbolinks:click", function() {
+    $(document).off("turbolinks:load", window.initMedellinProgramPage);
   });
 </script>

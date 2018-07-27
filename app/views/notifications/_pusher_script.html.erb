@@ -8,7 +8,7 @@
     channel.bind('notifications:new', function(data) {
       Dispatcher.trigger("notifications:new",data);
     });
-    $(document).on("page:before-change", function() {
+    $(document).on("turbolinks:click", function() {
       pusher.disconnect();
     });
   })();
