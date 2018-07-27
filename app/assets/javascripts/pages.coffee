@@ -84,6 +84,7 @@ class TopProgramView extends Backbone.View
     valid = false if !@input_text_is_valid($('#gender'))
     valid = false if !@input_text_is_valid($('#country'))
     valid = false if !@input_text_is_valid($('#mobile'))
+    valid = false if !@input_text_is_valid($('#payment-method'))
 
     @navigate(1) if valid
     callback(valid)

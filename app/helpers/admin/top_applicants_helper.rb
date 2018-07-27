@@ -1,4 +1,16 @@
 module Admin::TopApplicantsHelper
+  def payment_method_to_human(payment_method)
+    if payment_method == "scheme-1"
+      "Esquema 1 - $0 de entrada + 17% ingresos (2 años)"
+    elsif payment_method == "scheme-2"
+      "Esquema 2 - $6M de entrada + 17% ingresos (1 años)"
+    elsif payment_method == "scheme-3"
+      "Esquema 3 - $12M de entrada"
+    else
+      "Sin definir"
+    end
+  end
+
   def status_to_human(status)
     mappings = {
       applied: "aplicó",

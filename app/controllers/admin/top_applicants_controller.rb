@@ -16,6 +16,6 @@ class Admin::TopApplicantsController < ApplicationController
   end
 
   def aplication_params
-    params.require(:top_applicant).permit(:comment )
+    params.require(:top_applicant).permit(:comment)
   end
 end

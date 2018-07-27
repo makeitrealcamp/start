@@ -65,6 +65,11 @@
               </div>
               <div class="applicant-details">
                 <div class="applicant-detail">
+                  <div class="detail-label">Esquema de pago</div>
+                  <div class="detail-value"><%= payment_method_to_human(@applicant.payment_method) %></div>
+                </div>
+
+                <div class="applicant-detail">
                   <div class="detail-label">Motivación</div>
                   <div class="detail-value"><%= @applicant.goal %></div>
                 </div>
