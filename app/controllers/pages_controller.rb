@@ -265,6 +265,9 @@ class PagesController < ApplicationController
       more_info: top_applicant_params[:additional]
     }
     ConvertLoopJob.perform_later(data)
+    AdminMailer.new_lead("Top", data[:first_name], data[:last_name], data[:email], data[:country],
+        data[:mobile]).deliver_later
+
     redirect_to "/thanks-top"
   end
 
