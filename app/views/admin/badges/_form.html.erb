@@ -50,7 +50,7 @@
   (function(){
     var badgeView = new BadgeView();
 
-    $(document).on('page:fetch', function(){
+    $(document).on('turbolinks:request-start', function(){
       badgeView.remove();
     });
   })();

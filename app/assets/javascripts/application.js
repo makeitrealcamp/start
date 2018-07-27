@@ -34,7 +34,7 @@
 //= require_tree .
 
 $(document).on("turbolinks:before-visit", function() {
-  $(document).off("page:before-change");
+  $(document).off("turbolinks:click");
   Dispatcher.stopListening();
   save_files_timer.cancel();
 });

@@ -76,7 +76,7 @@
   (function() {
     var resourceView = new ResourceView();
 
-    $(document).on("page:fetch", function() {
+    $(document).on("turbolinks:request-start", function() {
       resourceView.remove();
     });
   })();

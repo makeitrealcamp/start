@@ -41,7 +41,7 @@
         <% resource.sections.each do |section| %>
           sortables.push(new SortableView({el: "#section_<%= section.id %>", resource:"lessons"}))
         <% end %>
-        $(document).on("page:before-change", function() {
+        $(document).on("turbolinks:click", function() {
           _.each(sortables, function(sortable) {
             sortable.remove();
           })

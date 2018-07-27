@@ -441,12 +441,12 @@
   </div><!-- /.modal -->
 </div>
 <script type="text/javascript">
-  $(document).on("ready page:load", window.initMedellinProgramPage);
-  $(document).on("page:before-change", function() {
-    $(document).off("ready page:load", window.initMedellinProgramPage);
+  $(document).on("turbolinks:load", window.initMedellinProgramPage);
+  $(document).on("turbolinks:click", function() {
+    $(document).off("turbolinks:load", window.initMedellinProgramPage);
   });
 
-  $(document).on("ready page:load", function() {
+  $(document).on("turbolinks:load", function() {
     ePayco.setPublicKey('<%= ENV["EPAYCO_KEY"] %>');
     var courseLandingView = new CourseLandingView();
 

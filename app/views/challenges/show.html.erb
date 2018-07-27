@@ -110,7 +110,7 @@
     // refresh editors when tab changes
     $('a[data-toggle="tab"]').on('shown.bs.tab', editors.refresh);
 
-    $(document).on("page:before-change", function() {
+    $(document).on("turbolinks:click", function() {
       instructionsView.remove();
       solutionView.remove();
     });

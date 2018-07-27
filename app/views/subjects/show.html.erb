@@ -62,7 +62,7 @@
         new SortableView({el: ".projects",resource:"projects"}),
         new SortableView({el: ".quizzes",resource:"quizzes"})
       ];
-      $(document).on("page:before-change", function() {
+      $(document).on("turbolinks:click", function() {
         _.each(sortables, function(sortable) {
           sortable.remove();
         })

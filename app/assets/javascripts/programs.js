@@ -35,13 +35,13 @@
 
   var initForm = function() {
     $('#form-start-now').on('submit', validateForm);
-    $(document).on("page:before-change", function() {
+    $(document).on("turbolinks:click", function() {
       $('#form-start-now').off('submit');
     });
 
     detectCountry();
     $('#country').on('change', updateCountryCode);
-    $(document).on("page:before-change", function() {
+    $(document).on("turbolinks:click", function() {
       $('#country').off('change');
     });
   };
