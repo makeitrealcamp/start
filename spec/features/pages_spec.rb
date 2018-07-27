@@ -58,6 +58,7 @@ RSpec.feature "Pages", type: :feature do
       fill_in "applicant[skype]", with: "3131234567"
       fill_in "applicant[twitter]", with: "vanegaspinto"
       fill_in "applicant[url]", with: "www.davidcillo.com"
+      find('#payment-method').find('option[value="scheme-1"]').select_option 
 
       find('.next[type="button"]').click
       fill_in "goal", with: "mi motivación es aprender"

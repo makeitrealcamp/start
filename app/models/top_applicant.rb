@@ -33,7 +33,8 @@ class TopApplicant < Applicant
     experience: :string,
     typical_day: :string,
     vision: :string,
-    additional: :string
+    additional: :string,
+    payment_method: :string
 
   protected
     def generate_uid
