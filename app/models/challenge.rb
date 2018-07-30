@@ -38,7 +38,7 @@ class Challenge < ApplicationRecord
 
   enum evaluation_strategy: [:ruby_embedded, :phantomjs_embedded,
       :ruby_git, :rails_git, :sinatra_git, :ruby_git_pr,
-      :async_phantomjs_embedded, :react_git, :nodejs_embedded, :puppeteer_embedded]
+      :async_phantomjs_embedded, :react_git, :nodejs_embedded, :puppeteer_embedded, :express_git]
 
   belongs_to :subject
   has_many :documents, as: :folder

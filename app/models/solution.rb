@@ -62,6 +62,8 @@ class Solution < ApplicationRecord
       NodejsEvaluator.new(self).evaluate
     elsif self.challenge.puppeteer_embedded?
       PuppeteerEvaluator.new(self).evaluate
+    elsif self.challenge.express_git?
+      ExpressEvaluator.new(self).evaluate
     else
       self.status = :failed
       self.error_message = "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp"

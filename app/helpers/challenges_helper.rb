@@ -18,7 +18,8 @@ module ChallengesHelper
       ["Sinatra (Git)", "sinatra_git"],
       ["Ruby (Git PR)", "ruby_git_pr"],
       ["React (Git)", "react_git"],
-      ["NodeJS (Embedded Files)", "nodejs_embedded"]
+      ["NodeJS (Embedded Files)", "nodejs_embedded"],
+      ["Express (Node.js)", "express_git"]
     ]
   end
 end
