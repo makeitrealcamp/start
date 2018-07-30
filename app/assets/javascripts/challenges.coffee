@@ -289,7 +289,7 @@ class ChallengeFormView extends Backbone.View
       @evaluation_editor.setValue("open('index.html', () => {\n\n});")
     else if evaluation_strategy == "express_git"
       @evaluation_editor.setOption("mode", "javascript")
-      @evaluation_editor.setValue("it('GET / responds with success code', async () => {\n\tconst response = await superagent.get('http://localhost:3000/');\n\texpect(response.statusCode).to.equal(200);\n});")
+      @evaluation_editor.setValue("it('does something', async () => {\n\tawait open('some/path');\n\tconst h1 = await page.$('h1');\n\texpect(h1, 'No se encontró la etiqueta h1').to.not.be.null;\n\n\t// for more options see https://pptr.dev/#?product=Puppeteer&version=v1.6.1&show=api-class-page\n});")
 
 window.InstructionsView = InstructionsView
 window.SolutionView = SolutionView

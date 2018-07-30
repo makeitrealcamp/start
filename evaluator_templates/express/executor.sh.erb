@@ -17,21 +17,20 @@ if [ ! -f app/package.json ]; then
   exit 1
 fi
 
-yarn config set cache-folder /ukku/yarn-cache
-PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn add puppeteer@1.0.0
-chmod -R 777 node_modules
+cd /app
+npm install
+cd ..
 
-yarn install
+yarn config set cache-folder /ukku/yarn-cache
+PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn add puppeteer@1.6.1
+chmod -R 777 node_modules
 
 cp <%= evaluation_file_path %> .
 
 node app/app.js &
 child_pid=$!
 
-node <%= evaluation_file_path %> &> <%= error_file_path %>
-if [ -s <%= error_file_path %> ]
-then
-  exit 1
-fi
+export NODE_PATH=/usr/lib/node_modules
+mocha --timeout 7000 --reporter json <%= evaluation_file_path %> 1> <%= result_file_path %> 2> <%= error_file_path %>
 
 kill "$child_pid"

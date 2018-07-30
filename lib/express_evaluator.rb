@@ -69,8 +69,8 @@ class ExpressEvaluator < BaseDockerEvaluator
 
       failures = result["stats"]["failures"]
       if failures > 0
-        message = "#{result["failures"][0]["err"]["message"]}\n\n"
-        message += result["failures"][0]["err"]["stack"]
+        message = "#{result["failures"][0]["err"]["message"]}"
+        #message += result["failures"][0]["err"]["stack"]
         message = message.gsub("/ukku/data/", "")
         fail(solution, message)
       end
