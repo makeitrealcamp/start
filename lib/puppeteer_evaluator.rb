@@ -9,8 +9,8 @@ class PuppeteerEvaluator < BaseDockerEvaluator
     port = 8080
 
     solution_files_paths = create_solution_files
-    evaluation_file_path = create_evaluation_file(host,port)
-    executor_script_path = create_executor_file(evaluation_file_path,port)
+    evaluation_file_path = create_evaluation_file(host, port)
+    executor_script_path = create_executor_file(evaluation_file_path, port)
 
     FileUtils.chmod(0777,executor_script_path[:local_path])
 
