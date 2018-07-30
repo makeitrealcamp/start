@@ -1,0 +1,31 @@
+#!/bin/bash
+# require: evaluation_file_path, result_file_path, error_file_path
+
+set -e
+set -x
+
+# clone app
+git clone $1 /app
+
+cd /app
+
+if [ ! -f package.json ]; then
+  echo "No se encontró el archivo package.json en la raiz del proyecto." >> /ukku/data/error.txt
+  exit 1
+fi
+
+if [ ! -f package.json ]; then
+  echo "No se encontró el archivo app.js en la raiz del proyecto." >> /ukku/data/error.txt
+  exit 1
+fi
+
+npm install
+npm install -g superagent
+
+cp /ukku/data/app.test.js .
+
+node app.js &
+child_pid=$!
+export NODE_PATH=/usr/lib/node_modules
+mocha app.test.js --reporter json <%= evaluation_file_path %> 1> <%= result_file_path %> 2> <%= error_file_path %>
+kill "$child_pid"

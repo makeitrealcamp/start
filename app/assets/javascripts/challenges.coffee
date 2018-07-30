@@ -287,6 +287,9 @@ class ChallengeFormView extends Backbone.View
     else if evaluation_strategy == "puppeteer_embedded"
       @evaluation_editor.setOption("mode", "javascript")
       @evaluation_editor.setValue("open('index.html', () => {\n\n});")
+    else if evaluation_strategy == "express_git"
+      @evaluation_editor.setOption("mode", "javascript")
+      @evaluation_editor.setValue("it('GET / responds with success code', async () => {\n\tconst response = await superagent.get('http://localhost:3000/');\n\texpect(response.statusCode).to.equal(200);\n});")
 
 window.InstructionsView = InstructionsView
 window.SolutionView = SolutionView

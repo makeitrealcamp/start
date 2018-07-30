@@ -1,19 +1,24 @@
-class NodejsEvaluator < BaseDockerEvaluator
-
-  NODEJS_EVALUATOR_TEMPLATE_PATH = "evaluator_templates/nodejs_evaluator_template.js.erb"
-  NODEJS_EXECUTOR_TEMPLATE_PATH = "evaluator_templates/nodejs_executor_template.sh.erb"
+class ExpressEvaluator < BaseDockerEvaluator
+  EXPRESS_EVALUATOR_TEMPLATE_PATH = "evaluator_templates/express/evaluator.js.erb"
+  EXPRESS_EXECUTOR_TEMPLATE_PATH = "evaluator_templates/express/executor.sh.erb"
 
   def evaluate
-    solution_files_paths = create_solution_files
-    evaluation_file_path = create_evaluation_file(solution_files_paths)
+    # check if repository exists
+    if !Octokit.repository?(solution.repository)
+      fail(solution, "No se encontró el repositorio #{solution.repository}")
+      return
+    end
+
+    evaluation_file_path = create_evaluation_file
     executor_script_path = create_executor_file(evaluation_file_path)
 
     FileUtils.chmod(0777, executor_script_path[:local_path])
 
+    repo = "https://github.com/#{solution.repository}"
     command = [
       "docker", "run", "-d", "-v", "#{tmp_path}:#{container_path}", "makeitrealcamp/mir-evaluator",
-      "/bin/bash", "-c", "-l",
-      "#{executor_script_path[:container_path]}"].join(" ")
+      "/bin/bash", "-c", "-l", "'#{executor_script_path[:container_path]} #{repo}'"
+    ].join(" ")
 
     execution = DockerExecution.new(command, solution.challenge.timeout)
     execution.start!
@@ -38,18 +43,16 @@ class NodejsEvaluator < BaseDockerEvaluator
   end
 
   private
-
-    def create_evaluation_file(shared_paths)
-      template = File.read(NODEJS_EVALUATOR_TEMPLATE_PATH)
-      # required for template: evaluation, solution_file_paths
-      solution_files_paths = shared_paths.map { |f| f[:local_path] }
+    def create_evaluation_file
+      template = File.read(EXPRESS_EVALUATOR_TEMPLATE_PATH)
+      # required for template: evaluation
       evaluation = self.solution.challenge.evaluation
       evaluator_content = ERB.new(template).result(binding)
-      create_shared_file("program.js", evaluator_content)
+      create_shared_file("app.test.js", evaluator_content)
     end
 
     def create_executor_file(shared_path)
-      template = File.read(NODEJS_EXECUTOR_TEMPLATE_PATH)
+      template = File.read(EXPRESS_EXECUTOR_TEMPLATE_PATH)
       # required for template: evaluation_file_path, error_file_path
       evaluation_file_path = shared_path[:container_path]
       result_file_path = result_shared_path[:container_path]
