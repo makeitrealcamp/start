@@ -7,25 +7,31 @@ set -x
 # clone app
 git clone $1 /app
 
-cd /app
-
-if [ ! -f package.json ]; then
-  echo "No se encontró el archivo package.json en la raiz del proyecto." >> /ukku/data/error.txt
+if [ ! -f app/package.json ]; then
+  echo "No se encontró el archivo package.json en la raiz del proyecto." >> <%= error_file_path %>
   exit 1
 fi
 
-if [ ! -f package.json ]; then
-  echo "No se encontró el archivo app.js en la raiz del proyecto." >> /ukku/data/error.txt
+if [ ! -f app/package.json ]; then
+  echo "No se encontró el archivo app.js en la raiz del proyecto." >> <%= error_file_path %>
   exit 1
 fi
 
-npm install
-npm install -g superagent
+yarn config set cache-folder /ukku/yarn-cache
+PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn add puppeteer@1.0.0
+chmod -R 777 node_modules
 
-cp /ukku/data/app.test.js .
+yarn install
 
-node app.js &
+cp <%= evaluation_file_path %> .
+
+node app/app.js &
 child_pid=$!
-export NODE_PATH=/usr/lib/node_modules
-mocha app.test.js --reporter json <%= evaluation_file_path %> 1> <%= result_file_path %> 2> <%= error_file_path %>
+
+node <%= evaluation_file_path %> &> <%= error_file_path %>
+if [ -s <%= error_file_path %> ]
+then
+  exit 1
+fi
+
 kill "$child_pid"

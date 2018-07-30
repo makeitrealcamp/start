@@ -1,4 +1,47 @@
-const expect = require('chai').expect;
-const superagent = require("superagent");
+const puppeteer = require('puppeteer');
+const evaluations = [];
 
-<%= evaluation %>
+const open = (path, callback, viewportSize, setup) => {
+  evaluations.push({ path: path, callback: callback, viewportSize: viewportSize, setup: setup });
+}
+
+const evaluate = async (page, evaluation) => {
+  if (!evaluation) {
+    return;
+  }
+
+  await page.setViewport(evaluation.viewportSize || { width: 1024, height: 800 });
+  const url = 'http://127.0.0.1:3000/' + evaluation.path;
+  await page.goto(url);
+  if (evaluation.setup) {
+    await evaluation.setup(page);
+  }
+  const errorMsg = await page.evaluate(evaluation.callback);
+  if (errorMsg) {
+    throw errorMsg;
+  }
+}
+
+(async () => {
+  let browser;
+  try {
+    browser = await puppeteer.launch({ executablePath: '/root/chrome-linux/chrome', args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+    const page = await browser.newPage();
+
+    <%= evaluation %>
+
+    for (let evaluation of evaluations) {
+      await evaluate(page, evaluation);
+    }
+  } catch (e) {
+    console.log(e);
+  }
+
+  if (browser) {
+    try {
+      await browser.close();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+})();
