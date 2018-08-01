@@ -6,28 +6,27 @@ set -x
 
 # clone app
 git clone $1 /app
+cd /app
 
-if [ ! -f app/package.json ]; then
+if [ ! -f package.json ]; then
   echo "No se encontró el archivo package.json en la raiz del proyecto." >> <%= error_file_path %>
   exit 1
 fi
 
-if [ ! -f app/package.json ]; then
+if [ ! -f app.js ]; then
   echo "No se encontró el archivo app.js en la raiz del proyecto." >> <%= error_file_path %>
   exit 1
 fi
 
-cd /app
+npm config set cache-folder /ukku/node-cache
 npm install
-cd ..
 
-yarn config set cache-folder /ukku/yarn-cache
-PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn add puppeteer@1.6.1
-chmod -R 777 node_modules
+PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true npm install -g puppeteer@1.6.1
+# chmod -R 777 node_modules
 
 cp <%= evaluation_file_path %> .
 
-node app/app.js &
+node app.js &
 child_pid=$!
 
 export NODE_PATH=/usr/lib/node_modules
