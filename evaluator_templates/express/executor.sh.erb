@@ -30,6 +30,6 @@ node app.js &
 child_pid=$!
 
 export NODE_PATH=/usr/lib/node_modules
-mocha --timeout 7000 --reporter json <%= evaluation_file_path %> 1> <%= result_file_path %> 2> <%= error_file_path %>
+mocha --timeout 30000 --reporter json <%= evaluation_file_path %> 1> <%= result_file_path %> 2> <%= error_file_path %>
 
 kill "$child_pid"
