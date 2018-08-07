@@ -115,14 +115,10 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.3)
     docile (1.1.5)
-    docker-api (1.34.2)
-      excon (>= 0.47.0)
-      multi_json
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
     equalizer (0.0.11)
     erubis (2.7.0)
-    excon (0.62.0)
     execjs (2.7.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -409,7 +405,6 @@ DEPENDENCIES
   convertloop (= 0.1.2)
   database_cleaner
   date_supercharger
-  docker-api
   factory_girl_rails (~> 4.5.0)
   faker (~> 1.4.3)
   figaro

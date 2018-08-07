@@ -33,7 +33,7 @@ end
 # Challenge evaluation
 <%= evaluation %>
 
-files = <%= solution_files_paths %>.each_with_object({}) do |path,hash|
+files = <%= solution_files_paths %>.each_with_object({}) do |path, hash|
   file = File.open(path, "rb")
   hash[File.basename(path)] = SolutionFile.new(file.read)
   file.close
