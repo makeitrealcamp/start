@@ -21,14 +21,15 @@ fi
 npm config set cache-folder /ukku/node-cache
 npm install
 
-PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true npm install -g puppeteer@1.6.1
-# chmod -R 777 node_modules
+if [ $(mongo mongodb:27017 --eval 'db.getMongo().getDBNames().indexOf("user_<%= user_id %>")' --quiet) -gt 0 ]; then
+  mongo mongodb:27017/user_<%= user_id %> --eval "db.dropDatabase();"
+fi
 
-cp <%= evaluation_file_path %> .
-
+export MONGODB_URL=mongodb://mongodb:27017/user_<%= user_id %>
 node app.js &
 child_pid=$!
 
+cd /ukku/data
 export NODE_PATH=/usr/lib/node_modules
 mocha --timeout 30000 --reporter json <%= evaluation_file_path %> 1> <%= result_file_path %> 2> <%= error_file_path %>
 

@@ -1,9 +1,11 @@
 const { expect } = require('chai');
 const puppeteer = require('puppeteer');
+const mongoose = require("mongoose");
 
 let browser, page;
 
 before(async () => {
+  mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true });
   browser = await puppeteer.launch({ executablePath: '/root/chrome-linux/chrome', args: ['--no-sandbox', '--disable-setuid-sandbox'] });
 });
 
@@ -23,4 +25,5 @@ afterEach(async () => {
 
 after(async () => {
   await browser.close();
+  mongoose.connection.close();
 });

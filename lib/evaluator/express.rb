@@ -19,10 +19,14 @@ class Evaluator::Express < Evaluator::Base
   end
 
   def execute
-    image = "makeitrealcamp/mir-evaluator"
+    unless Evaluator::Docker.exists("mongodb")
+      Evaluator::Docker.execute("docker run --name mongodb -d mongo")
+    end
+
+    image = "makeitrealcamp/node-evaluator"
     repo = "https://github.com/#{@solution.repository}"
     command = [
-      "docker", "run", "-d", "-v", "#{local_path}:#{container_path}", image,
+      "docker", "run", "-d", "--link", "mongodb:mongodb", "-v", "#{local_path}:#{container_path}", image,
       "/bin/bash", "-c", "-l", "'#{container_path}/executor.sh #{repo}'"
     ].join(" ")
 
@@ -53,6 +57,7 @@ class Evaluator::Express < Evaluator::Base
       evaluation_file_path = "#{container_path}/app.test.js"
       result_file_path = "#{container_path}/result.json"
       error_file_path = "#{container_path}/error.txt"
+      user_id = @solution.user.id
 
       executor_content = ERB.new(template).result(binding)
       create_file(local_path, "executor.sh", executor_content)
@@ -61,7 +66,7 @@ class Evaluator::Express < Evaluator::Base
     def failure
       f = "#{local_path}/error.txt"
       if File.exist?(f) && !File.read(f).empty?
-        handle_error(solution, f)
+        handle_error(f)
       elsif File.exist?("#{local_path}/result.json")
         handle_test_failure("#{local_path}/result.json")
       else

@@ -17,4 +17,8 @@ class Evaluator::Docker
   ensure
     system "docker rm #{id}"
   end
+
+  def self.exists(name)
+    system `docker inspect -f '{{.State.Running}}' #{name}`
+  end
 end
