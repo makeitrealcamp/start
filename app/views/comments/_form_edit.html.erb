@@ -1,24 +1,22 @@
-<article class="discussion-entry" id="comment-<%= comment.id %>">
-  <div class="discussion-entry-inner">
-    <div class="discussion-icon">
-      <img src="<%= comment.user.avatar_url %>" class="img-circle img-responsive" />
-    </div>
-
-    <div class="discussion-label">
-      <span class="label label-danger" style="display:none">Este campo es requerido.</span>
-      <%= form_tag comment_path(comment), method: :put, remote: true, class: "edit-comment" do   %>
-        <%= text_area_tag :text, comment.text, id: "comment-input", class: "form-control", rows: 2, placeholder: "Texto"  %>
-        <div class="text-right actions">
-          <%= link_to "Cancelar", cancel_edit_comment_path(comment), class: "btn btn-default btn-cancel", remote: true %>
-          <%= submit_tag "Actualizar comentario", class: "btn btn-success", id: "btn-update" %>
-        </div>
-      <% end  %>
+<article class="comment" id="comment-<%= comment.id %>">
+  <div class="comment-header">
+    <div class="comment-user">
+      <img src="<%= comment.user.avatar_url %>" class="img-rounded img-responsive" />
+      <div>
+        <div class="comment-name"><%= comment.user.first_name %></div>
+        <div class="comment-date">Hace <%= distance_of_time_in_words_to_now(comment.created_at) %></div>
+      </div>
     </div>
   </div>
-  <div class="responses-to-comment" id="responses-to-comment-<%= comment.id %>">
-    <% comment.responses.all.each do |comment| %>
-      <%= render '/comments/comment', comment: comment %>
+
+  <div class="comment-body">
+    <%= form_tag comment_path(comment), method: :put, remote: true, class: "edit-comment" do   %>
+      <%= text_area_tag :text, comment.text, id: "comment-input", class: "form-control", rows: 4, placeholder: "Texto"  %>
+
+      <div class="text-right actions" style="margin-top: 10px;">
+        <%= link_to "Cancelar", cancel_edit_comment_path(comment), class: "btn btn-default btn-cancel", remote: true %>
+        <%= submit_tag "Actualizar", class: "btn btn-success", id: "btn-update" %>
+      </div>
     <% end %>
   </div>
-
 </article>

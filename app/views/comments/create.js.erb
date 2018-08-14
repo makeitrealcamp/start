@@ -4,7 +4,7 @@
     var field_comment = $('#responses-to-comment-<%= @comment.response_to_id %>');
     var form = field_comment.find('form');
     var textarea = form.find('textarea');
-    form_answer = field_comment.find('.discussion-entry').first();
+    $(".response-comment-form").remove();
   <% else %>
     var form = $(".comment-form");
     var field_comment = $('.comments');
@@ -13,15 +13,9 @@
   <% end %>
 
   <% if @comment.valid? %>
-
-    if(typeof form_answer !== 'undefined') {
-      form_answer.remove();
-    }
-
     if(typeof preview_content != 'undefined' && preview_content != null) {
       preview_content.html('');
     }
-
 
     field_comment.prepend('<%= j render("/comments/comment", comment: @comment) %>');
     textarea.val('');

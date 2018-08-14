@@ -49,7 +49,7 @@ $grid-float-breakpoint: 810px;
 @import "top_program";
 
 html, body {
-
+  font-size: 16px;
   @media (max-width: $screen-sm-max) {
     overflow-y: scroll; /* has to be scroll, not auto */
     -webkit-overflow-scrolling: touch;
@@ -68,7 +68,6 @@ html.turbolinks-progress-bar::before {
 .breadcrumb {
   background-color: $body-bg;
   border-bottom: 1px solid #ddd;
-  // margin-top: -15px;
   padding-top: 20px;
   padding-bottom: 20px;
   margin-bottom: 0;
@@ -76,10 +75,7 @@ html.turbolinks-progress-bar::before {
   overflow: hidden;
   white-space: nowrap;
 
-  @media(min-width: $screen-sm-min) {
-    padding-left: 50px;
-    font-size: 16px;
-  }
+  @media(min-width: $screen-sm-min) { padding-left: 25px; }
 }
 
 .content-wrapper {

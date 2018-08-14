@@ -1,32 +1,43 @@
 /* Based on Sublime Text's Monokai theme */
 
-$keyword: #f8da4a;
+$yellow: #F0E095;
+$light_yellow: #f8da4a;
+$blue: #6CB2EB;
+$dark_blue: #86AFD1;
+$green: #A0E88E;
+$dark_green: #7A9973;
+$purple: #A195ED;
+$orange: #E3945B;
+$grey: #75715e;
+$black: #312F33;
 
-.cm-s-monokai.CodeMirror {background: #272822; color: #f8f8f2;}
+.cm-s-monokai.CodeMirror {background: $black; color: #f8f8f2; font-size: 14px; }
 .cm-s-monokai div.CodeMirror-selected {background: #49483E !important;}
 .cm-s-monokai.CodeMirror ::selection { background: rgba(73, 72, 62, .99); }
 .cm-s-monokai.CodeMirror ::-moz-selection { background: rgba(73, 72, 62, .99); }
-.cm-s-monokai .CodeMirror-gutters {background: #272822; border-right: 0px;}
+.cm-s-monokai .CodeMirror-gutters {background: $black; border-right: 0px;}
 .cm-s-monokai .CodeMirror-guttermarker { color: white; }
 .cm-s-monokai .CodeMirror-guttermarker-subtle { color: #d0d0d0; }
-.cm-s-monokai .CodeMirror-linenumber {color: #d0d0d0;}
+.cm-s-monokai .CodeMirror-linenumber { color: #d0d0d0; text-align: left;}
 .cm-s-monokai .CodeMirror-cursor {border-left: 1px solid #f8f8f0 !important;}
 
-.cm-s-monokai span.cm-comment {color: #75715e;}
-.cm-s-monokai span.cm-atom {color: #A0E88E;}
-.cm-s-monokai span.cm-number {color: #ae81ff;}
+.cm-s-monokai span.cm-comment { color: #75715e; }
+.cm-s-monokai span.cm-atom { color: $green; }
+.cm-s-monokai span.cm-number { color: $purple; }
 
-.cm-s-monokai span.cm-property, .cm-s-monokai span.cm-attribute {color: #f8da4a;}
-.cm-s-monokai span.cm-keyword {color: #F77F28;}
-.cm-s-monokai span.cm-string {color: #A0E88E;}
+.cm-s-monokai span.cm-attribute { color: $yellow; }
+.cm-s-monokai span.cm-property { color: $yellow; }
+.cm-s-monokai span.cm-keyword { color: $orange; }
+.cm-s-monokai span.cm-string { color: $green; }
 
 .cm-s-monokai span.cm-variable {color: white;}
 .cm-s-monokai span.cm-variable-2 {color: #9effff;}
-.cm-s-monokai span.cm-def {color: #6CB2EB;}
+.cm-s-monokai span.cm-def { color: $blue; }
 .cm-s-monokai span.cm-bracket {color: #f8f8f2;}
-.cm-s-monokai span.cm-tag {color: $keyword;}
+.cm-s-monokai span.cm-meta {color: $grey;}
+.cm-s-monokai span.cm-tag, .cm-s-monokai span.cm-qualifier {color: $dark_blue; }
 .cm-s-monokai span.cm-link {color: #ae81ff;}
-.cm-s-monokai span.cm-error {background: $keyword; color: #f8f8f0;}
+.cm-s-monokai span.cm-error {background: $yellow; color: #f8f8f0;}
 
 .cm-s-monokai .CodeMirror-activeline-background {background: #373831 !important;}
 .cm-s-monokai .CodeMirror-matchingbracket {
