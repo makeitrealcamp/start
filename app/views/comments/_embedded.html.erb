@@ -1,41 +1,35 @@
 <%# required: commentable, questions %>
 <% questions ||= ["Déjanos tu opinion"]%>
-<div class="discussion">
+<div class="comments">
+  <div>
+    <%= form_tag generate_comments_path(commentable), remote: true, class: "comment-form" do |f| %>
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#comment" aria-controls="comment" role="tab" data-toggle="tab">Comentario</a>
+        </li>
+        <li>
+          <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Previsualización</a>
+        </li>
+      </ul>
 
-  <%= form_tag generate_comments_path(commentable), remote: true, class: "comment-form" do |f| %>
-    <div class="media">
-      <div class="media-left">
-        <img src="<%= Gravatar.new("#{current_user.email}").image_url %>"
-          class="img-circle media-object comment-form-avatar"/>
-      </div>
-      <div class="media-body" class="comment-input-wrapper">
-
-        <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active">
-            <a href="#comment" aria-controls="comment" role="tab" data-toggle="tab">Comentario</a>
-          </li>
-          <li>
-            <a href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Previsualización</a>
-          </li>
-        </ul>
-
-        <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="comment">
-            <span class="label label-danger" style="display:none">Este campo es requerido.</span>
-            <%= text_area_tag(:text, nil ,id: "comment-input",class: "form-control", required: true, autofocus: true,
-            placeholder: questions.shuffle.first) %>
-          </div>
-          <div role="tabpanel" class="tab-pane" id="preview">
-            <div class="content comment-preview"></div>
-          </div>
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="comment">
+          <span class="label label-danger" style="display:none">Este campo es requerido.</span>
+          <%= text_area_tag(:text, nil ,id: "comment-input",class: "form-control", required: true, autofocus: true, rows: 3, placeholder: questions.shuffle.first) %>
         </div>
-        <a href="#" class="markdown-support" data-toggle="modal" data-target="#explain-markdown">¿Sabías que los comentarios soportan markdown?</a>
+        <div role="tabpanel" class="tab-pane" id="preview">
+          <div class="content comment-preview"></div>
+        </div>
+      </div>
 
-        <button class="btn btn-secondary pull-right btn-send-comment" type="submit">Comentar</button>
-    </div>
+      <div class="comment-form-actions">
+        <a href="#" data-toggle="modal" data-target="#explain-markdown">Soporta Markdown</a>
+        <button class="btn btn-secondary btn-send-comment" type="submit">Comentar</button>
+      </div>
+    <% end %>
   </div>
-  <% end %>
-  <div class="comments">
+
+  <div class="comment-list">
     <% commentable.comments.all.where(response_to_id: nil).each do |comment| %>
       <%= render '/comments/comment', comment: comment %>
     <% end %>
@@ -63,9 +57,6 @@
 
 <script>
   $(function(){
-    <%#
-      TODO: pasar esta lógica a una vista de backbone
-    %>
     $('.nav-tabs a[href="#preview"]').on('click', function(){
       var  comment = $('#comment-input').val();
       request = $.ajax({
@@ -78,7 +69,11 @@
       request.done(function(data){
         $('#preview .content').html(data);
       });
+    });
 
+    $(".comment-list").on("click", ".btn-cancel-response", function(e) {
+      e.preventDefault();
+      $(e.currentTarget).parents(".response-comment-form").remove();
     });
   });
 </script>

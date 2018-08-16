@@ -1,32 +1,43 @@
 <% breadcrumb :challenge_discussion, @challenge %>
 
 <div class="container-fluid challenge-discussion default-top-padding">
-  <div class="row">
-    <div class="col-sm-9"><h1>Discusión: <%= @challenge.name %></h1></div>
-    <div class="col-sm-3 text-right"><%= link_to "Siguiente reto <span class='glyphicon glyphicon-chevron-right'></span>".html_safe,
-        [@challenge.subject, current_user.next_challenge], class: "btn btn-primary" %></div>
-
+  <div class="discussion-actions text-right hidden-md hidden-lg">
+    <%= link_to "Siguiente reto <span class='glyphicon glyphicon-chevron-right'></span>".html_safe,
+        [@challenge.subject, current_user.next_challenge], class: "btn btn-primary" %>
   </div>
   <div class="row">
-    <div class="col-xs-12 col-md-7 expand">
-    <% unless @challenge.solution_video_url.blank? %>
-      <div class="video-wrapper">
-        <%= embedded_video(@challenge.solution_video_url, user: current_user)%>
+    <div class="col-md-6">
+      <div class="discussion">
+        <div class="discussion-header">
+          <strong>Discusión:</strong> <%= @challenge.name %>
+        </div>
+        <div class="discussion-body">
+          <% unless @challenge.solution_video_url.blank? %>
+            <div class="video-wrapper">
+              <%= embedded_video(@challenge.solution_video_url, user: current_user) %>
+            </div>
+          <% end %>
+          <% unless @challenge.solution_text.nil? %>
+            <div class="text-wrapper">
+              <%= markdown(@challenge.solution_text) unless @challenge.solution_text.nil? %>
+            </div>
+          <% end %>
+        </div>
       </div>
-    <% end %>
-    <% unless @challenge.solution_text.nil? %>
-      <div class="text-wrapper">
-        <%= markdown(@challenge.solution_text) unless @challenge.solution_text.nil? %>
-      </div>
-    <% end %>
     </div>
-    <div class="col-xs-12 <%= 'col-md-5' unless @challenge.solution_video_url.nil? && @challenge.solution_text.nil? %>">
-      <%= render "comments/embedded", commentable: @challenge, questions: [
-        "¿Qué aprendiste de este reto?",
-        "¿Qué fue lo más difícil de este reto?",
-        "¿Qué fue lo que más te gustó de este reto?",
-        "¿Qué fue lo más divertido de este reto?"
-        ] %>
+    <div class="col-md-6">
+      <div class="discussion-actions text-right hidden-xs hidden-sm">
+        <%= link_to "Siguiente reto <span class='glyphicon glyphicon-chevron-right'></span>".html_safe,
+            [@challenge.subject, current_user.next_challenge], class: "btn btn-primary" %>
+      </div>
+      <div>
+        <%= render "comments/embedded", commentable: @challenge, questions: [
+          "¿Qué aprendiste de este reto?",
+          "¿Qué fue lo más difícil de este reto?",
+          "¿Qué fue lo que más te gustó de este reto?",
+          "¿Qué fue lo más divertido de este reto?"
+          ] %>
+      </div>
     </div>
   </div>
 </div>
