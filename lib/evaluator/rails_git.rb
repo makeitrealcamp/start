@@ -27,7 +27,7 @@ class Evaluator::RailsGit < Evaluator::Base
     command = [
       "docker", "run", "-d", "-v", "#{local_path}:#{container_path}",
       "-v", "#{base_path}/bundler-cache:/ukku/bundler-cache",
-      image, "/bin/bash", "-c", "-l", "'#{container_path}/executor.sh #{repo}'"]
+      image, "/bin/bash", "-c", "'#{container_path}/executor.sh #{repo}'"]
 
     cid = Evaluator::Docker.execute(command.join(" "))
     ok = Evaluator::Docker.wait(cid, @solution.challenge.timeout)
