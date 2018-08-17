@@ -3,28 +3,30 @@
 <div class="container-fluid project default-top-padding">
   <div class="row">
     <div class="col-xs-12 col-md-6 expand">
-      <h1>
-        <%= @project.name %>
-        <br />
-        <span class="label label-default points-label"><%= @project.point_value %> puntos</span>
-      </h1>
-      <% unless @project.explanation_video_url.blank? %>
-        <div class="video-wrapper">
-          <%= embedded_video(@project.explanation_video_url, user: current_user) %>
+      <div class="project-info">
+        <div class="project-header">
+          <%= @project.name %>
+          <span class="label label-default points-label"><%= @project.point_value %> puntos</span>
         </div>
-      <% end %>
-      <div class="project-explanation">
-        <%= markdown @project.explanation_text %>
+        <div class="project-body">
+          <% unless @project.explanation_video_url.blank? %>
+            <div class="video-wrapper">
+              <%= embedded_video(@project.explanation_video_url, user: current_user) %>
+            </div>
+          <% end %>
+          <div class="project-explanation">
+            <%= markdown @project.explanation_text %>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="col-xs-12 col-md-6 expand">
-      <%= render "project_solutions/form" %>
+      <div class="solution-form">
+        <%= render "project_solutions/form" %>
+      </div>
+
       <% unless @project_solution.new_record? %>
-        <hr />
-        <div class="comments-title">
-          <h4>Aquí podrás discutir con la comunidad acerca de tu solución:</h4>
-        </div>
         <%= render "comments/embedded", commentable: @project_solution, questions: [""] %>
       <% end %>
     </div>

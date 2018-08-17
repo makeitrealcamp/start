@@ -3,7 +3,7 @@
 
   <div class="form-group git-repo">
     <p>Ingresa la ruta al repositorio de Github con tu solución:</p>
-    <div class="input-group input-group-lg">
+    <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">https://github.com/</span>
       <%= f.text_field :repository, class: "form-control", placeholder: "usuario/repositorio" %>
     </div>
@@ -11,15 +11,13 @@
 
   <div class="form-group git-repo">
     <p>Si publicaste tu proyecto en algún sitio, comparte la url con la comunidad:</p>
-    <div class="input-group input-group-lg btn-block">
+    <div class="input-group btn-block">
       <%= f.text_field :url, class: "form-control", placeholder: "http://makeitreal.camp" %>
     </div>
   </div>
   <div class="form-group summary">
     <p>Cuéntanos un poco sobre la solución que implementaste:</p>
-    <div class="input-group input-group-lg">
-      <%= f.text_area :summary, class: "form-control", placeholder: "..." %>
-    </div>
+    <%= f.text_area :summary, class: "form-control", placeholder: "..." %>
   </div>
 
   <div>

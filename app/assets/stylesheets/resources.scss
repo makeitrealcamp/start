@@ -3,19 +3,38 @@
 }
 
 .resource-page {
-  @media(min-width: $screen-sm-min) {
-    padding-left: 50px;
-    padding-right: 50px;
+  margin-bottom: 120px;
+
+  .resource-wrapper {
+    background: white;
+    border: 1px solid #ddd;
+    margin-top: 20px;
   }
 
-  h1 {
-    margin-top: 20px;
-    margin-bottom: 40px;
+  .resource-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
 
-    @media(min-width: $screen-sm-min) {
-      margin-top: 40px;
-      margin-bottom: 60px;
+    .resource-title {
+      font-size: 1.4rem;
+      font-weight: 300;
     }
+    .resource-description:last-child { margin-bottom: 0; }
+  }
+
+  .resource-body {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 20px;
+
+    strong { font-weight: 600; }
+  }
+
+  .resource-description {
+    color: #666;
+    margin-top: 13px;
+    line-height: 1.6;
   }
 
   h2 {
@@ -23,30 +42,22 @@
     margin-bottom: 21px;
   }
 
-  p, ul {
-    font-size: 18px;
-    font-weight: 300;
-    line-height: 1.6;
-    margin-bottom: 20px;
+  pre { font-size: 14px; }
 
-    @media (min-width: $screen-sm-min) {
-      font-size: 21px;
-      line-height: 1.7;
-    }
-
-    strong { font-weight: normal; }
-  }
-  .internal p:last-child { margin-bottom: 60px; }
-
-  .external p { margin-bottom: 60px; }
+  .sections { margin-top: 30px; }
 
   .finish  {
     margin-top: 40px;
     text-align: center;
   }
 
-  .back {
-    margin-top: 40px;
+  .back { margin-top: 40px; }
+
+  .comments {
+    margin-top: 20px;
+
+    .comment-form ul { margin-bottom: 0; }
+    p, ul { font-size: 14px; }
   }
 
   .markdown-resource {
@@ -54,6 +65,10 @@
       width: 100%;
       border: 1px solid #ddd;
       padding: 10px;
+    }
+
+    .embedded-video {
+      margin-bottom: 30px;
     }
   }
 
@@ -121,7 +136,7 @@
 
 .sections {
   margin-bottom: 80px;
-  
+
   .title-text { margin-right: 5px; }
 
   input.section-title {

@@ -1,44 +1,53 @@
 .project {
   margin-bottom: 60px;
-  padding-left: 50px;
-  padding-right: 50px;
 
-  h1 { margin-top: 0; }
-  h2 { margin-top: 30px; }
-  h3 {
-    font-size: 18px;
-    // font-weight: bold;
-  }
+  .project-info {
+    background: white;
+    border: 1px solid #ddd;
 
-  .video-wrapper { margin-bottom: 40px; }
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      font-size: 1.25rem;
+      border-bottom: 1px solid #ddd;
+    }
 
-  img {
-    max-width: 100%;
-    border: 1px solid #eee;
-    padding: 5px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
+    .project-body {
+      color: #666;
+      padding: 15px 20px;
+      line-height: 1.6;
 
-  .new_project_solution, .edit_project_solution {
-    .summary {
-      width: 100%;
-      .input-group {
-        width: 100%;
+      h2 {
+        font-size: 1.3rem;
+        font-weight: 400;
+        margin-top: 30px;
       }
+      h3 { font-size: 18px; }
+
+      img {
+        max-width: 100%;
+        border: 1px solid #eee;
+        padding: 5px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      pre { font-size: 14px; }
+
+      p { line-height: 1.6; }
+      li { margin-bottom: 7px; }
+      strong { font-weight: 600; }
     }
   }
 
-  hr {
-    margin-top: 40px;
-    margin-bottom: 40px;
-    border: 10px;
-    border-top: 3px solid;
-    margin-left: 20px;
-    border-color: rgba(48, 48, 48, 0.09);
-    margin-right: 20px;
+  .solution-form {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
   }
-  .comments-title {
-    margin-bottom: 30px;
-  }
+
+  .video-wrapper { margin-bottom: 40px; }
 }
