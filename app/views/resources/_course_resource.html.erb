@@ -1,15 +1,20 @@
 <%# require: resource %>
-<div class="col-sm-6 col-md-8 text-left">
-  <h1>
-    <%= resource.title %>
-    <% if current_user.is_admin? %>
-      <%= link_to edit_subject_resource_path(resource.subject, resource), nil do %>
-        <%= content_tag(:span, nil, class: "glyphicon glyphicon-pencil action action-edit" )%>
-      <% end %>
-    <% end %>
-  </h1>
+<div class="col-md-6 text-left">
+  <div class="resource-wrapper">
+    <header class="resource-header">
+      <div class="resource-title">
+        <%= resource.title %>
+        <% if current_user.is_admin? %>
+          <%= link_to edit_subject_resource_path(resource.subject, resource), nil do %>
+            <%= content_tag(:span, nil, class: "glyphicon glyphicon-pencil action action-edit" )%>
+          <% end %>
+        <% end %>
+      </div>
 
-  <p><%= resource.description %></p>
+      <p class="resource-description"><%= resource.description %></p>
+    </header>
+  </div>
+
   <div class="sections">
     <% resource.sections.each_with_index do |section, i| %>
       <%= render partial: 'sections/section_row', locals: { resource: resource, section: section, i: i } %>
@@ -28,36 +33,35 @@
   </div>
 </div>
 
-<div class="col-sm-6 col-md-4">
+<div class="col-md-6">
   <%= render "comments/embedded", commentable: resource, questions:["Déjanos saber tu opinion"] %>
 </div>
 
+<script>
+  (function() {
 
-  <script>
-    (function() {
-
-      <% if current_user.is_admin? %>
-        var sortables = [];
-        <% resource.sections.each do |section| %>
-          sortables.push(new SortableView({el: "#section_<%= section.id %>", resource:"lessons"}))
-        <% end %>
-        $(document).on("turbolinks:click", function() {
-          _.each(sortables, function(sortable) {
-            sortable.remove();
-          })
-        });
+    <% if current_user.is_admin? %>
+      var sortables = [];
+      <% resource.sections.each do |section| %>
+        sortables.push(new SortableView({el: "#section_<%= section.id %>", resource:"lessons"}))
       <% end %>
-
-      $('.lesson').click(function(e) {
-        var target = $(e.target);
-        if (target.closest('.actions').length > 0) {
-          return;
-        }
-
-        e.preventDefault();
-        if ($(this).attr('data-location')) {
-          window.location = $(this).data('location');
-        }
+      $(document).on("turbolinks:click", function() {
+        _.each(sortables, function(sortable) {
+          sortable.remove();
+        })
       });
-      })()
-  </script>
+    <% end %>
+
+    $('.lesson').click(function(e) {
+      var target = $(e.target);
+      if (target.closest('.actions').length > 0) {
+        return;
+      }
+
+      e.preventDefault();
+      if ($(this).attr('data-location')) {
+        window.location = $(this).data('location');
+      }
+    });
+    })()
+</script>

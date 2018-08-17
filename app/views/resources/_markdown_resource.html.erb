@@ -1,16 +1,22 @@
 <%# require: resource %>
-<div class="col-sm-8 col-sm-offset-2 expand internal markdown-resource">
-  <h1 class="text-center"><%= resource.title %></h1>
-  <% if resource.video_url? %>
-    <div class="row" style="margin-bottom: 60px;">
-      <div class="col-sm-12">
-        <div class="embed-responsive embed-responsive-16by9">
-          <%= embedded_video(resource.video_url, user: current_user) %>
+<div class="col-sm-8 col-sm-offset-2 markdown-resource">
+  <div class="resource-wrapper">
+    <div class="resource-header">
+      <div class="resource-title"><%= resource.title %></div>
+    </div>
+    <div class="resource-body">
+      <% if resource.video_url? %>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="embedded-video embed-responsive embed-responsive-16by9">
+              <%= embedded_video(resource.video_url, user: current_user) %>
+            </div>
+          </div>
         </div>
+      <% end %>
+      <div>
+        <%= markdown ERB.new(resource.content).result(binding) %>
       </div>
     </div>
-  <% end %>
-  <div style="margin-bottom: 120px;">
-    <%= markdown ERB.new(resource.content).result(binding) %>
   </div>
 </div>

@@ -1,9 +1,17 @@
 <%# require: resource %>
-<div class="col-sm-8 col-sm-offset-2 expand text-center external">
-  <h1><%= resource.title %></h1>
-  <p><%= resource.description %></p>
-  <a href="<%= open_subject_resource_path(resource.subject, resource) %>" target="_blank" class="btn btn-secondary">
-    Haz click acá para abrirlo &nbsp;
-    <span class="glyphicon glyphicon-new-window"></span>
-  </a>
+<div class="col-sm-8 col-sm-offset-2">
+  <div class="resource-wrapper">
+    <div class="resource-header">
+      <div class="resource-title"><%= resource.title %></div>
+    </div>
+    <div class="resource-body">
+      <p><%= resource.description %></p>
+      <div class="text-center" style="margin-top: 30px;">
+        <a href="<%= open_subject_resource_path(resource.subject, resource) %>" target="_blank" class="btn btn-secondary">
+          Haz click acá para abrirlo &nbsp;
+          <span class="glyphicon glyphicon-new-window"></span>
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
