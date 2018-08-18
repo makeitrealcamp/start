@@ -6,12 +6,8 @@
     </div>
     <div class="resource-body">
       <% if resource.video_url? %>
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="embedded-video embed-responsive embed-responsive-16by9">
-              <%= embedded_video(resource.video_url, user: current_user) %>
-            </div>
-          </div>
+        <div class="embedded-video embed-responsive embed-responsive-16by9">
+          <%= embedded_video(resource.video_url, user: current_user) %>
         </div>
       <% end %>
       <div>

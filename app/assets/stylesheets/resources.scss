@@ -12,11 +12,11 @@
   }
 
   .resource-header {
-    padding: 15px 20px;
+    padding: 15px 25px;
     border-bottom: 1px solid #ddd;
 
     .resource-title {
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       font-weight: 300;
     }
     .resource-description:last-child { margin-bottom: 0; }
@@ -26,7 +26,7 @@
     color: #666;
     font-size: 16px;
     line-height: 1.6;
-    padding: 20px;
+    padding: 25px;
 
     strong { font-weight: 600; }
   }
@@ -61,6 +61,16 @@
   }
 
   .markdown-resource {
+    .resource-wrapper {
+      margin-top: 30px;
+
+      .resource-body  {
+        padding: 25px;
+        
+        p { margin-bottom: 18px; }
+      }
+    }
+
     img {
       width: 100%;
       border: 1px solid #ddd;
