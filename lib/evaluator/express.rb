@@ -20,7 +20,7 @@ class Evaluator::Express < Evaluator::Base
 
   def execute
     unless Evaluator::Docker.exists("mongodb")
-      Evaluator::Docker.execute("docker run --name mongodb -d mongo")
+      Evaluator::Docker.execute("docker run --name mongodb -d mongo:4.1-xenial")
     end
 
     image = "makeitrealcamp/node-evaluator"
