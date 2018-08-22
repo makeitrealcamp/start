@@ -13,7 +13,7 @@ yarn config set cache-folder /ukku/yarn-cache
 PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn add puppeteer@1.0.0
 chmod -R 777 node_modules
 
-http-server -p <%= port %> <%= solution_files_folder %> & echo "Running server in localhost:<%= port %>..."
+http-server -p <%= port %> <%= solution_files_folder %> & echo "Running server in localhost: <%= port %>..."
 node <%= evaluation_file_path %> &> <%= error_file_path %>
 
 if [ -s <%= error_file_path %> ]

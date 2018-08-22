@@ -42,33 +42,22 @@ class Solution < ApplicationRecord
   scope :pending, -> { where(status: [Solution.statuses[:created], Solution.statuses[:failed]]) }
 
   def evaluate
-    if self.challenge.ruby_embedded?
-      RubyEvaluator.new(self).evaluate
-    elsif self.challenge.phantomjs_embedded?
-      PhantomEvaluator.new(self).evaluate
-    elsif self.challenge.ruby_git?
-      GitEvaluator.new.evaluate(self)
-    elsif self.challenge.rails_git?
-      RailsEvaluator.new(self).evaluate
-    elsif self.challenge.sinatra_git?
-      SinatraEvaluator.new(self).evaluate
-    elsif self.challenge.ruby_git_pr?
-      GitPREvaluator.new.evaluate(self)
-    elsif self.challenge.async_phantomjs_embedded?
-      AsyncPhantomEvaluator.new(self).evaluate
-    elsif self.challenge.react_git?
-      ReactGitEvaluator.new(self).evaluate
-    elsif self.challenge.nodejs_embedded?
-      NodejsEvaluator.new(self).evaluate
-    elsif self.challenge.puppeteer_embedded?
-      PuppeteerEvaluator.new(self).evaluate
-    elsif self.challenge.express_git?
-      ExpressEvaluator.new(self).evaluate
+    evaluator = Evaluator::Factory.create(self)
+    if evaluator
+      evaluator.prepare
+      evaluator.execute unless failed?
+      evaluator.clean
     else
-      self.status = :failed
-      self.error_message = "Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp"
-      self.save!
+      fail_unknown("Hemos encontrado un error en el evaluador, favor reportar a info@makeitreal.camp")
     end
+  rescue Exception => e
+    fail_unknown(e)
+  end
+
+  def fail_unknown(message)
+    self.status = :failed
+    self.error_message = message
+    self.save!
   end
 
   def as_json(options)

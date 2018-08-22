@@ -1,0 +1,44 @@
+#!/bin/bash
+
+set -e
+
+source "/usr/local/rvm/scripts/rvm"
+
+git clone $1 /app
+cd /app
+
+rvm current
+gem install --no-rdoc --no-ri bundler 2> <%= error_file_path %>
+
+if [ ! -f Gemfile ]; then
+  echo "No se encontró el archivo Gemfile en la raiz del proyecto." >> <%= error_file_path %>
+  exit 1
+fi
+
+if [ -f Gemfile.lock ]; then
+  rm Gemfile.lock
+fi
+
+NOKOGIRI_USE_SYSTEM_LIBRARIES=true bundle install --path=/ukku/bundler-cache -j4 --binstubs=vendor/bundle/bin 2> <%= error_file_path %>
+RAILS_ENV=test bundle exec rails db:migrate 2> <%= error_file_path %>
+
+# run template
+bundle exec rails app:template LOCATION=/ukku/data/rails_template.rb 2> <%= error_file_path %>
+NOKOGIRI_USE_SYSTEM_LIBRARIES=true bundle install --path=/ukku/bundler-cache -j4 --binstubs=vendor/bundle/bin 2> <%= error_file_path %>
+
+# setup spec
+if [ -d "spec" ]; then
+  rm -rf spec
+fi
+
+bundle exec rails generate rspec:install 2> <%= error_file_path %>
+cp /ukku/data/makeitreal_spec.rb spec/
+echo "Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
+" >> spec/rails_helper.rb
+
+bundle exec rspec spec --format j --fail-fast --out <%= result_file_path %> 2> <%= error_file_path %>
