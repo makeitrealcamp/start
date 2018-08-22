@@ -35,8 +35,13 @@
   <% if signed_in? && current_user.has_chat_access %>
     <script>
       function configureChat() {
-        ch("configure", { uid: "e86e789a", email: "<%= current_user.email%>", firstName: "<%= current_user.first_name %>", lastName: "<%= current_user.last_name %>" });
+        ch("configure", { uid: "<%= ENV['MASTERCHAT_UID'] %>", email: "<%= current_user.email %>", firstName: "<%= current_user.first_name %>", lastName: "<%= current_user.last_name %>", showIcon: false });
+        $('.btn-masterchat').css("display", "inline-block").on("click", function(e) {
+          e.preventDefault();
+          ch("open");
+        });
       }
+
       $(document).ready(configureChat);
       $(document).on("page:load", configureChat);
     </script>
