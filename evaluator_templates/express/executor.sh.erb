@@ -19,6 +19,7 @@ if [ ! -f app.js ]; then
 fi
 
 npm config set cache-folder /ukku/node-cache
+rm -rf node_modules
 npm install
 
 if [ $(mongo mongodb:27017 --eval 'db.getMongo().getDBNames().indexOf("user_<%= user_id %>")' --quiet) -gt 0 ]; then
