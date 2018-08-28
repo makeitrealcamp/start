@@ -6,37 +6,39 @@ function open(path, callback, viewportSize, setup) {
   evaluations.push({ path: path, callback: callback, viewportSize: viewportSize, setup: setup });
 }
 
+var error = false;
 function evaluate(index) {
-  if (index >= evaluations.length) {
+  if (index >= evaluations.length || error) {
     phantom.exit();
   }
 
   var evaluation = evaluations[index];
   page.viewportSize = evaluation.viewportSize || { width: 1024, height: 800 };
   var url = '<%=host%>:<%=port%>/' + evaluation.path;
-
   page.onError = function(msg, trace) {
-    // swallow JavaScript errors, we had a problem in one challenge that
-    // embeded a video and it had some errors.
+    console.log(msg);
+    error = true;
   };
 
   page.open(url, function(status) {
-    if (status != 'success') {
-      console.log('No se pudo abrir ' + evaluation.path);
-      return;
-    }
+    try {
+      if (status != 'success') {
+        console.log('No se pudo abrir ' + evaluation.path);
+        return;
+      }
 
-    if (evaluation.setup) {
-      evaluation.setup(page);
-    }
+      if (evaluation.setup) {
+        evaluation.setup(page);
+      }
 
-    page.injectJs('<%= phantom_util_path %>');
-    var result = page.evaluate(evaluation.callback);
-    if (result) {
-      console.log(result);
-      phantom.exit();
-    } else {
-      setTimeout(function() { evaluate(index + 1) }, 100);
-    }
+      page.injectJs('<%= phantom_util_path %>');
+      var result = page.evaluate(evaluation.callback);
+      if (result) {
+        console.log(result);
+        phantom.exit();
+      } else {
+        setTimeout(function() { evaluate(index + 1) }, 100);
+      }
+    } catch (e) {}
   });
 }
