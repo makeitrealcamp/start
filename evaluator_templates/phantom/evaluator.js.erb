@@ -2,6 +2,14 @@
 var evaluations = [];
 var page = require('webpage').create();
 
+page.settings.resourceTimeout = 10000; // 10 seconds
+page.onResourceTimeout = function(e) {
+  console.log(e.errorCode);   // it'll probably be 408
+  console.log(e.errorString); // it'll probably be 'Network timeout on resource'
+  console.log(e.url);         // the url whose request timed out
+  phantom.exit(1);
+};
+
 function open(path, callback, viewportSize, setup) {
   evaluations.push({ path: path, callback: callback, viewportSize: viewportSize, setup: setup });
 }
@@ -14,7 +22,7 @@ function evaluate(index) {
 
   var evaluation = evaluations[index];
   page.viewportSize = evaluation.viewportSize || { width: 1024, height: 800 };
-  var url = '<%=host%>:<%=port%>/' + evaluation.path;
+  var url = '<%= host %>:<%= port %>/' + evaluation.path;
   page.onError = function(msg, trace) {
     console.log(msg);
     error = true;
