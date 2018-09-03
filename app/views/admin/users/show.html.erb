@@ -199,7 +199,8 @@
 </script>
 <script>
   var editorModes = <%= codemirror_modes.to_json.html_safe %>;
-  $('.solution-files').click(function() {
+  $('.solution-files').click(function(e) {
+    e.preventDefault();
     $.ajax({
       url: "/solutions/" + $(this).data("id"),
       contentType: "application/json",
