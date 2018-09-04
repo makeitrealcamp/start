@@ -27,10 +27,21 @@
 #
 
 FactoryGirl.define do
-  factory :challenge do
-    subject { create(:subject) }
-    name { Faker::Name.title }
-    instructions { Faker::Lorem.paragraph }
-    published true
+    factory :challenge do
+      subject { create(:subject) }
+      name { Faker::Name.title }
+      instructions { Faker::Lorem.paragraph }
+      published true
+
+    trait :challenge_page do
+      name { Faker::Name.title }
+      instructions { Faker::Lorem.paragraph }
+      difficulty_bonus 20
+      timeout 15
+      solution_video_url "https://www.youtube.com/embed/52Gg9CqhbP8"
+      solution_text { Faker::Lorem.paragraph }
+      evaluation_strategy 1
+      published true
+    end
   end
 end

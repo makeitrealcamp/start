@@ -16,12 +16,13 @@
               <% phase.subjects.published.order(:row).each do |subject| %>
                 <div class="panel panel-default subject">
                   <div class="panel-heading"><%= subject.name %>
+                    <%= link_to new_subject_challenge_path(subject),  class: "btn btn-success btn-xs edit-course-btn challenge-new" do %>
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Nuevo Reto
+                    <% end%>
                     <% if current_user.is_admin?%>
-                      <%= link_to new_subject_challenge_path(subject), class: "btn btn-success btn-xs edit-course-btn" do %>
-                      <span class="glyphicon glyphicon-plus"> Nuevo Reto</span>
-                      <% end%>
                       <%= link_to edit_subject_path(subject), class: "btn btn-success btn-xs edit-course-btn pull-right" do %>
-                      <span class="glyphicon glyphicon-pencil"> Editar curso</span>
+                      <span class="glyphicon glyphicon-pencil edit-subject"> Editar curso</span>
                       <% end%>
                     <%end%>
                   </div>

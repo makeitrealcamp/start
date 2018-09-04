@@ -7,7 +7,6 @@ RSpec.feature "Badges management", type: :feature do
 
   scenario "creates a badge" do
     login(admin)
-
     visit admin_badges_path
     click_link  'Nueva insignia'
 

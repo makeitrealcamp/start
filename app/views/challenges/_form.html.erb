@@ -19,16 +19,8 @@
           <%= f.select :difficulty_bonus, [0,20,40,60,80], {},class: 'form-control', placeholder: 'Bono de Dificultad' %>
         </div>
         <div class="form-group">
-          <%= f.label :timeout %> <small>(en segundos)</small>
-          <%= f.number_field :timeout, class: 'form-control', placeholder: 'Timeout' %>
-        </div>
-        <div class="form-group">
           <%= f.label :instructions %>
           <%= f.text_area :instructions, class: 'form-control', rows: 15, placeholder: 'Instructions' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :evaluation_strategy %>
-          <%= f.select :evaluation_strategy, evaluation_strategies, {}, { class: 'form-control' } %>
         </div>
         <div class="form-group">
           <%= f.label :solution_video_url %>
@@ -38,6 +30,14 @@
         <div class="form-group">
           <%= f.label :solution_text %>
           <%= f.text_area :solution_text, class: 'form-control', rows: 15, placeholder: 'Solution text' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :timeout %> <small>(en segundos)</small>
+          <%= f.number_field :timeout, class: 'form-control', placeholder: 'Timeout' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :evaluation_strategy %>
+          <%= f.select :evaluation_strategy, evaluation_strategies, {}, { class: 'form-control' } %>
         </div>
 
         <hr>
@@ -54,9 +54,9 @@
           </label>
         </div>
 
-        <div class="checkbox">
+        <div class="checkbox" id="challenge_checkbox">
           <label>
-            <%= f.check_box :published %> Published
+            <%= f.check_box :published, value:1  %> Published
           </label>
         </div>
 
