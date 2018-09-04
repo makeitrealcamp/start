@@ -15,7 +15,16 @@
             <div class="phase">
               <% phase.subjects.published.order(:row).each do |subject| %>
                 <div class="panel panel-default subject">
-                  <div class="panel-heading"><%= subject.name %></div>
+                  <div class="panel-heading"><%= subject.name %>
+                    <% if current_user.is_admin?%>
+                      <%= link_to new_subject_challenge_path(subject), class: "btn btn-success btn-xs edit-course-btn" do %>
+                      <span class="glyphicon glyphicon-plus"> Nuevo Reto</span>
+                      <% end%>
+                      <%= link_to edit_subject_path(subject), class: "btn btn-success btn-xs edit-course-btn pull-right" do %>
+                      <span class="glyphicon glyphicon-pencil"> Editar curso</span>
+                      <% end%>
+                    <%end%>
+                  </div>
                   <table class="table">
                     <thead>
                       <tr>
@@ -32,6 +41,10 @@
                           <td class="text-center"><span class="challenge-users"><%= challenge.solutions.where("attempts > ?", 0).count %></span></td>
                           <td class="text-center"><%= challenge_effectiveness(challenge) %></td>
                           <td class="text-center"><%= challenge_attempts_average(challenge) %></td>
+                        <% if current_user.is_admin?%>
+                          <td class="text-center"><%= link_to '<span class="glyphicon glyphicon-pencil action action-edit"></span>'.html_safe, edit_subject_challenge_path(challenge.subject, challenge) %></td>
+                          <td class="text-center"><%= link_to '<span class="glyphicon glyphicon-remove action action-remove"></span>'.html_safe, challenge_path(challenge), remote: true, data: { confirm: "Are you sure you want to delete this?" }, method: :delete %></td>
+                        <%end%>
                         </tr>
                       <% end %>
                     </tbody>

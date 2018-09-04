@@ -3,11 +3,6 @@
 <div class="container course-page default-top-padding">
   <div class="row">
     <div class="col-sm-12 header">
-      <% if current_user.is_admin? %>
-      <div class="actions">
-        <%= link_to "<span class='glyphicon glyphicon-pencil'></span> &nbsp;Editar Curso".html_safe, edit_subject_path(@subject), class: "btn btn-success btn-xs edit-course-btn" %>
-      </div>
-      <% end %>
       <div class="course-header">
         <h1><%= @subject.name %></h1>
         <div style="margin-bottom: 20px;"><%= markdown @subject.excerpt %></div>
