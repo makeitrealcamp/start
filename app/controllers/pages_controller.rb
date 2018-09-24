@@ -14,6 +14,22 @@ class PagesController < ApplicationController
     end
   end
 
+  def create_nodejs_medellin_lead
+    data = {
+      pid: cookies[:dp_pid],
+      program: "Node.js Medellin",
+      event: "filled-full-stack-medellin-form",
+      first_name: params['first-name'],
+      last_name: params['last-name'],
+      email: params['email'],
+      country: "CO",
+      mobile: params['mobile'],
+      ip: request.remote_ip
+    }
+    CreateLeadJob.perform_later(data)
+    redirect_to "/thanks-nodejs-medellin"
+  end
+
   def handbook
     client = Octokit::Client.new(
       client_id:     ENV['GITHUB_KEY'],
