@@ -1,109 +1,4 @@
 .new-site.nodejs {
-  #registration-modal {
-    .header {
-      display: flex;
-      align-items: center;
-      padding: 25px;
-    }
-
-    .header-image {
-      padding: 10px;
-      background: #1976D2;
-      border-radius: 5px;
-
-      img {
-        width: 60px;
-
-        &.spin { animation: logo-spin 2s infinite linear; }
-      }
-    }
-
-    .header-info {
-      padding: 5px 10px;
-      margin-left: 15px;
-
-      h3 {
-        font-size: 21px;
-        margin-top: 0;
-        margin-bottom: 7px;
-      }
-
-      p.price {
-        color: $brand_primary;
-        font-size: 18px;
-        font-weight: 600;
-        margin-bottom: 0;
-
-        small { font-weight: normal; }
-
-        .old-price {
-          text-decoration: line-through;
-          opacity: 0.5;
-        }
-      }
-    }
-
-    .header-step {
-      display: flex;
-
-      > div {
-        flex: 1;
-        background: #CCC;
-        height: 1px;
-        margin: 0 2px;
-
-        &.active { background: $brand_primary; }
-      }
-    }
-
-    .modal-body {
-      padding: 20px 25px;
-
-      .input-group-addon {
-        background: white;
-
-        .glyphicon { color: #1976D2; }
-      }
-
-      .mobile-wrapper { display: none; }
-
-      .clean-invoice { color: #1976D2; }
-
-      p { margin-bottom: 20px; }
-
-      .payment-method {
-        display: flex;
-        justify-content: space-around;
-        margin-bottom: 20px;
-      }
-
-      .payment-method-title {
-        font-weight: 600;
-        margin-top: 25px;
-      }
-
-      .secure-payment {
-        color: #999;
-        font-size: 14px;
-        margin-bottom: 0px;
-      }
-
-      .step-3 .instructions { font-weight: bold; }
-    }
-
-    .modal-footer {
-      padding: 20px 25px;
-
-      .back {
-        display: none;
-        float: left;
-        color: #999;
-        border: 1px solid #ccc;
-        padding: 9px 14px;
-      }
-    }
-  }
-
   .header-register {
     display: none;
     position: fixed;
@@ -162,6 +57,15 @@
       }
 
       .btn-register { margin-top: 30px; }
+    }
+
+    .program-data {
+      img {
+        max-width: 100%;
+        margin-top: 20px;
+
+        @media (min-width: $screen-sm-min) { max-width: 530px; }
+      }
     }
   }
 
@@ -340,8 +244,10 @@
 
       p, ul, ol {
         color: #666;
-        font-size: 18px;
+        font-size: 16px;
         line-height: 1.5;
+
+        // @media (min-width: $screen-md-min) { font-size: 18px; }
       }
 
       li { margin-bottom: 7px; }
