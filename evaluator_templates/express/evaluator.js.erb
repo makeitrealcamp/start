@@ -7,10 +7,13 @@ let browser, page;
 before(async () => {
   mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true });
   browser = await puppeteer.launch({ executablePath: '/root/chrome-linux/chrome', args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+  page = await browser.newPage();
 });
 
 beforeEach(async () => {
-  page = await browser.newPage();
+  for (var i in mongoose.connection.collections) {
+    await mongoose.connection.collections[i].remove({});
+  }
 });
 
 const open = async (path) => {
@@ -18,10 +21,6 @@ const open = async (path) => {
 }
 
 <%= evaluation %>
-
-afterEach(async () => {
-  await page.close();
-});
 
 after(async () => {
   await browser.close();
