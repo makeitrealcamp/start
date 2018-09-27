@@ -12,7 +12,7 @@ before(async () => {
 
 beforeEach(async () => {
   for (var i in mongoose.connection.collections) {
-    await mongoose.connection.collections[i].remove({});
+    await mongoose.connection.collections[i].deleteMany({});
   }
 });
 
