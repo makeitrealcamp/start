@@ -11,12 +11,6 @@ class SubscriptionsMailer < ApplicationMailer
     mail to: @user.email, subject: "¡Bienvenido a Make it Real!"
   end
 
-  def charge_instructions(charge)
-    @charge = charge
-
-    mail to: charge.email, subject: "Instrucciones de pago"
-  end
-
   def charge_validation(charge)
     @charge = charge
 
@@ -29,15 +23,9 @@ class SubscriptionsMailer < ApplicationMailer
     mail to: charge.email, subject: "Pago rechazado por la entidad financiera"
   end
 
-  def course(charge)
-    @charge = charge
-
-    mail to: charge.email, subject: "Pago exitoso! Inicia tu aprendizaje ahora"
-  end
-
   def course_welcome(charge)
     @charge = charge
 
-    mail to: charge.email, subject: "Pago exitoso! Inicia tu aprendizaje ahora"
+    mail to: charge.email, subject: "Pago exitoso! Tu cupo está ahora reservado"
   end
 end

@@ -37,35 +37,17 @@ FactoryGirl.define do
       }
     end
 
-    trait :created_deposit do
-      payment_method :deposit
+    trait :created do
       status :created
     end
 
-    trait :created_credit_card do
-      payment_method :credit_card
-      status :created
-    end
-
-    trait :paid_deposit do
-      payment_method :deposit
+    trait :paid do
       status :paid
     end
 
-    trait :paid_credit_card do
-      payment_method :credit_card
-      status :paid
-    end
-
-    trait :rejected_credit_card do
-      payment_method :credit_card
+    trait :rejected do
       status :rejected
       error_message "Declined, sorry"
-    end
-
-    trait :created_credit_card do
-      payment_method :credit_card
-      status :created
     end
   end
 

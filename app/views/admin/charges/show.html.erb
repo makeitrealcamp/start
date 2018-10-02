@@ -22,7 +22,7 @@
               <h1><%= @charge.description %></h1>
             </div>
             <div class="col-sm-6 text-right">
-              <span class="charge-amount"><%= @charge.currency %> <%= number_to_currency @charge.amount, precision: 0 %></span>
+              <span class="charge-amount"><%= @charge.currency %> <%= number_to_currency(@charge.amount, precision: 0) %></span>
             </div>
           </div>
 
@@ -35,14 +35,8 @@
               </div>
               <div class="field">
                 <span class="field-label">Método de Pago</span>
-                <span class="field-value"><%= payment_method(@charge) %></span>
+                <span class="field-value">PayU</span>
               </div>
-              <% if @charge.coupon %>
-                <div class="field">
-                  <span class="field-label">Cupón de descuento</span>
-                  <span class="field-value"><%= @charge.coupon %></span>
-                </div>
-              <% end %>
             </div>
             <div class="col-sm-6 text-right">
               <div class="field">

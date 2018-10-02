@@ -24,37 +24,4 @@
 require 'rails_helper'
 
 RSpec.describe Billing::Charge, type: :model do
-  context "before_save" do
-    it "creates user if charge is paid" do
-      path = create(:path)
-      ENV['REACT_REDUX_PATH_ID'] = path.id.to_s
-
-      expect {
-        Billing::Charge.create!(first_name: "Test", last_name: "Charge",
-            email: "test.charge@example.com", description: "Curso de React",
-            currency: "COP", amount: 299000, tax_percentage: 0.19, tax: 47739.5,
-            status: :paid, customer_name: "Test Charge",
-            customer_email: "test.charge@example.com", customer_id_type: "CC",
-            customer_id: "1234567", customer_country: "CO",
-            customer_mobile: "1", customer_address: "123")
-      }.to change(User, :count).by(1)
-
-      user = User.where(email: "test.charge@example.com").take
-      expect(user).to_not be_nil
-
-      expect(user.paths).to include(path)
-    end
-
-    it "doesn't create the user if charge is paid" do
-      expect {
-        Billing::Charge.create!(first_name: "Test", last_name: "Charge",
-            email: "test.charge@example.com", description: "Curso de React",
-            currency: "COP", amount: 299000, tax_percentage: 0.19, tax: 47739.5,
-            status: :rejected, customer_name: "Test Charge",
-            customer_email: "test.charge@example.com", customer_id_type: "CC",
-            customer_id: "1234567", customer_country: "CO",
-            customer_mobile: "1", customer_address: "123")
-      }.to_not change(User, :count)
-    end
-  end
 end

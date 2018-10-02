@@ -92,7 +92,7 @@ end
 group :development do
   gem 'letter_opener'
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 3.7'
 end
 
 group :test do

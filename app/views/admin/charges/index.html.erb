@@ -12,7 +12,6 @@
             <th>Referencia</th>
             <th>Estudiante</th>
             <th>Descripción</th>
-            <th>Cupón</th>
             <th>Estado</th>
             <th>Fecha de Creación</th>
             <th></th>
@@ -30,10 +29,9 @@
                 <%= charge.description %>
                 <span class="small"><%= "#{charge.currency} #{number_to_currency(charge.amount, precision: 0)}" %></span>
               </td>
-              <td><%= charge.coupon %></td>
               <td>
                 <%= admin_status(charge) %>
-                <span class="small"><%= admin_payment_method(charge) %></span>
+                <span class="small">PayU</span>
               </td>
               <td><%= l charge.created_at, format: "%d/%m/%Y %I:%M %p" %></td>
               <td><%= link_to '<span class="glyphicon glyphicon-search" aria-hidden="true"></span>'.html_safe, admin_charge_path(charge) %></td>
