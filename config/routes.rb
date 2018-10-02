@@ -29,7 +29,6 @@ Rails.application.routes.draw do
   get "elite", to: "pages#elite"
   get "courses/react-redux", to: "pages#react_redux"
   get "courses/nodejs-mongodb/medellin", to: "pages#nodejs_medellin"
-  post "courses/nodejs-mongodb/medellin", to: "pages#create_nodejs_medellin_lead"
 
   post "application/top", to: "pages#create_top_applicant"
 
@@ -49,7 +48,6 @@ Rails.application.routes.draw do
   get "thanks-front-end-medellin", to: "pages#thanks_full_stack_onsite"
   get "thanks-front-end-bogota", to: "pages#thanks_full_stack_onsite"
   get "thanks-top", to: "pages#thanks_top"
-  get "thanks-nodejs-medellin", to: "pages#thanks_full_stack_onsite"
 
   get "thanks-scholarships", to: "pages#thanks_scholarships"
   get "como-convertirte-en-web-developer", to: "pages#web_developer_guide", as: :web_developer_guide
@@ -196,10 +194,11 @@ Rails.application.routes.draw do
   end
 
   namespace :billing do
-    resources :charges, only: [:create, :update, :show] do
-      post 'response', to: 'charges#confirm', on: :collection
-    end
+    resources :charges, only: [:create, :update, :show]
+    get 'payu/response', to: 'payu#result'
+    post 'payu/confirm', to: 'payu#confirm'
   end
+
 
   namespace :admin do
     get 'dashboard', to: 'dashboard#index'
@@ -210,9 +209,7 @@ Rails.application.routes.draw do
     resources :solutions, only: [:index]
     resources :comments, only: [:index, :destroy]
     resources :project_solutions, only: [:index] do
-      member do
-        post 'assign_points'
-      end
+      post 'assign_points', on: :member
     end
 
     resources :top_applicants do

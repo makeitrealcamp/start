@@ -6,7 +6,7 @@
 <% end %>
 
 <div class="new-site course nodejs">
-  <%= render "pages/header_register", btn_text: "SEPARAR CUPO" %>
+  <%= render "pages/header_register", btn_text: "RESERVA TU CUPO" %>
 
   <div class="program-header">
     <%= render "layouts/navbar/pages_transparent", hide_login: true %>
@@ -16,8 +16,8 @@
           <h1><small>EDICIÓN MEDELLÍN</small>NODE.JS CON EXPRESS Y MONGODB</h1>
           <p>Un curso ideal para personas que han desarrollado aplicaciones Web en otros lenguajes y quieren aprender nuevas tecnologías</p>
         </div><!--/tagline-program -->
-        <div class="col-md-6 text-center">
-          <%= image_tag "nodejs-medellin.png", style: "max-width: 530px; margin-top: 20px;" %>
+        <div class="col-md-6 text-center program-data">
+          <%= image_tag "nodejs-medellin.png" %>
         </div>
       </div><!--/row -->
     </div><!--/container -->
@@ -62,6 +62,20 @@
             </div>
 
             <p><small>* Pesos colombianos. Impuestos incluídos</small></p>
+          </div>
+
+          <div class="aside">
+            <h4>¿Preguntas?</h4>
+            <div style="display: flex; align-items: center; margin: 10px 0 10px;">
+              <div style="padding: 5px;">
+                <%= image_tag "people/carolina-hernandez-grey.jpg", class: "img-circle", width: 60, style: "border: 1px solid #f04500;" %>
+              </div>
+              <div style="font-size: 0.9rem; color: #666; margin-left: 15px;">
+                <div style="font-weight: 600; color: #333; margin-bottom: 3px;">Carolina Hernandez</div>
+                <div>Asesora Académica</div>
+              </div>
+            </div>
+            <p>Escríbeme a <a href="mailto:carolina.hernandez@makeitreal.camp">carolina.hernandez@makeitreal.camp</a> para solucionar todas tus dudas o inquietudes.</p>
           </div>
         </div>
 
@@ -208,7 +222,12 @@
           <section class="question">
             <h3>¿Cómo sé si este curso es para mi?</h3>
             <p>El curso está diseñado para personas que han desarrollado aplicaciones Web con otros lenguajes (Ruby, Java, Python, etc.) o ex-alumnos del programa Full Stack de Make it Real.</p>
-            <p>Si hasta ahora estás iniciando tu aprendizaje o sabes programar pero nunca has desarrollado aplicaciones Web te recomendamos tomar nuestro programa Full Stack primero (online o presencial).</p>
+            <p>Si hasta ahora estás iniciando tu aprendizaje o sabes programar pero nunca has desarrollado aplicaciones Web te recomendamos tomar nuestro <a href="/#programs">programa Full Stack primero (online o presencial)</a>.</p>
+          </section><!--/question -->
+
+          <section class="question">
+            <h3>Si separo mi cupo y no puedo tomar el curso ¿me devuelven el dinero?</h3>
+            <p>El valor del cupo no es reembolsable a menos de que por alguna razón el curso no se lleve a cabo en la fecha prevista. Si vas a separar tu cupo te recomendamos que estés seguro(a) que lo puedes tomar.</p>
           </section><!--/question -->
         </div>
 
@@ -228,7 +247,7 @@
 
           <section class="question">
             <h3>¿Me ayudarán a conseguir empleo?</h3>
-            <p>No. Si estás interesado en un programa que te ayude a conseguir empleo te recomendamos nuestro programa Full Stack Online que incluye una garantía de empleo.</p>
+            <p>No. Si estás interesado en un programa que te ayude a conseguir empleo te recomendamos nuestro programa <a href="/full-stack-online">Full Stack Online</a> que incluye una garantía de empleo.</p>
           </section><!--/question -->
         </div>
       </div>
@@ -248,5 +267,22 @@
 
   <%= render "footer" %>
 
-  <%= render "full_stack_onsite_registration", action: "/courses/nodejs-mongodb/medellin" %>
+  <%= render "nodejs_modal" %>
 </div>
+
+<script type="text/javascript">
+  $(document).on("turbolinks:load", window.initMedellinProgramPage);
+  $(document).on("turbolinks:click", function() {
+    $(document).off("turbolinks:load", window.initMedellinProgramPage);
+  });
+
+  $(document).on("turbolinks:load", function() {
+    var courseLandingView = new CourseLandingView();
+
+    $('.btn-register').on('click', function(e) {
+      e.preventDefault();
+
+      courseLandingView.render();
+    });
+  });
+</script>

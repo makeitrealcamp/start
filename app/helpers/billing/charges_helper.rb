@@ -1,24 +1,12 @@
 module Billing::ChargesHelper
-  def payment_method(charge)
-    if charge.deposit?
-      "Consignación o Transferencia"
-    elsif charge.credit_card?
-      "Tarjeta de Crédito"
-    else
-      "Otro"
-    end
-  end
-
   def charge_header_tag(charge)
-    class_name, title = if @charge.paid?
+    class_name, title = if charge.paid?
       ["success", "TRANSACCIÓN EXITOSA"]
-    elsif @charge.created? && @charge.deposit?
-      ["info", "PENDIENTE DE PAGO"]
-    elsif @charge.created? && @charge.credit_card?
-      ["warning", "EN VALIDACIÓN"]
-    elsif @charge.error?
+    elsif charge.created? || charge.pending?
+      ["info", "PENDIENTE POR CONFIRMAR"]
+    elsif charge.error?
       ["danger", "ERROR EN LA TRANSACCIÓN"]
-    elsif @charge.rejected?
+    elsif charge.rejected?
       ["danger", "TRANSACCIÓN RECHAZADA"]
     end
 

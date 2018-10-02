@@ -6,10 +6,6 @@ class CourseLandingView extends Backbone.View
 
   render: ->
     $(@el).on('shown.bs.modal', =>
-      @.$('#card-number').payment('formatCardNumber')
-      @.$('#card-cvv').payment('formatCardCVC')
-      @.$('#card-exp').payment('formatCardExpiry')
-
       @before_step_1()
 
       $.getJSON("//ipinfo.io")
@@ -47,7 +43,7 @@ class CourseLandingView extends Backbone.View
 
 
   submit_form: ->
-    @.$('.step-3 .form-group').removeClass('has-error')
+    @.$('.step-2 .form-group').removeClass('has-error')
 
     valid = true
     valid = false if !@input_text_is_valid($('#invoice-name'))
@@ -79,9 +75,7 @@ class CourseLandingView extends Backbone.View
 
   navigate_back: (e) ->
     e.preventDefault()
-
-    credit_card_payment = @.$('#payment-method-card').is(':checked')
-    if credit_card_payment then @navigate(-1) else @navigate(-2)
+    @navigate(-1)
 
   navigate: (direction) ->
     @.$('.step-' + @step).hide()
@@ -97,7 +91,7 @@ class CourseLandingView extends Backbone.View
 
   show_or_hide_buttons: ->
     if @step > 1 then @.$('.back').show() else @.$('.back').hide()
-    if @step == 3
+    if @step == 2
       @.$('.next').hide()
       @.$('.finish').show()
     else
@@ -138,69 +132,13 @@ class CourseLandingView extends Backbone.View
             last_name: $('#last-name').val()
             email: $('#email').val()
       )
-
-      credit_card_payment = @.$('#payment-method-card').is(':checked')
-      if credit_card_payment
-        @navigate_next()
-      else
-        @navigate(2)
+      @navigate_next()
 
     callback(valid)
 
   before_step_2: ->
-    @.$('#card-number').focus()
-
-  after_step_2: (callback) ->
-    @.$('.step-2 .form-group').removeClass('has-error')
-
-    valid = true
-
-    card_number = @.$('#card-number')
-    if !$.payment.validateCardNumber(card_number.val())
-      card_number.closest('.form-group').addClass('has-error')
-      valid = false
-
-    valid = false if !@input_text_is_valid($('#card-name'))
-
-    card_cvc = @.$('#card-cvc')
-    if !$.payment.validateCardCVC(card_cvc.val())
-      card_cvc.closest('.form-group').addClass('has-error')
-      valid = false
-
-    card_expiry = @.$('#card-exp')
-    card_expiry_data = $.payment.cardExpiryVal(card_expiry.val())
-    if !card_expiry_data ||
-        !$.payment.validateCardExpiry(card_expiry_data.month, card_expiry_data.year)
-      card_expiry.closest('.form-group').addClass('has-error')
-      valid = false
-
-    if valid
-      @.$('#epayco-month').val(card_expiry_data.month)
-      @.$('#epayco-year').val(card_expiry_data.year)
-
-      form = $('#registration-form')
-      ePayco.token.create(form, (error, token) =>
-        if (!error)
-          @.$('#card-token').remove()
-          form.append($('<input type="hidden" name="charge[card_token]" id="card-token" />').val(token))
-          callback(true, @navigate_next)
-
-          _dp('track', 'performed-course-charge-step-2')
-        else
-          alert(error.data.description)
-          callback(false)
-      )
-    else
-      callback(false)
-
-  before_step_3: ->
-    deposit_payment = @.$('#payment-method-deposit').is(':checked')
-    if deposit_payment
-      @.$('.step-3 .instructions').html("Ingresa los datos para la " +
-          "elaboración de la factura y recibir la información de pago:")
-    else
-      @.$('.step-3 .instructions').html("Ingresa los datos para la " +
-          "elaboración de la factura:")
+    @.$('.step-2 .instructions').html("Ingresa los datos para la " +
+        "elaboración de la factura:")
 
     name = @.$('#first-name').val() + " " + @.$('#last-name').val()
     @.$('#invoice-name').val(name)

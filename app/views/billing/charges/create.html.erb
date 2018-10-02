@@ -1,0 +1,22 @@
+<form method="post" action="<%= ENV['PAYU_URL'] %>">
+  <input name="merchantId"    type="hidden"  value="<%= ENV['PAYU_MERCHANT_ID'] %>">
+  <input name="accountId"     type="hidden"  value="<%= ENV['PAYU_ACCOUNT_ID'] %>">
+  <input name="description"   type="hidden"  value="Curso de Express y MongoDB">
+  <input name="referenceCode" type="hidden"  value="<%= @charge.uid %>">
+  <input name="amount"        type="hidden"  value="500000">
+  <input name="tax"           type="hidden"  value="0">
+  <input name="taxReturnBase" type="hidden"  value="0">
+  <input name="currency"      type="hidden"  value="COP">
+  <input name="signature"     type="hidden"  value="<%= @signature %>">
+  <input name="test"          type="hidden"  value="<%= Rails.env.production? ? 0 : 1 %>" >
+  <input name="buyerEmail"    type="hidden"  value="<%= @charge.customer_email %>">
+  <input name="buyerFullName" type="hidden" value="<%= @charge.customer_name %>">
+  <input name="payerDocument" type="hidden" value="<%= @charge.customer_id %>">
+  <input name="payerMobilePhone" type="hidden" value="<%= @charge.customer_mobile %>">
+  <input name="responseUrl"    type="hidden"  value="<%= ENV['HOSTNAME'] %>/billing/payu/response">
+  <input name="confirmationUrl"   type="hidden"  value="<%= ENV['HOSTNAME'] %>/billing/payu/confirm">
+</form>
+
+<script>
+  document.querySelector("form").submit();
+</script>
