@@ -1,4 +1,6 @@
 class Billing::PayuController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def result
     @charge = Billing::Charge.where(uid: params[:referenceCode]).take
 
