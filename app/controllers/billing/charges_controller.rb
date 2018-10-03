@@ -29,7 +29,7 @@ class Billing::ChargesController < ApplicationController
 
     def charge_data
       {
-        description: "Curso de Express y MongoDB",
+        description: "Separación curso de Express y MongoDB",
         amount: 500_000,
         tax: 0,
         tax_percentage: 0,

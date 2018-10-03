@@ -13,16 +13,16 @@ class Billing::PayuController < ApplicationController
   end
 
   def confirm
-    charge = Billing::Charge.where(uid: params[:referenceCode]).take
+    charge = Billing::Charge.where(uid: params[:reference_sale]).take
     if charge.nil?
       render nothing: true, status: :unprocessable_entity
       return
     end
 
-    if response_signature(charge) == params[:sign]
+    if confirm_signature(charge) == params[:sign]
       update_status(charge, params[:state_pol])
       update_payment_method(charge, params[:payment_method_type])
-      head :no_content
+      head :ok
     else
       charge.error!
       render nothing: true, status: :unprocessable_entity
@@ -36,6 +36,12 @@ class Billing::PayuController < ApplicationController
       Digest::MD5.hexdigest(msg)
     end
 
+    def confirm_signature(charge)
+      new_value = sprintf("%.1f", BigDecimal(params[:value]))
+      msg = "#{ENV['PAYU_API_KEY']}~#{params[:merchant_id]}~#{params[:reference_sale]}~#{new_value}~#{params[:currency]}~#{params[:state_pol]}"
+      Digest::MD5.hexdigest(msg)
+    end
+
     def update_status(charge, status)
       if status == "4"
         charge.paid!
@@ -43,6 +49,7 @@ class Billing::PayuController < ApplicationController
         charge.pending!
       elsif status == "6"
         charge.rejected!
+        charge.update(error_message: params[:response_message_pol])
       end
     end
 
