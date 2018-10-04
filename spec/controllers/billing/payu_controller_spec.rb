@@ -7,10 +7,10 @@ RSpec.describe Billing::PayuController, type: :controller do
         charge = create(:charge, :created)
 
         post :confirm, params: {
-          state_pol: 4,
-          response_code_pol: 1,
+          state_pol: "4",
+          response_code_pol: "1",
           response_message_pol: "APPROVED",
-          payment_method_type: 4,
+          payment_method_type: "4",
           merchant_id: ENV['PAYU_MERCHANT_ID'],
           reference_sale: charge.uid,
           currency: "COP",
@@ -31,10 +31,10 @@ RSpec.describe Billing::PayuController, type: :controller do
         charge = create(:charge, :created)
 
         post :confirm, params: {
-          state_pol: 6,
-          response_code_pol: 5,
+          state_pol: "6",
+          response_code_pol: "5",
           response_message_pol: "ENTITY_DECLINED",
-          payment_method_type: 2,
+          payment_method_type: "2",
           merchant_id: ENV['PAYU_MERCHANT_ID'],
           reference_sale: charge.uid,
           currency: "COP",
