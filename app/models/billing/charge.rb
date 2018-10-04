@@ -22,6 +22,13 @@
 #
 
 class Billing::Charge < ApplicationRecord
+  enum payment_method: [:unknown, :credit_card, :debit_card, :pse, :cash, :referenced, :transfer]
+  enum status: [:created, :pending, :paid, :rejected, :error]
+
+  before_create :generate_uid
+  after_initialize :default_values
+  after_save :handle_after_save
+
   hstore_accessor :details,
     first_name: :string,
     last_name: :string,
@@ -37,13 +44,6 @@ class Billing::Charge < ApplicationRecord
     stack_trace: :string,
     attempts: :integer,
     ip: :string
-
-  enum payment_method: [:unknown, :credit_card, :debit_card, :pse, :cash, :referenced, :transfer]
-  enum status: [:created, :pending, :paid, :rejected, :error]
-
-  before_create :generate_uid
-  after_initialize :default_values
-  after_save :handle_after_save
 
   private
     def generate_uid
