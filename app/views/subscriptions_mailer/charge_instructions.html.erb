@@ -1,6 +1,6 @@
 <p>Hola <%= @charge.first_name %>,</p>
 
-<p>Gracias por tu interés en el curso de <strong>React y Redux</strong>. Las siguientes son las instrucciones de pago para activar tu cuenta:</p>
+<p>Gracias por tu interés en el curso de <strong>Express y MongoDB</strong>. Las siguientes son las instrucciones de pago para activar tu cuenta:</p>
 
 <ol>
   <li>Realiza una consignación o transferencia a la Cuenta de Ahorros número <strong>379-284940-56</strong> de Bancolombia a nombre de La Nueva Educación SAS (Nit 900.752.738-8) por valor de <%= @charge.currency %> <%= number_to_currency @charge.amount, precision: 0 %>.</li>
