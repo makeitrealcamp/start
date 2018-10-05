@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: questions
+#
+#  id          :integer          not null, primary key
+#  quiz_id     :integer
+#  type        :string
+#  data        :json
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  published   :boolean
+#  explanation :text
+#
+# Indexes
+#
+#  index_questions_on_quiz_id  (quiz_id)
+#
+
 FactoryGirl.define do
   factory :multi_answer_question, class: Quizer::MultiAnswerQuestion do
     quiz { create(:quiz) }

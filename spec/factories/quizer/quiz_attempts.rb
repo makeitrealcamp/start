@@ -1,17 +1,20 @@
 # == Schema Information
 #
-# Table name: quiz_quiz_attempts
+# Table name: quiz_attempts
 #
-#  id           :integer          not null, primary key
-#  user_id      :integer
-#  quiz_quiz_id :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id               :integer          not null, primary key
+#  user_id          :integer
+#  quiz_id          :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  status           :integer
+#  score            :decimal(, )
+#  current_question :integer          default(0)
 #
 # Indexes
 #
-#  index_quiz_quiz_attempts_on_quiz_quiz_id  (quiz_quiz_id)
-#  index_quiz_quiz_attempts_on_user_id       (user_id)
+#  index_quiz_attempts_on_quiz_id  (quiz_id)
+#  index_quiz_attempts_on_user_id  (user_id)
 #
 
 FactoryGirl.define do

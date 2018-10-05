@@ -15,7 +15,7 @@
 #
 #  index_solutions_on_challenge_id  (challenge_id)
 #  index_solutions_on_user_id       (user_id)
-#  solutions_gin_properties         (properties)
+#  solutions_gin_properties         (properties) USING gin
 #
 
 class Solution < ApplicationRecord
