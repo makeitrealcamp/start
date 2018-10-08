@@ -27,7 +27,7 @@
     background: #1976D2;
     background-size: 100px auto;
     color: white;
-    padding: 0 0 50px;
+    padding: 0 0 40px;
     overflow: hidden;
 
     header { margin-bottom: 40px; }
@@ -288,15 +288,14 @@
     }
 
     .header-image {
-      padding: 10px 10px 0;
-      background: #2CA830;
+      padding: 10px;
+      background: #1976D2;
       border-radius: 5px;
-      text-align: center;
 
-      .header-icon {
-        color: white;
-        font-size: 48px;
-        margin-left: 10px;
+      img {
+        width: 60px;
+
+        &.spin { animation: logo-spin 2s infinite linear; }
       }
     }
 

@@ -28,18 +28,30 @@ class Billing::ChargesController < ApplicationController
     end
 
     def charge_data
-      {
-        description: "Separación curso de Express y MongoDB",
-        amount: 500_000,
-        tax: 0,
-        tax_percentage: 0,
-        currency: "COP",
-        ip: request.remote_ip
-      }
+      courses[params[:course].to_sym].merge({ ip: request.remote_ip })
     end
 
     def signature(charge)
       msg = "#{ENV['PAYU_API_KEY']}~#{ENV['PAYU_MERCHANT_ID']}~#{charge.uid}~500000~COP"
       Digest::MD5.hexdigest(msg)
+    end
+
+    def courses
+      {
+        nodejs: {
+          description: "Separación curso de Express y MongoDB",
+          amount: 500_000,
+          tax: 0,
+          tax_percentage: 0,
+          currency: "COP",
+        },
+        react: {
+          description: "Separación curso de React y Redux",
+          amount: 500_000,
+          tax: 0,
+          tax_percentage: 0,
+          currency: "COP",
+        }
+      }
     end
 end
