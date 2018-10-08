@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="header">
-        <div class="header-image"> <span class="icon icon-nodejs header-icon"></span></div>
+        <div class="header-image"><%= image_tag "react-logo.png", class: "header-logo" %></div>
         <div class="header-info">
           <h3>Separación cupo</h3>
           <p class="price">$500,000 <small>COP</small></p>
@@ -16,7 +16,7 @@
 
       <form id="registration-form" action="/billing/charges" method="post">
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-        <input type="hidden" name="course" value="nodejs">
+        <input type="hidden" name="course" value="react">
 
         <div class="modal-body">
           <div class="step-1">

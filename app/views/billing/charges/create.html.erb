@@ -1,7 +1,7 @@
 <form method="post" action="<%= ENV['PAYU_URL'] %>">
   <input name="merchantId"    type="hidden"  value="<%= ENV['PAYU_MERCHANT_ID'] %>">
   <input name="accountId"     type="hidden"  value="<%= ENV['PAYU_ACCOUNT_ID'] %>">
-  <input name="description"   type="hidden"  value="Curso de Express y MongoDB">
+  <input name="description"   type="hidden"  value="<%= @charge.description %>">
   <input name="referenceCode" type="hidden"  value="<%= @charge.uid %>">
   <input name="amount"        type="hidden"  value="500000">
   <input name="tax"           type="hidden"  value="0">

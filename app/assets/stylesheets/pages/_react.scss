@@ -1,0 +1,387 @@
+.new-site.react {
+  .header-register {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: white;
+    width: 100%;
+    padding: 17px 10px 10px;
+    z-index: 100;
+    box-shadow: 1px 0 7px #666;
+
+    img {
+      width: 120px;
+      @media (min-width: $screen-sm-min) { width: 160px; }
+    }
+
+    .btn-primary {
+      float: right;
+      font-size: 11px;
+
+      @media (min-width: $screen-sm-min) { font-size: 14px; }
+    }
+  }
+
+  .program-header {
+    background: #1976D2;
+    background-size: 100px auto;
+    color: white;
+    padding: 0 0 40px;
+    overflow: hidden;
+
+    header { margin-bottom: 40px; }
+
+    .container {
+      position: relative;
+    }
+
+    h1 {
+      font-size: 48px;
+      line-height: 1.2;
+
+      small {
+        display: block;
+        color: #DFE6F5;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 7px;
+      }
+    }
+
+    .tagline {
+      p {
+        font-size: 21px;
+        font-weight: 300;
+
+        strong { font-weight: normal; }
+      }
+
+      .btn-register { margin-top: 30px; }
+    }
+
+    img.react-logo {
+      position: absolute;
+      top: -45%;
+      left: 40%;
+      width: 900px;
+      animation: logo-rotate 3s linear;
+      transform: rotate(45deg);
+    }
+
+    .program-data {
+      img {
+        max-width: 100%;
+
+        @media (min-width: $screen-sm-min) { max-width: 530px; }
+        @media (min-width: $screen-md-min) { max-width: 100%; }
+        @media (min-width: $screen-lg-min) { max-width: 530px; }
+      }
+    }
+  }
+
+  h2 {
+    color: #f04500;
+    font-size: 24px;
+    text-align: left;
+    padding: 0;
+    margin-bottom: 30px;
+    margin-top: 20px;
+  }
+
+  .program-info {
+    padding-top: 50px;
+    padding-bottom: 40px;
+
+    .panel {
+      margin-bottom: 30px;
+
+      h3 {
+        text-align: left;
+        font-size: 18px;
+        margin-bottom: 0;
+      }
+
+      .table td {
+        padding: 10px 15px;
+      }
+
+      .subject-detail {
+        color: #999;
+        font-size: 0.9rem;
+        margin-top: 5px;
+      }
+    }
+
+    .aside {
+      padding: 20px;
+      font-size: 16px;
+      background: white;
+      border: 1px solid #ddd;
+      margin-bottom: 30px;
+      margin-top: 15px;
+
+      &.inverted {
+        background: #002240;
+        color: white;
+        border: 1px solid white;
+
+        p { color: white; }
+
+        .action-wrapper {
+          margin: 20px 0 10px;
+
+          .btn-register { width: 100%; }
+        }
+
+        .price-tag {
+          font-size: 24px;
+          text-align: center;
+
+          .old-price {
+            text-decoration: line-through;
+            opacity: 0.5;
+          }
+        }
+
+      }
+
+      h4 {
+        font-size: 18px;
+        font-weight: normal;
+        text-align: left;
+        margin-top: 0;
+        margin-bottom: 20px;
+      }
+
+      p { font-size: 14px; }
+
+      ul {
+        list-style: none;
+        margin-top: 18px;
+        padding-left: 35px;
+
+        li {
+          margin-bottom: 10px;
+          font-size: 14px;
+
+          &:before {
+            content: "✓";
+            color: #1976D2;
+            font-size: 21px;
+            font-weight: bold;
+            padding-right: 15px;
+            margin-left: -30px;
+            margin-top: 3px;
+          }
+        }
+      }
+    }
+  }
+
+  .section-mentors {
+    padding-top: 60px;
+    padding-bottom: 50px;
+    .profile-image img { width: 150px; border: 1px solid #f04500; }
+    .profile {
+      margin-bottom: 50px;
+
+      h3 {
+        margin-top: 20px;
+        margin-bottom: 30px;
+
+        small {
+          display: block;
+          margin-top: 7px;
+        }
+      }
+
+      p {
+        font-size: 16px;
+        @media (min-width: $screen-sm-min) { padding: 0 30px; }
+      }
+    }
+  }
+
+  .section-location {
+    position: relative;
+    background-color: #005e9f;
+    background-position: 35% center;
+    background-size: cover;
+
+    padding-bottom: 0;
+    height: 300px;
+
+    &.workiaastorga { background-image: image-url("workia-astorga-map.jpg"); }
+
+    img { width: 100%; }
+
+    .location-data {
+      position: absolute;
+      bottom: 0;
+      background: rgba(48, 48, 48, 0.7);
+      color: white;
+      font-size: 18px;
+      padding: 15px 30px;
+      width: 100%;
+
+      .location-dir {
+        color: #ccc;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+
+      a {
+        color: white;
+
+        &:hover, &:active { text-decoration: underline; }
+      }
+    }
+  }
+
+  .faqs {
+    padding-top: 60px;
+
+    .question {
+      margin: 30px 0 50px;
+
+      h3 {
+        color: #666;
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        text-align: left;
+      }
+
+      p, ul, ol {
+        color: #666;
+        font-size: 16px;
+        line-height: 1.5;
+
+        // @media (min-width: $screen-md-min) { font-size: 18px; }
+      }
+
+      li { margin-bottom: 7px; }
+    }
+  }
+
+  .nodejs-magnet {
+    padding-top: 70px;
+    padding-bottom: 70px;
+
+    p.subhead {
+      color: #ddd;
+      margin-bottom: 60px;
+    }
+
+    .btn {
+      border-radius: 0;
+      padding: 15px 40px;
+    }
+  }
+
+  #registration-modal {
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 25px;
+    }
+
+    .header-image {
+      padding: 10px;
+      background: #1976D2;
+      border-radius: 5px;
+
+      img {
+        width: 60px;
+
+        &.spin { animation: logo-spin 2s infinite linear; }
+      }
+    }
+
+    .header-info {
+      padding: 5px 10px;
+      margin-left: 15px;
+
+      h3 {
+        font-size: 21px;
+        margin-top: 0;
+        margin-bottom: 7px;
+      }
+
+      p.price {
+        color: $brand_primary;
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 0;
+
+        small { font-weight: normal; }
+
+        .old-price {
+          text-decoration: line-through;
+          opacity: 0.5;
+        }
+      }
+    }
+
+    .header-step {
+      display: flex;
+
+      > div {
+        flex: 1;
+        background: #CCC;
+        height: 1px;
+        margin: 0 2px;
+
+        &.active { background: $brand_primary; }
+      }
+    }
+
+    .modal-body {
+      padding: 20px 25px;
+
+      .input-group-addon {
+        background: white;
+
+        .glyphicon { color: #1976D2; }
+      }
+
+      .mobile-wrapper { display: none; }
+
+      .clean-invoice { color: #1976D2; }
+
+      p { margin-bottom: 20px; }
+
+      .payment-method {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+      }
+
+      .payment-method-title {
+        font-weight: 600;
+        margin-top: 25px;
+      }
+
+      .secure-payment {
+        color: #999;
+        font-size: 14px;
+        margin-bottom: 0px;
+      }
+
+      .step-3 .instructions { font-weight: bold; }
+    }
+
+    .modal-footer {
+      padding: 20px 25px;
+
+      .back {
+        display: none;
+        float: left;
+        color: #999;
+        border: 1px solid #ccc;
+        padding: 9px 14px;
+      }
+    }
+  }
+}
