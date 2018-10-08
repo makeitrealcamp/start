@@ -69,6 +69,12 @@
                   <span class="text-menu">Express y MongoDB</span>
                 <% end %>
               </li>
+              <li class="<%= 'active' if params[:action] == 'react_medellin' %>">
+                <%= link_to courses_react_redux_medellin_path do %>
+                  <span class="icon icon-reactjs icon-menu" style="font-size: 22px; color: #5daecc; margin-left: 4px; margin-right: 3px; height: 35px;"></span>
+                  <span class="text-menu">React y Redux</span>
+                <% end %>
+              </li>
             </ul>
           </li>
           <li class="<%= 'active' if params[:action] == 'makers' %>"><%= link_to "Alumnos", makers_path %></li>

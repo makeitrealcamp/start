@@ -1,0 +1,294 @@
+<% content_for :head do %>
+  <meta property="og:title" content="Curso de React y Redux" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="En este curso presencial de 30 horas aprenderás a crear aplicaciones Web con React y Redux" />
+  <meta property="og:image" content="<%= image_url('nodejs-medellin-cover.jpg') %>" />
+<% end %>
+
+<div class="new-site course react">
+  <%= render "pages/header_register", btn_text: "RESERVA TU CUPO" %>
+
+  <div class="program-header">
+    <%= render "layouts/navbar/pages_transparent", hide_login: true %>
+    <div class="container">
+      <%= image_tag "react-logo.png", class: "react-logo" %>
+      <div class="row">
+        <div class="col-md-6 tagline">
+          <h1><small>EDICIÓN MEDELLÍN</small>REACT Y REDUX</h1>
+          <p>En este <strong>curso presencial</strong> aprenderás ES2015, React, Redux y pruebas automatizadas con Jest y Enzyme.</p>
+        </div><!--/tagline-program -->
+        <div class="col-md-6 text-center program-data">
+          <%= image_tag "react-medellin.png" %>
+        </div>
+      </div><!--/row -->
+    </div><!--/container -->
+  </div><!--/program-intro -->
+
+  <div class="program-info section">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-5 col-md-4">
+          <div class="aside">
+            <h4>Requisitos:</h4>
+
+            <p>Para sacar el mayor provecho de este curso debes tener conocimientos en:</p>
+
+            <ul>
+              <li>HTML y CSS</li>
+              <li>JavaScript</li>
+            </ul>
+          </div>
+
+          <div class="aside">
+            <h4>Incluye:</h4>
+
+            <ul>
+              <li>30 horas presenciales de trabajo práctico guiado.</li>
+              <li>Acceso al módulo de React y Redux de nuestra plataforma de aprendizaje con retos, recursos y proyectos durante 9 meses.</li>
+            </ul>
+          </div>
+
+          <div class="aside inverted">
+            <% if @valid_coupon %>
+              <p class="text-center">Esta promoción expira en <%= distance_of_time_in_words(DateTime.current, @coupon.expires_at) %>!</p>
+            <% else %>
+              <p class="text-center">Valor separación cupo:</p>
+            <% end %>
+            <p class="price-tag">$500,000*</p>
+
+            <div class="action-wrapper text-center">
+              <button class="btn btn-primary btn-register">RESERVA TU CUPO</button>
+            </div>
+
+            <p><small>* Pesos colombianos. Impuestos incluídos</small></p>
+          </div>
+
+          <div class="aside">
+            <h4>¿Preguntas?</h4>
+            <div style="display: flex; align-items: center; margin: 10px 0 10px;">
+              <div style="padding: 5px;">
+                <%= image_tag "people/carolina-hernandez-grey.jpg", class: "img-circle", width: 60, style: "border: 1px solid #f04500;" %>
+              </div>
+              <div style="font-size: 0.9rem; color: #666; margin-left: 15px;">
+                <div style="font-weight: 600; color: #333; margin-bottom: 3px;">Carolina Hernandez</div>
+                <div>Asesora Académica</div>
+              </div>
+            </div>
+            <p>Escríbeme a <a href="mailto:carolina.hernandez@makeitreal.camp">carolina.hernandez@makeitreal.camp</a> para solucionar todas tus dudas o inquietudes.</p>
+          </div>
+        </div>
+
+        <div class="col-sm-7 col-md-8">
+          <h2>Temas</h2>
+
+          <div class="panel panel-default">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>
+                    ES6 / ES2015
+                    <div class="subject-detail">Conocerás las nuevas características de JavaScript como funciones flecha y clases, entre otras.</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Primeros pasos con React
+                    <div class="subject-detail"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    JSX
+                    <div class="subject-detail">Trabaja con esta extensión de JavaScript para definir el markup de componentes</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Componentes
+                    <div class="subject-detail">Aprender a crear componentes y manejar su estado (propiedades)</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Inmutabilidad
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Manejo de formularios
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Peticiones HTTP con Axios
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    React Router
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Introducción a Redux
+                    <div class="subject-detail">Conoce esta librería que nos facilita la comunicación entre componentes.</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Integrando redux a una aplicación de React
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Funciones reductoras
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Action creators
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Usando la librería react-redux
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Middlewares
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Operaciones asincrónicas con redux-thunk
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Combinando funciones reductoras
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Escribiendo pruebas automatizadas con Jest y Enzyme
+                    <div class="subject-detail">Aprender a escribir pruebas automatizadas para tus componentes, funciones reductoras, action creators y pruebas de sistema.</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a name="mentors"></a>
+  <div class="section section-white section-bordered section-mentors">
+    <div class="container">
+      <h2>Conoce a tus mentores</h2>
+
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 clearfix">
+          <div class="profile-image text-center">
+            <%= image_tag "people/german-escobar.png", class: "img-circle" %>
+          </div>
+
+          <div class="profile">
+            <h3>Germán Escobar <small>Curriculum Developer</small></h3>
+            <p class="text-center">Programador y emprendedor con una <a href="http://germanescobar.com/2014/06/02/la-nueva-educacion" target="_blank">visión particular de la educación</a>. Co-fundador de <a href="http://elibom.com/?utm_source=full-stack-medellin&utm_medium=web&utm_campaign=Make%20it%20Real" target="_blank">elibom.com</a> y fundador de <a href="http://www.makeitreal.camp/?utm_source=aprende-desarrollo-web&utm_medium=web&utm_campaign=inbound" target="_blank">makeitreal.camp</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a name="location"></a>
+  <div class="section section-transparent section-location workiaastorga">
+    <div class="location-data">
+      <div class="container">
+        <a href="https://workia.space/?utm_source=nodejs-medellin&utm_medium=web&utm_campaign=make-it-real" target="_blank">Workia Astorga</a>
+        <div class="location-dir">Cll 7d # 43c - 134, Medellín, Antioquia - <a href="https://www.google.com/maps/place/Workia+%7C+Astorga/@6.2087592,-75.57114,17z/data=!4m5!3m4!1s0x8e44282ad3055b19:0xc79fa2d4c3232f1b!8m2!3d6.2092445!4d-75.573849" target="_blank">Google Maps</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section section-bordered section-white faqs">
+    <div class="container">
+      <h2>Preguntas frecuentes</h2>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <section class="question">
+            <h3>¿Por qué existe Make it Real?</h3>
+            <p>Por dos razones principalmente. Por un lado existe una desconexión entre la academia y la industria. Las empresas no están encontrando las personas con los conocimientos que necesitan, pero muchos profesionales siguen sin empleo.</p>
+            <p>La segunda razón es que, desafortunadamente, la mayoría de la educación está mal implementada. La clase magistral y las calificaciones son obsoletas. Creemos que es el momento de repensar la educación.</p>
+          </section><!--/question -->
+
+          <section class="question">
+            <h3>¿Cómo sé si este curso es para mi?</h3>
+            <p>El curso está diseñado para personas que han desarrollado aplicaciones Web con otros lenguajes (Ruby, Java, Python, etc.) o ex-alumnos del programa Full Stack de Make it Real.</p>
+            <p>Si hasta ahora estás iniciando tu aprendizaje o sabes programar pero nunca has desarrollado aplicaciones Web te recomendamos tomar nuestro <a href="/#programs">programa Full Stack primero (online o presencial)</a>.</p>
+          </section><!--/question -->
+
+          <section class="question">
+            <h3>Si separo mi cupo y no puedo tomar el curso ¿me devuelven el dinero?</h3>
+            <p>El valor del cupo no es reembolsable a menos de que por alguna razón el curso no se lleve a cabo en la fecha prevista. Si vas a separar tu cupo te recomendamos que estés seguro(a) que lo puedes tomar.</p>
+          </section><!--/question -->
+        </div>
+
+        <div class="col-sm-6">
+          <section class="question">
+            <h3>¿Qué necesito para hacer el curso?</h3>
+            <ul>
+              <li>Un computador personal, preferiblemente con sistema operativo OS X (Mac) o Linux.</li>
+              <li>Y muchas ganas de aprender!</li>
+            </ul>
+          </section><!--/question -->
+
+          <section class="question">
+            <h3>¿Qué formas de pago aceptan?</h3>
+            <p>Puedes pagar con tarjeta de crédito o débito. También por consignación o transferencia.</p>
+          </section><!--/question -->
+
+          <section class="question">
+            <h3>¿Me ayudarán a conseguir empleo?</h3>
+            <p>No. Si estás interesado en un programa que te ayude a conseguir empleo te recomendamos nuestro programa <a href="/full-stack-online">Full Stack Online</a> que incluye una garantía de empleo.</p>
+          </section><!--/question -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section section-dark nodejs-magnet">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1 text-center">
+          <p class="subhead" style="margin-top: 10px;">Te garantizamos la educación de la más alta calidad!</p>
+          <button class="btn btn-primary btn-register">RESERVA TU CUPO AHORA!</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%= render "footer" %>
+
+  <%= render "nodejs_modal" %>
+</div>
+
+<script type="text/javascript">
+  $(document).on("turbolinks:load", window.initMedellinProgramPage);
+  $(document).on("turbolinks:click", function() {
+    $(document).off("turbolinks:load", window.initMedellinProgramPage);
+  });
+
+  $(document).on("turbolinks:load", function() {
+    var courseLandingView = new CourseLandingView();
+
+    $('.btn-register').on('click', function(e) {
+      e.preventDefault();
+
+      courseLandingView.render();
+    });
+  });
+</script>

@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get "elite", to: "pages#elite"
   get "courses/react-redux", to: "pages#react_redux"
   get "courses/nodejs-mongodb/medellin", to: "pages#nodejs_medellin"
+  get "courses/react-redux/medellin", to: "pages#react_medellin"
 
   post "application/top", to: "pages#create_top_applicant"
 
