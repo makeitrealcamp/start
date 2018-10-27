@@ -22,3 +22,18 @@
     }
   }
 }
+
+.whatsapp {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 15px;
+
+  @media(min-width: $screen-md-min) { padding: 20px; }
+
+  img {
+    width: 50px;
+
+    @media(min-width: $screen-md-min) { width: 60px; }
+  }
+}
