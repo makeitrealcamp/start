@@ -70,10 +70,12 @@ class Evaluator::Nodejs < Evaluator::Base
     def handle_test_failure(result_path)
       result_file = File.read(result_path)
       result = JSON.parse(result_file)
-      tests = result["examples"].reject { |test| test["status"] != "failed" }
-
-      test = tests[0]
-      message = "#{test['exception']['message']}"
-      fail(message)
+      failures = result["stats"]["failures"]
+      if failures > 0
+        message = "#{result["failures"][0]["err"]["message"]}\n\n"
+        message += result["failures"][0]["err"]["stack"]
+        message = message.gsub("/ukku/data/", "")
+        fail(solution, message)
+      end
     end
 end

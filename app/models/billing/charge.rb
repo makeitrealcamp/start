@@ -63,7 +63,7 @@ class Billing::Charge < ApplicationRecord
       if status_was != status && self.paid?
         SubscriptionsMailer.course_welcome(self).deliver_later
         begin
-          ConvertLoop.people.create_or_update(email: self.email, add_to_segments: ["Express y MongoDB"])
+          ConvertLoop.people.create_or_update(email: self.email, add_to_segments: ["React y Redux"])
         rescue => e
           Rails.logger.error "Couldn't send user #{self.email} to ConvertLoop: #{e.message}"
         end
