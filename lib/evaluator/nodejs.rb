@@ -75,7 +75,7 @@ class Evaluator::Nodejs < Evaluator::Base
         message = "#{result["failures"][0]["err"]["message"]}\n\n"
         message += result["failures"][0]["err"]["stack"]
         message = message.gsub("/ukku/data/", "")
-        fail(solution, message)
+        fail(message)
       end
     end
 end
