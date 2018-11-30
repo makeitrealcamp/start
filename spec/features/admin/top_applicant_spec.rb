@@ -26,7 +26,7 @@ RSpec.feature "top_applicant", type: :feature do
 
     find("#applicant-#{applicant.id} .cell-action a").click
 
-    fill_in "note_applicant_activity_body", with: "Esta es la primera nota del día"
+    fill_in "activity-value", with: "Esta es la primera nota del día"
     click_on "Agregar Nota"
 
     within :css, ".activities" do
