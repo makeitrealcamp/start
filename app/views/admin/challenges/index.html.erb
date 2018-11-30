@@ -7,8 +7,11 @@
       </li>
     <% end %>
   </ul>
-
     <div class="tab-content">
+      <div class="text-right">
+      <%= link_to "<span class='glyphicon glyphicon-plus'></span> Nuevo Reto".html_safe, new_subject_challenge_path(@subject), class: "btn btn-success" %>
+     </div>  
+     <br>   
       <% @paths.each_with_index do |path, i| %>
         <div role="tabpanel" class="path tab-pane <%= 'active' if i == 0 %>" id="path-<%= path.id %>">
           <% path.phases.published.order(:row).each do |phase| %>
@@ -16,22 +19,24 @@
               <% phase.subjects.published.order(:row).each do |subject| %>
                 <div class="panel panel-default subject">
                   <div class="panel-heading"><%= subject.name %></div>
-                  <table class="table">
+                  <table class="table summary">
                     <thead>
                       <tr>
                         <th>Nombre</th>
                         <th class="text-center">Usuarios</th>
                         <th class="text-center">Efectividad</th>
                         <th class="text-center">Promedio de intentos</th>
+                        <th class="text-center"> </th>
                       </tr>
                     </thead>
                     <tbody>
                       <% subject.challenges.order(:row).each_with_index do |challenge, percentage| %>
-                        <tr class="<%= challenge.published? ? "" : "unpublished" %>">
+                        <tr id="summary-<%= challenge.id %>" class="<%= challenge.published? ? "" : "unpublished"%> challenge summary" data-sortable="true" draggable="true" data-index="<%= percentage %>">
                           <td><%= challenge.name %></td>
                           <td class="text-center"><span class="challenge-users"><%= challenge.solutions.where("attempts > ?", 0).count %></span></td>
                           <td class="text-center"><%= challenge_effectiveness(challenge) %></td>
                           <td class="text-center"><%= challenge_attempts_average(challenge) %></td>
+                          <td class="text-right"><%= render '/shared/challenge_actions', challenge: challenge %></td>
                         </tr>
                       <% end %>
                     </tbody>
@@ -44,3 +49,16 @@
       <% end %>
     </div>
 </div>
+
+<script type="text/javascript">
+  (function() {
+    var sortables = [
+      new SortableView({ el: ".summary", resource: "admin/challenges" }),
+    ];
+    $(document).on("turbolinks:click", function() {
+      _.each(sortables, function(sortable) {
+        sortable.remove();
+      })
+    });
+  })();
+</script>

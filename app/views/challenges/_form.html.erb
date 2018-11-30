@@ -94,7 +94,7 @@
           </div>
 
           <div class="action-buttons text-right">
-            <%= link_to "Volver", @challenge.subject, class: "btn btn-default" %>
+            <%= link_to "Volver", admin_challenges_path, class: "btn btn-default" %>
             <%= f.submit @challenge.new_record? ? "Crear Reto" : "Editar Reto", class: "btn btn-primary" %>
           </div>
         </div>
