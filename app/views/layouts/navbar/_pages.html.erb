@@ -56,21 +56,6 @@
               </li>
             </ul>
           </li>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-              Cursos <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li role="separator" class="divider"></li>
-              <li class="program-menu-divider"><span>MEDELLÍN</span></li>
-              <li class="<%= 'active' if params[:action] == 'react_medellin' %>">
-                <%= link_to courses_react_redux_medellin_path do %>
-                  <span class="icon icon-reactjs icon-menu" style="font-size: 22px; color: #5daecc; margin-left: 4px; margin-right: 3px; height: 35px;"></span>
-                  <span class="text-menu">React y Redux</span>
-                <% end %>
-              </li>
-            </ul>
-          </li>
           <li class="<%= 'active' if params[:action] == 'makers' %>"><%= link_to "Alumnos", makers_path %></li>
           <li class="<%= 'active' if params[:action] == 'faq' %>"><%= link_to "FAQ", faq_path %></li>
           <li><a href="http://blog.makeitreal.camp/">Blog</a></li>
