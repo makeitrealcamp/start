@@ -11,7 +11,5 @@ class Admin::ChallengesController < ApplicationController
     end
 
     @challenges = @challenges.limit(100)
-    @subject = Subject.find_by(params[:id])
   end
 end
- 

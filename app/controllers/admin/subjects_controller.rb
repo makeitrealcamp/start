@@ -8,5 +8,5 @@ class Admin::SubjectsController < ApplicationController
   def update_position
     @subject = Subject.update(params[:id], row_position: params[:position])
     render nothing: true, status: 200
-  end  
+  end
 end

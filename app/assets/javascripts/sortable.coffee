@@ -14,7 +14,7 @@ class SortableView extends Backbone.View
 
   handle_drag_start: (e)->
     $target = $(e.currentTarget)
-    $target.css("opacity",0.4)
+    $target.css("opacity", 0.4)
     e.originalEvent.dataTransfer.setData("source_id", $target.attr("id"))
 
   handle_drag_over: (e)->

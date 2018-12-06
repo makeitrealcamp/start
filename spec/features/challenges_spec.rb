@@ -46,8 +46,8 @@ RSpec.feature "Challenges", type: :feature do
     all(:css, '.actions a .glyphicon.glyphicon-remove').first.click
     page.driver.browser.switch_to.alert.accept
 
-    expect(page).to have_selector('.challenge', count: 3)
-    expect(Challenge.count).to eq 3
+    expect(page).to have_selector('.challenge', count: 2)
+    expect(Challenge.count).to eq 2
   end
 
   scenario "preview challenge", js: true do
