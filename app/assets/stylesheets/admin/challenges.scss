@@ -15,9 +15,18 @@
     tr.unpublished td { color: #999; }
   }
 
-  .subject { margin-bottom: 40px; }
+  .subject {
+    margin-bottom: 40px;
 
-  .panel-heading { font-weight: bold; }
+    .panel-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+
+      .btn { padding: 6px 10px; }
+    }
+  }
 
   .tab-content {
     background: white;

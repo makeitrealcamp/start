@@ -42,7 +42,7 @@ RSpec.feature "Challenges", type: :feature do
 
     login(admin)
 
-    visit subject_path(subject)
+    visit admin_challenges_path
     all(:css, '.actions a .glyphicon.glyphicon-remove').first.click
     page.driver.browser.switch_to.alert.accept
 
