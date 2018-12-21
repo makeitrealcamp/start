@@ -5,16 +5,16 @@
 
       <% if current_user.is_admin? || current_user.paid_account? %>
         <% @subject.challenges.for(current_user).order(:row).each_with_index do |challenge, index| %>
+          <% if challenge.published? %>
           <div id="challenge_<%= challenge.id %>" class="challenge clearfix <%= challenge_class(challenge) %>" data-index="<%= index %>" data-location="<%= url_for([@subject, challenge]) %>" data-sortable="true" data-resource-id="<%=challenge.id %>">
-            <% if challenge.published? %>
             <div class="challenge-status">
               <span class="glyphicon glyphicon-ok"></span>
             </div>
             <div class="challenge-title">
               <%= link_to challenge.name, [@subject, challenge] %>
             </div>
-          <% end %>
           </div>
+         <% end %>
         <% end %>
       <% else %>
         <% @subject.challenges.for(current_user).order(:row).each_with_index do |challenge, index| %>
