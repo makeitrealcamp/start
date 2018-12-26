@@ -9,7 +9,7 @@
 
       <!-- Nav tabs -->
       <ul class="nav nav-tabs" role="tablist">
-        <% @paths.each_with_index do |path,i| %>
+        <% @paths.each_with_index do |path, i| %>
           <li class="<%= 'active' if i == 0 %>" role="presentation">
             <a href="#path-<%= path.id %>" role="tab" data-toggle="tab"><%= path.name %></a>
           </li>
