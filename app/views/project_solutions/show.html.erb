@@ -35,7 +35,11 @@
         <% if current_user.is_admin? %>
           <%= form_for(:point, url: assign_points_admin_project_solution_path(@project_solution), html: { class: "form-inline add-points-form"}) do |f| %>
               <%= f.number_field :points, value: @project_solution.project.point_value, class: "form-control" %>
-              <%= f.submit "Agregar puntos", class: "btn btn-primary" %>
+              <%= f.submit "Agregar puntos", class: "btn btn-primary" %><br><br>
+              <h1 class="media-heading">Explicación del proyecto: </h1>
+              <p>
+               <%= markdown @project.explanation_text %>
+              </p>
           <% end %>
         <% end %>
         <% if @project_solution.user == current_user %>
