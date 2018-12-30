@@ -15,6 +15,7 @@ class Admin::ProjectSolutionsController < ApplicationController
       @solutions = @solutions.where(user_id: User.search(@q[:user]))
     end
   end
+
   def assign_points
     @project_solution = ProjectSolution.find(params[:id])
     @user = @project_solution.user

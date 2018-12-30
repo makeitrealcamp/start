@@ -12,3 +12,43 @@
     }
   }
 }
+
+.project-solution {
+  .instructions {
+    background: white;
+    border: 1px solid #ddd;
+    margin: 30px 0;
+
+    header {
+      font-size: 1.2rem;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .instructions-body {
+      padding: 10px 20px;
+
+      .video-wrapper { margin-bottom: 20px; }
+
+      p, li {
+        color: #666;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      li { margin-bottom: 12px;}
+
+      .highlight { margin: 20px 0; }
+
+      img {
+        max-width: 100%;
+        border: 1px solid #eee;
+        padding: 5px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  .comments { margin-top: 20px; }
+}

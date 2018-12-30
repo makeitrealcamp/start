@@ -34,12 +34,8 @@
         <span class="label label-info"><%= @project_solution.point_value %> puntos</span>
         <% if current_user.is_admin? %>
           <%= form_for(:point, url: assign_points_admin_project_solution_path(@project_solution), html: { class: "form-inline add-points-form"}) do |f| %>
-              <%= f.number_field :points, value: @project_solution.project.point_value, class: "form-control" %>
-              <%= f.submit "Agregar puntos", class: "btn btn-primary" %><br><br>
-              <h1 class="media-heading">Explicación del proyecto: </h1>
-              <p>
-               <%= markdown @project.explanation_text %>
-              </p>
+            <%= f.number_field :points, value: @project_solution.project.point_value, class: "form-control" %>
+            <%= f.submit "Agregar puntos", class: "btn btn-primary" %>
           <% end %>
         <% end %>
         <% if @project_solution.user == current_user %>
@@ -56,6 +52,20 @@
         <%= markdown @project_solution.summary %>
       </p>
 
+      <% if current_user.is_admin? %>
+        <div class="instructions">
+          <header>Instrucciones</header>
+          <div class="instructions-body">
+            <% unless @project.explanation_video_url.blank? %>
+              <div class="video-wrapper">
+                <%= embedded_video(@project.explanation_video_url, user: current_user) %>
+              </div>
+            <% end %>
+            
+            <%= markdown @project.explanation_text %>
+          </div>
+        </div>
+      <% end %>
     </div>
 
     <div class="col-xs-12 col-md-5 expand">
