@@ -54,4 +54,15 @@ class Project < ApplicationRecord
   def to_html_description
     "el proyecto #{to_html_link} del tema #{subject.to_html_link}"
   end
+
+  def num_reviewed_solutions
+    self.project_solutions.reviewed.count
+  end
+
+  def average_points
+    count = num_reviewed_solutions
+    return 0 if count == 0
+
+    self.points.sum(:points) / count
+  end
 end

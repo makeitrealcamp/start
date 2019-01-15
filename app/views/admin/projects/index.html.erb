@@ -22,18 +22,18 @@
                   <thead>
                     <tr>
                       <th>Nombre</th>
-                      <th class="text-center">Usuarios</th>
+                      <th class="text-center">Soluciones</th>
                       <th class="text-center">Promedio de puntos</th>
-                      <th class="text-center"></th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
                     <% subject.projects.order(:row).each do |project| %>
                       <tr>
                         <td><%= project.name %></td>
-                        <td class="text-center"><%= project.project_solutions.count %></td>
-                        <td class="text-center">400</td>
-                        <td>
+                        <td class="text-center"><%= project.num_reviewed_solutions %></td>
+                        <td class="text-center"><%= project.average_points %></td>
+                        <td class="text-right">
                             <% unless project.published %>
                               <span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span>
                             <% end %>
