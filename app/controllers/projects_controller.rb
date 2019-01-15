@@ -21,7 +21,7 @@ class ProjectsController < ApplicationController
     @project = @subject.projects.new(project_params)
 
     if @project.save
-      redirect_to @subject, anchor: "projects"
+      redirect_to admin_projects_path
     else
       render :new
     end
@@ -35,7 +35,7 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     if @project.update(project_params)
-      redirect_to subject_project_path(@project.subject,@project), anchor: "projects", notice: "Proyecto actualizado"
+      redirect_to admin_projects_path, notice: "Proyecto actualizado"
     else
       render :edit
     end

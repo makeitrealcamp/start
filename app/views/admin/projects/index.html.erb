@@ -1,0 +1,54 @@
+<div class="container admin-challenges">
+  <h1>Proyectos</h1>
+  <ul class="nav nav-tabs" role="tablist">
+    <% @paths.each_with_index do |path,i| %>
+      <li class="<%= 'active' if i == 0 %>" role="presentation">
+        <a href="#path-<%= path.id %>" role="tab" data-toggle="tab"><%= path.name %></a>
+      </li>
+    <% end %>
+  </ul>
+  <div class="tab-content">
+    <% @paths.each_with_index do |path, i| %>
+      <div role="tabpanel" class="path tab-pane <%= 'active' if i == 0 %>" id="path-<%= path.id %>">
+        <% path.phases.published.order(:row).each do |phase| %>
+          <div class="phase">
+            <% phase.subjects.published.order(:row).each do |subject| %>
+              <div class="panel panel-default subject">
+                <div class="panel-heading">
+                  <div><%= subject.name %></div>
+                  <%= link_to '<span class="glyphicon glyphicon-plus"></span> Nuevo Proyecto'.html_safe, new_subject_project_path(subject), class: "btn btn-success" %>
+                </div>
+                <table class="table challenges">
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th class="text-center">Usuarios</th>
+                      <th class="text-center">Promedio de puntos</th>
+                      <th class="text-center"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% subject.projects.order(:row).each do |project| %>
+                      <tr>
+                        <td><%= project.name %></td>
+                        <td class="text-center"><%= project.project_solutions.count %></td>
+                        <td class="text-center">400</td>
+                        <td>
+                            <% unless project.published %>
+                              <span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span>
+                            <% end %>
+                            <%= link_to "<span class='glyphicon glyphicon-pencil action action-edit'></span>".html_safe, edit_subject_project_path(subject,project) %>
+                            <%= link_to "<span class='glyphicon glyphicon-remove action action-remove'></span>".html_safe, subject_project_path(subject,project), method: :delete, remote: true %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
