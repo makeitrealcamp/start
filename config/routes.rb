@@ -100,7 +100,7 @@ Rails.application.routes.draw do
   resources :subjects, except: [:destroy] do
     patch 'update_position', on: :member
 
-    resources :challenges, except: [:index, :destroy] do
+    resources :challenges, only: [:show] do
       get :discussion, on: :member
       resources :solutions, only: [:create]
     end
@@ -226,11 +226,17 @@ Rails.application.routes.draw do
     resources :badge_ownerships, only: [:new, :create]
 
     resources :subjects, only:[:index] do
+      resources :challenges, except: [:index]
       patch 'update_position', on: :member
     end
+    resources :challenges, only:[:index]
 
+
+<<<<<<< 0f9bfd6849eeddab8baeec6e65a166fb0aed0819
     resources :projects, only: [:index]
     resources :challenges, only: [:index]
+=======
+>>>>>>> Move actions from challenges_controller to admin/challenges_controller
   end
 
   resources :notifications, only: [:index,:show] do
