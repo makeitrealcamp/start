@@ -1,38 +1,17 @@
 <div class="row projects-list projects">
   <div class="col-sm-10 col-sm-offset-1">
     <p class="tab-exp text-center"><%= projects_msg(@subject) %></p>
-
-    <% if current_user.is_admin? || @subject.projects.for(current_user).count > 0 %>
-      <% @subject.projects.for(current_user).rank(:row).each_with_index do |project, index| %>
-        <% if current_user.has_access_to?(project) %>
-          <div id="project_<%= project.id %>" class="project clearfix" data-index="<%= index %>" data-sortable="true" data-resource-id="<%= project.id %>">
-            <%= link_to [@subject, project] do %>
-              <div class="btn-project-go">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-              </div>
-            <% end %>
-            <div class="project-title">
-              <%= link_to project.name, [@subject, project] %>
-              <% if current_user.is_admin? %>
-                <div class="actions">
-                  <% unless project.published %>
-                    <span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span>
-                  <% end %>
-                  <%= link_to "<span class='glyphicon glyphicon-pencil action action-edit'></span>".html_safe, edit_subject_project_path(@subject,project) %>
-                  <%= link_to "<span class='glyphicon glyphicon-remove action action-remove'></span>".html_safe, subject_project_path(@subject,project), method: :delete, remote: true %>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        <% else %>
-          <div id="project_<%= project.id %>" class="project project-locked clearfix">
-            <div class="btn-project-locked">
-              <span class="glyphicon glyphicon-lock"></span>
-            </div>
-            <div class="project-title"><%= project.name %></div>
+    <% @subject.projects.published.rank(:row).each_with_index do |project, index| %>
+      <div id="project_<%= project.id %>" class="project clearfix" data-index="<%= index %>" data-sortable="true" data-resource-id="<%= project.id %>">
+        <%= link_to [@subject, project] do %>
+          <div class="btn-project-go">
+            <span class="glyphicon glyphicon-chevron-right"></span>
           </div>
         <% end %>
-      <% end %>
+        <div class="project-title">
+          <%= link_to project.name, [@subject, project] %>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>
