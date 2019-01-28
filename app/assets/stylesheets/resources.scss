@@ -66,7 +66,7 @@
 
       .resource-body  {
         padding: 25px;
-        
+
         p { margin-bottom: 18px; }
       }
     }
@@ -323,7 +323,7 @@
 
       strong { font-weight: 600; }
 
-      @media (min-width: $screen-sm-min) { font-size: 18px; }
+      @media (min-width: $screen-sm-min) { font-size: 14px; }
     }
 
     .lesson-info {
