@@ -229,6 +229,7 @@ Rails.application.routes.draw do
       patch 'update_position', on: :member
     end
 
+    resources :projects, only: [:index]
     resources :challenges, only: [:index]
   end
 
