@@ -30,6 +30,11 @@ class Admin::ChallengesController < ApplicationController
     @challenge = Challenge.friendly.find(params[:id])
   end
 
+  def destroy
+    @challenge = Challenge.friendly.find(params[:id])
+    @challenge.destroy
+  end
+
   def update
     @challenge = Challenge.friendly.update(params[:id], challenge_params)
     redirect_to subject_challenge_path(@challenge.subject,@challenge), notice: "El reto <strong>#{@challenge.name}</strong> ha sido actualizado"
@@ -40,10 +45,7 @@ class Admin::ChallengesController < ApplicationController
     render nothing: true, status: 200
   end
 
-  def destroy
-    @challenge = Challenge.friendly.find(params[:id])
-    @challenge.destroy
-  end
+
 
   private
     def challenge_params

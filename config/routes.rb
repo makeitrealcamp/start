@@ -230,13 +230,8 @@ Rails.application.routes.draw do
       patch 'update_position', on: :member
     end
     resources :challenges, only:[:index]
-
-
-<<<<<<< 0f9bfd6849eeddab8baeec6e65a166fb0aed0819
     resources :projects, only: [:index]
     resources :challenges, only: [:index]
-=======
->>>>>>> Move actions from challenges_controller to admin/challenges_controller
   end
 
   resources :notifications, only: [:index,:show] do

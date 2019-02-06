@@ -60,10 +60,8 @@ GEM
     annotate (2.7.4)
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 13.0)
-    archive-zip (0.11.0)
-      io-like (~> 0.3.0)
     arel (7.1.4)
-    autoprefixer-rails (9.4.6)
+    autoprefixer-rails (9.4.7)
       execjs
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -85,9 +83,6 @@ GEM
       xpath (>= 2.0, < 4.0)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
-    chromedriver-helper (2.1.0)
-      archive-zip (~> 0.10)
-      nokogiri (~> 1.8)
     codeclimate-test-reporter (1.0.9)
       simplecov (<= 0.13)
     coercible (1.0.0)
@@ -155,14 +150,13 @@ GEM
       domain_name (~> 0.5)
     http-form_data (2.1.1)
     http_parser.rb (0.6.0)
-    httparty (0.16.3)
+    httparty (0.16.4)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
     httpclient (2.8.3)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
-    io-like (0.3.0)
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -401,7 +395,6 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.3)
   byebug
   capybara (~> 2.7, >= 2.7.1)
-  chromedriver-helper
   codeclimate-test-reporter
   coffee-rails (~> 4.2)
   convertloop (= 0.1.2)
@@ -463,4 +456,4 @@ RUBY VERSION
    ruby 2.3.4p301
 
 BUNDLED WITH
-   1.16.2
+   1.16.6
