@@ -63,7 +63,7 @@ GEM
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (7.1.4)
-    autoprefixer-rails (9.4.6)
+    autoprefixer-rails (9.4.7)
       execjs
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -155,7 +155,7 @@ GEM
       domain_name (~> 0.5)
     http-form_data (2.1.1)
     http_parser.rb (0.6.0)
-    httparty (0.16.3)
+    httparty (0.16.4)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
     httpclient (2.8.3)
@@ -463,4 +463,4 @@ RUBY VERSION
    ruby 2.3.4p301
 
 BUNDLED WITH
-   1.16.2
+   1.16.6

@@ -100,7 +100,7 @@ Rails.application.routes.draw do
   resources :subjects, except: [:destroy] do
     patch 'update_position', on: :member
 
-    resources :challenges, except: [:index, :destroy] do
+    resources :challenges, only: [:show] do
       get :discussion, on: :member
       resources :solutions, only: [:create]
     end
@@ -226,9 +226,10 @@ Rails.application.routes.draw do
     resources :badge_ownerships, only: [:new, :create]
 
     resources :subjects, only:[:index] do
+      resources :challenges, except: [:index]
       patch 'update_position', on: :member
     end
-
+    resources :challenges, only:[:index]
     resources :projects, only: [:index]
     resources :challenges, only: [:index]
   end

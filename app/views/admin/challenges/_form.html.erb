@@ -1,6 +1,6 @@
 <div class="container-fluid expand default-top-padding">
   <div class="row expand new-challenge-page">
-    <%= form_for [@challenge.subject, @challenge], html: { class: "expand" } do |f| %>
+    <%= form_for [:admin, @challenge.subject, @challenge], html: { class: "expand" } do |f| %>
 
       <!-- left side -->
       <div class="col-md-5 expand overflow">

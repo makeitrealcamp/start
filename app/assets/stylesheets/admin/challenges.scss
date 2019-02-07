@@ -37,3 +37,95 @@
 
   .nav-tabs > li.active > a { background: white; }
 }
+
+.new-challenge-page {
+  h1 {
+    margin-top: 0;
+  }
+
+  .right {
+    margin-top: -70px;
+    padding-top: 107px;
+
+    .right-content {
+      .evaluation-tab.active a {
+        color: white;
+        background: #312F33;
+      }
+
+      .evaluation-wrapper {
+        margin-top: -52px;
+        padding-top: 51px;
+
+        .CodeMirror {
+          height: 100%;
+          padding: 10px;
+          box-shadow: none !important;
+        }
+      }
+
+      .files-wrapper {
+        margin-top: -72px;
+        padding-top: 51px;
+
+        .files {
+          margin-top: 30px;
+
+          .nav-tabs li {
+            position: relative;
+
+            a { padding-right: 30px; }
+
+            &.active a {
+              color: #839496;
+              background: #312F33;
+            }
+
+            .remove-file-btn {
+              position: absolute;
+              top: 7px;
+              right: 10px;
+              color: #839496;
+              font-size: 21px;
+              font-weight: bold;
+              text-decoration: none;
+              cursor: pointer;
+
+              &:hover { color: #333; }
+            }
+
+            &.active .remove-file-btn:hover { color: white; }
+          }
+
+          #editors-panel {
+            margin-top: -52px;
+            padding-top: 51px;
+
+            .CodeMirror {
+              height: 100%;
+              padding: 10px;
+              box-shadow: none !important;
+            }
+          }
+        }
+
+        .new-file-btn {
+          text-align: center;
+          margin-top: 60px;
+        }
+      }
+    }
+  }
+
+  .action-buttons {
+    margin-top: 10px;
+  }
+
+  .checkbox {
+    margin-bottom: 20px;
+    label {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+}
