@@ -1,6 +1,5 @@
 class Admin::ChallengesController < ApplicationController
   before_action :admin_access
-  before_action :private_access
 
   # GET /admin/challenges
   def index
@@ -44,8 +43,6 @@ class Admin::ChallengesController < ApplicationController
     @content = Challenge.update(params[:id], row_position: params[:position])
     render nothing: true, status: 200
   end
-
-
 
   private
     def challenge_params
