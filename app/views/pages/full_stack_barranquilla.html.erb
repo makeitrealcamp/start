@@ -2,23 +2,23 @@
 
 <div class="new-site program full-stack-onsite barranquilla">
   <%= render "layouts/navbar/pages_white", hide_login: true %>
-  <%= render "pages/header_register" %>
+  <%= render "pages/header_register", btn_text: "¡Recibe la info!" %>
 
   <div class="program-intro">
     <div class="container">
       <div class="row">
         <div class="col-md-6 tagline-program">
           <h1><small>Barranquilla Edition</small>Full Stack Web Developer</h1>
-          <p>En este programa aprenderás a crear aplicaciones Web con HTML, CSS, Bootstrap, JavaScript y Ruby on Rails.</p>
+          <p>En este programa aprenderás a crear aplicaciones Web con Node.js, MongoDB y React.</p>
           <div class="icons">
             <span class="icon icon-html5"></span>
             <span class="icon icon-css3"></span>
             <span class="icon alt icon-bootstrap"></span>
             <span class="icon icon-github"></span>
-            <span class="icon icon-uniF120"></span>
-            <span class="icon icon-uniF13B"></span>
             <span class="icon icon-uniF148"></span>
             <span class="icon icon-jquery"></span>
+            <span class="icon icon-mongodb"></span>
+            <span class="icon icon-reactjs"></span>
           </div>
         </div><!--/tagline-program -->
 
@@ -28,7 +28,7 @@
 
             <div class="medellin-info-body">
               <div class="medellin-info-date">
-                 Feb 4, 2019
+                 Abr 8, 2019
               </div>
               <div class="medellin-info-schedule">
                 <div class="schedule-data">
@@ -39,10 +39,9 @@
 
               <div class="medellin-info-location">
                 Barranquilla, Colombia
-                <div class="address">Carrera 54 # 64 - 223</div>
               </div>
 
-              <button type="button" class="btn btn-primary btn-register">¡Regístrate!</button>
+              <button type="button" class="btn btn-primary btn-register">¡Recibe toda la Info!</button>
             </div>
           </div>
         </div>
@@ -52,7 +51,7 @@
 
   <%= render "full_stack_onsite_audience" %>
 
-  <%= render "full_stack_onsite_curriculum" %>
+  <%= render "nodejs_onsite_curriculum" %>
 
   <a name="mentors"></a>
   <div class="section section-white section-bordered section-mentors">
@@ -74,19 +73,9 @@
     </div>
   </div>
 
-  <a name="location"></a>
-  <div class="section section-transparent section-location macondo">
-    <div class="location-data">
-      <div class="container">
-        <a href="http://macondolab.com/?utm_source=full-stack-barranquilla&utm_medium=web&utm_campaign=make-it-real" target="_blank">Macondo Lab</a>
-        <div class="location-dir">Carrera 54 # 64 - 223 Primer Piso, Barranquilla - <a href="https://www.google.com.co/maps/place/Cra.+54+%2364-223,+Barranquilla,+Atl%C3%A1ntico/@10.9941926,-74.7973942,16z/data=!4m5!3m4!1s0x8ef42d76f1864df1:0xd741524df67fe168!8m2!3d10.996682!4d-74.796571?hl=en" target="_blank">Google Maps</a></div>
-      </div>
-    </div>
-  </div>
-
   <%= render "full_stack_onsite_students" %>
 
-  <%= render "full_stack_onsite_faqs" %>
+  <%= render "nodejs_onsite_faqs" %>
 
   <%= render "full_stack_onsite_magnet" %>
 
