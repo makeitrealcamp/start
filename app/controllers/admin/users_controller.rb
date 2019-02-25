@@ -86,10 +86,6 @@ class Admin::UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(
-        :first_name, :last_name, :email, :gender, :nickname, :account_type,
-        :access_type, :status, :has_chat_access,
-        path_subscriptions_attributes: [:path_id, :id, :_destroy]
-      )
+      params.require(:user).permit(:first_name, :last_name, :email, :gender, :nickname, :account_type, :access_type, :status, :has_chat_access, :activity_email, path_subscriptions_attributes: [:path_id, :id, :_destroy])
     end
 end
