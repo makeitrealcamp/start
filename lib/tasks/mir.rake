@@ -50,7 +50,7 @@ namespace :mir do
   task :send_summary_email,[:day] => [:environment] do |t,args|
     args.with_defaults(:day => "sunday")
     if DateTime.current.send("#{args[:day]}?")
-      students = User.where(status: User.statuses[:active], account_type: [User.account_types[:paid_account], User.account_types[:admin_account]]).where("settings -> 'activity_email' = :value", value:'true')
+      students = User.where(status: User.statuses[:active], account_type: [User.account_types[:paid_account], User.account_types[:admin_account]]).is_activity_email
       students.each do |u|
         UserMailer.weekly_summary_email(u).deliver_now
       end
