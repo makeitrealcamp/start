@@ -59,10 +59,12 @@
                 <%= f.label(:false, "Privado", class: "txt-bold") %>
               </label>
             </div>
-
+            <div class="checkbox" style="margin-top: 30px;">
+              <%= f.label :activity_email, style: "font-weight: bold;" do %>
+                <%= f.check_box :activity_email %> Recibir e-mail de actividad semanal
+              <% end %>
+            </div>
           </div>
-
-
         </div>
 
         <div class="row">

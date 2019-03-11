@@ -55,27 +55,31 @@
 
           <div class="row">
             <div class="col-sm-6">
-              <div class="form-group">
-                <span class="radio-caption">Sexo:</span>
-                <label class="radio-inline">
-                  <%= f.radio_button(:gender, :male) %>
-                  <%= f.label(:gender_male, "Hombre", class: "txt-bold") %>
-                </label>
-                <label class="radio-inline">
-                  <%= f.radio_button(:gender, :female) %>
-                  <%= f.label(:gender_female, "Mujer", class: "txt-bold") %>
-                </label>
+              <div class="radio">
+                <%= f.label :gender_male, class: "radio-inline" do %>
+                  <%= f.radio_button(:gender, :male) %> Hombre
+                <% end %>
+                <%= f.label :gender_female, class: "radio-inline" do %>
+                  <%= f.radio_button(:gender, :female) %> Mujer
+                <% end %>
               </div>
             </div>
             <div class="col-sm-6">
-              <div class="form-group">
-                <%= f.check_box :has_chat_access %>
-                <%= f.label :has_chat_access, "Chat de mentores" %>
+              <div class="checkbox">
+                <%= f.label :has_chat_access do %>
+                  <%= f.check_box :has_chat_access %> Chat de mentores
+                <% end %>
               </div>
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="checkbox">
+            <%= f.label :activity_email do %>
+              <%= f.check_box :activity_email %> Enviar e-mail de actividad semanal
+            <% end %>
+          </div>
+
+          <div class="form-group" style="margin-top: 30px;">
             <%= f.label :paths, "Programas" %>
             <%= f.nested_fields_for :path_subscriptions, wrapper_options: { class: 'row margin-bottom'} do |ff| %>
               <div class="col-xs-10">

@@ -63,7 +63,8 @@ class User < ApplicationRecord
     has_public_profile: :boolean,
     password_reset_token: :string,
     password_reset_sent_at: :datetime,
-    has_chat_access: :boolean
+    has_chat_access: :boolean,
+    activity_email: :boolean
 
   accepts_nested_attributes_for :path_subscriptions, allow_destroy: true
 
