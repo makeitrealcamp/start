@@ -16,7 +16,7 @@
               <div class="panel panel-default subject">
                 <div class="panel-heading">
                   <div><%= subject.name %></div>
-                  <%= link_to '<span class="glyphicon glyphicon-plus"></span> Nuevo Proyecto'.html_safe, new_subject_project_path(subject), class: "btn btn-success btn-xs" %>
+                  <%= link_to '<span class="glyphicon glyphicon-plus"></span> Nuevo Proyecto'.html_safe, new_admin_subject_project_path(subject), class: "btn btn-success btn-xs" %>
                 </div>
                 <table class="table challenges">
                   <thead>
@@ -37,8 +37,8 @@
                             <% unless project.published %>
                               <span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span>
                             <% end %>
-                            <%= link_to "<span class='glyphicon glyphicon-pencil action action-edit'></span>".html_safe, edit_subject_project_path(subject,project) %>
-                            <%= link_to "<span class='glyphicon glyphicon-remove action action-remove'></span>".html_safe, subject_project_path(subject,project), method: :delete, remote: true %>
+                            <%= link_to "<span class='glyphicon glyphicon-pencil action action-edit'></span>".html_safe, edit_admin_subject_project_path(project.subject, project) %>
+                            <%= link_to "<span class='glyphicon glyphicon-remove action action-remove'></span>".html_safe, admin_subject_project_path(project.subject, project), method: :delete, remote: true %>
                         </td>
                       </tr>
                     <% end %>

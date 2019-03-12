@@ -228,10 +228,10 @@ Rails.application.routes.draw do
     resources :subjects, only:[:index] do
       resources :challenges, except: [:index]
       patch 'update_position', on: :member
+      resources :projects, except: [:index]      
     end
     resources :challenges, only:[:index]
     resources :projects, only: [:index]
-    resources :challenges, only: [:index]
   end
 
   resources :notifications, only: [:index,:show] do
