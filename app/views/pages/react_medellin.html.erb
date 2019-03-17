@@ -1,7 +1,7 @@
 <% content_for :head do %>
   <meta property="og:title" content="Curso de React y Redux" />
   <meta property="og:type" content="website" />
-  <meta property="og:description" content="En este curso presencial de 30 horas aprenderás a crear aplicaciones Web con React y Redux" />
+  <meta property="og:description" content="En este curso presencial de 45 horas aprenderás a crear aplicaciones Web y Móviles con React y React Native" />
   <meta property="og:image" content="<%= image_url('react-medellin-cover.jpg') %>" />
 <% end %>
 
@@ -14,8 +14,8 @@
       <%= image_tag "react-logo.png", class: "react-logo" %>
       <div class="row">
         <div class="col-md-6 tagline">
-          <h1><small>EDICIÓN MEDELLÍN</small>REACT Y REDUX</h1>
-          <p>En este <strong>curso presencial</strong> aprenderás ES2015, React, Redux y pruebas automatizadas con Jest y Enzyme.</p>
+          <h1><small>EDICIÓN MEDELLÍN</small>REACT Y REACT NATIVE</h1>
+          <p>En este <strong>curso presencial</strong> aprenderás a crear aplicaciones Web con React y aplicaciones móviles con React Native.</p>
         </div><!--/tagline-program -->
         <div class="col-md-6 text-center program-data">
           <%= image_tag "react-medellin.png" %>
@@ -43,17 +43,13 @@
             <h4>Incluye:</h4>
 
             <ul>
-              <li>30 horas presenciales de trabajo práctico guiado.</li>
+              <li>45 horas presenciales de trabajo práctico guiado.</li>
               <li>Acceso al módulo de React y Redux de nuestra plataforma de aprendizaje con retos, recursos y proyectos durante 9 meses.</li>
             </ul>
           </div>
 
           <div class="aside inverted">
-            <% if @valid_coupon %>
-              <p class="text-center">Esta promoción expira en <%= distance_of_time_in_words(DateTime.current, @coupon.expires_at) %>!</p>
-            <% else %>
-              <p class="text-center">Valor separación cupo:</p>
-            <% end %>
+            <p class="text-center">Valor separación cupo:</p>
             <p class="price-tag">$500,000*</p>
 
             <div class="action-wrapper text-center">
@@ -171,6 +167,49 @@
                 </tr>
                 <tr>
                   <td>
+                    Introducción a React Native
+                    <div class="subject-detail">Configura el ambiente de desarrollo y crea tu primera aplicación en React Native</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Manejo de Layouts con Flexbox
+                    <div class="subject-detail">Aprende a crear interfaces complejas en React Native utilizando Flexbox</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Escuchando eventos en React Native
+                    <div class="subject-detail">Aprende a reaccionar a diferentes eventos táctiles sobre la pantalla</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Navegación de aplicaciones en React Native
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Manejo de Formularios en React Native
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Peticiones HTTP desde React Native
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Autenticación en React Native
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Publicación de aplicaciones de React Native
+                  </td>
+                </tr>
+                <tr>
+                  <td>
                     Escribiendo pruebas automatizadas con Jest y Enzyme
                     <div class="subject-detail">Aprender a escribir pruebas automatizadas para tus componentes, funciones reductoras, action creators y pruebas de sistema.</div>
                   </td>
@@ -189,7 +228,7 @@
       <h2>Conoce a tus mentores</h2>
 
       <div class="row">
-        <div class="col-sm-6 col-sm-offset-3 clearfix">
+        <div class="col-sm-6 clearfix">
           <div class="profile-image text-center">
             <%= image_tag "people/german-escobar.png", class: "img-circle" %>
           </div>
@@ -199,16 +238,25 @@
             <p class="text-center">Programador y emprendedor con una <a href="http://germanescobar.com/2014/06/02/la-nueva-educacion" target="_blank">visión particular de la educación</a>. Co-fundador de <a href="http://elibom.com/?utm_source=full-stack-medellin&utm_medium=web&utm_campaign=Make%20it%20Real" target="_blank">elibom.com</a> y fundador de <a href="http://www.makeitreal.camp/?utm_source=aprende-desarrollo-web&utm_medium=web&utm_campaign=inbound" target="_blank">makeitreal.camp</a>.</p>
           </div>
         </div>
+        <div class="col-sm-6">
+          <div class="profile-image text-center">
+            <%= image_tag "people/cristian-moreno-gray.jpg", class: "img-circle"%>
+          </div>
+          <div class="profile">
+            <h3>Cristian Moreno <small>Mentor</small></h3>
+            <p class="text-center">Fullstack Javascript Developer. Evangelista de JavaScript/Node.js. Coorganizador de Medellin.js. Frontend Developer en Matter Supply Co.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <a name="location"></a>
-  <div class="section section-transparent section-location workiaastorga">
+  <div class="section section-transparent section-location cowest">
     <div class="location-data">
       <div class="container">
-        <a href="https://workia.space/?utm_source=nodejs-medellin&utm_medium=web&utm_campaign=make-it-real" target="_blank">Workia Astorga</a>
-        <div class="location-dir">Cll 7d # 43c - 134, Medellín, Antioquia - <a href="https://www.google.com/maps/place/Workia+%7C+Astorga/@6.2087592,-75.57114,17z/data=!4m5!3m4!1s0x8e44282ad3055b19:0xc79fa2d4c3232f1b!8m2!3d6.2092445!4d-75.573849" target="_blank">Google Maps</a></div>
+        <a href="#" target="_blank">CoWest Coworking Space</a>
+        <div class="location-dir">Cll 47d # 86a - 27, Medellín, Antioquia - <a href="https://www.google.com/maps/place/CoWest+Coworking/@6.2578113,-75.5998428,17z/data=!4m12!1m6!3m5!1s0x8e44297deb1b6a99:0x5260d64756d7f71f!2sCoWest+Coworking!8m2!3d6.2584032!4d-75.6030293!3m4!1s0x8e44297deb1b6a99:0x5260d64756d7f71f!8m2!3d6.2584032!4d-75.6030293" target="_blank">Google Maps</a></div>
       </div>
     </div>
   </div>
@@ -265,7 +313,7 @@
       <div class="row">
         <div class="col-sm-10 col-sm-offset-1 text-center">
           <p class="subhead" style="margin-top: 10px;">Te garantizamos la educación de la más alta calidad!</p>
-          <button class="btn btn-primary btn-register">RESERVA TU CUPO AHORA!</a>
+          <button class="btn btn-primary btn-register">RESERVA TU CUPO AHORA!</button>
         </div>
       </div>
     </div>
