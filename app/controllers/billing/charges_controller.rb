@@ -46,7 +46,7 @@ class Billing::ChargesController < ApplicationController
           currency: "COP",
         },
         react: {
-          description: "Separación curso de React y Redux",
+          description: "Separación curso de React y React Native",
           amount: 500_000,
           tax: 0,
           tax_percentage: 0,
