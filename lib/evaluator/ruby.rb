@@ -22,13 +22,14 @@ class Evaluator::Ruby < Evaluator::Base
     cid = Evaluator::Docker.execute(command)
     ok = Evaluator::Docker.wait(cid, @solution.challenge.timeout)
 
+    puts "Ok: #{ok}"
     ok ? complete : failure
   rescue SimpleTimeout::Error
     fail_timeout
   end
 
   def clean
-    # FileUtils.rm_rf(local_path)
+    FileUtils.rm_rf(local_path)
   end
 
   private
