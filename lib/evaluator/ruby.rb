@@ -28,7 +28,7 @@ class Evaluator::Ruby < Evaluator::Base
   end
 
   def clean
-    FileUtils.rm_rf(local_path)
+    # FileUtils.rm_rf(local_path)
   end
 
   private
