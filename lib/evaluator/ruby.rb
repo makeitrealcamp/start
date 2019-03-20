@@ -57,6 +57,7 @@ class Evaluator::Ruby < Evaluator::Base
     end
 
     def failure
+      puts "Failure!"
       f = "#{local_path}/error.txt"
       if File.exist?(f) && !File.read(f).empty?
         handle_error(f)
