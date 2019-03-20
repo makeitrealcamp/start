@@ -24,7 +24,7 @@ class Evaluator::Base
     unless File.directory?(path)
       FileUtils.mkdir_p(path)
     end
-    
+
     File.open(abs_path, 'w') do |file|
       file.write(content)
     end
@@ -37,6 +37,7 @@ class Evaluator::Base
   end
 
   def complete
+    puts "Complete!"
     @solution.status = :completed
     @solution.completed_at = DateTime.current
     @solution.error_message = nil
