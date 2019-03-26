@@ -22,7 +22,6 @@ class Evaluator::Ruby < Evaluator::Base
     cid = Evaluator::Docker.execute(command)
     ok = Evaluator::Docker.wait(cid, @solution.challenge.timeout)
 
-    puts "Ok: #{ok}"
     ok ? complete : failure
   rescue SimpleTimeout::Error
     fail_timeout
@@ -57,7 +56,6 @@ class Evaluator::Ruby < Evaluator::Base
     end
 
     def failure
-      puts "Failure!"
       f = "#{local_path}/error.txt"
       if File.exist?(f) && !File.read(f).empty?
         handle_error(f)

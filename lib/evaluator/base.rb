@@ -37,7 +37,6 @@ class Evaluator::Base
   end
 
   def complete
-    puts "Complete!"
     @solution.status = :completed
     @solution.completed_at = DateTime.current
     @solution.error_message = nil
