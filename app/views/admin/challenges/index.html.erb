@@ -18,7 +18,7 @@
                   <div><%= subject.name %></div>
                   <%= link_to "<span class='glyphicon glyphicon-plus'></span> Nuevo Reto".html_safe, new_admin_subject_challenge_path(subject), class: "btn btn-success btn-xs" %>
                 </div>
-                <table class="table">
+                <table class="table challenges">
                   <thead>
                     <tr>
                       <th>Nombre</th>
@@ -28,7 +28,7 @@
                       <th class="text-center"> </th>
                     </tr>
                   </thead>
-                  <tbody class="challenges">
+                  <tbody>
                     <% subject.challenges.order(:row).each do |challenge| %>
                       <tr id="challenge-<%= challenge.id %>" class="<%= challenge.published? ? "" : "unpublished"%> challenge" data-sortable="true" draggable="true" data-resource-id="<%=challenge.id %>" data-update-url="<%= update_position_admin_challenge_path(id: challenge.id) %>">
                         <td><%= challenge.name %></td>
@@ -52,6 +52,6 @@
 
 
 <script type="text/javascript">
-  new Sortable('.challenges', { items: "> .challenge", handle: ".challenge-move" });
+  new Sortable('.challenges', { items: " .challenge", handle: ".challenge-move" });
 
 </script>
