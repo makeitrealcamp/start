@@ -6,6 +6,7 @@ class ChallengesController < ApplicationController
     @user = current_user
     paid_access
     @solution = load_solution
+    @challenge.subject
   end
 
   def discussion
