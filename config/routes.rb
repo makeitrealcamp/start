@@ -98,7 +98,6 @@ Rails.application.routes.draw do
   resources :phases, only: [:new,:create,:edit,:update]
 
   resources :subjects, except: [:destroy] do
-    patch 'update_position', on: :member
 
     resources :challenges, only: [:show] do
       get :discussion, on: :member
@@ -141,10 +140,6 @@ Rails.application.routes.draw do
   end
 
   resources :projects, only:[] do
-    patch 'update_position', on: :member
-  end
-
-  resources :challenges, only:[:destroy] do
     patch 'update_position', on: :member
   end
 
@@ -228,9 +223,11 @@ Rails.application.routes.draw do
     resources :subjects, only:[:index] do
       resources :challenges, except: [:index]
       patch 'update_position', on: :member
-      resources :projects, except: [:index]      
+      resources :projects, except: [:index]
     end
-    resources :challenges, only:[:index]
+    resources :challenges, only:[:index] do
+      patch 'update_position', on: :member      
+    end
     resources :projects, only: [:index]
   end
 

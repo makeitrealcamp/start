@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.feature "Notifications", type: :feature do
   let(:user) { create(:user) }
-  let(:subject) { create(:subject) }
-  let(:challenge) { create(:challenge, subject: subject) }
+  let!(:subject) { create(:subject) }
+  let!(:challenge) { create(:challenge, subject: subject) }
   let!(:solution) { create(:solution, user: user, challenge: challenge, status: :completed, completed_at: 1.week.ago) }
 
   scenario "user receives two notifications", js: true do
@@ -75,7 +75,6 @@ RSpec.feature "Notifications", type: :feature do
 
   context 'when there is a notification about a comment in a challenge', js: true do
     scenario 'the notification redirects to the challenge' do
-      user1 = create(:user)
       mock_notifications_service(page)
       login(user)
 
@@ -83,7 +82,9 @@ RSpec.feature "Notifications", type: :feature do
       user.notifications.create!(notification_type: Notification.notification_types[:comment_activity], data: { comment_id: comment.id })
 
       find(:css, ".notifications-btn").click
-      all(".comment-link").first.click
+      within("#notifications") do
+        click_link challenge.name
+      end
       wait_for { current_path }.to eq subject_challenge_path(subject, challenge)
     end
   end

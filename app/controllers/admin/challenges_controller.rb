@@ -40,7 +40,10 @@ class Admin::ChallengesController < ApplicationController
   end
 
   def update_position
-    @content = Challenge.update(params[:id], row_position: params[:position])
+    challenge = Challenge.find(params[:id])
+
+    position = params[:positions].find_index(challenge.id.to_s)
+    challenge.update_attribute :row_position, position
     render nothing: true, status: 200
   end
 

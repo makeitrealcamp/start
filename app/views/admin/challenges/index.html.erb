@@ -30,7 +30,7 @@
                   </thead>
                   <tbody>
                     <% subject.challenges.order(:row).each do |challenge| %>
-                      <tr id="challenge-<%= challenge.id %>" class="<%= challenge.published? ? "" : "unpublished"%> challenge" data-sortable="true" draggable="true" data-resource-id="<%=challenge.id %>">
+                      <tr id="challenge-<%= challenge.id %>" class="<%= challenge.published? ? "" : "unpublished"%> challenge" data-sortable="true" draggable="true" data-resource-id="<%=challenge.id %>" data-update-url="<%= update_position_admin_challenge_path(id: challenge.id) %>">
                         <td><%= challenge.name %></td>
                         <td class="text-center"><span class="challenge-users"><%= challenge.solutions.where("attempts > ?", 0).count %></span></td>
                         <td class="text-center"><%= challenge_effectiveness(challenge) %></td>
@@ -49,15 +49,9 @@
   </div>
 </div>
 
+
+
 <script type="text/javascript">
-  (function() {
-    var sortables = [
-      new SortableView({ el: ".challenges", resource: "challenges" }),
-    ];
-    $(document).on("turbolinks:click", function() {
-      _.each(sortables, function(sortable) {
-        sortable.remove();
-      })
-    });
-  })();
+  new Sortable('.challenges', { items: " .challenge", handle: ".challenge-move" });
+
 </script>

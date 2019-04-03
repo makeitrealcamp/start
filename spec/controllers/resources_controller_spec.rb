@@ -47,6 +47,11 @@ RSpec.describe ResourcesController, type: :controller do
       let(:user) { create(:user) }
       before { controller.sign_in(user) }
 
+      it "redirects to external resource" do
+        get :open, params: { id: resource.slug, subject_id: resource.subject_id }
+        expect(response).to redirect_to resource.url
+      end
+
       it "logs the activity" do
         expect {
           get :open, params: { id: resource.slug, subject_id: resource.subject_id }
