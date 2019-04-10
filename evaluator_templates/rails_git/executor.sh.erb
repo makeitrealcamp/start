@@ -8,7 +8,7 @@ git clone $1 /app
 cd /app
 
 rvm current
-gem install --no-rdoc --no-ri bundler -v 1.17.3 2> <%= error_file_path %>
+gem install --no-document bundler -v 1.17.3 2> <%= error_file_path %>
 
 if [ ! -f Gemfile ]; then
   echo "No se encontró el archivo Gemfile en la raiz del proyecto." >> <%= error_file_path %>
