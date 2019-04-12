@@ -5,6 +5,7 @@ class CourseLandingView extends Backbone.View
     @step = 1
 
   render: ->
+    fbq('track', 'React Medellin Intention', { currency: "USD", value: 0 });
     $(@el).on('shown.bs.modal', =>
       @before_step_1()
 
