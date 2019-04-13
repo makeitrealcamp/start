@@ -54,7 +54,10 @@ class Admin::ProjectsController < ApplicationController
   end
 
   def update_position
-    @project = Project.update(params[:id], row_position: params[:position])
+    project = Project.find(params[:id])
+
+    position = params[:positions].find_index(project.id.to_s)
+    project.update_attribute :row_position, position
     head :ok
   end
 

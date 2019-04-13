@@ -18,7 +18,7 @@
                   <div><%= subject.name %></div>
                   <%= link_to '<span class="glyphicon glyphicon-plus"></span> Nuevo Proyecto'.html_safe, new_admin_subject_project_path(subject), class: "btn btn-success btn-xs" %>
                 </div>
-                <table class="table challenges">
+                <table class="table projects">
                   <thead>
                     <tr>
                       <th>Nombre</th>
@@ -29,14 +29,18 @@
                   </thead>
                   <tbody>
                     <% subject.projects.order(:row).each do |project| %>
-                      <tr>
+                      <tr id="project-<%= project.id %>" class="<%= project.published? ? "" : "unpublished"%> project" data-sortable="true" draggable="true" data-resource-id="<%=project.id %>" data-update-url="<%= update_position_admin_project_path(id: project.id) %>">
                         <td><%= project.name %></td>
                         <td class="text-center"><%= project.num_reviewed_solutions %></td>
                         <td class="text-center"><%= project.average_points %></td>
                         <td class="text-right">
+                          <span class="glyphicon glyphicon-move project-move"></span>
+
                             <% unless project.published %>
                               <span class="glyphicon glyphicon-exclamation-sign action action-warn" data-toggle="tooltip" data-placement="bottom" title="No publicado"></span>
                             <% end %>
+
+
                             <%= link_to "<span class='glyphicon glyphicon-pencil action action-edit'></span>".html_safe, edit_admin_subject_project_path(project.subject, project) %>
                             <%= link_to "<span class='glyphicon glyphicon-remove action action-remove'></span>".html_safe, admin_subject_project_path(project.subject, project), method: :delete, remote: true %>
                         </td>
@@ -52,3 +56,7 @@
     <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+  new Sortable('.projects', { items: " .project", handle: ".project-move"});
+</script>

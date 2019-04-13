@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @project_solution = @project.project_solutions.find_or_initialize_by(user_id: current_user.id)
+    @project.subject
   end
 
 end

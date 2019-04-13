@@ -146,10 +146,6 @@ Rails.application.routes.draw do
     patch 'update_position', on: :member
   end
 
-  resources :projects, only:[] do
-    patch 'update_position', on: :member
-  end
-
   resources :phases, only:[] do
     patch 'update_position', on: :member
   end
@@ -232,10 +228,12 @@ Rails.application.routes.draw do
       patch 'update_position', on: :member
       resources :projects, except: [:index]
     end
+    resources :projects, only: [:index] do
+      patch 'update_position', on: :member
+    end
     resources :challenges, only:[:index] do
       patch 'update_position', on: :member
     end
-    resources :projects, only: [:index]
   end
 
   resources :notifications, only: [:index,:show] do

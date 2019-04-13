@@ -54,20 +54,9 @@
 </div>
 
 <% if current_user.is_admin? %>
-  <script>
-    (function() {
-      var sortables = [
-        new SortableView({el: ".resources",resource:"resources"}),
-        new SortableView({el: ".projects",resource:"projects"}),
-        new SortableView({el: ".quizzes",resource:"quizzes"})
-      ];
-      $(document).on("turbolinks:click", function() {
-        _.each(sortables, function(sortable) {
-          sortable.remove();
-        })
-      });
-    })()
-  </script>
+<script type="text/javascript">
+  new Sortable('.resources', { items: " .resource", handle: ".resource-move"});
+</script>
 <% end %>
 
 <script>
