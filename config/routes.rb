@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   post "full-stack-cali", to: "pages#create_full_stack_cali_lead"
   get "full_stack_web_developer", to: redirect('/full-stack-online')
   get "front_end_web_developer", to: redirect('/front-end-online')
+  get "curso-javascript-basico", to: redirect('https://youtu.be/Nm7d_-B_6As')
 
   get "front-end-medellin", to: "pages#front_end_medellin"
   post "front-end-medellin", to: "pages#create_front_end_medellin_lead"
@@ -226,7 +227,7 @@ Rails.application.routes.draw do
       resources :projects, except: [:index]
     end
     resources :challenges, only:[:index] do
-      patch 'update_position', on: :member      
+      patch 'update_position', on: :member
     end
     resources :projects, only: [:index]
   end
