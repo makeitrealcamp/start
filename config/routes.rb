@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   post "full-stack-cali", to: "pages#create_full_stack_cali_lead"
   get "full_stack_web_developer", to: redirect('/full-stack-online')
   get "front_end_web_developer", to: redirect('/front-end-online')
-  get "curso-javascript-basico", to: redirect('https://youtu.be/Nm7d_-B_6As')
+  get "curso-javascript-basico", to: redirect('https://youtu.be/MeOQ9TBp3hg')
 
   get "front-end-medellin", to: "pages#front_end_medellin"
   post "front-end-medellin", to: "pages#create_front_end_medellin_lead"
