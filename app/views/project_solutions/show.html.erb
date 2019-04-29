@@ -8,7 +8,7 @@
           <img src="<%= Gravatar.new("#{@project_solution.user.email}").image_url %>" class="img-circle avatar" />
         </div>
         <div class="media-body">
-          <h1 class="media-heading">Solución de <%= @project_solution.user.first_name %></h1>
+          <h1 class="media-heading">Solución de <%=link_to "#{@project_solution.user.first_name}", user_profile_path(@project_solution.user.nickname) %></h1>
         </div>
       </div>
 
@@ -61,7 +61,7 @@
                 <%= embedded_video(@project.explanation_video_url, user: current_user) %>
               </div>
             <% end %>
-            
+
             <%= markdown @project.explanation_text %>
           </div>
         </div>

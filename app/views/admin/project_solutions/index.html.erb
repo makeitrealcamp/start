@@ -29,7 +29,7 @@
           <% @solutions.each do |sol| %>
             <tr>
               <td> <%= link_to sol.project.name, subject_project_path(sol.project.subject, sol.project)%></td>
-              <td> <%= link_to "#{sol.user.first_name} - (#{sol.user.email})", user_profile_path(sol.user.nickname)%> </td>
+              <td> <%= link_to "#{sol.user.first_name} - (#{sol.user.email})", user_profile_path(sol.user.nickname)%></td>
               <td> <%= sol.updated_at %></td>
               <td>
                 <% if sol.pending_review? %>
