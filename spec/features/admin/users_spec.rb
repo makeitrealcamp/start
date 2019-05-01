@@ -47,7 +47,7 @@ RSpec.feature "Users management", type: :feature do
     select 'Administrador', from: "user_account_type"
     click_button "Actualizar Usuario"
 
-    expect(page).to_not have_selector '.modal-dialog'
+    expect(page).to have_no_selector '.modal-dialog'
     expect(page).to have_selector '.alert-success'
 
     user.reload
