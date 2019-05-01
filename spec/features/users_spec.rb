@@ -72,7 +72,7 @@ RSpec.feature "Users", type: :feature do
 
     # check that the profile is public
     visit(user_profile_path(user.nickname))
-    expect(page).to_not have_selector(".update-profile-visibility")
+    expect(page).to have_no_selector(".update-profile-visibility")
 
     login(user)
     visit(user_profile_path(user.nickname))
@@ -80,7 +80,7 @@ RSpec.feature "Users", type: :feature do
     # change to private
     find('#user_has_public_profile_false').click
 
-    expect(page).to_not have_selector(".share-url")
+    expect(page).to have_no_selector(".share-url")
 
     user.reload
     expect(user.has_public_profile).to eq false
