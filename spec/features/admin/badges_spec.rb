@@ -98,12 +98,5 @@ RSpec.feature "Badges management", type: :feature do
     expect(user.badges.exists?(manual_badge.id)).to eq(true)
     expect(page).to have_no_css('#new_badge_ownership')
     expect(page).to have_css("#badge-#{manual_badge.id}")
-
-    find(:css,".add-emblem").click
-    expect(page).to have_no_css('#new_badge_ownership')
-    expect(page).to have_css("#badge-modal")
-    within(:css, "#badge-modal") do
-      expect(page).to have_content "No se le puede asignar manualmente más insignias a este usuario"
-    end
   end
 end
