@@ -1,0 +1,86 @@
+<%= render "data_science_online_header", image_path: 'home02.png' %>
+
+<div class="new-site program data-science-online">
+  <%= render "layouts/navbar/pages_white", hide_login: true %>
+  <%= render "pages/header_register", btn_text: "¡Recibe la info!" %>
+
+  <div class="program-intro">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 tagline-program">
+          <h1><small>Online Edition</small>DATA SCIENCE</h1>
+          <p>En este programa de <strong>9 semanas</strong> aprenderás a extraer, visualizar y analizar información con Python y algoritmos de clasificación, predicción y recomendación.</p>
+          <button type="button" class="btn btn-primary btn-register">¡Recibe toda la Info!</button>
+        </div><!--/tagline-program -->
+
+        <div class="col-md-6">
+          <div class="medellin-info">
+            <div class="medellin-info-body">
+              <div class="medellin-info-date">
+                 <div>Jul 29, 2019</div>
+                 <div class="info-date-label">Cierre Inscripciones</div>
+              </div>
+              <div class="medellin-info-date">
+                 <div>Ago 20, 2019</div>
+                 <div class="info-date-label">Inicio Clases</div>
+              </div>
+              <div class="medellin-info-schedule">
+                <div class="schedule-data">
+                  6pm a 9pm
+                  <span class="schedule-label">Lunes a Viernes</span>
+                </div>
+              </div>
+
+              <div class="medellin-info-location" style="color: #005e9f; font-weight: bold;">
+                ONLINE
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= render "data_science_online_audience" %>
+
+  <%= render "data_science_online_curriculum" %>
+
+  <a name="mentors"></a>
+  <div class="section section-white section-bordered section-mentors">
+    <div class="container">
+      <h2>Conoce a tus mentores</h2>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="profile-image text-center">
+            <%= image_tag "people/daniel-morales.jpg", class: "img-circle"%>
+          </div>
+          <div class="profile">
+            <h3>Daniel Morales</h3>
+            <p class="text-center">Apasionado del emprendimiento y la programación. Mentor de varios programas online y presenciales de <a href="/">Make it Real</a>. Co-fundador de <a href="http://brokercurve.com/" target="_blank">Brokercurve</a>.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 clearfix">
+          <div class="profile-image text-center">
+            <%= image_tag "people/german-escobar.png", class: "img-circle" %>
+          </div>
+
+          <div class="profile">
+            <h3>Germán Escobar</h3>
+            <p class="text-center">Programador y emprendedor con una <a href="http://germanescobar.com/2014/06/02/la-nueva-educacion" target="_blank">visión particular de la educación</a>. Co-fundador de <a href="http://elibom.com/?utm_source=full-stack-medellin&utm_medium=web&utm_campaign=Make%20it%20Real" target="_blank">elibom.com</a> y fundador de <a href="http://www.makeitreal.camp/?utm_source=data-scienceb&utm_medium=web&utm_campaign=inbound" target="_blank">makeitreal.camp</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= render "full_stack_onsite_students" %>
+
+  <%= render "data_science_online_faqs" %>
+
+  <%= render "full_stack_onsite_magnet", btn_text: "¡Recibe toda la info!" %>
+
+  <%= render "footer" %>
+
+  <%= render "full_stack_onsite_registration", action: "/data-science-online" %>
+</div>

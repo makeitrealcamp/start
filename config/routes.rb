@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   get "front-end-bogota", to: "pages#front_end_bogota"
   post "front-end-bogota", to: "pages#create_front_end_bogota_lead"
 
+  get "data-science-online", to: "pages#data_science_online"
+  post "data-science-online", to: "pages#create_data_science_online_lead"
+
   get "top", to: "pages#top"
   get "elite", to: "pages#elite"
   get "courses/nodejs-mongodb/medellin", to: "pages#nodejs_medellin"
@@ -49,6 +52,7 @@ Rails.application.routes.draw do
   get "thanks-front-end-medellin", to: "pages#thanks_full_stack_onsite"
   get "thanks-front-end-bogota", to: "pages#thanks_full_stack_onsite"
   get "thanks-top", to: "pages#thanks_top"
+  get "thanks-data-science-online", to: "pages#thanks_online"
 
   get "thanks-scholarships", to: "pages#thanks_scholarships"
   get "como-convertirte-en-web-developer", to: "pages#web_developer_guide", as: :web_developer_guide
