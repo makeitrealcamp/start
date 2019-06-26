@@ -34,6 +34,12 @@
                   <span class="text-menu">Full Stack (A tu ritmo)</span>
                 <% end %>
               </li>
+              <li class="<%= 'active' if params[:action] == 'data_science_online' %>">
+                <%= link_to data_science_online_path do %>
+                  <span class="icon-menu"><span class="glyphicon glyphicon-stats" aria-hidden="true" style="font-size: 21px; margin-left: 7px; color: #3877ba; margin-top: -3px;"></span></span>
+                  <span class="text-menu">Data Science (9 semanas)</span>
+                <% end %>
+              </li>
               <li role="separator" class="divider"></li>
               <li class="program-menu-divider"><span>FULL STACK PRESENCIAL</span></li>
               <li class="<%= 'active' if params[:action] == 'full_stack_bogota' %>">
@@ -52,21 +58,6 @@
                 <%= link_to full_stack_barranquilla_path do %>
                   <span class="icon-menu"><%= image_tag "full-stack-red.png", height: 25 %></span>
                   <span class="text-menu">Full Stack <strong>Barranquilla</strong></span>
-                <% end %>
-              </li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-              Cursos <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li role="separator" class="divider"></li>
-              <li class="program-menu-divider"><span>MEDELLÍN</span></li>
-              <li class="<%= 'active' if params[:action] == 'react_medellin' %>">
-                <%= link_to courses_react_redux_medellin_path do %>
-                  <span class="icon icon-reactjs icon-menu" style="font-size: 22px; color: #5daecc; margin-left: 4px; margin-right: 3px; height: 35px;"></span>
-                  <span class="text-menu">React y React Native</span>
                 <% end %>
               </li>
             </ul>
