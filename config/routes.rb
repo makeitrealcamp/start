@@ -71,6 +71,8 @@ Rails.application.routes.draw do
 
   post 'inscription_info', to: 'users#send_inscription_info', as: :inscription_info
 
+  get 'dkXk9d0Xliga5iuOtR1omA', to: 'pages#demo'
+
   resource :password, only: [:edit, :update]
   resource :password_reset, except: [:index, :show]
 

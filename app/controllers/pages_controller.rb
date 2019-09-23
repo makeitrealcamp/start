@@ -303,6 +303,14 @@ class PagesController < ApplicationController
     redirect_to "/thanks-top"
   end
 
+  def demo
+    user = User.where(email: "demo@example.com").take
+    if user
+      sign_in user
+      redirect_to dashboard_path
+    end
+  end
+
   private
     def save_referer
       session['referer'] = request.env["HTTP_REFERER"] || 'none' unless session['referer']
