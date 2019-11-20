@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   before_action :save_referer, except: [:handbook]
+  skip_before_action :verify_authenticity_token, only: [:send_web_developer_guide]
 
   def home
   end
