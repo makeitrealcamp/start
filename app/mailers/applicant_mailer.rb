@@ -1,6 +1,6 @@
 class ApplicantMailer < ApplicationMailer
   include Roadie::Rails::Automatic
-  default from: "carolina.hernandez@makeitreal.camp"
+  default from: "nicolas.rodriguez@makeitreal.camp"
 
   def email(applicant, subject, body)
     body =  body.gsub(/\{\{\s*first_name\s*\}\}/, applicant.first_name)

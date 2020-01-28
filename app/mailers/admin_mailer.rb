@@ -9,7 +9,7 @@ class AdminMailer < ApplicationMailer
     @country = country
     @mobile = mobile
 
-    mail to: "carolina.hernandez@makeitreal.camp", subject: "[Nuevo Lead #{program}] #{first_name} #{last_name} (#{country}: #{mobile})"
+    mail to: "nicolas.rodriguez@makeitreal.camp", subject: "[Nuevo Lead #{program}] #{first_name} #{last_name} (#{country}: #{mobile})"
   end
 
   def new_scholarship(data)
@@ -29,7 +29,7 @@ class AdminMailer < ApplicationMailer
     @email = applicant.email
     @first_name = applicant.first_name
     @last_name = applicant.last_name
-    
+
     mail to: "german.escobar@makeitreal.camp", subject: "[Top Program] Test submitted"
   end
 end
