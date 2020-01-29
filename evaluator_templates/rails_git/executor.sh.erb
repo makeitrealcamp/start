@@ -20,6 +20,9 @@ if [ -f Gemfile.lock ]; then
 fi
 
 NOKOGIRI_USE_SYSTEM_LIBRARIES=true bundle install --path=/ukku/bundler-cache -j4 --binstubs=vendor/bundle/bin 2> <%= error_file_path %>
+if [ -f yarn.lock ]; then
+  yarn install --check-files
+fi
 RAILS_ENV=test bundle exec rails db:migrate 2> <%= error_file_path %>
 
 # run template
