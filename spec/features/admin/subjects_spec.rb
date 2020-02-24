@@ -11,7 +11,7 @@ RSpec.describe "Subjects management" do
     click_link 'Nuevo Tema'
 
     expect {
-      fill_in 'subject_name', with: Faker::Name::title
+      fill_in 'subject_name', with: Faker::Commerce.product_name
       fill_in 'subject_description', with: Faker::Lorem.sentence
       fill_in 'subject_excerpt', with: Faker::Lorem.paragraph
       fill_in 'subject_time_estimate', with: "#{Faker::Number.digit} horas"
@@ -30,7 +30,7 @@ RSpec.describe "Subjects management" do
     login(admin)
     visit edit_subject_path(subject)
 
-    name = Faker::Name::title
+    name = Faker::Commerce.product_name
     description = Faker::Lorem.sentence
     excerpt = Faker::Lorem.paragraph
     time_estimate = "#{Faker::Number.digit} horas"

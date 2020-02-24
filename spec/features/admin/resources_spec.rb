@@ -11,7 +11,7 @@ RSpec.feature "Resource management", type: :feature do
     click_link "Nuevo Recurso"
 
     expect{
-      fill_in 'resource_title', with: Faker::Name.title
+      fill_in 'resource_title', with: Faker::Commerce.product_name
       fill_in 'resource_description', with: Faker::Lorem.paragraph
       select "External URL", from: 'resource_type'
       fill_in 'resource_url', with: Faker::Internet.url
@@ -31,7 +31,7 @@ RSpec.feature "Resource management", type: :feature do
     click_link "Nuevo Recurso"
 
     expect{
-      fill_in 'resource_title', with: Faker::Name.title
+      fill_in 'resource_title', with: Faker::Commerce.product_name
       fill_in 'resource_description', with: Faker::Lorem.paragraph
       select "Markdown Document", from: 'resource_type'
       fill_in 'resource_content', with: Faker::Lorem.paragraph
@@ -51,7 +51,7 @@ RSpec.feature "Resource management", type: :feature do
     login(admin)
     visit edit_subject_resource_path(subject, resource)
 
-    title = Faker::Name.title
+    title = Faker::Commerce.product_name
     description =  Faker::Lorem.paragraph
     url = Faker::Internet.url
     fill_in 'resource_title', with: title

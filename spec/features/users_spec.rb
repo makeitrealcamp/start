@@ -7,8 +7,8 @@ RSpec.feature "Users", type: :feature do
     login(user)
 
     original_first_name = user.first_name
-    nickname = Faker::Internet.user_name(nil, %w(- _))
-    number = Faker::Number.number(10)
+    nickname = Faker::Internet.username(separators: %w(- _))
+    number = Faker::Number.number(digits: 10)
 
     fill_in "activate_user_mobile_number", with: number
     fill_in "activate_user_nickname", with: nickname
@@ -20,7 +20,7 @@ RSpec.feature "Users", type: :feature do
     user.reload
     expect(user.status).to eq "active"
     expect(user.nickname).to eq nickname
-    expect(user.mobile_number).to eq number
+    expect(user.mobile_number).to eq number.to_s
     expect(user.first_name).to eq original_first_name
   end
 
@@ -47,8 +47,8 @@ RSpec.feature "Users", type: :feature do
     click_link 'Editar Perfil'
 
     first_name = Faker::Name.first_name
-    nickname = Faker::Internet.user_name(nil, %w(- _))
-    mobile_number = Faker::Number.number(10)
+    nickname = Faker::Internet.user_name(separators: %w(- _))
+    mobile_number = Faker::Number.number(digits: 10)
     birthday = "01-01-2015"
 
     fill_in "user_first_name", with: first_name
@@ -62,7 +62,7 @@ RSpec.feature "Users", type: :feature do
 
     user.reload
     expect(user.first_name).to eq first_name
-    expect(user.mobile_number).to eq mobile_number
+    expect(user.mobile_number).to eq mobile_number.to_s
     expect(user.nickname).to eq nickname
     expect(user.birthday.strftime('%F')).to eq '2015-01-01'
   end

@@ -32,11 +32,11 @@ FactoryGirl.define do
       items.values[rand(items.size)]
     end
 
-    sequence(:nickname) { |n| "#{Faker::Internet.user_name(nil, %w(- _))}#{n}" }
-    birthday { Faker::Time.between(2.days.ago, Time.now) }
+    sequence(:nickname) { |n| "#{Faker::Internet.username(separators: %w(- _))}#{n}" }
+    birthday { Faker::Date.between(from: 2.days.ago, to: Time.now) }
     mobile_number { Faker::PhoneNumber.cell_phone }
 
-    activated_at { Faker::Time.between(2.days.ago, Time.now) }
+    activated_at { Faker::Time.between(from: 2.days.ago, to: Time.now) }
     account_type :paid_account
 
     status :active

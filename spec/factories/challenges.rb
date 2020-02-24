@@ -29,7 +29,7 @@
 FactoryGirl.define do
   factory :challenge do
     subject { create(:subject) }
-    name { Faker::Name.title }
+    name { Faker::Commerce.product_name }
     instructions { Faker::Lorem.paragraph }
     published true
   end

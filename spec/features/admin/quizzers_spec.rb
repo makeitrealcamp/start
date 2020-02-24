@@ -23,7 +23,7 @@ RSpec.feature "Quizzes", type: :feature do
 
     visit new_subject_resource_path(subject)
 
-    title = Faker::Name.title
+    title = Faker::Commerce.product_name
     expect {
       fill_in 'resource_title', with: title
       fill_in 'resource_description', with: Faker::Lorem.paragraph
@@ -44,7 +44,7 @@ RSpec.feature "Quizzes", type: :feature do
 
     visit edit_subject_resource_path(subject, quiz)
 
-    title = Faker::Name::title
+    title = Faker::Commerce.product_name
     fill_in 'resource_title', with: title
     find(:css, "#resource_published").set(false)
     click_button 'Actualizar Resource'

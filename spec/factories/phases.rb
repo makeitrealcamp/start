@@ -20,7 +20,7 @@
 
 FactoryGirl.define do
   factory :phase do
-    name { Faker::Name.title }
+    name { Faker::Commerce.product_name }
     description { Faker::Lorem.sentence }
     color "#FF0000"
     published true
