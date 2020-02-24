@@ -33,7 +33,7 @@ class SolutionsController < ApplicationController
     response.headers["Cache-Control"] = "no-cache, no-store"
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
-    
+
     solution = Solution.find(params[:id]).documents.where(name: params[:file]).take
     if solution
       render text: solution.content, content_type: content_type_file(params[:file])
@@ -51,11 +51,11 @@ class SolutionsController < ApplicationController
 
   private
     def update_solution_without_versioning(solution)
-      solution.without_versioning do
-        solution.status = :evaluating
-        solution.attempts = solution.attempts + 1 if solution.completed_at.nil?
-        solution.save!
-      end
+      Solution.paper_trail.disable
+      solution.status = :evaluating
+      solution.attempts = solution.attempts + 1 if solution.completed_at.nil?
+      solution.save!
+      Solution.paper_trail.enable
     end
 
     def save_documents
@@ -63,11 +63,11 @@ class SolutionsController < ApplicationController
     end
 
     def save_documents_with_no_versioning
+      Document.paper_trail.disable
       @solution.documents.each do |doc|
-        doc.without_versioning do
-          doc.update(content: params["content-#{doc.id}"])
-        end
+        doc.update(content: params["content-#{doc.id}"])
       end
+      Document.paper_trail.enable
     end
 
     def evaluate_solution
