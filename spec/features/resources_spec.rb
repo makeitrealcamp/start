@@ -21,7 +21,7 @@ RSpec.feature "Resources", type: :feature do
     login(user)
     visit subject_path(resource.subject)
 
-    within("tr#resource_#{resource.id}") do
+    within("tr#resource-#{resource.id}") do
       expect(page).to have_selector(".label-mir")
       expect(page).to have_selector(".resource-tag.#{resource.category}")
     end

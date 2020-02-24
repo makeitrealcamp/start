@@ -25,6 +25,7 @@ class ResourcesController < ApplicationController
       description = "Abrió el recurso interno #{@resource.to_html_description}"
       ActivityLog.create(name: "viewed-markdown-resource", user: current_user, activity: @resource, description: description)
     end
+    @resource.subject
   end
 
   def edit
@@ -46,7 +47,10 @@ class ResourcesController < ApplicationController
   end
 
   def update_position
-    Resource.update(params[:id], row_position: params[:position])
+    resource = Resource.find(params[:id])
+
+    position = params[:positions].find_index(resource.id.to_s)
+    resource.update_attribute :row_position, position
     head :ok
   end
 

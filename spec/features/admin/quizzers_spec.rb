@@ -14,7 +14,7 @@ RSpec.feature "Quizzes", type: :feature do
     click_link "Recursos"
 
     expect(page).to have_content("Quiz 1")
-    expect(page).to have_content("Quiz 2")
+    expect(page).to_not have_content("Quiz 2")
     expect(page).to have_css('.actions') # shows buttons to edit and delete
   end
 
