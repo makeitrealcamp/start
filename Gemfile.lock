@@ -1,13 +1,4 @@
 GIT
-  remote: https://github.com/germanescobar/paper_trail.git
-  revision: 090f8d047f76349045d8740ad9b5dda0802230ef
-  specs:
-    paper_trail (4.0.0.beta3)
-      activerecord (>= 3.0, < 6.0)
-      activesupport (>= 3.0, < 6.0)
-      request_store (~> 1.1.0)
-
-GIT
   remote: https://github.com/simon0191/shareable.git
   revision: fe5f7454b66ea09513005c7d24a7e7aa6cc70731
   specs:
@@ -57,9 +48,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
-    annotate (2.7.4)
-      activerecord (>= 3.2, < 6.0)
-      rake (>= 10.4, < 13.0)
+    annotate (3.1.0)
+      activerecord (>= 3.2, < 7.0)
+      rake (>= 10.4, < 14.0)
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (7.1.4)
@@ -123,8 +114,8 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
-    faker (1.4.3)
-      i18n (~> 0.5)
+    faker (2.1.2)
+      i18n (>= 0.8)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffi (1.10.0)
@@ -226,6 +217,9 @@ GEM
       omniauth (~> 1.2)
     omniauth-slack (2.3.0)
       omniauth-oauth2 (~> 1.3.1)
+    paper_trail (6.0.2)
+      activerecord (>= 4.0, < 5.2)
+      request_store (~> 1.1)
     pg (0.21.0)
     public_suffix (3.0.3)
     pusher (1.3.2)
@@ -332,10 +326,9 @@ GEM
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    selenium-webdriver (3.0.0)
+    selenium-webdriver (3.12.0)
       childprocess (~> 0.5)
-      rubyzip (~> 1.0)
-      websocket (~> 1.0)
+      rubyzip (~> 1.2)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
     sidekiq (5.2.5)
@@ -387,7 +380,6 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    websocket (1.2.8)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
@@ -402,7 +394,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  annotate
+  annotate (~> 3.1.0)
   bcrypt (~> 3.1.7)
   bootstrap-sass (~> 3.4.1)
   byebug
@@ -414,7 +406,7 @@ DEPENDENCIES
   database_cleaner
   date_supercharger
   factory_girl_rails (~> 4.5.0)
-  faker (~> 1.4.3)
+  faker (~> 2.1.0)
   figaro
   font-awesome-rails (~> 4.7, >= 4.7.0.3)
   friendly_id (~> 5.1.0)
@@ -428,13 +420,13 @@ DEPENDENCIES
   jquery-ui-rails
   json-schema
   launchy
-  letter_opener
+  letter_opener (~> 1.7.0)
   lograge (~> 0.10.0)
   momentjs-rails
   nested_form_fields
   octokit
   omniauth-slack
-  paper_trail!
+  paper_trail (~> 6.0.2)
   pg (~> 0.21.0)
   pusher
   pygments.rb
@@ -449,7 +441,7 @@ DEPENDENCIES
   rspec-wait (= 0.0.9)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-  selenium-webdriver (= 3.0.0)
+  selenium-webdriver (= 3.12.0)
   shareable!
   shoulda-matchers (= 2.8.0)
   sidekiq
@@ -471,4 +463,4 @@ RUBY VERSION
    ruby 2.5.7p206
 
 BUNDLED WITH
-   1.16.6
+   2.1.4

@@ -40,7 +40,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'gravatar-ultimate'
 gem 'ranked-model'
-gem 'paper_trail', github: 'germanescobar/paper_trail'
+gem 'paper_trail', '~>6.0.2'
 gem 'redcarpet'
 gem 'pygments.rb'
 gem 'friendly_id', '~> 5.1.0'
@@ -56,7 +56,6 @@ gem 'momentjs-rails'
 gem 'omniauth-slack'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.3'
 gem 'nested_form_fields'
-gem 'annotate'
 
 #windows specific
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
@@ -88,13 +87,14 @@ group :development, :test do
 
   gem 'rspec-rails', '~> 3.5.2'
   gem 'factory_girl_rails', '~> 4.5.0'
-  gem 'faker', '~> 1.4.3'
+  gem 'faker', '~> 2.1.0'
 end
 
 group :development do
-  gem 'letter_opener'
+  gem 'letter_opener', '~> 1.7.0'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 3.7'
+  gem 'annotate', '~>3.1.0'
 end
 
 group :test do
@@ -102,7 +102,7 @@ group :test do
   gem 'capybara', '~> 2.7', '>= 2.7.1'
   gem 'database_cleaner'
   gem 'launchy'
-  gem 'selenium-webdriver', '3.0.0'
+  gem 'selenium-webdriver', '3.12.0'
   gem 'chromedriver-helper'
   gem 'codeclimate-test-reporter', require: nil
   gem 'rspec-wait', '0.0.9'

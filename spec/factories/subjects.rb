@@ -16,7 +16,7 @@
 
 FactoryGirl.define do
   factory :subject do
-    name { Faker::Name.title }
+    name { Faker::Commerce.product_name }
     excerpt { Faker::Lorem.sentence }
     description { Faker::Lorem.paragraph }
     published true

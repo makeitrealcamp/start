@@ -21,7 +21,7 @@
 FactoryGirl.define do
   factory :project do
     subject { create(:subject) }
-    name { Faker::Name.title }
+    name { Faker::Commerce.product_name }
     explanation_text { Faker::Hacker.say_something_smart }
     explanation_video_url { "https://www.youtube.com/embed/52Gg9CqhbP8" }
   end

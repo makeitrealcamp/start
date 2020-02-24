@@ -45,7 +45,7 @@ RSpec.describe ProjectSolution, type: :model do
     context "when repository does not exist" do
       it "is not valid" do
         username = Faker::Internet.user_name
-        repository = Faker::Internet.slug("foo bar", "-")
+        repository = Faker::Internet.slug(words: "foo bar", glue: "-")
         expect(build(:project_solution, repository: "#{username}/#{repository}")).not_to be_valid
       end
     end

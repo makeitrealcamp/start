@@ -11,7 +11,7 @@ RSpec.feature "Sections", type: :feature do
     visit subject_resource_path(subject, resource)
     click_link 'Nueva Sección'
 
-    title = Faker::Name.title
+    title = Faker::Commerce.product_name
     find(:css, '.modal-dialog input#section_title').set(title)
     click_button 'Crear Section'
 
@@ -32,7 +32,7 @@ RSpec.feature "Sections", type: :feature do
     visit subject_resource_path(subject, resource)
     all(:css, '.resource-section-title a .glyphicon.glyphicon-pencil').first.click
 
-    title = Faker::Name.title
+    title = Faker::Commerce.product_name
     find(:css, '.modal-dialog input#section_title').set(title)
     click_button 'Actualizar Section'
 

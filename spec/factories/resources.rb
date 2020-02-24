@@ -26,8 +26,8 @@
 
 FactoryGirl.define do
   factory :resource do
-    title { Faker::Name.title}
-    description { Faker::Lorem.paragraph}
+    title { Faker::Commerce.product_name }
+    description { Faker::Lorem.paragraph }
     category Resource.categories[:documentation]
     own false
     url { Faker::Internet.url}

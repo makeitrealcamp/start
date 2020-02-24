@@ -20,7 +20,7 @@
 FactoryGirl.define do
   factory :activity_log do
     user
-    name { Faker::Internet.slug('foo bar', '-') }
+    name { Faker::Internet.slug(words: 'foo bar', glue: '-') }
     description { Faker::Lorem.paragraph }
   end
 

@@ -12,7 +12,7 @@
 
 FactoryGirl.define do
   factory :path do
-    name { Faker::Name.title }
+    name { Faker::Commerce.product_name }
     description { Faker::Hacker.say_something_smart }
     published true
 
