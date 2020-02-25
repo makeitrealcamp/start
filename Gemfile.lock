@@ -425,7 +425,7 @@ DEPENDENCIES
   momentjs-rails
   nested_form_fields
   octokit
-  omniauth-slack
+  omniauth-slack (~> 2.3.0)
   paper_trail (~> 6.0.2)
   pg (~> 0.21.0)
   pusher

@@ -53,7 +53,7 @@ gem 'will_paginate'
 gem 'table_print'
 gem 'momentjs-rails'
 
-gem 'omniauth-slack'
+gem 'omniauth-slack', '~> 2.3.0'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.3'
 gem 'nested_form_fields'
 
