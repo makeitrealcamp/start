@@ -36,7 +36,7 @@ class SolutionsController < ApplicationController
 
     solution = Solution.find(params[:id]).documents.where(name: params[:file]).take
     if solution
-      render text: solution.content, content_type: content_type_file(params[:file])
+      render plain: solution.content, content_type: content_type_file(params[:file])
     else
       raise ActionController::RoutingError.new('Not Found')
     end
