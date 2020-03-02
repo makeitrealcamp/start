@@ -12,15 +12,17 @@
   <%= javascript_include_tag("https://s3-us-west-2.amazonaws.com/epayco/v1.0/epayco.min.js") %>
   <%= csrf_meta_tags %>
 
-  <%= render "utils/fb_pixel" %>
-  <%= render "utils/google_analytics" %>
-  <%= render "utils/convertloop" %>
-
+  <%= render "utils/google_tagmanager" %>
   <%= yield :head %>
 </head>
 <body class="pages-layout">
-  <%= render "utils/google_tagmanager" %>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NC7GBT"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   <%= yield %>
+
   <div class="whatsapp">
     <a href="https://wa.me/573194568699"><%= image_tag "whatsapp.png" %></a>
   </div>
