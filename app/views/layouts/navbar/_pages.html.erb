@@ -28,12 +28,6 @@
                   <span class="text-menu">Top (Inmersivo)</span>
                 <% end %>
               </li>
-              <li class="<%= 'active' if params[:action] == 'full_stack_online' %>">
-                <%= link_to full_stack_online_path do %>
-                  <span class="icon-menu"><%= image_tag "full-stack-blue.png", height: 28 %></span>
-                  <span class="text-menu">Full Stack (A tu ritmo)</span>
-                <% end %>
-              </li>
               <li class="<%= 'active' if params[:action] == 'data_science_online' %>">
                 <%= link_to data_science_online_path do %>
                   <span class="icon-menu"><span class="glyphicon glyphicon-stats" aria-hidden="true" style="font-size: 21px; margin-left: 7px; color: #3877ba; margin-top: -3px;"></span></span>
