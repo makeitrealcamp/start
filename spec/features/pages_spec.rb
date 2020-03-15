@@ -3,32 +3,16 @@ require 'rails_helper'
 RSpec.feature "Pages", type: :feature do
   include ActiveJob::TestHelper
 
-  scenario "sign up to front end online program", js: true do
-    ActionMailer::Base.deliveries.clear
-    visit front_end_online_path
-
-    fill_in "first-name", with: "Pedro"
-    fill_in "last-name", with: "Perez"
-    fill_in "email", with: "lead@example.com"
-    select "Colombia", from: 'country'
-    expect(page).to have_selector '#mobile'
-    fill_in "mobile", with: "3131234567"
-
-    find('button[type="submit"]').click
-
-    expect(current_path).to eq thanks_front_end_online_path
-    expect(CreateLeadJob).to have_been_enqueued
-  end
-
   scenario "sign up to full stack online program", js: true do
     ActionMailer::Base.deliveries.clear
     visit full_stack_online_path
 
+    first('button.btn-register').click
+    expect(page).to have_css("#registration-modal")
+
     fill_in "first-name", with: "Pedro"
     fill_in "last-name", with: "Perez"
     fill_in "email", with: "lead@example.com"
-    select "Colombia", from: 'country'
-    expect(page).to have_selector '#mobile'
     fill_in "mobile", with: "3131234567"
 
     find('button[type="submit"]').click
@@ -58,7 +42,7 @@ RSpec.feature "Pages", type: :feature do
       fill_in "applicant[skype]", with: "3131234567"
       fill_in "applicant[twitter]", with: "vanegaspinto"
       fill_in "applicant[url]", with: "www.davidcillo.com"
-      find('#payment-method').find('option[value="scheme-1"]').select_option 
+      find('#payment-method').find('option[value="scheme-1"]').select_option
 
       find('.next[type="button"]').click
       fill_in "goal", with: "mi motivación es aprender"

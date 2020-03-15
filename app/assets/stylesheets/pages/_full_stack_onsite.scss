@@ -5,6 +5,7 @@
   &.barranquilla .program-intro { background-image: linear-gradient(rgba(48, 48, 48, 0.8), rgba(48, 48, 48, 0.8)), image-url("barranquilla.jpg"); }
   &.cali .program-intro { background-image: image-url("cali.jpg"); }
   &.bucaramanga .program-intro { background-image: image-url("bucaramanga.jpg"); }
+  &.online .program-intro { background-image: image-url("01interna-programa.jpg") center center; }
 
   .program-intro {
     background-color: #005e9f;
@@ -27,7 +28,7 @@
       .icons {
         color: #fff;
         margin-top: 20px;
-        font-size: 21px;
+        font-size: 24px;
         margin-bottom: 60px;
 
         @media (min-width: $screen-md-min) { margin-bottom: 0; }
@@ -246,34 +247,35 @@
 
   .target-audience {
     .audience-quote {
-      background: #f7f7f9;
+      background: #343a40;
       margin: 0 auto;
-      box-shadow: 5px 5px 15px #ccc;
-      padding: 25px;
-      max-width: 450px;
+      padding: 25px 30px;
+      max-width: 500px;
+      border-radius: 5px;
 
       p {
-        color: #666;
-        font-size: 16px;
+        color: #ddd;
+        font-size: 18px;
         line-height: 1.6;
-        border-bottom: 1px solid $brand_primary;
-        padding-bottom: 30px;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
       }
 
       .audience-quote-img {
         float: left;
-
         img { border: 1px solid #ccc; }
       }
 
       .audience-quote-person {
-        padding-left: 110px;
+        color: #ccc;
+        padding-left: 115px;
         margin-top: 15px;
+
+        a { color: white; }
 
         .audience-quote-person-name {
           display: block;
           font-weight: 600;
+          margin-bottom: 5px;
         }
       }
     }
