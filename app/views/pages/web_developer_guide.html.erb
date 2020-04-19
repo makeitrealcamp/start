@@ -1,6 +1,6 @@
 <div class="new-site web-developer-guide">
   <%= render "layouts/navbar/pages_dark", hide_login: true %>
-  <section class="section section-white section-book">
+  <section class="section section-book">
     <div class="container">
       <div class="row">
         <div class="col-md-6 text-center col-md-push-6">
@@ -16,7 +16,7 @@
             <%= form_tag do %>
               <%= render "capture_email_form" %>
               <div>
-                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Descargar libro</button>
+                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Descargar e-book</button>
               </div>
             <% end %>
           <% end %>
@@ -24,4 +24,6 @@
       </div>
     </div>
   </section>
+
+  <%= render "footer" %>
 </div>
