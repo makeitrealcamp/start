@@ -14,7 +14,7 @@
             <p class="description">Conoce qué hace un Desarrollador Web, qué tecnologías debe aprender, cómo consigue su primer empleo y por dónde empieza su aprendizaje. <strong>Descarga este e-book completamente gratis</strong>!</p>
 
             <%= form_tag do %>
-              <%= render "capture_email_form" %>
+              <%= render "capture_email_form", autofocus: true %>
               <div>
                 <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Descargar e-book</button>
               </div>

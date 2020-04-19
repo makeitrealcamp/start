@@ -9,7 +9,7 @@
       <div class="col-sm-6">
 
         <%= form_tag web_developer_guide_path, id: "web-developer-guide-form", remote: true do %>
-          <%= render "capture_email_form" %>
+          <%= render "capture_email_form", autofocus: false %>
           <div>
             <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Suscribirme y descargar libro</button>
           </div>
