@@ -23,9 +23,9 @@ class SubscriptionsMailer < ApplicationMailer
     mail to: charge.email, subject: "Pago rechazado por la entidad financiera"
   end
 
-  def course_welcome(charge)
+  def charge_approved(charge)
     @charge = charge
 
-    mail to: charge.email, subject: "Pago exitoso! Tu cupo está ahora reservado"
+    mail to: charge.email, subject: "[#{charge.description}] Pago procesado con éxito!"
   end
 end

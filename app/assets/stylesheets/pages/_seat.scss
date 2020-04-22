@@ -1,0 +1,100 @@
+.reserve-seat-page {
+  .wrapper {
+    padding-top: 60px;
+
+    .audience-quote {
+      margin: 0 auto 40px;
+      padding: 25px 30px;
+      max-width: 550px;
+      border-radius: 5px;
+
+      p {
+        line-height: 1.6;
+        margin-bottom: 30px;
+      }
+
+      .audience-quote-img {
+        float: left;
+        padding: 3px 5px;
+
+        img { border: 1px solid #ccc; }
+      }
+
+      .audience-quote-person {
+        padding-left: 105px;
+        margin-top: 15px;
+
+        .audience-quote-person-name {
+          display: block;
+          font-weight: 600;
+          margin-bottom: 5px;
+        }
+      }
+    }
+
+    .faq {
+      padding: 0 25px;
+      max-width: 550px;
+      margin: 0 auto;
+
+      h2 {
+        color: #005e9f;
+        font-weight: normal;
+      }
+
+      .question {
+        margin-bottom: 30px;
+        h3 {
+          font-size: 1rem;
+          font-weight: 600;
+          line-height: 1.4;
+        }
+
+        p { line-height: 1.6; }
+      }
+    }
+
+    .card {
+      background-color: white;
+      border: solid 1px #dddddd;
+      margin: 0 auto 30px;
+      max-width: 550px;
+
+      .card-header {
+        padding: 15px 20px;
+        border-bottom: 1px solid #ddd;
+
+        h3 {
+          font-size: 1.1rem;
+          margin-top: 0;
+          margin-bottom: 7px;
+
+          @media(min-width: $screen-md-min) { font-size: 1.3rem; }
+        }
+
+        .price {
+          color: #f04500;
+          font-weight: 600;
+          margin-bottom: 0;
+
+          @media(min-width: $screen-md-min) { font-size: 1.1rem; }
+
+          small { font-weight: normal; }
+        }
+      }
+
+      .card-content {
+        padding: 15px 20px;
+      }
+
+      .card-footer {
+        padding: 15px 20px;
+        border-top: 1px solid #ddd;
+      }
+    }
+
+
+
+    .form-header { margin-bottom: 20px;}
+  }
+}

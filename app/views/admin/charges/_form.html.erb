@@ -81,7 +81,7 @@
   <div class="col-sm-6">
     <div class="form-group">
       <%= f.label :customer_country, "Pais" %>
-      <%= f.select :customer_country, countries_options, {}, class: "form-control" %>
+      <%= f.select :customer_country, countries_options(@charge.customer_country), {}, class: "form-control" %>
     </div>
   </div>
   <div class="col-sm-6">
