@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "front-end-bootcamp", to: "pages#front_end_bootcamp", as: :front_end_bootcamp
   get "full-stack-online", to: "pages#full_stack_online", as: :full_stack_online
   post "full-stack-online", to: "pages#create_full_stack_online_lead"
+  get "full-stack-online/cupo", to: "pages#full_stack_online_seat"
   get "front-end-online", to: "pages#front_end_online", as: :front_end_online
   post "front-end-online", to: "pages#create_front_end_online_lead"
   get "full-stack-medellin", to: "pages#full_stack_medellin"
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
 
   get "data-science-online", to: "pages#data_science_online"
   post "data-science-online", to: "pages#create_data_science_online_lead"
+  get "data-science-online/cupo", to: "pages#data_science_online_seat"
 
   get "top", to: "pages#top"
   get "elite", to: "pages#elite"

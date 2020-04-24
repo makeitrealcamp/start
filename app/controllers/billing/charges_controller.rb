@@ -3,7 +3,11 @@ require 'digest'
 class Billing::ChargesController < ApplicationController
 
   def create
-    @charge = Billing::Charge.create!(charge_params.merge(charge_data))
+    data = charge_params.merge(charge_data)
+    data[:customer_name] = "#{data[:first_name]} #{data[:last_name]}" if data[:customer_name].nil?
+    data[:customer_email] = data[:email] if data[:customer_email].nil?
+
+    @charge = Billing::Charge.create!(data)
     @signature = signature(@charge)
 
     ConvertLoopJob.perform_later(name: "completed-course-charge", person: { pid: cookies['dp_pid'] }, metadata: { course: @charge.description, amount: @charge.amount.to_f, currency: @charge.currency, payment_method: @charge.payment_method })
@@ -38,19 +42,19 @@ class Billing::ChargesController < ApplicationController
 
     def courses
       {
-        nodejs: {
-          description: "Separación curso de Express y MongoDB",
+        fullstack: {
+          description: "Separación curso Desarrollador Web Full Stack",
           amount: 500_000,
           tax: 0,
           tax_percentage: 0,
-          currency: "COP",
+          currency: "COP"
         },
-        react: {
-          description: "Separación curso de React y React Native",
+        datascience: {
+          description: "Separación curso Data Science",
           amount: 500_000,
           tax: 0,
           tax_percentage: 0,
-          currency: "COP",
+          currency: "COP"
         }
       }
     end

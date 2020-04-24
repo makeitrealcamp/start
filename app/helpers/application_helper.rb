@@ -148,7 +148,7 @@ module ApplicationHelper
     SHA1.encode(text)
   end
 
-  def countries_options
+  def countries_options(selected="")
     options_for_select([
       ["País de residencia *", ""],
       ["Argentina", "AR", { data: { code: "54" } }],
@@ -171,7 +171,7 @@ module ApplicationHelper
       ["República Dominicana", "DO", { data: { code: "1" } }],
       ["Uruguay", "UY", { data: { code: "598" } }],
       ["Venezuela", "VE", { data: { code: "58" } }],
-    ], "")
+    ], selected)
   end
 
 end

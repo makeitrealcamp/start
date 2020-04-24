@@ -1,0 +1,82 @@
+<form id="registration-form" action="/billing/charges" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <input type="hidden" name="course" value="<%= course %>">
+
+  <div class="card-content">
+    <p class="form-header">Ingresa los datos del estudiante:</p>
+    <div class="form-group">
+      <label for="first_name">Nombre *</label>
+      <div class="row">
+        <div class="col-xs-6">
+          <input type="text" id="first-name" name="charge[first_name]" class="form-control" placeholder="Nombre" required autofocus>
+        </div>
+        <div class="col-xs-6">
+          <input type="text" id="last-name" name="charge[last_name]" class="form-control" placeholder="Apellido" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">E-mail *</label>
+      <input type="email" id="email" name="charge[email]" class="form-control" placeholder="Ingresa tu Email" required>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="email">País *</label>
+          <select class="form-control" id="country" name="charge[customer_country]">
+            <option value="" selected>Selecciona</option>
+            <option value="AR" data-code="54">Argentina</option>
+            <option value="BO" data-code="591">Bolivia</option>
+            <option value="CL" data-code="56">Chile</option>
+            <option value="CO" data-code="57">Colombia</option>
+            <option value="CR" data-code="506">Costa Rica</option>
+            <option value="EC" data-code="593">Ecuador</option>
+            <option value="SV" data-code="503">El Salvador</option>
+            <option value="ES" data-code="34">España</option>
+            <option value="US" data-code="1">Estados Unidos</option>
+            <option value="GT" data-code="502">Guatemala</option>
+            <option value="HN" data-code="504">Honduras</option>
+            <option value="MX" data-code="52">México</option>
+            <option value="NI" data-code="505">Nicaragua</option>
+            <option value="PA" data-code="507">Panamá</option>
+            <option value="PY" data-code="595">Paraguay</option>
+            <option value="PE" data-code="51">Perú</option>
+            <option value="PR" data-code="1">Puerto Rico</option>
+            <option value="DO" data-code="1">República Dominicana</option>
+            <option value="UY" data-code="598">Uruguay</option>
+            <option value="VE" data-code="58">Venezuela</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="customer-id">Documento *</label>
+          <div class="input-group">
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="customer-id-type-value">C.C.</span> <span class="caret"></span></button>
+              <ul class="dropdown-menu customer-id-type-dropdown">
+                <li><a href="#">CC</a></li>
+                <li><a href="#">CE</a></li>
+                <li><a href="#">Nit</a></li>
+                <li><a href="#">PPN</a></li>
+                <li><a href="#">SSN</a></li>
+                <li><a href="#">DNI</a></li>
+                <li><a href="#">Otro</a></li>
+              </ul>
+            </div><!-- /btn-group -->
+            <input type="text" id="customer-id" name="charge[customer_id]" class="form-control" placeholder="No. Identificación">
+            <input type="hidden" id="customer-id-type" name="charge[customer_id_type]" value="CC">
+          </div><!-- /input-group -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <div class="form-actions text-right">
+      <button type="submit" class="btn btn-primary btn-lg finish">CONTINUAR</button>
+    </div>
+  </div>
+</form>
