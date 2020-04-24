@@ -227,7 +227,7 @@ class PagesController < ApplicationController
       first_name: params['first-name'],
       last_name: params['last-name'],
       email: params['email'],
-      country: "CO",
+      country: params['country'],
       mobile: params['mobile'],
       ip: request.remote_ip
     }
