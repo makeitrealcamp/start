@@ -15,7 +15,7 @@
   }
 
   var detectCountry = function(selector) {
-    $.getJSON("//ipinfo.io")
+    $.getJSON("//ipinfo.io?token=dbb0f38cf907e8")
       .done(function(response) {
         var country = response.country;
         var countries = $.map($('#country options'), function(option) {
@@ -115,18 +115,10 @@
     $(window).on('scroll', function() {
       var scroll = $(window).scrollTop();
       if (scroll > 600) {
-        $('.header-apply').slideDown();
+        $('.header-register').slideDown();
       } else {
-        $('.header-apply').slideUp();
+        $('.header-register').slideUp();
       }
-    });
-
-    $('.btn-start-now').on('click', function(e) {
-      e.preventDefault();
-      $('html, body').animate({
-        scrollTop: $("#form-start-now").offset().top - 60
-      }, 1000);
-      $('#first-name').focus();
     });
   };
 

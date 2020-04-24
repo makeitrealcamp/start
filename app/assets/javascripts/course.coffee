@@ -8,7 +8,7 @@ class CourseLandingView extends Backbone.View
     $(@el).on('shown.bs.modal', =>
       @before_step_1()
 
-      $.getJSON("//ipinfo.io")
+      $.getJSON("//ipinfo.io?token=dbb0f38cf907e8")
         .done((response) =>
           country = response.country
           countries = $.map($('#country options'), (option) -> option.value )
