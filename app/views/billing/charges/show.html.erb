@@ -52,7 +52,11 @@
 
           <% if @charge.created? || @charge.pending? %>
             <h3>Detalles</h3>
-            <p>La transacción se encuentra pendiente por confirmar. Este proceso puede tomar entre algunos minutos y varias horas dependiendo del método de pago. Estaremos pendientes y te informaremos cualquier actualización por correo electrónico.</p>
+            <% if @charge.cash? || @charge.referenced? || @charge.transfer? %>
+              <p>La transacción se encuentra pendiente de pago. Al realizar el pago puedes enviarnos el soporte a <a href="mailto:info@makeitreal.camp">info@makeitreal.camp</a> si quieres agilizar el proceso. La entidad toma un tiempo en notificarnos.</p>
+            <% else %>
+              <p>La transacción se encuentra pendiente por confirmar. Este proceso puede tomar entre algunos minutos y varias horas dependiendo del método de pago. Estaremos pendientes y te informaremos cualquier actualización por correo electrónico.</p>
+            <% end %>
             <hr>
           <% elsif @charge.rejected? %>
             <h3>Detalles</h3>
