@@ -3,9 +3,11 @@ class Billing::PayuController < ApplicationController
 
   def result
     @charge = Billing::Charge.where(uid: params[:referenceCode]).take
+    raise ActiveRecord::RecordNotFound.new("Not Found") unless @charge
 
     if response_signature(@charge) == params[:signature]
       @charge.status = :pending
+      update_payment_method(@charge, params[:payment_method_type])
     else
       @charge.status = :error
       @charge.error_message = "La firma en la respuesta no es válida."
