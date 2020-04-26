@@ -11,13 +11,8 @@ namespace :utils do
     ResourceCompletion.all.each do |resource_completion|
       resource = resource_completion.resource
 
-      if resource.url?
-        description = "Abrió el recurso externo #{resource.to_html_description}"
-        ActivityLog.create(name: "opened-external-resource", user: resource_completion.user, activity: resource, description: description, created_at: resource_completion.created_at)
-      elsif resource.markdown?
-        description = "Abrió el recurso interno #{resource.to_html_description}"
-        ActivityLog.create(name: "viewed-markdown-resource", user: resource_completion.user, activity: resource, description: description, created_at: resource_completion.created_at)
-      end
+      description = "Completó el recurso #{resource.to_html_description}"
+      ActivityLog.create(name: "completed-resource", user: resource_completion.user, activity: resource, description: description, created_at: resource_completion.created_at)
     end
 
     LessonCompletion.all.each do |lesson_completion|
