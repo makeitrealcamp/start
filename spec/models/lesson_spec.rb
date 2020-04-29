@@ -10,7 +10,7 @@
 #  row            :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  free_preview   :boolean          default(FALSE)
+#  free_preview   :boolean          default("false")
 #  info           :text
 #  video_duration :string
 #

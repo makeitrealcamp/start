@@ -5,8 +5,8 @@
 #  id             :integer          not null, primary key
 #  uid            :string(50)
 #  user_id        :integer
-#  payment_method :integer          default("unknown")
-#  status         :integer          default("created")
+#  payment_method :integer          default("0")
+#  status         :integer          default("0")
 #  currency       :string(5)
 #  amount         :decimal(, )
 #  tax            :decimal(, )

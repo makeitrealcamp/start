@@ -1,0 +1,94 @@
+<% content_for :head do %>
+  <meta property="og:title" content="<%= @webinar.title %>" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="<%= @webinar.description %>" />
+  <meta property="og:image" content="<%= @webinar.image_url || image_url("01interna-programa.jpg") %>" />
+<% end %>
+
+<div class="new-site webinar-page">
+  <%= render "layouts/navbar/pages_dark", hide_login: true %>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-7">
+        <div class="webinar-header">WEBINAR</div>
+        <div class="webinar-info">
+          <h1><%= @webinar.title %></h1>
+          <% unless @webinar.is_past? %>
+            <div class="webinar-date">
+              <div><%= fa_icon "calendar", class: "calendar-icon" %> <span><%= l @webinar.date, format: '%A %e de %B, %Y - %l:%M %P' %> (-05)</span></div>
+              <div><%= fa_icon "clock-o", class: "clock-icon" %> 45 minutos</div>
+            </div>
+          <% end %>
+          <p><%= @webinar.description %></p>
+        </div>
+
+        <div class="webinar-speakers">
+          <h2>PRESENTADORES</h2>
+          <div class="row">
+            <% @webinar.speakers.each do |speaker| %>
+              <div class="col-sm-6">
+                <div class="speaker">
+                  <div class="speaker-img">
+                    <img src="<%= speaker.avatar_url %>" alt="<%= speaker.name %>">
+                  </div>
+                  <div class="speaker-name"><%= speaker.name %></div>
+                  <div class="speaker-bio"><%= speaker.bio %></div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-5">
+        <div class="webinar-registration">
+          <header><%= @webinar.is_past? ? "VER LA TRANSMISIÓN" : "¿TE GUSTARÍA ASISTIR?" %></header>
+          <%= form_for @webinar.participants.build, url: register_webinar_path(id: @webinar.slug), remote: true do |f| %>
+            <div class="registration-body">
+              <% if @webinar.is_past? %>
+                <p>Completa los siguientes datos y accede a la transmisión:</p>
+              <% else %>
+                <p>Recibirás toda la información y el link de acceso en tu correo:</p>
+              <% end %>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-xs-6">
+                    <%= f.text_field :first_name, class: "form-control", placeholder: "Nombre", required: true %>
+                  </div>
+                  <div class="col-xs-6">
+                    <%= f.text_field :last_name, class: "form-control", placeholder: "Apellido", required: true %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= f.email_field :email, class: "form-control", placeholder: "Email", required: true %>
+              </div>
+            </div>
+            <div class="registration-actions">
+              <button type="submit" class="btn btn-primary"><%= @webinar.is_past? ? "VER AHORA" : "REGISTRARSE" %></button>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="social-networks">
+          <div class="text">Compartir en:</div>
+          <a class="btn-share btn-share-twitter" target="_blank" href="http://twitter.com/share?text=<%= @webinar.title %>&url=<%= webinar_url(@webinar.slug) %>&via=makeitrealcamp" rel="nofollow" title="Compartir en Twitter">Twitter</a>
+          <a class="btn-share btn-share-fb" target="_blank" href="http://www.facebook.com/sharer.php?u=<%= webinar_url(@webinar.slug) %>&p[title]=<%= @webinar.title %>" rel="nofollow" title="Compartir en Facebook">Facebook</a>
+          <a class="btn-share btn-share-linkedin" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=<%= webinar_url(@webinar.slug) %>&title=<%= @webinar.title %>&summary=<%= @webinar.description %>&source=makeitreal.camp" rel="nofollow" title="Compartir en LinkedIn">LinkedIn</a>
+        </div>
+
+        <div class="webinar-company">
+          <div class="company-logo">
+            <%= image_tag "makeitreal-icon-dark.png" %>
+          </div>
+          <p>En Make it Real estamos transformando la educación con programas prácticos en desarrollo Web/móvil y Data Science que combinan lo mejor de la tecnología con lo mejor de la interacción humana.</p>
+          <div class="text-center">
+            <a href="/">Conoce nuestros programas</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

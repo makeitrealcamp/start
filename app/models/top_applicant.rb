@@ -9,7 +9,7 @@
 #  last_name  :string
 #  country    :string(3)
 #  mobile     :string(20)
-#  status     :integer          default("applied")
+#  status     :integer          default("0")
 #  info       :hstore
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

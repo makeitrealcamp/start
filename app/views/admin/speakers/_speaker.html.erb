@@ -1,0 +1,12 @@
+<div class="col-sm-6">
+  <div class="speaker" id="speaker-<%= speaker.id %>">
+    <div class="speaker-img">
+      <img src="<%= speaker.avatar_url %>" alt="<%= speaker.name %>">
+    </div>
+    <div class="speaker-name">
+      <%= speaker.name %>
+      <%= link_to '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>'.html_safe, admin_webinar_speaker_path(speaker.webinar, speaker), remote: true, method: :delete, data: { confirm: "¿Estás seguro de eliminar este speaker?" } %>
+    </div>
+    <div class="speaker-bio"><%= speaker.bio %></div>
+  </div>
+</div>

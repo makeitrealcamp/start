@@ -1,0 +1,46 @@
+<div class="new-site webinars-page">
+  <%= render "layouts/navbar/pages_dark", hide_login: true %>
+
+  <div class="container">
+    <div class="webinars webinars-upcoming">
+      <header>PRÓXIMOS EVENTOS</header>
+      <% @upcoming.each do |webinar| %>
+        <div class="webinar" id="webinar-<%= webinar.id %>">
+          <div class="webinar-info">
+            <div class="webinar-title"><%= link_to webinar.title, webinar_path(webinar.slug) %></div>
+            <div class="webinar-date"><%= l webinar.date, format: '%A %e de %B, %Y %I:%M %P' %> (-05) <span class="bullet">&bull;</span> 45 minutos</div>
+          </div>
+          <div class="webinar-actions">
+            <div class="speakers">
+              <% count = webinar.speakers.count %>
+              <% if count > 4 %>
+                <div class="speaker others">+<%= count - 3 %></div>
+              <% end %>
+              <% webinar.speakers.limit(count > 4 ? 3 : 4).reverse.each do |speaker| %>
+                <div class="speaker" data-toggle="tooltip" data-placement="bottom" title="<%= speaker.name %>">
+                  <img src="<%= speaker.avatar_url %>" alt="<%= speaker.name %>">
+                </div>
+              <% end %>
+            </div>
+            <%= link_to "Registrarse", webinar_path(webinar.slug), class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="webinars webinars-past">
+      <header>EVENTOS ANTERIORES</header>
+      <% @past.each do |webinar| %>
+        <div class="webinar" id="webinar-<%= webinar.id %>">
+          <div class="webinar-info">
+            <div class="webinar-title"><%= link_to webinar.title, webinar_path(webinar.slug) %></div>
+            <div class="webinar-date"><%= l webinar.date, format: '%A %e de %B, %Y %I:%M %P' %> (-05) <span class="bullet">&bull;</span> 45 minutos</div>
+          </div>
+          <div class="webinar-actions">
+            <%= link_to "Ver Ahora", webinar_path(webinar.slug), class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<p>Hola <%= @participant.first_name %>,</p>
+
+<p>Muchas gracias por confirmar tu asistencia al Webinar <strong><%= @webinar.title %></strong>.</p>
+
+<p>
+  <strong>Fecha:</strong> <%= l @webinar.date, format: '%A %e de %B, %Y' %><br>
+  <strong>Hora: </strong> <%= l @webinar.date, format: '%l:%M %P' %> (-05)
+</p>
+
+<p>Ingresa al evento en la fecha y hora indicada haciendo click en el siguiente botón:</p>
+
+<div class="button-wrapper">
+  <%= link_to "Acceder al Webinar", "https://www.youtube.com/watch?v=#{@webinar.event_url}", class: "button secondary" %>
+</div>
+
+<p>También puedes agregar este evento a tu calendario:</p>
+
+<div class="button-wrapper">
+  <%= link_to "Agregar al Calendario", "https://makeitreal.camp/", class: "button" %>
+</div>
+
+<p>¡Te esperamos!</p>
+
+<p class="signature">Equipo de Make it Real</p>

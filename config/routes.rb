@@ -199,6 +199,10 @@ Rails.application.routes.draw do
     post 'payu/confirm', to: 'payu#confirm'
   end
 
+  resources :webinars, only: [:index, :show] do
+    post 'register', on: :member
+    get 'watch', on: :member
+  end
 
   namespace :admin do
     get 'dashboard', to: 'dashboard#index'
@@ -235,6 +239,9 @@ Rails.application.routes.draw do
     end
     resources :challenges, only:[:index] do
       patch 'update_position', on: :member
+    end
+    resources :webinars, path: 'webinars' do
+      resources :speakers, only: [:new, :create, :destroy]
     end
   end
 

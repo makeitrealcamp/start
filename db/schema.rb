@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200426030105) do
+ActiveRecord::Schema.define(version: 20200506212336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -445,6 +445,40 @@ ActiveRecord::Schema.define(version: 20200426030105) do
     t.index ["transaction_id"], name: "index_versions_on_transaction_id"
   end
 
+  create_table "webinars_participants", force: :cascade do |t|
+    t.bigint "webinar_id"
+    t.string "email", limit: 150, null: false
+    t.string "first_name", limit: 100, null: false
+    t.string "last_name", limit: 100, null: false
+    t.string "token", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_webinars_participants_on_token", unique: true
+    t.index ["webinar_id"], name: "index_webinars_participants_on_webinar_id"
+  end
+
+  create_table "webinars_speakers", force: :cascade do |t|
+    t.bigint "webinar_id"
+    t.string "name", null: false
+    t.string "avatar_url"
+    t.string "bio"
+    t.boolean "external", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["webinar_id"], name: "index_webinars_speakers_on_webinar_id"
+  end
+
+  create_table "webinars_webinars", force: :cascade do |t|
+    t.string "title", limit: 150, null: false
+    t.string "slug", limit: 100, null: false
+    t.text "description"
+    t.datetime "date", null: false
+    t.string "image_url"
+    t.string "event_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "activity_logs", "users"
   add_foreign_key "auth_providers", "users"
   add_foreign_key "billing_charges", "users"
@@ -474,4 +508,6 @@ ActiveRecord::Schema.define(version: 20200426030105) do
   add_foreign_key "subscriptions", "users"
   add_foreign_key "top_applicant_tests", "applicants"
   add_foreign_key "users", "levels"
+  add_foreign_key "webinars_participants", "webinars_webinars", column: "webinar_id", on_delete: :cascade
+  add_foreign_key "webinars_speakers", "webinars_webinars", column: "webinar_id", on_delete: :cascade
 end

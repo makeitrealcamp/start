@@ -41,12 +41,14 @@ $grid-float-breakpoint: 810px;
 @import "admin/project_solutions";
 @import "admin/courses";
 @import "admin/challenges";
+@import "admin/webinars";
 @import "quizer/questions";
 @import "quizer/quiz_attempt";
 @import "datepicker";
 @import "intlTelInput";
 @import "billing/charges";
 @import "top_program";
+@import "webinars";
 
 html, body {
   font-size: 16px;
