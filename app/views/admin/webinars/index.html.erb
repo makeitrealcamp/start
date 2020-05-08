@@ -1,0 +1,53 @@
+<div class="admin-webinars-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="webinars-list-header">
+          <h1>Webinars</h1>
+          <%= link_to "<span class='glyphicon glyphicon-plus'></span> Nuevo Webinar".html_safe, new_admin_webinar_path, class: "btn btn-primary new-webinar" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="webinars">
+      <header>PRÓXIMOS EVENTOS</header>
+      <% @upcoming.each do |webinar| %>
+        <div class="webinar">
+          <div class="webinar-info">
+            <div class="webinar-title"><%= link_to webinar.title, webinar_path(webinar.slug), target: "_blank" %></div>
+            <div class="webinar-date"><%= l webinar.date, format: '%A %e de %B, %Y %I:%M %P' %> (-05) <span class="bullet">&bull;</span> 45 minutos</div>
+          </div>
+          <div class="webinar-actions">
+            <div class="speakers">
+              <% count = webinar.speakers.count %>
+              <% if count > 4 %>
+                <div class="speaker others">+<%= count - 3 %></div>
+              <% end %>
+              <% webinar.speakers.limit(count > 4 ? 3 : 4).reverse.each do |speaker| %>
+                <div class="speaker" data-toggle="tooltip" data-placement="bottom" title="<%= speaker.name %>">
+                  <img src="<%= speaker.avatar_url %>" alt="<%= speaker.name %>">
+                </div>
+              <% end %>
+            </div>
+            <%= link_to '<span class="glyphicon glyphicon-search" aria-hidden="true"></span>'.html_safe, admin_webinar_path(webinar), class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="webinars">
+      <header>EVENTOS ANTERIORES</header>
+      <% @past.each do |webinar| %>
+        <div class="webinar">
+          <div class="webinar-info">
+            <div class="webinar-title"><%= link_to webinar.title, webinar_path(webinar.slug), target: "_blank" %></div>
+            <div class="webinar-date"><%= l webinar.date, format: '%A %e de %B, %Y %I:%M %P' %> (-05) <span class="bullet">&bull;</span> 45 minutos</div>
+          </div>
+          <div class="webinar-actions">
+            <%= link_to '<span class="glyphicon glyphicon-search" aria-hidden="true"></span>'.html_safe, admin_webinar_path(webinar), class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

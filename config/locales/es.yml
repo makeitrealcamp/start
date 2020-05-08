@@ -24,31 +24,31 @@ es:
     - nov
     - dic
     day_names:
-    - domingo
-    - lunes
-    - martes
-    - miércoles
-    - jueves
-    - viernes
-    - sábado
+    - Domingo
+    - Lunes
+    - Martes
+    - Miércoles
+    - Jueves
+    - Viernes
+    - Sábado
     formats:
       default: "%d/%m/%Y"
       long: "%d de %B de %Y"
       short: "%d de %b"
     month_names:
     -
-    - enero
-    - febrero
-    - marzo
-    - abril
-    - mayo
-    - junio
-    - julio
-    - agosto
-    - septiembre
-    - octubre
-    - noviembre
-    - diciembre
+    - Enero
+    - Febrero
+    - Marzo
+    - Abril
+    - Mayo
+    - Junio
+    - Julio
+    - Agosto
+    - Septiembre
+    - Octubre
+    - Noviembre
+    - Diciembre
     order:
     - :day
     - :month

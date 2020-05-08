@@ -1,0 +1,2 @@
+module WebinarsHelper
+end

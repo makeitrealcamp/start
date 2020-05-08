@@ -7,7 +7,7 @@
 #  description :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  published   :boolean          default(FALSE)
+#  published   :boolean          default("false")
 #
 
 require 'rails_helper'

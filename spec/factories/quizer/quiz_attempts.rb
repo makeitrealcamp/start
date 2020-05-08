@@ -9,7 +9,7 @@
 #  updated_at       :datetime         not null
 #  status           :integer
 #  score            :decimal(, )
-#  current_question :integer          default(0)
+#  current_question :integer          default("0")
 #
 # Indexes
 #

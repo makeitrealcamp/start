@@ -1,0 +1,39 @@
+<div id="webinar-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title"><%= @speaker.new_record? ? "New Webinar" : "Edit Webibar" %></h4>
+      </div>
+
+      <div class="alerts-container">
+      </div>
+
+      <%= form_for @speaker, url: admin_webinar_speakers_path(@speaker.webinar), remote: true do |f| %>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :avatar_url %>
+            <%= f.text_field :avatar_url, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :bio %>
+            <%= f.text_area :bio, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <div class="actions">
+            <%= f.submit class: "btn btn-primary" %>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

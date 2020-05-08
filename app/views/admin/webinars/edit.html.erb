@@ -1,0 +1,15 @@
+<div class="admin-webinar-form">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <%= form_for @webinar, url: admin_webinar_path(@webinar) do |f| %>
+          <%= render "form", f: f %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  new AdminWebinarView({ new_record: false });
+</script>

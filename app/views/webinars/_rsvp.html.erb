@@ -1,0 +1,9 @@
+<header><%= @webinar.is_past? ? "ACCESO ENVIADO!" : "¡ASISTENCIA CONFIRMADA!" %></header>
+<div class="registration-body">
+  <div class="rsvp-icon"><%= fa_icon "check" %></div>
+  <% if @webinar.is_past? %>
+    <p>En unos minutos recibirás un correo con tu acceso a este Webinar. Muchas gracias y esperamos que lo disfrutes!</p>
+  <% else %>
+    <p>Tu asistencia está confirmada. En unos minutos recibirás un correo con toda la información que necesitas para asistir a este Webinar. ¡Te esperamos!</p>
+  <% end %>
+</div>
