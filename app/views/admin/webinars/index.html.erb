@@ -18,17 +18,7 @@
             <div class="webinar-date"><%= l webinar.date, format: '%A %e de %B, %Y %I:%M %P' %> (-05) <span class="bullet">&bull;</span> 45 minutos</div>
           </div>
           <div class="webinar-actions">
-            <div class="speakers">
-              <% count = webinar.speakers.count %>
-              <% if count > 4 %>
-                <div class="speaker others">+<%= count - 3 %></div>
-              <% end %>
-              <% webinar.speakers.limit(count > 4 ? 3 : 4).reverse.each do |speaker| %>
-                <div class="speaker" data-toggle="tooltip" data-placement="bottom" title="<%= speaker.name %>">
-                  <img src="<%= speaker.avatar_url %>" alt="<%= speaker.name %>">
-                </div>
-              <% end %>
-            </div>
+            <%= render "speakers", webinar: webinar %>
             <%= link_to '<span class="glyphicon glyphicon-search" aria-hidden="true"></span>'.html_safe, admin_webinar_path(webinar), class: "btn btn-primary" %>
           </div>
         </div>
@@ -44,6 +34,7 @@
             <div class="webinar-date"><%= l webinar.date, format: '%A %e de %B, %Y %I:%M %P' %> (-05) <span class="bullet">&bull;</span> 45 minutos</div>
           </div>
           <div class="webinar-actions">
+            <%= render "speakers", webinar: webinar %>
             <%= link_to '<span class="glyphicon glyphicon-search" aria-hidden="true"></span>'.html_safe, admin_webinar_path(webinar), class: "btn btn-primary" %>
           </div>
         </div>
