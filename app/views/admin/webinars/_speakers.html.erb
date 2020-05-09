@@ -1,0 +1,11 @@
+<div class="speakers">
+  <% count = webinar.speakers.count %>
+  <% if count > 4 %>
+    <div class="speaker others">+<%= count - 3 %></div>
+  <% end %>
+  <% webinar.speakers.limit(count > 4 ? 3 : 4).reverse.each do |speaker| %>
+    <div class="speaker" data-toggle="tooltip" data-placement="bottom" title="<%= speaker.name %>">
+      <img src="<%= speaker.avatar_url %>" alt="<%= speaker.name %>">
+    </div>
+  <% end %>
+</div>
