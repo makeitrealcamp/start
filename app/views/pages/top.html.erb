@@ -11,9 +11,9 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md-8 col-md-offset-2 program-header">
+        <div class="col-md-10 col-md-offset-1 program-header">
           <h1 class="text-center" ><%= image_tag "top-icon.svg", height: 45, style: "margin-top: -9px; margin-right: 5px;" %> TOP</h1>
-          <div class="text-center program-description">Un programa inmersivo (tiempo completo) online <strong>sin costo</strong> hasta que encuentres un empleo</div>
+          <div class="text-center program-description">Conviértete en desarrollador Web y móvil en un programa inmersivo (tiempo completo) remoto <strong>sin costo</strong> hasta que encuentres un empleo</div>
           <div class="text-center program-icons">
             <i class="icon icon-html5-alt"></i>
             <i class="icon icon-css3-alt"></i>
@@ -64,7 +64,8 @@
         <div class="col-sm-6">
           <div style="padding-right: 20px;">
             <h2>¿A quién está dirigido?</h2>
-            <p class="lead">Personas que han empezado a aprender por su cuenta, les gusta enfrentar nuevos retos, manejan un Inglés intermedio y desean convertirse en desarrolladores Web.</p>
+            <p class="lead">Personas que han estudiado Ingeniería de Sistemas o carreras afines (Electrónica, Telecomunidaciones, Mecánica, etc.) y que manejan un Inglés intermedio.</p>
+            <p>* </p>
           </div>
         </div>
         <div class="col-sm-6">
@@ -380,7 +381,7 @@
       <div class="row">
         <div class="col-sm-10 col-sm-offset-1 text-center">
           <p class="lead" style="margin-bottom: 40px;">¿Quieres cambiar tu futuro? Las aplicaciones se encuentran abiertas!</p>
-          <button class="btn btn-primary btn-register">INICIA AHORA</button>
+          <button class="btn btn-primary apply-now-btn">INICIA AHORA</button>
         </div>
       </div>
     </div>
@@ -407,7 +408,7 @@
 
           <div class="modal-body">
             <div class="step-1">
-              <p style="margin-bottom: 18px;"><strong>¡Gracias por tu interés en Make it Real!</strong> Antes de empezar asegúrate que cumples con los siguientes requisitos:</p>
+              <p style="margin-bottom: 18px;"><strong>¡Gracias por tu interés en el programa TOP!</strong> Antes de empezar asegúrate que cumples con los siguientes requisitos:</p>
               <ul>
                 <li>
                   Sabes lo básico de HTML, CSS y JavaScript.
@@ -415,7 +416,7 @@
                 </li>
                 <li>
                   Dispones del tiempo para realizar el programa.
-                  <small>El programa requiere una dedicación mínima de 40 horas por semana durante 12 semanas.</small>
+                  <small>El programa requiere una dedicación mínima de 60 horas por semana durante 12 semanas.</small>
                 </li>
                 <li>
                   Manejas un nivel intermedio de Inglés.
@@ -512,20 +513,8 @@
                 </div>
               </div>
               <hr>
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <input type="text" name="applicant[skype]" class="form-control" placeholder="Usuario de Skype (si tienes)">
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <input type="text" name="applicant[twitter]" class="form-control" placeholder="Usuario de Twitter (si tienes)">
-                  </div>
-                </div>
-              </div>
               <div class="form-group">
-                <input type="text" name="applicant[url]" class="form-control" placeholder="Página personal o blog (si tienes)">
+                <input type="text" name="applicant[url]" class="form-control" placeholder="LinkedIn URL">
               </div>
               <hr>
               <div class="row">
@@ -551,15 +540,7 @@
               </div>
               <div class="form-group">
                 <label for="experience">What is your current programming knowledge?</label>
-                <textarea id="experience" name="applicant[experience]" class="form-control" rows="3" placeholder="Tell us about courses you have completed, previous knowledge, personal projects, etc."></textarea>
-              </div>
-              <div class="form-group">
-                <label for="typical-day">How do you spend your time nowadays? Please describe a typical day in your life.</label>
-                <textarea id="typical-day" name="applicant[typical_day]" class="form-control" rows="3"></textarea>
-              </div>
-              <div class="form-group">
-                <label for="vision">Where do you see yourself in 5 years? (careerwise)</label>
-                <textarea id="vision" name="applicant[vision]" class="form-control" rows="3"></textarea>
+                <textarea id="experience" name="applicant[experience]" class="form-control" rows="3" placeholder="Tell us what is your profession, courses you have completed, previous knowledge, personal projects, etc."></textarea>
               </div>
               <div class="form-group">
                 <label for="additional">Is there anything else we should know about you?</label>

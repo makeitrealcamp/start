@@ -286,8 +286,6 @@ class PagesController < ApplicationController
       birthday: top_applicant_params[:birthday],
       country: top_applicant_params[:country],
       mobile: top_applicant_params[:mobile],
-      skype: top_applicant_params[:skype],
-      twitter: top_applicant_params[:twitter],
       portafolio_url: top_applicant_params[:url],
       ip: request.remote_ip,
       goal: top_applicant_params[:goal],
@@ -317,6 +315,6 @@ class PagesController < ApplicationController
     end
 
     def top_applicant_params
-      params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :skype, :twitter, :url, :goal, :experience, :typical_day, :vision, :additional, :payment_method)
+      params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :url, :goal, :experience, :typical_day, :vision, :additional, :payment_method)
     end
 end

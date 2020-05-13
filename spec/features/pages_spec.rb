@@ -24,7 +24,7 @@ RSpec.feature "Pages", type: :feature do
   scenario "apply to the top program", js: true do
       visit  "/top"
 
-      find('button.apply-now-btn').click
+      first('button.apply-now-btn').click
       expect(page).to have_css("#application-modal")
 
       sleep 0.5 # hack to wait for the animations of the modal
@@ -39,16 +39,12 @@ RSpec.feature "Pages", type: :feature do
       select "Colombia", from: 'country'
       expect(page).to have_selector '#mobile'
       fill_in "mobile", with: "3131234567"
-      fill_in "applicant[skype]", with: "3131234567"
-      fill_in "applicant[twitter]", with: "vanegaspinto"
       fill_in "applicant[url]", with: "www.davidcillo.com"
       find('#payment-method').find('option[value="scheme-1"]').select_option
 
       find('.next[type="button"]').click
       fill_in "goal", with: "mi motivación es aprender"
       fill_in "experience", with: "1 año"
-      fill_in "typical-day", with: "dormir"
-      fill_in "vision", with: "dormir más"
       fill_in "additional", with: "me gustan los animales"
       find('.finish[type="button"]').click
 
