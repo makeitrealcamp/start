@@ -97,8 +97,6 @@ class TopProgramView extends Backbone.View
     valid = true
     valid = false if !@input_text_is_valid($('#goal'))
     valid = false if !@input_text_is_valid($('#experience'))
-    valid = false if !@input_text_is_valid($('#typical-day'))
-    valid = false if !@input_text_is_valid($('#vision'))
     valid = false if !@input_text_is_valid($('#additional'))
 
     if valid
