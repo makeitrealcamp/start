@@ -90,6 +90,12 @@
       @media (min-width: $screen-md-min) { font-size: 21px; }
     }
 
+    .note {
+      font-size: 16px;
+      color: #999;
+      margin: 20px 0;
+    }
+
     &.section-white { background: white; }
 
     &.section-dark {
@@ -130,9 +136,11 @@
       color: white;
       padding: 30px 30px 40px;
       border-radius: 5px;
-      margin: 0 auto;
+      margin: 40px auto 0;
       width: 100%;
       max-width: 450px;
+
+      @media (min-width: $screen-md-min) { margin-top: 0; }
 
       h2 {
         color: #b4bbc1;
