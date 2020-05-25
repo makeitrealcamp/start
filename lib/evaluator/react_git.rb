@@ -31,7 +31,7 @@ class Evaluator::ReactGit < Evaluator::Base
 
     ok ? complete : failure
   rescue SimpleTimeout::Error
-    fail_timeout(solution)
+    fail_timeout
   end
 
   def clean
