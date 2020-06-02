@@ -26,7 +26,9 @@ class SlugGenerator
     @source.off 'keyup'
 
   generate_slug: (str) =>
-    slug = @string_to_slug(str)
+    slug = @string_to_slug(str).substr(0, 100)
+    slug = slug.slice(0, -1) if slug.slice(-1) == "-"
+
     @target.val(slug)
 
   string_to_slug: (str) =>

@@ -12,7 +12,12 @@
         </div>
         <div class="webinar">
           <h1><%= @webinar.title %></h1>
-          <div class="webinar-date"><%= fa_icon "calendar", class: "calendar-icon" %> <span><%= l @webinar.date, format: '%A %e de %B, %Y - %l:%M %P' %> (-05)</span> <%= fa_icon "clock-o", class: "clock-icon" %> 45 minutos</div>
+          <div class="webinar-date">
+            <%= fa_icon "calendar", class: "calendar-icon" %>
+            <span><%= l @webinar.date, format: '%A %e de %B, %Y - %l:%M %P' %> (-05)</span>
+            <%= fa_icon "clock-o", class: "clock-icon" %> 45 minutos
+            <%= fa_icon "user", class: "clock-icon" %> <%= @webinar.participants.count %> participants
+          </div>
           <p><%= @webinar.description %></p>
         </div>
 
