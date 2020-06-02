@@ -10,7 +10,7 @@
 <p>Ingresa al evento en la fecha y hora indicada haciendo click en el siguiente botón:</p>
 
 <div class="button-wrapper">
-  <%= link_to "Acceder al Webinar", "https://www.youtube.com/watch?v=#{@webinar.event_url}", class: "button secondary" %>
+  <%= link_to "Acceder al Webinar", attend_webinar_url(@webinar.slug), class: "button secondary" %>
 </div>
 
 <p>También puedes agregar este evento a tu calendario:</p>

@@ -31,7 +31,7 @@
         <div class="webinar">
           <div class="webinar-info">
             <div class="webinar-title"><%= link_to webinar.title, webinar_path(webinar.slug), target: "_blank" %></div>
-            <div class="webinar-date"><%= l webinar.date, format: '%A %e de %B, %Y %I:%M %P' %> (-05) <span class="bullet">&bull;</span> 45 minutos</div>
+            <div class="webinar-date"><%= l webinar.date, format: '%A %e de %B, %Y %I:%M %P' %> (-05) <span class="bullet">&bull;</span> 45 minutos <span class="bullet">&bull;</span> <%= webinar.participants.count %> participants</div>
           </div>
           <div class="webinar-actions">
             <%= render "speakers", webinar: webinar %>

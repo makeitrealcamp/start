@@ -202,6 +202,7 @@ Rails.application.routes.draw do
   resources :webinars, only: [:index, :show] do
     post 'register', on: :member
     get 'watch', on: :member
+    get 'attend', on: :member
   end
 
   namespace :admin do

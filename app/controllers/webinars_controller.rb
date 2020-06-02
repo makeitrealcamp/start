@@ -31,6 +31,11 @@ class WebinarsController < ApplicationController
     participant = @webinar.participants.where(token: params[:token]).take
   end
 
+  def attend
+    @webinar = Webinars::Webinar.where(slug: params[:id]).take
+    redirect_to "https://www.youtube.com/watch?v=#{@webinar.event_url}"
+  end
+
   private
     def participant_params
       params.require(:webinars_participant).permit(:email, :first_name, :last_name)
