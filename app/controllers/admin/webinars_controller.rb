@@ -7,7 +7,7 @@ class Admin::WebinarsController < ApplicationController
   end
 
   def new
-    @webinar = Webinars::Webinar.new(date: DateTime.current.change({ hour: 20, minute: 0 })   )
+    @webinar = Webinars::Webinar.new(date: DateTime.current.change({ hour: 23, minute: 0 }))
   end
 
   def create
@@ -23,7 +23,7 @@ class Admin::WebinarsController < ApplicationController
 
   def update
     @webinar = Webinars::Webinar.find(params[:id])
-    date = DateTime.parse("#{webinar_params[:date]} #{params[:time]}")
+    date = DateTime.parse("#{webinar_params[:date]} #{params[:time]} -05").utc
     @webinar.update(webinar_params.merge(date: date))
 
     redirect_to admin_webinars_path

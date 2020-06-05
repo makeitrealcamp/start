@@ -26,4 +26,12 @@ class Webinars::Webinar < ApplicationRecord
   def is_upcoming?
     !is_past?
   end
+
+  def url_encoded_title
+    CGI.escape(title)
+  end
+
+  def url_encoded_description
+    CGI.escape(description)
+  end
 end

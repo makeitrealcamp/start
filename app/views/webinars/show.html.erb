@@ -16,7 +16,7 @@
           <h1><%= @webinar.title %></h1>
           <% unless @webinar.is_past? %>
             <div class="webinar-date">
-              <div><%= fa_icon "calendar", class: "calendar-icon" %> <span><%= l @webinar.date, format: '%A %e de %B, %Y - %l:%M %P' %> (-05)</span></div>
+              <div><%= fa_icon "calendar", class: "calendar-icon" %> <span><%= l @webinar.date.in_time_zone(-5), format: '%A %e de %B, %Y - %l:%M %P' %> (-05)</span></div>
               <div><%= fa_icon "clock-o", class: "clock-icon" %> 45 minutos</div>
             </div>
           <% end %>
@@ -74,9 +74,9 @@
 
         <div class="social-networks">
           <div class="text">Compartir en:</div>
-          <a class="btn-share btn-share-twitter" target="_blank" href="http://twitter.com/share?text=<%= @webinar.title %>&url=<%= webinar_url(@webinar.slug) %>&via=makeitrealcamp" rel="nofollow" title="Compartir en Twitter">Twitter</a>
-          <a class="btn-share btn-share-fb" target="_blank" href="http://www.facebook.com/sharer.php?u=<%= webinar_url(@webinar.slug) %>&p[title]=<%= @webinar.title %>" rel="nofollow" title="Compartir en Facebook">Facebook</a>
-          <a class="btn-share btn-share-linkedin" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=<%= webinar_url(@webinar.slug) %>&title=<%= @webinar.title %>&summary=<%= @webinar.description %>&source=makeitreal.camp" rel="nofollow" title="Compartir en LinkedIn">LinkedIn</a>
+          <a class="btn-share btn-share-twitter" target="_blank" href="http://twitter.com/share?text=<%= @webinar.url_encoded_title %>&url=<%= webinar_url(@webinar.slug) %>&via=makeitrealcamp" rel="nofollow" title="Compartir en Twitter">Twitter</a>
+          <a class="btn-share btn-share-fb" target="_blank" href="http://www.facebook.com/sharer.php?u=<%= webinar_url(@webinar.slug) %>&p[title]=<%= @webinar.url_encoded_title %>" rel="nofollow" title="Compartir en Facebook">Facebook</a>
+          <a class="btn-share btn-share-linkedin" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=<%= webinar_url(@webinar.slug) %>&title=<%= @webinar.url_encoded_title %>&summary=<%= @webinar.url_encoded_description %>&source=makeitreal.camp" rel="nofollow" title="Compartir en LinkedIn">LinkedIn</a>
         </div>
 
         <div class="webinar-company">

@@ -22,7 +22,7 @@
   <div class="col-sm-6">
     <label for="time">Time</label>
     <select id="time" class="form-control" name="time">
-      <%= webinar_hours_options(@webinar.date) %>
+      <%= webinar_hours_options(@webinar.date.in_time_zone(-5)) %>
     </select>
   </div>
 </div>
