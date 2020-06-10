@@ -19,7 +19,7 @@
 
 class ActivityLog < ApplicationRecord
   belongs_to :user
-  belongs_to :activity, polymorphic: true
+  belongs_to :activity, polymorphic: true, optional: true
 
   validates :user, presence: true
   validates :name, presence: true

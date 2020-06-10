@@ -189,8 +189,8 @@ RSpec.describe User, type: :model do
     let!(:subject) { create(:subject) }
 
     it "sums user's total points" do
-      user.points.create(subject_id: subject.id, points: 10)
-      user.points.create(subject_id: subject.id, points: 10)
+      user.points.create!(subject_id: subject.id, points: 10, pointable: create(:solution))
+      user.points.create!(subject_id: subject.id, points: 10, pointable: create(:solution))
       expect(user.stats.total_points).to eq 20
     end
   end

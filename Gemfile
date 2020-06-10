@@ -1,16 +1,15 @@
 source 'https://rubygems.org'
 
-git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://github.com/#{repo_name}.git"
-end
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.7'
+gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.21.0'
+# Use Unicorn as the app server
+gem 'unicorn', platforms: [:ruby]
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # User Bootstrap
@@ -34,13 +33,14 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+# Use ActiveStorage variant
+gem 'mini_magick', '~> 4.8'
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'gravatar-ultimate'
 gem 'ranked-model'
-gem 'paper_trail', '~>6.0.2'
+gem 'paper_trail', '~>9.1.1'
 gem 'redcarpet'
 gem 'pygments.rb'
 gem 'friendly_id', '~> 5.1.0'
@@ -52,17 +52,9 @@ gem 'subprocess'
 gem 'will_paginate'
 gem 'table_print'
 gem 'momentjs-rails'
-
 gem 'omniauth-slack', '~> 2.3.0'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.3'
 gem 'nested_form_fields'
-
-#windows specific
-gem 'tzinfo-data', platforms: [:mingw, :mswin]
-
-# Use Unicorn as the app server
-gem 'unicorn', platforms: [:ruby]
-
 gem 'zeroclipboard-rails'
 gem 'shareable', github: "simon0191/shareable"
 gem 'virtus'
@@ -82,7 +74,6 @@ gem 'xmlrpc'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
   gem 'rspec-rails', '~> 3.5.2'
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'faker', '~> 2.1.0'
@@ -101,7 +92,7 @@ end
 
 group :test do
   gem 'shoulda-matchers', '2.8.0', require: false
-  gem 'capybara', '~> 2.7', '>= 2.7.1'
+  gem 'capybara', '>= 2.15'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver', '3.12.0'
@@ -111,3 +102,6 @@ group :test do
   gem 'rspec-retry', '0.5.2'
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.2'
 end
+
+#windows specific
+gem 'tzinfo-data', platforms: [:mingw, :mswin]

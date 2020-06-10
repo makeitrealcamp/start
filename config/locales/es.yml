@@ -10,7 +10,6 @@ es:
     - vie
     - sáb
     abbr_month_names:
-    -
     - ene
     - feb
     - mar
@@ -112,14 +111,24 @@ es:
       invalid: no es válido
       less_than: debe ser menor que %{count}
       less_than_or_equal_to: debe ser menor que o igual a %{count}
+      model_invalid: 'La validación falló: %{errors}'
       not_a_number: no es un número
       not_an_integer: debe ser un entero
       odd: debe ser impar
+      other_than: debe ser distinto de %{count}
+      present: debe estar en blanco
       record_invalid: 'La validación falló: %{errors}'
+      required: debe existir
       taken: ya está en uso
-      too_long: es demasiado largo (%{count} caracteres máximo)
-      too_short: es demasiado corto (%{count} caracteres mínimo)
-      wrong_length: no tiene la longitud correcta (%{count} caracteres exactos)
+      too_long:
+        one: es demasiado largo (1 carácter máximo)
+        other: es demasiado largo (%{count} caracteres máximo)
+      too_short:
+        one: es demasiado corto (1 carácter mínimo)
+        other: es demasiado corto (%{count} caracteres mínimo)
+      wrong_length:
+        one: no tiene la longitud correcta (1 carácter exactos)
+        other: no tiene la longitud correcta (%{count} caracteres exactos)
     template:
       body: 'Se encontraron problemas con los siguientes campos:'
       header:

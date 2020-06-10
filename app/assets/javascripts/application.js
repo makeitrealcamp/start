@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require activestorage
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require codemirror
