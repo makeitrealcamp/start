@@ -70,6 +70,7 @@ RSpec.describe Point, type: :model do
 
       it "Should assign multiple badges if the user earns sufficient points" do
         user.points.create(points: 1000, subject: subject )
+
         expect(user.badges.exists? badge_100.id).to eq true
         expect(user.badges.exists? badge_200.id).to eq true
         expect(user.badges.exists? badge_300.id).to eq true

@@ -102,6 +102,7 @@ class Solution < ApplicationRecord
     end
 
     def log_activity
+      status_was = status_before_last_save
       if status_was.nil? && status == "created"
         description = "Inició #{challenge.to_html_description}"
         ActivityLog.create!(name: "started-challenge", user: user, activity: self, description: description)

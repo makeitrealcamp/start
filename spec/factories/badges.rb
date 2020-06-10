@@ -15,6 +15,7 @@
 
 FactoryGirl.define do
   factory :badge do
+    subject { create(:subject) }
     name { Faker::Commerce.product_name }
     description { Faker::Lorem.paragraph }
     image_url "/test.png"
@@ -22,7 +23,6 @@ FactoryGirl.define do
 
     factory :points_badge do
       giving_method "points"
-      association :subject, factory: :subject
       required_points 100
     end
   end

@@ -20,7 +20,7 @@
 class Comment < ApplicationRecord
   belongs_to :commentable, polymorphic: true
   belongs_to :user
-  belongs_to :response_to, class_name: "Comment"
+  belongs_to :response_to, class_name: "Comment", optional: true
   has_many :responses, class_name: 'Comment', foreign_key: 'response_to_id', dependent: :delete_all
 
   validates :commentable, presence: true

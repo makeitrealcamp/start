@@ -20,7 +20,7 @@
 class Point < ApplicationRecord
   belongs_to :subject
   belongs_to :user
-  belongs_to :pointable, polymorphic: true
+  belongs_to :pointable, polymorphic: true, optional: true
 
   validates :user, presence: true
 

@@ -80,7 +80,8 @@ class ProjectSolution < ApplicationRecord
     end
 
     def notify_mentors_if_pending_review
-      if self.status == "pending_review" && self.status_was != "pending_review"
+      status_was = status_before_last_save
+      if status == "pending_review" && status_was != "pending_review"
         notify_mentors
       end
     end

@@ -22,6 +22,7 @@ FactoryGirl.define do
     points 1
     user
     subject
+    association :pointable, factory: :solution
   end
 
 end

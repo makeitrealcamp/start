@@ -5,7 +5,7 @@ RSpec.describe CommentsController, type: :controller do
 
   shared_examples "comment editor" do
     before { get :edit, params: { id: comment.id }, xhr: true }
-    it { expect(response).to be_success }
+    it { expect(response).to be_successful }
     it { expect(response).to render_template :edit }
   end
 
@@ -14,7 +14,7 @@ RSpec.describe CommentsController, type: :controller do
       text = "otro texto"
 
       patch :update, params: { id: comment.id, text: text }, xhr: true
-      expect(response).to be_success
+      expect(response).to be_successful
 
       comment.reload
       expect(comment.text).to eq(text)
@@ -24,7 +24,7 @@ RSpec.describe CommentsController, type: :controller do
       original_text = comment.text
 
       patch :update, params: { id: comment.id, text: "" }, xhr: true
-      expect(response).to be_success
+      expect(response).to be_successful
 
       comment.reload
       expect(comment.text).to eq(original_text)

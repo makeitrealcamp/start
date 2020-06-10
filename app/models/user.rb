@@ -250,6 +250,7 @@ class User < ApplicationRecord
     end
 
     def check_user_level
+      level_id_was = level_id_before_last_save
       if self.level_id_was != self.level_id
         self.notifications.create!(notification_type: :level_up, data: {level_id: self.level_id})
       end
@@ -305,6 +306,8 @@ class User < ApplicationRecord
     end
 
     def log_activity
+      status_was = status_before_last_save
+
       if status_was == "created" && status == "active" # the user is now active
         segments = ['Students', 'Active Students']
         segments << self.slack? ? 'Virtual' : 'Presencial'

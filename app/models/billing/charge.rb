@@ -61,6 +61,9 @@ class Billing::Charge < ApplicationRecord
     end
 
     def handle_after_save
+      return unless saved_change_to_status
+      status_was = saved_change_to_status[0]
+      
       if status_was != status && self.paid?
         SubscriptionsMailer.charge_approved(self).deliver_later
       elsif status_was != status && self.rejected?
