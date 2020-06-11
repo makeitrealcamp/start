@@ -19,6 +19,16 @@
             <%= fa_icon "user", class: "clock-icon" %> <%= @webinar.participants.count %> participants
           </div>
           <p><%= @webinar.description %></p>
+
+          <div class="promotion-image">
+            <h4>Promotion image:</h4>
+
+            <% if @webinar.image.attached? %>
+              <%= image_tag @webinar.image.variant(resize: "600x200") %>
+            <% elsif @webinar.image_url %>
+              <%= image_tag @webinar.image_url %>
+            <% end %>
+          </div>
         </div>
 
         <div class="speakers">

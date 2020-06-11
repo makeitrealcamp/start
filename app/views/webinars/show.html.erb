@@ -2,7 +2,11 @@
   <meta property="og:title" content="<%= @webinar.title %>" />
   <meta property="og:type" content="website" />
   <meta property="og:description" content="<%= @webinar.description %>" />
-  <meta property="og:image" content="<%= @webinar.image_url || image_url("01interna-programa.jpg") %>" />
+  <% if @webinar.image.attached? %>
+    <meta property="og:image" content="<%= url_for(@webinar.image.variant(resize: "600x400")) || image_url("01interna-programa.jpg") %>" />
+  <% else %>
+    <meta property="og:image" content="<%= @webinar.image_url || image_url("01interna-programa.jpg") %>" />
+  <% end %>
 <% end %>
 
 <div class="new-site webinar-page">
