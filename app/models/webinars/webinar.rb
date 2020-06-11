@@ -15,6 +15,7 @@
 class Webinars::Webinar < ApplicationRecord
   has_many :speakers
   has_many :participants
+  has_one_attached :image
 
   scope :upcoming, -> { where('date >= ?', Time.current + 1.hour).order(:date) }
   scope :past, -> { where('date <= ?', Time.current + 1.hour).order(date: :desc) }

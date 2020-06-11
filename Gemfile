@@ -70,6 +70,8 @@ gem 'convertloop', '0.1.2'
 gem 'httparty'
 gem 'lograge', '~> 0.10.0'
 gem 'xmlrpc'
+gem 'aws-sdk-s3', '~> 1.67', '>= 1.67.1'
+gem 'image_processing', '~> 1.11'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
