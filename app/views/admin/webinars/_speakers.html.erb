@@ -5,7 +5,11 @@
   <% end %>
   <% webinar.speakers.limit(count > 4 ? 3 : 4).reverse.each do |speaker| %>
     <div class="speaker" data-toggle="tooltip" data-placement="bottom" title="<%= speaker.name %>">
-      <img src="<%= speaker.avatar_url %>" alt="<%= speaker.name %>">
+      <% if speaker.avatar.attached? %>
+        <%= image_tag speaker.avatar.variant(resize: "160x160") %>
+      <% else %>
+        <img src="<%= speaker.avatar_url %>" alt="<%= speaker.name %>">
+      <% end %>
     </div>
   <% end %>
 </div>

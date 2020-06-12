@@ -19,6 +19,6 @@ class Admin::SpeakersController < ApplicationController
 
   private
     def speaker_params
-      params.require(:webinars_speaker).permit(:name, :bio, :avatar_url)
+      params.require(:webinars_speaker).permit(:name, :bio, :avatar)
     end
 end

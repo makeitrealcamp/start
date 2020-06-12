@@ -1,7 +1,11 @@
 <div class="col-sm-6">
   <div class="speaker" id="speaker-<%= speaker.id %>">
     <div class="speaker-img">
-      <img src="<%= speaker.avatar_url %>" alt="<%= speaker.name %>">
+      <% if speaker.avatar.attached? %>
+        <%= image_tag speaker.avatar.variant(resize: "160x160") %>
+      <% else %>
+        <img src="<%= speaker.avatar_url %>" alt="<%= speaker.name %>">
+      <% end %>
     </div>
     <div class="speaker-name">
       <%= speaker.name %>

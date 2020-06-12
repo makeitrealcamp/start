@@ -17,4 +17,5 @@
 #
 class Webinars::Speaker < ApplicationRecord
   belongs_to :webinar
+  has_one_attached :avatar
 end
