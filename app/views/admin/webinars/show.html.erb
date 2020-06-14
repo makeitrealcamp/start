@@ -14,7 +14,7 @@
           <h1><%= @webinar.title %></h1>
           <div class="webinar-date">
             <%= fa_icon "calendar", class: "calendar-icon" %>
-            <span><%= l @webinar.date.in_time_zone(-5), format: '%A %e de %B, %Y - %l:%M %P' %> (-05)</span>
+            <span><%= l @webinar.date_in_timezone, format: '%A %e de %B, %Y - %l:%M %P' %> (-05)</span>
             <%= fa_icon "clock-o", class: "clock-icon" %> 45 minutos
             <%= fa_icon "user", class: "clock-icon" %> <%= @webinar.participants.count %> participants
           </div>

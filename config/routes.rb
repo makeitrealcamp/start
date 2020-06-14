@@ -203,6 +203,8 @@ Rails.application.routes.draw do
     post 'register', on: :member
     get 'watch', on: :member
     get 'attend', on: :member
+    get 'calendar', on: :member
+    get 'ical', on: :member
   end
 
   namespace :admin do

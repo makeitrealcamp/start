@@ -3,20 +3,20 @@
 <p>Muchas gracias por confirmar tu asistencia al Webinar <strong><%= @webinar.title %></strong>.</p>
 
 <p>
-  <strong>Fecha:</strong> <%= l @webinar.date.in_time_zone(-5), format: '%A %e de %B, %Y' %><br>
-  <strong>Hora: </strong> <%= l @webinar.date.in_time_zone(-5), format: '%l:%M %P' %> (-05)
+  <strong>Fecha:</strong> <%= l @webinar.date_in_timezone, format: '%A %e de %B, %Y' %><br>
+  <strong>Hora: </strong> <%= l @webinar.date_in_timezone, format: '%l:%M %P' %> (-05)
 </p>
 
 <p>Ingresa al evento en la fecha y hora indicada haciendo click en el siguiente botón:</p>
 
 <div class="button-wrapper">
-  <%= link_to "Acceder al Webinar", attend_webinar_url(@webinar.slug), class: "button secondary" %>
+  <%= link_to "Acceder al Webinar", attend_webinar_url(@webinar.slug, token: @participant.token), class: "button secondary" %>
 </div>
 
 <p>También puedes agregar este evento a tu calendario:</p>
 
 <div class="button-wrapper">
-  <%= link_to "Agregar al Calendario", "https://makeitreal.camp/", class: "button" %>
+  <%= link_to "Agregar al Calendario", calendar_webinar_url(@webinar.slug, token: @participant.token), class: "button" %>
 </div>
 
 <p>¡Te esperamos!</p>

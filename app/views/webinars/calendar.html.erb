@@ -1,0 +1,32 @@
+<div class="new-site calendar-webinar-page">
+  <%= render "layouts/navbar/pages_dark", hide_login: true %>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        <div class="webinar">
+          <div class="webinar-header">AGREGAR AL CALENDARIO</div>
+          <div class="webinar-body">
+            <% if @participant %>
+            <h1><%= @webinar.title %></h1>
+            <div class="webinar-date">
+              <div><%= fa_icon "calendar", class: "calendar-icon" %> <span><%= l @webinar.date_in_timezone, format: '%A %e de %B, %Y - %l:%M %P' %> (-05)</span></div>
+              <span class="bullet">&bull;</span>
+              <div><%= fa_icon "clock-o", class: "clock-icon" %> 45 minutos</div>
+            </div>
+
+            <div class="webinar-calendars">
+              <a class="btn btn-primary" href="http://www.google.com/calendar/event?action=TEMPLATE&dates=<%= l @webinar.date_in_timezone, format: '%Y%m%dT%H%M00' %>%2F<%= l @webinar.date_in_timezone + 45.minutes, format: '%Y%m%dT%H%M00' %>&text=Webinar Make it Real&location=<%= CGI.escape attend_webinar_url(@webinar.slug) %>&details=<%= @webinar.url_encoded_title %>"><%= fa_icon "google" %> Calendar</a>
+              <%= link_to "#{fa_icon "apple"} iCal".html_safe, ical_webinar_path(@webinar.slug, token: params[:token]), class: "btn btn-primary", data: { turbolinks: false }  %>
+              <%= link_to "#{fa_icon "windows"} Outlook".html_safe, ical_webinar_path(@webinar.slug, token: params[:token], format: "vcs"), class: "btn btn-primary", data: { turbolinks: false }  %>
+            </div>
+            <% else %>
+              <div class="webinar-info">¡Lo sentimos! El link no es correcto, revisa que lo hayas copiado bien e intenta nuevamente.</div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -29,6 +29,11 @@ RSpec.feature "Webinars", type: :feature do
     email = ActionMailer::Base.deliveries.last
     expect(email).to_not be_nil
 
+    participant = upcoming.participants.where(email: "pedro@example.com").take
+    expect(email.body.raw_source).to include(attend_webinar_path(id: upcoming.slug, token: participant.token))
+    expect(email.body.raw_source).to include(calendar_webinar_path(id: upcoming.slug, token: participant.token))
+
+    # watch webinar
     visit webinars_path
     click_link past.title
 

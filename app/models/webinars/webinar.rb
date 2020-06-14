@@ -35,4 +35,8 @@ class Webinars::Webinar < ApplicationRecord
   def url_encoded_description
     CGI.escape(description)
   end
+
+  def date_in_timezone
+    date.in_time_zone(-5)
+  end
 end
