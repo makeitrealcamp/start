@@ -28,12 +28,50 @@ class WebinarsController < ApplicationController
 
   def watch
     @webinar = Webinars::Webinar.where(slug: params[:id]).take
-    participant = @webinar.participants.where(token: params[:token]).take
+    @participant = @webinar.participants.where(token: params[:token]).take
   end
 
   def attend
+    webinar = Webinars::Webinar.where(slug: params[:id]).take
+    participant = webinar.participants.where(token: params[:token]).take
+
+    if participant
+      redirect_to "https://www.youtube.com/watch?v=#{webinar.event_url}"
+    end
+  end
+
+  def calendar
     @webinar = Webinars::Webinar.where(slug: params[:id]).take
-    redirect_to "https://www.youtube.com/watch?v=#{@webinar.event_url}"
+    @participant = @webinar.participants.where(token: params[:token]).take
+  end
+
+  def ical
+    webinar = Webinars::Webinar.where(slug: params[:id]).take
+    participant = webinar.participants.where(token: params[:token]).take
+
+    cal = Icalendar::Calendar.new
+    filename = "makeitreal"
+
+    if params[:format] == 'vcs'
+      cal.prodid = '-//Microsoft Corporation//Outlook MIMEDIR//EN'
+      cal.version = '1.0'
+      filename += '.vcs'
+    else # ical
+      cal.prodid = '-//Acme Widgets, Inc.//NONSGML ExportToCalendar//EN'
+      cal.version = '2.0'
+      filename += '.ics'
+    end
+
+    cal.event do |e|
+      e.dtstart     = Icalendar::Values::DateTime.new(webinar.date_in_timezone)
+      e.dtend       = Icalendar::Values::DateTime.new(webinar.date_in_timezone + 45.minutes)
+      e.summary     = "Webinar Make it Real"
+      e.description = webinar.title
+      e.url         = attend_webinar_url(webinar.slug)
+      e.location    = "YouTube Live"
+    end
+
+    send_data cal.to_ical, type: 'text/calendar', disposition: 'attachment', filename: filename
   end
 
   private
