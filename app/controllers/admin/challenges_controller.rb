@@ -35,8 +35,10 @@ class Admin::ChallengesController < ApplicationController
   end
 
   def update
-    @challenge = Challenge.friendly.update(params[:id], challenge_params)
-    redirect_to subject_challenge_path(@challenge.subject,@challenge), notice: "El reto <strong>#{@challenge.name}</strong> ha sido actualizado"
+    @challenge = Challenge.friendly.find(params[:id])
+    if @challenge.update(challenge_params)
+      redirect_to subject_challenge_path(@challenge.subject,@challenge), notice: "El reto <strong>#{@challenge.name}</strong> ha sido actualizado"
+    end
   end
 
   def update_position
