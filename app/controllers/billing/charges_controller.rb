@@ -32,30 +32,20 @@ class Billing::ChargesController < ApplicationController
     end
 
     def charge_data
-      courses[params[:course].to_sym].merge({ ip: request.remote_ip })
+      course = Billing::Charge::COURSES[params[:course].to_sym]
+      currency = params[:currency] || "COP"
+      {
+        description: course[:description],
+        amount: course[:price][currency],
+        tax: 0,
+        tax_percentage: 0,
+        currency: currency,
+        ip: request.remote_ip
+      }
     end
 
     def signature(charge)
-      msg = "#{ENV['PAYU_API_KEY']}~#{ENV['PAYU_MERCHANT_ID']}~#{charge.uid}~500000~COP"
+      msg = "#{ENV['PAYU_API_KEY']}~#{ENV['PAYU_MERCHANT_ID']}~#{charge.uid}~#{charge.amount}~#{charge.currency}"
       Digest::MD5.hexdigest(msg)
-    end
-
-    def courses
-      {
-        fullstack: {
-          description: "Separación curso Desarrollador Web Full Stack",
-          amount: 500_000,
-          tax: 0,
-          tax_percentage: 0,
-          currency: "COP"
-        },
-        datascience: {
-          description: "Separación curso Data Science",
-          amount: 500_000,
-          tax: 0,
-          tax_percentage: 0,
-          currency: "COP"
-        }
-      }
     end
 end

@@ -22,6 +22,27 @@
 #
 
 class Billing::Charge < ApplicationRecord
+  COURSES = {
+    fullstack: {
+      description: "Separación curso Desarrollador Web Full Stack",
+      price: {
+        "COP" => 500_000,
+        "MXN" => 3_100,
+        "PEN" => 475,
+        "USD" => 140
+      }
+    },
+    datascience: {
+      description: "Separación curso Data Science",
+      price: {
+        "COP" => 500_000,
+        "MXN" => 3_100,
+        "PEN" => 475,
+        "USD" => 140
+      }
+    }
+  }
+
   enum payment_method: [:unknown, :credit_card, :debit_card, :pse, :cash, :referenced, :transfer]
   enum status: [:created, :pending, :paid, :rejected, :error]
 
@@ -63,7 +84,7 @@ class Billing::Charge < ApplicationRecord
     def handle_after_save
       return unless saved_change_to_status
       status_was = saved_change_to_status[0]
-      
+
       if status_was != status && self.paid?
         SubscriptionsMailer.charge_approved(self).deliver_later
       elsif status_was != status && self.rejected?
