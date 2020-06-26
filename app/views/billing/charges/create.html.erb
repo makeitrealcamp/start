@@ -3,10 +3,10 @@
   <input name="accountId"     type="hidden"  value="<%= ENV['PAYU_ACCOUNT_ID'] %>">
   <input name="description"   type="hidden"  value="<%= @charge.description %>">
   <input name="referenceCode" type="hidden"  value="<%= @charge.uid %>">
-  <input name="amount"        type="hidden"  value="500000">
+  <input name="amount"        type="hidden"  value="<%= @charge.amount %>">
   <input name="tax"           type="hidden"  value="0">
   <input name="taxReturnBase" type="hidden"  value="0">
-  <input name="currency"      type="hidden"  value="COP">
+  <input name="currency"      type="hidden"  value="<%= @charge.currency %>">
   <input name="signature"     type="hidden"  value="<%= @signature %>">
   <input name="test"          type="hidden"  value="<%= Rails.env.production? ? 0 : 1 %>" >
   <input name="buyerEmail"    type="hidden"  value="<%= @charge.customer_email %>">

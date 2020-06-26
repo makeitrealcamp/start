@@ -309,6 +309,11 @@ class PagesController < ApplicationController
     end
   end
 
+  def full_stack_online_seat
+    @course = Billing::Charge::COURSES[:fullstack]
+    @currency = params[:currency] || "COP"
+  end
+
   private
     def save_referer
       session['referer'] = request.env["HTTP_REFERER"] || 'none' unless session['referer']
