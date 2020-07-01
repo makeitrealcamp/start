@@ -1,27 +1,38 @@
+$color-black:                       #272727;
+$color-white:                       #fafafa;
+$color-dark-blue:                   #212f65;
+$color-grey:                        #606060;
+$color-orange:                      #f04500;
+
+$text-color:                        $color-black;
+
 $brand-primary:                     #f04500; // orange
 $brand-secondary:                   #005e9f; // blue
 
 $font-size-base:                    16px;
-$font-family-sans-serif:            "Open Sans",sans-serif;
-$font-family-condensed:             "Open Sans Condensed", sans-serif;
+$font-family-sans-serif:            'Montserrat', sans-serif;
+$font-family-condensed:             "Patua One", cursive;
+$headings-font-family:              $font-family-condensed;
+
 $body-bg:                           #f5f5f2;
 
-$btn-secondary-color:              #fff !default;
-$btn-secondary-bg:                 $brand-secondary !default;
+$btn-secondary-color:               #fff !default;
+$btn-secondary-bg:                  $brand-secondary !default;
 
 $navbar-height:                     70px;
-$navbar-default-bg:                 #303030;
-$navbar-default-border:             transparent;
 
-$navbar-default-link-color:         rgba(255, 255, 255, 0.8);
-$navbar-default-link-hover-color:   white;
-$navbar-default-link-active-color:  white;
+$navbar-default-bg:                 white;
+$navbar-default-border:             transparent;
+$navbar-default-link-color:         $color-black;
+$navbar-default-link-hover-color:   $color-black;
+$navbar-default-link-active-color:  $color-orange;
 $navbar-default-link-active-bg:     lighten($navbar-default-bg, 6.5%) !default;
 
-$navbar-default-brand-color:        white;
-$navbar-default-brand-hover-color:  white;
+$navbar-inverse-bg:                 #303030;
+$navbar-inverse-link-color:         $color-white;
+$navbar-inverse-link-active-color:  $color-orange;
 
-$grid-float-breakpoint:             830px;
+$grid-float-breakpoint:             992px;
 
 $link-color:                        $brand-primary;
 
