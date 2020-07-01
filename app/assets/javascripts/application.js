@@ -33,6 +33,7 @@
 //= require datepicker/bootstrap-datepicker.es.js
 //= require intlTelInput
 //= require jquery.payment
+//= require owl.carousel
 //= require_tree .
 
 $(document).on("turbolinks:before-visit", function() {
@@ -46,6 +47,32 @@ $(document).on("turbolinks:load", function() {
   $('body').on('click', '.close-overlay', function() {
     $('.overlay').hide();
   });
+
+  $(".owl-carousel").owlCarousel({
+    loop: true,
+    nav: false,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: true,
+    responsive: {
+      0: {
+        items: 2,
+        slideBy: 2
+      },
+      600: {
+        items: 3,
+        slideBy: 2
+      },
+      992: {
+        items: 4,
+        slideBy: 2
+      },
+      1200: {
+        items: 5,
+        slideBy: 2
+      }
+    }
+  })
 })
 
 _.templateSettings = {

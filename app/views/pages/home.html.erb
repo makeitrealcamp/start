@@ -5,46 +5,105 @@
   <meta property="og:image" content="<%= image_url('home.jpg') %>" />
 <% end %>
 
-<div class="new-site home">
+<div class="home">
   <div class="intro">
-    <%= render "layouts/navbar/pages_transparent" %>
-    <div class="container tagline-wrapper">
+    <%= render "layouts/navbar/pages_white" %>
+    <div class="container">
       <div class="row">
-        <div class="col-lg-10 col-lg-offset-1">
-          <h1 class="tagline">Conviértete en <br>Web Developer</h1>
-          <h2 class="tagline-support">Programas de la más alta calidad con las tecnologías de mayor demanda y mejores salarios de la actualidad</h2>
+        <div class="col-md-6 intro-info">
+          <h1>La educación del futuro</h1>
+          <p>Acelera tu aprendizaje con programas personalizados en desarrollo Web, móvil y Data Science</p>
+          <a href="javascript:;" class="know-more scroll">Ver Programas</a>
         </div>
-
-        <a href="javascript:;" class="know-more scroll">Ver programas</a>
+        <div class="col-md-6 intro-img">
+          <%= image_tag "image-banner.jpg", srcset: { "image-banner@2x.jpg" => "2x", "image-banner@3x.jpg" => "3x" } %>
+        </div>
       </div>
     </div>
   </div>
 
-  <section class="section section-white section-pitch">
-    <div class="stripe"></div>
+  <section class="section section-pitch">
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-sm-12">
+          <div class="companies owl-carousel">
+            <div class="company">
+              <a href="http://toptal.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/toptal-logo.png" %></a>
+            </div>
+            <div class="company">
+              <a href="http://cabify.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/cabify-logo.jpg" %></a>
+            </div>
+            <div class="company">
+              <a href="http://auth0.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/lahaus-logo.svg" %></a>
+            </div>
+            <div class="company">
+              <a href="http://hugeinc.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/huge-logo.png" %></a>
+            </div>
+            <div class="company">
+              <a href="http://prodigious.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/prodigious-logo.png" %></a>
+            </div>
+            <div class="company">
+              <a href="http://globant.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/globant-logo.jpg" %></a>
+            </div>
+            <div class="company">
+              <a href="http://fluvip.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/fluvip-logo.png" %></a>
+            </div>
+            <div class="company">
+              <a href="http://nominapp.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/nominapp-logo.png" %></a>
+            </div>
+            <div class="company">
+              <a href="http://parrolabs.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/parrolabs-logo.jpg" %></a>
+            </div>
+            <div class="company">
+              <a href="https://www.lean-tech.io/?ref=makeitreal" target="_blank"><%= image_tag "companies/leantech-logo.png" %></a>
+            </div>
+            <div class="company">
+              <a href="http://kommit.co/?ref=makeitreal" target="_blank"><%= image_tag "companies/kommit-logo.png" %></a>
+            </div>
+            <div class="company">
+              <a href="http://yuxiglobal.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/yuxi-logo.png" %></a>
+            </div>
+            <div class="company">
+              <a href="http://koombea.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/koombea-logo.png" %></a>
+            </div>
+            <div class="company">
+              <a href="http://ayenda.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/ayenda-logo.png" %></a>
+            </div>
+            <div class="company">
+              <a href="https://www.belatrixsf.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/belatrix-logo.png" %></a>
+            </div>
+          </div>
+
           <div class="row">
-            <div class="col-sm-4">
-              <div class="feature">
-                <%= fa_icon "paint-brush", class: "fa-3x icon" %>
-                <h3>Aprende haciendo</h3>
-                <p>Hoy se valora más lo que has creado que los títulos y las certificaciones, tu portafolio será tu nueva carta de presentación.</p>
+            <div class="col-xs-8 col-xs-offset-2 col-md-6">
+              <div class="title">
+                <h2>Lo que nos hace diferentes</h2>
               </div>
             </div>
-            <div class="col-sm-4">
-              <div class="feature">
-                <%= fa_icon "road", class: "fa-3x icon" %>
-                <h3>Mentorías 1 a 1</h3>
-                <p>Soluciona tus dudas, recibe apoyo cuando lo necesites y acelera tu aprendizaje con sesiones 1-a-1 con mentores experimentados.</p>
+          </div>
+
+          <div class="features">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="feature">
+                  <%= image_tag "feature-1.svg" %>
+                  <div class="feature-title">Aprende haciendo</div>
+                  <p>Tu portafolio será tu nueva carta de presentación.</p>
+                </div>
               </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="feature">
-                <%= fa_icon "rocket", class: "fa-3x icon" %>
-                <h3>Alcanza tus metas</h3>
-                <p>Encuentra el empleo de tus sueños o haz realidad tus ideas de negocio. El post-programa te prepara para esta nueva fase de tu vida.</p>
+              <div class="col-sm-4">
+                <div class="feature">
+                  <%= image_tag "feature-2.svg" %>
+                  <div class="feature-title">Personalizado</div>
+                  <p>Tu garantizamos la educación de la más alta calidad.</p>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="feature">
+                  <%= image_tag "feature-3.svg" %>
+                  <div class="feature-title">Alcanza tus metas</div>
+                  <p>Encuentra el empleo de tus sueños o haz realidad tus ideas de negocio.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -53,155 +112,46 @@
     </div>
   </section>
 
-  <div id="programs" class="programs">
-    <div class="program program-top">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-10 col-md-8 col-lg-7 col-lg-offset-1">
-            <h2><%= image_tag "top-icon.svg", height: 28, style: "margin-top: -9px; margin-right: 5px;" %> TOP</h2>
-            <p class="description">Un programa sin costo hasta que encuentres un empleo</p>
+  <div class="section section-white section-philosophy">
+    <%= image_tag "philosophy-img.svg", class: "title-img" %>
+    <h2 class="title">Nuestra filosofía</h2>
 
-            <div class="features">
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="feature">
-                    <div class="program-label">Formato</div>
-                    <div class="program-value">Remoto</div>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="feature">
-                    <div class="program-label">Cierre Aplicaciones</div>
-                    <div class="program-value">Jul 10, 2020</div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="feature">
-                    <div class="program-label">Duración</div>
-                    <div class="program-value">12 semanas</div>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="feature">
-                    <div class="program-label">Dedicación</div>
-                    <div class="program-value">Tiempo completo (+40 horas/semana)</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="program-action">
-              <%= link_to "Más Información", top_path, class: "btn btn-primary" %>
-            </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="content">
+            <p>Hoy las empresas valoran más lo que sabes y lo que has creado, que tus títulos y certificados.</p>
+            <p>Uno no aprende a programar viendo viendo videos. Por eso te ofrecemos programas muy prácticos, retadores, que permitirán acelerar tu aprendizaje de forma estructurada.</p>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="program program-full-stack-online">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-10 col-md-8 col-lg-7 col-sm-offset-2 col-md-offset-4">
-            <h2><%= image_tag "full-stack-white.png", height: 38, style: "margin-top: -5px;" %> Full Stack JS Web Developer</h2>
-            <p class="description">Aprende Node.js, MongoDB y React en un ambiente más tradicional</p>
-
-            <div class="features">
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="feature">
-                    <div class="program-label">Formato</div>
-                    <div class="program-value">Remoto (clases en vivo)</div>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="feature">
-                    <div class="program-label">Fecha de Inicio</div>
-                    <div class="program-value">Por definir</div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="feature">
-                    <div class="program-label">Duración</div>
-                    <div class="program-value">7 meses</div>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="feature">
-                    <div class="program-label">Dedicación</div>
-                    <div class="program-value">Martes y Jueves 6pm a 9pm</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="program-action">
-              <%= link_to "Más Información", full_stack_online_path, class: "btn btn-primary" %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="program program-full-stack-onsite">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 col-lg-10 col-lg-offset-1">
-            <h2><span class="glyphicon glyphicon-stats" aria-hidden="true" style="font-size: 28px; margin-left: 7px; color: white; margin-top: -3px;"></span> Data Science Online</h2>
-            <p class="description">Aprende a extraer, visualizar y analizar información con Python y algoritmos de clasificación, predicción y recomendación</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6 col-md-6 col-lg-5 col-lg-offset-1">
-
-            <div class="features">
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="feature">
-                    <div class="program-label">Formato</div>
-                    <div class="program-value">Remoto (clases en vivo)</div>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="feature">
-                    <div class="program-label">Fecha de Inicio</div>
-                    <div class="program-value">Sept 7, 2020</div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="feature">
-                    <div class="program-label">Duración</div>
-                    <div class="program-value">4 meses</div>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="feature">
-                    <div class="program-label">Dedicación</div>
-                    <div class="program-value">Lunes, Miércoles, Viernes 6pm a 9pm</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="program-action">
-              <%= link_to "Más Información", data_science_online_path, class: "btn btn-primary" %>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </div>
 
-  <%= render "pages/companies" %>
+  <div id="programs" class="section section-programs">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 program-1">
+          <div class="program">
+            <h3 class="title">Desarrollo Web y móvil</h3>
+            <p>Aprende a crear aplicaciones con HTML, CSS, JavaScript, Node.js, MongoDB, React y React Native</p>
+            <%= image_tag "image-desarrollo.png", srcset: { "image-desarrollo@2x.png" => "2x", "image-desarrollo@3x.png" => "3x" } %>
+            <%= link_to "Ver Programas", top_path, class: "btn-programs" %>
+          </div>
+        </div>
+        <div class="col-sm-6 program-2">
+          <div class="program">
+            <h3 class="title">Data Science</h3>
+            <p>Aprende a analizar información con Python y utilizar algoritmos de machine learning.</p>
+            <%= image_tag "image-data-science.png", srcset: { "image-data-science@2x.png" => "2x", "image-data-science@3x.png" => "3x" } %>
+            <%= link_to "Ver Programa", data_science_online_path, class: "btn-programs" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <%= render "pages/main_quote" %>
   <%= render "pages/capture_email" %>
-
   <%= render "footer" %>
-
-</div><!--/new-site -->
+</div>

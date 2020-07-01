@@ -1,23 +1,21 @@
-.new-site {
+.pages-layout {
   // default attributes for a section of a page
   .section {
     padding-bottom: 100px;
 
     h2 {
-      color: #005e9f;
-      font-size: 26px;
+      color: $color-dark-blue;
+      font-size: 2rem;
       font-weight: 400;
+      letter-spacing: 1px;
       margin-top: 0;
       margin-bottom: 70px;
       padding: 80px 0 0;
 
-      @media (min-width: $screen-md-min) {
-        font-size: 28px;
-      }
+      @media (min-width: $screen-sm-min) { font-size: 2.8rem; }
     }
 
     h3 {
-      text-align: center;
       font-size: 21px;
       font-weight: 600;
       margin-top: 0;
@@ -57,7 +55,7 @@
     p.subhead {
       color: #777;
       font-size: 18px;
-      margin-top: -55px;
+      // margin-top: -55px;
       margin-bottom: 40px;
 
       @media (min-width: $screen-sm-min) {
@@ -85,19 +83,6 @@
   .section.section-bordered {
     border-top: 1px solid darken(#f5f5f2, 15%);
     border-bottom: 1px solid darken(#f5f5f2, 15%);
-  }
-
-  .section.section-pitch {
-    text-align: center;
-    padding: 80px 0 100px;
-    font-size: 16px;
-
-    h3 {
-      font-size: 18px;
-      margin: 30px 0 20px;
-    }
-
-    p { font-size: 16px; }
   }
 
   // allies section of the home and program pages

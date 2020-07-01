@@ -60,6 +60,7 @@
       font-weight: normal;
       font-size: 21px;
       margin: 0 0 20px;
+      padding-top: 0;
 
       @media (min-width: $screen-md-min) { font-size: 28px; }
     }
@@ -153,11 +154,23 @@
         text-align: center;
         font-size: 24px;
       }
+
+      .date-limit-label {
+        color: #b4bbc1;
+        text-align: center;
+        font-size: 14px;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
     }
   }
 
   .section-how-it-works {
     background: image-url('pattern-1.png') repeat center center;
+
+    h3 { text-align: left; }
+
     .works-item {
       display: flex;
       margin-top: 40px;
@@ -224,6 +237,7 @@
       text-align: center;
 
       h3 {
+        text-align: center;
         margin-top: 20px;
         margin-bottom: 30px;
 

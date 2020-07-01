@@ -67,7 +67,7 @@ $sidebar_width: 500px;
         border-bottom-style: solid;
         border-bottom-width: 3px;
         a {
-          font-family: "Open Sans Condensed", sans-serif;
+          font-family: $font-family-condensed;
           font-size: 20px;
           font-weight: 700;
         }
@@ -77,7 +77,7 @@ $sidebar_width: 500px;
         padding: 10px 0;
         width: 100%;
         a {
-          font-family: 'Open Sans Condensed', sans-serif;;
+          font-family: $font-family-condensed;
           font-size: 20px;
         }
         .course-children {
@@ -85,7 +85,7 @@ $sidebar_width: 500px;
             margin-left: 20px;
             margin-bottom: 10px;
             a {
-              font-family: 'Open Sans', sans-serif;
+              font-family: $font-family-condensed;
               font-size: 15px;
             }
           }
@@ -93,8 +93,8 @@ $sidebar_width: 500px;
       }
       li.nav-division {
         color: grey;
-        >a {
-          font-family: 'Open Sans', sans-serif;
+        > a {
+          font-family: $font-family-condensed;
           font-size: 16px;
         }
       }
