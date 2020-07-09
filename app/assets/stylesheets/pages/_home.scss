@@ -1,68 +1,7 @@
-.home {
-  .intro {
-    background: white;
-    position: relative;
-    overflow: hidden;
-    padding-bottom: 30px;
-
-    .intro-info {
-      text-align: center;
-      padding-top: 20px;
-      padding-bottom: 30px;
-
-      @media(min-width: $screen-md-min) {
-        text-align: left;
-        padding-top: 30px;
-      }
-
-      @media(min-width: $screen-lg-min) { padding-top: 100px; }
-
-      h1 {
-        color: $color-dark-blue;
-        font-size: 2.4rem;
-
-        @media(min-width: $screen-md-min) {
-          font-size: 2.8rem;
-          letter-spacing: 2px;
-        }
-      }
-
-      p {
-        color: $color-grey;
-        font-size: 1.1rem;
-        line-height: 1.6;
-      }
-
-      .know-more {
-        display: inline-block;
-        background: $brand_primary;
-        color: white;
-        font-size: 0.9rem;
-        text-decoration: none;
-        padding: 6px 20px;
-        margin-top: 20px;
-        border-radius: 25px;
-
-        @media(min-width: $screen-md-min) {
-          padding: 12px 50px;
-          margin-top: 30px;
-        }
-      }
-    }
-
-    .intro-img {
-      text-align: center;
-
-      img {
-        width: 80%;
-        max-width: 380px;
-
-        @media(min-width: $screen-md-min) {
-          width: 100%;
-          max-width: 110%;
-        }
-      }
-    }
+.pages-layout .home {
+  .intro .intro-info .pbtn {
+    margin-top: 20px;
+    @media(min-width: $screen-md-min) { margin-top: 30px; }
   }
 
   .section.section-pitch {

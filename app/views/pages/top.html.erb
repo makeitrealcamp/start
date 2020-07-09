@@ -5,96 +5,91 @@
   <meta property="og:image" content="<%= image_url('top-hero.jpg') %>" />
 <% end %>
 
-<div class="online-program">
-  <div class="top">
+<div class="top-program">
+  <div class="intro">
     <%= render "layouts/navbar/pages_white" %>
 
     <div class="container">
       <div class="row">
-        <div class="col-md-10 col-md-offset-1 program-header">
-          <h1 class="text-center" ><%= image_tag "top-icon.svg", height: 45, style: "margin-top: -9px; margin-right: 5px;" %> TOP</h1>
-          <div class="text-center program-description">Conviértete en desarrollador Web y móvil en un programa inmersivo (tiempo completo) remoto <strong>sin costo</strong> hasta que encuentres un empleo</div>
-          <div class="text-center program-icons">
-            <i class="icon icon-html5-alt"></i>
-            <i class="icon icon-css3-alt"></i>
-            <i class="icon icon-git"></i>
-            <i class="icon icon-javascript" style="font-size: 38px;"></i>
-            <i class="icon icon-mongodb"></i>
-            <i class="icon icon-reactjs"></i>
+        <div class="col-md-6 intro-info">
+          <h1>Programa TOP</h1>
+          <p>Conviértete en desarrollador Web y móvil en un programa inmersivo (tiempo completo), remoto y <strong>sin costo</strong> hasta que encuentres un empleo</p>
+        </div>
+        <div class="col-md-6 intro-img">
+          <%= image_tag "image-header-top.png", srcset: { "image-header-top@2x.png" => "2x", "image-header-top@3x.png" => "3x" } %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section section-details">
+    <div class="container">
+      <div class="row">
+        <div>
+          <div class="details-wrapper">
+            <div class="row">
+              <div class="col-xs-6 col-sm-4">
+                <div class="text-center">
+                  <div class="detail-wrapper">
+                    <div class="detail-value">Jul 15, 2020</div>
+                    <div class="detail-label">LÍMITE PARA APLICAR</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-6 col-sm-4">
+                <div class="text-center">
+                  <div class="detail-wrapper">
+                    <div class="detail-value">12 semanas</div>
+                    <div class="detail-label">DURACIÓN</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="text-center">
+                  <div class="detail-wrapper">
+                    <div class="detail-value">60 horas/semana</div>
+                    <div class="detail-label">DEDICACIÓN</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="section section-white section-details">
+  <div class="section section-info">
     <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-sm-4">
+        <div class="col-sm-10 col-sm-offset-1">
           <div class="text-center">
-            <div class="detail-wrapper">
-              <div class="detail-value">Jul 27, 2020</div>
-              <div class="detail-label">FECHA DE INICIO</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-6 col-sm-4">
-          <div class="text-center">
-            <div class="detail-wrapper">
-              <div class="detail-value">12 semanas</div>
-              <div class="detail-label">DURACIÓN</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="text-center">
-            <div class="detail-wrapper">
-              <div class="detail-value">60 horas/semana</div>
-              <div class="detail-label">DEDICACIÓN</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section section-white section-info">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-6">
-          <div style="padding-right: 20px;">
             <h2>¿A quién está dirigido?</h2>
             <p class="lead">Personas que han estudiado Ingeniería de Sistemas o carreras afines (Electrónica, Telecomunidaciones, Mecánica, etc.) y que manejan un Inglés intermedio.</p>
+            <button type="button" class="pbtn pbtn-secondary btn-apply-now">Aplica Ahora</button>
             <p class="note">* ¿No cumples con el perfil? Conoce nuestro programa <%= link_to "Desarrollo Web Full Stack", full_stack_online_path %> (tiempo parcial).</p>
           </div>
         </div>
-        <div class="col-sm-6">
-          <div class="application-limit">
-            <div class="date-limit">Jul 10, 2020</div>
-            <div class="date-limit-label">FECHA LÍMITE PARA APLICAR</div>
-            <div class="text-center" style="margin-top: 30px;">
-              <button type="button" class="btn btn-primary btn-lg apply-now-btn">APLICA AHORA</button>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 
-  <div class="section section-how-it-works">
+  <div class="section section-white section-how-it-works">
     <div class="container">
       <div class="row">
-        <div class="col-sm-12">
-
+        <div class="col-xs-12">
           <h2>¿Cómo funciona?</h2>
-          <p class="lead">Invertimos en un reducido número de personas y las entrenamos en las tecnologías con más demanda y mejores salarios de la actualidad.</p>
-          <p class="lead">A cambio, los graduados pagan un porcentaje de su salario cuando son contratados.</p>
+          <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+              <p class="lead">Invertimos en un reducido número de personas y las entrenamos en las tecnologías con más demanda y mejores salarios de la actualidad. A cambio, los graduados pagan un porcentaje de su salario cuando son contratados.</p>
+            </div>
+          </div>
 
           <div class="row">
             <div class="col-sm-6">
               <div class="works-item">
-                <span class="icon icon-gears works-icon"></span>
-                <div>
+                <%= image_tag "icon-proceso-top.png", srcset: { "icon-proceso-top@2x.png" => "2x", "icon-proceso-top@3x.png" => "3x" } %>
+                <div class="item-info">
                   <h3>Proceso de selección</h3>
                   <p>Los candidatos completan una serie de entrevistas técnicas y personales para identificar a las personas con aptitudes técnicas sin importar sus estudios previos.</p>
                 </div>
@@ -102,8 +97,8 @@
             </div>
             <div class="col-sm-6">
               <div class="works-item">
-                <span class="glyphicon glyphicon-th works-icon"></span>
-                <div>
+                <%= image_tag "icon-entrenamiento-top.png", srcset: { "icon-entrenamiento-top@2x.png" => "2x", "icon-entrenamiento-top@3x.png" => "3x" } %>
+                <div class="item-info">
                   <h3>Entrenamiento</h3>
                   <p>A través de una metodología única los estudiantes adquieren las habilidades para convertirse en desarrolladores Web. El post-programa los prepara para la siguiente fase de sus vidas.</p>
                 </div>
@@ -115,223 +110,200 @@
     </div>
   </div>
 
-  <div class="section section-white section-schemes">
+  <div class="section section-quotes">
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <h2>Esquemas de pago</h2>
+          <div class="duration-box">
+            <div class="duration"><strong>Duración: </strong> 12 semanas</div>
+            <div class="start"><strong>Fecha de Inicio:</strong> Jul 27, 2020</div>
+          </div>
+
+          <h2>Testimonios</h2>
+
+          <div class="quotes-carousel">
+            <div class="quote">
+              <div class="quote-data">
+                <div class="quote-name">Cristian Buitragro</div>
+                <div class="quote-position">Front End Developer</div>
+                <div class="quote-company">en Globant</div>
+                <div class="quote-text">
+                  Cuando encontré Make it Real no dudé en aplicar, es una decisión que ha impactado mi vida de manera positiva, la programación de alguna manera te da poderes, poderes de los buenos.
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section section-schemes">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>Esquema de pago</h2>
         </div>
       </div>
       <div class="schemes">
         <div class="scheme">
-          <header>Esquema 1</header>
+          <header>Opción 1</header>
           <div class="scheme-body">
             <div class="initial">
+              <div class="initial-label">Valor inicial</div>
               <div class="initial-value">COP$0</div>
-              <div class="initial-label">DE ENTRADA</div>
             </div>
-            <div class="plus">+</div>
+            <div class="plus">Al finalizar el programa</div>
             <div class="shared-income"><strong>17%</strong> de tus ingresos salariales por <strong>2 años</strong> cuando encuentres empleo</div>
           </div>
         </div>
 
         <div class="scheme">
-          <header>Esquema 2</header>
+          <header>Opción 2</header>
           <div class="scheme-body">
             <div class="initial">
+              <div class="initial-label">Valor inicial</div>
               <div class="initial-value">COP$7'500,000</div>
-              <div class="initial-label">DE ENTRADA</div>
             </div>
-            <div class="plus">+</div>
+            <div class="plus">Al finalizar el programa</div>
             <div class="shared-income"><strong>17%</strong> de tus ingresos salariales por <strong>1 año</strong> cuando encuentres empleo</div>
           </div>
         </div>
 
         <div class="scheme">
-          <header>Esquema 3</header>
+          <header>Opción 3</header>
           <div class="scheme-body">
             <div class="initial">
+              <div class="initial-label">Valor total</div>
               <div class="initial-value">COP$15'000,000</div>
-              <div class="initial-label">DE ENTRADA</div>
             </div>
+            <div class="plus">Único pago</div>
+            <div class="shared-income">No realizarás pagos adicionales después del programa</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="section section-dark section-method">
+  <div class="section section-method">
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <h2>Un día normal en el programa</h2>
+          <h2>Un día en el programa</h2>
         </div>
       </div>
-      <div class="row" style="margin-top: 40px;">
+      <div class="row">
+        <div class="col-sm-5 col-md-6">
+          <div class="hidden-xs hidden-sm">
+            <%= image_tag "image-un-dia-top.png", srcset: { "image-un-dia-top@2x.png" => "2x", "image-un-dia-top@3x.png" => "3x" } %>
+          </div>
+        </div>
         <div class="col-sm-10 col-md-6">
           <div class="method-item">
+            <%= image_tag "icon-check-top.svg" %>
             <div class="method-hour">8:30am - 10:00am</div>
             <div class="method-description">Iniciamos el día con una charla y solución de dudas.</div>
           </div>
 
           <div class="method-item">
+            <%= image_tag "icon-check-top.svg" %>
             <div class="method-hour">10:00am - 12:30pm</div>
             <div class="method-description">Trabajo práctico individual o en parejas. Trabajarás en los ejercicios y proyectos asignados con el apoyo de los mentores.</div>
           </div>
 
           <div class="method-item">
+            <%= image_tag "icon-check-top.svg" %>
             <div class="method-hour">2:30pm - 3:30pm</div>
             <div class="method-description">Nos reunimos nuevamente para solucionar dudas y/o realizar una charla.</div>
           </div>
           <div class="method-item">
+            <%= image_tag "icon-check-top.svg" %>
             <div class="method-hour">3:30pm - 6:30pm</div>
             <div class="method-description">Trabajo práctico individual o en parejas con el apoyo de los mentores.</div>
           </div>
           <div class="method-item">
+            <%= image_tag "icon-check-top.svg" %>
             <div class="method-hour">6:30pm - 8:30pm</div>
             <div class="method-description">Estudio individual del contenido asignado.</div>
-          </div>
-        </div>
-        <div class="col-sm-5 col-md-6">
-          <div style="padding: 0 20px;" class="hidden-xs hidden-sm">
-            <%= image_tag "programming.png", class: "img-responsive" %>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="section section-curriculum">
+  <div class="section section-white section-curriculum">
     <div class="container">
       <div class="row">
-        <div class="col-sm-12">
-          <h2>Currículo semana a semana</h2>
+        <div class="col-sm-10 col-sm-offset-1">
+          <h2>Currículo</h2>
         </div>
       </div>
-      <div class="row" style="margin-top: 40px;">
+      <div class="row">
         <div class="col-md-10 col-md-offset-1">
-          <table class="table">
-            <tbody>
-              <tr>
-                <td class="curriculum-week">Semana 1</td>
-                <td>
-                  Algoritmos
-                  <small>Verás temas como pseudocódigo, complejidad, recursión, ordenamiento y búsqueda, y programación dinámica, entre otros.</small>
-                </td>
-              </tr>
-              <tr>
-                <td class="curriculum-week">Semana 2</td>
-                <td>
-                  Algoritmos y estructuras de datos
-                  <small>Aprenderás a crear y a utilizar estructuras de datos como pilas, colas, árboles y grafos en tus algoritmos.</small>
-                </td>
-              </tr>
-              <tr>
-                <td class="curriculum-week">Semana 3</td>
-                <td>
-                  HTML y CSS avanzado
-                  <small>Mejores prácticas, media queries, sombras, gradientes, transformaciones, transiciones, animaciones, Flexbox y CSS Grids, entre otros.</small>
-                </td>
-              </tr>
-              <tr>
-                <td class="curriculum-week">Semana 4</td>
-                <td>
-                  JavaScript avanzado
-                  <small>Prototipos, uso de this, scopes, closures, hoisting, ES2015, programación funcional, programación asincrónica, librerías y testing, entre otros</small>
-                </td>
-              </tr>
-              <tr>
-                <td class="curriculum-week">Semana 5</td>
-                <td>
-                  JavaScript en el navegador y AJAX
-                  <small>Objetos del navegador, manipulación del DOM, cookies y local storage, HTTP, JSON, Web Sockets, herramientas de desarrollador y canvas, entre otros</small>
-                </td>
-              </tr>
-              <tr>
-                <td class="curriculum-week">Semana 6</td>
-                <td>
-                  Node.js y Express
-                  <small>Event loop, Node.js internals, MVC, Express: rutas, vistas, middlewares, manejo de errores, formularios, cookies y sesión.</small>
-                </td>
-              </tr>
-              <tr>
-                <td class="curriculum-week">Semana 7</td>
-                <td>
-                  Express y MongoDB
-                  <small>Mongo Shell, Mongoose, autenticación, REST, despliegue, imágenes, testing, Web API's y JWT.</small>
-                </td>
-              </tr>
-              <tr>
-                <td class="curriculum-week">Semana 8</td>
-                <td>
-                  React
-                  <small>Virtual DOM, JSX, componentes, estado, formularios, peticiones HTTP, router.</small>
-                </td>
-              </tr>
-              <tr>
-                <td class="curriculum-week">Semana 9</td>
-                <td>
-                  React y manejo de estado compartido
-                  <small>Context API, Redux y GraphQL.</small>
-                </td>
-              </tr>
-              <tr>
-                <td class="curriculum-week">Semana 10</td>
-                <td>
-                  React Native
-                  <small>Instalación, componentes, navegación, formularios, cámara, mapas y GPS, HTTP, App Stores, entre otros.</small>
-                </td>
-              </tr>
-              <tr>
-                <td class="curriculum-week">Semana 11</td>
-                <td>Proyecto personal</td>
-              </tr>
-              <tr>
-                <td class="curriculum-week">Semana 12</td>
-                <td>Proyecto personal</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="subject">
+            <h3>Algoritmos</h3>
+            <p>Pseudocódigo, complejidad, recursión, ordenamiento y búsqueda, y programación dinámica, entre otros.</p>
+          </div>
+          <div class="subject">
+            <h3>Estructuras de datos</h3>
+            <p>Aprenderás a crear y a utilizar estructuras de datos como pilas, colas, árboles y grafos en tus algoritmos.</p>
+          </div>
+          <div class="subject">
+            <h3>HTML y CSS avanzado</h3>
+            <p>Mejores prácticas, media queries, sombras, gradientes, transformaciones, transiciones, animaciones, Flexbox y CSS Grids, entre otros.</p>
+          </div>
+          <div class="subject">
+            <h3>JavaScript avanzado</h3>
+            <p>Prototipos, uso de this, scopes, closures, hoisting, ES2015, programación funcional, programación asincrónica, librerías y testing, entre otros</p>
+          </div>
+          <div class="subject">
+            <h3>Node.js y Express</h3>
+            <p>Event loop, Node.js internals, HTTP, Express: rutas, vistas, middlewares, manejo de errores, formularios, cookies, sesiones, JSON, Web Sockets, herramientas de desarrollador y canvas.</p>
+          </div>
+          <div class="subject">
+            <h3>MongoDB</h3>
+            <p>Mongo Shell, Mongoose, diseño de bases de datos.</p>
+          </div>
+          <div class="subject">
+            <h3>React</h3>
+            <p>Virtual DOM, JSX, componentes, estado, formularios, peticiones HTTP, router, hooks, Context API, Redux.</p>
+          </div>
+          <div class="subject">
+            <h3>GraphQL</h3>
+            <p>Schemas, consultas, mutaciones, validación, Apollo Client, integración con React.</p>
+          </div>
+          <div class="subject">
+            <h3>React Native</h3>
+            <p>Instalación, componentes, navegación, formularios, cámara, mapas y GPS, HTTP, App Stores, entre otros.</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <a name="mentors"></a>
-  <div class="section section-white section-bordered section-mentors">
+  <div class="section section-bordered section-mentors">
     <div class="container">
-      <h2>Conoce a tus mentores</h2>
+      <h2>Nuestros mentores</h2>
 
-      <div class="row" style="margin-top: 40px;">
-        <div class="col-sm-6 clearfix">
+      <div class="row">
+        <div class="col-sm-6">
           <div class="profile-image text-center">
-            <%= image_tag "people/german-escobar.png", class: "img-circle gray" %>
-          </div>
-
-          <div class="profile">
-            <h3>Germán Escobar <small>Curriculum Developer</small></h3>
-            <p class="text-center">Programador y emprendedor con una <a href="http://germanescobar.com/2014/06/02/la-nueva-educacion/" target="_blank">visión particular de la educación</a>. Co-fundador de <a href="http://elibom.com/?utm_source=full-stack-medellin&utm_medium=web&utm_campaign=Make%20it%20Real" target="_blank">elibom.com</a> y fundador de <a href="http://www.makeitreal.camp/?utm_source=aprende-desarrollo-web&utm_medium=web&utm_campaign=inbound" target="_blank">makeitreal.camp</a>.</p>
+            <%= image_tag "people/german-escobar.png" %>
           </div>
         </div>
-        <div class="col-sm-6 clearfix">
-          <div class="profile-image text-center" >
-            <%= image_tag "people/simon-hoyos.png", class: "img-circle"%>
-          </div>
-
+        <div class="col-sm-6">
           <div class="profile">
-            <h3>Simón Hoyos <small>Mentor</small></h3>
-            <p class="text-center">Apasionado por JavaScript y su ecosistema, co-organizador y speaker del <a href="https://www.meetup.com/React-Medellin/" target="_blank">Meetup React Medellín</a>.</p>
+            <h3>Germán Escobar</h3>
+            <p>Programador y emprendedor con una <a href="http://germanescobar.com/2014/06/02/la-nueva-educacion/" target="_blank">visión particular de la educación</a>. Co-fundador de <a href="http://elibom.com/?utm_source=full-stack-medellin&utm_medium=web&utm_campaign=Make%20it%20Real" target="_blank">elibom.com</a> y fundador de <a href="http://www.makeitreal.camp/?utm_source=aprende-desarrollo-web&utm_medium=web&utm_campaign=inbound" target="_blank">makeitreal.camp</a>.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <%= render "full_stack_onsite_students" %>
-
-  <%= render "pages/companies" %>
-
-  <section class="section section-faq">
+  <section class="section section-white section-faq">
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
@@ -376,18 +348,25 @@
     </div>
   </section>
 
-  <section class="section section-dark medellin-magnet">
+  <footer>
     <div class="container">
       <div class="row">
-        <div class="col-sm-10 col-sm-offset-1 text-center">
-          <p class="lead" style="margin-bottom: 40px;">¿Quieres cambiar tu futuro? Las aplicaciones se encuentran abiertas!</p>
-          <button class="btn btn-primary apply-now-btn">INICIA AHORA</button>
+        <div class="col-sm-5 col-sm-push-7">
+          <div class="social-icons">
+            <a href="https://facebook.com/makeitrealcamp" target="_blank"><%= image_tag "icon-facebook.svg" %></a>
+            <a href="https://twitter.com/makeitrealcamp" target="_blank"><%= image_tag "icon-twitter.svg" %></a>
+            <a href="http://instagram.com/makeitrealcamp" target="_blank"><%= image_tag "icon-instagram.svg" %></a>
+            <a href="https://www.youtube.com/channel/UCcHBDdSPzOaWMsLFyO_HJYw" target="_blank"><%= image_tag "icon-youtube.svg" %></a>
+          </div>
+        </div>
+        <div class="col-sm-7 col-sm-pull-5">
+          <div class="rights">
+            © Todos los derechos reservados. Make it Real es una marca de La Nueva Educación.
+          </div>
         </div>
       </div>
     </div>
-  </section>
-
-  <%= render "footer" %>
+  </footer>
 
   <div class="modal fade" id="application-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">

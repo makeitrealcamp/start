@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="34" height="25" viewBox="0 0 34 25">
+    <defs>
+        <path id="prefix__a" d="M30.37.554L10.726 20.146l-7.088-7.698c-.612-.664-1.647-.708-2.313-.096-.666.614-.708 1.649-.096 2.315l8.242 8.95c.302.328.724.519 1.17.529h.035c.433 0 .849-.172 1.155-.478L32.682 2.873c.64-.639.641-1.676.003-2.316-.32-.321-.739-.482-1.159-.482-.418 0-.837.16-1.156.479"/>
+        <path id="prefix__c" d="M11.831 21.668c-.306.306-.722.478-1.155.478-.481-.01-.903-.201-1.205-.529l-8.242-8.95c-.612-.666-.57-1.701.096-2.315.666-.612 1.701-.568 2.313.096l7.088 7.698L28.165.753c.4 1.118.747 2.325 1.035 3.592L11.831 21.668z"/>
+        <linearGradient id="prefix__d" x1="69.446%" x2="40.824%" y1="96.525%" y2="16.205%">
+            <stop offset="0%" stop-color="#0070BC"/>
+            <stop offset="100%" stop-color="#3FCDE2"/>
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g transform="translate(0 -1) translate(0 .907)">
+            <mask id="prefix__b" fill="#fff">
+                <use xlink:href="#prefix__a"/>
+            </mask>
+            <path fill="#FCBE1D" d="M17.072 5.12C12.928-1.952.256-1.525.62-7.091c-.087-7.968 26.028-8.227 36.875 2.216C48.69 5.903 49.919 22.792 40.24 32.847 35.863 37.393 30.006 39.763 23.867 40c-7.653-.027-14.117-10.803-10.678-16.996 4.25-7.562 6.464-13.478 3.883-17.884z" style="mix-blend-mode:difference" mask="url(#prefix__b)"/>
+        </g>
+        <g style="mix-blend-mode:difference" transform="translate(0 -1) translate(0 2.907)">
+            <mask id="prefix__e" fill="#fff">
+                <use xlink:href="#prefix__c"/>
+            </mask>
+            <path fill="url(#prefix__d)" d="M13.249 9.152c5.79-4.173 3.024-15.628 8.258-15.627 7.378-.549 12.5 23.093 4.836 33.538C18.433 37.844 2.99 39.955-8.151 31.78c-5.037-3.695-8.332-8.861-9.7-14.409-1.404-6.935 7.387-13.429 13.778-10.679 7.813 3.404 13.716 5.059 17.322 2.46z" style="mix-blend-mode:difference" mask="url(#prefix__e)"/>
+        </g>
+    </g>
+</svg>

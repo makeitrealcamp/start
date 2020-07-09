@@ -67,7 +67,7 @@
 
           @media(min-width: $screen-md-min) {
             margin-top: 52px;
-            padding: 10px 30px;
+            padding: 8px 35px;
           }
         }
       }
@@ -80,7 +80,10 @@
       max-width: 350px;
       margin-left: auto;
 
-      @media(min-width: $screen-md-min) { border: none; }
+      @media(min-width: $screen-md-min) {
+        max-width: none;
+        border: none;
+      }
     }
   }
 
@@ -137,8 +140,6 @@
 }
 
 .app-layout {
-  // .navbar-inverse { font-size: 0.8rem; }
-
   .navbar-nav > li > a.avatar {
     padding-top: 9px;
     padding-bottom: 5px;
