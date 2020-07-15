@@ -1,0 +1,56 @@
+.pages-layout .web-mobile-programs {
+  .intro {
+    .intro-info {
+      padding-top: 60px;
+
+      h1 { font-size: 2.7rem; }
+    }
+
+    .intro-img {
+      @media(min-width: $screen-md-min) { padding-top: 130px; }
+      @media(min-width: $screen-lg-min) { padding-top: 0; }
+    }
+  }
+
+  section.section.section-program-option {
+    h2 {
+      color: white;
+      font-size: 1.8rem;
+      line-height: 1.2;
+      margin-bottom: 40px;
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1rem;
+      line-height: 1.6;
+
+      strong { color: white; }
+    }
+
+    &.top-program {
+      background: asset-url('imagen-1-derecha.svg') 0 60px/80px no-repeat,
+                  linear-gradient(to bottom, #668add, #1d2b64);
+
+      @media(min-width: $screen-sm-min) {
+        background-size: 150px;
+      }
+    }
+
+    &.full-stack-program {
+      position: relative;
+      background: linear-gradient(to bottom, #3fcde2, #04899e) no-repeat;
+
+      img.bg-image {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        width: 70px;
+
+        @media(min-width: $screen-sm-min) {
+          width: 140px;
+        }
+      }
+    }
+  }
+}

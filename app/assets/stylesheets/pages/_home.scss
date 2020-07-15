@@ -1,180 +1,139 @@
-.new-site.home {
-  .intro {
-    position: relative;
-    background: linear-gradient(rgba(28, 28, 48, 0.77), rgba(28, 28, 48, 0.77)), image-url("home-bg.jpg") no-repeat 60% 50%;
-    background-size: cover;
-    padding-bottom: 100px;
-    overflow: hidden;
-
-    .tagline-wrapper { text-align: center; }
-
-    @media (min-width: $screen-md-min) { padding-bottom: 140px; }
-  }
-
-  .tagline {
-    font-size: 40px;
-    font-weight: 700;
-    font-family: 'Karla', sans-serif;
-    color: #f5f5f2;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-    margin-top: 50px;
-
-    @media (min-width: $screen-sm-min) {
-      font-size: 68px;
-      margin-top: 90px;
-      padding: 0 35px;
-    }
-  }
-
-  .tagline-support {
-    font-size: 21px;
-    font-weight: 400;
-    line-height: 1.4;
-    color: #dedede;
-    margin-bottom: 60px;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-
-    @media (min-width: $screen-sm-min) {
-      font-size: 24px;
-      padding: 0 35px;
-      margin-bottom: 75px;
-    }
-  }
-
-  .know-more {
-    color: white;
-    font-weight: 400;
-    display: inline-block;
-    background: $brand_primary;
-    font-family: 'Open Sans', sans-serif;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 15px 20px;
-    font-size: 16px;
-
-    @media(min-width: $screen-sm-min) {
-      padding: 15px 40px;
-      font-size: 18px;
-    }
+.pages-layout .home {
+  .intro .intro-info .pbtn {
+    margin-top: 20px;
+    @media(min-width: $screen-md-min) { margin-top: 30px; }
   }
 
   .section.section-pitch {
     position: relative;
-    overflow: hidden;
+    padding-top: 0;
 
-    .stripe {
-      position: absolute;
-      top: -100px;
-      left: 50%;
-      background: #fbfbfa;
-      width: 400px;
-      height: 900px;
-      transform: rotate(20deg);
+    .title {
+      text-align: center;
+
+      @media(min-width: $screen-sm-min) { text-align: left; }
     }
 
-    .feature {
-      .icon { color: #a5a5a2; }
-      p { color: #757572; }
+    .features .feature {
+      text-align: center;
+      margin-bottom: 60px;
+
+      img {
+        max-height: 130px;
+
+        @media(min-width: $screen-sm-min) { max-height: 180px; }
+      }
+
+      .feature-title {
+        color: $color-dark-blue;
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-top: 20px;
+
+        @media(min-width: $screen-sm-min) { margin-top: 50px; }
+      }
+
+      p {
+        color: $color-grey;
+        margin-top: 10px;
+        font-size: 1rem;
+
+        @media(min-width: $screen-sm-min) { margin-top: 20px; }
+      }
     }
   }
 
-  .programs {
+  .section.section-philosophy {
+    position: relative;
+
+    .title-img {
+      position: absolute;
+      right: -40px;
+      top: 0;
+      max-width: 350px;
+
+      @media(min-width: $screen-sm-min) {
+        right: 0;
+        max-width: 700px;
+      }
+    }
+
+    h2.title {
+      position: absolute;
+      right: 15px;
+      top: 20px;
+      color: $color-white;
+      padding: 0;
+      max-width: 180px;
+
+      @media(min-width: $screen-sm-min) {
+        right: 280px;
+        top: 50px;
+      }
+    }
+
+    .content {
+      padding-top: 200px;
+
+      @media(min-width: $screen-sm-min) { padding-top: 300px; }
+
+      p {
+        color: $color-grey;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  .section.section-programs {
+    padding: 0;
+
+    @media(min-width: $screen-sm-min) {
+      background: linear-gradient(to bottom, #668add, #1d2b64) 0 0/50% no-repeat,
+                  linear-gradient(to bottom, #ef6059, #c33f2f) 0 50% no-repeat;
+    }
+
+    .program-1 {
+      background: linear-gradient(to bottom, #668add, #1d2b64);
+      @media(min-width: $screen-sm-min) { background: none; }
+    }
+
+    .program-2 {
+      background: linear-gradient(to bottom, #ef6059, #c33f2f);
+      @media(min-width: $screen-sm-min) { background: none; }
+    }
+
     .program {
-      background-size: cover;
-      padding: 40px 0;
-      color: white;
-      border-bottom: 1px solid white;
+      color: $color-white;
+      text-align: center;
+      padding-bottom: 60px;
 
-      h2 {
-        font-family: 'Open Sans Condensed';
-        font-size: 32px;
-        text-transform: uppercase;
-        margin: 0 0 7px;
-
-        @media(min-width: $screen-sm-min) { font-size: 38px; }
+      h3 {
+        font-size: 2rem;
+        letter-spacing: 1px;
+        padding: 80px 10px 0;
       }
 
-      p.description {
-        @media(min-width: $screen-sm-min) { font-size: 18px; }
+      p {
+        color: $color-white;
+        margin-bottom: 50px;
       }
 
-      .features {
-        margin-top: 5px;
-        padding-left: 20px;
+      img {
+        max-width: 300px;
 
-        @media(min-width: $screen-sm-min) { padding-left: 0; }
-
-        .feature {
-          margin-top: 15px;
-
-          .program-label {
-            font-size: 14px;
-            font-weight: bold;
-          }
-        }
+        @media(min-width: $screen-md-min) { max-width: 400px; }
       }
 
-      .program-action { margin-top: 30px; }
-
-      &.program-top {
-        background: image-url("top-wide-bg.jpg") no-repeat 90% 50%;
-        background-size: cover;
-
-        p.description { color: #D3E7F5; }
-        .feature .program-label { color: #D3E7F5; }
-      }
-
-      &.program-full-stack-online {
-        background: image-url("full-stack-wide-bg.jpg") no-repeat 0% 50%;
-        background-size: cover;
-
-        p.description { color: #ccc; }
-        .feature .program-label { color: #ccc; }
-
-        @media (min-width: $screen-sm-min) { text-align: right; }
-      }
-
-      &.program-full-stack-onsite {
-        background: image-url("full-stack-onsite-wide-bg.jpg") no-repeat 80% 50%;
-        background-size: cover;
-
-        p.description { color: #EDC5C5; }
-        .feature .program-label { color: #EDC5C5; }
-
-        .onsite-dates {
-          max-width: 600px;
-          margin: 0 auto;
-
-          @media(min-width: $screen-sm-min) { max-width: 400px; }
-
-          table {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid #a99;
-            border-radius: 5px;
-            margin-top: 30px;
-            margin-bottom: 0;
-
-            @media(min-width: $screen-sm-min) { margin-top: 20px; }
-
-            td {
-              font-size: 14px;
-              vertical-align: middle;
-              border-color: #a99;
-
-              @media(min-width: $screen-md-min) {
-                padding-left: 20px;
-                padding-right: 20px;
-              }
-
-              &.program-city {
-                font-weight: bold;
-                text-align: left;
-              }
-
-              .btn { padding: 5px 15px; }
-            }
-          }
-        }
+      .btn-programs {
+        display: inline-block;
+        color: $color-white;
+        font-size: 1rem;
+        padding: 12px 35px;
+        border: 2px solid $color-white;
+        border-radius: 40px;
+        margin: 60px 20px 0;
+        text-decoration: none;
       }
     }
   }

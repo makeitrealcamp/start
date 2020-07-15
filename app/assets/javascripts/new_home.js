@@ -1,6 +1,6 @@
 var ready = function() {
   // scroll para bajar en la intro
-  $(".new-site .intro").on("click", ".scroll", function() {
+  $(".home .intro").on("click", ".scroll", function() {
     $("html,body").animate({
       scrollTop: $("#programs").offset().top
     }, "slow");
@@ -14,4 +14,4 @@ var ready = function() {
   });
 };
 $(document).ready(ready);
-$(document).on("page:load", ready);
+$(document).on("turbolinks:load", ready);

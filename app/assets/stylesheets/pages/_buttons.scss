@@ -1,0 +1,25 @@
+.pages-layout {
+  .pbtn {
+    display: inline-block;
+    font-size: 0.9rem;
+    text-decoration: none;
+    padding: 6px 20px;
+    border: none;
+    border-radius: 25px;
+
+    @media(min-width: $screen-sm-min) {
+      padding: 12px 50px;
+      margin-top: 30px;
+    }
+
+    &.pbtn-primary {
+      background: $brand_primary;
+      color: white;
+    }
+
+    &.pbtn-secondary {
+      background: $color-dark-blue;
+      color: white;
+    }
+  }
+}

@@ -1,8 +1,21 @@
+html.pages-layout {
+  font-size: 16px;
+  @media(min-width: $screen-sm-min) {
+    font-size: 21px;
+  }
+}
+
+html.app-layout {
+  font-size: 16px;
+  @media(min-width: $screen-sm-min) {
+    font-size: 18px;
+  }
+}
+
 h1 {
-  font-family: "Open Sans Condensed", sans-serif;
-  font-size: 32px;
+  font-size: 2rem;
   margin-bottom: 20px;
-  font-weight: 700;
+  font-weight: normal;
 
   @media (min-width: $screen-sm-min) {
     font-size: 42px;
@@ -13,7 +26,7 @@ h1 {
 h2 {
   font-size: 21px;
   margin-bottom: 15px;
-  font-weight: 700;
+  font-weight: normal;
 
   @media (min-width: $screen-sm-min) {
     font-size: 24px;

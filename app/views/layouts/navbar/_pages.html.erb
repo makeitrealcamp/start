@@ -11,10 +11,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         </button>
-        <%= link_to image_tag("#{logo_path}", width: 180, alt: "Logo Make it Real"), root_path, class: "navbar-brand" %>
+        <%= link_to image_tag("#{logo_path}", alt: "Logo Make it Real"), root_path, class: "navbar-brand" %>
       </div>
       <div class="navbar-collapse collapse" id="navbar">
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               Programas <span class="caret"></span>
@@ -40,12 +40,9 @@
               </li>
             </ul>
           </li>
-          <li class="<%= 'active' if params[:action] == 'faq' %>"><%= link_to "FAQ", faq_path %></li>
           <li><a href="http://blog.makeitreal.camp/">Blog</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
           <% if !hide_login %>
-            <li><%= link_to "Ingresar", login_path %></li>
+            <li><%= link_to "Ingresar", login_path, class: "btn-login navbar-btn", data: { turbolinks: false } %></li>
           <% end %>
         </ul>
       </div>

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en" xmlns= "http://www.w3.org/1999/xhtml">
+<html class="pages-layout" lang="en" xml:lang="en" xmlns= "http://www.w3.org/1999/xhtml">
 <head>
   <title><%= @title || "Conviértete en Web Developer con programas presenciales u online" %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Language" content="<%= I18n.locale.to_s %>">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Patua+One&display=swap" rel="stylesheet">
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Open+Sans+Condensed:300,700|Karla:300,400,700' rel='stylesheet' type='text/css'>
 
   <%= favicon_link_tag 'favicon.ico' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -16,7 +16,7 @@
   <%= render "utils/convertloop" %>
   <%= yield :head %>
 </head>
-<body class="pages-layout">
+<body>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NC7GBT"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

@@ -1,0 +1,49 @@
+.pages-layout .intro {
+  background: white;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 30px;
+
+  .intro-info {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 30px;
+
+    @media(min-width: $screen-md-min) {
+      text-align: left;
+      padding-top: 30px;
+    }
+
+    @media(min-width: $screen-lg-min) { padding-top: 100px; }
+
+    h1 {
+      color: $color-dark-blue;
+      font-size: 2.4rem;
+
+      @media(min-width: $screen-md-min) {
+        font-size: 2.8rem;
+        letter-spacing: 2px;
+      }
+    }
+
+    p {
+      color: $color-grey;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+  }
+
+  .intro-img {
+    text-align: center;
+
+    img {
+      width: 80%;
+      max-width: 380px;
+
+      @media(min-width: $screen-md-min) {
+        width: 100%;
+        max-width: 110%;
+      }
+    }
+  }
+}

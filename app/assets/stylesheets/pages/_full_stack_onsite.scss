@@ -5,7 +5,7 @@
   &.barranquilla .program-intro { background-image: linear-gradient(rgba(48, 48, 48, 0.8), rgba(48, 48, 48, 0.8)), image-url("barranquilla.jpg"); }
   &.cali .program-intro { background-image: image-url("cali.jpg"); }
   &.bucaramanga .program-intro { background-image: image-url("bucaramanga.jpg"); }
-  &.online .program-intro { background-image: image-url("01interna-programa.jpg") center center; }
+  &.online .program-intro { background-image: image-url("01interna-programa.jpg"); }
 
   .program-intro {
     background-color: #005e9f;
@@ -169,6 +169,7 @@
       margin-bottom: 50px;
 
       h3 {
+        text-align: center;
         margin-top: 20px;
         margin-bottom: 30px;
 
