@@ -45,22 +45,15 @@
 
   .section.section-philosophy {
     position: relative;
+    background: asset-url('philosophy-img.svg') 100% 0/350px no-repeat, white;
 
-    .title-img {
-      position: absolute;
-      right: -40px;
-      top: 0;
-      max-width: 350px;
-
-      @media(min-width: $screen-sm-min) {
-        right: 0;
-        max-width: 700px;
-      }
+    @media(min-width: $screen-sm-min) {
+      background-size: 700px;
     }
 
     h2.title {
       position: absolute;
-      right: 15px;
+      right: 50px;
       top: 20px;
       color: $color-white;
       padding: 0;

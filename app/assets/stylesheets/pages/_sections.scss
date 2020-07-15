@@ -54,13 +54,11 @@
 
     p.subhead {
       color: #777;
-      font-size: 18px;
-      // margin-top: -55px;
+      font-size: 1rem;
       margin-bottom: 40px;
 
       @media (min-width: $screen-sm-min) {
         font-size: 20px;
-        // line-height: 1.4;
         margin-bottom: 70px;
       }
     }
@@ -97,13 +95,11 @@
 
   // main quote of the home and program pages
   .section-quote {
-    background: #f5f5f2;
-    border-top: 1px solid darken(#f5f5f2, 15%);
-    border-bottom: 1px solid darken(#f5f5f2, 15%);
+    background: white;
 
     p.text {
       margin-top: 40px;
-      font-size: 18px;
+      font-size: 1rem;
       font-weight: 300;
       line-height: 1.6;
 
@@ -136,7 +132,9 @@
 
     img {
       width: 100%;
-      max-width: 450px;
+      max-width: 300px;
+
+      @media(min-width: $screen-sm-min) { max-width: 450px; }
     }
   }
 
@@ -148,35 +146,27 @@
     img {
       width: 100%;
       max-width: 300px;
+
+      @media(min-width: $screen-sm-min) { max-width: 400px; }
     }
 
-    h3 {
-      text-align: center;
-      text-transform: uppercase;
-      font-family: 'Karla', sans-serif;
-      font-size: 24px;
+    h2 { color: $color-dark-blue; }
+
+    p.download {
+      color: $color-orange;
+      font-size: 1rem;
       margin-top: 40px;
-      margin-bottom: 40px;
-      font-weight: 700;
 
-      @media (min-width: $screen-sm-min) { font-size: 28px; }
+      @media(min-width: $screen-sm-min) { margin-top: 0; }
     }
+
+    p.subhead { margin-bottom: 20px; }
 
     form {
-      margin-top: 40px;
-
+      margin-top: 20px;
       @media (min-width: $screen-sm-min) { margin-top: 20px; }
 
-      label {
-        color: white;
-        font-weight: normal;
-      }
-
-      .form-control {
-        background: #444;
-        color: #ccc;
-        border-color: #555;
-      }
+      label { font-weight: normal; }
     }
 
     .btn-main {

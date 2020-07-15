@@ -1,13 +1,13 @@
-<div class="section section-dark section-email">
+<div class="section section-email">
   <div class="container">
     <h2>Mantente informado</h2>
-    <p class="subhead">Recibe contenido exclusivo, información de nuestros Bootcamps, talleres y otros eventos. Además, descarga nuestro e-book completamente gratis!</p>
     <div class="row">
       <div class="col-sm-6 text-center">
-        <%= image_tag "web-developer-guide-book.png" %>
+        <%= image_tag "image-libro.png", srcset: { "image-libro@2x.png" => "2x", "image-libro@3x.png" => "3x" } %>
       </div>
       <div class="col-sm-6">
-
+        <p class="download">¡Descarga nuestro e-book completamente gratis!</p>
+        <p class="subhead">Recibe también contenido exclusivo, información de nuestros Bootcamps, webinars y otros eventos.</p>
         <%= form_tag web_developer_guide_path, id: "web-developer-guide-form", remote: true do %>
           <%= render "capture_email_form", autofocus: false %>
           <div>
