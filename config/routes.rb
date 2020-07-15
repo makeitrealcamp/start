@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   root 'pages#home'
 
-  get "curriculum", to: "pages#curriculum"
-  get "front-end-bootcamp", to: "pages#front_end_bootcamp", as: :front_end_bootcamp
+  get "programas-web-movil", to: "pages#web_mobile_programs", as: :web_mobile_programs
   get "full-stack-online", to: "pages#full_stack_online", as: :full_stack_online
   post "full-stack-online", to: "pages#create_full_stack_online_lead"
   get "full-stack-online/cupo", to: "pages#full_stack_online_seat"

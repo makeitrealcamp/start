@@ -1,0 +1,49 @@
+<div class="web-mobile-programs">
+  <div class="intro">
+    <%= render "layouts/navbar/pages_white" %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 intro-info">
+          <h1>Nuestros Programas en Desarrollo Web y Móvil</h1>
+          <p>Selecciona el programa que más te convenga de acuerdo a tu disponibilidad de tiempo y conocimientos actuales.</p>
+        </div>
+        <div class="col-md-6 intro-img">
+          <%= image_tag "image-banner-oferta.jpg", srcset: { "image-banner-oferta@2x.jpg" => "2x", "image-banner-oferta@3x.jpg" => "3x" } %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section section-program-option top-program">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <%= render "pages/companies2" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-2 col-lg-8 col-lg-offset-4">
+          <h2>¿Tienes bases de programación y disponibilidad de tiempo completo?</h2>
+          <p class="lead">El <strong>Programa TOP</strong> es el programa para ti. Son 12 semanas tiempo completo y sin costo hasta que encuentres un empleo.</p>
+          <%= link_to "Mas Información", top_path, class: "pbtn pbtn-primary" %>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-program-option full-stack-program">
+    <%= image_tag "imagen-2-izquierda.svg", class: "bg-image" %>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 col-lg-8">
+          <h2>¿Estás iniciando en programación o quieres actualizar tus conocimientos, y tienes tiempo parcial?</h2>
+          <p class="lead">El <strong>Programa Full Stack JS</strong> es el programa para ti. Son 3 semanas de preparación, 6 meses de clases Martes y Jueves de 6:00 p.m. a 9:00 p.m. y 3 meses de acceso a nuestra plataforma online.</p>
+          <%= link_to "Mas Información", full_stack_online_path, class: "pbtn pbtn-primary" %>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%= render "pages/footer" %>
+</div>

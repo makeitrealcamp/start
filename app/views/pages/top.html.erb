@@ -66,7 +66,7 @@
           <div class="text-center">
             <h2>¿A quién está dirigido?</h2>
             <p class="lead">Personas que han estudiado Ingeniería de Sistemas o carreras afines (Electrónica, Telecomunidaciones, Mecánica, etc.) y que manejan un Inglés intermedio.</p>
-            <button type="button" class="pbtn pbtn-secondary btn-apply-now">Aplica Ahora</button>
+            <button type="button" class="pbtn pbtn-secondary apply-now-btn">Aplica Ahora</button>
             <p class="note">* ¿No cumples con el perfil? Conoce nuestro programa <%= link_to "Desarrollo Web Full Stack", full_stack_online_path %> (tiempo parcial).</p>
           </div>
         </div>
@@ -121,17 +121,85 @@
 
           <h2>Testimonios</h2>
 
-          <div class="quotes-carousel">
+          <div class="owl-carousel">
             <div class="quote">
-              <div class="quote-data">
-                <div class="quote-name">Cristian Buitragro</div>
-                <div class="quote-position">Front End Developer</div>
-                <div class="quote-company">en Globant</div>
-                <div class="quote-text">
-                  Cuando encontré Make it Real no dudé en aplicar, es una decisión que ha impactado mi vida de manera positiva, la programación de alguna manera te da poderes, poderes de los buenos.
+              <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                  <div class="quote-image">
+                    <%= image_tag "people/mixer-gutierrez.jpg", alt: "Mixer Gutierrez", class: "img-circle" %>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="quote-data">
+                    <div class="quote-name">Mixer Gutierrez</div>
+                    <div class="quote-position">Tech Lead</div>
+                    <div class="quote-company">en La Haus</div>
+                    <div class="quote-text">
+                      Desarrollar software literalmente te cambia la vida y Make it Real me brindó la oportunidad de entrar a este mundo. Experiencia inolvidable!
+                    </div>
+                  </div>
                 </div>
               </div>
+            </div>
 
+            <div class="quote">
+              <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                  <div class="quote-image">
+                    <%= image_tag "people/miguel-casas.jpg", alt: "Miguel Casas", class: "img-circle" %>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="quote-data">
+                    <div class="quote-name">Miguel Casas</div>
+                    <div class="quote-position">Full Stack Developer</div>
+                    <div class="quote-company">en Auth0</div>
+                    <div class="quote-text">
+                      Nunca esperé aprender tanto, cambiar la visión de la programación y la orientación de mi vida en tan poco tiempo.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="quote">
+              <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                  <div class="quote-image">
+                    <%= image_tag "people/sebastian-zapata.png", alt: "Sebastián Zapata", class: "img-circle" %>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="quote-data">
+                    <div class="quote-name">Sebastián Zapata</div>
+                    <div class="quote-position">Full Stack Developer</div>
+                    <div class="quote-company">en Zillow Group</div>
+                    <div class="quote-text">
+                      En Make it Real logré cosas que nunca habría imaginado hacer. Fue una de las experiencias más intensas y desafiantes de toda mi vida.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="quote">
+              <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                  <div class="quote-image">
+                    <%= image_tag "people/alejandro-escobar.jpg", alt: "Alejandro Escobar", class: "img-circle" %>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="quote-data">
+                    <div class="quote-name">Alejandro Escobar</div>
+                    <div class="quote-position">Full Stack Developer</div>
+                    <div class="quote-company">en Docketwise</div>
+                    <div class="quote-text">
+                      En Make it Real se adquieren los conocimientos necesarios para aprovechar las oportunidades del mundo actual.
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -287,19 +355,36 @@
     <div class="container">
       <h2>Nuestros mentores</h2>
 
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="profile-image text-center">
-            <%= image_tag "people/german-escobar.png" %>
+      <div class="mentors-wrapper owl-carousel">
+        <div class="row">
+          <div class="col-md-5 col-md-offset-1">
+            <div class="profile-image text-center">
+              <%= image_tag "people/german-escobar.png" %>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="profile">
+              <h3>Germán Escobar</h3>
+              <p>Programador y emprendedor. Fundador de <a href="http://www.makeitreal.camp/" target="_blank">Make it Real</a> y co-fundador de <a href="http://masiv.com/?ref=makeitreal" target="_blank">Elibom (ahora Masivian)</a>.</p>
+            </div>
           </div>
         </div>
-        <div class="col-sm-6">
-          <div class="profile">
-            <h3>Germán Escobar</h3>
-            <p>Programador y emprendedor con una <a href="http://germanescobar.com/2014/06/02/la-nueva-educacion/" target="_blank">visión particular de la educación</a>. Co-fundador de <a href="http://elibom.com/?utm_source=full-stack-medellin&utm_medium=web&utm_campaign=Make%20it%20Real" target="_blank">elibom.com</a> y fundador de <a href="http://www.makeitreal.camp/?utm_source=aprende-desarrollo-web&utm_medium=web&utm_campaign=inbound" target="_blank">makeitreal.camp</a>.</p>
+
+        <div class="row">
+          <div class="col-md-5 col-md-offset-1">
+            <div class="profile-image text-center">
+              <%= image_tag "people/simon-hoyos.png" %>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="profile">
+              <h3>Simón Hoyos</h3>
+              <p>Apasionado por JavaScript y su ecosistema, co-organizador y speaker del <a href="https://www.meetup.com/React-Medellin/" target="_blank">Meetup React Medellín</a>.</p>
+            </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 
@@ -348,25 +433,7 @@
     </div>
   </section>
 
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-5 col-sm-push-7">
-          <div class="social-icons">
-            <a href="https://facebook.com/makeitrealcamp" target="_blank"><%= image_tag "icon-facebook.svg" %></a>
-            <a href="https://twitter.com/makeitrealcamp" target="_blank"><%= image_tag "icon-twitter.svg" %></a>
-            <a href="http://instagram.com/makeitrealcamp" target="_blank"><%= image_tag "icon-instagram.svg" %></a>
-            <a href="https://www.youtube.com/channel/UCcHBDdSPzOaWMsLFyO_HJYw" target="_blank"><%= image_tag "icon-youtube.svg" %></a>
-          </div>
-        </div>
-        <div class="col-sm-7 col-sm-pull-5">
-          <div class="rights">
-            © Todos los derechos reservados. Make it Real es una marca de La Nueva Educación.
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <%= render "pages/footer" %>
 
   <div class="modal fade" id="application-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">

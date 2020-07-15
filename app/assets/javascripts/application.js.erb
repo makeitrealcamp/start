@@ -48,7 +48,7 @@ $(document).on("turbolinks:load", function() {
     $('.overlay').hide();
   });
 
-  $(".owl-carousel").owlCarousel({
+  $(".companies.owl-carousel").owlCarousel({
     loop: true,
     nav: false,
     autoplay: true,
@@ -72,8 +72,24 @@ $(document).on("turbolinks:load", function() {
         slideBy: 2
       }
     }
-  })
-})
+  });
+
+  $(".section-mentors .owl-carousel").owlCarousel({
+    loop: true,
+    autoplay: true,
+    nav: true,
+    navText: ['<%= image_tag "btn-atras.svg" %>', '<%= image_tag "btn-adelante.svg" %>'],
+    items: 1
+  });
+
+  $(".section-quotes .owl-carousel").owlCarousel({
+    loop: true,
+    autoplay: true,
+    nav: true,
+    navText: ['<%= image_tag "btn-atras.svg" %>', '<%= image_tag "btn-adelante.svg" %>'],
+    items: 1
+  });
+});
 
 _.templateSettings = {
   interpolate: /\{\{=(.+?)\}\}/g,

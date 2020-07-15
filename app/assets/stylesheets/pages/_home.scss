@@ -8,28 +8,6 @@
     position: relative;
     padding-top: 0;
 
-    .companies {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      background: white;
-      box-shadow: 10px 10px 16px 0 rgba(0, 0, 0, 0.2);
-      border-radius: 30px;
-      margin-top: -40px;
-
-      .company {
-        text-align: center;
-        padding: 30px;
-
-        img {
-          display: inline-block;
-          max-height: 40px;
-          width: auto;
-          max-width: 100%;
-        }
-      }
-    }
-
     .title {
       text-align: center;
 

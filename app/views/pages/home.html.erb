@@ -26,53 +26,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <div class="companies owl-carousel">
-            <div class="company">
-              <a href="http://toptal.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/toptal-logo.png" %></a>
-            </div>
-            <div class="company">
-              <a href="http://cabify.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/cabify-logo.jpg" %></a>
-            </div>
-            <div class="company">
-              <a href="http://auth0.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/lahaus-logo.svg" %></a>
-            </div>
-            <div class="company">
-              <a href="http://hugeinc.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/huge-logo.png" %></a>
-            </div>
-            <div class="company">
-              <a href="http://prodigious.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/prodigious-logo.png" %></a>
-            </div>
-            <div class="company">
-              <a href="http://globant.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/globant-logo.jpg" %></a>
-            </div>
-            <div class="company">
-              <a href="http://fluvip.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/fluvip-logo.png" %></a>
-            </div>
-            <div class="company">
-              <a href="http://nominapp.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/nominapp-logo.png" %></a>
-            </div>
-            <div class="company">
-              <a href="http://parrolabs.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/parrolabs-logo.jpg" %></a>
-            </div>
-            <div class="company">
-              <a href="https://www.lean-tech.io/?ref=makeitreal" target="_blank"><%= image_tag "companies/leantech-logo.png" %></a>
-            </div>
-            <div class="company">
-              <a href="http://kommit.co/?ref=makeitreal" target="_blank"><%= image_tag "companies/kommit-logo.png" %></a>
-            </div>
-            <div class="company">
-              <a href="http://yuxiglobal.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/yuxi-logo.png" %></a>
-            </div>
-            <div class="company">
-              <a href="http://koombea.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/koombea-logo.png" %></a>
-            </div>
-            <div class="company">
-              <a href="http://ayenda.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/ayenda-logo.png" %></a>
-            </div>
-            <div class="company">
-              <a href="https://www.belatrixsf.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/belatrix-logo.png" %></a>
-            </div>
-          </div>
+          <%= render "pages/companies2" %>
 
           <div class="row">
             <div class="col-xs-8 col-xs-offset-2 col-md-6">
@@ -136,7 +90,7 @@
             <h3 class="title">Desarrollo Web y móvil</h3>
             <p>Aprende a crear aplicaciones con HTML, CSS, JavaScript, Node.js, MongoDB, React y React Native</p>
             <%= image_tag "image-desarrollo.png", srcset: { "image-desarrollo@2x.png" => "2x", "image-desarrollo@3x.png" => "3x" } %>
-            <%= link_to "Ver Programas", top_path, class: "btn-programs" %>
+            <%= link_to "Ver Programas", web_mobile_programs_path, class: "btn-programs" %>
           </div>
         </div>
         <div class="col-sm-6 program-2">
