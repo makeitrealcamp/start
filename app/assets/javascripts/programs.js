@@ -34,9 +34,9 @@
   };
 
   var initForm = function() {
-    $('#form-start-now').on('submit', validateForm);
+    $('#form-register').on('submit', validateForm);
     $(document).on("turbolinks:click", function() {
-      $('#form-start-now').off('submit');
+      $('#form-register').off('submit');
     });
 
     detectCountry();
@@ -47,12 +47,13 @@
   };
 
   var validateField = function(selector, validFn, message) {
+    selector = "#form-register " + selector
     var formGroup = selector.closest('.form-group');
     formGroup.removeClass("has-error");
     $('.help-block', formGroup).remove();
 
-    var firstName = selector.val();
-    if (!validFn(firstName)) {
+    var value = selector.val();
+    if (!validFn(value)) {
       selector.closest('.form-group').addClass("has-error").append('<span class="help-block">' + message + '</span>');
       return false;
     }

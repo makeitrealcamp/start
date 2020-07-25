@@ -1,49 +1,36 @@
-<%= render "full_stack_js_onsite_header", image_path: "01interna-programa.jpg" %>
+<%= render "full_stack_js_header", image_path: "01interna-programa.jpg" %>
 
-<div class="new-site program full-stack-onsite online">
-  <%= render "layouts/navbar/pages_white", hide_login: true, show_apply: false %>
-  <%= render "pages/header_start_now" %>
+<div class="full-stack-js">
+  <%= render "layouts/navbar/pages_white", hide_login: true %>
+  <%= render "pages/header_register", btn_text: "¡Recibe la info!" %>
 
-  <div class="program-intro full-stack">
+  <div class="intro">
     <div class="container">
       <div class="row">
-        <div class="col-md-6 tagline-program">
-          <h1><small>Remote Edition</small>Full Stack JS Web Developer</h1>
-          <p>En este programa aprenderás a crear aplicaciones Web con HTML, CSS, Bootstrap, JavaScript, Node.js, MongoDB, React y GraphQL.</p>
-          <div class="icons">
-            <span class="icon icon-git"></span>
-            <span class="icon icon-html5"></span>
-            <span class="icon icon-css3"></span>
-            <span class="icon icon-node-dot-js"></span>
-            <span class="icon icon-mongodb"></span>
-            <span class="icon icon-reactjs"></span>
-            <span class="icon icon-graphql"></span>
-          </div>
+        <div class="col-md-6 intro-info">
+          <h1>Full Stack JS Web Developer</h1>
+          <p>Aprenderás a crear aplicaciones Web con HTML, CSS, Bootstrap, JavaScript, Node.js, MongoDB, React y GraphQL.</p>
+          <button type="button" class="pbtn pbtn-primary btn-register">¡Recibe toda la Info!</button>
         </div><!--/tagline-program -->
 
         <div class="col-md-6">
-          <div class="medellin-info">
-            <div class="medellin-info-body">
-              <div class="medellin-info-date">
-                 <div>Jul 27, 2020</div>
-                 <div class="info-date-label">Inicio</div>
-              </div>
-              <div class="medellin-info-date">
-                 <div>7 meses</div>
-                 <div class="info-date-label">Duración</div>
-              </div>
-              <div class="medellin-info-schedule">
-                <div class="schedule-data">
-                  6pm a 9pm (-05)
-                  <span class="schedule-label">Martes y Jueves</span>
-                </div>
-              </div>
+          <div class="program-info-box">
+            <div class="info-box-group">
+               <div>Jul 27, 2020</div>
+               <div class="info-box-label">Inicio</div>
+            </div>
+            <div class="info-box-group">
+               <div>7 meses</div>
+               <div class="info-box-label">Duración</div>
+            </div>
+            <div class="info-box-group">
+              <div>6pm a 9pm (-05)</div>
+              <div class="info-box-label">Martes y Jueves</div>
+            </div>
 
-              <div class="medellin-info-location">
-                Remoto (videollamada)
-              </div>
-
-              <button type="button" class="btn btn-primary btn-register">¡Recibe toda la info!</button>
+            <div class="info-box-group info-box-location">
+              Remoto (videollamada)
+              <div class="info-box-label">Ubicación</div>
             </div>
           </div>
         </div>
@@ -52,58 +39,69 @@
     </div><!--/container -->
   </div><!--/program-intro -->
 
-  <%= render "full_stack_onsite_audience" %>
+  <%= render "full_stack_js_audience" %>
 
-  <%= render "full_stack_online_curriculum" %>
+  <%= render "full_stack_js_students" %>
+
+  <%= render "full_stack_js_curriculum" %>
 
   <a name="mentors"></a>
-  <div class="section section-white section-bordered section-mentors">
+  <div class="section section-white section-mentors">
     <div class="container">
-      <h2>Conoce a tus mentores</h2>
+      <h2>Nuestros Mentores</h2>
 
-      <div class="row">
-        <div class="col-sm-4 clearfix">
-          <div class="profile-image text-center">
-            <%= image_tag "people/german-escobar.png", class: "img-circle" %>
+      <div class="mentors-wrapper owl-carousel">
+        <div class="row">
+          <div class="col-md-5 col-md-offset-1">
+            <div class="profile-image text-center">
+              <%= image_tag "people/carlos-goyeneche.jpg" %>
+            </div>
           </div>
-
-          <div class="profile">
-            <h3>Germán Escobar <small>Curriculum Developer</small></h3>
-            <p class="text-center">Programador y emprendedor. Fundador de <a href="http://www.makeitreal.camp/" target="_blank">Make it Real</a> y co-fundador de <a href="http://masiv.com/?ref=makeitreal" target="_blank">Elibom (ahora Masivian)</a>.</p>
+          <div class="col-md-5">
+            <div class="profile">
+              <h3>Carlos Goyeneche</h3>
+              <p>Desarrollador entusiasta siempre en busqueda de las últimas tecnologías, actualmente Senior Software Engineer en <a href="https://corporate.discovery.com/?ref=makeitreal" target="_blank">Discovery Inc</a>. Happy coding!</p>
+            </div>
           </div>
         </div>
-        <div class="col-sm-4 clearfix">
-          <div class="profile-image text-center">
-            <%= image_tag "people/carlos-goyeneche.jpg", class: "img-circle" %>
-          </div>
 
-          <div class="profile">
-            <h3>Carlos Goyeneche <small>Mentor</small></h3>
-            <p class="text-center">Desarrollador entusiasta siempre en busqueda de las últimas tecnologías, actualmente Senior Software Engineer en <a href="https://corporate.discovery.com/?ref=makeitreal" target="_blank">Discovery Inc</a>. Happy coding!</p>
+        <div class="row">
+          <div class="col-md-5 col-md-offset-1">
+            <div class="profile-image text-center">
+              <%= image_tag "people/link-strifer.jpg" %>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="profile">
+              <h3>Link Strifer</h3>
+              <p>Autodidacta que quería hacer guías de videojuegos y termino trabajando en varias multi-nacionales como Software Engineer, acualmente en <a href="https://www.hugeinc.com/?ref=makeitreal" target="_blank">Huge</a>.</p>
+            </div>
           </div>
         </div>
-        <div class="col-sm-4 clearfix">
-          <div class="profile-image text-center">
-            <%= image_tag "people/link-strifer.jpg", class: "img-circle" %>
-          </div>
 
-          <div class="profile">
-            <h3>Link Strifer <small>Mentor</small></h3>
-            <p class="text-center">Autodidacta que quería hacer guías de videojuegos y termino trabajando en varias multi-nacionales como Software Engineer, acualmente en <a href="https://www.hugeinc.com/?ref=makeitreal" target="_blank">Huge</a>.</p>
+        <div class="row">
+          <div class="col-md-5 col-md-offset-1">
+            <div class="profile-image text-center">
+              <%= image_tag "people/german-escobar.png" %>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="profile">
+              <h3>Germán Escobar</h3>
+              <p>Programador y emprendedor. Co-fundador de <a href="https://masiv.com/?ref=makeitreal" target="_blank">Elibom (ahora Masivian)</a> y fundador de <a href="/" target="_blank">Make it Real</a>.</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <%= render "full_stack_onsite_students" %>
+  <%= render "pages/capture_email" %>
 
-  <%= render "nodejs_onsite_faqs" %>
-
-  <%= render "full_stack_onsite_magnet", btn_text: "¡Recibe toda la info!" %>
+  <%= render "full_stack_js_faqs" %>
 
   <%= render "footer" %>
 
-  <%= render "full_stack_onsite_registration", action: "/full-stack-online" %>
+  <%= render "program_registration", action: "/full-stack-online" %>
 
 </div>

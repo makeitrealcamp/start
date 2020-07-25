@@ -15,17 +15,39 @@ RSpec.describe PagesController, type: :controller do
     end
   end
 
-  describe "GET #full_stack_medellin" do
+  describe "GET #top" do
     it "responds with status code 200" do
-      get :full_stack_medellin
+      get :top
       expect(response).to have_http_status(:ok)
+    end
+
+    it "renders template" do
+      get :top
+      expect(response).to render_template :top
     end
   end
 
-  describe "GET #full_stack_bogota" do
+  describe "GET #top" do
     it "responds with status code 200" do
-      get :full_stack_bogota
+      get :top
       expect(response).to have_http_status(:ok)
+    end
+
+    it "renders template" do
+      get :top
+      expect(response).to render_template :top
+    end
+  end
+
+  describe "GET #full_stack_online" do
+    it "responds with status code 200" do
+      get :full_stack_online
+      expect(response).to have_http_status(:ok)
+    end
+
+    it "renders template" do
+      get :full_stack_online
+      expect(response).to render_template :full_stack_online
     end
   end
 
@@ -38,18 +60,6 @@ RSpec.describe PagesController, type: :controller do
     it "render template" do
       get :thanks_online
       expect(response).to render_template :thanks_online
-    end
-  end
-
-  describe "GET #thanks_bootcamp" do
-    it "responds with status code 200" do
-      get :thanks_bootcamp
-      expect(response).to have_http_status(:ok)
-    end
-
-    it "render template" do
-      get :thanks_bootcamp
-      expect(response).to render_template :thanks_bootcamp
     end
   end
 

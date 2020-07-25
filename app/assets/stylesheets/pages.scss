@@ -1,14 +1,17 @@
 @import "pages/intro";
 @import "pages/buttons";
 @import "pages/sections";
+@import "pages/program_header_action.scss";
+@import "pages/mentors";
+@import "pages/quotes";
+@import "pages/curriculum";
 @import "pages/companies";
+@import "pages/program_info_box";
 @import "pages/home";
 @import "pages/web_mobile_programs";
 @import "pages/top_program";
-@import "pages/programs";
-@import "pages/online_programs";
-@import "pages/full_stack_onsite";
-@import "pages/data_science_online";
+@import "pages/full_stack_js";
+@import "pages/data_science";
 @import "pages/makers";
 @import "pages/faq";
 @import "pages/thanks";
@@ -16,14 +19,6 @@
 @import "pages/job_guarantee";
 @import "pages/react_redux";
 @import "pages/seat";
-
-.new-site {
-  a, button {
-    &:hover, &:active, &:focus {
-      text-decoration: none;
-    }
-  }
-}
 
 .whatsapp {
   position: fixed;

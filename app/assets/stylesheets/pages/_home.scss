@@ -130,4 +130,32 @@
       }
     }
   }
+
+  .section-quote {
+    background: white;
+
+    img {
+      width: 100%;
+      max-width: 300px;
+
+      @media(min-width: $screen-md-min) { max-width: 450px; }
+    }
+
+    p.text {
+      margin-top: 60px;
+      font-size: 1rem;
+      line-height: 1.6;
+      padding: 0 35px;
+
+      @media(min-width: $screen-lg-min) { margin-top: 100px; }
+    }
+
+    p.name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin: 2rem 0 5px;
+    }
+
+    p.position { margin-bottom: 50px; }
+  }
 }

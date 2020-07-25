@@ -16,14 +16,14 @@
     }
 
     h3 {
-      font-size: 21px;
-      font-weight: 600;
+      font-size: 1rem;
+      font-weight: 400;
       margin-top: 0;
       margin-bottom: 40px;
     }
 
     h4 {
-      font-size: 24px;
+      font-size: 0.9rem;
       text-align: center;
       margin-top: 30px;
       a { color: #303030; }
@@ -31,10 +31,8 @@
 
     p {
       color: #303030;
+      font-size: 1rem;
       line-height: 1.6;
-      @media (min-width: $screen-md-min) {
-        font-size: 18px;
-      }
     }
 
     p.intro-text {
@@ -83,60 +81,6 @@
     border-bottom: 1px solid darken(#f5f5f2, 15%);
   }
 
-  // allies section of the home and program pages
-  .section.section-companies {
-    background: white;
-    padding-bottom: 100px;
-
-    p.subhead { margin-bottom: 30px; }
-
-    img { margin-top: 60px; }
-  }
-
-  // main quote of the home and program pages
-  .section-quote {
-    background: white;
-
-    p.text {
-      margin-top: 40px;
-      font-size: 1rem;
-      font-weight: 300;
-      line-height: 1.6;
-
-      @media (min-width: $screen-md-min) {
-        margin-top: 60px;
-        font-size: 21px;
-        padding: 0 35px;
-      }
-
-      @media (min-width: $screen-lg-min) {
-        margin-top: 60px;
-      }
-    }
-
-    p.name {
-      margin-top: 30px;
-      font-size: 16px;
-      font-weight: bold;
-      margin-bottom: 5px;
-
-      @media (min-width: $screen-md-min) {
-        margin-top: 40px;
-        font-size: 18px;
-      }
-
-      @media (min-width: $screen-lg-min) { margin-top: 60px; }
-    }
-
-    p.position { margin-bottom: 40px; }
-
-    img {
-      width: 100%;
-      max-width: 300px;
-
-      @media(min-width: $screen-sm-min) { max-width: 450px; }
-    }
-  }
 
   // email capture section of the home and program pages
   .section-email {
@@ -189,104 +133,6 @@
       margin-top: 20px;
 
       @media (min-width: $screen-sm-min) { margin-top: 40px; }
-    }
-  }
-
-  .section-benefits {
-    h3 {
-      color: #fff;
-      font-family: "Karla",sans-serif;
-      font-size: 34px;
-      font-weight: 700;
-      margin-bottom: 50px;
-      padding: 100px 0 10px;
-    }
-
-    ul {
-      margin-bottom: 60px;
-      text-align: left;
-    }
-
-    li {
-      font-size: 18px;
-      margin-bottom: 15px;
-      padding-left: 15px;
-      list-style-image: image-url("bulletMir.png");
-    }
-
-    .btn-main {
-      background: #f04500 none repeat scroll 0 0;
-      border: 1px solid #f04500;
-      color: #fff;
-      font-size: 16px;
-      font-weight: 600;
-    }
-  }
-
-  .txt-bold {
-    font-weight: 700;
-  }
-  .btn-main {
-    background: $brand_primary;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-    text-transform: uppercase;
-    padding: 10px 0;
-    color: white;
-    width: 280px;
-    font-size: 18px;
-    display: block;
-    margin: 0 auto;
-    &.apply {
-      background: #fff;
-      margin-top: 30px;
-      margin-bottom: 20px;
-      border-color: #fff;
-      font-weight: 400;
-      @media (max-width: $screen-lg-min) {
-        margin-top: 10px;
-      }
-    }
-  }
-
-  .financing {
-    display: none;
-    border: solid 1px #f04500;
-    background: #fff;
-    margin: 105px 0;
-    padding: 30px;
-    text-align: center;
-    border-radius: 5px;
-    .price-one {
-      font-size: 42px;
-      font-family: open sans;
-      font-weight: 600;
-      color: #f04500;
-    }
-    .plus {
-      font-size: 42px;
-    }
-    .valor-total {
-      font-size: 22px;
-      margin: 30px 0 20px;
-    }
-    .directo {
-      color: #f04500;
-    }
-    .valor-ahorro {
-      font-weight: 600;
-      color: #f04500;
-    }
-    .caption {
-      font-size: 14px;
-      color: #999;
-    }
-  }
-  .financing-quote {
-    margin: 105px 0;
-    .more {
-      text-align: center;
-      margin-top: 35px;
     }
   }
 

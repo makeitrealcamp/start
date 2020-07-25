@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="105" height="470" viewBox="0 0 105 470">
+    <defs>
+        <path id="prefix__a" d="M25.566 98.702c-54.466 113.07-16.298 244.384 85.251 293.3 3.724 1.794 7.482 3.452 11.268 4.977V.841C81.187 25.907 44.251 59.913 25.566 98.702"/>
+        <path id="prefix__d" d="M0.988 0.097L87.085 0.097 87.085 459.863 0.988 459.863z"/>
+        <linearGradient id="prefix__b" x1="0%" x2="256.382%" y1="46.05%" y2="46.05%">
+            <stop offset="0%" stop-color="#0070BC"/>
+            <stop offset="100%" stop-color="#3FCDE2"/>
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g transform="translate(0 -12) translate(0 .74)">
+            <mask id="prefix__c" fill="#fff">
+                <use xlink:href="#prefix__a"/>
+            </mask>
+            <path fill="url(#prefix__b)" d="M25.566 98.702c-54.466 113.07-16.298 244.384 85.251 293.3 3.724 1.794 7.482 3.452 11.268 4.977V.841C81.187 25.907 44.251 59.913 25.566 98.702" mask="url(#prefix__c)"/>
+        </g>
+        <g opacity=".7" transform="translate(0 -12) translate(35 85.74)">
+            <mask id="prefix__e" fill="#fff">
+                <use xlink:href="#prefix__d"/>
+            </mask>
+            <path fill="#40CEE3" d="M333.713 240.638c-76.472-12.783-129.77-29.683-144.714-68.504C165.011 109.811 242.1 33.417 202 6.86 148.155-34.927-6.473 125.718 1.268 247.075c7.988 125.25 115.998 220.307 241.247 212.319 56.626-3.611 107.08-27.669 144.63-64.52 44.61-47.618 8.95-143.506-53.432-154.236" mask="url(#prefix__e)"/>
+        </g>
+    </g>
+</svg>

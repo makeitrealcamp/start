@@ -1,0 +1,65 @@
+.pages-layout .section-quotes {
+  padding-bottom: 50px;
+
+  h2 {
+    color: $color-orange;
+    font-weight: normal;
+    text-align: center;
+  }
+
+  .quote-image img {
+    background: white;
+    border: 1px solid $color-orange;
+    max-width: 200px;
+    margin: 0 auto 30px;
+
+    @media(min-width: $screen-sm-min) { max-width: 250px; }
+  }
+
+  .quote-data {
+    text-align: center;
+
+    @media(min-width: $screen-md-min) { text-align: left; }
+
+    .quote-name {
+      color: $color-grey;
+      font-family: $font-family-condensed;
+      font-size: 2.2rem;
+      margin-bottom: 18px;
+
+      @media(min-width: $screen-sm-min) { margin-bottom: 30px; }
+    }
+
+    .quote-position {
+      color: $color-dark-blue;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .quote-company {
+      color: $color-orange;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .quote-text {
+      color: $color-grey;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+  }
+
+  .owl-prev, .owl-next {
+    position: absolute;
+    top: calc(50% - 40px);
+
+    img {
+      width: 20px;
+      @media(min-width: $screen-sm-min) { width: 40px; }
+    }
+  }
+
+  .owl-prev { left: 0; }
+  .owl-next { right: 0; }
+}
