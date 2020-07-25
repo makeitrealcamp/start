@@ -2,6 +2,8 @@
   .wrapper {
     padding-top: 60px;
 
+    h3 { font-weight: normal; }
+
     .audience-quote {
       margin: 0 auto 40px;
       padding: 25px 30px;
@@ -46,7 +48,6 @@
         margin-bottom: 30px;
         h3 {
           font-size: 1rem;
-          font-weight: 600;
           line-height: 1.4;
         }
 

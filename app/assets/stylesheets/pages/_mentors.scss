@@ -1,0 +1,60 @@
+.pages-layout .section-mentors {
+  padding-bottom: 50px;
+
+  h3 {
+    color: $color-grey;
+    font-size: 2.2rem;
+    font-weight: normal;
+  }
+
+  .mentors-wrapper {
+    position: relative;
+
+    .owl-prev, .owl-next {
+      position: absolute;
+      top: calc(50% - 40px);
+
+      img {
+        width: 20px;
+
+        @media(min-width: $screen-sm-min) { width: 40px; }
+      }
+    }
+
+    .owl-prev { left: 0; }
+    .owl-next { right: 0; }
+  }
+
+  .profile-image {
+    margin-bottom: 30px;
+    text-align: center;
+
+    img {
+      background: white;
+      border-radius: 50%;
+      border: 1px solid $color-orange;
+      width: 100%;
+      max-width: 200px;
+      margin: 0 auto;
+
+      @media(min-width: $screen-sm-min) {
+        max-width: 300px;
+      }
+    }
+  }
+
+  .profile {
+    text-align: center;
+    padding: 0 20px;
+
+    @media(min-width: $screen-md-min) {
+      text-align: left;
+      padding: 0;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+  }
+}

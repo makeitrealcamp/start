@@ -1,0 +1,21 @@
+.pages-layout .data-science {
+
+  .intro .intro-info {
+    padding-top: 40px;
+
+    .pbtn {
+      margin-top: 20px;
+      @media(min-width: $screen-md-min) { margin-top: 30px; }
+    }
+  }
+
+  .section.target-audience {
+    background: asset-url('elementos-izquierda-1-ds.svg') bottom left/200px no-repeat,
+                asset-url('elementos-derecha-1-ds.svg') 100% 20%/30px no-repeat;
+    padding-bottom: 50px;
+
+    @media(min-width: $screen-sm-min) { background-size: 300px, 50px; }
+
+    p.subhead { margin-bottom: 30px; }
+  }
+}

@@ -1,0 +1,25 @@
+.pages-layout {
+  .header-apply, .header-register {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: white;
+    width: 100%;
+    padding: 17px 10px 10px;
+    z-index: 100;
+    box-shadow: 1px 0 7px #666;
+
+    img {
+      width: 120px;
+      @media (min-width: $screen-sm-min) { width: 160px; }
+    }
+
+    .btn-primary {
+      float: right;
+      font-size: 11px;
+
+      @media (min-width: $screen-sm-min) { font-size: 14px; }
+    }
+  }
+}

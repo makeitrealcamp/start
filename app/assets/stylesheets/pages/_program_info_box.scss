@@ -1,0 +1,30 @@
+.pages-layout .program-info-box {
+  background: white;
+  color: $color-orange;
+  margin: 30px auto 60px;
+  max-width: 400px;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  border: 1px solid #eee;
+  border-radius: 7px;
+  padding: 15px 15px 50px;
+
+  .info-box-group {
+    font-size: 1.1rem;
+    margin-top: 25px;
+
+    .info-box-label {
+      color: $color-dark-blue;
+      font-size: 0.6rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+  }
+
+  .info-box-location {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 30px;
+  }
+}

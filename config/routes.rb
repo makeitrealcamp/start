@@ -5,26 +5,8 @@ Rails.application.routes.draw do
   get "full-stack-online", to: "pages#full_stack_online", as: :full_stack_online
   post "full-stack-online", to: "pages#create_full_stack_online_lead"
   get "full-stack-online/cupo", to: "pages#full_stack_online_seat"
-  get "front-end-online", to: "pages#front_end_online", as: :front_end_online
-  post "front-end-online", to: "pages#create_front_end_online_lead"
-  get "full-stack-medellin", to: "pages#full_stack_medellin"
-  post "full-stack-medellin", to: "pages#create_full_stack_medellin_lead"
-  get "full-stack-bogota", to: "pages#full_stack_bogota"
-  post "full-stack-bogota", to: "pages#create_full_stack_bogota_lead"
-  get "full-stack-barranquilla", to: "pages#full_stack_barranquilla"
-  post "full-stack-barranquilla", to: "pages#create_full_stack_barranquilla_lead"
-  get "full-stack-bucaramanga", to: "pages#full_stack_bucaramanga"
-  post "full-stack-bucaramanga", to: "pages#create_full_stack_bucaramanga_lead"
-  get "full-stack-cali", to: "pages#full_stack_cali"
-  post "full-stack-cali", to: "pages#create_full_stack_cali_lead"
   get "full_stack_web_developer", to: redirect('/full-stack-online')
-  get "front_end_web_developer", to: redirect('/front-end-online')
   get "curso-javascript-basico", to: redirect(ENV['javascript-course-url'] || "https://www.youtube.com/c/MakeitrealCamp1/live")
-
-  get "front-end-medellin", to: "pages#front_end_medellin"
-  post "front-end-medellin", to: "pages#create_front_end_medellin_lead"
-  get "front-end-bogota", to: "pages#front_end_bogota"
-  post "front-end-bogota", to: "pages#create_front_end_bogota_lead"
 
   get "data-science-online", to: "pages#data_science_online"
   post "data-science-online", to: "pages#create_data_science_online_lead"
@@ -39,23 +21,11 @@ Rails.application.routes.draw do
 
   get "faq", to: "pages#faq"
   get "makers", to: "pages#makers"
-  get "scholarships", to: "pages#scholarships"
-  post "scholarships", to: "pages#create_scholarship_application"
 
-  get "thanks-front-end-bootcamp", to: "pages#thanks_bootcamp"
-  get "thanks-front-end-online", to: "pages#thanks_online"
   get "thanks-full-stack-online", to: "pages#thanks_online"
-  get "thanks-full-stack-medellin", to: "pages#thanks_full_stack_onsite"
-  get "thanks-full-stack-bogota", to: "pages#thanks_full_stack_onsite"
-  get "thanks-full-stack-barranquilla", to: "pages#thanks_full_stack_onsite"
-  get "thanks-full-stack-bucaramanga", to: "pages#thanks_full_stack_onsite"
-  get "thanks-full-stack-cali", to: "pages#thanks_full_stack_onsite"
-  get "thanks-front-end-medellin", to: "pages#thanks_full_stack_onsite"
-  get "thanks-front-end-bogota", to: "pages#thanks_full_stack_onsite"
   get "thanks-top", to: "pages#thanks_top"
   get "thanks-data-science-online", to: "pages#thanks_online"
 
-  get "thanks-scholarships", to: "pages#thanks_scholarships"
   get "como-convertirte-en-web-developer", to: "pages#web_developer_guide", as: :web_developer_guide
   post "como-convertirte-en-web-developer", to: "pages#send_web_developer_guide"
   get "download-web-developer-guide", to: "pages#download_web_developer_guide", as: :download_web_developer_guide
@@ -70,10 +40,6 @@ Rails.application.routes.draw do
   get  'auth/:provider/callback', to: 'sessions#create_with_omniauth', as: :login_omniauth
   delete 'logout', to: 'sessions#destroy'
 
-  post 'inscription_info', to: 'users#send_inscription_info', as: :inscription_info
-
-  get 'dkXk9d0Xliga5iuOtR1omA', to: 'pages#demo'
-
   resource :password, only: [:edit, :update]
   resource :password_reset, except: [:index, :show]
 
@@ -84,7 +50,6 @@ Rails.application.routes.draw do
     post :test, to: "top_program#submit_test"
     get :submitted, to: "top_program#submitted"
   end
-
 
   resources :interviews, only: [:new, :create] do
     get :challenge, on: :collection

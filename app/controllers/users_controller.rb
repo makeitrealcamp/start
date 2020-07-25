@@ -58,11 +58,6 @@ class UsersController < ApplicationController
 
   end
 
-  def send_inscription_info
-    @first_request = true if current_user.info_requested_at.nil?
-    current_user.send_inscription_info
-  end
-
   # /u/:nickname
   def profile
     @user = User.find_by_nickname!(params[:nickname])
@@ -72,7 +67,7 @@ class UsersController < ApplicationController
   end
 
   private
-  
+
     def user_params
       params.require(:user).permit(:first_name, :last_name, :mobile_number, :birthday, :has_public_profile, :github_username, :nickname, :gender, :activity_email)
     end
