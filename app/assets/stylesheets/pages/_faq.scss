@@ -17,7 +17,11 @@
       margin-bottom: 20px;
     }
 
-    p { font-size: 0.9rem; }
+    p {
+      font-size: 1rem; 
+
+      @media(min-width: $screen-sm-min) { font-size: 0.9rem; }
+    }
 
     ul li, ol li { margin-bottom: 0.5rem; }
   }
