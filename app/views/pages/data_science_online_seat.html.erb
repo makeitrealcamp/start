@@ -7,7 +7,7 @@
         <div class="card">
           <div class="card-header">
             <h3>Data Science - Separación cupo</h3>
-            <div class="price">$500,000 <small>COP</small></div>
+            <div class="price"><%= number_to_currency(@course[:price][@currency], precision: 0) %> <small><%= @currency%></small></div>
           </div>
 
           <%= render "seat_form", course: "datascience" %>
