@@ -120,6 +120,11 @@ class PagesController < ApplicationController
     @currency = params[:currency] || "COP"
   end
 
+  def data_science_online_seat
+    @course = Billing::Charge::COURSES[:datascience]
+    @currency = params[:currency] || "COP"
+  end
+
   private
     def save_referer
       session['referer'] = request.env["HTTP_REFERER"] || 'none' unless session['referer']

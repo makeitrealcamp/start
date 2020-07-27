@@ -33,7 +33,7 @@ class Billing::ChargesController < ApplicationController
 
     def charge_data
       course = Billing::Charge::COURSES[params[:course].to_sym]
-      currency = params[:currency] || "COP"
+      currency = params[:currency].blank? ? "COP" : params[:currency]
       {
         description: course[:description],
         amount: course[:price][currency],
