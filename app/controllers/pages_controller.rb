@@ -125,6 +125,22 @@ class PagesController < ApplicationController
     @currency = params[:currency] || "COP"
   end
 
+  def create_intro_to_js_lead
+    data = {
+      pid: cookies[:dp_pid],
+      program: "Intro to Java Script",
+      event: "filled-intro-to-js-form",
+      first_name: params['first-name'],
+      last_name: params['last-name'],
+      email: params['email'],
+      country: params['country'],
+      mobile: params['mobile'],
+      ip: request.remote_ip
+    }
+    CreateLeadJob.perform_later(data)
+    redirect_to "/thanks-intro-to-js"
+  end
+
   private
     def save_referer
       session['referer'] = request.env["HTTP_REFERER"] || 'none' unless session['referer']
