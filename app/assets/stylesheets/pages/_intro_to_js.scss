@@ -12,51 +12,36 @@
       color: $text-color;
       margin-top: 20px;
 
-      @media (min-width: $screen-md-min) {
-        margin-top: 30px;
-      }
+      @media (min-width: $screen-md-min) { margin-top: 30px; }
     }
 
-    .government-support {
-      margin-top: 30px;
-    }
+    .government-support { margin-top: 30px; }
 
     .government-logo img {
       width: 20%;
       margin-top: 5px;
       margin-bottom: 10px;
 
-      @media (min-width: $screen-md-min) {
-        width: 70%;
-      }
+      @media (min-width: $screen-md-min) { width: 70%; }
     }
 
     .government-row {
-      @media (min-width: $screen-md-min) {
-        display: flex;
-      }
+      @media (min-width: $screen-md-min) { display: flex; }
     }
   }
 
   .section.target-audience {
-    background: asset-url("elementos-izquierda-intro-js") bottom left/200px
-        no-repeat,
-      asset-url("elementos-derecha-intro-js") 100% 20%/30px no-repeat;
+    background: asset-url("elementos-izquierda-intro-js") bottom left/200px no-repeat,
+                asset-url("elementos-derecha-intro-js") 100% 20%/30px no-repeat;
     padding-bottom: 50px;
 
-    @media (min-width: $screen-sm-min) {
-      background-size: 300px, 50px;
-    }
+    @media (min-width: $screen-sm-min) { background-size: 300px, 50px; }
 
     h2 {
-      @media (min-width: $screen-sm-min) {
-        padding-top: 120px;
-      }
+      @media (min-width: $screen-sm-min) { padding-top: 120px; }
     }
 
-    p.subhead {
-      margin-bottom: 30px;
-    }
+    p.subhead { margin-bottom: 30px; }
   }
 
   .section.section-curriculum {
@@ -90,9 +75,7 @@
           text-align: left;
           margin: 0;
 
-          @media (min-width: $screen-sm-min) {
-            font-size: 1.1rem;
-          }
+          @media (min-width: $screen-sm-min) { font-size: 1.1rem; }
 
           small {
             display: block;
@@ -100,9 +83,7 @@
             font-size: 1rem;
             margin-top: 7px;
 
-            @media (min-width: $screen-sm-min) {
-              font-size: 0.9rem;
-            }
+            @media (min-width: $screen-sm-min) { font-size: 0.9rem; }
           }
         }
       }
@@ -112,9 +93,7 @@
         text-align: left;
         overflow: hidden;
 
-        @media (min-width: $screen-md-min) {
-          padding: 30px;
-        }
+        @media (min-width: $screen-md-min) { padding: 30px; }
 
         h5 {
           color: $color-dark-blue;
@@ -126,9 +105,7 @@
         p {
           font-size: 1rem;
 
-          @media (min-width: $screen-sm-min) {
-            font-size: 0.85rem;
-          }
+          @media (min-width: $screen-sm-min) { font-size: 0.85rem; }
         }
       }
     }
