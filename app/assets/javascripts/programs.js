@@ -47,7 +47,6 @@
   };
 
   var validateField = function(selector, validFn, message) {
-    selector = "#form-register " + selector
     var formGroup = selector.closest('.form-group');
     formGroup.removeClass("has-error");
     $('.help-block', formGroup).remove();
@@ -76,34 +75,34 @@
   var validateForm = function() {
     var isValid = true;
 
-    if (!validateField($('#first-name'), isBlank, "Campo requerido")) {
-      $('#first-name').one('change', validateForm);
+    if (!validateField($('#form-register #first-name'), isBlank, "Campo requerido")) {
+      $('#form-register #first-name').one('change', validateForm);
       isValid = false;
     }
 
-    if (!validateField($('#last-name'), isBlank, "Campo requerido")) {
-      $('#last-name').one('change', validateForm);
+    if (!validateField($('#form-register #last-name'), isBlank, "Campo requerido")) {
+      $('#form-register #last-name').one('change', validateForm);
       isValid = false;
     }
 
-    if (!validateField($('#email'), isBlank, "Campo requerido")) {
-      $('#email').one('change', validateForm);
+    if (!validateField($('#form-register #email'), isBlank, "Campo requerido")) {
+      $('#form-register #email').one('change', validateForm);
       isValid = false;
-    } else if (!validateField($('#email'), isEmail, "Email inválido")) {
-      $('#email').one('change', validateForm);
-      isValid = false;
-    }
-
-    if (!validateField($('#country'), isBlank, "Campo requerido")) {
-      $('#country').one('change', validateForm);
+    } else if (!validateField($('#form-register #email'), isEmail, "Email inválido")) {
+      $('#form-register #email').one('change', validateForm);
       isValid = false;
     }
 
-    if (!validateField($('#mobile'), isBlank, "Campo requerido")) {
-      $('#mobile').one('change', validateForm);
+    if (!validateField($('#form-register #country'), isBlank, "Campo requerido")) {
+      $('#form-register #country').one('change', validateForm);
+      isValid = false;
+    }
+
+    if (!validateField($('#form-register #mobile'), isBlank, "Campo requerido")) {
+      $('#form-register #mobile').one('change', validateForm);
       isValid = false;
     } else if (!validateField($('#mobile'), isMobile, "Celular inválido")) {
-      $('#mobile').one('change', validateForm);
+      $('#form-register #mobile').one('change', validateForm);
       isValid = false;
     }
 
