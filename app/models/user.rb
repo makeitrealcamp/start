@@ -227,6 +227,10 @@ class User < ApplicationRecord
     self.paths
   end
 
+  def has_weekly_points?
+    !points.where("created_at >= ?", 1.week.ago).count.zero?
+  end
+
   private
     def default_values
       self.status ||= :created
