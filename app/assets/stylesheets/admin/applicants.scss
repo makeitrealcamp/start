@@ -1,5 +1,6 @@
 .applicants-page {
   margin-top: 40px;
+  margin-bottom: 40px;
 
   .nav-tabs > li.active > a {
     background: #f8f8f5;
@@ -64,7 +65,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 
     .pagination {
       margin-bottom: 5px;
