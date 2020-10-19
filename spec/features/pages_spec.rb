@@ -10,12 +10,14 @@ RSpec.feature "Pages", type: :feature do
     first('button.btn-register').click
     expect(page).to have_css("#registration-modal")
 
-    fill_in "first-name", with: "Pedro"
-    fill_in "last-name", with: "Perez"
-    fill_in "email", with: "lead@example.com"
-    fill_in "mobile", with: "3131234567"
+    within :css, "#registration-modal" do
+      fill_in "first-name", with: "Pedro"
+      fill_in "last-name", with: "Perez"
+      fill_in "email", with: "lead@example.com"
+      fill_in "mobile", with: "3131234567"
 
-    find('button[type="submit"]').click
+      find('button[type="submit"]').click
+    end
 
     expect(current_path).to eq thanks_full_stack_online_path
     expect(CreateLeadJob).to have_been_enqueued

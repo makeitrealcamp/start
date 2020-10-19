@@ -1,0 +1,46 @@
+name: Run Tests
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USERNAME: postgres
+          POSTGRES_PASSWORD: postgres
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    env:
+      RAILS_ENV: test
+      PUSHER_URL: ${{ secrets.PUSHER_URL }}
+      CONVERTLOOP_APP_ID: ${{ secrets.CONVERTLOOP_APP_ID }}
+      CONVERTLOOP_KEY: ${{ secrets.CONVERTLOOP_KEY }}
+      CONVERTLOOP_HOST: ${{ secrets.CONVERTLOOP_HOST }}
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache Ruby Gems
+      uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.5.7
+    - name: Install dependencies
+      run: |
+        bundle config path vendor/bundle
+        bundle install --jobs 4 --retry 3
+    - name: Setup Database
+      run: |
+        cp config/database.yml.ci config/database.yml
+        bundle exec rake db:create
+        bundle exec rake db:schema:load
+    - name: Run tests
+      run: HEADLESS=true bundle exec rspec
