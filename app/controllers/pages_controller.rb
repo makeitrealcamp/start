@@ -141,6 +141,28 @@ class PagesController < ApplicationController
     redirect_to "/thanks-intro-to-js"
   end
 
+  def create_fs_becas_mujeres_lead
+    data = {
+      name: "filled-fs-becas-mujeres-form",
+      person: {
+        pid: cookies[:dp_pid],
+        first_name: params['first-name'],
+        last_name: params['last-name'],
+        email: params['email'],
+        country: params['country']
+      },
+      metadata: {
+        age: params['age'],
+        application_reason: params['application_reason'],
+        more_info_url: params['url'],
+        ip: request.remote_ip
+      }
+    }
+    ConvertLoopJob.perform_later(data)
+    AdminMailer.new_scholarship(data).deliver_later
+    redirect_to "/thanks-fs-becas-mujeres"
+  end
+
   private
     def save_referer
       session['referer'] = request.env["HTTP_REFERER"] || 'none' unless session['referer']
