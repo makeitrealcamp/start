@@ -1,10 +1,7 @@
 .applicants-page {
   margin-top: 40px;
-  margin-bottom: 40px;
 
-  .nav-tabs > li.active > a {
-    background: #f8f8f5;
-  }
+  .nav-tabs > li.active > a { background: #f8f8f5; }
 
   .tab-pane {
     background: #f8f8f5;
@@ -18,12 +15,8 @@
     justify-content: space-between;
     align-items: center;
 
-    .form-group {
-      margin-bottom: 0;
-    }
-    #search-input {
-      width: 300px;
-    }
+    .form-group { margin-bottom: 0; }
+    #search-input { width: 300px; }
 
     .btn-default {
       text-transform: none;
@@ -39,12 +32,8 @@
       border-left: 1px solid #ddd;
       padding-left: 15px;
     }
-    tr > td:last-child {
-      border-right: 1px solid #ddd;
-    }
-    tr:last-child td {
-      border-bottom: 1px solid #ddd;
-    }
+    tr > td:last-child { border-right: 1px solid #ddd; }
+    tr:last-child td { border-bottom: 1px solid #ddd; }
 
     .cell-main {
       color: #333;
@@ -67,9 +56,7 @@
     align-items: center;
     margin-bottom: 10px;
 
-    .pagination {
-      margin-bottom: 5px;
-    }
+    .pagination { margin-bottom: 5px; }
 
     .records {
       color: #999;
@@ -125,9 +112,7 @@
     .activities {
       margin-top: 40px;
 
-      hr {
-        margin: 15px 0;
-      }
+      hr { margin: 15px 0;}
 
       .activity {
         padding: 0 15px;
@@ -154,13 +139,7 @@
 }
 
 #top-applicant-test-modal {
-  .answer-wrapper {
-    margin-bottom: 20px;
-  }
-  .question {
-    margin-bottom: 7px;
-  }
-  .answer {
-    padding-left: 20px;
-  }
+  .answer-wrapper { margin-bottom: 20px; }
+  .question { margin-bottom: 7px; }
+  .answer { padding-left: 20px; }
 }
