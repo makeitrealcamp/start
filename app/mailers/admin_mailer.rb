@@ -15,7 +15,7 @@ class AdminMailer < ApplicationMailer
   def new_scholarship(data)
     @data = data
 
-    mail to: "diana.vanegas@makeitreal.camp", subject: "[Beca] #{@data[:person][:first_name]} #{@data[:person][:last_name]}"
+    mail to: "nicolas.rodriguez@makeitreal.camp", subject: "[Beca Mujeres] #{@data[:person][:first_name]} #{@data[:person][:last_name]}"
   end
 
   def new_comment(email, admin, comment)

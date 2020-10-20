@@ -1,0 +1,81 @@
+<div class="modal fade" id="registration-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="
+        " class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Formulario de Aplicación</h4>
+      </div>
+      <form id="form-register" action="<%= action %>" method="post">
+        <div class="modal-body">
+          <p>Llena el siguiente formulario para aplicar, intenta ser lo más detallada posible:</p>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <input type="text" id="first-name" name="first-name" class="form-control" placeholder="Nombre">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <input type="text" id="last-name" name="last-name" class="form-control" placeholder="Apellido">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="email" id="email" name="email" class="form-control" placeholder="Email">
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <input type="number" id="age" name="age" class="form-control" placeholder="Edad">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <select class="form-control" id="country" name="country">
+                  <option value="" selected>País de residencia *</option>
+                  <option value="AR" data-code="54">Argentina</option>
+                  <option value="BO" data-code="591">Bolivia</option>
+                  <option value="CL" data-code="56">Chile</option>
+                  <option value="CO" data-code="57">Colombia</option>
+                  <option value="CR" data-code="506">Costa Rica</option>
+                  <option value="EC" data-code="593">Ecuador</option>
+                  <option value="SV" data-code="503">El Salvador</option>
+                  <option value="ES" data-code="34">España</option>
+                  <option value="US" data-code="1">Estados Unidos</option>
+                  <option value="GT" data-code="502">Guatemala</option>
+                  <option value="HN" data-code="504">Honduras</option>
+                  <option value="MX" data-code="52">México</option>
+                  <option value="NI" data-code="505">Nicaragua</option>
+                  <option value="PA" data-code="507">Panamá</option>
+                  <option value="PY" data-code="595">Paraguay</option>
+                  <option value="PE" data-code="51">Perú</option>
+                  <option value="PR" data-code="1">Puerto Rico</option>
+                  <option value="DO" data-code="1">República Dominicana</option>
+                  <option value="UY" data-code="598">Uruguay</option>
+                  <option value="VE" data-code="58">Venezuela</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <textarea id="application-reason" name="application_reason" rows="5" placeholder="¿Por qué estás aplicando a esta beca? Cuéntanos por qué crees que debes ser elegida." class="form-control"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="url">Compartenos una URL donde podamos conocer más de ti (p.e LinkedIn, tu página personal, etc.):</label>
+            <input type="url" id="url" name="url" class="form-control" placeholder="https://example.com/">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">APLICAR</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

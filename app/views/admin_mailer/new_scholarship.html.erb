@@ -1,20 +1,15 @@
-<p>Hola Dianis,</p>
+<p>Hola Nico,</p>
 
-<p>Una persona aplicó a la beca <strong><%= @data[:metadata][:scholarship] %></strong>. Sus datos son los siguientes:</p>
+<p>Una persona aplicó a la beca <strong>Mujeres Full Stack</strong>. Sus datos son los siguientes:</p>
 
 <ul>
   <li><strong>Nombre:</strong> <%= @data[:person][:first_name] %></li>
   <li><strong>Apellido:</strong> <%= @data[:person][:last_name] %></li>
   <li><strong>Email:</strong> <%= @data[:person][:email] %></li>
+  <li><strong>Edad:</strong> <%= @data[:metadata][:age] %></li>
   <li><strong>País:</strong> <%= @data[:person][:country] %></li>
-  <li><strong>Móvil:</strong> <%= @data[:person][:mobile] %></li>
-  <li><strong>Skype:</strong> <%= @data[:person][:skype] %></li>
-  <li><strong>Twitter:</strong> <%= @data[:person][:twitter] %></li>
-  <li><strong>Edad:</strong> <%= @data[:person][:age] %></li>
   <li><strong>Razón para aplicar:</strong> <%= @data[:metadata][:application_reason] %></li>
-  <li><strong>Experiencia:</strong> <%= @data[:metadata][:experience] %></li>
-  <li><strong>Portafolio:</strong> <%= @data[:person][:portafolio_url] %></li>
-  <li><strong>Más Info:</strong> <%= @data[:metadata][:more_info] %></li>
+  <li><strong>URL:</strong> <%= @data[:metadata][:more_info_url] %></li>
 </ul>
 
 <p>&nbsp;</p>

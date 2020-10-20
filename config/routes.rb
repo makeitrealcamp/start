@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get "full-stack-online", to: "pages#full_stack_online", as: :full_stack_online
   post "full-stack-online", to: "pages#create_full_stack_online_lead"
   get "full-stack-online/cupo", to: "pages#full_stack_online_seat"
+  get "full-stack-online/becas-mujeres", to: "pages#full_stack_becas_mujeres"
+  post "full-stack-becas-mujeres", to: "pages#create_fs_becas_mujeres_lead"
   get "full_stack_web_developer", to: redirect('/full-stack-online')
   get "curso-javascript-basico", to: redirect(ENV['javascript-course-url'] || "https://www.youtube.com/c/MakeitrealCamp1/live")
   get "introduccion-a-javascript", to: "pages#intro_to_js", as: :intro_to_js
@@ -28,6 +30,7 @@ Rails.application.routes.draw do
   get "thanks-top", to: "pages#thanks_top"
   get "thanks-data-science-online", to: "pages#thanks_online"
   get "thanks-intro-to-js", to:"pages#thanks_online_innpulsa"
+  get "thanks-fs-becas-mujeres", to:"pages#thanks_online"
 
   get "como-convertirte-en-web-developer", to: "pages#web_developer_guide", as: :web_developer_guide
   post "como-convertirte-en-web-developer", to: "pages#send_web_developer_guide"

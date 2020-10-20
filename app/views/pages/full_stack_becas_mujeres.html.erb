@@ -1,0 +1,72 @@
+<%= render "full_stack_becas_mujeres_header", image_path: "01interna-programa.jpg" %>
+
+<div class="fs-becas-mujeres">
+  <%= render "layouts/navbar/pages_white", hide_login: true %>
+  <%= render "pages/header_register", btn_text: "¡Aplica Ahora!" %>
+
+  <div class="intro">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 intro-info">
+          <h1>Becas para mujeres</h1>
+          <p>Aplica por una beca del 80% del valor del programa <%= link_to "Full Stack JS Web Developer", full_stack_online_path %> y haz parte del cambio.</p>
+          <button type="button" class="pbtn pbtn-primary btn-register">¡Aplica Ahora!</button>
+        </div><!--/tagline-program -->
+
+        <div class="col-md-6 intro-img">
+          <%= image_tag "image-header-fundamentos.png", srcset: { "image-header-fundamentos@2x.png" => "2x", "image-header-fundamentos@3x.png" => "3x" } %>
+        </div>
+
+      </div><!--/row -->
+    </div><!--/container -->
+  </div><!--/program-intro -->
+
+  <%= render "full_stack_becas_mujeres_audience" %>
+
+  <%= render "full_stack_becas_mujeres_students" %>
+
+  <div class="section section-steps">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="text-center">¿Cuál es el proceso?</h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 step">
+          <h3>Paso 1</h3>
+          <p>Llena el formulario de aplicación. Sé lo más detallada posible para incrementar tus probabilidades de ser seleccionada.</p>
+          <div class="text-center">
+            <button type="button" class="pbtn pbtn-primary btn-register">¡Aplica Ahora!</button>
+          </div>
+        </div>
+        <div class="col-md-4 step">
+          <h3>Paso 2</h3>
+          <p>Si eres seleccionada te enviamos un material de preparación que deberás estudiar por tu cuenta en 3 semanas (35 a 50 horas de estudio).</p>
+        </div>
+        <div class="col-md-4 step">
+          <h3>Paso 3</h3>
+          <p>Presentas una prueba de conocimiento en base al material estudiado y, si lo pasas, inicias tu entrenamiento!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= render "full_stack_becas_mujeres_faqs" %>
+
+  <%= render "footer" %>
+
+  <%= render "full_stack_becas_mujeres_registration", action: "/full-stack-becas-mujeres" %>
+</div>
+
+<script type="text/javascript">
+  function init() {
+    new WomenScholarshipsView();
+  }
+  $(document).on("turbolinks:load", init);
+
+  $(document).on("turbolinks:click", function() {
+    $(document).off("turbolinks:load", init);
+  });
+</script>
