@@ -52,7 +52,7 @@ namespace :mir do
     if DateTime.current.send("#{args[:day]}?")
       students = User.where(status: User.statuses[:active], account_type: [User.account_types[:paid_account], User.account_types[:admin_account]]).is_activity_email
       students.each do |u|
-        UserMailer.weekly_summary_email(u).deliver_now
+        UserMailer.weekly_summary_email(u).deliver_now if u.has_weekly_points?
       end
     end
   end

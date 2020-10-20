@@ -201,8 +201,8 @@ class User < ApplicationRecord
     UserMailer.password_reset(self).deliver_now
   end
 
- def has_valid_password_reset_token?
-   (!!self.password_reset_sent_at) && (self.password_reset_sent_at >= 2.hours.ago)
+  def has_valid_password_reset_token?
+    (!!self.password_reset_sent_at) && (self.password_reset_sent_at >= 2.hours.ago)
   end
 
   def notifier
@@ -227,6 +227,14 @@ class User < ApplicationRecord
     self.paths
   end
 
+  def has_weekly_points?
+    date = DateTime.current
+    beginning_of_week = date.beginning_of_week
+    end_of_week = date.end_of_week
+
+    !self.stats.received_points(beginning_of_week, end_of_week).empty?
+  end
+
   private
     def default_values
       self.status ||= :created
@@ -236,10 +244,10 @@ class User < ApplicationRecord
     end
 
     def generate_token
-       begin
-         self.password_reset_token = SecureRandom.urlsafe_base64
-       end while User.exists?(["settings -> 'password_reset_token' = '#{self.settings['password_reset_token']}'"])
-     end
+      begin
+        self.password_reset_token = SecureRandom.urlsafe_base64
+      end while User.exists?(["settings -> 'password_reset_token' = '#{self.settings['password_reset_token']}'"])
+    end
 
     def assign_random_nickname
       if self.nickname.blank?
