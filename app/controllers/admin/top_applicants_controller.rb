@@ -3,12 +3,19 @@ class Admin::TopApplicantsController < ApplicationController
 
   def index
     @applicants = TopApplicant.order('created_at DESC')
+
     if params[:status].present?
       @applicants = @applicants.where(status: TopApplicant.statuses[params[:status]])
     end
+
     if params[:q].present?
       @applicants = @applicants.where("first_name ILIKE :q OR last_name ILIKE :q OR email ILIKE :q", q: "%#{params[:q]}%")
     end
+
+    @applicants = @applicants.order('created_at DESC')
+      .paginate(page: params[:page], per_page: 100)
+
+    @applicants_count = @applicants.count
   end
 
   def show

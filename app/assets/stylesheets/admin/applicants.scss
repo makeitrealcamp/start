@@ -49,6 +49,20 @@
       vertical-align: middle;
     }
   }
+
+  .top-applicants-list-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+
+    .pagination { margin-bottom: 5px; }
+
+    .records {
+      color: #999;
+      font-size: 13px;
+    }
+  }
 }
 .applicant-page {
   margin-top: 40px;
