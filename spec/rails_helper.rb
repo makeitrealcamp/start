@@ -61,7 +61,15 @@ RSpec.configure do |config|
   Capybara.server = :webrick
 
   Capybara.register_driver :selenium do |app|
-    Capybara::Selenium::Driver.new(app, browser: :chrome)
+    options = Selenium::WebDriver::Chrome::Options.new
+    if ENV['HEADLESS']
+      options.add_argument('--headless')
+      options.add_argument('--no-sandbox')
+      options.add_argument('--disable-dev-shm-usage')
+      # this is important or tests will fail because navbar is collapsed in mobile
+      options.add_argument('--window-size=1600,768')
+    end
+    Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
   end
 
   Capybara.default_max_wait_time = 8

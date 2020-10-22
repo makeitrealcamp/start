@@ -1,0 +1,32 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: ["Tests"]
+    branches: [master]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Deploy to Heroku
+      uses: akhileshns/heroku-deploy@v3.6.8
+      with:
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        heroku_app_name: "start-makeitreal"
+        heroku_email: "german.escobar@makeitreal.camp"
+    - name: Deploy to Digital Ocean 1
+      uses: idoberko2/dokku-deploy-github-action@v1
+      with:
+        ssh-private-key: ${{ secrets.DOKKU_SSH_PK }}
+        dokku-host: '204.48.23.34'
+        app-name: 'start'
+    - name: Deploy to Digital Ocean 2
+      uses: idoberko2/dokku-deploy-github-action@v1
+      with:
+        ssh-private-key: ${{ secrets.DOKKU_SSH_PK }}
+        dokku-host: '165.227.213.207'
+        app-name: 'start'

@@ -95,11 +95,11 @@ end
 
 group :test do
   gem 'shoulda-matchers', '2.8.0', require: false
-  gem 'capybara', '>= 2.15'
+  gem 'capybara', '>= 3.33'
   gem 'database_cleaner'
   gem 'launchy'
-  gem 'selenium-webdriver', '3.12.0'
-  gem 'webdrivers', '~> 3.2'
+  gem 'selenium-webdriver', '3.142.7'
+  gem 'webdrivers', '~> 3.9'
   gem 'codeclimate-test-reporter', require: nil
   gem 'rspec-wait', '0.0.9'
   gem 'rspec-retry', '0.5.2'
