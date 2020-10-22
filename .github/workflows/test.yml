@@ -1,8 +1,7 @@
-name: Run Tests
+name: Tests
 
 on:
   push:
-  workflow_dispatch:
 
 jobs:
   test:
