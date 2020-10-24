@@ -9,6 +9,7 @@ on:
 
 jobs:
   deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -24,6 +25,7 @@ jobs:
         ssh-private-key: ${{ secrets.DOKKU_SSH_PK }}
         dokku-host: '204.48.23.34'
         app-name: 'start'
+    - run: git remote rm deploy
     - name: Deploy to Digital Ocean 2
       uses: idoberko2/dokku-deploy-github-action@v1
       with:
