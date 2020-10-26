@@ -1,15 +1,15 @@
 class AdminMailer < ApplicationMailer
   include Roadie::Rails::Automatic
 
-  def new_lead(program, first_name, last_name, email, country, mobile)
+  def new_lead(program, first_name, last_name, email, country, source)
     @program = program
     @first_name = first_name
     @last_name = last_name
     @email = email
     @country = country
-    @mobile = mobile
+    @source = source
 
-    mail to: "nicolas.rodriguez@makeitreal.camp", subject: "[Nuevo Lead #{program}] #{first_name} #{last_name} (#{country}: #{mobile})"
+    mail to: "nicolas.rodriguez@makeitreal.camp", subject: "[Nuevo Lead #{program}] #{first_name} #{last_name} (#{country})"
   end
 
   def new_scholarship(data)

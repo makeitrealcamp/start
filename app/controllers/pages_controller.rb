@@ -26,7 +26,7 @@ class PagesController < ApplicationController
       last_name: params['last-name'],
       email: params['email'],
       country: params['country'],
-      mobile: params['mobile'],
+      source: params['source'],
       ip: request.remote_ip
     }
     CreateLeadJob.perform_later(data)
@@ -42,7 +42,7 @@ class PagesController < ApplicationController
       last_name: params['last-name'],
       email: params['email'],
       country: params['country'],
-      mobile: params['mobile'],
+      source: params['source'],
       ip: request.remote_ip
     }
     CreateLeadJob.perform_later(data)
@@ -149,7 +149,8 @@ class PagesController < ApplicationController
         first_name: params['first-name'],
         last_name: params['last-name'],
         email: params['email'],
-        country: params['country']
+        country: params['country'],
+        source: params['source']
       },
       metadata: {
         age: params['age'],

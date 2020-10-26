@@ -105,3 +105,13 @@
   <%= render "program_registration", action: "/full-stack-online" %>
 
 </div>
+
+<script type="text/javascript">
+  (function() {
+    var courseView = new CourseView({ el: '.full-stack-js' });
+
+    $(document).on("turbolinks:request-start", function() {
+      courseView.remove();
+    });
+  })();
+</script>

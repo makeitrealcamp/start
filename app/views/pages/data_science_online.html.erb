@@ -86,3 +86,13 @@
 
   <%= render "program_registration", action: "/data-science-online" %>
 </div>
+
+<script type="text/javascript">
+  (function() {
+    var courseView = new CourseView({ el: '.data-science' });
+
+    $(document).on("turbolinks:request-start", function() {
+      courseView.remove();
+    });
+  })();
+</script>

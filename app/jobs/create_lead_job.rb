@@ -7,10 +7,10 @@ class CreateLeadJob < ActiveJob::Base
     last_name = data[:last_name]
     email = data[:email]
     country = data[:country]
-    mobile = data[:mobile]
+    source = data[:source]
 
     person = { pid: pid, email: email, first_name: first_name, last_name: last_name,
-        country_code: country, mobile: mobile, ip: data[:ip] }
+        country_code: country, source: source, ip: data[:ip] }
     begin
       ConvertLoop.event_logs.send(name: data[:event], person: person)
     rescue => e
@@ -18,6 +18,6 @@ class CreateLeadJob < ActiveJob::Base
     end
 
     AdminMailer.new_lead(data[:program], first_name, last_name, email, country,
-        mobile).deliver_now
+        source).deliver_now
   end
 end
