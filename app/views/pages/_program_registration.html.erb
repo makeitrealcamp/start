@@ -8,7 +8,7 @@
       </div>
       <form id="form-register" action="<%= action %>" method="post">
         <div class="modal-body">
-          <p>Regístrate para recibir toda la información y precios:  </p>
+          <p>Regístrate para recibir toda la información y precios:</p>
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group">
@@ -22,11 +22,12 @@
             </div>
           </div>
 
-          <div class="form-group">
-            <input type="email" id="email" name="email" class="form-control" placeholder="Email">
-          </div>
-
           <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <input type="email" id="email" name="email" class="form-control" placeholder="Email">
+              </div>
+            </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <select class="form-control" id="country" name="country">
@@ -54,14 +55,19 @@
                 </select>
               </div>
             </div>
-            <div class="col-sm-6">
-              <div class="form-group" id="mobile-wrapper">
-                <div class="input-group">
-                  <span class="input-group-addon" id="mobile-code"></span>
-                  <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Móvil">
-                </div>
-              </div>
-            </div>
+          </div>
+
+          <div class="form-group">
+            <select class="form-control" id="source" name="source">
+              <option value="" selected>¿Cómo te enteraste de nosotros?</option>
+              <option value="google">Google</option>
+              <option value="facebook">Facebook/Instagram</option>
+              <option value="blog">Blog de Make It Real</option>
+              <option value="youtube">YouTube</option>
+              <option value="recommendation">Recomendación de un conocido</option>
+              <option value="event">Evento/Webinar</option>
+              <option value="other">Otro</option>
+            </select>
           </div>
         </div>
 
@@ -73,19 +79,3 @@
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-  $(document).on("turbolinks:load", window.initProgramPage);
-  $(document).on("turbolinks:load", function() {
-    $('.btn-register').on('click', function(e) {
-      e.preventDefault();
-
-      $('#registration-modal').modal().on('shown.bs.modal', function (e) {
-        $('#first-name').focus();
-      });
-    });
-  });
-  $(document).on("turbolinks:click", function() {
-    $(document).off("turbolinks:load", window.initProgramPage);
-  });
-</script>
