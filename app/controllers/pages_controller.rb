@@ -93,20 +93,24 @@ class PagesController < ApplicationController
 
     data = {
       name: "filled-top-application",
-      pid: cookies[:dp_pid],
-      email: top_applicant_params[:email],
-      first_name: top_applicant_params[:first_name],
-      last_name: top_applicant_params[:last_name],
-      birthday: top_applicant_params[:birthday],
-      country: top_applicant_params[:country],
-      mobile: top_applicant_params[:mobile],
-      portafolio_url: top_applicant_params[:url],
-      ip: request.remote_ip,
-      goal: top_applicant_params[:goal],
-      experience: top_applicant_params[:experience],
-      typical_day: top_applicant_params[:typical_day],
-      vision: top_applicant_params[:vision],
-      more_info: top_applicant_params[:additional]
+      person: {
+        pid: cookies[:dp_pid],
+        email: top_applicant_params[:email],
+        first_name: top_applicant_params[:first_name],
+        last_name: top_applicant_params[:last_name],
+        birthday: top_applicant_params[:birthday],
+        country_code: top_applicant_params[:country],
+        mobile: top_applicant_params[:mobile]
+      },
+      metadata: {
+        portafolio_url: top_applicant_params[:url],
+        ip: request.remote_ip,
+        goal: top_applicant_params[:goal],
+        experience: top_applicant_params[:experience],
+        typical_day: top_applicant_params[:typical_day],
+        vision: top_applicant_params[:vision],
+        more_info: top_applicant_params[:additional]
+      }
     }
     ConvertLoopJob.perform_later(data)
     AdminMailer.new_lead("Top", data[:first_name], data[:last_name], data[:email], data[:country],
@@ -149,7 +153,7 @@ class PagesController < ApplicationController
         first_name: params['first-name'],
         last_name: params['last-name'],
         email: params['email'],
-        country: params['country'],
+        country_code: params['country'],
         source: params['source']
       },
       metadata: {
