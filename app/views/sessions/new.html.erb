@@ -3,20 +3,34 @@
   <% flash.each do |type, msg| %>
     <%= render "shared/alert", msg: msg, type: type %>
   <% end %>
+
   <div class="container">
     <div class="row">
       <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 
         <div class="login">
           <div class="login-body">
-            <p>Si eres estudiante online de <%= link_to "Make it Real", root_path %> ingresa con tu cuenta de Slack</p>
-            <div class="btn-social">
-              <%= link_to '<i class="fa fa-slack"></i> INGRESAR'.html_safe, '/auth/slack', class: "btn btn-main", id: "sign-in-slack"  %>
+            <p>Ingresa con tu correo electrónico y contraseña a la plataforma de aprendizaje</p>
+
+            <%= form_tag controller: :sessions, action: :create do %>
+              <div class="form-group">
+                <%= email_field_tag(:email, nil, class: 'form-control', placeholder: "Correo electrónico", autofocus: true) %>
+              </div>
+              <div class="form-group">
+                <%= password_field_tag(:password, nil, class: 'form-control', placeholder: "Contraseña") %>
+              </div>
+              <div class="text-right"><%= submit_tag("Ingresar", class: 'btn btn-primary btn-lg btn-block') %></div>
+            <% end %>
+
+            <div class="login-text text-center">
+              <div><%= link_to "Olvidé mi contraseña", new_password_reset_path, remote: true %></div>
+              <div>Si tienes acceso con Slack <%= link_to "ingresa aquí", login_slack_path %></div>
             </div>
-            <span class="login-onsite-text text-center">Si eres estudiante presencial <%= link_to "ingresa aquí", login_onsite_path %>.</span>
           </div>
+
           <div class="login-footer">
-            <p class="small">¿Aún no eres estudiante? Conoce <a href="/#anchor">nuestros programas</a></p>
+            <p class="small">¿Aún no eres estudiante?</p>
+            <p class="small">Conoce <a href="/#anchor">nuestros programas</a></p>
           </div>
         </div>
       </div>

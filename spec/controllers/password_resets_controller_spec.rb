@@ -52,7 +52,7 @@ RSpec.describe PasswordResetsController, type: :controller do
 
     it "redirects to login if the token is invalid" do
       get :edit, params: { token: "invalid_token" }
-      expect(response).to redirect_to(login_onsite_path)
+      expect(response).to redirect_to(login_path)
     end
 
     it "redirects to login if the token expired" do
@@ -61,7 +61,7 @@ RSpec.describe PasswordResetsController, type: :controller do
       user.update!(password_reset_sent_at: 2.days.ago)
 
       get :edit, params: { token: user.password_reset_token }
-      expect(response).to redirect_to(login_onsite_path)
+      expect(response).to redirect_to(login_path)
     end
   end
 
@@ -71,7 +71,7 @@ RSpec.describe PasswordResetsController, type: :controller do
       user.send_password_reset
 
       patch :update, params: { password_reset: { token: user.password_reset_token, password: "test12345", password_confirmation: "test12345" } }
-      expect(response).to redirect_to(login_onsite_path)
+      expect(response).to redirect_to(login_path)
 
       user.reload
       expect(user.password_digest).to_not be_nil

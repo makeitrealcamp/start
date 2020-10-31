@@ -5,7 +5,7 @@ RSpec.feature "Passwords", type: :feature do
     user = create(:user_password)
     user.update(password: "test1234")
 
-    login_password(user)
+    login_credentials(user)
 
     find('.avatar').click
     expect(page).to have_css('.dropdown.open .avatar')

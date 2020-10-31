@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   get 'handbook', to: 'pages#handbook', as: :handbook
 
   get  'login', to: 'sessions#new', as: :login
-  get  'on-site/login', to: 'sessions#new_onsite', as: :login_onsite
+  get  'slack/login', to: 'sessions#new_slack', as: :login_slack
   post 'login', to: 'sessions#create'
   get  'auth/:provider/callback', to: 'sessions#create_with_omniauth', as: :login_omniauth
   delete 'logout', to: 'sessions#destroy'

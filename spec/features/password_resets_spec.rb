@@ -4,7 +4,7 @@ RSpec.feature "PasswordResets", type: :feature do
   context 'sends password reset' do
     scenario "without letter capital", js: true do
       user = create(:user_password)
-      visit login_onsite_path
+      visit login_path
 
       click_link 'Olvidé mi contraseña'
       wait_for { page }.to have_css '.modal-dialog'
@@ -21,7 +21,7 @@ RSpec.feature "PasswordResets", type: :feature do
 
     scenario "with capital letter", js: true do
       user = create(:user_password, email: 'PepePerez@example.com')
-      visit login_onsite_path
+      visit login_path
 
       click_link 'Olvidé mi contraseña'
       expect(page).to have_css '.modal-dialog'
@@ -47,7 +47,6 @@ RSpec.feature "PasswordResets", type: :feature do
     fill_in "Confirmar contraseña", with: "test12345"
     click_on "Cambiar Contraseña"
 
-    expect(current_path).to eq(login_onsite_path)
-
+    expect(current_path).to eq(login_path)
   end
 end
