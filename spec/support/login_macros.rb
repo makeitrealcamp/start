@@ -2,7 +2,7 @@ module LoginMacros
   def login(user)
     mock_auth_hash_slack(user)
 
-    visit login_path
+    visit login_slack_path
     find('#sign-in-slack').click
 
     path = if user.created?
@@ -16,13 +16,12 @@ module LoginMacros
     wait_for { current_path }.to eq(path)
   end
 
-  def login_password(user)
-    visit login_onsite_path
+  def login_credentials(user)
+    visit login_path
 
     fill_in "email", with: user.email
     fill_in "password", with: user.password
 
-    level = create(:level)
     click_on "Ingresar"
 
     path = if user.created?

@@ -1,0 +1,33 @@
+<div class="new-site login-page">
+  <%= render "layouts/navbar/pages_dark", hide_login: true %>
+
+  <% flash.each do |type, msg| %>
+    <%= render "shared/alert", msg: msg, type: type %>
+  <% end %>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+
+        <div class="login">
+          <div class="login-body">
+            <p>Si eres estudiante online de <%= link_to "Make it Real", root_path %> ingresa con tu cuenta de Slack</p>
+
+            <div class="btn-social">
+              <%= link_to '<i class="fa fa-slack"></i> INGRESAR'.html_safe, '/auth/slack', class: "btn btn-main", id: "sign-in-slack"  %>
+            </div>
+
+            <span class="login-text text-center">
+              Si tienes acceso con correo y contraseña <%= link_to "ingresa aquí", login_path %>.
+            </span>
+          </div>
+
+          <div class="login-footer">
+            <p class="small">¿Aún no eres estudiante?</p>
+            <p class="small">Conoce <a href="/#anchor">nuestros programas</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     render layout: "pages"
   end
 
-  def new_onsite
+  def new_slack
     render layout: "pages"
   end
 
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
       sign_in(user)
       redirect_to signed_in_root_path
     else
-      redirect_to login_onsite_path, flash: { error: "No se pudo realizar la autenticación. Revisa tus credenciales e intenta nuevamente. Asegúrate que tu cuenta esté activa y puedas acceder con contraseña. Comunícate con nosotros a info@makeitreal.camp si tienes alguna duda." }
+      redirect_to login_path, flash: { error: "No se pudo realizar la autenticación. Revisa tus credenciales e intenta nuevamente. Asegúrate que tu cuenta esté activa y puedas acceder con contraseña. Comunícate con nosotros a info@makeitreal.camp si tienes alguna duda." }
     end
   end
 
@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
       sign_in(user)
       redirect_to signed_in_root_path
     else
-      redirect_to login_path, flash: { error:
+      redirect_to login_slack_path, flash: { error:
         %Q(No se pudo realizar la autenticación. Si aún no eres estudiante de Make it Real
         visita <a href="http://www.makeitreal.camp">makeitreal.camp</a> para conocer nuestros
         programas. De lo contrario comunícate con nosotros a info@makeitreal.camp)
@@ -48,7 +48,7 @@ class SessionsController < ApplicationController
   private
 
     def url_omniauth_failure(message)
-      redirect_to login_path, flash: { error: message }
+      redirect_to login_slack_path, flash: { error: message }
     end
 
 end

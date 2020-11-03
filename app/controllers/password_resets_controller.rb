@@ -16,21 +16,21 @@ class PasswordResetsController < ApplicationController
     token = params[:token]
     user = User.where("settings -> 'password_reset_token' = ?",token).take
     if !user
-      redirect_to login_onsite_path, flash: { error: "El token no es válido. Solicita uno nuevamente haciendo click en 'Olvidé mi contraseña'" }
+      redirect_to login_path, flash: { error: "El token no es válido. Solicita uno nuevamente haciendo click en 'Olvidé mi contraseña'" }
       return
     end
 
     if user.has_valid_password_reset_token?
       @password_reset = PasswordResetForm.new(token: token)
     else
-      redirect_to login_onsite_path, flash: { error: "El token de restablecimiento de contraseña ha vencido. Solicita uno nuevo. Solicita uno nuevamente haciendo click en 'Olvidé mi contraseña'" }
+      redirect_to login_path, flash: { error: "El token de restablecimiento de contraseña ha vencido. Solicita uno nuevo. Solicita uno nuevamente haciendo click en 'Olvidé mi contraseña'" }
     end
   end
 
   def update
     @password_reset = PasswordResetForm.new(password_reset_params)
     if @password_reset.save
-      redirect_to login_onsite_path, flash: { notice: "Ok, ahora puedes ingresar con tu nueva contraseña." }
+      redirect_to login_path, flash: { notice: "Ok, ahora puedes ingresar con tu nueva contraseña." }
     else
       render :edit
     end
