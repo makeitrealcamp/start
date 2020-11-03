@@ -113,8 +113,8 @@ class PagesController < ApplicationController
       }
     }
     ConvertLoopJob.perform_later(data)
-    AdminMailer.new_lead("Top", data[:first_name], data[:last_name], data[:email], data[:country],
-        data[:mobile]).deliver_later
+    AdminMailer.new_lead("Top", data[:person][:first_name], data[:person][:last_name], data[:person][:email], data[:person][:country_code],
+        data[:person][:mobile]).deliver_later
 
     redirect_to "/thanks-top"
   end
