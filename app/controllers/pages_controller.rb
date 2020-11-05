@@ -18,10 +18,11 @@ class PagesController < ApplicationController
   end
 
   def create_full_stack_online_lead
+    suffix = ['MX', 'CO', 'PE'].include?(params['country']) ? params['country'].downcase : "other"
     data = {
       pid: cookies[:dp_pid],
       program: "Full Stack Online",
-      event: "filled-full-stack-online-form",
+      event: "filled-full-stack-form-#{suffix}",
       first_name: params['first-name'],
       last_name: params['last-name'],
       email: params['email'],
