@@ -137,11 +137,32 @@ class WomenScholarshipsView extends Backbone.View
         val = "MXN$1,123" if country == "MX"
         val = "PEN$174" if country == "PE"
         $(".section-faq .program-value").html(val)
+
+        countries = $.map($('#country options'), (option) -> option.value)
+        if countries.indexOf(country)
+          $('#country').val(country)
+          @show_mobile()
+        else
+          $('#country').val("")
+          $('#mobile-wrapper').hide()
       )
 
   events: ->
     "click .btn-register": "open_modal"
     "submit #form-register": "submit_form"
+    "change #country": "update_country_code"
+
+  update_country_code: ->
+    country = $('#country').val()
+    if country != ""
+      @show_mobile();
+      $('#mobile').focus();
+    else
+      $('#mobile-wrapper').hide();
+
+  show_mobile: ->
+    $('#mobile-code').html('+' + $('#country option:selected').data('code'))
+    $('#mobile-wrapper').show()
 
   open_modal: ->
     $("#registration-modal").on('shown.bs.modal', =>
@@ -174,8 +195,15 @@ class WomenScholarshipsView extends Backbone.View
       $('#form-register #country').one('change', @validate_form)
       valid = false
 
-    if !validator.validate_field($('#age'), validator.is_blank, "Campo requerido")
-      $('#form-register #age').one('change', @validate_form)
+    if !validator.validate_field($('#mobile'), validator.is_blank, "Campo requerido")
+      $('#form-register #mobile').one('change', @validate_form)
+      valid = false
+    else if !validator.validate_field($('#mobile'), validator.is_mobile, "Número inválido")
+      $('#form-register #mobile').one('change', @validate_form)
+      valid = false
+
+    if !validator.validate_field($('#birthday'), validator.is_blank, "Campo requerido")
+      $('#form-register #birthday').one('change', @validate_form)
       valid = false
 
     if !validator.validate_field($('#application-reason'), validator.is_blank, "Campo requerido")

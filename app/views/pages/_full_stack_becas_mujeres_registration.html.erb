@@ -29,34 +29,28 @@
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group">
-                <input type="number" id="age" name="age" class="form-control" placeholder="Edad">
+                <div class="form-group">
+                  <select class="form-control" id="country" name="country">
+                    <%= countries_options %>
+                  </select>
+                </div>
               </div>
             </div>
             <div class="col-sm-6">
+              <div class="form-group" id="mobile-wrapper">
+                <div class="input-group">
+                  <span class="input-group-addon" id="mobile-code"></span>
+                  <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Móvil">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
               <div class="form-group">
-                <select class="form-control" id="country" name="country">
-                  <option value="" selected>País de residencia *</option>
-                  <option value="AR" data-code="54">Argentina</option>
-                  <option value="BO" data-code="591">Bolivia</option>
-                  <option value="CL" data-code="56">Chile</option>
-                  <option value="CO" data-code="57">Colombia</option>
-                  <option value="CR" data-code="506">Costa Rica</option>
-                  <option value="EC" data-code="593">Ecuador</option>
-                  <option value="SV" data-code="503">El Salvador</option>
-                  <option value="ES" data-code="34">España</option>
-                  <option value="US" data-code="1">Estados Unidos</option>
-                  <option value="GT" data-code="502">Guatemala</option>
-                  <option value="HN" data-code="504">Honduras</option>
-                  <option value="MX" data-code="52">México</option>
-                  <option value="NI" data-code="505">Nicaragua</option>
-                  <option value="PA" data-code="507">Panamá</option>
-                  <option value="PY" data-code="595">Paraguay</option>
-                  <option value="PE" data-code="51">Perú</option>
-                  <option value="PR" data-code="1">Puerto Rico</option>
-                  <option value="DO" data-code="1">República Dominicana</option>
-                  <option value="UY" data-code="598">Uruguay</option>
-                  <option value="VE" data-code="58">Venezuela</option>
-                </select>
+                <label for="birthday">Fecha de nacimiento</label>
+                <input type="text" id="birthday" name="birthday" class="form-control" placeholder="dd/mm/aaaa" data-datetimepicker="true">
               </div>
             </div>
           </div>
