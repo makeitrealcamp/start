@@ -6,7 +6,7 @@ class TopProgramView extends Backbone.View
 
   render: ->
     $(@el).on('shown.bs.modal', =>
-      $.getJSON("//ipinfo.io")
+      $.getJSON("//ipinfo.io?token=dbb0f38cf907e8")
         .done((response) =>
           country = response.country
           countries = $.map($('#country options'), (option) -> option.value )

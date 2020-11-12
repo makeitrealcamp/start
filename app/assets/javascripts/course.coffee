@@ -18,7 +18,6 @@ validator =
 class CourseView extends Backbone.View
   initialize: (opts) ->
     super(opts)
-    console.log(validator)
 
     $(window).on('scroll', =>
       scroll = $(window).scrollTop()
@@ -46,6 +45,14 @@ class CourseFormModal extends Backbone.View
       .done((response) =>
         country = response.country
         $('#form-register #country', @el).val(country)
+
+        countries = $.map($('#country options'), (option) -> option.value)
+        if countries.indexOf(country)
+          $('#country').val(country)
+          @show_mobile()
+        else
+          $('#country').val("")
+          $('#mobile-wrapper').hide()
       )
 
   render: ->
@@ -55,6 +62,19 @@ class CourseFormModal extends Backbone.View
 
   events: ->
     "submit #form-register": "submit_form"
+    "change #country": "update_country_code"
+
+  update_country_code: ->
+    country = $('#country').val()
+    if country != ""
+      @show_mobile();
+      $('#mobile').focus();
+    else
+      $('#mobile-wrapper').hide();
+
+  show_mobile: ->
+    $('#mobile-code').html('+' + $('#country option:selected').data('code'))
+    $('#mobile-wrapper').show()
 
   submit_form: ->
     valid = @validate_form()
@@ -80,6 +100,13 @@ class CourseFormModal extends Backbone.View
 
     if !validator.validate_field($('#country'), validator.is_blank, "Campo requerido")
       $('#form-register #country').one('change', @validate_form)
+      valid = false
+
+    if !validator.validate_field($('#mobile'), validator.is_blank, "Campo requerido")
+      $('#form-register #mobile').one('change', @validate_form)
+      valid = false
+    else if !validator.validate_field($('#mobile'), validator.is_mobile, "Número inválido")
+      $('#form-register #mobile').one('change', @validate_form)
       valid = false
 
     if !validator.validate_field($('#source'), validator.is_blank, "Campo requerido")
