@@ -92,4 +92,20 @@ RSpec.feature "Pages", type: :feature do
     expect(ConvertLoopJob).to have_been_enqueued
   end
 
+  scenario "sponsor a woman scholarship", js: true do
+    visit full_stack_online_patrocina_una_beca_path
+
+    first('button.btn-register').click
+
+    expect(page).to have_css("#registration-modal")
+
+    fill_in "first-name", with: "Maria"
+    fill_in "last-name", with: "Gomez"
+    fill_in "email", with: "maria@example.com"
+    select "Beca completa - COP$3'000,000", from: "course"
+
+    find('button[type="submit"]').click
+
+    expect(current_path).to eq "/billing/charges"
+  end
 end

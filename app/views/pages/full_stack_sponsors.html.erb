@@ -1,0 +1,179 @@
+<%= render "full_stack_sponsors", image_path: "becas-mujeres.jpg" %>
+
+<div class="fs-sponsors">
+  <%= render "layouts/navbar/pages_white", hide_login: true %>
+  <%= render "pages/header_register", btn_text: "¡Realiza tu aporte!" %>
+
+  <div class="intro">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 intro-info">
+          <h1>Patrocina un beca</h1>
+          <p>Con tu aporte ayudarás a entrenar a <strong>mujeres</strong> en <%= link_to "Desarrollo Web Full Stack", full_stack_online_path %> y a crear una industria más inclusiva y diversa.</p>
+          <button type="button" class="pbtn pbtn-primary btn-register">¡Realiza tu aporte!</button>
+        </div><!--/tagline-program -->
+
+        <div class="col-md-6 intro-img">
+          <%= image_tag "image-header-fundamentos.png", srcset: { "image-header-fundamentos@2x.png" => "2x", "image-header-fundamentos@3x.png" => "3x" } %>
+        </div>
+
+      </div><!--/row -->
+    </div><!--/container -->
+  </div><!--/program-intro -->
+
+  <div class="section section-dark section-why">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <%= render "pages/companies2" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1" style="padding-top: 70px;">
+          <p class="text-center">De acuerdo a la <a href="https://insights.stackoverflow.com/survey/2020" target="_blank">encuesta de StackOverflow 2020</a> solo el 8% de los desarrolladores son mujeres. Es hora de crear una industria más inclusiva y cerrar la brecha de género.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section section-steps">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="text-center">Proceso de selección</h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 step">
+          <h3>Paso 1</h3>
+          <p>Las mujeres interesadas llenan un formulario de aplicación y se les envía un material de preparación que deben estudiar por su cuenta (35 a 50 horas de estudio).</p>
+        </div>
+        <div class="col-md-4 step">
+          <h3>Paso 2</h3>
+          <p>Se realiza una prueba de conocimiento sobre el material de preparación: la consola, el editor de texto, Git, HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="col-md-4 step">
+          <h3>Paso 3</h3>
+          <p>Se entregan las becas e inician el entrenamiento. Las beneficiarias pagan el 20% del valor del programa en 6 cuotas para garantizar su compromiso y dedicación.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section section-schemes">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>Opciones de patrocinio</h2>
+          <p class="lead text-center">Tu aporte ayudará a entrenar más mujeres en desarrollo, selecciona la opción que más se ajuste a tus posibilidades. Si deseas apoyar con más de una beca escríbenos a info@makeitreal.camp.</p>
+        </div>
+      </div>
+      <div class="schemes">
+        <div class="scheme" data-option="full_sponsorship">
+          <header>Opción 1</header>
+          <div class="scheme-body">
+            <div class="initial">
+              <div class="initial-label">Beca completa</div>
+              <div class="initial-value">COP$3'000,000</div>
+            </div>
+            <div class="shared-income"><a href="" class="btn">Seleccionar</a></div>
+          </div>
+        </div>
+
+        <div class="scheme" data-option="half_sponsorship">
+          <header>Opción 2</header>
+          <div class="scheme-body">
+            <div class="initial">
+              <div class="initial-label">Media beca</div>
+              <div class="initial-value">COP$1'500,000</div>
+            </div>
+            <div class="shared-income"><a href="" class="btn">Seleccionar</a></div>
+          </div>
+        </div>
+
+        <div class="scheme" data-option="quarter_sponsorship">
+          <header>Opción 3</header>
+          <div class="scheme-body">
+            <div class="initial">
+              <div class="initial-label">Cuarto de beca</div>
+              <div class="initial-value">COP$750,000</div>
+            </div>
+            <div class="shared-income"><a href="" class="btn">Seleccionar</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section section-progress">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 progress-metric">
+          <div class="progress-value">8</div>
+          <div class="progress-label">Patrocinadores</div>
+        </div>
+        <div class="col-sm-4 progress-metric">
+          <div class="progress-value">COP$16.5M</div>
+          <div class="progress-label">Total recaudado</div>
+        </div>
+        <div class="col-sm-4 progress-metric">
+          <div class="progress-value">4</div>
+          <div class="progress-label">Beneficiarias</div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  <a name="faqs"></a>
+  <section class="section section-white section-faq">
+    <div class="container">
+      <h2>Preguntas frecuentes</h2>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <section class="question">
+            <h3>¿Por qué están haciendo esto?</h3>
+            <p>Aunque hemos realizado iniciativas de becas similares por nuestra cuenta, queremos tener un modelo sostenible que nos permita darle la oportunidad a más mujeres.</p>
+          </section><!--/question -->
+
+          <section class="question">
+            <h3>¿Dónde encuentro los detalles del programa?</h3>
+            <p>Para ver toda la información del programa haz click <%= link_to "este enlace", full_stack_online_path %>.</p>
+          </section><!--/question -->
+
+          <section class="question">
+            <h3>¿Puedo decidir a quién darle la beca?</h3>
+            <p>No. Todas las mujeres realizan el mismo proceso y las becas se entregan en el orden en que presenten la prueba técnica.</p>
+          </section><!--/question -->
+        </div>
+
+        <div class="col-sm-6">
+          <section class="question">
+            <h3>¿Cuánto y por qué deben pagar las beneficiarias?</h3>
+            <p>Las beneficiarias deben pagar el 20% del valor del programa en 6 cuotas. La razón es que, por un lado, esto nos garantiza su compromiso y dedicación, y por otro lado nos permite entrenar a más mujeres con el aporte que hacen.</p>
+          </section><!--/question -->
+          <section class="question">
+            <h3>¿Qué métodos de pago reciben?</h3>
+            <p>El pago se realiza por PayU en donde podrás pagar con tarjeta crédito/débito, consignación o transferencia.</p>
+          </section><!--/question -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <%= render "footer" %>
+  <%= render "full_stack_sponsors_donation", action: "/billing/charges" %>
+</div>
+
+<script type="text/javascript">
+  function init() {
+    new SponsorsView();
+  }
+  $(document).on("turbolinks:load", init);
+
+  $(document).on("turbolinks:click", function() {
+    $(document).off("turbolinks:load", init);
+  });
+</script>

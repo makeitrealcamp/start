@@ -127,35 +127,35 @@ class WomenScholarshipsView extends Backbone.View
 
   validate_form: =>
     valid = true
-    if !validator.validate_field($('#form-register #first-name'), @is_blank, "Campo requerido")
+    if !validator.validate_field($('#form-register #first-name'), validator.is_blank, "Campo requerido")
       $('#form-register #first-name').one('change', @validate_form)
       valid = false
 
-    if !validator.validate_field($('#form-register #last-name'), @is_blank, "Campo requerido")
+    if !validator.validate_field($('#form-register #last-name'), validator.is_blank, "Campo requerido")
       $('#form-register #last-name').one('change', @validate_form)
       valid = false
 
-    if !validator.validate_field($('#form-register #email'), @is_blank, "Campo requerido")
+    if !validator.validate_field($('#form-register #email'), validator.is_blank, "Campo requerido")
       $('#form-register #email').one('change', @validate_form)
       valid = false
 
-    if !validator.validate_field($('#form-register #email'), @is_email, "Email inválido")
+    if !validator.validate_field($('#form-register #email'), validator.is_email, "Email inválido")
       $('#form-register #email').one('change', @validate_form)
       valid = false
 
-    if !validator.validate_field($('#country'), @is_blank, "Campo requerido")
+    if !validator.validate_field($('#country'), validator.is_blank, "Campo requerido")
       $('#form-register #country').one('change', @validate_form)
       valid = false
 
-    if !validator.validate_field($('#age'), @is_blank, "Campo requerido")
+    if !validator.validate_field($('#age'), validator.is_blank, "Campo requerido")
       $('#form-register #age').one('change', @validate_form)
       valid = false
 
-    if !validator.validate_field($('#application-reason'), @is_blank, "Campo requerido")
+    if !validator.validate_field($('#application-reason'), validator.is_blank, "Campo requerido")
       $('#form-register #application-reason').one('change', @validate_form)
       valid = false
 
-    if !validator.validate_field($('#url'), @is_blank, "Campo requerido")
+    if !validator.validate_field($('#url'), validator.is_blank, "Campo requerido")
       $('#form-register #url').one('change', @validate_form)
       valid = false
 
@@ -165,5 +165,57 @@ class WomenScholarshipsView extends Backbone.View
 
     return valid
 
+class SponsorsView extends Backbone.View
+  el: '.fs-sponsors'
+
+  initialize: ->
+    $(window).on('scroll', =>
+      scroll = $(window).scrollTop()
+      if scroll > 600
+        $('.header-register').slideDown()
+      else
+        $('.header-register').slideUp()
+    )
+
+  events: ->
+    "click .btn-register": "open_modal"
+    "submit #form-register": "submit_form"
+    "click .scheme": "open_scheme"
+
+  open_scheme: (e) ->
+    option = $(e.currentTarget).data("option")
+    $("#registration-modal #course").val(option)
+    @open_modal()
+
+  open_modal: ->
+    $("#registration-modal").on('shown.bs.modal', =>
+      $('#first-name').focus()
+    ).modal()
+
+  submit_form: ->
+    valid = @validate_form()
+    return false if !valid
+
+  validate_form: =>
+    valid = true
+    if !validator.validate_field($('#form-register #first-name'), validator.is_blank, "Campo requerido")
+      $('#form-register #first-name').one('change', @validate_form)
+      valid = false
+
+    if !validator.validate_field($('#form-register #last-name'), validator.is_blank, "Campo requerido")
+      $('#form-register #last-name').one('change', @validate_form)
+      valid = false
+
+    if !validator.validate_field($('#form-register #email'), validator.is_blank, "Campo requerido")
+      $('#form-register #email').one('change', @validate_form)
+      valid = false
+
+    if !validator.validate_field($('#form-register #course'), validator.is_blank, "Campo requerido")
+      $('#form-register #course').one('change', @validate_form)
+      valid = false
+
+    return valid
+
 window.CourseView = CourseView
 window.WomenScholarshipsView = WomenScholarshipsView
+window.SponsorsView = SponsorsView

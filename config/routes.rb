@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post "full-stack-online", to: "pages#create_full_stack_online_lead"
   get "full-stack-online/cupo", to: "pages#full_stack_online_seat"
   get "full-stack-online/becas-mujeres", to: "pages#full_stack_becas_mujeres"
+  get "full-stack-online/patrocina-una-beca", to: "pages#full_stack_sponsors"
   post "full-stack-becas-mujeres", to: "pages#create_fs_becas_mujeres_lead"
   get "full_stack_web_developer", to: redirect('/full-stack-online')
   get "curso-javascript-basico", to: redirect(ENV['javascript-course-url'] || "https://www.youtube.com/c/MakeitrealCamp1/live")

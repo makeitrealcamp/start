@@ -17,6 +17,8 @@
   <input name="confirmationUrl"   type="hidden"  value="<%= ENV['HOSTNAME'] %>/billing/payu/confirm">
 </form>
 
+<% unless Rails.env.test? %>
 <script>
   document.querySelector("form").submit();
 </script>
+<% end %>
