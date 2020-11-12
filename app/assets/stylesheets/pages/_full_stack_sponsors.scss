@@ -1,0 +1,160 @@
+.pages-layout .fs-sponsors {
+  .header-register .btn-register {
+    background: $color-js-yellow;
+    color: $text-color;
+  }
+
+  .intro .intro-info {
+    padding-top: 20px;
+
+    .pbtn {
+      background: $color-js-yellow;
+      color: $text-color;
+      margin-top: 20px;
+
+      @media (min-width: $screen-md-min) { margin-top: 30px; }
+    }
+  }
+
+  .section.section-dark {
+    background: #e15e5f;
+  }
+
+  .section.section-why {
+    p {
+      color: white;
+      font-size: 1.3rem;
+    }
+
+    a { color: $color-js-yellow; }
+  }
+
+  .section.target-audience {
+    background: asset-url("elementos-izquierda-intro-js") bottom left/200px no-repeat,
+                asset-url("elementos-derecha-intro-js") 100% 20%/30px no-repeat;
+    padding-bottom: 70px;
+
+    @media (min-width: $screen-sm-min) { background-size: 300px, 50px; }
+
+    h2 {
+      @media (min-width: $screen-sm-min) { padding-top: 120px; }
+    }
+
+    ol li {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+  }
+
+  .section.section-steps {
+    padding-bottom: 60px;
+
+    .step {
+      margin-bottom: 60px;
+
+      h3 {
+        font-size: 1.2rem;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 0.9rem;
+        text-align: center;
+
+        @media (min-width: $screen-md-min) { text-align: left;}
+      }
+    }
+  }
+
+  .section-schemes {
+    background: asset-url('elementos-izquierda-2-top.svg') top left/200px no-repeat,
+                asset-url('elementos-derecha-2-top.svg') bottom right/200px no-repeat,
+                white;
+
+    @media(min-width: $screen-sm-min) { background-size: 200px, 200px; }
+    @media(min-width: $screen-md-min) { background-size: 250px, 250px; }
+
+    h2 {
+      color: $color-orange;
+      font-weight: normal;
+      text-align: center;
+    }
+
+    .schemes {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      padding-top: 40px;
+      cursor: pointer;
+
+      @media (min-width: $screen-sm-min) {
+        flex-direction: row;
+        align-items: stretch;
+      }
+
+      .scheme {
+        text-align: center;
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 40px;
+
+        header {
+          color: $color-grey;
+          font-size: 0.9rem;
+          font-style: italic;
+          margin-bottom: 18px;
+        }
+
+        .scheme-body {
+          box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, 0.2);
+          border-radius: 20px;
+
+          .initial {
+            background: $color-dark-blue;
+            color: white;
+            padding: 20px 0;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+
+            .initial-label {
+              font-size: 0.9rem;
+              padding-top: 10px;
+            }
+
+            .initial-value {
+              font-size: 1.3rem;
+              font-weight: 600;
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .section.section-progress {
+    padding-top: 80px;
+    padding-bottom: 20px;
+
+    .progress-metric {
+      text-align: center;
+      margin-bottom: 60px;
+
+      .progress-value {
+        color: $color-dark-blue;
+        font-family: $font-family-condensed;
+        font-size: 3rem;
+      }
+
+      .progress-label {
+        color: $color-grey;
+        font-size: 0.9;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

@@ -40,6 +40,18 @@ class Billing::Charge < ApplicationRecord
         "PEN" => 475,
         "USD" => 140
       }
+    },
+    full_sponsorship: {
+      description: "Patrocinio beca completa Make It Real",
+      price: { "COP" => 3_000_000 }
+    },
+    half_sponsorship: {
+      description: "Patrocinio media beca Make It Real",
+      price: { "COP" => 1_500_000 }
+    },
+    quarter_sponsorship: {
+      description: "Patrocinio cuarto de beca Make It Real",
+      price: { "COP" => 750_000 }
     }
   }
 

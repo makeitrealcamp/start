@@ -1,0 +1,46 @@
+<div class="modal fade" id="registration-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="
+        " class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Patrocinador Beca</h4>
+      </div>
+      <form id="form-register" action="<%= action %>" method="post">
+        <div class="modal-body">
+          <p>Ingresa los datos del patrocinador. Serás redireccionado a PayU para completar tu aporte:</p>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <input type="text" id="first-name" name="charge[first-name]" class="form-control" placeholder="Nombre">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <input type="text" id="last-name" name="charge[last-name]" class="form-control" placeholder="Apellido">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="email" id="email" name="charge[customer_email]" class="form-control" placeholder="Email">
+          </div>
+
+          <div class="form-group">
+            <select class="form-control" id="course" name="course">
+              <option value="" selected>Selecciona una opción de patrocinio</option>
+              <option value="full_sponsorship">Beca completa - COP$3'000,000</option>
+              <option value="half_sponsorship">Media beca - COP$1'500,000</option>
+              <option value="quarter_sponsorship">Cuarto de beca - COP$750,000</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">SIGUIENTE</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
