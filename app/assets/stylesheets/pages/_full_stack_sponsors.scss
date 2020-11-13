@@ -1,48 +1,34 @@
 .pages-layout .fs-sponsors {
   .header-register .btn-register {
-    background: $color-js-yellow;
-    color: $text-color;
+    background: #68c4fb;
+    color: white;
   }
 
   .intro .intro-info {
     padding-top: 20px;
 
     .pbtn {
-      background: $color-js-yellow;
-      color: $text-color;
+      background: #68c4fb;
+      color: white;
       margin-top: 20px;
 
       @media (min-width: $screen-md-min) { margin-top: 30px; }
     }
   }
 
-  .section.section-dark {
-    background: #e15e5f;
-  }
-
   .section.section-why {
-    p {
-      color: white;
-      font-size: 1.3rem;
-    }
-
-    a { color: $color-js-yellow; }
-  }
-
-  .section.target-audience {
-    background: asset-url("elementos-izquierda-intro-js") bottom left/200px no-repeat,
-                asset-url("elementos-derecha-intro-js") 100% 20%/30px no-repeat;
+    background: #fab34b;
     padding-bottom: 70px;
 
-    @media (min-width: $screen-sm-min) { background-size: 300px, 50px; }
-
-    h2 {
-      @media (min-width: $screen-sm-min) { padding-top: 120px; }
+    p {
+      color: white;
+      font-size: 1.1rem;
     }
 
-    ol li {
-      font-size: 1rem;
-      margin-bottom: 10px;
+    a {
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
     }
   }
 
@@ -68,8 +54,8 @@
   }
 
   .section-schemes {
-    background: asset-url('elementos-izquierda-2-top.svg') top left/200px no-repeat,
-                asset-url('elementos-derecha-2-top.svg') bottom right/200px no-repeat,
+    background: asset-url('elementos-izquierda-2-mujeres.svg') top left/200px no-repeat,
+                asset-url('elementos-derecha-2-mujeres.svg') bottom right/200px no-repeat,
                 white;
 
     @media(min-width: $screen-sm-min) { background-size: 200px, 200px; }
@@ -129,6 +115,10 @@
               font-weight: 600;
               margin-top: 10px;
             }
+          }
+
+          .shared-income {
+            padding: 20px;
           }
         }
       }
