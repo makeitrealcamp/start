@@ -27,6 +27,7 @@ class PagesController < ApplicationController
       last_name: params['last-name'],
       email: params['email'],
       country: params['country'],
+      mobile: params['mobile'],
       source: params['source'],
       ip: request.remote_ip
     }
@@ -43,6 +44,7 @@ class PagesController < ApplicationController
       last_name: params['last-name'],
       email: params['email'],
       country: params['country'],
+      mobile: params['mobile'],
       source: params['source'],
       ip: request.remote_ip
     }
@@ -155,10 +157,11 @@ class PagesController < ApplicationController
         last_name: params['last-name'],
         email: params['email'],
         country_code: params['country'],
+        mobile: params['mobile'],
+        birthday: params['birthday'],
         source: params['source']
       },
       metadata: {
-        age: params['age'],
         application_reason: params['application_reason'],
         more_info_url: params['url'],
         ip: request.remote_ip

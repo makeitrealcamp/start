@@ -7,17 +7,18 @@ class CreateLeadJob < ActiveJob::Base
     last_name = data[:last_name]
     email = data[:email]
     country = data[:country]
+    mobile = data[:mobile]
     source = data[:source]
 
     person = { pid: pid, email: email, first_name: first_name, last_name: last_name,
-        country_code: country, source: source, ip: data[:ip] }
+        country_code: country, mobile: mobile, source: source, ip: data[:ip] }
     begin
       ConvertLoop.event_logs.send(name: data[:event], person: person)
     rescue => e
       Rails.logger.error "Couldn't send event #{data[:event]} to ConvertLoop: #{e.message}"
     end
 
-    AdminMailer.new_lead(data[:program], first_name, last_name, email, country,
+    AdminMailer.new_lead(data[:program], first_name, last_name, email, country, mobile,
         source).deliver_now
   end
 end

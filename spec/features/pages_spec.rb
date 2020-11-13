@@ -14,6 +14,7 @@ RSpec.feature "Pages", type: :feature do
       fill_in "first-name", with: "Pedro"
       fill_in "last-name", with: "Perez"
       fill_in "email", with: "lead@example.com"
+      fill_in "mobile", with: "3111234567"
       select "Google", from: "source"
 
       find('button[type="submit"]').click
@@ -33,6 +34,7 @@ RSpec.feature "Pages", type: :feature do
     fill_in "first-name", with: "Pedro"
     fill_in "last-name", with: "Perez"
     fill_in "email", with: "lead@example.com"
+    fill_in "mobile", with: "3111234567"
     select "Google", from: "source"
 
     find('button[type="submit"]').click
@@ -81,7 +83,8 @@ RSpec.feature "Pages", type: :feature do
     fill_in "first-name", with: "Maria"
     fill_in "last-name", with: "Gomez"
     fill_in "email", with: "maria@example.com"
-    fill_in "age", with: "20"
+    fill_in "birthday", with: "20/11/2000"
+    fill_in "mobile", with: "3111234567"
     fill_in "application_reason", with: "Me parece muy interesante"
     fill_in "url", with: "https://example.com/"
     select "YouTube", from: "source"
