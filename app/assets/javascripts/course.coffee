@@ -233,12 +233,20 @@ class SponsorsView extends Backbone.View
     )
 
   events: ->
+    "click .intro .scroll": "scroll"
     "click .btn-register": "open_modal"
     "submit #form-register": "submit_form"
     "click .scheme": "open_scheme"
 
+  scroll: (e) ->
+    e.preventDefault()
+    $("html, body").animate({
+      scrollTop: $("#schemes").offset().top
+    }, "slow")
+
   open_scheme: (e) ->
-    option = $(e.currentTarget).data("option")
+    e.preventDefault()
+    option = $(e.target).data("option")
     $("#registration-modal #course").val(option)
     @open_modal()
 
