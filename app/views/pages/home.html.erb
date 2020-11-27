@@ -108,3 +108,16 @@
   <%= render "pages/capture_email" %>
   <%= render "footer" %>
 </div>
+
+<script>
+  var ready = function() {
+    // scroll para bajar en la intro
+    $(".home .intro").on("click", ".scroll", function() {
+      $("html,body").animate({
+        scrollTop: $("#programs").offset().top
+      }, "slow");
+    });
+  };
+  $(document).ready(ready);
+  $(document).on("turbolinks:load", ready);
+</script>

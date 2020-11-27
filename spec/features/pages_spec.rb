@@ -98,7 +98,7 @@ RSpec.feature "Pages", type: :feature do
   scenario "sponsor a woman scholarship", js: true do
     visit full_stack_online_patrocina_una_beca_path
 
-    first('button.btn-register').click
+    first('div.scheme').click
 
     expect(page).to have_css("#registration-modal")
 
