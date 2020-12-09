@@ -2,7 +2,7 @@
 
 <p><%= @comment.user.name %> ha dejado el siguiente comentario en <strong><%= @comment.commentable.to_s %></strong>:</p>
 
-<blockquote><%= markdown @comment.text %></blockquote>
+<blockquote><%= markdown h(@comment.text) %></blockquote>
 
 <p>Para responder este comentario <%= link_to "haz click acá", "#{ENV['HOSTNAME']}/#{@comment.commentable.to_path}" %></p>
 
