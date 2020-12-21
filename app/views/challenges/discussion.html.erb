@@ -3,7 +3,7 @@
 <div class="container-fluid challenge-discussion default-top-padding">
   <div class="discussion-actions text-right hidden-md hidden-lg">
     <%= link_to "Siguiente reto <span class='glyphicon glyphicon-chevron-right'></span>".html_safe,
-        [@challenge.subject, current_user.next_challenge], class: "btn btn-primary" %>
+        [@challenge.subject, @challenge.next_challenge], class: "btn btn-primary" %>
   </div>
   <div class="row">
     <div class="col-md-6">
@@ -28,7 +28,7 @@
     <div class="col-md-6">
       <div class="discussion-actions text-right hidden-xs hidden-sm">
         <%= link_to "Siguiente reto <span class='glyphicon glyphicon-chevron-right'></span>".html_safe,
-            [@challenge.subject, current_user.next_challenge], class: "btn btn-primary" %>
+            [@challenge.subject, @challenge.next_challenge], class: "btn btn-primary" %>
       </div>
       <div>
         <%= render "comments/embedded", commentable: @challenge, questions: [

@@ -70,6 +70,10 @@ class Subject < ApplicationRecord
     "<a href='#{to_path}'>#{to_s}</a>"
   end
 
+  def last_challenge
+    challenges.order(:row).last
+  end
+
   private
     def default_values
       self.published ||= false
