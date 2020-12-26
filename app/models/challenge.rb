@@ -150,6 +150,6 @@ class Challenge < ApplicationRecord
     end
 
     def find_next_challenge
-      subject.challenges.order(:row).where("row > ?", self.row).take
+      subject.challenges.order(:row).where("row > ? AND published = ?", self.row, true).take
     end
 end
