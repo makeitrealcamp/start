@@ -215,11 +215,11 @@ class User < ApplicationRecord
 
   def next_challenge
     if last_solution.nil? # user has not completed nor attempted any challenge
-      Challenge.for(self).order_by_subject_and_rank.first
-    elsif last_solution.completed? # user's last action was a challenge completion
+      Challenge.for(self).where(published: true).order_by_subject_and_rank.first
+    elsif last_pending_challenge.present? # user has a pending challenge
+      last_pending_challenge
+    else # user attempted a challenge but it was not completed or no attempted challenges
       find_next_challenge
-    else # user attempted a challenge but it was not completed
-      last_solution.challenge
     end
   end
 
@@ -302,7 +302,7 @@ class User < ApplicationRecord
     # returns the next published challenge after the one of the argument in the
     # same subject or nil if it's the last one
     def next_challenge_in_subject_after(challenge)
-      challenge.subject.challenges.for(self).order(:row).where("row > ?", challenge.row).take
+      challenge.subject.challenges.for(self).order(:row).where("row > ? AND published = ?", challenge.row, true).take
     end
 
     def first_challenge_of_next_subject(current_subject)

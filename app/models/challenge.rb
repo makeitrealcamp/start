@@ -121,6 +121,16 @@ class Challenge < ApplicationRecord
     "el reto #{to_html_link} del tema #{subject.to_html_link}"
   end
 
+  def next_challenge
+    return nil if is_last_challenge?
+
+    find_next_challenge
+  end
+
+  def is_last_challenge?
+    self == subject.last_challenge
+  end
+
   private
     def default_values
       self.published ||= false
@@ -137,5 +147,9 @@ class Challenge < ApplicationRecord
         errors[:base] << "Cannot delete Challenge because this have solutions associated"
         return false
       end
+    end
+
+    def find_next_challenge
+      subject.challenges.order(:row).where("row > ? AND published = ?", self.row, true).take
     end
 end
