@@ -11,9 +11,9 @@ class CreateLeadJob < ActiveJob::Base
     source = data[:source]
 
     person = { pid: pid, email: email, first_name: first_name, last_name: last_name,
-        country_code: country, mobile: mobile, source: source, ip: data[:ip] }
+        country_code: country, mobile: mobile, source: source }
     begin
-      ConvertLoop.event_logs.send(name: data[:event], person: person)
+      ConvertLoop.event_logs.send(name: data[:event], person: person, metadata: { ip: data[:ip] })
     rescue => e
       Rails.logger.error "Couldn't send event #{data[:event]} to ConvertLoop: #{e.message}"
     end
