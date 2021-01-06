@@ -28,10 +28,11 @@
     }
 
     a {
-      color: white;
-      font-weight: 600;
+      color: $color-dark-blue;
       text-decoration: none;
     }
+
+    .progress-list { font-size: 0.85rem; }
 
     .progress-box {
       background: white;
@@ -54,6 +55,7 @@
 
       .progress-metric {
         text-align: center;
+        cursor: pointer;
 
         .progress-value {
           color: $color-dark-blue;
@@ -170,6 +172,13 @@
           }
         }
       }
+    }
+  }
+
+  #sponsors-modal {
+    table td small {
+      color: #666;
+      display: block;
     }
   }
 }
