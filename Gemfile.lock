@@ -309,7 +309,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rdoc (4.3.0)
-    redcarpet (3.5.0)
+    redcarpet (3.5.1)
     redis (4.2.2)
     regexp_parser (1.8.2)
     remote_syslog_logger (1.0.4)
