@@ -1,0 +1,105 @@
+<%= render "og_header",
+      title: "Introducción a Python para Data Science",
+      description: "[Curso Gratuito] En este curso aprenderás los fundamentos de Python para Data Science escribiendo código de manera práctica, con clases en vivo (video llamada) guiadas por mentores experimentados.",
+      image_path: "01interna-programa.jpg" %>
+
+<div class="intro-to-python">
+  <%= render "layouts/navbar/pages_white", hide_login: true %>
+  <%= render "pages/header_register", btn_text: "Inscríbete gratis!" %>
+
+  <div class="intro">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 intro-info">
+          <h1>Introducción a Python para Data Science</h1>
+          <p class="government-support"><strong>Curso gratuito con el apoyo de</strong></p>
+          <div class="row government-row" >
+            <div class="government-logo">
+              <a href="#" target="_blank"><%= image_tag "companies/gobierno-de-colombia.png" %></a>
+            </div>
+            <div class="government-logo">
+              <a href="https://innpulsacolombia.com/cemprende?ref=makeitreal" target="_blank"><%= image_tag "companies/Logo-C-Emprende.png" %></a>
+            </div>
+            <div class="government-logo" >
+              <a href="https://innpulsacolombia.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/logo-innpulsa.png" %></a>
+            </div>
+          </div>
+          <button type="button" class="pbtn pbtn-primary btn-register">¡Inscríbete gratis!</button>
+        </div><!--/tagline-program -->
+
+        <div class="col-md-6">
+          <div class="program-info-box">
+            <div class="info-box-group">
+               <div>Ene 26, 2020</div>
+               <div class="info-box-label">Inicio</div>
+            </div>
+            <div class="info-box-group">
+               <div>6 días</div>
+               <div class="info-box-label">Duración</div>
+            </div>
+            <div class="info-box-group">
+              <div>6pm a 8pm (-05)</div>
+              <div class="info-box-label">Martes y Jueves</div>
+            </div>
+
+            <div class="info-box-group info-box-location">
+              Remoto (videollamada)
+              <div class="info-box-label">Ubicación</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!--/row -->
+    </div><!--/container -->
+  </div><!--/program-intro -->
+
+  <%= render "intro_to_python_audience" %>
+
+  <%= render "data_science_students" %>
+
+  <%= render "intro_to_python_curriculum" %>
+
+
+  <a name="mentors"></a>
+  <div class="section section-white section-mentors">
+    <div class="container">
+      <h2>Nuestros Mentores</h2>
+
+      <div class="mentors-wrapper owl-carousel">
+        <div class="row">
+          <div class="col-md-5 col-md-offset-1">
+            <div class="profile-image text-center">
+              <%= image_tag "people/daniel-morales.jpg" %>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="profile">
+              <h3>Daniel Morales</h3>
+              <p>Apasionado del emprendimiento y la programación. Mentor en <a href="/">Make it Real</a>. Co-fundador y Data Scientist en <a href="https://datasource.ai/?ref=makeitreal" target="_blank">DataSource</a>.</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5 col-md-offset-1">
+            <div class="profile-image text-center">
+              <%= image_tag "people/german-escobar.png" %>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="profile">
+              <h3>Germán Escobar</h3>
+              <p>Programador y emprendedor. Co-fundador de <a href="https://masiv.com/?ref=makeitreal" target="_blank">Elibom (ahora Masivian)</a> y fundador de <a href="/" target="_blank">Make it Real</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= render "intro_to_python_faqs" %>
+
+  <%= render "footer" %>
+
+  <%= render "program_registration_free_course", action: "/introduccion-a-python-para-data-science" %>
+
+</div>
