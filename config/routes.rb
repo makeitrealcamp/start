@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get "curso-javascript-basico", to: redirect(ENV['javascript-course-url'] || "https://www.youtube.com/c/MakeitrealCamp1/live")
   get "introduccion-a-javascript", to: "pages#intro_to_js", as: :intro_to_js
   post "introduccion-a-javascript", to: "pages#create_intro_to_js_lead"
+  get "introduccion-a-python-para-data-science", to: "pages#intro_to_python"
+  post "introduccion-a-python-para-data-science", to: "pages#create_intro_to_python_lead"
 
   get "data-science-online", to: "pages#data_science_online"
   post "data-science-online", to: "pages#create_data_science_online_lead"
@@ -31,6 +33,7 @@ Rails.application.routes.draw do
   get "thanks-top", to: "pages#thanks_top"
   get "thanks-data-science-online", to: "pages#thanks_online"
   get "thanks-intro-to-js", to:"pages#thanks_online_innpulsa"
+  get "thanks-intro-to-python", to:"pages#thanks_online_innpulsa"
   get "thanks-fs-becas-mujeres", to:"pages#thanks_online"
 
   get "como-convertirte-en-web-developer", to: "pages#web_developer_guide", as: :web_developer_guide

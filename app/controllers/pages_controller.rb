@@ -148,6 +148,22 @@ class PagesController < ApplicationController
     redirect_to "/thanks-intro-to-js"
   end
 
+  def create_intro_to_python_lead
+    data = {
+      pid: cookies[:dp_pid],
+      program: "Intro to Python",
+      event: "filled-intro-to-python-form",
+      first_name: params['first-name'],
+      last_name: params['last-name'],
+      email: params['email'],
+      country: params['country'],
+      mobile: params['mobile'],
+      ip: request.remote_ip
+    }
+    CreateLeadJob.perform_later(data)
+    redirect_to "/thanks-intro-to-python"
+  end
+
   def create_fs_becas_mujeres_lead
     data = {
       name: "filled-fs-becas-mujeres-form",
