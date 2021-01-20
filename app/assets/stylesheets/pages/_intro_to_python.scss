@@ -1,6 +1,6 @@
 .pages-layout .intro-to-python {
   .header-register .btn-register {
-    background: $color-js-yellow;
+    background: $color-python-yellow;
     color: $text-color;
   }
 
@@ -8,7 +8,7 @@
     padding-top: 20px;
 
     .pbtn {
-      background: $color-js-yellow;
+      background: $color-python-yellow;
       color: $text-color;
       margin-top: 20px;
 
@@ -31,8 +31,8 @@
   }
 
   .section.target-audience {
-    background: asset-url("elementos-izquierda-intro-js") bottom left/200px no-repeat,
-                asset-url("elementos-derecha-intro-js") 100% 20%/30px no-repeat;
+    background: asset-url("elementos-izquierda-1-python") bottom left/200px no-repeat,
+                asset-url("elementos-derecha-1-python") 100% 20%/30px no-repeat;
     padding-bottom: 50px;
 
     @media (min-width: $screen-sm-min) { background-size: 300px, 50px; }
