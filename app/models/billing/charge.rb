@@ -29,7 +29,7 @@ class Billing::Charge < ApplicationRecord
         "COP" => 500_000,
         "MXN" => 3_100,
         "PEN" => 475,
-        "USD" => 140
+        "USD" => 150
       }
     },
     datascience: {
@@ -38,7 +38,7 @@ class Billing::Charge < ApplicationRecord
         "COP" => 500_000,
         "MXN" => 3_100,
         "PEN" => 475,
-        "USD" => 140
+        "USD" => 150
       }
     },
     full_sponsorship: {
