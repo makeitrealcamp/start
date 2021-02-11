@@ -92,6 +92,9 @@ class PagesController < ApplicationController
     redirect_to "https://s3.amazonaws.com/makeitreal/e-books/convertirte-en-desarrollador-web.pdf"
   end
 
+  def top
+  end
+
   def create_top_applicant
     TopApplicant.create!(top_applicant_params)
 

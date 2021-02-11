@@ -49,6 +49,7 @@
 @import "billing/charges";
 @import "top_program";
 @import "webinars";
+@import "loader";
 
 html, body {
   @media (max-width: $screen-sm-max) {

@@ -1,22 +1,72 @@
+countries = {
+  MX: {
+    country: "México",
+    currency: "MXN",
+    culturePayment: "$350",
+    scheme2Cost: "$42,500",
+    scheme3Cost: "$85,000",
+    scheme1Ceil: "$120,000",
+    scheme2Ceil: "$60,000",
+    salaryRange: "$21,200",
+    residency: "mexicano(a)"
+  },
+  CO: {
+    country: "Colombia",
+    currency: "COP",
+    culturePayment: '$50,000',
+    scheme2Cost: "$7.5M",
+    scheme3Cost: "$15M",
+    scheme1Ceil: "$21M",
+    scheme2Ceil: "$10.5M",
+    salaryRange: "$3.9M",
+    residency: "colombiano(a)"
+  }
+}
+
 class TopProgramView extends Backbone.View
+  el: '.top-program'
+
+  initialize: ->
+    $('.overlay').html('<div class="top-loading"><div class="loader">Loading...</div></div>').show()
+    $.getJSON("//ipinfo.io?token=dbb0f38cf907e8")
+      .done((response) =>
+        country = response.country
+        country = "MX" if country != "CO"
+
+        $('.overlay').hide()
+        currency = countries[country].currency
+
+        @.$("[data-holder='scheme-1-currency']").html(currency)
+        @.$("[data-holder='scheme-2-value']").html("#{countries[country].scheme2Cost} #{currency}")
+        @.$("[data-holder='scheme-3-value']").html("#{countries[country].scheme3Cost} #{currency}")
+        @.$("[data-holder='salary-range']").html("#{countries[country].salaryRange} #{currency}")
+        @.$("[data-holder='culture-payment']").html("#{countries[country].culturePayment} #{currency}")
+        @.$("[data-holder='ceil-scheme-1']").html("#{countries[country].scheme1Ceil} #{currency}")
+        @.$("[data-holder='ceil-scheme-2']").html("#{countries[country].scheme2Ceil} #{currency}")
+        @.$("[data-holder='residency']").html(countries[country].residency)
+        @.$('#country').val(country)
+        @.$('#mobile-code').html('+' + $('#country option:selected').data('code'))
+
+        @.$("#payment-method option[value='scheme-2']").text("Esquema 2 - #{countries[country].scheme2Cost} de entrada + 17% de ingresos (1 año y medio)")
+        @.$("#payment-method option[value='scheme-3']").text("Esquema 3 - #{countries[country].scheme3Cost} de entrada")
+      )
+
+  events: ->
+    "click .apply-now-btn": "show_registration"
+
+  show_registration: ->
+    new TopRegistrationView()
+
+class TopRegistrationView extends Backbone.View
   el: '#application-modal'
 
   initialize: ->
     @step = 1
+    @render()
 
   render: ->
     $(@el).on('shown.bs.modal', =>
-      $.getJSON("//ipinfo.io?token=dbb0f38cf907e8")
-        .done((response) =>
-          country = response.country
-          countries = $.map($('#country options'), (option) -> option.value )
-          if countries.indexOf(country)
-            @.$('#country').val(country)
-            @.$('#mobile-code').html('+' + $('#country option:selected').data('code'))
-          else
-            @.$('#country').val("")
-            @.$('#mobile-code').html('+00')
-        )
+
     ).modal()
 
   events: ->
