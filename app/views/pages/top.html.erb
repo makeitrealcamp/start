@@ -14,6 +14,7 @@
         <div class="col-md-6 intro-info">
           <h1>Programa TOP</h1>
           <p>Conviértete en desarrollador Web y móvil en un programa inmersivo (tiempo completo), remoto y <strong>sin costo</strong> hasta que encuentres un empleo</p>
+          <button type="button" class="pbtn pbtn-secondary apply-now-btn">Aplica Ahora</button>
         </div>
         <div class="col-md-6 intro-img">
           <%= image_tag "image-header-top.png", srcset: { "image-header-top@2x.png" => "2x", "image-header-top@3x.png" => "3x" } %>
@@ -221,10 +222,11 @@
           <div class="scheme-body">
             <div class="initial">
               <div class="initial-label">Valor inicial</div>
-              <div class="initial-value">COP$0</div>
+              <div class="initial-value">$0 <span data-holder="scheme-1-currency"></div>
             </div>
             <div class="plus">Al finalizar el programa</div>
-            <div class="shared-income"><strong>17%</strong> de tus ingresos salariales por <strong>3 años</strong> cuando encuentres empleo (tope de COP$21M)</div>
+            <div class="arrow-down"></div>
+            <div class="shared-income"><strong>17%</strong> de tus ingresos salariales por <strong>3 años</strong> cuando encuentres empleo (tope de <span data-holder="ceil-scheme-1"></span>)</div>
           </div>
         </div>
 
@@ -233,10 +235,11 @@
           <div class="scheme-body">
             <div class="initial">
               <div class="initial-label">Valor inicial</div>
-              <div class="initial-value">COP$7'500,000</div>
+              <div class="initial-value"><span data-holder="scheme-2-value"></span></div>
             </div>
             <div class="plus">Al finalizar el programa</div>
-            <div class="shared-income"><strong>17%</strong> de tus ingresos salariales por <strong>1 año y medio</strong> cuando encuentres empleo (tope de COP$10.5M)</div>
+            <div class="arrow-down"></div>
+            <div class="shared-income"><strong>17%</strong> de tus ingresos salariales por <strong>1.5 años</strong> cuando encuentres empleo (tope de <span data-holder="ceil-scheme-2"></span>)</div>
           </div>
         </div>
 
@@ -245,13 +248,15 @@
           <div class="scheme-body">
             <div class="initial">
               <div class="initial-label">Valor total</div>
-              <div class="initial-value">COP$15'000,000</div>
+              <div class="initial-value"><span data-holder="scheme-3-value"></div>
             </div>
-            <div class="plus">Único pago</div>
+            <div class="plus">Al finalizar el programa</div>
+            <div class="arrow-down"></div>
             <div class="shared-income">No realizarás pagos adicionales después del programa</div>
           </div>
         </div>
       </div>
+      <div class="scheme-footer">* La <strong>opción 1</strong> y <strong>opción 2</strong> sólo están disponibles para residentes <span data-holder="residency"></span>s</div>
     </div>
   </div>
 
@@ -411,29 +416,29 @@
 
           <div class="question">
             <h3>¿Existe algún costo que deba pagar durante el curso?</h3>
-            <p>Debes pagar la cultura de pago de COP$50,000 mensuales mientras estés durante el curso y mientras encuentras trabajo.</p>
+            <p>Debes pagar la cultura de pago de <span data-holder="culture-payment"></span> mensuales mientras estés durante el curso y mientras encuentras trabajo.</p>
           </div>
 
           <div class="question">
             <h3>¿Cuánto puedo aspirar a ganar cuando termine el programa?</h3>
-            <p>Depende de tus conocimientos previos. El salario promedio de un egresado es de $3'900,000 por contrato laboral, es decir, más prestaciones de ley.</p>
+            <p>Depende de tus conocimientos previos. El salario promedio de un egresado está en <span data-holder="salary-range"></span> por contrato laboral, es decir, más prestaciones de ley.</p>
           </div>
 
           <div class="question">
             <h3>Si decido no pagar el 100% de entrada ¿cuánto voy a pagar en total?</h3>
-            <p>Depende. Bajo el contrato de ingresos compartidos te comprometes a pagar el 17% de tus ingresos laborales por uno o dos años. Sin embargo, existe un límite máximo de COP$21,000,000.</p>
+            <p>Depende. Bajo el contrato de ingresos compartidos te comprometes a pagar el 17% de tus ingresos laborales por un año y medio o tres años. Sin embargo, existe un límite máximo de <span data-holder="ceil-scheme-2"></span> y <span data-holder="ceil-scheme-1"></span> respectivamente.</p>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="question">
             <h3>¿Puedo volver a aplicar si no soy aceptado(a)?</h3>
-            <p>Si. Puedes volver a aplicar después del tiempo determinado por el comité de selección.</p>
+            <p>Si. Puedes volver a aplicar.</p>
           </div>
 
           <div class="question">
             <h3>¿Cuáles son los requisitos para aplicar?</h3>
             <ul>
-              <li>Ser colombiano mayor de edad.</li>
+              <li>Ser <span data-holder="residency"></span> mayor de edad.</li>
               <li>Saber lo básico de HTML, CSS y JavaScript.</li>
               <li>Disponer del tiempo para dedicar al programa.</li>
               <li>Manejar un nivel intermedio de Inglés.</li>
@@ -442,7 +447,7 @@
           </div>
 
           <div class="question">
-            <h3>No soy colombiano. ¿Aún así puedo aplicar?</h3>
+            <h3>No soy residente <span data-holder="residency"></span>. ¿Aún así puedo aplicar?</h3>
             <p>Puedes aplicar. Sin embargo, si eres aceptado(a) tienes que pagar al menos el 50% para empezar y el restante durante el programa.</p>
           </div>
         </div>
@@ -489,8 +494,8 @@
               <p style="margin-top: 25px; margin-bottom: 18px;">Si no puedes pagar la totalidad del programa debes cumplir además con el siguiente requisito:</p>
               <ul>
                 <li>
-                  Eres residente colombiano(a) mayor de edad.
-                  <small>Debes poder trabajar en Colombia y vivir, o poderte trasladar, a alguna de las ciudades principales.</small>
+                  Eres residente <span data-holder="residency"></span> mayor de edad.
+                  <small>Debes poder trabajar en <span data-holder="country"></span> y vivir, o poderte trasladar, a alguna de las ciudades principales.</small>
                 </li>
               </ul>
               <div class="checkbox" style="margin-top: 30px;">
@@ -605,11 +610,6 @@
 
 <script type="text/javascript">
   $(document).on("turbolinks:load", function() {
-    var topProgramView = new TopProgramView();
-
-    $('.apply-now-btn').on('click', function(e) {
-      e.preventDefault();
-      topProgramView.render();
-    });
+    new TopProgramView();
   });
 </script>
