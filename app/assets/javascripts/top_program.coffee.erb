@@ -44,6 +44,7 @@ class TopProgramView extends Backbone.View
         @.$("[data-holder='ceil-scheme-1']").html("#{countries[country].scheme1Ceil} #{currency}")
         @.$("[data-holder='ceil-scheme-2']").html("#{countries[country].scheme2Ceil} #{currency}")
         @.$("[data-holder='residency']").html(countries[country].residency)
+        @.$("[data-holder='country']").html(countries[country].country)
         @.$('#country').val(country)
         @.$('#mobile-code').html('+' + $('#country option:selected').data('code'))
 
