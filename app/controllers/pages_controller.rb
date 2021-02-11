@@ -36,10 +36,11 @@ class PagesController < ApplicationController
   end
 
   def create_data_science_online_lead
+    suffix = ['MX', 'CO', 'PE'].include?(params['country']) ? params['country'].downcase : "other"
     data = {
       pid: cookies[:dp_pid],
       program: "Data Science Online",
-      event: "filled-data-science-online-form",
+      event: "filled-data-science-form-#{suffix}",
       first_name: params['first-name'],
       last_name: params['last-name'],
       email: params['email'],
