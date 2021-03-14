@@ -104,8 +104,61 @@
     </div>
   </div>
 
+  <a name="mentors"></a>
+  <div class="section section-white section-mentors">
+    <div class="container">
+      <h2>Nuestros Mentores</h2>
+
+      <div class="mentors-wrapper owl-carousel">
+        <div class="row">
+          <div class="col-md-5 col-md-offset-1">
+            <div class="profile-image text-center">
+              <%= image_tag "people/simon-hoyos.png" %>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="profile">
+              <h3>Simón Hoyos</h3>
+              <p>Apasionado por JavaScript y su ecosistema, co-organizador y speaker del <a href="https://www.meetup.com/React-Medellin/" target="_blank">Meetup React Medellín</a>.</p>
+            </div>
+          </div>
+        </div>
+
+        <%= render "pages/full_stack_js_mentors" %>
+
+        <div class="row">
+          <div class="col-md-5 col-md-offset-1">
+            <div class="profile-image text-center">
+              <%= image_tag "people/daniel-morales.jpg" %>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="profile">
+              <h3>Daniel Morales</h3>
+              <p>Apasionado del emprendimiento y la programación. Mentor en <a href="/">Make it Real</a>. Co-fundador y Data Scientist en <a href="https://datasource.ai/?ref=makeitreal" target="_blank">DataSource</a>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-5 col-md-offset-1">
+            <div class="profile-image text-center">
+              <%= image_tag "people/german-escobar.png" %>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="profile">
+              <h3>Germán Escobar</h3>
+              <p>Programador y emprendedor. Co-fundador de <a href="https://masiv.com/?ref=makeitreal" target="_blank">Elibom (ahora Masivian)</a> y fundador de <a href="/" target="_blank">Make it Real</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <%= render "pages/main_quote" %>
-  <%= render "pages/capture_email" %>
+  <%= render "pages/capture_email", light_bg: true %>
   <%= render "footer" %>
 </div>
 
