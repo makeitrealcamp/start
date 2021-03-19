@@ -152,6 +152,22 @@ class PagesController < ApplicationController
     redirect_to "/thanks-intro-to-js"
   end
 
+  def create_intro_to_js_lead_interacpedia_mintic
+    data = {
+      pid: cookies[:dp_pid],
+      program: "Intro to Java Script Interacpedia MinTic",
+      event: "filled-intro-to-js-form",
+      first_name: params['first-name'],
+      last_name: params['last-name'],
+      email: params['email'],
+      country: params['country'],
+      mobile: params['mobile'],
+      ip: request.remote_ip
+    }
+    CreateLeadJob.perform_later(data)
+    redirect_to "/thanks-intro-to-js-mintic"
+  end
+
   def create_intro_to_python_lead
     data = {
       pid: cookies[:dp_pid],

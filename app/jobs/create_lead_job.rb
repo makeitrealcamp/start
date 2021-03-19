@@ -9,6 +9,7 @@ class CreateLeadJob < ActiveJob::Base
     country = data[:country]
     mobile = data[:mobile]
     source = data[:source]
+    program = data[:program]
 
     person = { pid: pid, email: email, first_name: first_name, last_name: last_name,
         country_code: country, mobile: mobile, source: source }
