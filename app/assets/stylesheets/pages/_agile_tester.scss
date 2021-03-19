@@ -1,0 +1,96 @@
+.pages-layout .agile-tester {
+  .header-register .btn-register { background: $color-turquoise-blue; }
+
+  .intro .intro-info {
+    padding-top: 20px;
+
+    .pbtn {
+      background: $color-turquoise-blue;
+      margin-top: 20px;
+
+      @media(min-width: $screen-md-min) { margin-top: 30px; }
+    }
+  }
+
+  .section.target-audience {
+    background: asset-url('elementos-izquierda-1-fs.svg') bottom left/200px no-repeat,
+                asset-url('elementos-derecha-1-fs.svg') 100% 20%/30px no-repeat;
+    padding-bottom: 50px;
+
+    @media(min-width: $screen-sm-min) { background-size: 300px, 50px; }
+
+    h2 {
+      @media(min-width: $screen-sm-min) { padding-top: 120px; }
+    }
+
+    p.subhead { margin-bottom: 30px; }
+  }
+
+  .section.section-curriculum {
+    h2 {
+      color: $color-dark-blue;
+      text-align: left;
+    }
+
+    .program-module {
+      background: white;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+
+      .module-title {
+        padding: 20px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+
+        @media (min-width: $screen-md-min) {
+          float: left;
+          padding: 30px;
+          border-bottom: none;
+          width: 280px;
+        }
+
+        h4 {
+          float: none;
+          color: $brand_primary;
+          font-size: 1.2rem;
+          font-weight: normal;
+          text-align: left;
+          margin: 0;
+
+          @media(min-width: $screen-sm-min) { font-size: 1.1rem; }
+
+          small {
+            display: block;
+            color: #999;
+            font-size: 1rem;
+            margin-top: 7px;
+
+            @media(min-width: $screen-sm-min) { font-size: 0.9rem; }
+          }
+        }
+      }
+
+      .module-body {
+        padding: 20px;
+        text-align: left;
+        overflow: hidden;
+
+        @media (min-width: $screen-md-min) { padding: 30px; }
+
+        h5 {
+          color: $color-dark-blue;
+          font-size: 1rem;
+          font-weight: normal;
+          margin-top: 25px;
+        }
+
+        p {
+          font-size: 1rem;
+
+          @media(min-width: $screen-sm-min) { font-size: 0.85rem;}
+        }
+      }
+
+    }
+  }
+}

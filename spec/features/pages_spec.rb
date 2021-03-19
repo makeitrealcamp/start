@@ -24,6 +24,48 @@ RSpec.feature "Pages", type: :feature do
     expect(CreateLeadJob).to have_been_enqueued
   end
 
+  scenario "sign up to rails program", js: true do
+    ActionMailer::Base.deliveries.clear
+    visit ruby_on_rails_path
+
+    first('button.btn-register').click
+    expect(page).to have_css("#registration-modal")
+
+    within :css, "#registration-modal" do
+      fill_in "first-name", with: "Pedro"
+      fill_in "last-name", with: "Perez"
+      fill_in "email", with: "lead@example.com"
+      fill_in "mobile", with: "3111234567"
+      select "Google", from: "source"
+
+      find('button[type="submit"]').click
+    end
+
+    expect(current_path).to eq thanks_ruby_on_rails_path
+    expect(CreateLeadJob).to have_been_enqueued
+  end
+
+  scenario "sign up to agile tester program", js: true do
+    ActionMailer::Base.deliveries.clear
+    visit agile_tester_path
+
+    first('button.btn-register').click
+    expect(page).to have_css("#registration-modal")
+
+    within :css, "#registration-modal" do
+      fill_in "first-name", with: "Pedro"
+      fill_in "last-name", with: "Perez"
+      fill_in "email", with: "lead@example.com"
+      fill_in "mobile", with: "3111234567"
+      select "Google", from: "source"
+
+      find('button[type="submit"]').click
+    end
+
+    expect(current_path).to eq thanks_agile_tester_path
+    expect(CreateLeadJob).to have_been_enqueued
+  end
+
   scenario "sign up to data science program", js: true do
     ActionMailer::Base.deliveries.clear
     visit data_science_online_path
