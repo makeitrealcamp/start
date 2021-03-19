@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   get "full-stack-online/becas-mujeres", to: "pages#full_stack_becas_mujeres"
   get "full-stack-online/patrocina-una-beca", to: "pages#full_stack_sponsors"
   post "full-stack-becas-mujeres", to: "pages#create_fs_becas_mujeres_lead"
+  get "ruby-on-rails", to: 'pages#ruby_on_rails'
+  post "ruby-on-rails", to: 'pages#create_ruby_on_rails_lead'
+  get "agile-tester", to: 'pages#agile_tester'
+  post "agile-tester", to: 'pages#create_agile_tester_lead'
   get "full_stack_web_developer", to: redirect('/full-stack-online')
   get "curso-javascript-basico", to: redirect(ENV['javascript-course-url'] || "https://www.youtube.com/c/MakeitrealCamp1/live")
   get "introduccion-a-javascript", to: "pages#intro_to_js", as: :intro_to_js
@@ -24,8 +28,6 @@ Rails.application.routes.draw do
 
   get "top", to: "pages#top"
   get "elite", to: "pages#elite"
-  get "courses/nodejs-mongodb/medellin", to: "pages#nodejs_medellin"
-  get "courses/react-redux/medellin", to: "pages#react_medellin"
 
   post "application/top", to: "pages#create_top_applicant"
 
@@ -35,6 +37,8 @@ Rails.application.routes.draw do
   get "thanks-full-stack-online", to: "pages#thanks_online"
   get "thanks-top", to: "pages#thanks_top"
   get "thanks-data-science-online", to: "pages#thanks_online"
+  get "thanks-ruby-on-rails", to: "pages#thanks_online"
+  get "thanks-agile-tester", to: "pages#thanks_online"
   get "thanks-intro-to-js", to:"pages#thanks_online_innpulsa"
   get "thanks-intro-to-js-interacpedia", to:"pages#thanks_online_interacpedia_mintic"
   get "thanks-intro-to-python", to:"pages#thanks_online_innpulsa"

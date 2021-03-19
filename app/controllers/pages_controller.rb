@@ -136,6 +136,42 @@ class PagesController < ApplicationController
     @currency = params[:currency] || "COP"
   end
 
+  def create_ruby_on_rails_lead
+    suffix = ['MX', 'CO', 'PE'].include?(params['country']) ? params['country'].downcase : "other"
+    data = {
+      pid: cookies[:dp_pid],
+      program: "Ruby on Rails",
+      event: "filled-ruby-on-rails-form-#{suffix}",
+      first_name: params['first-name'],
+      last_name: params['last-name'],
+      email: params['email'],
+      country: params['country'],
+      mobile: params['mobile'],
+      source: params['source'],
+      ip: request.remote_ip
+    }
+    CreateLeadJob.perform_later(data)
+    redirect_to "/thanks-ruby-on-rails"
+  end
+
+  def create_agile_tester_lead
+    suffix = ['MX', 'CO', 'PE'].include?(params['country']) ? params['country'].downcase : "other"
+    data = {
+      pid: cookies[:dp_pid],
+      program: "Agile Tester",
+      event: "filled-application-tester-form-#{suffix}",
+      first_name: params['first-name'],
+      last_name: params['last-name'],
+      email: params['email'],
+      country: params['country'],
+      mobile: params['mobile'],
+      source: params['source'],
+      ip: request.remote_ip
+    }
+    CreateLeadJob.perform_later(data)
+    redirect_to "/thanks-agile-tester"
+  end
+
   def create_intro_to_js_lead
     data = {
       pid: cookies[:dp_pid],

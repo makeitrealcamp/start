@@ -1,0 +1,94 @@
+<%= render "og_header",
+      title: "Aprende Backend y desarrollo de Web APIs con Ruby on Rails y PostgreSQL",
+      description: "En este programa aprenderás a desarrollar a trabajar con el backend utilizando Ruby on Rails y PostgreSQL",
+      image_path: "01interna-programa.jpg" %>
+
+<div class="ruby-on-rails">
+  <%= render "layouts/navbar/pages_white", hide_login: true %>
+  <%= render "pages/header_register", btn_text: "¡Recibe la info!" %>
+
+  <div class="intro">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 intro-info">
+          <h1>Backend Developer con Ruby on Rails</h1>
+          <p>Aprenderás a diseñar, implementar y desplegar Web APIs robustas con Ruby on Rails.</p>
+          <button type="button" class="pbtn pbtn-primary btn-register">¡Recibe toda la Info!</button>
+        </div><!--/tagline-program -->
+
+        <div class="col-md-6">
+          <div class="program-info-box">
+            <div class="info-box-group">
+               <div>May 18, 2021</div>
+               <div class="info-box-label">Inicio</div>
+            </div>
+            <div class="info-box-group">
+               <div>5 meses</div>
+               <div class="info-box-label">Duración</div>
+            </div>
+            <div class="info-box-group">
+              <div>6pm a 9pm (-05)</div>
+              <div class="info-box-label">Martes y Jueves</div>
+            </div>
+
+            <div class="info-box-group info-box-location">
+              Remoto (videollamada)
+              <div class="info-box-label">Ubicación</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!--/row -->
+    </div><!--/container -->
+  </div><!--/program-intro -->
+
+  <%= render "ruby_on_rails_audience" %>
+
+  <%= render "full_stack_js_students" %>
+
+  <%= render "ruby_on_rails_curriculum" %>
+
+  <a name="mentors"></a>
+  <div class="section section-white section-mentors">
+    <div class="container">
+      <h2>Nuestros Mentores</h2>
+
+      <div class="mentors-wrapper owl-carousel">
+        <%= render "pages/full_stack_js_mentors" %>
+
+        <div class="row">
+          <div class="col-md-5 col-md-offset-1">
+            <div class="profile-image text-center">
+              <%= image_tag "people/german-escobar.png" %>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="profile">
+              <h3>Germán Escobar</h3>
+              <p>Programador y emprendedor. Co-fundador de <a href="https://masiv.com/?ref=makeitreal" target="_blank">Elibom (ahora Masivian)</a> y fundador de <a href="/" target="_blank">Make it Real</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= render "pages/capture_email" %>
+
+  <%= render "ruby_on_rails_faqs" %>
+
+  <%= render "footer" %>
+
+  <%= render "program_registration", action: "/ruby-on-rails" %>
+
+</div>
+
+<script type="text/javascript">
+  (function() {
+    var courseView = new CourseView({ el: '.ruby-on-rails' });
+
+    $(document).on("turbolinks:request-start", function() {
+      courseView.remove();
+    });
+  })();
+</script>

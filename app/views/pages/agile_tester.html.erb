@@ -1,0 +1,94 @@
+<%= render "og_header",
+      title: "En este programa aprenderás todo lo necesario para trabajar en el area de aseguramiento de calidad (QA) en empresas de software",
+      description: "Aprende a diseñar e implementar pruebas automatizadas con Jest, Cypress, trabajar con sistemas de integración continua y estándares para el aseguramiento de calidad",
+      image_path: "01interna-programa.jpg" %>
+
+<div class="agile-tester">
+  <%= render "layouts/navbar/pages_white", hide_login: true %>
+  <%= render "pages/header_register", btn_text: "¡Recibe la info!" %>
+
+  <div class="intro">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 intro-info">
+          <h1>Agile Software Tester (QA)</h1>
+          <p>Aprende a diseñar e implementar pruebas automatizadas y a garantizar la más alta calidad de las aplicaciones.</p>
+          <button type="button" class="pbtn pbtn-primary btn-register">¡Recibe toda la Info!</button>
+        </div><!--/tagline-program -->
+
+        <div class="col-md-6">
+          <div class="program-info-box">
+            <div class="info-box-group">
+               <div>May 18, 2021</div>
+               <div class="info-box-label">Inicio</div>
+            </div>
+            <div class="info-box-group">
+               <div>5 meses</div>
+               <div class="info-box-label">Duración</div>
+            </div>
+            <div class="info-box-group">
+              <div>6pm a 9pm (-05)</div>
+              <div class="info-box-label">Martes y Jueves</div>
+            </div>
+
+            <div class="info-box-group info-box-location">
+              Remoto (videollamada)
+              <div class="info-box-label">Ubicación</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!--/row -->
+    </div><!--/container -->
+  </div><!--/program-intro -->
+
+  <%= render "agile_tester_audience" %>
+
+  <%= render "full_stack_js_students" %>
+
+  <%= render "agile_tester_curriculum" %>
+
+  <a name="mentors"></a>
+  <div class="section section-white section-mentors">
+    <div class="container">
+      <h2>Nuestros Mentores</h2>
+
+      <div class="mentors-wrapper owl-carousel">
+        <%= render "pages/full_stack_js_mentors" %>
+
+        <div class="row">
+          <div class="col-md-5 col-md-offset-1">
+            <div class="profile-image text-center">
+              <%= image_tag "people/german-escobar.png" %>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="profile">
+              <h3>Germán Escobar</h3>
+              <p>Programador y emprendedor. Co-fundador de <a href="https://masiv.com/?ref=makeitreal" target="_blank">Elibom (ahora Masivian)</a> y fundador de <a href="/" target="_blank">Make it Real</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= render "pages/capture_email" %>
+
+  <%= render "agile_tester_faqs" %>
+
+  <%= render "footer" %>
+
+  <%= render "program_registration", action: "/agile-tester" %>
+
+</div>
+
+<script type="text/javascript">
+  (function() {
+    var courseView = new CourseView({ el: '.agile-tester' });
+
+    $(document).on("turbolinks:request-start", function() {
+      courseView.remove();
+    });
+  })();
+</script>
