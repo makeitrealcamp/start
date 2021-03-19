@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get "full_stack_web_developer", to: redirect('/full-stack-online')
   get "curso-javascript-basico", to: redirect(ENV['javascript-course-url'] || "https://www.youtube.com/c/MakeitrealCamp1/live")
   get "introduccion-a-javascript", to: "pages#intro_to_js", as: :intro_to_js
+  get "introduccion-a-javascript-mintic", to: "pages#intro_to_js_interacpedia_mintic", as: :intro_to_js_interacpedia_mintic
+  post "introduccion-a-javascript-mintic", to: "pages#create_intro_to_js_lead_interacpedia_mintic"
   post "introduccion-a-javascript", to: "pages#create_intro_to_js_lead"
   get "introduccion-a-python-para-data-science", to: "pages#intro_to_python"
   post "introduccion-a-python-para-data-science", to: "pages#create_intro_to_python_lead"
@@ -33,6 +35,7 @@ Rails.application.routes.draw do
   get "thanks-top", to: "pages#thanks_top"
   get "thanks-data-science-online", to: "pages#thanks_online"
   get "thanks-intro-to-js", to:"pages#thanks_online_innpulsa"
+  get "thanks-intro-to-js-mintic", to:"pages#thanks_online_interacpedia_mintic"
   get "thanks-intro-to-python", to:"pages#thanks_online_innpulsa"
   get "thanks-fs-becas-mujeres", to:"pages#thanks_online"
 
