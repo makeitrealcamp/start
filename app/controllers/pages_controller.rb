@@ -156,7 +156,7 @@ class PagesController < ApplicationController
     data = {
       pid: cookies[:dp_pid],
       program: "Intro to Java Script Interacpedia MinTic",
-      event: "filled-intro-to-js-form",
+      event: "filled-intro-to-js-form-interacpedia-mintic",
       first_name: params['first-name'],
       last_name: params['last-name'],
       email: params['email'],
