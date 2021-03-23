@@ -30,6 +30,17 @@
     }
   }
 
+  .government-logo-interacpedia img {
+      width: 20%;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      margin-left: 15px;
+
+      @media (min-width: $screen-md-min) {
+        width: 70%;
+      }
+    }
+
   .section.target-audience {
     background: asset-url("elementos-izquierda-intro-js") bottom left/200px no-repeat,
                 asset-url("elementos-derecha-intro-js") 100% 20%/30px no-repeat;
