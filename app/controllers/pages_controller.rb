@@ -152,6 +152,10 @@ class PagesController < ApplicationController
     redirect_to "/thanks-intro-to-js"
   end
 
+  def redirect_to_js_interacpedia
+    redirect_to "/introduccion-a-javascript-interacpedia"
+  end
+
   def create_intro_to_js_lead_interacpedia_mintic
     data = {
       pid: cookies[:dp_pid],
@@ -165,7 +169,7 @@ class PagesController < ApplicationController
       ip: request.remote_ip
     }
     CreateLeadJob.perform_later(data)
-    redirect_to "/thanks-intro-to-js-mintic"
+    redirect_to "/thanks-intro-to-js-interacpedia"
   end
 
   def create_intro_to_python_lead
