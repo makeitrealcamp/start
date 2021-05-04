@@ -15,7 +15,7 @@
 #  updated_at :datetime         not null
 #
 
-class TopApplicant < Applicant
+class InnovateApplicant < Applicant
   enum status: [:applied, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :accepted, :enrolled, :not_enrolled, :rejected]
 
   before_create :generate_uid
@@ -26,14 +26,11 @@ class TopApplicant < Applicant
     accepted_terms: :boolean,
     birthday: :string,
     gender: :string,
-    skype: :string,
-    twitter: :string,
-    url: :string,
+    linkedin: :string,
     goal: :string,
     experience: :string,
-    typical_day: :string,
-    vision: :string,
     additional: :string,
+    format: :string,
     payment_method: :string
 
   def self.model_name

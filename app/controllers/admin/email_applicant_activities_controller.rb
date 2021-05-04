@@ -2,12 +2,12 @@ class Admin::EmailApplicantActivitiesController < ApplicationController
   before_action :admin_access
 
   def new
-    applicant = TopApplicant.find(params[:top_applicant_id])
+    applicant = Applicant.find(params[:applicant_id])
     @activity = applicant.email_activities.build
   end
 
   def create
-    applicant = TopApplicant.find(params[:top_applicant_id])
+    applicant = Applicant.find(params[:applicant_id])
     @activity = applicant.email_activities.create(activity_params)
 
     if @activity.valid?

@@ -1,18 +1,18 @@
 <div class="applicants-page">
   <div class="container">
-    <h1>Programa TOP</h1>
+    <h1>Programa Innóvate Perú</h1>
     <div class="row">
       <div class="col-sm-3">
         <ul class="list-group">
-          <% TopApplicant.statuses.keys.each do |status| %>
-            <li class="list-group-item"><%= status_to_human(status).capitalize %> <span class="badge badge-primary badge-pill"><%= TopApplicant.where(status: TopApplicant.statuses[status]).count %></span></li>
+          <% InnovateApplicant.statuses.keys.each do |status| %>
+            <li class="list-group-item"><%= status_to_human(status).capitalize %> <span class="badge badge-primary badge-pill"><%= InnovateApplicant.where(status: InnovateApplicant.statuses[status]).count %></span></li>
           <% end %>
         </ul>
          <div><%= link_to "Administrar plantillas", admin_email_templates_path %></div>
       </div>
       <div class="col-sm-9">
         <div class="filters">
-          <form action="/admin/top_applicants" class="search-form">
+          <form action="/admin/innovate_applicants" class="search-form">
             <div class="form-group has-feedback">
               <label for="search" class="sr-only">Buscar</label>
               <input type="text" class="form-control" name="q" id="search-input" placeholder="Buscar por nombre o email" value="<%= params[:q] %>">
@@ -23,10 +23,10 @@
           <div class="dropdown">
             <a role="button" data-toggle="dropdown" class="btn btn-default" data-target="#" href="/page.html"><%= params[:status].present? ? params[:status] : "Filtrar por estado" %> <span class="caret"></span> </a>
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-              <li><a href="/admin/top_applicants">Todos</a></li>
+              <li><a href="/admin/innovate_applicants">Todos</a></li>
               <li>
-                <% TopApplicant.statuses.keys.each do |status| %>
-                  <a href="/admin/top_applicants?status=<%= status %>"><%= status_to_human(status).capitalize %></a>
+                <% InnovateApplicant.statuses.keys.each do |status| %>
+                  <a href="/admin/innovate_applicants?status=<%= status %>"><%= status_to_human(status).capitalize %></a>
                 <% end %>
               </li>
             </ul>
@@ -47,7 +47,7 @@
                   <div class="cell-detail"><%= applicant.updated_at.strftime("%b %d %I:%M %p")%></div>
                   <div class="cell-detail"><%= applicant.note_activities.count %> notas</div>
                 </td>
-                <td class="cell-action text-center"><%=link_to '<span class="glyphicon glyphicon-search"></span>'.html_safe, admin_top_applicant_path(applicant.id), class: "btn btn-primary"%></td>
+                <td class="cell-action text-center"><%=link_to '<span class="glyphicon glyphicon-search"></span>'.html_safe, admin_innovate_applicant_path(applicant.id), class: "btn btn-primary"%></td>
               </tr>
             <% end %>
           </tbody>

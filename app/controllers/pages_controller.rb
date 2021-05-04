@@ -126,6 +126,37 @@ class PagesController < ApplicationController
     redirect_to "/thanks-top"
   end
 
+  def create_innovate_applicant
+    InnovateApplicant.create!(innovate_applicant_params)
+
+    data = {
+      name: "filled-innovate-application",
+      person: {
+        pid: cookies[:dp_pid],
+        email: top_applicant_params[:email],
+        first_name: top_applicant_params[:first_name],
+        last_name: top_applicant_params[:last_name],
+        birthday: top_applicant_params[:birthday],
+        country_code: top_applicant_params[:country],
+        mobile: top_applicant_params[:mobile]
+      },
+      metadata: {
+        linkedin: top_applicant_params[:url],
+        ip: request.remote_ip,
+        goal: top_applicant_params[:goal],
+        experience: top_applicant_params[:experience],
+        typical_day: top_applicant_params[:typical_day],
+        vision: top_applicant_params[:vision],
+        more_info: top_applicant_params[:additional]
+      }
+    }
+    ConvertLoopJob.perform_later(data)
+    AdminMailer.new_lead("Innovate", data[:person][:first_name], data[:person][:last_name], data[:person][:email], data[:person][:country_code],
+        data[:person][:mobile], "").deliver_later
+
+    redirect_to "/thanks-innovate"
+  end
+
   def full_stack_online_seat
     @course = Billing::Charge::COURSES[:fullstack]
     @currency = params[:currency] || "COP"
@@ -254,6 +285,10 @@ class PagesController < ApplicationController
     end
 
     def top_applicant_params
-      params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :url, :goal, :experience, :typical_day, :vision, :additional, :payment_method)
+      params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :url, :goal, :experience, :additional, :payment_method)
+    end
+
+    def innovate_applicant_params
+      params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :linkedin, :goal, :experience, :additional, :format)
     end
 end
