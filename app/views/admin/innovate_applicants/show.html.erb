@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1">
         <div class="top-actions">
-          <%= link_to "&larr; Volver a las aplicaciones".html_safe, admin_top_applicants_path %>
+          <%= link_to "&larr; Volver a las aplicaciones".html_safe, admin_innovate_applicants_path %>
         </div>
 
         <div class="applicant-wrapper">
@@ -24,11 +24,6 @@
                 </div>
 
                 <div class="applicant-detail">
-                  <div class="detail-label">País:</div>
-                  <div class="detail-value"><%= @applicant.country %></div>
-                </div>
-
-                <div class="applicant-detail">
                   <div class="detail-label">Fecha de nacimiento:</div>
                   <div class="detail-value"><%= @applicant.birthday %></div>
                 </div>
@@ -44,18 +39,8 @@
                 </div>
 
                 <div class="applicant-detail">
-                  <div class="detail-label">Skype:</div>
-                  <div class="detail-value"><%= @applicant.skype %></div>
-                </div>
-
-                <div class="applicant-detail">
-                  <div class="detail-label">Twitter:</div>
-                  <div class="detail-value"><%= @applicant.twitter %></div>
-                </div>
-
-                <div class="applicant-detail">
-                  <div class="detail-label">Url:</div>
-                  <div class="detail-value"><%= @applicant.url %></div>
+                  <div class="detail-label">LinkedIn:</div>
+                  <div class="detail-value"><%= @applicant.linkedin %></div>
                 </div>
               </div>
             </div>
@@ -65,8 +50,8 @@
               </div>
               <div class="applicant-details">
                 <div class="applicant-detail">
-                  <div class="detail-label">Esquema de pago</div>
-                  <div class="detail-value"><%= payment_method_to_human(@applicant.payment_method) %></div>
+                  <div class="detail-label">Modalidad</div>
+                  <div class="detail-value"><%= format_to_human(@applicant.format) %></div>
                 </div>
 
                 <div class="applicant-detail">
@@ -77,16 +62,6 @@
                 <div class="applicant-detail">
                   <div class="detail-label">Experiencia</div>
                   <div class="detail-value"><%= @applicant.experience %></div>
-                </div>
-
-                <div class="applicant-detail">
-                  <div class="detail-label">Día típico</div>
-                  <div class="detail-value"><%= @applicant.typical_day %></div>
-                </div>
-
-                <div class="applicant-detail">
-                  <div class="detail-label">Visión (5 años)</div>
-                  <div class="detail-value"><%= @applicant.vision %></div>
                 </div>
 
                 <div class="applicant-detail">
@@ -102,7 +77,7 @@
                 <%= link_to "Enviar Email", new_admin_applicant_email_applicant_activity_path(@applicant), class: "btn btn-link", remote: true %>
               </div>
 
-              <%= form_for [:admin, @applicant, NoteApplicantActivity.new], remote: true do |f| %>
+              <%= form_for NoteApplicantActivity.new, url: admin_applicant_note_applicant_activities_path(@applicant), remote: true do |f| %>
                 <div class="form-group">
                   <%= f.text_area :body, id:"activity-value", class:"form-control", placeholder: "Ingresa una nota" %>
                 </div>

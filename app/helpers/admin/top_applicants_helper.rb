@@ -11,6 +11,16 @@ module Admin::TopApplicantsHelper
     end
   end
 
+  def format_to_human(format)
+    if format == "format-full"
+      "Tiempo completo"
+    elsif format == "format-partial"
+      "Tiempo parcial"
+    else
+      "Sin definir"
+    end
+  end
+
   def status_to_human(status)
     mappings = {
       applied: "aplicó",

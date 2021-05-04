@@ -2,7 +2,7 @@ class Admin::NoteApplicantActivitiesController < ApplicationController
   before_action :admin_access
 
   def create
-    applicant = TopApplicant.find(params[:top_applicant_id])
+    applicant = Applicant.find(params[:applicant_id])
     @activity = applicant.note_activities.create(note_params)
   end
 

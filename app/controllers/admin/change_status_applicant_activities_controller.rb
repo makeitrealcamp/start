@@ -2,12 +2,12 @@ class Admin::ChangeStatusApplicantActivitiesController < ApplicationController
   before_action :admin_access
 
   def new
-    applicant = TopApplicant.find(params[:top_applicant_id])
+    applicant = Applicant.find(params[:applicant_id])
     @activity = applicant.change_status_activities.build
   end
 
   def create
-    applicant = TopApplicant.find(params[:top_applicant_id])
+    applicant = Applicant.find(params[:applicant_id])
     applicant.update(status: activity_params[:to_status])
 
     data = { user: current_user, from_status: applicant.status }

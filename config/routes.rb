@@ -27,15 +27,18 @@ Rails.application.routes.draw do
   get "data-science-online/cupo", to: "pages#data_science_online_seat"
 
   get "top", to: "pages#top"
+  get "innovate-peru", to: "pages#innovate_peru"
   get "elite", to: "pages#elite"
 
   post "application/top", to: "pages#create_top_applicant"
+  post "application/innovate-peru", to: "pages#create_innovate_applicant"
 
   get "faq", to: "pages#faq"
   get "makers", to: "pages#makers"
 
   get "thanks-full-stack-online", to: "pages#thanks_online"
   get "thanks-top", to: "pages#thanks_top"
+  get "thanks-innovate", to: "pages#thanks_top"
   get "thanks-data-science-online", to: "pages#thanks_online"
   get "thanks-ruby-on-rails", to: "pages#thanks_online"
   get "thanks-agile-tester", to: "pages#thanks_online"
@@ -201,12 +204,17 @@ Rails.application.routes.draw do
       post 'assign_points', on: :member
     end
 
-    resources :top_applicants do
+    resources :top_applicants, only: [:index, :show]
+    resources :innovate_applicants, only: [:index, :show]
+
+    resources :applicants, only: [] do
       resources :note_applicant_activities, only: [:create]
       resources :change_status_applicant_activities, only: [:new, :create]
       resources :email_applicant_activities, only: [:new, :create]
     end
     resources :top_applicant_tests, only: [:show]
+    resources :innovate_applicant_tests, only: [:show]
+
     resources :email_templates
     resources :charges
 

@@ -17,13 +17,19 @@
 
 FactoryGirl.define do
   factory :applicant do
-    type ""
-email "MyString"
-first_name "MyString"
-last_name "MyString"
-country_code "MyString"
-mobile "MyString"
-status 1
+     email      "joshua@one.com"
+     first_name "joshua"
+     last_name  "prpich"
+     country    "COL"
+     mobile     3224567756
+     status     0
   end
 
+  factory :top_applicant, parent: :applicant, class: "TopApplicant" do
+
+  end
+
+  factory :innovate_applicant, parent: :applicant, class: "InnovateApplicant" do
+
+  end
 end
