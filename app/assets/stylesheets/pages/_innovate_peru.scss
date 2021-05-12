@@ -121,7 +121,7 @@
       justify-content: space-around;
       margin-top: 40px;
 
-      @media (min-width: $screen-sm-min) {
+      @media (min-width: $screen-md-min) {
         flex-direction: row;
         align-items: stretch;
       }
@@ -129,9 +129,11 @@
 
     .format {
       background: white;
-      border-radius: 10px;
       margin: 0 auto;
-      width: 400px;
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 50px;
+      border-radius: 10px;
       box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, 0.2);
 
       .format-header {
@@ -170,102 +172,6 @@
           margin-top: 0;
         }
       }
-    }
-  }
-
-  .section-schemes {
-    background: asset-url('elementos-izquierda-2-top.svg') top left/200px no-repeat,
-                asset-url('elementos-derecha-2-top.svg') bottom right/200px no-repeat,
-                white;
-
-    @media(min-width: $screen-sm-min) { background-size: 200px, 200px; }
-    @media(min-width: $screen-md-min) { background-size: 250px, 250px; }
-
-    h2 {
-      color: $color-orange;
-      font-weight: normal;
-      text-align: center;
-    }
-
-    .schemes {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: center;
-      flex-wrap: wrap;
-
-      @media (min-width: $screen-sm-min) {
-        flex-direction: row;
-        align-items: stretch;
-      }
-
-      .arrow-down {
-        position: relative;
-        left: calc(50% - 15px);
-        width: 0;
-        height: 0;
-        border-left: 15px solid transparent;
-        border-right: 15px solid transparent;
-
-        border-top: 15px solid $color-light-blue;
-      }
-
-      .scheme {
-        text-align: center;
-        width: 100%;
-        max-width: 300px;
-        margin-bottom: 40px;
-
-        header {
-          color: $color-grey;
-          font-size: 0.9rem;
-          font-style: italic;
-          margin-bottom: 18px;
-        }
-
-        .scheme-body {
-          box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, 0.2);
-          border-radius: 20px;
-
-          .initial {
-            background: $color-dark-blue;
-            color: white;
-            padding: 20px 0;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-
-            .initial-label {
-              font-size: 0.9rem;
-              padding-top: 10px;
-            }
-
-            .initial-value {
-              font-size: 1.3rem;
-              font-weight: 600;
-              margin-top: 10px;
-            }
-          }
-
-          .plus {
-            background: $color-light-blue;
-            color: white;
-            font-size: 0.9rem;
-            padding: 18px 0;
-          }
-
-          .shared-income {
-            color: $color-grey;
-            line-height: 1.6;
-            padding: 10px 20px 20px;
-          }
-        }
-      }
-    }
-
-    .scheme-footer {
-      margin-top: 40px;
-      color: $color-grey;
-      text-align: center;
     }
   }
 
