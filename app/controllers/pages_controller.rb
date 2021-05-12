@@ -129,8 +129,11 @@ class PagesController < ApplicationController
   def create_innovate_applicant
     InnovateApplicant.create!(innovate_applicant_params)
 
+    format = top_applicant_params[:format]
+    suffix = format == "format-full" ? "full" : "partial"
+
     data = {
-      name: "filled-innovate-application",
+      name: "filled-innovate-application-#{suffix}",
       person: {
         pid: cookies[:dp_pid],
         email: top_applicant_params[:email],
@@ -147,8 +150,7 @@ class PagesController < ApplicationController
         experience: top_applicant_params[:experience],
         typical_day: top_applicant_params[:typical_day],
         vision: top_applicant_params[:vision],
-        more_info: top_applicant_params[:additional],
-        format: top_applicant_params[:format]
+        more_info: top_applicant_params[:additional]
       }
     }
     ConvertLoopJob.perform_later(data)
