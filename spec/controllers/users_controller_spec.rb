@@ -1,3 +1,26 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  email           :string(100)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  last_active_at  :datetime
+#  profile         :hstore
+#  status          :integer
+#  settings        :hstore
+#  account_type    :integer
+#  nickname        :string
+#  level_id        :integer
+#  password_digest :string
+#  access_type     :integer          default("slack")
+#  current_points  :integer          default(0)
+#
+# Indexes
+#
+#  index_users_on_level_id  (level_id)
+#
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do

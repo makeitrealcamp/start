@@ -11,7 +11,7 @@
 #  row                   :integer
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
-#  difficulty_bonus      :integer          default("0")
+#  difficulty_bonus      :integer          default(0)
 #
 # Indexes
 #

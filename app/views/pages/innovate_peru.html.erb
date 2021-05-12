@@ -7,7 +7,7 @@
 
 <div class="innovate-program">
   <div class="intro">
-    <%= render "layouts/navbar/pages_white" %>
+    <%= render "layouts/navbar/pages_white", hide_login: true, hide_programs: true, show_apply: true %>
 
     <div class="container">
       <div class="row">
@@ -134,7 +134,7 @@
               <div class="format-body">
                 <div class="format-item">
                   <div class="format-label">Fecha Inicio</div>
-                  <div class="format-value">Jun 10, 2021</div>
+                  <div class="format-value">Jun 20, 2021</div>
                 </div>
                 <div class="format-item">
                   <div class="format-label">Duración</div>
@@ -155,7 +155,7 @@
               <div class="format-body">
                 <div class="format-item">
                   <div class="format-label">Fecha Inicio</div>
-                  <div class="format-value">Jun 10, 2021</div>
+                  <div class="format-value">Jun 20, 2021</div>
                 </div>
                 <div class="format-item">
                   <div class="format-label">Duración</div>
@@ -324,19 +324,7 @@
       <h2>Nuestros mentores</h2>
 
       <div class="mentors-wrapper owl-carousel">
-        <div class="row">
-          <div class="col-md-5 col-md-offset-1">
-            <div class="profile-image text-center">
-              <%= image_tag "people/german-escobar.png" %>
-            </div>
-          </div>
-          <div class="col-md-5">
-            <div class="profile">
-              <h3>Germán Escobar</h3>
-              <p>Programador y emprendedor. Fundador de <a href="http://www.makeitreal.camp/" target="_blank">Make it Real</a> y co-fundador de <a href="http://masiv.com/?ref=makeitreal" target="_blank">Elibom (ahora Masivian)</a>.</p>
-            </div>
-          </div>
-        </div>
+        <%= render "pages/full_stack_js_mentors" %>
 
         <div class="row">
           <div class="col-md-5 col-md-offset-1">
@@ -348,6 +336,20 @@
             <div class="profile">
               <h3>Simón Hoyos</h3>
               <p>Apasionado por JavaScript y su ecosistema, co-organizador y speaker del <a href="https://www.meetup.com/React-Medellin/" target="_blank">Meetup React Medellín</a>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-5 col-md-offset-1">
+            <div class="profile-image text-center">
+              <%= image_tag "people/german-escobar.png" %>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="profile">
+              <h3>Germán Escobar</h3>
+              <p>Programador y emprendedor. Fundador de <a href="http://www.makeitreal.camp/" target="_blank">Make it Real</a> y co-fundador de <a href="http://masiv.com/?ref=makeitreal" target="_blank">Elibom (ahora Masivian)</a>.</p>
             </div>
           </div>
         </div>
@@ -368,17 +370,17 @@
         <div class="col-sm-6">
           <div class="question">
             <h3>¿Cómo aplico a la beca?</h3>
-            <p></p>
+            <p>Tenemos un número limitado de becas que entregaremos en el orden en que las personas sean aceptadas. Entre antes apliques y completes el proceso de selección, mayor la probabilidad de recibir una beca.</p>
           </div>
 
           <div class="question">
             <h3>¿En qué lugar se dictan las clases?</h3>
-            <p>El programa es completamente remoto y las charlas se realizan a través de video llamada.</p>
+            <p>El programa es completamente remoto y las clases se realizan a través de video llamada.</p>
           </div>
 
           <div class="question">
             <h3>¿Cuánto puedo aspirar a ganar cuando termine el programa?</h3>
-            <p>Depende de tus conocimientos previos. El salario promedio de un egresado está en S/5,500 por contrato laboral, es decir, más prestaciones de ley.</p>
+            <p>Depende de tus conocimientos previos. El salario promedio de un egresado está en S/5,500 incluyendo prestaciones sociales de ley.</p>
           </div>
         </div>
         <div class="col-sm-6">
@@ -390,17 +392,18 @@
           <div class="question">
             <h3>¿Cuáles son los requisitos para aplicar?</h3>
             <ul>
-              <li>Ser residente <span data-holder="residency"></span> mayor de edad.</li>
-              <li>Saber lo básico de HTML, CSS y JavaScript.</li>
+              <li>Ser nacional o residente peruano mayor de edad.</li>
+              <li>Contar con educación secundaria completa.</li>
+              <li>Tener conocimientos básicos de programación. Debes saber conceptos como variables, ciclos, condicionales, arreglos y funciones (en cualquier lenguaje), y entender cómo funcionan.</li>
               <li>Disponer del tiempo para dedicar al programa.</li>
-              <li>Manejar un nivel intermedio de Inglés.</li>
+              <li>Manejar un nivel básico de Inglés.</li>
               <li>Contar con un computador personal y conexión a Internet.</li>
             </ul>
           </div>
 
           <div class="question">
             <h3>No soy residente peruano. ¿Aún así puedo aplicar?</h3>
-            <p>Este programa es sólo para residentes peruanos. Sin embargo, te invitamos a conocer nuestro <%= link_to "Programa TOP", top_path %>.</p>
+            <p>Este programa es sólo para nacionales y residentes peruanos. Sin embargo, te invitamos a conocer nuestro <%= link_to "Programa TOP", top_path %>.</p>
           </div>
         </div>
       </div>
@@ -431,16 +434,19 @@
               <p style="margin-bottom: 18px;"><strong>¡Gracias por tu interés en el programa Desarrollo Full Stack con el apoyo de Innóvate Perú!</strong> Antes de empezar asegúrate que cumples con los siguientes requisitos:</p>
               <ul>
                 <li>
+                  Eres nacional o residente peruano mayor de edad.
+                  <small>Debes poder trabajar en Perú.</small>
+                </li>
+                <li>
+                  Cuentas con al menos educación básica secundaria completa.
+                </li>
+                <li>
                   Tienes la lógica de programación.
-                  <small>Conoces conceptos de programación como variables, condicionales, iteraciones, arreglos y funciones, entre otros.</small>
+                  <small>Conoces conceptos de programación como variables, condicionales, ciclos, arreglos y funciones, entre otros.</small>
                 </li>
                 <li>
                   Dispones del tiempo para realizar el programa.
                   <small>Conoces las modalidades, duración y los horarios, y dispones del tiempo.</small>
-                </li>
-                <li>
-                  Eres residente peruano mayor de edad.
-                  <small>Debes poder trabajar en Perú.</small>
                 </li>
                 <li>
                   Manejas un nivel básico de Inglés.
