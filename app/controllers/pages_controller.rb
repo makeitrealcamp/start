@@ -147,7 +147,8 @@ class PagesController < ApplicationController
         experience: top_applicant_params[:experience],
         typical_day: top_applicant_params[:typical_day],
         vision: top_applicant_params[:vision],
-        more_info: top_applicant_params[:additional]
+        more_info: top_applicant_params[:additional],
+        format: top_applicant_params[:format]
       }
     }
     ConvertLoopJob.perform_later(data)

@@ -1,0 +1,35 @@
+<span class="secret-code" style="display: none;"><%= @secret_code %></span>
+<div class="top-challenge-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <div class="logo-wrapper">
+          <%= image_tag "logo-black.png" %>
+        </div>
+        <div class="box">
+          <div class="box-header <%= @invalid_code ? "error" : "info" %>">PRUEBA TÉCNICA</div>
+          <div class="box-body">
+            <p>Hola <%= @applicant.first_name %>,</p>
+            <p>Para acceder a la prueba técnica deberás buscar un código secreto que se encuentra escondido en el código HTML de esta página, dentro de un <code>span</code> con clase <code>secret-code</code>.</p>
+            <p>Inspecciona la página y, una vez lo encuentres, ingrésalo en el siguiente campo:</p>
+
+            <form action="/innovate-peru/challenge" method="post" class="text-center">
+              <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+              <input type="hidden" name="uid" value="<%= @applicant.uid %>">
+              <div class="form-group <%= "has-error" if @invalid_code %>">
+                <input type="text" name="code" class="form-control input-lg text-center" autofocus>
+                <% if @invalid_code %>
+                  <div class="help-block">Código inválido, intenta nuevamente</div>
+                <% end %>
+              </div>
+
+              <div class="actions">
+                <button type="submit" class="btn btn-primary">Validar Código</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

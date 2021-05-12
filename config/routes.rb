@@ -72,6 +72,14 @@ Rails.application.routes.draw do
     get :submitted, to: "top_program#submitted"
   end
 
+  scope 'innovate-peru', as: "innovate_program" do
+    get :challenge, to: "innovate_program#challenge"
+    post :challenge, to: "innovate_program#submit_challenge"
+    get :test, to: "innovate_program#test"
+    post :test, to: "innovate_program#submit_test"
+    get :submitted, to: "innovate_program#submitted"
+  end
+
   resources :interviews, only: [:new, :create] do
     get :challenge, on: :collection
     post :submit_challenge, on: :collection

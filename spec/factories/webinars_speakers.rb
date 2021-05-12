@@ -7,7 +7,7 @@
 #  name       :string           not null
 #  avatar_url :string
 #  bio        :string
-#  external   :boolean          default("false")
+#  external   :boolean          default(FALSE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
