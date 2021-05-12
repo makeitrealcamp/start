@@ -129,28 +129,29 @@ class PagesController < ApplicationController
   def create_innovate_applicant
     InnovateApplicant.create!(innovate_applicant_params)
 
-    format = top_applicant_params[:format]
+    format = innovate_applicant_params[:format]
+    p format
     suffix = format == "format-full" ? "full" : "partial"
 
     data = {
       name: "filled-innovate-application-#{suffix}",
       person: {
         pid: cookies[:dp_pid],
-        email: top_applicant_params[:email],
-        first_name: top_applicant_params[:first_name],
-        last_name: top_applicant_params[:last_name],
-        birthday: top_applicant_params[:birthday],
-        country_code: top_applicant_params[:country],
-        mobile: top_applicant_params[:mobile]
+        email: innovate_applicant_params[:email],
+        first_name: innovate_applicant_params[:first_name],
+        last_name: innovate_applicant_params[:last_name],
+        birthday: innovate_applicant_params[:birthday],
+        country_code: innovate_applicant_params[:country],
+        mobile: innovate_applicant_params[:mobile]
       },
       metadata: {
-        linkedin: top_applicant_params[:url],
+        linkedin: innovate_applicant_params[:url],
         ip: request.remote_ip,
-        goal: top_applicant_params[:goal],
-        experience: top_applicant_params[:experience],
-        typical_day: top_applicant_params[:typical_day],
-        vision: top_applicant_params[:vision],
-        more_info: top_applicant_params[:additional]
+        goal: innovate_applicant_params[:goal],
+        experience: innovate_applicant_params[:experience],
+        typical_day: innovate_applicant_params[:typical_day],
+        vision: innovate_applicant_params[:vision],
+        more_info: innovate_applicant_params[:additional]
       }
     }
     ConvertLoopJob.perform_later(data)

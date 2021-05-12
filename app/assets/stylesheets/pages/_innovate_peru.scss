@@ -343,6 +343,27 @@
     }
   }
 
+  .format-modal {
+    h3 {
+      font-family: $font-family-sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+
+      small {
+        display: block;
+        margin-top: 15px;
+        margin-left: 15px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+
+    .formats p {
+      margin-left: 15px;
+      line-height: 1.6;
+    }
+  }
+
   #application-modal {
     .modal-body {
       color: #555;
