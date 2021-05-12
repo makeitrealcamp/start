@@ -6,7 +6,8 @@ class InnovateProgramView extends Backbone.View
   events: ->
     "click .apply-now-btn": "show_registration"
 
-  show_registration: ->
+  show_registration: (e) ->
+    e.preventDefault()
     new InnovateRegistrationView()
 
 class InnovateRegistrationView extends Backbone.View
