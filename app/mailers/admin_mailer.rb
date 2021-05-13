@@ -33,4 +33,12 @@ class AdminMailer < ApplicationMailer
 
     mail to: "german.escobar@makeitreal.camp", subject: "[Top Program] Test submitted"
   end
+
+  def innovate_test_submitted(applicant)
+    @email = applicant.email
+    @first_name = applicant.first_name
+    @last_name = applicant.last_name
+
+    mail to: "german.escobar@makeitreal.camp", subject: "[Innóvate Perú] Test submitted"
+  end
 end
