@@ -19,4 +19,6 @@ class InnovateApplicantTest < ApplicationRecord
   belongs_to :applicant
 
   validates :applicant, :a1, :a2, :a3, presence: true
+
+  enum lang: [:javascript, :ruby, :python, :php, :java, :cplus, :csharp]
 end

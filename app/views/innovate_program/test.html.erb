@@ -18,13 +18,13 @@
               <div class="form-group" style="margin-top: 40px;">
                 <label for="lang">Selecciona el lenguaje de programación:</label>
                 <select name="innovate_applicant_test[lang]" id="lang" class="form-control">
-                  <option value="0" data-lang="javascript">JavaScript</option>
-                  <option value="1" data-lang="ruby">Ruby</option>
-                  <option value="2" data-lang="python">Python</option>
-                  <option value="3" data-lang="php">PHP</option>
-                  <option value="4" data-lang="java">Java</option>
-                  <option value="5" data-lang="c++">C++</option>
-                  <option value="6" data-lang="csharp">C#</option>
+                  <option value="javascript" >JavaScript</option>
+                  <option value="ruby">Ruby</option>
+                  <option value="python">Python</option>
+                  <option value="php">PHP</option>
+                  <option value="java">Java</option>
+                  <option value="cplus">C++</option>
+                  <option value="csharp">C#</option>
                 </select>
               </div>
 
@@ -201,7 +201,7 @@ duplicar([8, 5]); // retorna [16, 10]`
     python: "python",
     php: "php",
     java: "text/x-java",
-    'c++': "text/x-c++src",
+    cplus: "text/x-c++src",
     csharp: "text/x-csharp"
   }
 
@@ -222,7 +222,7 @@ duplicar([8, 5]); // retorna [16, 10]`
   a3.setSize(null, 200);
 
   $('#lang').on('change', function(e) {
-    var value = $(e.currentTarget).find(':selected').data('lang')
+    var value = $(e.currentTarget).find(':selected').value
     a1.setOption("mode", modes[value])
     a2.setOption("mode", modes[value])
     a3.setOption("mode", modes[value])
