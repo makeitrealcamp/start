@@ -6,7 +6,7 @@
         <h4 class="modal-title">Prueba técnica</h4>
       </div>
       <div class="modal-body">
-        <p>Lenguaje: <%= @test.lang %></p>
+        <p>Lenguaje: <%= lang_to_human(@test.lang) %></p>
         <div class="answer-wrapper">
           <div class="question">1. Escribir una función <code>calcularImpuestos</code>:</div>
           <div class="answer">
