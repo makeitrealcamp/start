@@ -1,0 +1,33 @@
+<div class="modal fade" id="top-applicant-test-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Prueba técnica</h4>
+      </div>
+      <div class="modal-body">
+        <p>Lenguaje: <%= @test.lang %></p>
+        <div class="answer-wrapper">
+          <div class="question">1. Escribir una función <code>calcularImpuestos</code>:</div>
+          <div class="answer">
+            <pre><code><%= @test.a1 %></code></pre>
+          </div>
+        </div>
+
+        <div class="answer-wrapper">
+          <div class="question">2. Escribir una función <code>asteriscos</code>:</div>
+          <div class="answer">
+            <pre><code><%= @test.a2 %></code></pre>
+          </div>
+        </div>
+
+        <div class="answer-wrapper">
+          <div class="question">3. Escribir una función <code>duplicar</code>:</div>
+          <div class="answer">
+            <pre><code><%= @test.a3 %></code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
