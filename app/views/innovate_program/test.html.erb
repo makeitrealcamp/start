@@ -9,7 +9,7 @@
         <div class="box">
           <div class="box-header <%= @test.errors.any? ? "error": "info" %>">PRUEBA TÉCNICA</div>
           <div class="box-body">
-            <p style="line-height: 1.6;">¡Muy bien! La prueba técnica se compone de 3 ejercicios que puedes resolver en alguno de lenguajes de programación soportados. Tienes hasta una semana después de que se cierren las aplicaciones al programa para entregarla. Después deberás presentar una prueba en vivo para validar tus conocimientos.</p>
+            <p style="line-height: 1.6;">¡Muy bien! La prueba técnica se compone de 3 ejercicios que puedes resolver en alguno de los lenguajes de programación soportados. Tienes hasta una semana después de que se cierren las aplicaciones al programa para entregarla.</p>
             <p style="line-height: 1.6;"><strong>Nota:</strong> Para volver a esta página puedes utilizar el vínculo que te llegó en el correo.</p>
 
             <%= form_for @test, url: innovate_program_test_path do |f| %>
@@ -56,8 +56,8 @@ calcularImpuestos(17, 5000) // retorna 0</code></pre>
                   <% end %>
                 </div>
                 <p>Ejemplos:</p>
-                <pre class="examples"><code>calcularImpuestos(18, 1000); // retorna 400
-calcularImpuestos(40, 10000); // retorna 4000</code></pre>
+                <pre class="examples"><code>asteriscos("H*o*l*a") // retorna 3
+asteriscos("Hola")  // retorna 0</code></pre>
               </div>
 
               <div id="q3" class="question-wrapper">
@@ -129,7 +129,7 @@ calcularImpuestos(17, 5000); // retorna 0`
       },
       examples: {
         javascript: `asteriscos("H*o*l*a") // retorna 3
-asteriscos("Hola");  // retorna 0`,
+asteriscos("Hola")  // retorna 0`,
         ruby: `asteriscos("H*o*l*a") # retorna 3
 asteriscos("Hola") # retorna 0`,
         python: `asteriscos("") # retorna 3
