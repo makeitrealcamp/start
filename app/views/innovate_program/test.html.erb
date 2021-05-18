@@ -93,6 +93,7 @@ duplicar([8, 5]) // retorna [16, 10]</code></pre>
       description: {
         default: "Escribe una función llamada <code>calcularImpuestos</code> que reciba dos argumentos numéricos: <code>edad</code> e <code>ingresos</code>. Si <code>edad</code> es igual o mayor a 18 y los ingresos son iguales o mayores a 1000 debe retornar <code>ingresos</code> * 40%. De lo contrario retorna 0.",
         java: "Escribe una clase <code>Main</code> con un método llamado <code>calcularImpuestos</code> que reciba dos argumentos numéricos: <code>edad</code> e <code>ingresos</code>. Si <code>edad</code> es igual o mayor a 18 y los ingresos son iguales o mayores a 1000 debe retornar <code>ingresos</code> * 40%. De lo contrario retorna 0.",
+        csharp: "Escribe una clase <code>Main</code> con un método llamado <code>CalcularImpuestos</code> que reciba dos argumentos numéricos: <code>edad</code> e <code>ingresos</code>. Si <code>edad</code> es igual o mayor a 18 y los ingresos son iguales o mayores a 1000 debe retornar <code>ingresos</code> * 40%. De lo contrario retorna 0.",
         ruby: "Escribe una función llamada <code>calcular_impuestos</code> que reciba dos argumentos numéricos: <code>edad</code> e <code>ingresos</code>. Si <code>edad</code> es igual o mayor a 18 y los ingresos son iguales o mayores a 1000 debe retornar <code>ingresos</code> * 40%. De lo contrario retorna 0.",
         python: "Escribe una función llamada <code>calcular_impuestos</code> que reciba dos argumentos numéricos: <code>edad</code> e <code>ingresos</code>. Si <code>edad</code> es igual o mayor a 18 y los ingresos son iguales o mayores a 1000 debe retornar <code>ingresos</code> * 40%. De lo contrario retorna 0."
       },
@@ -106,14 +107,15 @@ calcular_impuestos(17, 5000) # retorna 0`,
         python: `calcular_impuestos(18, 1000) # retorna 400
 calcular_impuestos(40, 10000) # retorna 4000
 calcular_impuestos(17, 5000) # retorna 0`,
-        java: `Main main = new Main()
+        java: `Main main = new Main();
 main.calcularImpuestos(18, 1000); // retorna 400
 main.calcularImpuestos(40, 10000); // retorna 4000
 main.calcularImpuestos(17, 5000); // retorna 0`,
-        csharp: `calcularImpuestos(18, 1000); // retorna 400
-calcularImpuestos(40, 10000); // retorna 4000
-calcularImpuestos(17, 5000); // retorna 0`,
-        'c++': `calcularImpuestos(18, 1000); // retorna 400
+        csharp: `Main main = new Main();
+main.CalcularImpuestos(18, 1000); // retorna 400
+main.CalcularImpuestos(40, 10000); // retorna 4000
+main.CalcularImpuestos(17, 5000); // retorna 0`,
+        cplus: `calcularImpuestos(18, 1000); // retorna 400
 calcularImpuestos(40, 10000); // retorna 4000
 calcularImpuestos(17, 5000); // retorna 0`,
         php: `calcularImpuestos(18, 1000); // retorna 400
@@ -125,7 +127,8 @@ calcularImpuestos(17, 5000); // retorna 0`
       name: "Cuenta los asteriscos",
       description: {
         default: "Escribe una función llamada <code>asteriscos</code> que reciba un string <code>str</code> y retorne el número de asteriscos que hay en <code>str</code>.",
-        java: "Escribe una clase `Main` con un método llamado <code>asteriscos</code> que reciba un string <code>str</code> y retorne el número de asteriscos que hay en <code>str</code>."
+        java: "Escribe una clase `Main` con un método llamado <code>asteriscos</code> que reciba un string <code>str</code> y retorne el número de asteriscos que hay en <code>str</code>.",
+        csharp: "Escribe una clase `Main` con un método llamado <code>Asteriscos</code> que reciba un string <code>str</code> y retorne el número de asteriscos que hay en <code>str</code>."
       },
       examples: {
         javascript: `asteriscos("H*o*l*a") // retorna 3
@@ -134,12 +137,13 @@ asteriscos("Hola")  // retorna 0`,
 asteriscos("Hola") # retorna 0`,
         python: `asteriscos("") # retorna 3
 asteriscos("Hola") # retorna 0`,
-        java: `Main main = new Main()
+        java: `Main main = new Main();
 main.asteriscos("H*o*l*a"); // retorna 3
 main.asteriscos("Hola"); // retorna 0`,
-        csharp: `asteriscos("H*o*l*a"); // retorna 3
-asteriscos("Hola"); // retorna 0`,
-        'c++': `asteriscos("H*o*l*a"); // retorna 3
+        csharp: `Main main = new Main();
+main.Asteriscos("H*o*l*a"); // retorna 3
+main.Asteriscos("Hola"); // retorna 0`,
+        cplus: `asteriscos("H*o*l*a"); // retorna 3
 asteriscos("Hola"); // retorna 0`,
         php: `asteriscos("H*o*l*a"); // retorna 3
 asteriscos("Hola"); // retorna 0`
@@ -173,7 +177,8 @@ asteriscos("Hola"); // retorna 0`
       name: "Duplica cada elemento",
       description: {
         default: "Escribe una función llamada <code>duplicar</code> que reciba un arreglo de números como parámetro y retorne un nuevo arreglo con cada elemento duplicado (multiplicado por dos).",
-        java: "Escribe una clase `Main` con un método llamado <code>duplicar</code> que reciba un arreglo de números como parámetro y retorne un nuevo arreglo con cada elemento duplicado (multiplicado por dos)."
+        java: "Escribe una clase `Main` con un método llamado <code>duplicar</code> que reciba un arreglo de números como parámetro y retorne un nuevo arreglo con cada elemento duplicado (multiplicado por dos).",
+        csharp: "Escribe una clase `Main` con un método llamado <code>Duplicar</code> que reciba un arreglo de números como parámetro y retorne un nuevo arreglo con cada elemento duplicado (multiplicado por dos)."
       },
       examples: {
         javascript: `duplicar([3, 12, 45, 7]) // retorna [6, 24, 90, 14]
@@ -182,12 +187,13 @@ duplicar([8, 5]) // retorna [16, 10]`,
 duplicar([8, 5]) # retorna [16, 10]`,
         python: `duplicar([3, 12, 45, 7]) # retorna [6, 24, 90, 14]
 duplicar([8, 5]) # retorna [16, 10]`,
-        java: `Main main = new Main()
-main.duplicar([3, 12, 45, 7]); // retorna [6, 24, 90, 14]
-main.duplicar([8, 5]); // retorna [16, 10]`,
-        csharp: `duplicar([3, 12, 45, 7]); // retorna [6, 24, 90, 14]
-duplicar([8, 5]); // retorna [16, 10]`,
-        'c++': `duplicar([3, 12, 45, 7]); // retorna [6, 24, 90, 14]
+        java: `Main main = new Main();
+main.duplicar(new int[]{ 3, 12, 45, 7 }); // retorna [6, 24, 90, 14]
+main.duplicar(new int[]{ 8, 5 }); // retorna [16, 10]`,
+        csharp: `Main main = new Main();
+main.Duplicar(new int[] { 3, 12, 45, 7 }); // retorna [6, 24, 90, 14]
+main.Duplicar(new int[] { 8, 5 }); // retorna [16, 10]`,
+        cplus: `duplicar([3, 12, 45, 7]); // retorna [6, 24, 90, 14]
 duplicar([8, 5]); // retorna [16, 10]`,
         php: `duplicar([3, 12, 45, 7]); // retorna [6, 24, 90, 14]
 duplicar([8, 5]); // retorna [16, 10]`
@@ -222,18 +228,19 @@ duplicar([8, 5]); // retorna [16, 10]`
   a3.setSize(null, 200);
 
   $('#lang').on('change', function(e) {
-    var value = $(e.currentTarget).find(':selected').value
+    var value = $(e.currentTarget).val()
+    console.log("Value: ", value)
     a1.setOption("mode", modes[value])
     a2.setOption("mode", modes[value])
     a3.setOption("mode", modes[value])
 
-    let description = questions[0].description[value] ||  questions[0].description.default
+    let description = questions[0].description[value] || questions[0].description.default
     $('#q1 .description').html(description)
 
-    description = questions[1].description[value] ||  questions[1].description.default
+    description = questions[1].description[value] || questions[1].description.default
     $('#q2 .description').html(description)
 
-    description = questions[2].description[value] ||  questions[1].description.default
+    description = questions[2].description[value] || questions[1].description.default
     $('#q3 .description').html(description)
 
     let examples = questions[0].examples[value]
