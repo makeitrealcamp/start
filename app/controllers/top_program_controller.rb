@@ -6,7 +6,7 @@ class TopProgramController < ApplicationController
     if @applicant.valid_code
       redirect_to top_program_test_path(uid: params[:uid])
     else
-      @secret_code = Base64.encode64(@applicant.uid)
+      @secret_code = Base64.strict_encode64(@applicant.uid)
       notify_converloop({ name: "opened-top-challenge", email: @applicant.email })
     end
   end
@@ -18,13 +18,13 @@ class TopProgramController < ApplicationController
     if has_completed_challenge(@applicant)
       redirect_to top_program_challenge_path
     else
-      uid = Base64.decode64(params[:code])
+      uid = Base64.strict_decode64(params[:code])
       if uid == params[:uid] # check if challenge is valid
         @applicant.update!(valid_code: true)
         notify_converloop({ name: "solved-top-challenge", email: @applicant.email })
         redirect_to top_program_challenge_path(uid: params[:uid])
       else
-        @secret_code = Base64.encode64(@applicant.uid)
+        @secret_code = Base64.strict_encode64(@applicant.uid)
         @invalid_code = true
         notify_converloop({ name: "attempted-top-challenge", email: @applicant.email })
         render :challenge
