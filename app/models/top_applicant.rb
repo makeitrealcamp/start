@@ -40,6 +40,23 @@ class TopApplicant < Applicant
     Applicant.model_name
   end
 
+  def self.status_to_human(status)
+    mappings = {
+      applied: "aplicó",
+      test_sent: "prueba enviada",
+      test_received: "prueba recibida",
+      test_graded: "prueba calificada",
+      first_interview_scheduled: "primera entrevista",
+      second_interview_held: "segunda entrevista",
+      accepted: "aceptado",
+      enrolled: "matriculado",
+      not_enrolled: "no matriculado",
+      rejected: "rechazado"
+    }
+
+    mappings[status.to_sym]
+  end
+
   protected
     def generate_uid
       begin

@@ -61,7 +61,7 @@
             </div>
             <div class="col-sm-8">
               <div class="text-right" style="margin-bottom: 80px;">
-                <div class="applicant-status"><%= status_to_human(@applicant.status).capitalize %></div>
+                <div class="applicant-status"><%= TopApplicant.status_to_human(@applicant.status).capitalize %></div>
               </div>
               <div class="applicant-details">
                 <div class="applicant-detail">

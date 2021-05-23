@@ -5,7 +5,7 @@
       <div class="col-sm-3">
         <ul class="list-group">
           <% TopApplicant.statuses.keys.each do |status| %>
-            <li class="list-group-item"><%= status_to_human(status).capitalize %> <span class="badge badge-primary badge-pill"><%= TopApplicant.where(status: TopApplicant.statuses[status]).count %></span></li>
+            <li class="list-group-item"><%= TopApplicant.status_to_human(status).capitalize %> <span class="badge badge-primary badge-pill"><%= TopApplicant.where(status: TopApplicant.statuses[status]).count %></span></li>
           <% end %>
         </ul>
          <div><%= link_to "Administrar plantillas", admin_email_templates_path %></div>
@@ -26,7 +26,7 @@
               <li><a href="/admin/top_applicants">Todos</a></li>
               <li>
                 <% TopApplicant.statuses.keys.each do |status| %>
-                  <a href="/admin/top_applicants?status=<%= status %>"><%= status_to_human(status).capitalize %></a>
+                  <a href="/admin/top_applicants?status=<%= status %>"><%= TopApplicant.status_to_human(status).capitalize %></a>
                 <% end %>
               </li>
             </ul>
@@ -43,7 +43,7 @@
                   <div class="cell-detail">Aplicó <%= applicant.created_at.strftime("%b %d %I:%M %p")%></div>
                 </td>
                 <td class="text-right">
-                  <div class="cell-main"><%= status_to_human(applicant.status).capitalize %></div>
+                  <div class="cell-main"><%= TopApplicant.status_to_human(applicant.status).capitalize %></div>
                   <div class="cell-detail"><%= applicant.updated_at.strftime("%b %d %I:%M %p")%></div>
                   <div class="cell-detail"><%= applicant.note_activities.count %> notas</div>
                 </td>

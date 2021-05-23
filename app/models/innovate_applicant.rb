@@ -16,7 +16,7 @@
 #
 
 class InnovateApplicant < Applicant
-  enum status: [:applied, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :accepted, :enrolled, :not_enrolled, :rejected]
+  enum status: [:applied, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :accepted, :enrolled, :not_enrolled, :rejected, :interviews_completed, :preselected]
 
   before_create :generate_uid
 
@@ -35,6 +35,25 @@ class InnovateApplicant < Applicant
 
   def self.model_name
     Applicant.model_name
+  end
+
+  def self.status_to_human(status)
+    mappings = {
+      applied: "aplicó",
+      test_sent: "prueba enviada",
+      test_received: "prueba recibida",
+      test_graded: "prueba calificada",
+      first_interview_scheduled: "primera entrevista",
+      second_interview_held: "segunda entrevista",
+      accepted: "aceptado",
+      enrolled: "matriculado",
+      not_enrolled: "no matriculado",
+      rejected: "rechazado",
+      preselected: "preseleccionado",
+      interviews_completed: "entrevistas finalizadas"
+    }
+
+    mappings[status.to_sym]
   end
 
   protected

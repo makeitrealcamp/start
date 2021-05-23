@@ -149,30 +149,6 @@ asteriscos("Hola"); // retorna 0`,
 asteriscos("Hola"); // retorna 0`
       }
     },
-//     {
-//       name: "Filtra el arreglo",
-//       description: {
-//         default: "Escribe una función llamada <code>filtrar</code> que reciba un arreglo de números como parámetro y retorne un nuevo arreglo con los números mayores a 10.",
-//         java: "Escribe una clase `Main` con un método llamado <code>filtrar</code> que reciba un arreglo de números como parámetro y retorne un nuevo arreglo con los números mayores a 10."
-//       },
-//       examples: {
-//         javascript: `filter([3, 12, 45, 7]) // retorna [12, 45]
-// filter([3, 5]) // retorna []`,
-//         ruby: `filter([3, 12, 45, 7]) # retorna [12, 45]
-// filter([3, 5]) # retorna []`,
-//         python: `filter([3, 12, 45, 7]) # retorna [12, 45]
-// filter([3, 5]) # retorna []`,
-//         java: `Main main = new Main()
-// main.filter([3, 12, 45, 7]); // retorna [12, 45]
-// main.filter([3, 5]); // retorna []`,
-//         csharp: `filter([3, 12, 45, 7]); // retorna [12, 45]
-// filter([3, 5]); // retorna []`,
-//         'c++': `filter([3, 12, 45, 7]); // retorna [12, 45]
-// filter([3, 5]); // retorna []`,
-//         php: `filter([3, 12, 45, 7]); // retorna [12, 45]
-// filter([3, 5]); // retorna []`
-//       }
-//     },
     {
       name: "Duplica cada elemento",
       description: {
@@ -201,55 +177,7 @@ duplicar([8, 5]); // retorna [16, 10]`
     }
   ]
 
-  var modes = {
-    javascript: "javascript",
-    ruby: "ruby",
-    python: "python",
-    php: "php",
-    java: "text/x-java",
-    cplus: "text/x-c++src",
-    csharp: "text/x-csharp"
-  }
-
-  var options = {
-    mode: modes["javascript"],
-    theme: 'monokai',
-    lineNumbers: true,
-    height: 100
-  };
-
-  var a1 = CodeMirror.fromTextArea(document.getElementById("a1"), options);
-  a1.setSize(null, 200);
-
-  var a2 = CodeMirror.fromTextArea(document.getElementById("a2"), options);
-  a2.setSize(null, 200);
-
-  var a3 = CodeMirror.fromTextArea(document.getElementById("a3"), options);
-  a3.setSize(null, 200);
-
-  $('#lang').on('change', function(e) {
-    var value = $(e.currentTarget).val()
-    console.log("Value: ", value)
-    a1.setOption("mode", modes[value])
-    a2.setOption("mode", modes[value])
-    a3.setOption("mode", modes[value])
-
-    let description = questions[0].description[value] || questions[0].description.default
-    $('#q1 .description').html(description)
-
-    description = questions[1].description[value] || questions[1].description.default
-    $('#q2 .description').html(description)
-
-    description = questions[2].description[value] || questions[1].description.default
-    $('#q3 .description').html(description)
-
-    let examples = questions[0].examples[value]
-    $('#q1 .examples').html(examples)
-
-    examples = questions[1].examples[value]
-    $('#q2 .examples').html(examples)
-
-    examples = questions[2].examples[value]
-    $('#q3 .examples').html(examples)
-  })
+  $(document).on("turbolinks:load", function() {
+    window.innovateProgramTestView = new InnovateProgramTestView(questions);
+  });
 </script>
