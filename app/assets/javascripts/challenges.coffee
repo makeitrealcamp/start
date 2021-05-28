@@ -280,7 +280,7 @@ class ChallengeFormView extends Backbone.View
       @evaluation_editor.setValue("def evaluate(client, repo, pr_number)\n\nend")
     else if evaluation_strategy == "react_git"
       @evaluation_editor.setOption("mode", "javascript")
-      @evaluation_editor.setValue("import React from 'react';\nimport { shallow } from 'enzyme';\nimport App from './App';\n\nit('renders without crashing', () => {\n  shallow(<App />);\n});")
+      @evaluation_editor.setValue("import { render, screen } from '@testing-library/react';\nimport App from './App';\n\ntest('renders without crashing', () => {\n  render(<App />);\n});")
     else if evaluation_strategy == "nodejs_embedded"
       @evaluation_editor.setOption("mode", "javascript")
       @evaluation_editor.setValue("it('sums two numbers', function() {\n  expect(1 + 2).to.equal(3);\n});")
