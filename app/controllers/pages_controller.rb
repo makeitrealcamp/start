@@ -210,8 +210,8 @@ class PagesController < ApplicationController
   def create_intro_to_js_lead
     data = {
       pid: cookies[:dp_pid],
-      program: "Intro to Java Script",
-      event: "filled-intro-to-js-form",
+      program: "Intro to JavaScript Innpulsa",
+      event: "filled-intro-to-js-2021-2-form",
       first_name: params['first-name'],
       last_name: params['last-name'],
       email: params['email'],
@@ -221,26 +221,6 @@ class PagesController < ApplicationController
     }
     CreateLeadJob.perform_later(data)
     redirect_to "/thanks-intro-to-js"
-  end
-
-  def redirect_to_js_interacpedia
-    redirect_to "/introduccion-a-javascript-interacpedia"
-  end
-
-  def create_intro_to_js_lead_interacpedia_mintic
-    data = {
-      pid: cookies[:dp_pid],
-      program: "Intro to Java Script Interacpedia MinTic",
-      event: "filled-intro-to-js-form-interacpedia-mintic",
-      first_name: params['first-name'],
-      last_name: params['last-name'],
-      email: params['email'],
-      country: params['country'],
-      mobile: params['mobile'],
-      ip: request.remote_ip
-    }
-    CreateLeadJob.perform_later(data)
-    redirect_to "/thanks-intro-to-js-interacpedia"
   end
 
   def create_intro_to_python_lead
