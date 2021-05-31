@@ -18,7 +18,7 @@ class TopProgramController < ApplicationController
     if has_completed_challenge(@applicant)
       redirect_to top_program_challenge_path
     else
-      uid = Base64.strict_decode64(params[:code])
+      uid = decode_uid(params[:code])
       if uid == params[:uid] # check if challenge is valid
         @applicant.update!(valid_code: true)
         notify_converloop({ name: "solved-top-challenge", email: @applicant.email })
@@ -84,5 +84,13 @@ class TopProgramController < ApplicationController
       status = applicant.status
       applicant.test_received!
       applicant.change_status_activities.create!(from_status: status, to_status: "test_received", comment: "<a href=\"/admin/top_applicant_tests/#{@test.id}\" data-remote=\"true\">Ver la prueba técnica</a>")
+    end
+
+    def decode_uid(code)
+      begin
+        Base64.strict_decode64(code)
+      rescue ArgumentError => e
+        "invalid uid" # return invalid uid
+      end
     end
 end
