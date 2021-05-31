@@ -35,10 +35,10 @@ class Billing::Charge < ApplicationRecord
     datascience: {
       description: "Separación curso Data Science",
       price: {
-        "COP" => 500_000,
-        "MXN" => 3_100,
-        "PEN" => 475,
-        "USD" => 150
+        "COP" => 619_000,
+        "MXN" => 3_900,
+        "PEN" => 590,
+        "USD" => 190
       }
     },
     full_sponsorship: {
