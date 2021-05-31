@@ -18,8 +18,8 @@ class InnovateProgramController < ApplicationController
     if has_completed_challenge(@applicant)
       redirect_to innovate_program_challenge_path
     else
-      uid = Base64.strict_decode64(params[:code])
-      if uid == params[:uid] # check if challenge is valid
+      uid = decode_uid(params[:code])
+      if uid == @applicant.uid # check if challenge is valid
         @applicant.update!(valid_code: true)
         notify_converloop({ name: "solved-innovate-challenge", email: @applicant.email })
         redirect_to innovate_program_challenge_path(uid: params[:uid])
@@ -83,5 +83,13 @@ class InnovateProgramController < ApplicationController
       status = applicant.status
       applicant.test_received!
       applicant.change_status_activities.create!(from_status: status, to_status: "test_received", comment: "<a href=\"/admin/innovate_applicant_tests/#{@test.id}\" data-remote=\"true\">Ver la prueba técnica</a>")
+    end
+
+    def decode_uid(code)
+      begin
+        Base64.strict_decode64(code)
+      rescue ArgumentError => e
+        "invalid uid" # return invalid uid
+      end
     end
 end
