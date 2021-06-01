@@ -20,16 +20,31 @@
             </div>
           </form>
 
-          <div class="dropdown">
-            <a role="button" data-toggle="dropdown" class="btn btn-default" data-target="#" href="/page.html"><%= params[:status].present? ? params[:status] : "Filtrar por estado" %> <span class="caret"></span> </a>
-            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-              <li><a href="/admin/innovate_applicants">Todos</a></li>
-              <li>
-                <% InnovateApplicant.statuses.keys.each do |status| %>
-                  <a href="/admin/innovate_applicants?status=<%= status %>"><%= InnovateApplicant.status_to_human(status).capitalize %></a>
-                <% end %>
-              </li>
-            </ul>
+          <div class="filters-right">
+            <div class="filter-dropdown">
+              <label>Filtrar por estado:</label>
+              <div class="dropdown">
+                <a role="button" data-toggle="dropdown" class="btn btn-default" data-target="#" href="/page.html"><%= params[:status].present? ? InnovateApplicant.status_to_human(params[:status]).capitalize : "Todos" %> <span class="caret"></span> </a>
+                <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                  <li><a href="/admin/innovate_applicants">Todos</a></li>
+                  <li>
+                    <% InnovateApplicant.statuses.keys.each do |status| %>
+                      <a href="/admin/innovate_applicants?status=<%= status %>&order_by=<%= params[:order_by] %>"><%= InnovateApplicant.status_to_human(status).capitalize %></a>
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="filter-dropdown">
+              <label>Ordenar por:</label>
+              <div class="dropdown">
+                <a role="button" data-toggle="dropdown" class="btn btn-default" data-target="#" href="/page.html"><%= params[:order_by].present? ? innovate_order_by_to_human(params[:order_by]) : "Fecha de Aplicación" %> <span class="caret"></span> </a>
+                <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                  <li><a href="?status=<%= params[:status] %>&order_by=created_at">Fecha de Aplicación</a></li>
+                  <li><a href="?status=<%= params[:status] %>&order_by=updated_at">Última actualización</a></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
 

@@ -22,6 +22,19 @@
       text-transform: none;
       border: 1px solid #ccc;
     }
+
+    .filters-right {
+      display: flex;
+
+      .filter-dropdown {
+        margin-left: 15px;
+
+        label {
+          font-size: 12px;
+          font-weight: 600;
+        }
+      }
+    }
   }
 
   .table {
