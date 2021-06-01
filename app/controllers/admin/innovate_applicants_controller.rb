@@ -2,7 +2,8 @@ class Admin::InnovateApplicantsController < ApplicationController
   before_action :admin_access
 
   def index
-    @applicants = InnovateApplicant.order('created_at DESC')
+    order_by = params[:order_by].present? ? params[:order_by] : 'created_at'
+    @applicants = InnovateApplicant.order("#{order_by} DESC")
 
     if params[:status].present?
       @applicants = @applicants.where(status: InnovateApplicant.statuses[params[:status]])
