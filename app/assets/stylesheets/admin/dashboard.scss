@@ -1,7 +1,7 @@
 .admin-dashboard {
   margin-top: 30px;
   padding-left: 50px;
-  padding-right: 50px; 
+  padding-right: 50px;
 
   .panel {
     background-color: white;
@@ -40,13 +40,25 @@
 
       .user-info, .challenge-info {
         text-decoration: none;
-      
-        .mail, .challenge-subject { 
+
+        .mail, .challenge-subject {
           display: block;
           font-size: 13px;
           color: #999;
         }
       }
     }
+  }
+}
+
+.admin-home-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    color: #333;
+    font-weight: 600;
+    text-shadow: -1px -1px white;
   }
 }

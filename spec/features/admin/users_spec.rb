@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Users management", type: :feature do
-  let(:admin) { create(:admin) }
+  let(:admin) { create(:admin_user) }
 
   scenario "creates a user", js: true do
     login(admin)

@@ -36,7 +36,7 @@ RSpec.feature "Challenges", type: :feature do
   end
 
   scenario "deletes challenge", js: true do
-    admin = create(:admin)
+    admin = create(:admin_user)
     create(:challenge, subject: subject, published: true)
     create(:challenge, subject: subject, published: true)
 

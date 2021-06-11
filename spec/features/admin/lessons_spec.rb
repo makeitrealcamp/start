@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Admin lesson management", type: :feature do
-  let(:admin) { create(:admin) }
+  let(:admin) { create(:admin_user) }
   let(:subject) { create(:subject) }
   let(:resource) { create(:video_course, content: Faker::Lorem.paragraph, subject: subject) }
   let(:section) { create(:section, resource: resource) }

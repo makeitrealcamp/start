@@ -7,9 +7,19 @@ class ApplicationController < ActionController::Base
     @current_user = user
   end
 
+  def admin_sign_in(admin)
+    cookies.permanent.signed[:admin_id] = admin.id
+    @current_admin = admin
+  end
+
   def sign_out
     cookies.delete(:user_id)
     @current_user = nil
+  end
+
+  def admin_sign_out
+    cookies.delete(:admin_id)
+    @current_admin = nil
   end
 
   protected
@@ -18,14 +28,29 @@ class ApplicationController < ActionController::Base
     end
     helper_method :signed_in?
 
+    def admin_signed_in?
+      !current_admin.nil?
+    end
+    helper_method :admin_signed_in?
+
     def current_user
       @current_user ||= User.find(cookies.signed[:user_id]) if cookies.signed[:user_id]
     rescue ActiveRecord::RecordNotFound
     end
     helper_method :current_user
 
+    def current_admin
+      @current_admin ||= Admin.find(cookies.signed[:admin_id]) if cookies.signed[:admin_id]
+    rescue ActiveRecord::RecordNotFound
+    end
+    helper_method :current_admin
+
     def public_access
       redirect_to signed_in_root_path if signed_in?
+    end
+
+    def admin_public_access
+      redirect_to admin_root_path if admin_signed_in?
     end
 
     def activate_access
@@ -46,8 +71,8 @@ class ApplicationController < ActionController::Base
     end
 
     def admin_access
-      unless signed_in? && current_user.is_admin?
-        raise ActionController::RoutingError.new('Not Found')
+      unless (signed_in? && current_user.is_admin?) || (admin_signed_in? && current_admin)
+        redirect_to :admin_login
       end
     end
 
@@ -62,7 +87,7 @@ class ApplicationController < ActionController::Base
         raise ActionController::RoutingError.new('Not Found')
       end
       user ||= obj.user
-      is_admin = signed_in? && current_user.is_admin?
+      is_admin = (signed_in? && current_user.is_admin?) || (admin_signed_in? && current_admin.is_admin?)
       is_owner_of_obj = signed_in? && user.id == current_user.id
       if(!is_admin && !is_owner_of_obj)
         raise ActionController::RoutingError.new('Not Found')

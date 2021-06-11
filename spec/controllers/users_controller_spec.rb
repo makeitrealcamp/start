@@ -27,7 +27,7 @@ RSpec.describe UsersController, type: :controller do
 
   let!(:user_with_private_profile) { create(:user, has_public_profile: false) }
   let!(:user_with_public_profile) { create(:user, has_public_profile: true) }
-  let!(:admin) { create(:admin) }
+  let!(:admin) { create(:admin_user) }
 
   describe "GET #profile" do
     it "allows public access to public profiles" do
@@ -40,7 +40,7 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it "should allow access to private profiles by admins" do
-      controller.sign_in(create(:admin))
+      controller.sign_in(create(:admin_user))
 
       get :profile, params: { nickname: user_with_private_profile.nickname }
       expect(response).to have_http_status(:ok)
@@ -74,7 +74,7 @@ RSpec.describe UsersController, type: :controller do
     end
 
     context "when user is admin" do
-      let(:admin) { create(:admin) }
+      let(:admin) { create(:admin_user) }
       before { controller.sign_in(admin) }
 
       it "renders the edit template for any user" do

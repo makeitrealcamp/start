@@ -1,0 +1,29 @@
+<div class="new-site login-page">
+  <%= render "layouts/navbar/pages_dark", hide_login: true %>
+  <% flash.each do |type, msg| %>
+    <%= render "shared/alert", msg: msg, type: type %>
+  <% end %>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+
+        <div class="login">
+          <div class="login-body">
+            <p>Ingresa con tu correo electrónico y contraseña</p>
+
+            <%= form_tag controller: :admin_sessions, action: :create do %>
+              <div class="form-group">
+                <%= email_field_tag(:email, nil, class: 'form-control', placeholder: "Correo electrónico", autofocus: true) %>
+              </div>
+              <div class="form-group">
+                <%= password_field_tag(:password, nil, class: 'form-control', placeholder: "Contraseña") %>
+              </div>
+              <div class="text-right"><%= submit_tag("Ingresar", class: 'btn btn-primary btn-lg btn-block') %></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

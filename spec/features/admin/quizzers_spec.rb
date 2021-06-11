@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Quizzes", type: :feature do
-  let(:admin) { create(:admin) }
+  let(:admin) { create(:admin_user) }
   let(:subject) { create(:subject) }
 
   scenario "lists all quizzes" do

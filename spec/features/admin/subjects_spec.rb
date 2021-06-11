@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Subjects management" do
-  let(:admin) { create(:admin) }
+  let(:admin) { create(:admin_user) }
   let(:path) { user.paths.published.first }
   let(:phase) { path.phases.first }
 

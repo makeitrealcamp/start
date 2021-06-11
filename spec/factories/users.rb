@@ -46,7 +46,7 @@ FactoryGirl.define do
       after(:create) { |user| user.path_subscriptions.create(path: Path.published.first || create(:path, published: true)) }
     end
 
-    factory :admin do
+    factory :admin_user do
       account_type { User.account_types[:admin_account] }
     end
 

@@ -57,6 +57,10 @@ Rails.application.routes.draw do
   get  'auth/:provider/callback', to: 'sessions#create_with_omniauth', as: :login_omniauth
   delete 'logout', to: 'sessions#destroy'
 
+  get 'admin/login', to: 'admin_sessions#new', as: :admin_login
+  post 'admin/login', to: 'admin_sessions#create'
+  delete 'admin/logout', to: 'admin_sessions#destroy'
+
   resource :password, only: [:edit, :update]
   resource :password_reset, except: [:index, :show]
 
@@ -197,6 +201,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    root 'dashboard#home'
     get 'dashboard', to: 'dashboard#index'
     resources :paths, only: [:index, :new, :create, :update, :edit]
     resources :users, only: [:index, :new, :create, :show, :edit, :update] do

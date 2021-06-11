@@ -5,8 +5,9 @@ RSpec.describe Admin::UsersController, type: :controller do
 
   describe "GET #index" do
     context "when not signed in" do
-      it "raises a routing error" do
-        expect { get :index }.to raise_error ActionController::RoutingError
+      it "redirects to login" do
+        get :index
+        expect(response).to redirect_to(admin_login_path)
       end
     end
   end
@@ -17,14 +18,15 @@ RSpec.describe Admin::UsersController, type: :controller do
       controller.sign_in(user)
     end
 
-    it "raises a routing error" do
-      expect { get :index }.to raise_error ActionController::RoutingError
+    it "redirects to login" do
+      get :index
+      expect(response).to redirect_to(admin_login_path)
     end
   end
 
   context "when admin" do
     before do
-      admin = create(:admin)
+      admin = create(:admin_user)
       controller.sign_in(admin)
     end
 
@@ -56,8 +58,9 @@ RSpec.describe Admin::UsersController, type: :controller do
 
   describe "GET #new" do
     context "when not signed in" do
-      it "raises a routing error" do
-        expect { get :new }.to raise_error ActionController::RoutingError
+      it "redirects to login" do
+        get :new
+        expect(response).to redirect_to(admin_login_path)
       end
     end
 
@@ -67,14 +70,15 @@ RSpec.describe Admin::UsersController, type: :controller do
         controller.sign_in(user)
       end
 
-      it "raises a routing error" do
-        expect { get :new }.to raise_error ActionController::RoutingError
+      it "redirects to login" do
+        get :new
+        expect(response).to redirect_to(admin_login_path)
       end
     end
 
     context "when admin" do
       before do
-        admin = create(:admin)
+        admin = create(:admin_user)
         controller.sign_in(admin)
       end
 
@@ -89,21 +93,23 @@ RSpec.describe Admin::UsersController, type: :controller do
     let(:atts) { attributes_for(:user) }
 
     context "when not signed in" do
-      it "raises a routing error" do
-        expect { post :create, params: atts }.to raise_error ActionController::RoutingError
+      it "redirects to login" do
+        post :create, params: atts
+        expect(response).to redirect_to(admin_login_path)
       end
     end
 
     context "when not an admin" do
       before { controller.sign_in(create(:user)) }
 
-      it "raises a routing error" do
-        expect { post :create, params: { user: atts } }.to raise_error ActionController::RoutingError
+      it "redirects to login" do
+        post :create, params: { user: atts }
+        expect(response).to redirect_to(admin_login_path)
       end
     end
 
     context "when admin" do
-      before { controller.sign_in(create(:admin)) }
+      before { controller.sign_in(create(:admin_user)) }
 
       context "with valid input" do
         it "assigns a valid user" do
@@ -141,22 +147,24 @@ RSpec.describe Admin::UsersController, type: :controller do
     let(:user) { create(:user) }
 
     context "when not signed in" do
-      it "raises a routing error" do
-        expect { get :edit, params: { id: user.id } }.to raise_error ActionController::RoutingError
+      it "redirects to login" do
+        get :edit, params: { id: user.id }
+        expect(response).to redirect_to(admin_login_path)
       end
     end
 
     context "when not an admin" do
       before { controller.sign_in(create(:user)) }
 
-      it "raises a routing error" do
-        expect { get :edit, params: { id: user.id } }.to raise_error ActionController::RoutingError
+      it "redirects to login" do
+        get :edit, params: { id: user.id }
+        expect(response).to redirect_to(admin_login_path)
       end
     end
 
     context "when admin" do
       before do
-        admin = create(:admin)
+        admin = create(:admin_user)
         controller.sign_in(admin)
       end
 
@@ -172,21 +180,23 @@ RSpec.describe Admin::UsersController, type: :controller do
     let(:atts) { attributes_for(:user) }
 
     context "when not signed in" do
-      it "raises a routing error" do
-        expect { patch :update, params: { id: user.id } }.to raise_error ActionController::RoutingError
+      it "redirects to login" do
+        patch :update, params: { id: user.id }
+        expect(response).to redirect_to(admin_login_path)
       end
     end
 
     context "when not an admin" do
       before { controller.sign_in(create(:user)) }
 
-      it "raises a routing error" do
-        expect { patch :update, params: { id: user.id, user: atts } }.to raise_error ActionController::RoutingError
+      it "redirects to login" do
+        patch :update, params: { id: user.id, user: atts }
+        expect(response).to redirect_to(admin_login_path)
       end
     end
 
     context "when admin" do
-      before { controller.sign_in(create(:admin)) }
+      before { controller.sign_in(create(:admin_user)) }
 
       context "with invalid input" do
         it "is not valid" do
