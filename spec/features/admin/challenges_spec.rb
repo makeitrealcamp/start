@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Challenges management", type: :feature do
-  let(:admin) { create(:admin) }
+  let(:admin) { create(:admin_user) }
   let(:subject) { create(:subject) }
   let(:challenge) { create(:challenge, subject: subject) }
 

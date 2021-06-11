@@ -7,8 +7,9 @@ RSpec.describe SectionsController, type: :controller do
 
   describe "GET #new" do
     context "when not signed in" do
-      it "raises a routing error" do
-        expect { get :new, params: path_params, xhr: true }.to raise_error ActionController::RoutingError
+      it "redirects to login" do
+        get :new, params: path_params, xhr: true
+        expect(response).to redirect_to(admin_login_path)
       end
     end
 
@@ -18,14 +19,15 @@ RSpec.describe SectionsController, type: :controller do
         controller.sign_in(user)
       end
 
-      it "raises a routing error" do
-        expect { get :new, params: path_params, xhr: true }.to raise_error ActionController::RoutingError
+      it "redirects to login" do
+        get :new, params: path_params, xhr: true
+        expect(response).to redirect_to(admin_login_path)
       end
     end
 
     context "when admin" do
       before do
-        admin = create(:admin)
+        admin = create(:admin_user)
         controller.sign_in(admin)
       end
 
@@ -40,8 +42,9 @@ RSpec.describe SectionsController, type: :controller do
     let(:atts) { attributes_for(:section) }
 
     context "when not signed in" do
-      it "raises a routing error" do
-        expect { post :create, params: path_params.merge(section: atts), xhr: true }.to raise_error ActionController::RoutingError
+      it "redirects to login" do
+        post :create, params: path_params.merge(section: atts), xhr: true
+        expect(response).to redirect_to(admin_login_path)
       end
     end
 
@@ -51,14 +54,15 @@ RSpec.describe SectionsController, type: :controller do
         controller.sign_in(user)
       end
 
-      it "raises a routing error" do
-        expect { post :create, params: path_params.merge(section: atts), xhr: true }.to raise_error ActionController::RoutingError
+      it "redirects to login" do
+        post :create, params: path_params.merge(section: atts), xhr: true
+        expect(response).to redirect_to(admin_login_path)
       end
     end
 
     context "when admin" do
       before do
-        admin = create(:admin)
+        admin = create(:admin_user)
         controller.sign_in(admin)
       end
 

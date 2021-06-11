@@ -59,7 +59,7 @@ RSpec.describe CommentsController, type: :controller do
 
   let!(:user)       { create(:user) }
   let!(:other_user) { create(:user) }
-  let!(:admin )     { create(:admin) }
+  let!(:admin )     { create(:admin_user) }
   let!(:subject)    { create(:subject) }
   let!(:challenge)  { create(:challenge, subject: subject) }
   let!(:solution)   { create(:solution, user: user, challenge: challenge, status: :completed, completed_at: 1.week.ago) }

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "innovate_applicant", type: :feature do
-  let(:admin) { create(:admin) }
+  let(:admin) { create(:admin_user) }
   let!(:applicant) { create(:innovate_applicant) }
 
   scenario "admin can lists and filters innovate applicants", js: true do

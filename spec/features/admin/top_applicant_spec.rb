@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "top_applicant", type: :feature do
-  let(:admin) { create(:admin) }
+  let(:admin) { create(:admin_user) }
   let!(:applicant) { create(:top_applicant) }
 
   scenario "admin can lists and filters top applicants", js: true do

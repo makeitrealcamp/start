@@ -31,7 +31,7 @@ RSpec.describe EmailCommentJob, type: :job do
   end
 
   it "only sends one email if admin same as commentor" do
-    admin = create(:admin)
+    admin = create(:admin_user)
     comment = create(:comment, user: admin)
 
     response = create(:comment, response_to: comment)

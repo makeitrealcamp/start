@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Comments management", type: :feature do
-  let(:admin) { create(:admin) }
+  let(:admin) { create(:admin_user) }
 
   scenario "deletes a comment", js: true do
     user = create(:user_with_path)
