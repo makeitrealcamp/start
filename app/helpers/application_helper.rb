@@ -174,4 +174,8 @@ module ApplicationHelper
     ], selected)
   end
 
+  def has_admin_access?(role)
+    (signed_in? && current_user.is_admin?) || (current_admin && current_admin.has_role?(role))
+  end
+
 end

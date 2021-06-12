@@ -28,26 +28,26 @@
           <% if signed_in? && current_user.has_chat_access %>
             <li><a href="#" class="btn-masterchat">Necesito ayuda!</a></li>
           <% end %>
-          <% if admin_signed_in? %>
+          <% if (signed_in? && current_user.is_admin?) || admin_signed_in? %>
             <li class="dropdown admin-dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <% if current_admin.has_role?("dashboard") %>
+                <% if has_admin_access?("dashboard") %>
                   <li><%= link_to "Dashboard", admin_dashboard_path %></li>
                 <% end %>
-                <% if current_admin.has_role?("payments") %>
+                <% if has_admin_access?("payments") %>
                   <li><%= link_to "Pagos", admin_charges_path %></li>
                 <% end %>
-                <% if current_admin.has_role?("top_applicants") %>
+                <% if has_admin_access?("top_applicants") %>
                   <li><%= link_to "Aplicaciones TOP", admin_top_applicants_path %></li>
                 <% end %>
-                <% if current_admin.has_role?("innovate_applicants") %>
+                <% if has_admin_access?("innovate_applicants") %>
                   <li><%= link_to "Aplicaciones Innovate", admin_innovate_applicants_path %></li>
                 <% end %>
-                <% if current_admin.has_role?("users") %>
+                <% if has_admin_access?("users") %>
                   <li><%= link_to "Usuarios", admin_users_path %></li>
                 <% end %>
-                <% if current_admin.has_role?("curriculum") %>
+                <% if has_admin_access?("curriculum") %>
                   <li><%= link_to "Insignias", admin_badges_path %></li>
                   <li><%= link_to "Niveles", admin_levels_path %></li>
                   <li><%= link_to "Retos", admin_challenges_path %></li>
@@ -57,7 +57,7 @@
                   <li><%= link_to "Programas y Fases", admin_paths_path %></li>
                   <li><%= link_to "Cursos", admin_subjects_path %></li>
                 <% end %>
-                <% if current_admin.has_role?("webinars") %>
+                <% if has_admin_access?("webinars") %>
                   <li><%= link_to "Webinars", admin_webinars_path %></li>
                 <% end %>
                 <li class="divider"></li>
