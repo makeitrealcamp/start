@@ -3,27 +3,6 @@ require 'rails_helper'
 RSpec.feature "Pages", type: :feature do
   include ActiveJob::TestHelper
 
-  scenario "sign up to full stack online program", js: true do
-    ActionMailer::Base.deliveries.clear
-    visit full_stack_online_path
-
-    first('button.btn-register').click
-    expect(page).to have_css("#registration-modal")
-
-    within :css, "#registration-modal" do
-      fill_in "first-name", with: "Pedro"
-      fill_in "last-name", with: "Perez"
-      fill_in "email", with: "lead@example.com"
-      fill_in "mobile", with: "3111234567"
-      select "Google", from: "source"
-
-      find('button[type="submit"]').click
-    end
-
-    expect(current_path).to eq thanks_full_stack_online_path
-    expect(CreateLeadJob).to have_been_enqueued
-  end
-
   scenario "sign up to rails program", js: true do
     ActionMailer::Base.deliveries.clear
     visit ruby_on_rails_path
