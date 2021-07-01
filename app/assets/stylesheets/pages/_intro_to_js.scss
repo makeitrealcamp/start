@@ -54,6 +54,16 @@
       }
     }
 
+  #gender-label {
+    color: #555;
+    font-weight: 600;
+  }
+
+  #birthday-label {
+    color: #555;
+    font-weight: 600;
+  }
+
   .section.target-audience {
     background: asset-url("elementos-izquierda-intro-js") bottom left/200px no-repeat,
                 asset-url("elementos-derecha-intro-js") 100% 20%/30px no-repeat;

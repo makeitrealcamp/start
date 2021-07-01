@@ -29,6 +29,8 @@ class PagesController < ApplicationController
       country: params['country'],
       mobile: params['mobile'],
       source: params['source'],
+      gender: params['gender'],
+      birthday: params['birthday'],
       ip: request.remote_ip
     }
     CreateLeadJob.perform_later(data)
@@ -47,6 +49,8 @@ class PagesController < ApplicationController
       country: params['country'],
       mobile: params['mobile'],
       source: params['source'],
+      gender: params['gender'],
+      birthday: params['birthday'],
       ip: request.remote_ip
     }
     CreateLeadJob.perform_later(data)
@@ -107,7 +111,8 @@ class PagesController < ApplicationController
         last_name: top_applicant_params[:last_name],
         birthday: top_applicant_params[:birthday],
         country_code: top_applicant_params[:country],
-        mobile: top_applicant_params[:mobile]
+        mobile: top_applicant_params[:mobile],
+        gender: top_applicant_params[:gender]
       },
       metadata: {
         portafolio_url: top_applicant_params[:url],
@@ -142,7 +147,8 @@ class PagesController < ApplicationController
         last_name: innovate_applicant_params[:last_name],
         birthday: innovate_applicant_params[:birthday],
         country_code: innovate_applicant_params[:country],
-        mobile: innovate_applicant_params[:mobile]
+        mobile: innovate_applicant_params[:mobile], 
+        gender: innovate_applicant_params[:gender]
       },
       metadata: {
         linkedin: innovate_applicant_params[:url],
@@ -182,6 +188,8 @@ class PagesController < ApplicationController
       email: params['email'],
       country: params['country'],
       mobile: params['mobile'],
+      gender: params['gender'],
+      birthday: params['birthday'],
       source: params['source'],
       ip: request.remote_ip
     }
@@ -200,6 +208,8 @@ class PagesController < ApplicationController
       email: params['email'],
       country: params['country'],
       mobile: params['mobile'],
+      gender: params['gender'],
+      birthday: params['birthday'],
       source: params['source'],
       ip: request.remote_ip
     }
@@ -211,12 +221,14 @@ class PagesController < ApplicationController
     data = {
       pid: cookies[:dp_pid],
       program: "Intro to JavaScript Innpulsa",
-      event: "filled-intro-to-js-2021-2-form",
+      event: "filled-intro-to-js-2021-jul-form",
       first_name: params['first-name'],
       last_name: params['last-name'],
       email: params['email'],
       country: params['country'],
       mobile: params['mobile'],
+      gender: params['gender'],
+      birthday: params['birthday'],
       ip: request.remote_ip
     }
     CreateLeadJob.perform_later(data)
@@ -233,6 +245,8 @@ class PagesController < ApplicationController
       email: params['email'],
       country: params['country'],
       mobile: params['mobile'],
+      gender: params['gender'],
+      birthday: params['birthday'],
       ip: request.remote_ip
     }
     CreateLeadJob.perform_later(data)

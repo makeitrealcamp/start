@@ -15,6 +15,8 @@ RSpec.feature "Pages", type: :feature do
       fill_in "last-name", with: "Perez"
       fill_in "email", with: "lead@example.com"
       fill_in "mobile", with: "3111234567"
+      fill_in "birthday", with: "09/01/1998"
+      select "Hombre", from: "gender"  
       select "Google", from: "source"
 
       find('button[type="submit"]').click
@@ -36,6 +38,8 @@ RSpec.feature "Pages", type: :feature do
       fill_in "last-name", with: "Perez"
       fill_in "email", with: "lead@example.com"
       fill_in "mobile", with: "3111234567"
+      fill_in "birthday", with: "09/01/1998"
+      select "Hombre", from: "gender"  
       select "Google", from: "source"
 
       find('button[type="submit"]').click
@@ -56,6 +60,8 @@ RSpec.feature "Pages", type: :feature do
     fill_in "last-name", with: "Perez"
     fill_in "email", with: "lead@example.com"
     fill_in "mobile", with: "3111234567"
+    fill_in "birthday", with: "09/01/1998"
+    select "Hombre", from: "gender"  
     select "Google", from: "source"
 
     find('button[type="submit"]').click
