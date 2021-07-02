@@ -8,10 +8,12 @@ class CreateLeadJob < ActiveJob::Base
     email = data[:email]
     country = data[:country]
     mobile = data[:mobile]
+    birthday = data[:birthday]
+    gender = data[:gender]
     source = data[:source]
 
     person = { pid: pid, email: email, first_name: first_name, last_name: last_name,
-        country_code: country, mobile: mobile, source: source }
+        country_code: country, mobile: mobile, birthday: birthday, gender: gender ,source: source }
     begin
       ConvertLoop.event_logs.send(name: data[:event], person: person, metadata: { ip: data[:ip] })
     rescue => e
