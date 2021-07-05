@@ -8,8 +8,8 @@ git clone $1 /app
 
 cd /app
 yarn config set cache-folder /ukku/yarn-cache
-yarn
-yarn add enzyme react-addons-test-utils --dev
+yarn install --ignore-engines
+yarn add enzyme react-addons-test-utils --dev --ignore-engines
 
 cp <%= evaluation_file_path %> /app/src/
 
