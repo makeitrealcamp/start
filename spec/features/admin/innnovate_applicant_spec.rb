@@ -44,14 +44,14 @@ RSpec.feature "innovate_applicant", type: :feature do
     find("#applicant-#{applicant.id} .cell-action a").click
 
     click_on "Cambiar Estado"
-    select "Aceptado", from: "change_status_applicant_activity_to_status"
+    select "Preseleccionado", from: "change_status_applicant_activity_to_status"
     fill_in "change_status_applicant_activity_comment", with: "Status changed to test send"
     within :css, "#change-status-modal" do
       click_on "Cambiar Estado"
     end
     expect(page).to have_no_css("#change-status-modal")
 
-    expect(InnovateApplicant.find(applicant.id).status).to eq("accepted")
+    expect(InnovateApplicant.find(applicant.id).status).to eq("preselected")
   end
 
   scenario "admin can send an email to an applicant", js: true do
