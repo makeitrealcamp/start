@@ -25,7 +25,8 @@ Rails.application.routes.draw do
 
   get "top", to: "pages#top"
   get "innovate-peru", to: "pages#innovate_peru"
-  get "elite", to: "pages#elite"
+  get "innovate-peru/cupo-tiempo-completo", to: "pages#innovate_full_time_seat"
+  get "innovate-peru/cupo-tiempo-parcial", to: "pages#innovate_part_time_seat"
 
   post "application/top", to: "pages#create_top_applicant"
   post "application/innovate-peru", to: "pages#create_innovate_applicant"

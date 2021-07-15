@@ -147,7 +147,7 @@ class PagesController < ApplicationController
         last_name: innovate_applicant_params[:last_name],
         birthday: innovate_applicant_params[:birthday],
         country_code: innovate_applicant_params[:country],
-        mobile: innovate_applicant_params[:mobile], 
+        mobile: innovate_applicant_params[:mobile],
         gender: innovate_applicant_params[:gender]
       },
       metadata: {
@@ -175,6 +175,16 @@ class PagesController < ApplicationController
   def data_science_online_seat
     @course = Billing::Charge::COURSES[:datascience]
     @currency = params[:currency] || "COP"
+  end
+
+  def innovate_full_time_seat
+    @course = Billing::Charge::COURSES[:innovate_full_time]
+    @currency = params[:currency] || "PEN"
+  end
+
+  def innovate_part_time_seat
+    @course = Billing::Charge::COURSES[:innovate_part_time]
+    @currency = params[:currency] || "PEN"
   end
 
   def create_ruby_on_rails_lead
