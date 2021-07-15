@@ -1,0 +1,47 @@
+<div class="new-site reserve-seat-page">
+  <%= render "layouts/navbar/pages_dark", hide_login: true %>
+
+  <div class="container wrapper">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h3>Cupo Innóvate - Tiempo Completo</h3>
+            <div class="price"><%= number_to_currency(@course[:price][@currency], precision: 0) %> <small><%= @currency%></small></div>
+          </div>
+
+          <%= render "innovate_seat_form", course: "innovate_full_time" %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="audience-quote">
+          <p>"En Make it Real se adquieren los conocimientos necesarios para aprovechar las oportunidades del mundo actual."</p>
+
+          <div class="clearfix">
+            <div class="audience-quote-img"><%= image_tag "people/alejandro-escobar.jpg", width: 80, class: "img-circle" %></div>
+            <div class="audience-quote-person">
+              <a href="https://www.linkedin.com/in/alejoescobar/" target="_blank" class="audience-quote-person-name">Alejandro Escobar</a>
+              <span>Full Stack Developer en <a href="http://docketwise.com/" target="_blank">Docketwise</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq">
+          <h2>Preguntas frecuentes</h2>
+          <div class="question">
+            <h3>¿Qué formas de pago aceptan?</h3>
+            <p>Puedes pagar con tarjeta de crédito o débito.</p>
+          </div>
+          <div class="question">
+            <h3>Si separo mi cupo y no puedo tomar el curso ¿me devuelven el dinero?</h3>
+            <p>El valor del cupo no es reembolsable a menos de que por alguna razón el curso no se lleve a cabo en la fecha prevista. Si vas a separar tu cupo asegúrate que lo puedas tomar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  new SeatView();
+</script>

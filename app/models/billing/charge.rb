@@ -52,7 +52,19 @@ class Billing::Charge < ApplicationRecord
     quarter_sponsorship: {
       description: "Patrocinio cuarto de beca Make It Real",
       price: { "COP" => 750_000 }
-    }
+    },
+    innovate_full_time: {
+      description: "Separación programa Innóvate (Tiempo Completo)",
+      price: {
+        "PEN" => 492,
+      }
+    },
+    innovate_part_time: {
+      description: "Separación programa Innóvate (Tiempo Parcial)",
+      price: {
+        "PEN" => 320,
+      }
+    },
   }
 
   enum payment_method: [:unknown, :credit_card, :debit_card, :pse, :cash, :referenced, :transfer]

@@ -1,0 +1,42 @@
+<form id="registration-form" action="/billing/charges" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <input type="hidden" name="course" value="<%= course %>">
+  <input type="hidden" name="currency" value="<%= @currency %>">
+  <input type="hidden" name="charge[customer_country]" value="PE">
+
+  <div class="card-content">
+    <p class="form-header">Ingresa los datos del estudiante:</p>
+    <div class="form-group">
+      <label for="first_name">Nombre *</label>
+      <div class="row">
+        <div class="col-xs-6">
+          <input type="text" id="first-name" name="charge[first_name]" class="form-control" placeholder="Nombre" required autofocus>
+        </div>
+        <div class="col-xs-6">
+          <input type="text" id="last-name" name="charge[last_name]" class="form-control" placeholder="Apellido" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">E-mail *</label>
+      <input type="email" id="email" name="charge[email]" class="form-control" placeholder="Ingresa tu Email" required>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="customer-id">Documento *</label>
+          <input type="hidden" id="customer-id-type" name="charge[customer_id_type]" value="DNI">
+          <input type="text" id="customer-id" name="charge[customer_id]" class="form-control" placeholder="No. Identificación">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <div class="form-actions text-right">
+      <button type="submit" class="btn btn-primary btn-lg finish">CONTINUAR</button>
+    </div>
+  </div>
+</form>
