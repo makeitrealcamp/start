@@ -1,3 +1,4 @@
+<% disable ||= false %>
 <form id="registration-form" action="/billing/charges" method="post">
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <input type="hidden" name="course" value="<%= course %>">
@@ -36,7 +37,7 @@
 
   <div class="card-footer">
     <div class="form-actions text-right">
-      <button type="submit" class="btn btn-primary btn-lg btn-disabled finish" disabled>CONTINUAR</button>
+      <button type="submit" class="btn btn-primary btn-lg <%= 'btn-disabled' if disable %> finish" <%= "disabled" if disable %>>CONTINUAR</button>
     </div>
   </div>
 </form>
