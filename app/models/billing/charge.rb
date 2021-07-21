@@ -56,7 +56,7 @@ class Billing::Charge < ApplicationRecord
     innovate_full_time: {
       description: "Separación programa Innóvate (Tiempo Completo)",
       price: {
-        "PEN" => 492,
+        "PEN" => 1230,
       }
     },
     innovate_part_time: {
