@@ -4,13 +4,14 @@
   <div class="container wrapper">
     <div class="row">
       <div class="col-md-6">
+        <div class="alert alert-info"><strong>Próximamente anunciaremos más becas</strong>. Debes estar atento a tu correo electrónico y redes sociales para más información!</div>
         <div class="card">
           <div class="card-header">
             <h3>Cupo Innóvate - Tiempo Parcial</h3>
             <div class="price"><%= number_to_currency(@course[:price][@currency], precision: 0) %> <small><%= @currency%></small></div>
           </div>
 
-          <%= render "innovate_seat_form", course: "innovate_part_time" %>
+          <%= render "innovate_seat_form", course: "innovate_part_time", disable: true %>
         </div>
       </div>
       <div class="col-md-6">
