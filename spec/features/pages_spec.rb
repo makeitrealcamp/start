@@ -89,7 +89,9 @@ RSpec.feature "Pages", type: :feature do
     expect(page).to have_selector '#mobile'
     fill_in "mobile", with: "3131234567"
     fill_in "applicant[url]", with: "www.davidcillo.com"
-    find('#payment-method').find('option[value="scheme-1"]').select_option
+    find('#format').find('option[value="format-full"]').select_option
+    find('#payment-method-fulltime').find('option[value="scheme-1"]').select_option
+    find('#stipend').click
 
     find('.next[type="button"]').click
     fill_in "goal", with: "mi motivación es aprender"

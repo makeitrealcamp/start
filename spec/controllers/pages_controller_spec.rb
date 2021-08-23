@@ -17,39 +17,39 @@ RSpec.describe PagesController, type: :controller do
 
   describe "GET #top" do
     it "responds with status code 200" do
-      get :top
+      get :top_full_and_part_time
       expect(response).to have_http_status(:ok)
     end
 
     it "renders template" do
-      get :top
-      expect(response).to render_template :top
+      get :top_full_and_part_time
+      expect(response).to render_template :top_full_and_part_time
     end
   end
 
   describe "GET #top" do
     it "responds with status code 200" do
-      get :top
+      get :top_full_and_part_time
       expect(response).to have_http_status(:ok)
     end
 
     it "renders template" do
-      get :top
-      expect(response).to render_template :top
+      get :top_full_and_part_time
+      expect(response).to render_template :top_full_and_part_time
     end
   end
 
-  describe "GET #full_stack_online" do
-    it "responds with status code 200" do
-      get :full_stack_online
-      expect(response).to have_http_status(:ok)
-    end
+  # describe "GET #full_stack_online" do
+  #   it "responds with status code 200" do
+  #     get :full_stack_online
+  #     expect(response).to have_http_status(:ok)
+  #   end
 
-    it "renders template" do
-      get :full_stack_online
-      expect(response).to render_template :full_stack_online
-    end
-  end
+  #   it "renders template" do
+  #     get :full_stack_online
+  #     expect(response).to render_template :full_stack_online
+  #   end
+  # end
 
   describe "GET #thanks_online" do
     it "responds with status code 200" do

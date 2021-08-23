@@ -5,10 +5,19 @@ countries = {
     culturePayment: "$350",
     scheme2Cost: "$42,500",
     scheme3Cost: "$85,000",
+    scheme4Cost: "$85,000",
+    scheme5Cost: "$85,000",
     scheme1Ceil: "$120,000",
+    scheme1CeilStipend: "$141,660"
     scheme2Ceil: "$60,000",
-    salaryRange: "$21,000",
-    residency: "mexicano(a)"
+    scheme4InstallmentFee: "$3638",
+    scheme4Installments: "8",
+    scheme5InstallmentFee: "$17,000",
+    scheme5Installments: "5",
+    scheme4Ceil: "$76,213",
+    salaryRange: "$23,025",
+    socialCondition: "categoría socioeconómica Media Baja o menor",
+    residency: "mexicano(a)",
   },
   CO: {
     country: "Colombia",
@@ -16,22 +25,51 @@ countries = {
     culturePayment: '$50,000',
     scheme2Cost: "$7.5M",
     scheme3Cost: "$15M",
+    scheme4Cost: "$15M",
+    scheme5Cost: "$15M",
     scheme1Ceil: "$21M",
+    scheme1CeilStipend: "$28M"
     scheme2Ceil: "$10.5M",
-    salaryRange: "$3.8M",
+    scheme4InstallmentFee: "$675.000",
+    scheme4Installments: "8",
+    scheme5InstallmentFee: "$3M",
+    scheme5Installments: "5",
+    scheme4Ceil: "$14.5M",
+    salaryRange: "$4.3M",
+    socialCondition: "estrato 3 o menor",
     residency: "colombiano(a)"
+  }, 
+  other: {
+    country: "",
+    currency: "usd",
+    culturePayment: '$13',
+    scheme2Cost: "$2,500",
+    scheme3Cost: "$5,000",
+    scheme4Cost: "$5,000",
+    scheme5Cost: "$5,000",
+    scheme1Ceil: "$7,000",
+    scheme1CeilStipend: "$9,300"
+    scheme2Ceil: "$3,500",
+    scheme4InstallmentFee: "$315",
+    scheme4Installments: "8",
+    scheme5InstallmentFee: "$1,000",
+    scheme5Installments: "5",
+    scheme4Ceil: "$4,800",
+    salaryRange: "$1,200",
+    socialCondition: "estrato 3 o menor",
+    residency: "colombiano(a) o mexicano(a)"
   }
 }
 
 class TopProgramView extends Backbone.View
-  el: '.top-program'
+  el: '.innovate-program'
 
   initialize: ->
     $('.overlay').html('<div class="top-loading"><div class="loader">Loading...</div></div>').show()
     $.getJSON("//ipinfo.io?token=dbb0f38cf907e8")
       .done((response) =>
         country = response.country
-        country = "MX" if country != "CO"
+        country = "other" if country != "CO" and country != "MX"
 
         $('.overlay').hide()
         currency = countries[country].currency
@@ -39,17 +77,33 @@ class TopProgramView extends Backbone.View
         @.$("[data-holder='scheme-1-currency']").html(currency)
         @.$("[data-holder='scheme-2-value']").html("#{countries[country].scheme2Cost} #{currency}")
         @.$("[data-holder='scheme-3-value']").html("#{countries[country].scheme3Cost} #{currency}")
+        @.$("[data-holder='scheme-4-value']").html("#{countries[country].scheme4Cost} #{currency}")
         @.$("[data-holder='salary-range']").html("#{countries[country].salaryRange} #{currency}")
         @.$("[data-holder='culture-payment']").html("#{countries[country].culturePayment} #{currency}")
         @.$("[data-holder='ceil-scheme-1']").html("#{countries[country].scheme1Ceil} #{currency}")
+        @.$("[data-holder='ceil-scheme-1-stipend']").html("#{countries[country].scheme1CeilStipend} #{currency}")
         @.$("[data-holder='ceil-scheme-2']").html("#{countries[country].scheme2Ceil} #{currency}")
+        @.$("[data-holder='ceil-scheme-4']").html("#{countries[country].scheme4Ceil} #{currency}")
+        @.$("[data-holder='scheme-4-value']").html("#{countries[country].scheme4Cost} #{currency}")
+        @.$("[data-holder='scheme-4-installment-fee']").html("#{countries[country].scheme4InstallmentFee} #{currency}")
+        @.$("[data-holder='scheme-4-installments']").html("#{countries[country].scheme4Installments}")
+        @.$("[data-holder='scheme-5-installment-fee']").html("#{countries[country].scheme5InstallmentFee} #{currency}")
+        @.$("[data-holder='scheme-5-installments']").html("#{countries[country].scheme5Installments}")
+        @.$("[data-holder='social-condition']").html("#{countries[country].socialCondition}")
         @.$("[data-holder='residency']").html(countries[country].residency)
         @.$("[data-holder='country']").html(countries[country].country)
         @.$('#country').val(country)
         @.$('#mobile-code').html('+' + $('#country option:selected').data('code'))
+        
 
-        @.$("#payment-method option[value='scheme-2']").text("Esquema 2 - #{countries[country].scheme2Cost} de entrada + 17% de ingresos (1 año y medio)")
-        @.$("#payment-method option[value='scheme-3']").text("Esquema 3 - #{countries[country].scheme3Cost} de entrada")
+
+        @.$("#payment-method-fulltime option[value='scheme-1']").text("Esquema 1 - $0 #{currency} de entrada + 17% de ingresos (3 años)")   
+        @.$("#payment-method-fulltime option[value='scheme-2']").text("Esquema 2 - #{countries[country].scheme2Cost} #{currency} de entrada + 17% de ingresos (1 año y medio)")
+        @.$("#payment-method-fulltime option[value='scheme-3']").text("Esquema 3 - #{countries[country].scheme3Cost} #{currency} de entrada")
+
+        @.$("#payment-method-partime option[value='scheme-1']").text("Esquema 1 - #{countries[country].scheme4Installments} pagos de #{countries[country].scheme4InstallmentFee} + 17% de ingresos (2 años)")   
+        @.$("#payment-method-partime option[value='scheme-2']").text("Esquema 2 - #{countries[country].scheme5Installments} pagos de #{countries[country].scheme5InstallmentFee}")
+        @.$("#payment-method-partime option[value='scheme-3']").text("Esquema 3 - #{countries[country].scheme5Cost} #{currency} de entrada")
       )
 
   events: ->
@@ -135,7 +189,6 @@ class TopRegistrationView extends Backbone.View
     valid = false if !@input_text_is_valid($('#gender'))
     valid = false if !@input_text_is_valid($('#country'))
     valid = false if !@input_text_is_valid($('#mobile'))
-    valid = false if !@input_text_is_valid($('#payment-method'))
 
     @navigate(1) if valid
     callback(valid)
