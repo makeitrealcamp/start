@@ -34,7 +34,10 @@ class TopApplicant < Applicant
     typical_day: :string,
     vision: :string,
     additional: :string,
-    payment_method: :string
+    payment_method: :string,
+    format: :string,
+    stipend: :string,
+    country: :string
 
   def self.model_name
     Applicant.model_name

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   get "programas-web-movil", to: "pages#web_mobile_programs", as: :web_mobile_programs
-  get "full-stack-online", to: "pages#full_stack_online", as: :full_stack_online
+  get "full-stack-online", to: "pages#top_full_and_part_time", as: :full_stack_online
   post "full-stack-online", to: "pages#create_full_stack_online_lead"
   get "full-stack-online/cupo", to: "pages#full_stack_online_seat"
   get "full-stack-online/becas-mujeres", to: "pages#full_stack_becas_mujeres"
@@ -23,7 +23,8 @@ Rails.application.routes.draw do
   post "data-science-online", to: "pages#create_data_science_online_lead"
   get "data-science-online/cupo", to: "pages#data_science_online_seat"
 
-  get "top", to: "pages#top"
+  #get "top", to: "pages#top"
+  get "top", to: "pages#top_full_and_part_time"
   get "innovate-peru", to: "pages#innovate_peru"
   get "innovate-peru/cupo-tiempo-completo", to: "pages#innovate_full_time_seat"
   get "innovate-peru/cupo-tiempo-parcial", to: "pages#innovate_part_time_seat"

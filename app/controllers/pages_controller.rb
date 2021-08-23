@@ -96,12 +96,19 @@ class PagesController < ApplicationController
     redirect_to "https://s3.amazonaws.com/makeitreal/e-books/convertirte-en-desarrollador-web.pdf"
   end
 
-  def top
-  end
-
   def create_top_applicant
-    TopApplicant.create!(top_applicant_params)
+    
+    top_applicant_params_updated = top_applicant_params.dup
 
+    program_format = top_applicant_params[:format] == "format-full" ? "full" : "partial"
+    payment_method = top_applicant_params[:payment_method] == "" ? top_applicant_params[:payment_method_2] : top_applicant_params[:payment_method]
+    
+    top_applicant_params_updated.delete(:payment_method_2)
+    top_applicant_params_updated[:format] = program_format
+    top_applicant_params_updated[:payment_method] = payment_method
+
+    TopApplicant.create!(top_applicant_params_updated)  
+    
     data = {
       name: "filled-top-application",
       person: {
@@ -112,15 +119,16 @@ class PagesController < ApplicationController
         birthday: top_applicant_params[:birthday],
         country_code: top_applicant_params[:country],
         mobile: top_applicant_params[:mobile],
-        gender: top_applicant_params[:gender]
+        gender: top_applicant_params[:gender],
+        format: program_format,
+        stipend: top_applicant_params[:stipend],
+        payment_method: payment_method
       },
       metadata: {
-        portafolio_url: top_applicant_params[:url],
+        linkedin: top_applicant_params[:url],
         ip: request.remote_ip,
         goal: top_applicant_params[:goal],
         experience: top_applicant_params[:experience],
-        typical_day: top_applicant_params[:typical_day],
-        vision: top_applicant_params[:vision],
         more_info: top_applicant_params[:additional]
       }
     }
@@ -293,7 +301,7 @@ class PagesController < ApplicationController
     end
 
     def top_applicant_params
-      params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :url, :goal, :experience, :additional, :payment_method)
+      params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :url, :goal, :experience, :additional, :payment_method, :payment_method_2, :format, :stipend)
     end
 
     def innovate_applicant_params
