@@ -11,6 +11,7 @@
 #  comments     :text
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  lang         :integer          default("javascript")
 #
 # Indexes
 #
@@ -20,11 +21,11 @@
 FactoryGirl.define do
   factory :top_applicant_test do
     applicant nil
-a1 "MyString"
-a2 "MyText"
-a3 "MyText"
-a4 "MyText"
-comments "MyText"
+    a1 "MyString"
+    a2 "MyText"
+    a3 "MyText"
+    a4 "MyText"
+    comments "MyText"
   end
 
 end

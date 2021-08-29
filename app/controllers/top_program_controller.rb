@@ -65,7 +65,7 @@ class TopProgramController < ApplicationController
 
   protected
     def test_params
-      params.require(:top_applicant_test).permit(:a1, :a2, :a3, :a4)
+      params.require(:top_applicant_test).permit(:a1, :a2, :a3, :a4, :lang)
     end
 
     def has_completed_challenge(applicant)

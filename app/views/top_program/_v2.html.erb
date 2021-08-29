@@ -1,0 +1,59 @@
+<div class="form-group" style="margin-top: 40px;">
+  <label for="lang">Selecciona el lenguaje de programación:</label>
+  <select name="innovate_applicant_test[lang]" id="lang" class="form-control">
+    <option value="javascript" >JavaScript</option>
+    <option value="ruby">Ruby</option>
+    <option value="python">Python</option>
+    <option value="php">PHP</option>
+    <option value="java">Java</option>
+    <option value="cplus">C++</option>
+    <option value="csharp">C#</option>
+  </select>
+</div>
+
+<div id="q1" class="question-wrapper">
+  <div class="title <%= "has-error" if @test.errors[:a1].any? %>">1. Calcula los impuestos</div>
+  <p class="description">Escribe una función llamada <code>calcularImpuestos</code> que reciba dos argumentos numéricos: <code>edad</code> e <code>ingresos</code>. Si <code>edad</code> es igual o mayor a 18 y los ingresos son iguales o mayores a 1000 debe retornar <code>ingresos</code> * 40%. De lo contrario retorna 0.</p>
+
+  <div class="form-group <%= "has-error" if @test.errors[:a1].any? %>">
+    <%= f.text_area :a1, class: "form-control", id: "a1" %>
+    <% if @test.errors[:a1].any? %>
+      <div class="help-block"><%= @test.errors[:a1].first %></div>
+    <% end %>
+  </div>
+
+  <p>Ejemplos:</p>
+  <pre class="examples"><code>calcularImpuestos(18, 1000) // retorna 400
+calcularImpuestos(40, 10000) // retorna 4000
+calcularImpuestos(17, 5000) // retorna 0</code></pre>
+</div>
+
+<div id="q2" class="question-wrapper">
+  <div class="title <%= "has-error" if @test.errors[:a2].any? %>">2. Cuenta los asteriscos</div>
+  <p class="description">Escribe una función llamada <code>asteriscos</code> que reciba un string <code>str</code> y retorne el número de asteriscos que hay en <code>str</code>.</p>
+
+  <div class="form-group <%= "has-error" if @test.errors[:a2].any? %>">
+    <%= f.text_area :a2, class: "form-control", id: "a2" %>
+    <% if @test.errors[:a2].any? %>
+      <div class="help-block"><%= @test.errors[:a2].first %></div>
+    <% end %>
+  </div>
+  <p>Ejemplos:</p>
+  <pre class="examples"><code>asteriscos("H*o*l*a") // retorna 3
+asteriscos("Hola")  // retorna 0</code></pre>
+</div>
+
+<div id="q3" class="question-wrapper">
+  <div class="title <%= "has-error" if @test.errors[:a3].any? %>">2. Duplica cada elemento</div>
+  <p>Escribe una función llamada <code>duplicar</code> que reciba un arreglo de números como parámetro y retorne un nuevo arreglo con cada elemento duplicado (multiplicado por dos).</p>
+
+  <div class="form-group <%= "has-error" if @test.errors[:a3].any? %>">
+    <%= f.text_area :a3, class: "form-control", id: "a3" %>
+    <% if @test.errors[:a3].any? %>
+      <div class="help-block"><%= @test.errors[:a3].first %></div>
+    <% end %>
+  </div>
+  <p>Ejemplos:</p>
+  <pre class="examples"><code>duplicar([3, 12, 45, 7]) // retorna [6, 24, 90, 14]
+duplicar([8, 5]) // retorna [16, 10]</code></pre>
+</div>
