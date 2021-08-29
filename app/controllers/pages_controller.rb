@@ -97,18 +97,18 @@ class PagesController < ApplicationController
   end
 
   def create_top_applicant
-    
+
     top_applicant_params_updated = top_applicant_params.dup
 
     program_format = top_applicant_params[:format] == "format-full" ? "full" : "partial"
     payment_method = top_applicant_params[:payment_method] == "" ? top_applicant_params[:payment_method_2] : top_applicant_params[:payment_method]
-    
+
     top_applicant_params_updated.delete(:payment_method_2)
     top_applicant_params_updated[:format] = program_format
     top_applicant_params_updated[:payment_method] = payment_method
 
-    TopApplicant.create!(top_applicant_params_updated)  
-    
+    TopApplicant.create!(top_applicant_params_updated.merge(version: 2))  
+
     data = {
       name: "filled-top-application",
       person: {

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_10_170936) do
+ActiveRecord::Schema.define(version: 2021_08_28_221001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -445,6 +445,7 @@ ActiveRecord::Schema.define(version: 2021_06_10_170936) do
     t.text "comments"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "lang", default: 0
     t.index ["applicant_id"], name: "index_top_applicant_tests_on_applicant_id"
   end
 

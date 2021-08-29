@@ -37,7 +37,8 @@ class TopApplicant < Applicant
     payment_method: :string,
     format: :string,
     stipend: :string,
-    country: :string
+    country: :string,
+    version: :integer
 
   def self.model_name
     Applicant.model_name

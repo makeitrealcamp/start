@@ -11,6 +11,7 @@
 #  comments     :text
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  lang         :integer          default("javascript")
 #
 # Indexes
 #
@@ -20,5 +21,11 @@
 class TopApplicantTest < ApplicationRecord
   belongs_to :applicant
 
-  validates :applicant, :a1, :a2, :a3, :a4, presence: true
+  validates :applicant, :a1, :a2, :a3, presence: true
+  enum lang: [:javascript, :ruby, :python, :php, :java, :cplus, :csharp]
+
+  def version
+    return 1 if applicant.version.nil?
+    return applicant.version
+  end
 end
