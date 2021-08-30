@@ -8,7 +8,7 @@
 <div class="innovate-program">
   <div class="intro">
   <%= render "layouts/navbar/pages_white" %>
-  
+
     <div class="container">
       <div class="row">
         <div class="col-md-6 intro-info">
@@ -41,7 +41,7 @@
                 <div class="text-center">
                   <div class="detail-wrapper">
                     <div class="detail-value"><span data-holder="salary-range"/></div>
-                    <div class="detail-label">SALARIO MENSUAL PROMEDIO<span style="cursor: pointer;" data-toggle="tooltip" data-placement="top" title="Incluyendo prestaciones sociales">*</span></div>
+                    <div class="detail-label">INGRESO MENSUAL PROMEDIO<span style="cursor: pointer;" data-toggle="tooltip" data-placement="top" title="Incluyendo prestaciones sociales de ley">*</span></div>
                   </div>
                 </div>
               </div>
@@ -379,12 +379,12 @@
             </div>
             <div class="plus">Opción 1</div>
             <div class="arrow-down"></div>
-            <div class="shared-income"><strong>$0 <span data-holder="scheme-1-currency"></strong> al inicio y <strong>17%</strong> de tus ingresos por <strong>3 años</strong> cuando encuentres empleo  
+            <div class="shared-income"><strong>$0 <span data-holder="scheme-1-currency"></strong> al inicio y <strong>17%</strong> de tus ingresos por <strong>3 años</strong> cuando encuentres empleo
               <p class="scheme-max-payment">Pagarás máximo  <span data-holder="ceil-scheme-1"></span> o <span data-holder="ceil-scheme-1-stipend"></span> en 3.5 años si recibes ayuda económica</p>
             </div>
             <div class="plus">Opción 2</div>
             <div class="arrow-down"></div>
-            <div class="shared-income"><strong><span data-holder="scheme-2-value"></strong> al inicio y <strong>17%</strong> de tus ingresos por <strong>1.5 años</strong> cuando encuentres empleo  
+            <div class="shared-income"><strong><span data-holder="scheme-2-value"></strong> al inicio y <strong>17%</strong> de tus ingresos por <strong>1.5 años</strong> cuando encuentres empleo
               <p class="scheme-max-payment">Pagarás máximo  <span data-holder="ceil-scheme-2"></span> después de finalizar el programa</p>
             </div>
             <div class="plus">Opción 3</div>
@@ -394,7 +394,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="scheme">
           <div class="scheme-body">
             <div class="initial">
@@ -416,20 +416,20 @@
               <p class="scheme-max-payment">No realizarás pagos adicionales después de finalizar el programa</p>
             </div>
           </div>
-        </div>        
+        </div>
 
       </div>
       <div class="scheme-footer">* La <strong>opción 1</strong> de ambas modalidades, y la <strong>opción 2</strong> de la modalidad tiempo completo, sólo están disponibles para nacionales o residentes de Colombia y México</div>
     </div>
   </div>
 
-  
+
   <div class="section section-stipend">
     <div class="container">
       <div class="row">
         <div class="col-md-6">
           <h2>Sostenimiento económico</h2>
-          <p>Si necesitas dinero para tu sostenimiento económico mientras estudias nuestro programa <strong>TOP tiempo completo</strong>, y haces parte de alguna minoría *,  podrás aplicar al estipendio (<strong>ayuda económica</strong>) de Make It Real gracias al apoyo de Ikea Entrepreneurship y Nesst</p> 
+          <p>Si necesitas dinero para tu sostenimiento económico mientras estudias nuestro programa <strong>TOP tiempo completo</strong>, y haces parte de alguna minoría *,  podrás aplicar al estipendio (<strong>ayuda económica</strong>) de Make It Real gracias al apoyo de Ikea Entrepreneurship y Nesst</p>
           <button type="button" class="pbtn pbtn-secondary apply-now-btn">Aplica al TOP</button>
           <p class="stipend-footer">* Al aplicar, consulta los términos para recibir ayuda económica.</p>
         </div>
@@ -437,7 +437,7 @@
           <%= image_tag "image-banner.jpg", srcset: { "image-banner@2x.jpg" => "2x", "image-banner@3x.jpg" => "3x"} %>
         </div>
       </div>
-    </div> 
+    </div>
   </div>
 
   <section class="section section-faq">
@@ -489,7 +489,7 @@
             <ul>
               <li>Debes haber sido aceptado(a) al programa TOP en su modalidad tiempo completo.</li>
               <li>Debes ser mujer, u hombre con domicilio en <span data-holder="social-condition"> , o autoidentificarte con la comunidad LGTBQ+, o tener movilidad reducida.</li>
-              <li>Debes ser nacional o residente colombiano o mexicano. 
+              <li>Debes ser nacional o residente colombiano o mexicano.
             </ul>
           </div>
 
@@ -724,7 +724,7 @@
                       <option value="scheme-2"></option>
                       <option value="scheme-3"></option>
                     </select>
-                  </div>  
+                  </div>
                 </div>
               </div>
               <div id="can-work" style="display: none;">
@@ -773,7 +773,7 @@
   });
 
   function showSchemeOptions(elem) {
-    showFullTimeOptions(elem); 
+    showFullTimeOptions(elem);
     showPartTimeOptions(elem);
   };
 
@@ -784,7 +784,7 @@
       document.getElementById('partime-scheme').style.display = "none";
     }
   };
-  
+
   function showFullTimeOptions(elem) {
     if (elem.value === "format-full") {
       document.getElementById('fulltime-scheme').style.display = "block";
