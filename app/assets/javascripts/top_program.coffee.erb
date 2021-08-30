@@ -35,10 +35,10 @@ countries = {
     scheme5InstallmentFee: "$3M",
     scheme5Installments: "5",
     scheme4Ceil: "$14.5M",
-    salaryRange: "$4.3M",
+    salaryRange: "$5.7M",
     socialCondition: "estrato 3 o menor",
     residency: "colombiano(a)"
-  }, 
+  },
   other: {
     country: "",
     currency: "usd",
@@ -94,14 +94,14 @@ class TopProgramView extends Backbone.View
         @.$("[data-holder='country']").html(countries[country].country)
         @.$('#country').val(country)
         @.$('#mobile-code').html('+' + $('#country option:selected').data('code'))
-        
 
 
-        @.$("#payment-method-fulltime option[value='scheme-1']").text("Esquema 1 - $0 #{currency} de entrada + 17% de ingresos (3 años)")   
+
+        @.$("#payment-method-fulltime option[value='scheme-1']").text("Esquema 1 - $0 #{currency} de entrada + 17% de ingresos (3 años)")
         @.$("#payment-method-fulltime option[value='scheme-2']").text("Esquema 2 - #{countries[country].scheme2Cost} #{currency} de entrada + 17% de ingresos (1 año y medio)")
         @.$("#payment-method-fulltime option[value='scheme-3']").text("Esquema 3 - #{countries[country].scheme3Cost} #{currency} de entrada")
 
-        @.$("#payment-method-partime option[value='scheme-1']").text("Esquema 1 - #{countries[country].scheme4Installments} pagos de #{countries[country].scheme4InstallmentFee} + 17% de ingresos (2 años)")   
+        @.$("#payment-method-partime option[value='scheme-1']").text("Esquema 1 - #{countries[country].scheme4Installments} pagos de #{countries[country].scheme4InstallmentFee} + 17% de ingresos (2 años)")
         @.$("#payment-method-partime option[value='scheme-2']").text("Esquema 2 - #{countries[country].scheme5Installments} pagos de #{countries[country].scheme5InstallmentFee}")
         @.$("#payment-method-partime option[value='scheme-3']").text("Esquema 3 - #{countries[country].scheme5Cost} #{currency} de entrada")
       )
