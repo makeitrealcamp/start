@@ -44,16 +44,6 @@
                 </div>
 
                 <div class="applicant-detail">
-                  <div class="detail-label">Skype:</div>
-                  <div class="detail-value"><%= @applicant.skype %></div>
-                </div>
-
-                <div class="applicant-detail">
-                  <div class="detail-label">Twitter:</div>
-                  <div class="detail-value"><%= @applicant.twitter %></div>
-                </div>
-
-                <div class="applicant-detail">
                   <div class="detail-label">Url:</div>
                   <div class="detail-value"><%= @applicant.url %></div>
                 </div>
@@ -64,9 +54,20 @@
                 <div class="applicant-status"><%= TopApplicant.status_to_human(@applicant.status).capitalize %></div>
               </div>
               <div class="applicant-details">
+
                 <div class="applicant-detail">
                   <div class="detail-label">Esquema de pago</div>
-                  <div class="detail-value"><%= payment_method_to_human(@applicant.payment_method) %></div>
+                  <div class="detail-value"><%= payment_method_to_human(@applicant.payment_method, @applicant.format, @applicant.country) %></div>
+                </div>
+
+                <div class="applicant-detail">
+                  <div class="detail-label">Estipendio solicitado</div>
+                  <div class="detail-value"><%= stipend_to_human(@applicant.stipend) %></div>
+                </div>
+
+                <div class="applicant-detail">
+                  <div class="detail-label">Modalidad</div>
+                  <div class="detail-value"><%= format_to_human(@applicant.format) %></div>
                 </div>
 
                 <div class="applicant-detail">
@@ -77,16 +78,6 @@
                 <div class="applicant-detail">
                   <div class="detail-label">Experiencia</div>
                   <div class="detail-value"><%= @applicant.experience %></div>
-                </div>
-
-                <div class="applicant-detail">
-                  <div class="detail-label">Día típico</div>
-                  <div class="detail-value"><%= @applicant.typical_day %></div>
-                </div>
-
-                <div class="applicant-detail">
-                  <div class="detail-label">Visión (5 años)</div>
-                  <div class="detail-value"><%= @applicant.vision %></div>
                 </div>
 
                 <div class="applicant-detail">
