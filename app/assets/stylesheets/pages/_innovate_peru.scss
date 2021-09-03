@@ -1,8 +1,6 @@
 .pages-layout .innovate-program {
   .intro {
-    background: linear-gradient(to bottom, #668add, #1d2b64) bottom right/50%
-        40% no-repeat,
-      white;
+    background: white;
     padding-bottom: 0;
 
     @media (min-width: $screen-md-min) {
@@ -18,6 +16,7 @@
 
     .intro-img {
       z-index: 9;
+      margin-bottom: 55px;
     }
   }
 
@@ -145,6 +144,11 @@
       }
     }
 
+    .application-deadline p {
+      text-align: center;
+      color: #212f65;
+      margin-top: 15px;
+    }
     .format {
       background: white;
       margin: 0 auto;
