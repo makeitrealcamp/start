@@ -189,7 +189,9 @@ class TopRegistrationView extends Backbone.View
     valid = false if !@input_text_is_valid($('#gender'))
     valid = false if !@input_text_is_valid($('#country'))
     valid = false if !@input_text_is_valid($('#mobile'))
-
+    valid = false if !@input_text_is_valid($('#format'))
+    valid = false if !@input_text_is_valid($('#payment-method-partime')) && !@input_text_is_valid($('#payment-method-fulltime'))
+    
     @navigate(1) if valid
     callback(valid)
 
