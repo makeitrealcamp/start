@@ -693,7 +693,7 @@
                 <div class="col-sm-12">
                   <div class="form-group">
                     <label for="format">Modalidad</label>
-                    <select id="format" class="form-control" onchange="showSchemeOptions(this);" name="applicant[format]">
+                    <select id="format" class="form-control" name="applicant[format]">
                       <option value="">Selecciona</option>
                       <option value="format-full">Tiempo completo</option>
                       <option value="format-partial">Tiempo parcial</option>
@@ -705,7 +705,7 @@
                 <div class="col-sm-12">
                   <div class="form-group">
                     <label for="payment-method-fulltime">Esquema de pago</label>
-                    <select id="payment-method-fulltime" class="form-control" name="applicant[payment_method]"  onchange="showCanWorkFullTime(this);">
+                    <select id="payment-method-fulltime" class="form-control" name="applicant[payment_method]">
                       <option value="">Selecciona</option>
                       <option value="scheme-1"></option>
                       <option value="scheme-2"></option>
@@ -718,7 +718,7 @@
                 <div class="col-sm-12">
                   <div class="form-group">
                     <label for="payment-method-partime">Esquema de pago</label>
-                    <select id="payment-method-partime" class="form-control" name="applicant[payment_method_2]"  onchange="showCanWorkPartTime(this);">
+                    <select id="payment-method-partime" class="form-control" name="applicant[payment_method_2]" >
                       <option value="">Selecciona</option>
                       <option value="scheme-1"></option>
                       <option value="scheme-2"></option>
@@ -756,7 +756,7 @@
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-default back" onClick="schemeOptionsReset()">&lt;&lt; Atrás</button>
+            <button type="button" class="btn btn-default back">&lt;&lt; Atrás</button>
             <button type="button" class="btn btn-primary btn-lg next">Continuar</button>
             <button type="button" class="btn btn-primary btn-lg finish" style="display: none;">FINALIZAR</button>
           </div>
@@ -770,5 +770,5 @@
 <script type="text/javascript">
   $(document).on("turbolinks:load", function() {
     new TopProgramView();
-  }); 
+  });
 </script>
