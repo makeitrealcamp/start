@@ -95,8 +95,6 @@ class TopProgramView extends Backbone.View
         @.$('#country').val(country)
         @.$('#mobile-code').html('+' + $('#country option:selected').data('code'))
 
-
-
         @.$("#payment-method-fulltime option[value='scheme-1']").text("Esquema 1 - $0 #{currency} de entrada + 17% de ingresos (3 años)")
         @.$("#payment-method-fulltime option[value='scheme-2']").text("Esquema 2 - #{countries[country].scheme2Cost} #{currency} de entrada + 17% de ingresos (1 año y medio)")
         @.$("#payment-method-fulltime option[value='scheme-3']").text("Esquema 3 - #{countries[country].scheme3Cost} #{currency} de entrada")
@@ -108,6 +106,7 @@ class TopProgramView extends Backbone.View
 
   events: ->
     "click .apply-now-btn": "show_registration"
+    "click .back": "reset_scheme_options"
 
   show_registration: ->
     new TopRegistrationView()
@@ -128,6 +127,9 @@ class TopRegistrationView extends Backbone.View
     "click .next": "handle_navigation"
     "click .back": "navigate_back"
     "change #country": "change_country_code"
+    "change #format": "show_scheme_options"
+    "change #payment-method-fulltime": "show_can_work_full_time"
+    "change #payment-method-partime": "show_can_work_part_time"
     "click .finish": "submit_form"
 
   handle_navigation: (e) ->
@@ -189,6 +191,8 @@ class TopRegistrationView extends Backbone.View
     valid = false if !@input_text_is_valid($('#gender'))
     valid = false if !@input_text_is_valid($('#country'))
     valid = false if !@input_text_is_valid($('#mobile'))
+    valid = false if !@input_text_is_valid($('#format'))
+    valid = false if !@input_text_is_valid($('#payment-method-partime')) && !@input_text_is_valid($('#payment-method-fulltime'))
 
     @navigate(1) if valid
     callback(valid)
@@ -226,5 +230,61 @@ class TopRegistrationView extends Backbone.View
       field.closest('.checkbox').addClass('has-error')
       return false
     return true
+
+  reset_scheme_options: ->
+    @.$('#format').val("")
+    @.$('#payment-method-fulltime').val("")
+    @.$('#fulltime-scheme').hide()
+    @.$("#stipendCheckBox").prop("checked", false)
+    @.$('#payment-method-partime').val("")
+    @.$('#partime-scheme').hide()
+    @.$('#stipend').hide()
+    @.$('#can-work').hide()
+
+  show_scheme_options: (e) ->
+    @show_full_time_options(e.currentTarget);
+    @show_part_time_options(e.currentTarget);
+
+  show_full_time_options: (elem) ->
+    if (elem.value == "format-full")
+      @.$('#payment-method-fulltime').val("")
+      @.$('#payment-method-partime').val("")
+      @.$('#stipend').hide()
+      @.$('#fulltime-scheme').show()
+      @.$("#stipendCheckBox").prop("checked", false)
+    else
+      @.$('#fulltime-scheme').hide()
+
+  show_part_time_options: (elem) ->
+    if (elem.value == "format-partial")
+      @.$('#payment-method-partime').val("")
+      @.$('#payment-method-fulltime').val("")
+      @.$('#stipend').hide()
+      @.$('#can-work').hide()
+      @.$("#stipendCheckBox").prop("checked", false)
+      @.$('#partime-scheme').show()
+    else
+      @.$('#partime-scheme').hide()
+
+  show_can_work_full_time: (e) ->
+    elem = e.currentTarget
+    if(elem.value == "scheme-1")
+      @.$('#can-work').show()
+      @.$('#stipend').show()
+    else if (elem.value == "scheme-2")
+      @.$('#can-work').show()
+      @.$('#stipend').hide()
+      @.$("#stipendCheckBox").prop("checked", false)
+     else
+      @.$('#can-work').hide()
+      @.$('#stipend').hide()
+      @.$("#stipendCheckBox").prop("checked", false)
+
+  show_can_work_part_time: (e) ->
+    elem = e.currentTarget
+    if(elem.value == "scheme-1")
+      @.$('#can-work').show()
+    else
+      @.$('#can-work').hide()
 
 window.TopProgramView = TopProgramView

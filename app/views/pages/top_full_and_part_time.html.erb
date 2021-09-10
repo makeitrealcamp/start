@@ -696,7 +696,7 @@
                 <div class="col-sm-12">
                   <div class="form-group">
                     <label for="format">Modalidad</label>
-                    <select id="format" class="form-control" onchange="showSchemeOptions(this);" name="applicant[format]">
+                    <select id="format" class="form-control" name="applicant[format]">
                       <option value="">Selecciona</option>
                       <option value="format-full">Tiempo completo</option>
                       <option value="format-partial">Tiempo parcial</option>
@@ -708,7 +708,7 @@
                 <div class="col-sm-12">
                   <div class="form-group">
                     <label for="payment-method-fulltime">Esquema de pago</label>
-                    <select id="payment-method-fulltime" class="form-control" name="applicant[payment_method]"  onchange="showCanWorkFullTime(this);">
+                    <select id="payment-method-fulltime" class="form-control" name="applicant[payment_method]">
                       <option value="">Selecciona</option>
                       <option value="scheme-1"></option>
                       <option value="scheme-2"></option>
@@ -721,7 +721,7 @@
                 <div class="col-sm-12">
                   <div class="form-group">
                     <label for="payment-method-partime">Esquema de pago</label>
-                    <select id="payment-method-partime" class="form-control" name="applicant[payment_method_2]"  onchange="showCanWorkPartTime(this);">
+                    <select id="payment-method-partime" class="form-control" name="applicant[payment_method_2]" >
                       <option value="">Selecciona</option>
                       <option value="scheme-1"></option>
                       <option value="scheme-2"></option>
@@ -735,7 +735,7 @@
               </div>
               <div class="checkbox stipendcheck" id="stipend" style="display: none;">
                 <label>
-                  <input type="checkbox" name="applicant[stipend]">Postularme para recibir ayuda de sostenimiento económico.
+                  <input type="checkbox" name="applicant[stipend]" id="stipendCheckBox">Postularme para recibir ayuda de sostenimiento económico.
                 </label>
                 <small>Aplica sólo si eres mujer, o te identificas como LGBTQ+, o eres hombre con domicilio en <span data-holder="social-condition">, o cuentas con movilidad reducida, y realmente necesitas el dinero para vivir mientras estudias.</small>
               </div>
@@ -774,46 +774,4 @@
   $(document).on("turbolinks:load", function() {
     new TopProgramView();
   });
-
-  function showSchemeOptions(elem) {
-    showFullTimeOptions(elem);
-    showPartTimeOptions(elem);
-  };
-
-  function showPartTimeOptions(elem) {
-    if (elem.value === "format-partial") {
-      document.getElementById('partime-scheme').style.display = "block";
-    } else {
-      document.getElementById('partime-scheme').style.display = "none";
-    }
-  };
-
-  function showFullTimeOptions(elem) {
-    if (elem.value === "format-full") {
-      document.getElementById('fulltime-scheme').style.display = "block";
-    } else {
-      document.getElementById('fulltime-scheme').style.display = "none";
-    }
-  };
-
-  function showCanWorkFullTime(elem) {
-    if(elem.value === "scheme-1") {
-      document.getElementById('can-work').style.display = "block";
-      document.getElementById('stipend').style.display = "block";
-    } else if (elem.value === "scheme-2") {
-      document.getElementById('can-work').style.display = "block";
-      document.getElementById('stipend').style.display = "none";
-     } else {
-      document.getElementById('can-work').style.display = "none";
-      document.getElementById('stipend').style.display = "none";
-    }
-  }
-
-  function showCanWorkPartTime(elem) {
-    if(elem.value === "scheme-1") {
-      document.getElementById('can-work').style.display = "block";
-    } else {
-      document.getElementById('can-work').style.display = "none";
-    }
-  }
 </script>
