@@ -107,7 +107,7 @@ class PagesController < ApplicationController
     top_applicant_params_updated[:format] = program_format
     top_applicant_params_updated[:payment_method] = payment_method
 
-    TopApplicant.create!(top_applicant_params_updated.merge(version: 2))  
+    TopApplicant.create!(top_applicant_params_updated.merge(version: 2))
 
     data = {
       name: "filled-top-application",
@@ -293,6 +293,16 @@ class PagesController < ApplicationController
     ConvertLoopJob.perform_later(data)
     AdminMailer.new_scholarship(data).deliver_later
     redirect_to "/thanks-fs-becas-mujeres"
+  end
+
+  def thanks_preparation_top
+    applicant = TopApplicant.where("info -> 'uid' = ?", params[:uid]).take
+
+    if applicant
+      ConvertLoop.event_logs.send(name: "rsvp-preparation-top", person: { email: applicant.email })
+    else
+      raise ActiveRecord::RecordNotFound
+    end
   end
 
   private
