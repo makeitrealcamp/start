@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   get "thanks-intro-to-js", to:"pages#thanks_online_innpulsa"
   get "thanks-intro-to-python", to:"pages#thanks_online_innpulsa"
   get "thanks-fs-becas-mujeres", to:"pages#thanks_online"
+  get "thanks-preparation-top", to: "pages#thanks_preparation_top"
 
   get "como-convertirte-en-web-developer", to: "pages#web_developer_guide", as: :web_developer_guide
   post "como-convertirte-en-web-developer", to: "pages#send_web_developer_guide"

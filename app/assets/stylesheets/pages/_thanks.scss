@@ -55,4 +55,16 @@
       line-height: 1.5;
     }
   }
+
+  .add-to-calendar {
+    background: $color_orange;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 20px 25px;
+    border-radius: 5px;
+
+    i { margin-right: 15px; }
+  }
 }
