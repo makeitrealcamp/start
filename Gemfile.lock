@@ -108,7 +108,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.8)
-    connection_pool (2.2.3)
+    connection_pool (2.2.5)
     convertloop (0.1.2)
     crass (1.0.6)
     css_parser (1.7.1)
@@ -307,7 +307,7 @@ GEM
       ffi (~> 1.0)
     rdoc (4.3.0)
     redcarpet (3.5.1)
-    redis (4.2.2)
+    redis (4.4.0)
     regexp_parser (1.8.2)
     remote_syslog_logger (1.0.4)
       syslog_protocol
@@ -372,7 +372,7 @@ GEM
       rubyzip (>= 1.2.2)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
-    sidekiq (6.1.2)
+    sidekiq (6.2.1)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
