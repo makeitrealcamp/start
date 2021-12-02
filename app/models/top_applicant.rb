@@ -13,6 +13,11 @@
 #  info       :hstore
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  cohort_id  :bigint
+#
+# Indexes
+#
+#  index_applicants_on_cohort_id  (cohort_id)
 #
 
 class TopApplicant < Applicant

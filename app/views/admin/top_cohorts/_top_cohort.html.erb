@@ -1,0 +1,7 @@
+<tr id="cohort-<%= top_cohort.id %>">
+  <td><%= top_cohort.name %></td>
+  <td><%= top_cohort.applicants.count %></td>
+  <td class="text-right">
+    <%= link_to "Editar", edit_admin_top_cohort_path(top_cohort.id), remote: true, class: "btn btn-primary" %>
+  </td>
+</tr>

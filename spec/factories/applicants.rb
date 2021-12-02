@@ -13,6 +13,11 @@
 #  info       :hstore
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  cohort_id  :bigint
+#
+# Indexes
+#
+#  index_applicants_on_cohort_id  (cohort_id)
 #
 
 FactoryGirl.define do
@@ -22,6 +27,7 @@ FactoryGirl.define do
     last_name  "Perez"
     country    "CO"
     mobile     "3224567756"
+    cohort { create(:top_cohort) }
   end
 
   factory :top_applicant, parent: :applicant, class: "TopApplicant" do

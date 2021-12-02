@@ -1,0 +1,32 @@
+<div class="cohorts-page">
+  <div class="container">
+    <div class="row" >
+      <div class="col-sm-12">
+        <div class="top-actions">
+          <%= link_to "&larr; Volver".html_safe, admin_top_applicants_path %>
+        </div>
+        <div class="cohorts-header">
+          <h1>Convocatorias</h1>
+          <%= link_to '<span class="glyphicon glyphicon-plus"></span> Nueva Convocatoria'.html_safe, new_admin_top_cohort_path, remote: true, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Aplicantes</th>
+              <th class="text-right"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render @cohorts %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
