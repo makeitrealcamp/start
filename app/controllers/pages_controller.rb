@@ -107,7 +107,8 @@ class PagesController < ApplicationController
     top_applicant_params_updated[:format] = program_format
     top_applicant_params_updated[:payment_method] = payment_method
 
-    TopApplicant.create!(top_applicant_params_updated.merge(version: 2))
+    cohort = TopCohort.order(created_at: :desc).take
+    TopApplicant.create!(top_applicant_params_updated.merge(version: 2, cohort: cohort))
 
     data = {
       name: "filled-top-application",

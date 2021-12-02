@@ -2,7 +2,8 @@ class Admin::TopApplicantsController < ApplicationController
   before_action :admin_access
 
   def index
-    @applicants = TopApplicant.order('created_at DESC')
+    @cohort = params[:cohort] ? TopCohort.find(params[:cohort]) : TopCohort.order(created_at: :desc).take
+    @applicants = @cohort.applicants.order('created_at DESC')
 
     if params[:status].present?
       @applicants = @applicants.where(status: TopApplicant.statuses[params[:status]])
@@ -22,7 +23,17 @@ class Admin::TopApplicantsController < ApplicationController
     @applicant = TopApplicant.find(params[:id])
   end
 
-  def aplication_params
-    params.require(:top_applicant).permit(:comment)
+  def edit
+    @applicant = TopApplicant.find(params[:id])
   end
+
+  def update
+    @applicant = TopApplicant.find(params[:id])
+    @applicant.update(applicant_params)
+  end
+
+  private
+    def applicant_params
+      params.require(:applicant).permit(:cohort_id)
+    end
 end

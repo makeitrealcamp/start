@@ -216,7 +216,7 @@ Rails.application.routes.draw do
       post 'assign_points', on: :member
     end
 
-    resources :top_applicants, only: [:index, :show]
+    resources :top_applicants, only: [:index, :show, :edit, :update]
     resources :innovate_applicants, only: [:index, :show]
 
     resources :applicants, only: [] do
@@ -227,6 +227,7 @@ Rails.application.routes.draw do
     resources :top_applicant_tests, only: [:show]
     resources :innovate_applicant_tests, only: [:show]
 
+    resources :top_cohorts
     resources :email_templates
     resources :charges
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_28_221001) do
+ActiveRecord::Schema.define(version: 2021_11_29_070432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(version: 2021_08_28_221001) do
     t.hstore "info"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "cohort_id"
+    t.index ["cohort_id"], name: "index_applicants_on_cohort_id"
   end
 
   create_table "auth_providers", id: :serial, force: :cascade do |t|
@@ -160,6 +162,13 @@ ActiveRecord::Schema.define(version: 2021_08_28_221001) do
     t.integer "difficulty_bonus"
     t.integer "timeout"
     t.index ["subject_id"], name: "index_challenges_on_subject_id"
+  end
+
+  create_table "cohorts", force: :cascade do |t|
+    t.string "name"
+    t.string "type", limit: 30
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "comments", id: :serial, force: :cascade do |t|
@@ -522,6 +531,7 @@ ActiveRecord::Schema.define(version: 2021_08_28_221001) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activity_logs", "users"
+  add_foreign_key "applicants", "cohorts", on_delete: :cascade
   add_foreign_key "auth_providers", "users"
   add_foreign_key "billing_charges", "users"
   add_foreign_key "challenge_completions", "challenges"

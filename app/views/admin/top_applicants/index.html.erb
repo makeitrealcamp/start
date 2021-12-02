@@ -3,9 +3,19 @@
     <h1>Programa TOP</h1>
     <div class="row">
       <div class="col-sm-3">
+        <form>
+          <div class="form-group">
+            <label for="cohort">Convocatoria:</label>
+            <select name="cohort" id="cohort" class="form-control" onchange="this.form.submit();">
+              <%= options_from_collection_for_select(TopCohort.order(created_at: :desc), :id, :name_with_num_applicants, @cohort.id) %>
+            </select>
+          </div>
+        </form>
+        <div style="padding: 0 0 15px;"><%= link_to "Administrar Convocatorias", admin_top_cohorts_path %></div>
+
         <ul class="list-group">
           <% TopApplicant.statuses.keys.each do |status| %>
-            <li class="list-group-item"><%= TopApplicant.status_to_human(status).capitalize %> <span class="badge badge-primary badge-pill"><%= TopApplicant.where(status: TopApplicant.statuses[status]).count %></span></li>
+            <li class="list-group-item"><%= TopApplicant.status_to_human(status).capitalize %> <span class="badge badge-primary badge-pill"><%= TopApplicant.find_by_status_and_cohort(status, params[:cohort]).count %></span></li>
           <% end %>
         </ul>
          <div><%= link_to "Administrar plantillas", admin_email_templates_path %></div>

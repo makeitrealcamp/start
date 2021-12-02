@@ -1,0 +1,22 @@
+<div class="modal fade" id="applicant-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Aplicación</h4>
+      </div>
+
+      <%= form_for [:admin, @applicant], url: admin_top_applicant_path(@applicant), remote: true do |f| %>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= f.label :cohort_id, "Nombre" %>
+            <%= f.select :cohort_id, options_from_collection_for_select(TopCohort.order(created_at: :desc), :id, :name, @applicant.cohort.id), {}, class: "form-control" %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "Guardar Aplicación", class:"btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

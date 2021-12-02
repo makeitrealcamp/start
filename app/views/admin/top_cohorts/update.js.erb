@@ -1,0 +1,10 @@
+clearField('#top_cohort_name');
+
+<% if @cohort.valid? %>
+  $('#cohort-modal').modal('hide');
+  $("#cohort-<%= @cohort.id %>").replaceWith("<%= j render @cohort %>");
+<% else %>
+  <% if @cohort.errors[:name].any? %>
+    invalidField('#top_cohort_name', '<%= @cohort.errors[:name].first %>');
+  <% end %>
+<% end %>
