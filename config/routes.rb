@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   get "full-stack-online", to: "pages#top_full_and_part_time", as: :full_stack_online
   post "full-stack-online", to: "pages#create_full_stack_online_lead"
   get "full-stack-online/cupo", to: "pages#full_stack_online_seat"
-  get "full-stack-online/becas-mujeres", to: "pages#full_stack_becas_mujeres"
-  get "full-stack-online/patrocina-una-beca", to: "pages#full_stack_sponsors"
+  get "full-stack-online/becas-mujeres", to: redirect('/top')
+  get "full-stack-online/patrocina-una-beca", to: redirect('/top')
   post "full-stack-becas-mujeres", to: "pages#create_fs_becas_mujeres_lead"
   get "ruby-on-rails", to: 'pages#ruby_on_rails'
   post "ruby-on-rails", to: 'pages#create_ruby_on_rails_lead'
