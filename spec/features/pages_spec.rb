@@ -101,43 +101,4 @@ RSpec.feature "Pages", type: :feature do
 
     expect(current_path).to eq thanks_top_path
   end
-
-  scenario "apply to the women scholarship", js: true do
-    ActionMailer::Base.deliveries.clear
-    visit full_stack_online_becas_mujeres_path
-
-    first('button.btn-register').click
-    expect(page).to have_css("#registration-modal")
-
-    fill_in "first-name", with: "Maria"
-    fill_in "last-name", with: "Gomez"
-    fill_in "email", with: "maria@example.com"
-    fill_in "birthday", with: "20/11/2000"
-    fill_in "mobile", with: "3111234567"
-    fill_in "application_reason", with: "Me parece muy interesante"
-    fill_in "url", with: "https://example.com/"
-    select "YouTube", from: "source"
-
-    find('button[type="submit"]').click
-
-    expect(current_path).to eq thanks_fs_becas_mujeres_path
-    expect(ConvertLoopJob).to have_been_enqueued
-  end
-
-  scenario "sponsor a woman scholarship", js: true do
-    visit full_stack_online_patrocina_una_beca_path
-
-    first('div.scheme').click
-
-    expect(page).to have_css("#registration-modal")
-
-    fill_in "first-name", with: "Maria"
-    fill_in "last-name", with: "Gomez"
-    fill_in "email", with: "maria@example.com"
-    select "Beca completa - COP$3'000,000", from: "course"
-
-    find('button[type="submit"]').click
-
-    expect(current_path).to eq "/billing/charges"
-  end
 end
