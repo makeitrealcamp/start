@@ -366,6 +366,13 @@
     }
 
     .modal-footer {
+      .verification-back-btn {
+        float: left;
+        color: #999;
+        border: 1px solid #ccc;
+        padding: 9px 14px;
+      }
+
       .back {
         display: none;
         float: left;
@@ -373,6 +380,8 @@
         border: 1px solid #ccc;
         padding: 9px 14px;
       }
+
+      .submit { display: none; }
     }
   }
 

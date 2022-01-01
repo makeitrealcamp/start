@@ -71,6 +71,7 @@ RSpec.feature "Pages", type: :feature do
   end
 
   scenario "apply to the top program", js: true do
+    ActionMailer::Base.deliveries.clear
     visit  "/top"
 
     first('button.apply-now-btn').click
@@ -78,11 +79,29 @@ RSpec.feature "Pages", type: :feature do
 
     sleep 0.5 # hack to wait for the animations of the modal
     find('#terms').click
-    find('.next[type="button"]').click
+    find('.accept-terms-btn[type="button"]').click
+    
+    fill_in "Email", with: "lead@example.com"
+    find('.send-email-btn[type="submit"]').click
+    expect(page).to have_css("#application-modal .verification-step")
 
+    top_invitation = TopInvitation.where(email: "lead@example.com").take
+    expect(top_invitation).not_to be_nil
+    
+    email = ActionMailer::Base.deliveries.last
+    expect(email).to_not be_nil
+    expect(email.body.raw_source).to include(top_invitation.token)
+
+    fill_in "Token", with: "wrong token"
+    find('.verification-btn[type="submit"]').click
+    expect(page).to have_css("#application-modal .verification-step .form-group.has-error")
+
+    fill_in "Token", with: top_invitation.token
+    find('.verification-btn[type="submit"]').click
+
+    expect(page).to have_css("#application-modal .application-1")
     fill_in "first-name", with: "Pedro"
     fill_in "last-name", with: "Perez"
-    fill_in "email", with: "lead@example.com"
     fill_in "birthday", with: "12/05/2016"
     select "Otro", from: 'gender'
     select "Colombia", from: 'country'
@@ -93,12 +112,20 @@ RSpec.feature "Pages", type: :feature do
     find('#payment-method-fulltime').find('option[value="scheme-1"]').select_option
     find('#stipend').click
 
-    find('.next[type="button"]').click
+    find('.application-step-btn[type="button"]').click
+
+    expect(page).to have_css("#application-modal .application-2")
+    find('.submit[type="button"]').click
+    expect(page).to have_css("#application-modal .application-2 .form-group.has-error")
+
     fill_in "goal", with: "mi motivación es aprender"
     fill_in "experience", with: "1 año"
     fill_in "additional", with: "me gustan los animales"
-    find('.finish[type="button"]').click
+    find('.submit[type="button"]').click
 
     expect(current_path).to eq thanks_top_path
+
+    top_invitation = TopInvitation.where(email: "lead@example.com").take
+    expect(top_invitation).to be_nil
   end
 end

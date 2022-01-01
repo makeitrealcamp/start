@@ -588,26 +588,18 @@
           <h4 class="modal-title">Formulario de aplicación</h4>
         </div>
 
-        <div class="header-step">
-          <div class="header-step-1 active"></div>
-          <div class="header-step-2"></div>
-          <div class="header-step-3"></div>
-        </div>
-
-        <form id="application-form" action="/application/top" method="post">
-          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-
-          <div class="modal-body">
-              <div class="step-1">
+        <div class="modal-wrapper">
+          <div class="accept-terms-step">
+            <div class="modal-body">
               <p style="margin-bottom: 18px;"><strong>¡Gracias por tu interés en el programa TOP!</strong> Antes de empezar asegúrate de que cumples con los siguientes requisitos:</p>
               <ul>
                 <li>
                   Tienes la lógica de programación.
                   <small>Conoces conceptos de programación como variables, condicionales, ciclos, arreglos y funciones, entre otros (sin importar el lenguaje de programación).</small>
-               </li>
+              </li>
                 <li>
                   Dispones del tiempo para realizar el programa.
-                  <small>Necesitarás dedicar 60 horas/semana durante 3 meses para la modalidad tiempo completo, y mínimo 20 horas/semana durante 6 meses para la modalidad tiempo parcial (incluye horas de clases en vivo y a tu ritmo).</small>
+                  <small>Necesitarás dedicar 60 horas/semana durante 3 meses para la modalidad tiempo completo, y mínimo 20 horas/semana durante 6 meses para la modalidad tiempo parcial (incluye horas de clases en vivo y trabajo individual/grupal).</small>
                 </li>
                 <li>
                   Manejas un nivel intermedio de Inglés.
@@ -628,142 +620,23 @@
                 </label>
               </div>
             </div>
-            <div class="step-2" style="display: none">
-              <p style="margin-bottom: 20px;">Completa la siguiente información:</p>
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <input type="text" id="first-name" name="applicant[first_name]" class="form-control" placeholder="Nombres">
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <input type="text" id="last-name" name="applicant[last_name]" class="form-control" placeholder="Apellidos">
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <input type="email" id="email" name="applicant[email]" class="form-control" placeholder="Email" data-epayco="card[email]">
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <label for="birthday">Fecha de nacimiento</label>
-                    <input type="text" id="birthday" name="applicant[birthday]" class="form-control" placeholder="dd/mm/aaaa" data-datetimepicker="true">
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <label for="gender">Me identifico como</label>
-                    <select id="gender" class="form-control" name="applicant[gender]">
-                      <option value="">Selecciona</option>
-                      <option value="male">Hombre</option>
-                      <option value="female">Mujer</option>
-                      <option value="LGTBQ+">LGTBQ+</option>
-                      <option value="other">Otro</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <label for="country">País de residencia</label>
-                    <select class="form-control" id="country" name="applicant[country]">
-                      <%= countries_options %>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group" id="mobile-wrapper">
-                    <label for="mobile">Teléfono</label>
-                    <div class="input-group">
-                      <span class="input-group-addon" id="mobile-code">+00</span>
-                      <input type="tel" class="form-control" id="mobile" name="applicant[mobile]" placeholder="Número móvil">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="linkedin">LinkedIn URL</label>
-                    <input type="text" id="linkedin" name="applicant[url]" class="form-control">
-                  </div>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="format">Modalidad</label>
-                    <select id="format" class="form-control" name="applicant[format]">
-                      <option value="">Selecciona</option>
-                      <option value="format-full">Tiempo completo</option>
-                      <option value="format-partial">Tiempo parcial</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="row" id="fulltime-scheme" style="display: none;">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="payment-method-fulltime">Esquema de pago</label>
-                    <select id="payment-method-fulltime" class="form-control" name="applicant[payment_method]">
-                      <option value="">Selecciona</option>
-                      <option value="scheme-1"></option>
-                      <option value="scheme-2"></option>
-                      <option value="scheme-3"></option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="row" id="partime-scheme" style="display: none;">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="payment-method-partime">Esquema de pago</label>
-                    <select id="payment-method-partime" class="form-control" name="applicant[payment_method_2]" >
-                      <option value="">Selecciona</option>
-                      <option value="scheme-1"></option>
-                      <option value="scheme-2"></option>
-                      <option value="scheme-3"></option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div id="can-work" style="display: none;">
-                <small><strong>Esquema de pago válido sólo para nacionales/residentes de Colombia o México. Si no cumples con el requisito, selecciona otra opción</strong></small>
-              </div>
-              <div class="checkbox stipendcheck" id="stipend" style="display: none;">
-                <label>
-                  <input type="checkbox" name="applicant[stipend]" id="stipendCheckBox">Postularme para recibir ayuda de sostenimiento económico.
-                </label>
-                <small>Aplica sólo si eres mujer, o te identificas como LGBTQ+, o eres hombre con domicilio en <span data-holder="social-condition">, o cuentas con movilidad reducida, y realmente necesitas el dinero para vivir mientras estudias.</small>
-              </div>
-            </div>
-
-            <div class="step-3" style="display: none;">
-              <p style="margin-bottom: 20px;">Por favor responde las siguientes preguntas con el mayor detalle posible:</p>
-              <div class="form-group">
-                <label for="goal">¿Por qué estás interesado(a) en el programa?</label>
-                <textarea id="goal" name="applicant[goal]" class="form-control" rows="3" placeholder="¿Cuál es tu motivación? ¿Cuáles son tus objetivos?"></textarea>
-              </div>
-              <div class="form-group">
-                <label for="experience">¿Cuál es tu nivel actual de conocimiento en programación?</label>
-                <textarea id="experience" name="applicant[experience]" class="form-control" rows="3" placeholder="Cuéntanos cuál es tu profesión, cursos que hayas completado, conocimientos previos, proyectos personales, etc."></textarea>
-              </div>
-              <div class="form-group">
-                <label for="additional">¿Hay algo más que debamos saber de ti?</label>
-                <textarea id="additional" name="applicant[additional]" class="form-control" rows="3" placeholder="Un hobby, una anécdota o un logro personal"></textarea>
-              </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary btn-lg accept-terms-btn">Siguiente</button>
             </div>
           </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default back">&lt;&lt; Atrás</button>
-            <button type="button" class="btn btn-primary btn-lg next">Continuar</button>
-            <button type="button" class="btn btn-primary btn-lg finish" style="display: none;">FINALIZAR</button>
-          </div>
-        </form>
+            
+          <%= form_for TopInvitation.new, html: { class: "enter-email-step", style: "display:none" }, remote: true do |f| %>
+            <div class="modal-body">
+              <p style="margin-bottom: 20px;">Para empezar ingresa tu email:</p>
+              <div class="form-group">
+                <%= f.email_field :email, class: "form-control", placeholder: "Email" %>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary btn-lg send-email-btn">Siguiente</button>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

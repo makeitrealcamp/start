@@ -1,5 +1,6 @@
 countries = {
   MX: {
+    code: "MX",
     country: "México",
     currency: "MXN",
     culturePayment: "$350",
@@ -20,6 +21,7 @@ countries = {
     residency: "mexicano(a)",
   },
   CO: {
+    code: "CO",
     country: "Colombia",
     currency: "COP",
     culturePayment: '$50,000',
@@ -68,40 +70,33 @@ class TopProgramView extends Backbone.View
     $('.overlay').html('<div class="top-loading"><div class="loader">Loading...</div></div>').show()
     $.getJSON("//ipinfo.io?token=dbb0f38cf907e8")
       .done((response) =>
-        country = response.country
-        country = "other" if country != "CO" and country != "MX"
+        country_code = response.country
+        country_code = "other" if country_code != "CO" and country_code != "MX"
+        country = countries[country_code]
+        window.country = country
 
         $('.overlay').hide()
-        currency = countries[country].currency
+        currency = country.currency
+        window.currency = currency
 
         @.$("[data-holder='scheme-1-currency']").html(currency)
-        @.$("[data-holder='scheme-2-value']").html("#{countries[country].scheme2Cost} #{currency}")
-        @.$("[data-holder='scheme-3-value']").html("#{countries[country].scheme3Cost} #{currency}")
-        @.$("[data-holder='scheme-4-value']").html("#{countries[country].scheme4Cost} #{currency}")
-        @.$("[data-holder='salary-range']").html("#{countries[country].salaryRange} #{currency}")
-        @.$("[data-holder='culture-payment']").html("#{countries[country].culturePayment} #{currency}")
-        @.$("[data-holder='ceil-scheme-1']").html("#{countries[country].scheme1Ceil} #{currency}")
-        @.$("[data-holder='ceil-scheme-1-stipend']").html("#{countries[country].scheme1CeilStipend} #{currency}")
-        @.$("[data-holder='ceil-scheme-2']").html("#{countries[country].scheme2Ceil} #{currency}")
-        @.$("[data-holder='ceil-scheme-4']").html("#{countries[country].scheme4Ceil} #{currency}")
-        @.$("[data-holder='scheme-4-value']").html("#{countries[country].scheme4Cost} #{currency}")
-        @.$("[data-holder='scheme-4-installment-fee']").html("#{countries[country].scheme4InstallmentFee} #{currency}")
-        @.$("[data-holder='scheme-4-installments']").html("#{countries[country].scheme4Installments}")
-        @.$("[data-holder='scheme-5-installment-fee']").html("#{countries[country].scheme5InstallmentFee} #{currency}")
-        @.$("[data-holder='scheme-5-installments']").html("#{countries[country].scheme5Installments}")
-        @.$("[data-holder='social-condition']").html("#{countries[country].socialCondition}")
-        @.$("[data-holder='residency']").html(countries[country].residency)
-        @.$("[data-holder='country']").html(countries[country].country)
-        @.$('#country').val(country)
-        @.$('#mobile-code').html('+' + $('#country option:selected').data('code'))
-
-        @.$("#payment-method-fulltime option[value='scheme-1']").text("Esquema 1 - $0 #{currency} de entrada + 17% de ingresos (3 años)")
-        @.$("#payment-method-fulltime option[value='scheme-2']").text("Esquema 2 - #{countries[country].scheme2Cost} #{currency} de entrada + 17% de ingresos (1 año y medio)")
-        @.$("#payment-method-fulltime option[value='scheme-3']").text("Esquema 3 - #{countries[country].scheme3Cost} #{currency} de entrada")
-
-        @.$("#payment-method-partime option[value='scheme-1']").text("Esquema 1 - #{countries[country].scheme4Installments} pagos de #{countries[country].scheme4InstallmentFee} + 17% de ingresos (2 años)")
-        @.$("#payment-method-partime option[value='scheme-2']").text("Esquema 2 - #{countries[country].scheme5Installments} pagos de #{countries[country].scheme5InstallmentFee}")
-        @.$("#payment-method-partime option[value='scheme-3']").text("Esquema 3 - #{countries[country].scheme5Cost} #{currency} de entrada")
+        @.$("[data-holder='scheme-2-value']").html("#{country.scheme2Cost} #{currency}")
+        @.$("[data-holder='scheme-3-value']").html("#{country.scheme3Cost} #{currency}")
+        @.$("[data-holder='scheme-4-value']").html("#{country.scheme4Cost} #{currency}")
+        @.$("[data-holder='salary-range']").html("#{country.salaryRange} #{currency}")
+        @.$("[data-holder='culture-payment']").html("#{country.culturePayment} #{currency}")
+        @.$("[data-holder='ceil-scheme-1']").html("#{country.scheme1Ceil} #{currency}")
+        @.$("[data-holder='ceil-scheme-1-stipend']").html("#{country.scheme1CeilStipend} #{currency}")
+        @.$("[data-holder='ceil-scheme-2']").html("#{country.scheme2Ceil} #{currency}")
+        @.$("[data-holder='ceil-scheme-4']").html("#{country.scheme4Ceil} #{currency}")
+        @.$("[data-holder='scheme-4-value']").html("#{country.scheme4Cost} #{currency}")
+        @.$("[data-holder='scheme-4-installment-fee']").html("#{country.scheme4InstallmentFee} #{currency}")
+        @.$("[data-holder='scheme-4-installments']").html("#{country.scheme4Installments}")
+        @.$("[data-holder='scheme-5-installment-fee']").html("#{country.scheme5InstallmentFee} #{currency}")
+        @.$("[data-holder='scheme-5-installments']").html("#{country.scheme5Installments}")
+        @.$("[data-holder='social-condition']").html("#{country.socialCondition}")
+        @.$("[data-holder='residency']").html(country.residency)
+        @.$("[data-holder='country']").html(country.country)
       )
 
   events: ->
@@ -109,13 +104,12 @@ class TopProgramView extends Backbone.View
     "click .back": "reset_scheme_options"
 
   show_registration: ->
-    new TopRegistrationView()
+    new TopRegistrationView(@country_code, @currency)
 
 class TopRegistrationView extends Backbone.View
   el: '#application-modal'
 
-  initialize: ->
-    @step = 1
+  initialize: (@country, @currency) ->
     @render()
 
   render: ->
@@ -124,69 +118,39 @@ class TopRegistrationView extends Backbone.View
     ).modal()
 
   events: ->
-    "click .next": "handle_navigation"
-    "click .back": "navigate_back"
+    "click .accept-terms-btn": "accept_terms"
+    "click .verification-back-btn": "navigate_back_to_enter_email"
+    "click .application-step-btn": "application_next_step"
     "change #country": "change_country_code"
     "change #format": "show_scheme_options"
     "change #payment-method-fulltime": "show_can_work_full_time"
     "change #payment-method-partime": "show_can_work_part_time"
-    "click .finish": "submit_form"
+    "click .submit": "submit_form"
 
-  handle_navigation: (e) ->
-    e.preventDefault()
-
-    @['after_step_' + @step]((valid, action) =>
-      @.$('.next').attr('disabled', false)
-
-      action() if action
-    )
-
-  navigate: (direction) =>
-    @.$('.step-' + @step).hide()
-    @step = @step + direction
-
-    @.$('.step-' + @step).show()
-    @['before_step_' + @step]() # before step callback
-
-    @show_or_hide_buttons()
-
-  navigate_back: (e) =>
-    e.preventDefault()
-    @navigate(-1)
-
-  show_or_hide_buttons: ->
-    if @step > 1 then @.$('.back').show() else @.$('.back').hide()
-    if @step == 3
-      @.$('.next').hide()
-      @.$('.finish').show()
-    else
-      @.$('.next').show()
-      @.$('.finish').hide()
-
-  before_step_1: ->
-
-  after_step_1: (callback) ->
-    @.$('.step-1 .form-group, .step-1 .checkbox').removeClass('has-error')
+  accept_terms: (e) ->
+    @.$('.accept-terms-step .form-group, .accept-terms-step .checkbox').removeClass('has-error')
 
     valid = true
     valid = false if !@checkbox_is_selected($('#terms'))
 
     if valid
-      @navigate(1)
-      callback(true)
-    else
-      callback(false)
+      @show_enter_email()
 
-  before_step_2: ->
-    @.$('#first-name').focus()
+  show_enter_email: () ->
+    @.$('.accept-terms-step').hide()
+    @.$('.enter-email-step').show()
+    @.$('#top_invitation_email').focus()
 
-  after_step_2: (callback) ->
-    @.$('.step-2 .form-group').removeClass('has-error')
+  navigate_back_to_enter_email: () -> 
+    @.$('.verification-step').remove()   
+    @.$('.enter-email-step').show()
+
+  application_next_step: () ->
+    @.$('.application-1 .form-group').removeClass('has-error')
 
     valid = true
     valid = false if !@input_text_is_valid($('#first-name'))
     valid = false if !@input_text_is_valid($('#last-name'))
-    valid = false if !@input_text_is_valid($('#email'))
     valid = false if !@input_text_is_valid($('#birthday'))
     valid = false if !@input_text_is_valid($('#gender'))
     valid = false if !@input_text_is_valid($('#country'))
@@ -194,13 +158,17 @@ class TopRegistrationView extends Backbone.View
     valid = false if !@input_text_is_valid($('#format'))
     valid = false if !@input_text_is_valid($('#payment-method-partime')) && !@input_text_is_valid($('#payment-method-fulltime'))
 
-    @navigate(1) if valid
-    callback(valid)
+    if valid
+      @show_application_questions()
 
-  before_step_3: ->
+  show_application_questions: -> 
+    @.$('.application-1').hide()
+    @.$('.application-2').show()
+    @.$('.application-step-btn').hide()
+    @.$('.submit').show()
 
   submit_form: ->
-    @.$('.step-3 .form-group').removeClass('has-error')
+    @.$('.application-2 .form-group').removeClass('has-error')
 
     valid = true
     valid = false if !@input_text_is_valid($('#goal'))

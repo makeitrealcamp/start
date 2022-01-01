@@ -27,6 +27,9 @@ class Applicant < ApplicationRecord
   has_many :email_activities, class_name: "EmailApplicantActivity"
   has_many :change_status_activities, class_name: "ChangeStatusApplicantActivity"
 
+  validates :email, presence: true
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+
   def full_name
     "#{first_name} #{last_name}"
   end

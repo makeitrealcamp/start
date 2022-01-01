@@ -9,4 +9,9 @@ class ApplicantMailer < ApplicationMailer
 
     mail to: applicant.email, subject: subject
   end
+
+  def invitation(top_invitation)
+    @top_invitation = top_invitation
+    mail to: top_invitation.email, subject: "[Programa TOP] Código de verificación"
+  end
 end

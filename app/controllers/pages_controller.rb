@@ -97,8 +97,10 @@ class PagesController < ApplicationController
   end
 
   def create_top_applicant
-
     top_applicant_params_updated = top_applicant_params.dup
+    
+    top_invitation = TopInvitation.find(params[:top_invitation_id])
+    raise ActiveRecord::RecordNotFound unless top_invitation
 
     program_format = top_applicant_params[:format] == "format-full" ? "full" : "partial"
     payment_method = top_applicant_params[:payment_method] == "" ? top_applicant_params[:payment_method_2] : top_applicant_params[:payment_method]
@@ -108,13 +110,13 @@ class PagesController < ApplicationController
     top_applicant_params_updated[:payment_method] = payment_method
 
     cohort = TopCohort.order(created_at: :desc).take
-    TopApplicant.create!(top_applicant_params_updated.merge(version: 2, cohort: cohort))
+    TopApplicant.create!(top_applicant_params_updated.merge(email: top_invitation.email, version: 2, cohort: cohort))
 
     data = {
       name: "filled-top-application",
       person: {
         pid: cookies[:dp_pid],
-        email: top_applicant_params[:email],
+        email: top_invitation.email,
         first_name: top_applicant_params[:first_name],
         last_name: top_applicant_params[:last_name],
         birthday: top_applicant_params[:birthday],
@@ -137,6 +139,7 @@ class PagesController < ApplicationController
     AdminMailer.new_lead("Top", data[:person][:first_name], data[:person][:last_name], data[:person][:email], data[:person][:country_code],
         data[:person][:mobile], "").deliver_later
 
+    top_invitation.destroy
     redirect_to "/thanks-top"
   end
 
