@@ -1,0 +1,2 @@
+module TopInvitationsHelper
+end

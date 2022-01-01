@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_29_070432) do
+ActiveRecord::Schema.define(version: 2021_12_25_133332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -456,6 +456,13 @@ ActiveRecord::Schema.define(version: 2021_11_29_070432) do
     t.datetime "updated_at", null: false
     t.integer "lang", default: 0
     t.index ["applicant_id"], name: "index_top_applicant_tests_on_applicant_id"
+  end
+
+  create_table "top_invitations", force: :cascade do |t|
+    t.string "email"
+    t.string "token", limit: 10
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", id: :serial, force: :cascade do |t|

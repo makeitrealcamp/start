@@ -1,0 +1,6 @@
+<% if @top_invitation.valid? %>
+  $('#application-modal .modal-wrapper .enter-email-step').hide()
+  $('#application-modal .modal-wrapper').append('<%= j render "verification", top_invitation: @top_invitation %>')
+<% else %>
+  $('#application-modal #top_invitation_email').parent('.form-group').addClass("has-error")
+<% end %>

@@ -1,0 +1,13 @@
+<%= form_tag validate_top_invitation_path(top_invitation.id), method: :post, class: "verification-step", remote: true do %>
+  <div class="modal-body">
+    <p style="margin-bottom: 20px;">Hemos enviado un correo a <strong><%= top_invitation.email %></strong> con un código de verificación de 6 dígitos, ingrésalo para continuar:</p>
+    <div class="form-group">
+      <%= text_field_tag :token, "", class: "form-control", placeholder: "Token" %>
+      <span class="help-block">¿No has recibido el correo? Revisa que esté bien escrito y que no haya llegado a spam (correo no deseado).</span>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default verification-back-btn">&lt;&lt; Atrás</button>
+    <button type="submit" class="btn btn-primary btn-lg verification-btn">Verificar</button>
+  </div>
+<% end %>

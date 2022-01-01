@@ -64,6 +64,10 @@ Rails.application.routes.draw do
   post 'admin/login', to: 'admin_sessions#create'
   delete 'admin/logout', to: 'admin_sessions#destroy'
 
+  resources :top_invitations, only: [:create] do
+    post :validate, on: :member
+  end
+
   resource :password, only: [:edit, :update]
   resource :password_reset, except: [:index, :show]
 
