@@ -88,9 +88,9 @@ RSpec.feature "Pages", type: :feature do
     top_invitation = TopInvitation.where(email: "lead@example.com").take
     expect(top_invitation).not_to be_nil
     
-    email = ActionMailer::Base.deliveries.last
-    expect(email).to_not be_nil
-    expect(email.body.raw_source).to include(top_invitation.token)
+    expect(ActionMailer::DeliveryJob).to have_been_enqueued
+    expect(ConvertLoopJob).to have_been_enqueued
+    ActiveJob::Base.queue_adapter.enqueued_jobs.clear
 
     fill_in "Token", with: "wrong token"
     find('.verification-btn[type="submit"]').click
@@ -98,8 +98,9 @@ RSpec.feature "Pages", type: :feature do
 
     fill_in "Token", with: top_invitation.token
     find('.verification-btn[type="submit"]').click
-
     expect(page).to have_css("#application-modal .application-1")
+    expect(ConvertLoopJob).to have_been_enqueued
+
     fill_in "first-name", with: "Pedro"
     fill_in "last-name", with: "Perez"
     fill_in "birthday", with: "12/05/2016"
