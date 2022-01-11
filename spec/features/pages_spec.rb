@@ -49,27 +49,6 @@ RSpec.feature "Pages", type: :feature do
     expect(CreateLeadJob).to have_been_enqueued
   end
 
-  scenario "sign up to data science program", js: true do
-    ActionMailer::Base.deliveries.clear
-    visit data_science_online_path
-
-    first('button.btn-register').click
-    expect(page).to have_css("#registration-modal")
-
-    fill_in "first-name", with: "Pedro"
-    fill_in "last-name", with: "Perez"
-    fill_in "email", with: "lead@example.com"
-    fill_in "mobile", with: "3111234567"
-    fill_in "birthday", with: "09/01/1998"
-    select "Hombre", from: "gender"  
-    select "Google", from: "source"
-
-    find('button[type="submit"]').click
-
-    expect(current_path).to eq thanks_data_science_online_path
-    expect(CreateLeadJob).to have_been_enqueued
-  end
-
   scenario "apply to the top program", js: true do
     ActionMailer::Base.deliveries.clear
     visit  "/top"
