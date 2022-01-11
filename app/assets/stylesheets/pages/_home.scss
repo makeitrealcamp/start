@@ -82,8 +82,7 @@
     padding: 0;
 
     @media(min-width: $screen-sm-min) {
-      background: linear-gradient(to bottom, #668add, #1d2b64) 0 0/50% no-repeat,
-                  linear-gradient(to bottom, #ef6059, #c33f2f) 0 50% no-repeat;
+      background: linear-gradient(to bottom, #668add, #1d2b64) 0 0/100% no-repeat;
     }
 
     .program-1 {

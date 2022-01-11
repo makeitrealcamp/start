@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get "introduccion-a-python-para-data-science", to: "pages#intro_to_python"
   post "introduccion-a-python-para-data-science", to: "pages#create_intro_to_python_lead"
 
-  get "data-science-online", to: "pages#data_science_online"
+  get "data-science-online", to: redirect('/top')
   post "data-science-online", to: "pages#create_data_science_online_lead"
   get "data-science-online/cupo", to: "pages#data_science_online_seat"
 
