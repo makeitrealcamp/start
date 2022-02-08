@@ -72,32 +72,37 @@ class TopProgramView extends Backbone.View
       .done((response) =>
         country_code = response.country
         country_code = "other" if country_code != "CO" and country_code != "MX"
-        country = countries[country_code]
-        window.country = country
-
-        $('.overlay').hide()
-        currency = country.currency
-        window.currency = currency
-
-        @.$("[data-holder='scheme-1-currency']").html(currency)
-        @.$("[data-holder='scheme-2-value']").html("#{country.scheme2Cost} #{currency}")
-        @.$("[data-holder='scheme-3-value']").html("#{country.scheme3Cost} #{currency}")
-        @.$("[data-holder='scheme-4-value']").html("#{country.scheme4Cost} #{currency}")
-        @.$("[data-holder='salary-range']").html("#{country.salaryRange} #{currency}")
-        @.$("[data-holder='culture-payment']").html("#{country.culturePayment} #{currency}")
-        @.$("[data-holder='ceil-scheme-1']").html("#{country.scheme1Ceil} #{currency}")
-        @.$("[data-holder='ceil-scheme-1-stipend']").html("#{country.scheme1CeilStipend} #{currency}")
-        @.$("[data-holder='ceil-scheme-2']").html("#{country.scheme2Ceil} #{currency}")
-        @.$("[data-holder='ceil-scheme-4']").html("#{country.scheme4Ceil} #{currency}")
-        @.$("[data-holder='scheme-4-value']").html("#{country.scheme4Cost} #{currency}")
-        @.$("[data-holder='scheme-4-installment-fee']").html("#{country.scheme4InstallmentFee} #{currency}")
-        @.$("[data-holder='scheme-4-installments']").html("#{country.scheme4Installments}")
-        @.$("[data-holder='scheme-5-installment-fee']").html("#{country.scheme5InstallmentFee} #{currency}")
-        @.$("[data-holder='scheme-5-installments']").html("#{country.scheme5Installments}")
-        @.$("[data-holder='social-condition']").html("#{country.socialCondition}")
-        @.$("[data-holder='residency']").html(country.residency)
-        @.$("[data-holder='country']").html(country.country)
+        @fill_data(country_code)
+      ).fail(() =>
+        @fill_data("other")
       )
+
+  fill_data: (country_code) ->
+    country = countries[country_code]
+    window.country = country
+
+    $('.overlay').hide()
+    currency = country.currency
+    window.currency = currency
+
+    @.$("[data-holder='scheme-1-currency']").html(currency)
+    @.$("[data-holder='scheme-2-value']").html("#{country.scheme2Cost} #{currency}")
+    @.$("[data-holder='scheme-3-value']").html("#{country.scheme3Cost} #{currency}")
+    @.$("[data-holder='scheme-4-value']").html("#{country.scheme4Cost} #{currency}")
+    @.$("[data-holder='salary-range']").html("#{country.salaryRange} #{currency}")
+    @.$("[data-holder='culture-payment']").html("#{country.culturePayment} #{currency}")
+    @.$("[data-holder='ceil-scheme-1']").html("#{country.scheme1Ceil} #{currency}")
+    @.$("[data-holder='ceil-scheme-1-stipend']").html("#{country.scheme1CeilStipend} #{currency}")
+    @.$("[data-holder='ceil-scheme-2']").html("#{country.scheme2Ceil} #{currency}")
+    @.$("[data-holder='ceil-scheme-4']").html("#{country.scheme4Ceil} #{currency}")
+    @.$("[data-holder='scheme-4-value']").html("#{country.scheme4Cost} #{currency}")
+    @.$("[data-holder='scheme-4-installment-fee']").html("#{country.scheme4InstallmentFee} #{currency}")
+    @.$("[data-holder='scheme-4-installments']").html("#{country.scheme4Installments}")
+    @.$("[data-holder='scheme-5-installment-fee']").html("#{country.scheme5InstallmentFee} #{currency}")
+    @.$("[data-holder='scheme-5-installments']").html("#{country.scheme5Installments}")
+    @.$("[data-holder='social-condition']").html("#{country.socialCondition}")
+    @.$("[data-holder='residency']").html(country.residency)
+    @.$("[data-holder='country']").html(country.country)
 
   events: ->
     "click .apply-now-btn": "show_registration"
