@@ -2,49 +2,79 @@ module Admin::TopApplicantsHelper
   def payment_method_to_human(payment_method, format, country)
     countries = {
       MX: {
+        code: "MX",
+        country: "México",
         currency: "MXN",
         scheme2Cost: "$42,500",
         scheme3Cost: "$85,000",
-        scheme4InstallmentFee: "$3638",
-        scheme4Installments: "8",
-        scheme5InstallmentFee: "$17,000",
-        scheme5Installments: "5",
+        scheme4Cost: "$85,000",
+        scheme5Cost: "$85,000"
       },
       CO: {
+        code: "CO",
+        country: "Colombia",
         currency: "COP",
+        culturePayment: '$50,000',
         scheme2Cost: "$7.5M",
-        scheme3Cost: "$15M",
-        scheme4InstallmentFee: "$675.000",
-        scheme4Installments: "8",
-        scheme5InstallmentFee: "$3M",
-        scheme5Installments: "5",
+        scheme3Cost: "$19.5M",
+        scheme4Cost: "$19.5M",
+        scheme5Cost: "$19.5M"
+      },
+      PE: {
+        code: "PE",
+        country: "Perú",
+        currency: "PEN",
+        scheme2Cost: "S/ 6,750",
+        scheme3Cost: "S/ 18,750",
+        scheme4Cost: "S/ 18,750",
+        scheme5Cost: "S/ 18,750"
+      },
+      CR: {
+        code: "CR",
+        country: "Costa Rica",
+        currency: "CRC",
+        scheme2Cost: "₡ 1,152,000",
+        scheme3Cost: "₡ 3,200,000",
+        scheme4Cost: "₡ 3,200,000",
+        scheme5Cost: "₡ 3,200,000"
+      },
+      CL: {
+        code: "CL",
+        country: "Chile",
+        currency: "CLP",
+        scheme2Cost: "$ 1,438,200",
+        scheme3Cost: "$ 3,995,000",
+        scheme4Cost: "$ 3,995,000",
+        scheme5Cost: "$ 3,995,000"
       },
       other: {
+        country: "",
         currency: "usd",
         scheme2Cost: "$2,500",
         scheme3Cost: "$5,000",
-        scheme4InstallmentFee: "$315",
-        scheme4Installments: "8",
-        scheme5InstallmentFee: "$1,000",
-        scheme5Installments: "5",
+        scheme4Cost: "$5,000",
+        scheme5Cost: "$5,000"
       }
     }
     
-    country = "other" if country != "CO" && country != "MX"
+    country = "other" if country != "CO" && 
+                         country != "MX" && 
+                         country != "PE" &&
+                         country != "CL" &&
+                         country != "CR" &&
+
     country = countries[country.to_sym]
 
-    if payment_method == "scheme-1" && format == "full"
-      "Esquema 1 - $0 COP de entrada + 17% de ingresos (3 años)"
+    if payment_method == "scheme-3" && format == "full"
+      "Pagar el total de #{country[:scheme3Cost]} #{country[:currency]} al inicio"  
     elsif payment_method == "scheme-2" && format == "full"
-      "Esquema 2 - #{country[:scheme2Cost]} #{country[:currency]} de entrada + 17% de ingresos (1 año y medio)"
-    elsif payment_method == "scheme-3" && format == "full"
-      "Esquema 3 - #{country[:scheme3Cost]} #{country[:currency]} de entrada"
-    elsif payment_method == "scheme-1" && format == "partial"
-      "Esquema 1 - #{country[:scheme4Installments]} pagos de #{country[:scheme4InstallmentFee]} #{country[:currency]} + 17% de ingresos (2 años)"
-    elsif payment_method == "scheme-2" && format == "partial"
-      "Esquema 2 - #{country[:scheme5Installments]} pagos de #{country[:scheme5InstallmentFee]} #{country[:currency]}"
+      "Pagar por cuotas (de 2 a 24 cuotas)"
+    elsif payment_method == "scheme-1" && format == "full"
+      "Pagar 0 #{country[:currency]} al inicio + 17% de tus ingresos al encontrar trabajo (durante 3 años)"
     elsif payment_method == "scheme-3" && format == "partial"
-      "Esquema 3 - #{country[:scheme3Cost]} #{country[:currency]} de entrada"
+      "Pagar el total de #{country[:scheme5Cost]} #{country[:currency]} al inicio"
+    elsif payment_method == "scheme-1" && format == "partial"
+      "Pagar por cuotas (de 2 a 24 cuotas)"
     else
       "Sin definir"
     end 

@@ -17,12 +17,12 @@
     $('#country').val(country.code)
   <% end %>
   $('#mobile-code').html('+' + $('#country option:selected').data('code'))
-  $("#payment-method-fulltime option[value='scheme-1']").text("Esquema 1 - $0 " + currency + " de entrada + 17% de ingresos (3 años)")
-  $("#payment-method-fulltime option[value='scheme-2']").text("Esquema 2 - " + country.scheme2Cost + " " + currency + " de entrada + 17% de ingresos (1 año y medio)")
-  $("#payment-method-fulltime option[value='scheme-3']").text("Esquema 3 - " + country.scheme3Cost + " " + currency + " de entrada")
-  $("#payment-method-partime option[value='scheme-1']").text("Esquema 1 - " + country.scheme4Installments + " pagos de " + country.scheme4InstallmentFee + " + 17% de ingresos (2 años)")
-  $("#payment-method-partime option[value='scheme-2']").text("Esquema 2 - " + country.scheme5Installments + " pagos de " + country.scheme5InstallmentFee)
-  $("#payment-method-partime option[value='scheme-3']").text("Esquema 3 - " + country.scheme5Cost + " " + currency + " de entrada")
+  $("#payment-method-fulltime option[value='scheme-3']").text("Pagar el total de " + country.scheme3Cost + " " + currency + " al inicio")
+  $("#payment-method-fulltime option[value='scheme-1']").text("Pagar 0 " + currency + " al inicio + 17% de tus ingresos al encontrar trabajo (durante 3 años)")
+  $("#payment-method-fulltime option[value='scheme-2']").text("Pagar por cuotas (de 2 a 24 cuotas)")
+  $("#payment-method-partime option[value='scheme-3']").text("Pagar el total de " + country.scheme5Cost + " " + currency + " al inicio")
+  $("#payment-method-partime option[value='scheme-1']").text("Pagar por cuotas (de 2 a 24 cuotas)")
+ 
 <% else %>
   $("#token").parent('.form-group').addClass("has-error")
   $("#token").siblings('.help-block').html("Código inválido")

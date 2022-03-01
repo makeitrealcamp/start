@@ -359,10 +359,12 @@
         font-weight: 600;
       }
 
+
       .stipendcheck label {
         font-weight: 600;
         color: $color-dark-blue;
       }
+        
     }
 
     .modal-footer {
@@ -487,9 +489,10 @@
     }
 
     .scheme-footer {
-      margin-top: 40px;
-      color: $color-grey;
+      font-size: 14px;
       text-align: center;
+      padding: 1em 2em 1em 2em;
+      color: $color-grey;
     }
 
     p.payment-options {
