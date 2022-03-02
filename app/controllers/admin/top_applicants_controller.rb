@@ -4,12 +4,13 @@ class Admin::TopApplicantsController < ApplicationController
   def index
     @cohort = params[:cohort] ? TopCohort.find(params[:cohort]) : TopCohort.order(created_at: :desc).take
     @applicants = @cohort.applicants.order('created_at DESC')
-
+    
     if params[:status].present?
       @applicants = @applicants.where(status: TopApplicant.statuses[params[:status]])
     end
 
     if params[:q].present?
+      @applicants = TopApplicant.order('created_at DESC')
       @applicants = @applicants.where("first_name ILIKE :q OR last_name ILIKE :q OR email ILIKE :q", q: "%#{params[:q]}%")
     end
 
