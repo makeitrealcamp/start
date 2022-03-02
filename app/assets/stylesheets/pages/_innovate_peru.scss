@@ -281,7 +281,6 @@
   }
 
   .section-stipend {
-    background: white;
     padding: 2rem;
     text-align: center;
 
@@ -390,8 +389,7 @@
   .section-schemes {
     background: asset-url("elementos-izquierda-2-top.svg") top left/200px
         no-repeat,
-      asset-url("elementos-derecha-2-top.svg") bottom right/200px no-repeat,
-      white;
+      asset-url("elementos-derecha-2-top.svg") bottom right/200px no-repeat;
 
     @media (min-width: $screen-sm-min) {
       background-size: 200px, 200px;
@@ -443,6 +441,7 @@
         }
 
         .scheme-body {
+          background: white;
           box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, 0.2);
           border-radius: 20px;
 
