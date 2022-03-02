@@ -135,7 +135,7 @@ class TopProgramView extends Backbone.View
     $.getJSON("//ipinfo.io?token=dbb0f38cf907e8")
       .done((response) =>
         country_code = response.country
-        country_code = "other" if country_code != "CO" and country_code != "MX"
+        country_code = "other" if country_code not in ["CO", "MX", "CL", "PE", "CR"]
         @fill_data(country_code)
       ).fail(() =>
         @fill_data("other")
