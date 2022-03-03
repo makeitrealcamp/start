@@ -61,9 +61,10 @@ module Admin::TopApplicantsHelper
                          country != "MX" && 
                          country != "PE" &&
                          country != "CL" &&
-                         country != "CR" &&
+                         country != "CR"
 
     country = countries[country.to_sym]
+    p "Country: #{country}"
 
     if payment_method == "scheme-3" && format == "full"
       "Pagar el total de #{country[:scheme3Cost]} #{country[:currency]} al inicio"  
