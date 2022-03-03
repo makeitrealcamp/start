@@ -31,7 +31,7 @@ FactoryGirl.define do
   end
 
   factory :top_applicant, parent: :applicant, class: "TopApplicant" do
-    info { { "version" => "2" } }
+    info { { "version" => "2", "payment_method": "scheme-3", "format": "full" } }
   end
 
   factory :innovate_applicant, parent: :applicant, class: "InnovateApplicant" do

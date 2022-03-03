@@ -57,14 +57,9 @@ module Admin::TopApplicantsHelper
       }
     }
     
-    country = "other" if country != "CO" && 
-                         country != "MX" && 
-                         country != "PE" &&
-                         country != "CL" &&
-                         country != "CR"
+    country = "other" unless ["CO", "MX", "PE", "CL", "CR"].include?(country)
 
     country = countries[country.to_sym]
-    p "Country: #{country}"
 
     if payment_method == "scheme-3" && format == "full"
       "Pagar el total de #{country[:scheme3Cost]} #{country[:currency]} al inicio"  
