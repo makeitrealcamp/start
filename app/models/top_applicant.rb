@@ -21,7 +21,7 @@
 #
 
 class TopApplicant < Applicant
-  enum status: [:applied, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :accepted, :enrolled, :not_enrolled, :rejected, :interviews_completed]
+  enum status: [:applied, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :accepted, :enrolled, :not_enrolled, :rejected, :interviews_completed, :gave_up]
 
   before_create :generate_uid
 
@@ -60,7 +60,8 @@ class TopApplicant < Applicant
       enrolled: "matriculado",
       not_enrolled: "no matriculado",
       rejected: "rechazado",
-      interviews_completed: "entrevistas finalizadas"
+      interviews_completed: "entrevistas finalizadas",
+      gave_up: "desistió del proceso"
     }
 
     mappings[status.to_sym]
