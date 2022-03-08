@@ -21,3 +21,19 @@ class SendEmailView
       $('.fields').hide()
 
 window.SendEmailView = SendEmailView
+
+class onChancheRejectReason
+  constructor: () ->
+    $("#status_selection").change(@handle_change_reason)
+
+  handle_change_reason: =>
+    status = $("#status_selection").val()
+    
+    if status == 'rejected'
+      $('#reject_reason_group').show()
+      $('#reject_reason_select').prop( "disabled", false );
+    else
+      $('#reject_reason_group').hide()
+      $('#reject_reason_select').prop( "disabled", true );
+
+window.onChancheRejectReason = onChancheRejectReason

@@ -104,7 +104,7 @@ module Admin::TopApplicantsHelper
     if activity.type == "ChangeStatusApplicantActivity"
       str += "<strong>cambió el estado</strong> a <strong>#{activity.applicant.class.status_to_human(activity.to_status)}</strong>"
     elsif activity.type == "EmailApplicantActivity"
-      str += "<strong>envió un correo</strong> con asunto <strong>#{activity.subject}</strong>"
+      str += "<strong>Razón</strong> #{activity.subject}</strong>"
     elsif activity.type == "NoteApplicantActivity"
       str += "<strong>dejó la siguiente nota</strong>"
     end
@@ -115,6 +115,12 @@ module Admin::TopApplicantsHelper
   def applicant_status_options(applicant)
     applicant.class.statuses.keys.inject([]) do |memo, s|
       memo << [applicant.class.status_to_human(s).capitalize, s]
+    end
+  end
+
+  def applicant_reject_reason_options(applicant)
+    applicant.class.reject_reasons.keys.inject([]) do |memo, s|
+      memo << [applicant.class.reject_reason_to_human(s).capitalize, s]
     end
   end
 end

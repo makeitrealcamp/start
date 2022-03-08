@@ -1,4 +1,6 @@
-$('<%= j render "modal" %>').on('hidden.bs.modal', function (e) {
+$('<%= j render "modal" %>').on('shown.bs.modal', function() {
+  new onChancheRejectReason();
+}).on('hidden.bs.modal', function (e) {
   $(this).remove();
   $('.modal-backdrop').remove();
 }).modal();
