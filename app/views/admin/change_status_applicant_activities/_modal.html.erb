@@ -8,7 +8,10 @@
       <%= form_for [:admin, @activity.applicant, @activity], remote: true do |f| %>
         <div class="modal-body">
           <div class="form-group">
-            <%= f.select :to_status, options_for_select(applicant_status_options(@activity.applicant)), {}, class: "form-control" %>
+            <%= f.select :to_status, options_for_select(applicant_status_options(@activity.applicant)), {}, id: "status_selection", class: "form-control" %>
+          </div>
+          <div class="form-group" id="reject_reason_group">
+            <%= f.select :reject_reason, options_for_select(applicant_reject_reason_options(@activity.applicant)), {}, class: "form-control", id: "reject_reason_select", disabled: true %>
           </div>
           <div class="form-group">
             <%= f.text_area :comment, class:"form-control", placeholder: "Ingresa un comentario" %>
