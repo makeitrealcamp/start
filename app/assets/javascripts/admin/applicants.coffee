@@ -24,16 +24,16 @@ window.SendEmailView = SendEmailView
 
 class onChancheRejectReason
   constructor: () ->
-    $("#status_selection").change(@handle_change_reason)
+    $("#change_status_applicant_activity_to_status").change(@handle_change_reason)
 
   handle_change_reason: =>
-    status = $("#status_selection").val()
+    status = $("#change_status_applicant_activity_to_status").val()
     
     if status == 'rejected'
-      $('#reject_reason_group').show()
-      $('#reject_reason_select').prop( "disabled", false );
+      $('#rejected_reason_group').show()
+      $('#change_status_applicant_activity_rejected_reason').prop( "disabled", false );
     else
-      $('#reject_reason_group').hide()
-      $('#reject_reason_select').prop( "disabled", true );
+      $('#rejected_reason_group').hide()
+      $('#change_status_applicant_activity_rejected_reason').prop( "disabled", true );
 
 window.onChancheRejectReason = onChancheRejectReason

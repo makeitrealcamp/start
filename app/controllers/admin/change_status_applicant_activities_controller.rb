@@ -17,6 +17,6 @@ class Admin::ChangeStatusApplicantActivitiesController < ApplicationController
 
   private
     def activity_params
-      params.require(:change_status_applicant_activity).permit(:to_status, :comment, :reject_reason)
+      params.require(:change_status_applicant_activity).permit(:to_status, :comment, :rejected_reason)
     end
 end

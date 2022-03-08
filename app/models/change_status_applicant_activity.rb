@@ -16,5 +16,5 @@ class ChangeStatusApplicantActivity < ApplicantActivity
     from_status: :string,
     to_status: :string,
     comment: :string,
-    reject_reason: :string
+    rejected_reason: :string
 end
