@@ -109,7 +109,7 @@ module Admin::TopApplicantsHelper
     if activity.type == "ChangeStatusApplicantActivity"
       str += "<strong>cambió el estado</strong> a <strong>#{activity.applicant.class.status_to_human(activity.to_status)}</strong>"
     elsif activity.type == "EmailApplicantActivity"
-      str += "<strong>Razón</strong> #{activity.subject}</strong>"
+      str += "<strong>envió un correo</strong> con asunto <strong>#{activity.subject}</strong>"
     elsif activity.type == "NoteApplicantActivity"
       str += "<strong>dejó la siguiente nota</strong>"
     end
