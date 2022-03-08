@@ -22,7 +22,6 @@
 
 class TopApplicant < Applicant
   enum status: [:applied, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :accepted, :enrolled, :not_enrolled, :rejected, :interviews_completed, :gave_up]
-  enum reject_reason: [:superficial_response, :no_experience, :technical_test_failed, :first_interview_failed, :low_english_level, :tecnical_interview_failed, :no_jointly_responsible]
 
   before_create :generate_uid
 
@@ -43,8 +42,7 @@ class TopApplicant < Applicant
     payment_method: :string,
     format: :string,
     stipend: :string,
-    version: :integer,
-    reject_reason: :integer
+    version: :integer
 
   def self.model_name
     Applicant.model_name
@@ -67,20 +65,6 @@ class TopApplicant < Applicant
     }
 
     mappings[status.to_sym]
-  end
-
-  def self.reject_reason_to_human(reject_reason)
-    mappings = {
-      superficial_response: "Respuestas superficiales",
-      no_experience: "No tiene la experiencia técnica (primer acercamiento a la programación)",
-      technical_test_failed: "No pasó prueba técnica",
-      first_interview_failed: "No pasó primera entrevista",
-      low_english_level: "Inglés muy bajo",
-      tecnical_interview_failed: "No pasó entrevista técnica",
-      no_jointly_responsible: "No tiene responsable solidario"
-    }
-
-    mappings[reject_reason.to_sym]
   end
 
   protected
