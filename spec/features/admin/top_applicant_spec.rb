@@ -52,6 +52,20 @@ RSpec.feature "top_applicant", type: :feature do
     expect(page).to have_no_css("#change-status-modal")
 
     expect(TopApplicant.find(applicant.id).status).to eq("accepted")
+
+    click_on "Cambiar Estado"
+    sleep 0.5 # hack to wait for the animation
+    expect(page).to have_no_css("#change_status_applicant_activity_rejected_reason")
+    select "Rechazado", from: "change_status_applicant_activity_to_status"
+    expect(page).to have_css("#change_status_applicant_activity_rejected_reason")
+    fill_in "change_status_applicant_activity_comment", with: "Rejected status"
+    select "Respuestas superficiales", from: "change_status_applicant_activity_rejected_reason"
+    within :css, "#change-status-modal" do
+      click_on "Cambiar Estado"
+    end
+    expect(page).to have_no_css("#change-status-modal")
+
+    expect(TopApplicant.find(applicant.id).status).to eq("rejected")
   end
 
   scenario "admin can send an email to an applicant", js: true do

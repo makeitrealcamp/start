@@ -22,7 +22,7 @@ class SendEmailView
 
 window.SendEmailView = SendEmailView
 
-class onChancheRejectReason
+class ChangeRejectReasonView
   constructor: () ->
     $("#change_status_applicant_activity_to_status").change(@handle_change_reason)
 
@@ -36,4 +36,4 @@ class onChancheRejectReason
       $('#rejected_reason_group').hide()
       $('#change_status_applicant_activity_rejected_reason').prop( "disabled", true );
 
-window.onChancheRejectReason = onChancheRejectReason
+window.ChangeRejectReasonView = ChangeRejectReasonView

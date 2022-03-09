@@ -119,8 +119,8 @@ module Admin::TopApplicantsHelper
   end
 
   def applicant_rejected_reason_options(applicant)
-    applicant.class.rejected_reasons.keys.inject([]) do |memo, s|
-      memo << [applicant.class.rejected_reason_to_human(s).capitalize, s]
+    ChangeStatusApplicantActivity.rejected_reasons.keys.inject([]) do |memo, s|
+      memo << [ChangeStatusApplicantActivity.rejected_reason_to_human(s).capitalize, s]
     end
   end
 end
