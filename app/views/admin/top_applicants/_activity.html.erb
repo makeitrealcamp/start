@@ -3,7 +3,7 @@
   <div class="activity-date"><%= activity.created_at.strftime("%b %d %I:%M %p") %></div>
   <div class="activity-detail"><%= generate_activity_detail(activity) %></div>
   <% if activity.type == "ChangeStatusApplicantActivity" && activity.rejected_reason %>
-    <div class="activity-comment"><%= activity.applicant.class.rejected_reason_to_human(activity.rejected_reason) %></div>
+    <div class="activity-comment"><%= ChangeStatusApplicantActivity.rejected_reason_to_human(activity.rejected_reason) %></div>
   <% end %>
   <% if activity.type == "NoteApplicantActivity" && activity.body %>
     <div class="activity-comment"><%= markdown activity.body %></div>
