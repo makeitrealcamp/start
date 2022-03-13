@@ -1,11 +1,11 @@
 <p>Hola <%= @participant.first_name %>,</p>
 
-<p>Muchas gracias por interés en el Webinar <strong><%= @webinar.title %></strong>.</p>
+<p>Muchas gracias por interés en el evento <strong><%= @webinar.title %></strong>.</p>
 
 <p>Haz click en el siguiente botón para acceder a la transmisión:</p>
 
 <div class="button-wrapper">
-  <%= link_to "Ver Webinar", watch_webinar_url(id: @webinar.slug, token: @participant.token), class: "button" %>
+  <%= link_to "Ir al evento", watch_webinar_url(id: @webinar.slug, token: @participant.token), class: "button" %>
 </div>
 
 <p>Esperamos que te guste!</p>

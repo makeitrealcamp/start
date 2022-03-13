@@ -199,7 +199,8 @@ Rails.application.routes.draw do
     post 'payu/confirm', to: 'payu#confirm'
   end
 
-  resources :webinars, only: [:index, :show] do
+  get "webinars", to: redirect('/events')
+  resources :webinars, only: [:index, :show], path: 'events' do
     post 'register', on: :member
     get 'watch', on: :member
     get 'attend', on: :member

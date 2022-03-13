@@ -17,6 +17,7 @@
       <div class="navbar-collapse collapse" id="navbar">
         <ul class="nav navbar-nav navbar-right">
           <li><a href="http://blog.makeitreal.camp/">Blog</a></li>
+          <li><%= link_to "Eventos", webinars_path, data: { turbolinks: false } %></li>
           <% if !hide_login %>
             <li><%= link_to "Ingresar", login_path, class: "btn-login navbar-btn", data: { turbolinks: false } %></li>
           <% end %>
