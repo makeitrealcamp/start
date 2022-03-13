@@ -1,37 +1,44 @@
-<div class="new-site webinars-page">
-  <%= render "layouts/navbar/pages_dark", hide_login: true %>
+<div class="webinars-page">
+  <%= render "layouts/navbar/pages_white", hide_login: true %>
 
   <div class="container">
-    <div class="webinars webinars-upcoming">
-      <header>PRÓXIMOS EVENTOS</header>
-      <% @upcoming.each do |webinar| %>
-        <div class="webinar" id="webinar-<%= webinar.id %>">
-          <div class="webinar-info">
-            <div class="webinar-title"><%= link_to webinar.title, webinar_path(webinar.slug) %></div>
-            <div class="webinar-date"><%= l webinar.date_in_timezone, format: '%A %e de %B, %Y %I:%M %P' %> (-05) <span class="bullet">&bull;</span> 45 minutos</div>
+    <div class="events events-upcoming">
+      <h2 class="title">Próximos Eventos</h2>
+      <div class="webinars webinars-upcoming">
+        <% @upcoming.each do |webinar| %>
+          <div class="webinar" id="webinar-<%= webinar.id %>">
+            <div class="webinar-info">
+              <div class="webinar-title"><%= link_to webinar.title, webinar_path(webinar.slug) %></div>
+              <div class="webinar-date"><%= l webinar.date_in_timezone, format: '%A %e de %B, %Y %I:%M %P' %> (-05) <span class="bullet">&bull;</span> 45 minutos</div>
+            </div>
+            <div class="webinar-actions">
+              <%= render "speakers", webinar: webinar %>
+              <%= link_to "Registrarse", webinar_path(webinar.slug), class: "btn btn-primary" %>
+            </div>
           </div>
-          <div class="webinar-actions">
-            <%= render "speakers", webinar: webinar %>
-            <%= link_to "Registrarse", webinar_path(webinar.slug), class: "btn btn-primary" %>
-          </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
 
-    <div class="webinars webinars-past">
-      <header>EVENTOS ANTERIORES</header>
-      <% @past.each do |webinar| %>
-        <div class="webinar" id="webinar-<%= webinar.id %>">
-          <div class="webinar-info">
-            <div class="webinar-title"><%= link_to webinar.title, webinar_path(webinar.slug) %></div>
-            <div class="webinar-date"><%= l webinar.date_in_timezone, format: '%A %e de %B, %Y %I:%M %P' %> (-05) <span class="bullet">&bull;</span> 45 minutos</div>
+    <div class="events events-past">
+      <h2 class="title">Eventos Pasados</h2>
+
+      <div class="webinars webinars-past">
+        <% @past.each do |webinar| %>
+          <div class="webinar" id="webinar-<%= webinar.id %>">
+            <div class="webinar-info">
+              <div class="webinar-title"><%= link_to webinar.title, webinar_path(webinar.slug) %></div>
+              <div class="webinar-date"><%= l webinar.date_in_timezone, format: '%A %e de %B, %Y %I:%M %P' %> (-05) <span class="bullet">&bull;</span> 45 minutos</div>
+            </div>
+            <div class="webinar-actions">
+              <%= render "speakers", webinar: webinar %>
+              <%= link_to "Ver Ahora", webinar_path(webinar.slug), class: "btn btn-primary" %>
+            </div>
           </div>
-          <div class="webinar-actions">
-            <%= render "speakers", webinar: webinar %>
-            <%= link_to "Ver Ahora", webinar_path(webinar.slug), class: "btn btn-primary" %>
-          </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
+
+<%= render "/pages/footer" %>

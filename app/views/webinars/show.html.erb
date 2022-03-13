@@ -9,22 +9,34 @@
   <% end %>
 <% end %>
 
-<div class="new-site webinar-page">
-  <%= render "layouts/navbar/pages_dark", hide_login: true %>
+<div class="webinar-page">
+  <%= render "layouts/navbar/pages_white", hide_login: true %>
 
   <div class="container">
+    <div class="top-actions">
+      <%= link_to "&larr; Volver".html_safe, webinars_path %>
+    </div>
     <div class="row">
       <div class="col-sm-7">
-        <div class="webinar-header">WEBINAR</div>
-        <div class="webinar-info">
-          <h1><%= @webinar.title %></h1>
-          <% unless @webinar.is_past? %>
-            <div class="webinar-date">
-              <div><%= fa_icon "calendar", class: "calendar-icon" %> <span><%= l @webinar.date_in_timezone, format: '%A %e de %B, %Y - %l:%M %P' %> (-05)</span></div>
-              <div><%= fa_icon "clock-o", class: "clock-icon" %> 45 minutos</div>
+        <div class="webinar-wrapper">
+          <div class="webinar-header">EVENTO</div>
+          <% if @webinar.image.attached? %>
+            <div class="webinar-image">
+              <%= image_tag @webinar.image.variant(resize: "600x400") %>
             </div>
           <% end %>
-          <p><%= @webinar.description %></p>
+          <div class="webinar-info">
+            
+            <h1><%= @webinar.title %></h1>
+            <% unless @webinar.is_past? %>
+              <div class="webinar-date">
+                <div><%= fa_icon "calendar", class: "calendar-icon" %> <span><%= l @webinar.date_in_timezone, format: '%A %e de %B, %Y - %l:%M %P' %> (-05)</span></div>
+                <div><%= fa_icon "clock-o", class: "clock-icon" %> 45 minutos</div>
+                <div><%= fa_icon "map-marker", class: "map-icon" %> Virtual</div>
+              </div>
+            <% end %>
+            <p><%= @webinar.description %></p>
+          </div>
         </div>
 
         <div class="webinar-speakers">
@@ -91,7 +103,7 @@
           <div class="company-logo">
             <%= image_tag "makeitreal-icon-dark.png" %>
           </div>
-          <p>En Make it Real estamos transformando la educación con programas prácticos en desarrollo Web/móvil y Data Science que combinan lo mejor de la tecnología con lo mejor de la interacción humana.</p>
+          <p>En Make it Real estamos transformando la educación con programas prácticos en desarrollo Web y móvil que combinan lo mejor de la tecnología con lo mejor de la interacción humana.</p>
           <div class="text-center">
             <a href="/">Conoce nuestros programas</a>
           </div>
@@ -100,3 +112,5 @@
     </div>
   </div>
 </div>
+
+<%= render "/pages/footer" %>

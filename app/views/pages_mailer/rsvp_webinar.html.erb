@@ -1,6 +1,6 @@
 <p>Hola <%= @participant.first_name %>,</p>
 
-<p>Muchas gracias por confirmar tu asistencia al Webinar <strong><%= @webinar.title %></strong>.</p>
+<p>Muchas gracias por confirmar tu asistencia al evento <strong><%= @webinar.title %></strong>.</p>
 
 <p>
   <strong>Fecha:</strong> <%= l @webinar.date_in_timezone, format: '%A %e de %B, %Y' %><br>
@@ -10,7 +10,7 @@
 <p>Ingresa al evento en la fecha y hora indicada haciendo click en el siguiente botón:</p>
 
 <div class="button-wrapper">
-  <%= link_to "Acceder al Webinar", attend_webinar_url(@webinar.slug, token: @participant.token), class: "button secondary" %>
+  <%= link_to "Acceder al Evento", attend_webinar_url(@webinar.slug, token: @participant.token), class: "button secondary" %>
 </div>
 
 <p>También puedes agregar este evento a tu calendario:</p>
