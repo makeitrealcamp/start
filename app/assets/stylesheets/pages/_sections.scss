@@ -85,6 +85,7 @@
   // email capture section of the home and program pages
   .section-email {
     position: relative;
+    padding-top: 80px;
     padding-bottom: 100px;
 
     img {
@@ -94,7 +95,10 @@
       @media(min-width: $screen-sm-min) { max-width: 400px; }
     }
 
-    h2 { color: $color-dark-blue; }
+    h2 { 
+      color: $color-dark-blue;
+      padding-top: 0;
+    }
 
     p.download {
       color: $color-orange;

@@ -9,6 +9,17 @@
 
   .events {
     margin-bottom: 60px;
+
+    &.events-past {
+      margin-top: 60px;
+    }
+
+    .events-empty {
+      color: #666;
+      font-size: 1rem;
+      text-align: center;
+      margin-top: 60px;
+    }
   }
 
   .webinars {
@@ -88,8 +99,11 @@
       }
     }
   }
-}
 
+  .section-email {
+    background-color: $body-bg;
+  }
+}
 
 .webinar-page {
   background: white;
