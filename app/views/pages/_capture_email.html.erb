@@ -1,8 +1,11 @@
 <% light_bg ||= false %>
+<% show_title = show_title.nil? ? true : show_title %>
 
 <div class="section section-email <%= 'section-white' if light_bg %>">
   <div class="container">
-    <h2>Mantente informado</h2>
+    <% if show_title %>
+      <h2>Mantente informado</h2>
+    <% end %>
     <div class="row">
       <div class="col-sm-6 text-center">
         <%= image_tag "image-libro.png", srcset: { "image-libro@2x.png" => "2x", "image-libro@3x.png" => "3x" } %>
@@ -11,7 +14,7 @@
         <p class="download">¡Descarga nuestro e-book completamente gratis!</p>
         <p class="subhead">Recibe además contenido exclusivo, información de nuestros Bootcamps, webinars y otros eventos.</p>
         <%= form_tag web_developer_guide_path, id: "web-developer-guide-form", remote: true do %>
-          <%= render "capture_email_form", autofocus: false %>
+          <%= render "pages/capture_email_form", autofocus: false %>
           <div>
             <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Suscribirme y descargar libro</button>
           </div>
