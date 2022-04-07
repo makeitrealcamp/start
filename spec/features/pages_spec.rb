@@ -90,7 +90,6 @@ RSpec.feature "Pages", type: :feature do
     fill_in "applicant[url]", with: "www.davidcillo.com"
     find('#format').find('option[value="format-full"]').select_option
     find('#payment-method-fulltime').find('option[value="scheme-1"]').select_option
-    find('#stipend').click
 
     find('.application-step-btn[type="button"]').click
 

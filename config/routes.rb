@@ -49,7 +49,6 @@ Rails.application.routes.draw do
   get "como-convertirte-en-web-developer", to: "pages#web_developer_guide", as: :web_developer_guide
   post "como-convertirte-en-web-developer", to: "pages#send_web_developer_guide"
   get "download-web-developer-guide", to: "pages#download_web_developer_guide", as: :download_web_developer_guide
-  get "terms/job-guarantee", to: "pages#job_guarantee_terms"
   get "privacy-policy", to: "pages#privacy_policy"
 
   get 'handbook', to: 'pages#handbook', as: :handbook
