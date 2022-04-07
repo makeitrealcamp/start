@@ -272,10 +272,8 @@ class TopRegistrationView extends Backbone.View
     @.$('#format').val("")
     @.$('#payment-method-fulltime').val("")
     @.$('#fulltime-scheme').hide()
-    @.$("#stipendCheckBox").prop("checked", false)
     @.$('#payment-method-partime').val("")
     @.$('#partime-scheme').hide()
-    @.$('#stipend').hide()
     @.$('#can-work').hide()
 
   show_scheme_options: (e) ->
@@ -286,9 +284,7 @@ class TopRegistrationView extends Backbone.View
     if (elem.value == "format-full")
       @.$('#payment-method-fulltime').val("")
       @.$('#payment-method-partime').val("")
-      @.$('#stipend').hide()
       @.$('#fulltime-scheme').show()
-      @.$("#stipendCheckBox").prop("checked", false)
     else
       @.$('#fulltime-scheme').hide()
 
@@ -296,9 +292,7 @@ class TopRegistrationView extends Backbone.View
     if (elem.value == "format-partial")
       @.$('#payment-method-partime').val("")
       @.$('#payment-method-fulltime').val("")
-      @.$('#stipend').hide()
       @.$('#can-work').hide()
-      @.$("#stipendCheckBox").prop("checked", false)
       @.$('#partime-scheme').show()
     else
       @.$('#partime-scheme').hide()
