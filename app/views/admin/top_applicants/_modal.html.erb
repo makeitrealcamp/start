@@ -5,37 +5,37 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Aplicación</h4>
       </div>
-
       <%= form_for [:admin, @applicant], url: admin_top_applicant_path(@applicant), remote: true do |f| %>
         <div class="modal-body">
           <div class="form-group">
             <%= f.label :cohort_id, "Nombre" %>
             <%= f.select :cohort_id, options_from_collection_for_select(TopCohort.order(created_at: :desc), :id, :name, @applicant.cohort.id), {}, class: "form-control" %>
           </div>
-          <%= f.fields_for :info do |p| %>
+          <%= f.fields_for :info, @applicant do |p| %>
             <div class="form-group">
-              <%= f.label :prev_salary, "Salario anterior" %>
+              <%= p.label :prev_salary, "Salario anterior" %>
               <%= p.text_field :prev_salary, class: "form-control" %>
             </div>
             <div class="form-group">
-              <%= f.label :new_salary, "Salario nuevo" %>
+              <%= p.label :new_salary, "Salario nuevo" %>
               <%= p.text_field :new_salary, class: "form-control" %>
             </div>
             <div class="form-group">
-              <%= f.label :company, "Empresa" %>
+              <%= p.label :company, "Empresa" %>
               <%= p.text_field :company, class: "form-control" %>
             </div>
             <div class="form-group">
-              <%= f.label :start_date, "Fecha de inicio" %>
-              <%= p.text_field :start_date, class: "form-control" %>
+              <%= p.label :start_date, "Fecha de inicio" %>
+              <%= p.text_field :start_date, data: { datetimepicker: true }, class: "form-control" %>
             </div>
             <div class="form-group">
-              <%= f.label :contract_type, "Tipo de contrato" %>
+              <%= p.label :contract_type, "Tipo de contrato" %>
               <%= p.text_field :contract_type, class: "form-control" %>
             </div>
             <div class="form-group">
-              <%= f.label :socioeconomic_level, "Nivel socioeconomico" %>
-              <%= p.select :socioeconomic_level, options_for_select(0..5), {}, class: "form-control" %>
+            
+              <%= p.label :socioeconomic_level, "Nivel socioeconomico" %>
+              <%= p.select :socioeconomic_level, options_for_select((1..5), @applicant.info["socioeconomic_level"]), {}, class: "form-control" %>
             </div>
           <% end %>
         </div>
