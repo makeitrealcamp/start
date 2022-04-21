@@ -21,7 +21,7 @@
 #
 
 class InnovateApplicant < Applicant
-  enum status: [:applied, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :accepted, :enrolled, :not_enrolled, :rejected, :interviews_completed, :preselected]
+  enum status: [:applied, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :accepted, :enrolled, :not_enrolled, :rejected, :interviews_completed, :preselected,:gave_up, :graduated, :placed]
 
   before_create :generate_uid
 
@@ -55,7 +55,10 @@ class InnovateApplicant < Applicant
       not_enrolled: "no matriculado",
       rejected: "rechazado",
       preselected: "preseleccionado",
-      interviews_completed: "entrevistas finalizadas"
+      interviews_completed: "entrevistas finalizadas",
+      gave_up: "desistió del proceso",
+      graduated: "graduado",
+      placed: "ubicado laboralmente",
     }
 
     mappings[status.to_sym]

@@ -42,7 +42,13 @@ class TopApplicant < Applicant
     payment_method: :string,
     format: :string,
     stipend: :string,
-    version: :integer
+    version: :integer,
+    prev_salary: :integer,
+    new_salary: :integer,
+    company: :string,
+    start_date: :string,
+    contract_type: :string,
+    socioeconomic_level: :integer
 
   def self.model_name
     Applicant.model_name
@@ -61,7 +67,9 @@ class TopApplicant < Applicant
       not_enrolled: "no matriculado",
       rejected: "rechazado",
       interviews_completed: "entrevistas finalizadas",
-      gave_up: "desistió del proceso"
+      gave_up: "desistió del proceso",
+      graduated: "graduado",
+      placed: "ubicado laboralmente",
     }
 
     mappings[status.to_sym]
