@@ -30,11 +30,12 @@ class Admin::TopApplicantsController < ApplicationController
 
   def update
     @applicant = TopApplicant.find(params[:id])
-    @applicant.update(applicant_params)
+    p '#Leonel2'
+    @applicant.update!(applicant_params)
   end
 
   private
     def applicant_params
-      params.require(:applicant).permit(:cohort_id)
+      params.require(:applicant).permit(:cohort_id, info: [ :prev_salary, :new_salary, :company, :start_date, :contract_type, :socioeconomic_level])
     end
 end
