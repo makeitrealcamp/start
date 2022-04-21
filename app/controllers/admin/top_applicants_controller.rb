@@ -30,8 +30,7 @@ class Admin::TopApplicantsController < ApplicationController
 
   def update
     @applicant = TopApplicant.find(params[:id])
-    p '#Leonel2'
-    @applicant.update!(applicant_params)
+    @applicant.update(applicant_params)
   end
 
   private
