@@ -30,7 +30,6 @@ class Admin::TopApplicantsController < ApplicationController
 
   def update
     @applicant = TopApplicant.find(params[:id])
-    p '#leonel', applicant_params[:info]
     @applicant.update_column(:info, @applicant.info.merge(applicant_params[:info]) )
     @applicant.update({ cohort_id: applicant_params[:cohort_id] })
   end
