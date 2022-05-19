@@ -68,6 +68,62 @@ RSpec.feature "top_applicant", type: :feature do
     expect(TopApplicant.find(applicant.id).status).to eq("rejected")
   end
 
+  scenario "admin can edit the info of an applicant", js: true do
+    login(admin)
+    visit admin_top_applicants_path
+
+    find("#applicant-#{applicant.id} .cell-action a").click
+
+    click_on "Editar"
+
+    fill_in "applicant_info_prev_salary", with: "1000"
+    fill_in "applicant_info_new_salary", with: "1000"
+    fill_in "applicant_info_company", with: "Nueva compañía"
+    fill_in "applicant_info_start_date", with: "01/01/2022"
+    fill_in "applicant_info_contract_type", with: "Término indefinido"
+    select "5", from: "applicant_info_socioeconomic_level"
+    fill_in "applicant_info_referred_by", with: "Jane Doe"
+
+    within :css, "#applicant-modal" do
+      click_on "Guardar Aplicación"
+    end
+    expect(page).to have_no_css("#applicant-modal")
+    expect(page).to have_content("Salario Anterior:")
+    expect(TopApplicant.find(applicant.id).info).to include("prev_salary"=>"1000", "new_salary"=>"1000", "company"=>"Nueva compañía", "start_date"=>"01/01/2022", "contract_type"=>"Término indefinido", "socioeconomic_level"=>"5", "referred_by"=>"Jane Doe")
+
+    click_on "Editar"
+    sleep 0.5 # hack to wait for the animation
+    expect(page).to have_field("applicant_info_prev_salary", with: "1000")
+    expect(page).to have_field("applicant_info_new_salary", with: "1000")
+    expect(page).to have_field("applicant_info_company", with: "Nueva compañía")
+    expect(page).to have_field("applicant_info_start_date", with: "01/01/2022")
+    expect(page).to have_field("applicant_info_contract_type", with: "Término indefinido")
+    expect(page).to have_field("applicant_info_socioeconomic_level", with: "5")
+    expect(page).to have_field("applicant_info_referred_by", with: "Jane Doe")
+
+    fill_in "applicant_info_prev_salary", with: ""
+    fill_in "applicant_info_new_salary", with: ""
+    fill_in "applicant_info_company", with: ""
+    fill_in "applicant_info_start_date", with: ""
+    fill_in "applicant_info_contract_type", with: ""
+    select "", from: "applicant_info_socioeconomic_level"
+    fill_in "applicant_info_referred_by", with: ""
+
+    within :css, "#applicant-modal" do
+      click_on "Guardar Aplicación"
+    end
+    expect(page).to have_no_css("#applicant-modal")
+    expect(page).not_to have_content("Salario Anterior:")
+    expect(page).not_to have_content("Salario nuevo:")
+    expect(page).not_to have_content("Empresa:")
+    expect(page).not_to have_content("FEcha de inicio:")
+    expect(page).not_to have_content("Tipo de contrato:")
+    expect(page).not_to have_content("Nivel socioeconomico:")
+    expect(page).not_to have_content("Referido por:")
+
+
+  end
+
   scenario "admin can send an email to an applicant", js: true do
     ActionMailer::Base.deliveries.clear
 
