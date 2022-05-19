@@ -5,6 +5,9 @@
   <% if activity.type == "ChangeStatusApplicantActivity" && activity.rejected_reason %>
     <div class="activity-comment"><%= ChangeStatusApplicantActivity.rejected_reason_to_human(activity.rejected_reason) %></div>
   <% end %>
+  <% if activity.type == "ChangeStatusApplicantActivity" && activity.second_interview_substate %>
+    <div class="activity-comment"><strong><%= ChangeStatusApplicantActivity.second_interview_substate_to_human(activity.second_interview_substate) %></strong></div>
+  <% end %>
   <% if activity.type == "NoteApplicantActivity" && activity.body %>
     <div class="activity-comment"><%= markdown activity.body %></div>
   <% elsif activity.type == "ChangeStatusApplicantActivity" && activity.comment %>

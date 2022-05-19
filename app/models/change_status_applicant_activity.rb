@@ -13,12 +13,14 @@
 
 class ChangeStatusApplicantActivity < ApplicantActivity
   enum rejected_reason: [:superficial_response, :no_experience, :technical_test_failed, :first_interview_failed, :low_english_level, :tecnical_interview_failed, :no_jointly_responsible]
+  enum second_interview_substate: [:pending, :scheduled, :finished, :pending_exercises, :sent_exercises]
 
   hstore_accessor :info,
     from_status: :string,
     to_status: :string,
     comment: :string,
-    rejected_reason: :string
+    rejected_reason: :string,
+    second_interview_substate: :string
 
   def self.rejected_reason_to_human(rejected_reason)
     mappings = {
@@ -32,5 +34,17 @@ class ChangeStatusApplicantActivity < ApplicantActivity
     }
 
     mappings[rejected_reason.to_sym]
+  end
+
+  def self.second_interview_substate_to_human(second_interview_substate)
+    mappings = {
+      pending: "Pendiente",
+      scheduled: "Agendada",
+      finished: "Finalizó",
+      pending_exercises: "Ejercicios por enviar",
+      sent_exercises: "Ejercicios enviados"
+    }
+
+    mappings[second_interview_substate.to_sym]
   end
 end

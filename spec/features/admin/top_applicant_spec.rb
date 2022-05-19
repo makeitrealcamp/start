@@ -66,6 +66,20 @@ RSpec.feature "top_applicant", type: :feature do
     expect(page).to have_no_css("#change-status-modal")
 
     expect(TopApplicant.find(applicant.id).status).to eq("rejected")
+
+    click_on "Cambiar Estado"
+    sleep 0.5 # hack to wait for the animation
+    expect(page).to have_no_css("#change_status_applicant_activity_second_interview_substate")
+    select "Segunda entrevista", from: "change_status_applicant_activity_to_status"
+    expect(page).to have_css("#change_status_applicant_activity_second_interview_substate")
+    fill_in "change_status_applicant_activity_comment", with: "Second interview status"
+    select "Pendiente", from: "change_status_applicant_activity_second_interview_substate"
+    within :css, "#change-status-modal" do
+      click_on "Cambiar Estado"
+    end
+    expect(page).to have_no_css("#change-status-modal")
+
+    expect(TopApplicant.find(applicant.id).status).to eq("second_interview_held")
   end
 
   scenario "admin can edit the info of an applicant", js: true do
