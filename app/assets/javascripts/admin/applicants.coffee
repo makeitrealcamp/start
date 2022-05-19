@@ -37,3 +37,19 @@ class ChangeRejectReasonView
       $('#change_status_applicant_activity_rejected_reason').prop( "disabled", true );
 
 window.ChangeRejectReasonView = ChangeRejectReasonView
+
+class ChangeSecondInterviewSubstateView
+  constructor: () ->
+    $("#change_status_applicant_activity_to_status").change(@handle_change_reason)
+
+  handle_change_reason: =>
+    status = $("#change_status_applicant_activity_to_status").val()
+    
+    if status == 'second_interview_held'
+      $('#second_interview_substate_group').show()
+      $('#change_status_applicant_activity_second_interview_substate').prop( "disabled", false );
+    else
+      $('#second_interview_substate_group').hide()
+      $('#change_status_applicant_activity_second_interview_substate').prop( "disabled", true );
+
+window.ChangeSecondInterviewSubstateView = ChangeSecondInterviewSubstateView
