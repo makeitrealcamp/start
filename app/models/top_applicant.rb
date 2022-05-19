@@ -48,7 +48,8 @@ class TopApplicant < Applicant
     company: :string,
     start_date: :string,
     contract_type: :string,
-    socioeconomic_level: :integer
+    socioeconomic_level: :integer,
+    referred_by: :string
 
   def self.model_name
     Applicant.model_name

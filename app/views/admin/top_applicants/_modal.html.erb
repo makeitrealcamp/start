@@ -33,9 +33,12 @@
               <%= p.text_field :contract_type, class: "form-control" %>
             </div>
             <div class="form-group">
-            
               <%= p.label :socioeconomic_level, "Nivel socioeconomico" %>
-              <%= p.select :socioeconomic_level, options_for_select((1..5), @applicant.info["socioeconomic_level"]), {}, class: "form-control" %>
+              <%= p.select :socioeconomic_level, options_for_select([nil, 1, 2, 3, 4, 5], @applicant.info["socioeconomic_level"]), { :selected => nil }, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= p.label :referred_by, "Referido por" %>
+              <%= p.text_field :referred_by, class: "form-control" %>
             </div>
           <% end %>
         </div>
