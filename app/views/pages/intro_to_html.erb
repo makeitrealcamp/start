@@ -1,0 +1,92 @@
+<%= render "og_header",
+      title: "Introducción a HTML y CSS",
+      description: "[Curso Gratuito] En este curso aprenderás los conceptos fundamentales de HTML y CSS, los lenguajes que te permiten crear la estructura y agregar estilos a interfaces gráficas de páginas web y aplicaciones",
+      image_path: "01interna-programa.jpg" %>
+
+<div class="intro-to-js">
+  <%= render "layouts/navbar/pages_white", hide_login: true %>
+  <%= render "pages/header_register", btn_text: "Inscríbete gratis!" %>
+
+  <div class="intro">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 intro-info">
+          <h1>Introducción a HTML y CSS</h1>
+          <p> Aprende a codificar la estructura y los estilos de interfaces de aplicaciones y páginas web</p>
+          <p class="government-support">Curso gratuito con el apoyo de</p>
+          <div class="government-row" >
+            <div class="logo-mincomercio">
+              <a href="#" target="_blank"><%= image_tag "companies/logo-mincomercio.jpg" %></a>
+            </div>
+            <div class="logo-innpulsa" >
+              <a href="https://innpulsacolombia.com/?ref=makeitreal" target="_blank"><%= image_tag "companies/logo-innpulsa.png" %></a>
+            </div>
+          </div>
+          <button type="button" class="pbtn pbtn-primary btn-register">¡Inscríbete gratis!</button>
+        </div><!--/tagline-program -->
+
+        <div class="col-md-6">
+          <div class="program-info-box">
+            <div class="info-box-group">
+               <div>Jun 28, 2022</div>
+               <div class="info-box-label">Inicio</div>
+            </div>
+            <div class="info-box-group">
+               <div>4 días</div>
+               <div class="info-box-label">Duración</div>
+            </div>
+            <div class="info-box-group">
+              <div>6:00 - 7:30 pm (-05)</div>
+              <div class="info-box-label">Martes a viernes</div>
+            </div>
+
+            <div class="info-box-group info-box-location">
+              Remoto (videollamada)
+              <div class="info-box-label">Ubicación</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!--/row -->
+    </div><!--/container -->
+  </div><!--/program-intro -->
+
+  <%= render "intro_to_html_audience" %>
+
+  <%= render "full_stack_js_students" %>
+
+  <%= render "intro_to_html_curriculum" %>
+
+
+  <a name="mentors"></a>
+  <div class="section section-white section-mentors">
+    <div class="container">
+      <h2>Mentor</h2>
+
+      <div class="mentors-wrapper">
+        <div class="row">
+          <div class="col-md-5 col-md-offset-1">
+            <div class="profile-image text-center">
+              <%= image_tag "people/cristian-moreno-gray.jpg" %>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="profile">
+              <h3>Cristian Moreno</h3>
+              <p>JavaScript Developer y community builder. Co-organizador y speaker del <a href="https://www.meetup.com/MedellinJS/" target="_blank">Meetup MedellinJS</a>, Senior Frontend Developer en <a href="https://www.mercadolibre.com/?ref=makeitreal" target="_blank">Mercado Libre</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= render "pages/capture_email" %>
+
+  <%= render "intro_to_html_faqs" %>
+
+  <%= render "footer" %>
+
+  <%= render "program_registration_free_course", action: "/introduccion-a-html-y-css" %>
+
+</div>
