@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   get "full_stack_web_developer", to: redirect('/full-stack-online')
   get "curso-javascript-basico", to: redirect(ENV['javascript-course-url'] || "https://www.youtube.com/c/MakeitrealCamp1/live")
   get "introduccion-a-javascript", to: "pages#intro_to_js", as: :intro_to_js
+  get "introduccion-a-html-y-css", to: "pages#intro_to_html", as: :intro_to_html
   post "introduccion-a-javascript", to: "pages#create_intro_to_js_lead"
+  post "introduccion-a-html-y-css", to: "pages#create_intro_to_html_lead"
   get "introduccion-a-python-para-data-science", to: "pages#intro_to_python"
   post "introduccion-a-python-para-data-science", to: "pages#create_intro_to_python_lead"
 
