@@ -17,6 +17,9 @@ class Admin::TopApplicantsController < ApplicationController
     @applicants = @applicants.order('created_at DESC')
       .paginate(page: params[:page], per_page: 100)
 
+    if params[:status].present? and params[:substate].present?
+      @applicants = @applicants.find_applicant_by_substate(params[:status], params[:substate])
+    end
     @applicants_count = @applicants.count
   end
 

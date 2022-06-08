@@ -22,10 +22,15 @@ class ChangeStatusApplicantActivity < ApplicantActivity
     rejected_reason: :string,
     second_interview_substate: :string
 
-  def self.rejected_reason_to_human(rejected_reason)
+  def self.get_substatus_to_human(value)
     mappings = {
+      pending: "Pendiente",
+      scheduled: "Agendada",
+      finished: "Finalizó",
+      pending_exercises: "Ejercicios por enviar",
+      sent_exercises: "Ejercicios enviados",
       superficial_response: "Respuestas superficiales",
-      no_experience: "No tiene la experiencia técnica (primer acercamiento a la programación)",
+      no_experience: "No tiene la experiencia técnica",
       technical_test_failed: "No pasó prueba técnica",
       first_interview_failed: "No pasó primera entrevista",
       low_english_level: "Inglés muy bajo",
@@ -33,18 +38,24 @@ class ChangeStatusApplicantActivity < ApplicantActivity
       no_jointly_responsible: "No tiene responsable solidario"
     }
 
-    mappings[rejected_reason.to_sym]
+    mappings[value.to_sym]
   end
 
-  def self.second_interview_substate_to_human(second_interview_substate)
+  def self.substatus(status)
     mappings = {
-      pending: "Pendiente",
-      scheduled: "Agendada",
-      finished: "Finalizó",
-      pending_exercises: "Ejercicios por enviar",
-      sent_exercises: "Ejercicios enviados"
+      rejected: self.rejected_reasons.keys,
+      second_interview_held: self.second_interview_substates.keys
     }
 
-    mappings[second_interview_substate.to_sym]
+    mappings[status.to_sym]
+  end
+
+  def self.get_substatus(value)
+    mappings = {
+      rejected: lambda {|a| self.get_substatus_to_human(a.rejected_reason ? a.rejected_reason : a)},
+      second_interview_held: lambda {|a| self.get_substatus_to_human(a.second_interview_substate ?  a.second_interview_substate : a)}
+    }
+
+   mappings[value.to_status.to_sym] ? mappings[value.to_status.to_sym][value] : mappings[value.to_status.to_sym]
   end
 end

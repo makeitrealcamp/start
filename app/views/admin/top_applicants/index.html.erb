@@ -30,16 +30,41 @@
             </div>
           </form>
 
-          <div class="dropdown">
-            <a role="button" data-toggle="dropdown" class="btn btn-default" data-target="#" href="/page.html"><%= params[:status].present? ? params[:status] : "Filtrar por estado" %> <span class="caret"></span> </a>
-            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-              <li><a href="/admin/top_applicants">Todos</a></li>
-              <li>
-                <% TopApplicant.statuses.keys.each do |status| %>
-                  <a href="/admin/top_applicants?status=<%= status %>"><%= TopApplicant.status_to_human(status).capitalize %></a>
-                <% end %>
-              </li>
-            </ul>
+          <div class="filters-right">
+            <div class="filter-dropdown" >
+              <label>Filtrar por estado:</label>
+              <div class="dropdown" id="filter_status_applicant_activity">
+                <a role="button" data-toggle="dropdown" class="btn btn-default" data-target="#" href="/page.html"><%= params[:status].present? ? TopApplicant.status_to_human(params[:status]).capitalize : "Todos" %> <span class="caret"></span> </a>
+                <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                  <li>
+                  <%= link_to 'Todos', request.params.except(:status) %>
+                  </li>
+                  <li>
+                    <% TopApplicant.statuses.keys.each do |status| %>
+                      <%= link_to TopApplicant.status_to_human(status).capitalize, request.params.merge(status: status).except(:substate) %>
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <% if  params[:status].present? and ChangeStatusApplicantActivity.substatus(params[:status]) %>
+              <div class="filter-dropdown">
+                <label>Subestado:</label>
+                <div class="dropdown" id="filter_substatus_applicant_activity">
+                  <a role="button" data-toggle="dropdown" class="btn btn-default" data-target="#" href="/page.html"><%= params[:substate].present? ? ChangeStatusApplicantActivity.get_substatus_to_human(params[:substate]) : "Todos" %> <span class="caret"></span> </a>
+                  <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                  <li>
+                    <%= link_to 'Todos', request.params.except(:substate) %>
+                  </li>
+                  <li>
+                    <% ChangeStatusApplicantActivity.substatus(params[:status]).each do |substate| %>
+                      <%= link_to ChangeStatusApplicantActivity.get_substatus_to_human(substate), request.params.merge(substate: substate) %>
+                    <% end %>
+                  </li>
+                  </ul>
+                </div>
+              </div>
+            <% end %>
           </div>
         </div>
 
@@ -54,6 +79,9 @@
                 </td>
                 <td class="text-right">
                   <div class="cell-main"><%= TopApplicant.status_to_human(applicant.status).capitalize %></div>
+                  <% if applicant.change_status_activities.last %>
+                    <div class="cell-detail"><%= ChangeStatusApplicantActivity.get_substatus(applicant.change_status_activities.last) %></div>
+                  <% end %>
                   <div class="cell-detail"><%= applicant.updated_at.strftime("%b %d %I:%M %p")%></div>
                   <div class="cell-detail"><%= applicant.note_activities.count %> notas</div>
                 </td>
