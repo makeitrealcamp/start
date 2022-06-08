@@ -79,7 +79,7 @@
                 </td>
                 <td class="text-right">
                   <div class="cell-main"><%= TopApplicant.status_to_human(applicant.status).capitalize %></div>
-                  <% if applicant.change_status_activities.last %>
+                  <% if applicant.change_status_activities.last && applicant.change_status_activities.last.to_status %>
                     <div class="cell-detail"><%= ChangeStatusApplicantActivity.get_substatus(applicant.change_status_activities.last) %></div>
                   <% end %>
                   <div class="cell-detail"><%= applicant.updated_at.strftime("%b %d %I:%M %p")%></div>
