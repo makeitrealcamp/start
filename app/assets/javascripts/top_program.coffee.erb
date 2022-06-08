@@ -183,7 +183,7 @@ class TopRegistrationView extends Backbone.View
 
   render: ->
     $(@el).on('shown.bs.modal', =>
-
+      @show_scheme_options()
     ).modal()
 
   events: ->
