@@ -14,12 +14,12 @@ class Admin::TopApplicantsController < ApplicationController
       @applicants = @applicants.where("first_name ILIKE :q OR last_name ILIKE :q OR email ILIKE :q", q: "%#{params[:q]}%")
     end
 
-    @applicants = @applicants.order('created_at DESC')
-      .paginate(page: params[:page], per_page: 100)
-
     if params[:status].present? and params[:substate].present?
       @applicants = @applicants.find_applicant_by_substate(params[:status], params[:substate])
     end
+
+    @applicants = @applicants.order('created_at DESC')
+      .paginate(page: params[:page], per_page: 100)
     @applicants_count = @applicants.count
   end
 
