@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   get "thanks-ruby-on-rails", to: "pages#thanks_online"
   get "thanks-agile-tester", to: "pages#thanks_online"
   get "thanks-intro-to-js", to:"pages#thanks_online_innpulsa"
+  get "thanks-intro-to-html-and-css", to:"pages#thanks_online_innpulsa"
   get "thanks-intro-to-python", to:"pages#thanks_online_innpulsa"
   get "thanks-fs-becas-mujeres", to:"pages#thanks_online"
   get "thanks-preparation-top", to: "pages#thanks_preparation_top"

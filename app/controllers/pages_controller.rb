@@ -290,7 +290,7 @@ class PagesController < ApplicationController
       ip: request.remote_ip
     }
     CreateLeadJob.perform_later(data)
-    redirect_to "/thanks-intro-to-js"
+    redirect_to "/thanks-intro-to-html-and-css"
   end
 
   def create_fs_becas_mujeres_lead
