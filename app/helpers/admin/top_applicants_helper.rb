@@ -122,13 +122,13 @@ module Admin::TopApplicantsHelper
 
   def applicant_rejected_reason_options(applicant)
     ChangeStatusApplicantActivity.rejected_reasons.keys.inject([]) do |memo, s|
-      memo << [ChangeStatusApplicantActivity.rejected_reason_to_human(s).capitalize, s]
+      memo << [ChangeStatusApplicantActivity.get_substatus_to_human(s).capitalize, s]
     end
   end
 
   def applicant_second_interview_substate_options(applicant)
     ChangeStatusApplicantActivity.second_interview_substates.keys.inject([]) do |memo, s|
-      memo << [ChangeStatusApplicantActivity.second_interview_substate_to_human(s).capitalize, s]
+      memo << [ChangeStatusApplicantActivity.get_substatus_to_human(s).capitalize, s]
     end
   end
 end

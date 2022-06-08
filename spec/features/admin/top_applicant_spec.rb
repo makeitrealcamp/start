@@ -193,4 +193,43 @@ RSpec.feature "top_applicant", type: :feature do
       expect(page).to have_no_css("#email-template-modal")
     }.to change(EmailTemplate, :count).by 0
   end
+
+  scenario "filter substatus in top applicants lists", js: true do
+    login(admin)
+    visit admin_top_applicants_path
+
+    find("#applicant-#{applicant.id} .cell-action a").click
+
+    click_on "Cambiar Estado"
+    sleep 0.5 # hack to wait for the animation
+    select "Rechazado", from: "change_status_applicant_activity_to_status"
+    expect(page).to have_css("#change_status_applicant_activity_rejected_reason")
+    fill_in "change_status_applicant_activity_comment", with: "Rejected status"
+    select "Respuestas superficiales", from: "change_status_applicant_activity_rejected_reason"
+    within :css, "#change-status-modal" do
+      click_on "Cambiar Estado"
+    end
+    
+    visit admin_top_applicants_path
+
+    expect(page.all("table.table tr").count).to eq(TopApplicant.count)
+    expect(page).to have_no_css("#filter_substatus_applicant_activity")
+    find("#filter_status_applicant_activity").click
+    find("#filter_status_applicant_activity").click_link("Rechazado")
+    expect(page).to have_css("#filter_substatus_applicant_activity")
+    expect(page.all("table.table tr").count).to eq(1)
+
+    find("#filter_substatus_applicant_activity").click
+    find("#filter_substatus_applicant_activity ul").click_link("Inglés muy bajo")
+    sleep 0.5
+    expect(page.all("table.table tr").count).to eq(0)
+
+    find("#filter_substatus_applicant_activity").click
+    find("#filter_substatus_applicant_activity ul").click_link("Respuestas superficiales")
+    sleep 0.5
+    expect(page.all("table.table tr").count).to eq(1)
+
+    
+
+  end
 end

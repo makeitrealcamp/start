@@ -39,4 +39,11 @@ class Applicant < ApplicationRecord
     results = results.where(cohort_id: cohort) if cohort
     results
   end
+
+  def self.find_applicant_by_substate(status, substate)
+    results = all.where(status: TopApplicant.statuses[status])
+    results = results.joins('left join applicant_activities t on t.applicant_id = applicants.id AND t.id = (SELECT MAX(id) FROM applicant_activities WHERE applicant_activities.applicant_id = t.applicant_id)')
+    .where("t.info -> 'rejected_reason' = ?", substate)
+    results
+  end
 end
