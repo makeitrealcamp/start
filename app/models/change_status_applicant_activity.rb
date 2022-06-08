@@ -56,6 +56,6 @@ class ChangeStatusApplicantActivity < ApplicantActivity
       second_interview_held: lambda {|a| self.get_substatus_to_human(a.second_interview_substate ?  a.second_interview_substate : a)}
     }
 
-    mappings[value.to_status.to_sym] ? mappings[value.to_status.to_sym][value] : mappings[value.to_status.to_sym]
+    value.to_status && mappings[value.to_status.to_sym] ? mappings[value.to_status.to_sym][value] : value.to_status
   end
 end
