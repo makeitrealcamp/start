@@ -38,7 +38,7 @@ class ChangeStatusApplicantActivity < ApplicantActivity
       no_jointly_responsible: "No tiene responsable solidario"
     }
 
-    mappings[value.to_sym]
+    value && mappings[value.to_sym]
   end
 
   def self.substatus(status)
