@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "full-stack-online/patrocina-una-beca", to: redirect('/top')
   post "full-stack-becas-mujeres", to: "pages#create_fs_becas_mujeres_lead"
   get "ruby-on-rails", to: 'pages#ruby_on_rails'
+  get "ruby-on-rails/cupo", to: 'pages#ruby_on_rails_seat'
   post "ruby-on-rails", to: 'pages#create_ruby_on_rails_lead'
   get "agile-tester", to: 'pages#agile_tester'
   post "agile-tester", to: 'pages#create_agile_tester_lead'

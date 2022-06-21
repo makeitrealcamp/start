@@ -41,6 +41,15 @@ class Billing::Charge < ApplicationRecord
         "USD" => 190
       }
     },
+    backend_rails: {
+      description: "Separación curso Backend con Ruby on Rails",
+      price: {
+        "COP" => 500_000,
+        "MXN" => 3_100,
+        "PEN" => 475,
+        "USD" => 150
+      }
+    },
     full_sponsorship: {
       description: "Patrocinio beca completa Make It Real",
       price: { "COP" => 3_000_000 }
