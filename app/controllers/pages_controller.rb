@@ -184,6 +184,11 @@ class PagesController < ApplicationController
     @currency = params[:currency] || "COP"
   end
 
+  def ruby_on_rails_seat
+    @course = Billing::Charge::COURSES[:backend_rails]
+    @currency = params[:currency] || "COP"
+  end
+
   def data_science_online_seat
     @course = Billing::Charge::COURSES[:datascience]
     @currency = params[:currency] || "COP"
