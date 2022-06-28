@@ -16,6 +16,33 @@
       </div>
       <div class="navbar-collapse collapse" id="navbar">
         <ul class="nav navbar-nav navbar-right">
+          <% if !hide_programs %>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+              Programas <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="<%= 'active' if params[:action] == 'top' %>">
+                <%= link_to top_path do %>
+                  <span class="icon-menu"><%= image_tag "full-stack-blue.png", height: 28 %></span>
+                  <span class="text-menu">Top (Full Stack Developer)</span>
+                <% end %>
+              </li>
+              <li class="<%= 'active' if params[:action] == 'ruby_on_rails' %>">
+                <%= link_to ruby_on_rails_path do %>
+                  <span class="icon-menu"><span class="glyphicon glyphicon-stats" aria-hidden="true" style="font-size: 21px; margin-left: 7px; color: #3877ba; margin-top: -3px;"></span></span>
+                  <span class="text-menu">Ruby on Rails (Backend)</span>
+                <% end %>
+              </li>
+              <li class="<%= 'active' if params[:action] == 'introduccion_a_html_y_css' %>">
+                <%= link_to introduccion_a_html_y_css_path do %>
+                  <span class="icon-menu"><%= image_tag "front-end-blue.png", height: 28 %></span>
+                  <span class="text-menu">Introduccion a HTML y CSS</span>
+                <% end %>
+              </li>
+            </ul>
+          </li>
+        <% end %>
           <li><a href="http://blog.makeitreal.camp/">Blog</a></li>
           <li><%= link_to "Eventos", webinars_path, data: { turbolinks: false } %></li>
           <% if !hide_login %>
