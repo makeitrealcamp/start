@@ -130,6 +130,10 @@
 
   .navbar-toggle .icon-bar { background: $brand_primary; }
 
+  .dropdown-menu {
+    top: 70%
+  }
+
   .dropdown-menu a {
     color: #666;
     padding: 5px 15px;
