@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'pages#home'
 
+  get "sitemap.xml", to: "pages#sitemap"
   get "programas-web-movil", to: "pages#web_mobile_programs", as: :web_mobile_programs
   get "full-stack-online", to: "pages#top_full_and_part_time", as: :full_stack_online
   post "full-stack-online", to: "pages#create_full_stack_online_lead"
