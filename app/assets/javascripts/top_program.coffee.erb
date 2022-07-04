@@ -240,9 +240,9 @@ class TopRegistrationView extends Backbone.View
     @.$('.application-2 .form-group').removeClass('has-error')
 
     valid = true
-    valid = false if !@input_text_is_valid($('#goal'))
-    valid = false if !@input_text_is_valid($('#experience'))
-    valid = false if !@input_text_is_valid($('#additional'))
+    valid = false if @input_text_too_short($('#goal'), "¿Puedes contarnos un poco más?")
+    valid = false if @input_text_too_short($('#experience'), "¿Puedes contarnos un poco más?")
+    valid = false if @input_text_too_short($('#additional'), "¿Puedes contarnos un poco más?")
 
     if valid
       @.$('.finish').attr('disabled', true)
@@ -261,6 +261,15 @@ class TopRegistrationView extends Backbone.View
       field.closest('.form-group').addClass('has-error')
       return false
     return true
+
+  input_text_too_short: (field, message) ->
+    len = field.val().replace(/\s+/, '').length
+    if len < 30
+      field.closest('.form-group').addClass('has-error')
+      field.siblings('.help-block').text(message) if len > 0
+      return true
+      
+    return false
 
   checkbox_is_selected: (field, message) ->
     if !field.is(':checked')
