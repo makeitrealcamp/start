@@ -1,15 +1,4 @@
-<div class="form-group" style="margin-top: 40px;">
-  <label for="lang">Selecciona el lenguaje de programación:</label>
-  <select name="top_applicant_test[lang]" id="lang" class="form-control">
-    <option value="javascript" >JavaScript</option>
-    <option value="ruby">Ruby</option>
-    <option value="python">Python</option>
-    <option value="php">PHP</option>
-    <option value="java">Java</option>
-    <option value="cplus">C++</option>
-    <option value="csharp">C#</option>
-  </select>
-</div>
+<input type="hidden" name="top_applicant_test[lang]" value="javascript">
 
 <div id="q1" class="question-wrapper">
   <div class="title <%= "has-error" if @test.errors[:a1].any? %>">1. Calcula los impuestos</div>
