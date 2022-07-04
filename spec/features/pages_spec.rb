@@ -100,6 +100,12 @@ RSpec.feature "Pages", type: :feature do
     fill_in "experience", with: "1 año"
     fill_in "additional", with: "me gustan los animales"
     find('.submit[type="button"]').click
+    expect(page).to have_css("#application-modal .application-2 .form-group.has-error")
+
+    fill_in "goal", with: "mi motivación es aprender y escribir más de 30 caracteres"
+    fill_in "experience", with: "he hecho cursos en varias plataformas"
+    fill_in "additional", with: "me gustan los animales y todo bien"
+    find('.submit[type="button"]').click
 
     expect(current_path).to eq thanks_top_path
 
