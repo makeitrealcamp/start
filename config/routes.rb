@@ -29,7 +29,8 @@ Rails.application.routes.draw do
 
   #get "top", to: "pages#top"
   get "top", to: "pages#top_full_and_part_time"
-  get "innovate-peru", to: "pages#innovate_peru"
+  get "mitic", to: "pages#mitic_paraguay"
+  # get "innovate-peru", to: "pages#innovate_peru"
   get "innovate-peru/cupo-tiempo-completo", to: "pages#innovate_full_time_seat"
   get "innovate-peru/cupo-tiempo-parcial", to: "pages#innovate_part_time_seat"
 

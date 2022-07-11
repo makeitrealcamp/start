@@ -1,0 +1,367 @@
+<% content_for :head do %>
+  <meta property="og:title" content="Make It Real - Programa Mitic" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="Un programa en Node.js, Express, MongoDB y React con el apoyo de Mitic Paraguay" />
+  <meta property="og:image" content="<%= image_url('top-hero.jpg') %>" />
+<% end %>
+
+<div class="innovate-program">
+  <div class="intro">
+    <%= render "layouts/navbar/pages_white", hide_login: true, hide_programs: true, show_apply: true %>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 intro-info">
+          <h1>Desarrollo Full Stack JavaScript</h1>
+          <p>Mejora tus habilidades y encuentra empleo como desarrollador(a) Web o móvil. Becas hasta del 100%.</p>
+          <div class="partners" style="margin: 20px 0 15px;">
+            <small>Con el apoyo de</small>
+            <div>
+              <a href="https://www.mitic.gov.py/" target="_blank"><%= image_tag "companies/logo-mitic.png"%></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 intro-img">
+          <%= image_tag "image-header-top.png", srcset: { "image-header-top@2x.png" => "2x", "image-header-top@3x.png" => "3x" } %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section section-details">
+    <div class="container">
+      <div class="row">
+        <div>
+          <div class="details-wrapper">
+            <div class="row">
+              <div class="col-xs-6 col-sm-4">
+                <div class="text-center">
+                  <div class="detail-wrapper">
+                    <div class="detail-value">96%</div>
+                    <div class="detail-label">UBICACIÓN LABORAL</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-6 col-sm-4">
+                <div class="text-center">
+                  <div class="detail-wrapper">
+                    <div class="detail-value">Gs. 3M</div>
+                    <div class="detail-label">SALARIO PROMEDIO <span style="cursor: pointer;" data-toggle="tooltip" data-placement="top" title="Incluyendo prestaciones sociales">*</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="text-center">
+                  <div class="detail-wrapper">
+                    <div class="detail-value">6 semanas</div>
+                    <div class="detail-label">PROMEDIO UBICACIÓN</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section section-info">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <div class="text-center">
+            <h2>¿A quién está dirigido?</h2>
+            <p class="lead">Personas con conocimientos básicos en desarrollo Web que deseen encontrar un empleo o mejorar sus ingresos en la industria tech.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section section-white section-how-it-works">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <%= render "pages/companies2" %>
+          <h2>¿Cómo funciona?</h2>
+          <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+              <p class="lead">Aplica para iniciar el proceso de selección. Si eres aceptado(a) comenzarás el entrenamiento de acuerdo a la modalidad que escojas. Por último, te acompañamos en la búsqueda de empleo.</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="works-item">
+                <%= image_tag "icon-proceso-top.png", srcset: { "icon-proceso-top@2x.png" => "2x", "icon-proceso-top@3x.png" => "3x" } %>
+                <div class="item-info">
+                  <h3>Proceso de selección</h3>
+                  <p>Los candidatos completan una serie de entrevistas técnicas y personales para identificar a las personas con aptitudes técnicas sin importar sus estudios previos.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="works-item">
+                <%= image_tag "icon-entrenamiento-top.png", srcset: { "icon-entrenamiento-top@2x.png" => "2x", "icon-entrenamiento-top@3x.png" => "3x" } %>
+                <div class="item-info">
+                  <h3>Entrenamiento</h3>
+                  <p>A través de una metodología basada en proyectos los estudiantes aceleran su aprendizaje para convertirse en desarrolladores Web. El post-programa los prepara para la siguiente fase de sus vidas.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section section-white section-quotes">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>Testimonios</h2>
+
+          <div class="owl-carousel">
+            <div class="quote">
+              <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                  <div class="quote-image">
+                    <%= image_tag "people/mixer-gutierrez.jpg", alt: "Mixer Gutierrez", class: "img-circle" %>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="quote-data">
+                    <div class="quote-name">Mixer Gutierrez</div>
+                    <div class="quote-position">Tech Lead</div>
+                    <div class="quote-company">en La Haus</div>
+                    <div class="quote-text">
+                      Desarrollar software literalmente te cambia la vida y Make it Real me brindó la oportunidad de entrar a este mundo. Experiencia inolvidable!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="quote">
+              <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                  <div class="quote-image">
+                    <%= image_tag "people/miguel-casas.jpg", alt: "Miguel Casas", class: "img-circle" %>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="quote-data">
+                    <div class="quote-name">Miguel Casas</div>
+                    <div class="quote-position">Full Stack Developer</div>
+                    <div class="quote-company">en Auth0</div>
+                    <div class="quote-text">
+                      Nunca esperé aprender tanto, cambiar la visión de la programación y la orientación de mi vida en tan poco tiempo.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="quote">
+              <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                  <div class="quote-image">
+                    <%= image_tag "people/sebastian-zapata.png", alt: "Sebastián Zapata", class: "img-circle" %>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="quote-data">
+                    <div class="quote-name">Sebastián Zapata</div>
+                    <div class="quote-position">Full Stack Developer</div>
+                    <div class="quote-company">en Zillow Group</div>
+                    <div class="quote-text">
+                      En Make it Real logré cosas que nunca habría imaginado hacer. Fue una de las experiencias más intensas y desafiantes de toda mi vida.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="quote">
+              <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                  <div class="quote-image">
+                    <%= image_tag "people/alejandro-escobar.jpg", alt: "Alejandro Escobar", class: "img-circle" %>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="quote-data">
+                    <div class="quote-name">Alejandro Escobar</div>
+                    <div class="quote-position">Full Stack Developer</div>
+                    <div class="quote-company">en Docketwise</div>
+                    <div class="quote-text">
+                      En Make it Real se adquieren los conocimientos necesarios para aprovechar las oportunidades del mundo actual.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section section-curriculum">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <h2>Currículo</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="subject">
+            <h3>Diseño de aplicaciones y metodologías ágiles</h3>
+            <p>PMV (Producto Mínimo Viable), Scrum, historias de usuario, wireframing, Git, GitFlow, diseño de bases de datos.</p>
+          </div>
+          <div class="subject">
+            <h3>HTML y CSS avanzado</h3>
+            <p>Mejores prácticas, media queries, sombras, gradientes, transformaciones, transiciones, animaciones, Flexbox y CSS Grids, entre otros.</p>
+          </div>
+          <div class="subject">
+            <h3>JavaScript avanzado</h3>
+            <p>Prototipos, uso de this, scopes, closures, hoisting, ES2015, programación funcional, programación asincrónica, librerías y testing, herramientas de desarrollador y canvas, entre otros.</p>
+          </div>
+          <div class="subject">
+            <h3>Node.js y Express</h3>
+            <p>Event loop, Node.js internals, HTTP, Express: rutas, vistas, middlewares, manejo de errores, formularios, cookies, sesiones, JSON, Web Sockets.</p>
+          </div>
+          <div class="subject">
+            <h3>MongoDB</h3>
+            <p>Mongo Shell, Mongoose, Mongo Atlas.</p>
+          </div>
+          <div class="subject">
+            <h3>React</h3>
+            <p>Virtual DOM, JSX, componentes, estado, formularios, peticiones HTTP, router, hooks, Context API, Redux.</p>
+          </div>
+          <div class="subject">
+            <h3>DevOps</h3>
+            <p>Docker, Kubernetes, CI/CD con Github Actions, Heroku, Vercel, introducción a AWS.</p>
+          </div>
+          <div class="subject">
+            <h3>GraphQL</h3>
+            <p>Schemas, consultas, mutaciones, validación, Apollo Client, integración con React.</p>
+          </div>
+          <div class="subject">
+            <h3>React Native</h3>
+            <p>Instalación, componentes, navegación, formularios, cámara, mapas y GPS, HTTP, App Stores, entre otros.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a name="mentors"></a>
+  <div class="section section-bordered section-white section-mentors">
+    <div class="container">
+      <h2>Nuestros mentores</h2>
+
+      <div class="mentors-wrapper owl-carousel">
+        <%= render "pages/full_stack_js_mentors" %>
+
+        <div class="row">
+          <div class="col-md-5 col-md-offset-1">
+            <div class="profile-image text-center">
+              <%= image_tag "people/simon-hoyos.png" %>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="profile">
+              <h3>Simón Hoyos</h3>
+              <p>Apasionado por JavaScript y su ecosistema, co-organizador y speaker del <a href="https://www.meetup.com/React-Medellin/" target="_blank">Meetup React Medellín</a>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-5 col-md-offset-1">
+            <div class="profile-image text-center">
+              <%= image_tag "people/german-escobar.png" %>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="profile">
+              <h3>Germán Escobar</h3>
+              <p>Programador y emprendedor. Fundador de <a href="http://www.makeitreal.camp/" target="_blank">Make it Real</a> y co-fundador de <a href="http://masiv.com/?ref=makeitreal" target="_blank">Elibom (ahora Masivian)</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <section class="section section-faq">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>Preguntas frecuentes</h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="question">
+            <h3>¿Cómo es el proceso de selección?</h3>
+            <p>Si cumples los requisitos y el perfil te enviaremos una prueba de programación que podrás resolver en tu lenguaje de preferencia (JavaScript, Ruby, Python, PHP, Java, C++ o C#).</p>
+            <p>Luego tendrás una llamada no técnica, entre otras cosas para medir tu nivel de Inglés. Por último, deberás presentar una prueba técnica en vivo para validar tus conocimientos.</p>
+          </div>
+
+          <div class="question">
+            <h3>¿Cómo obtengo una beca?</h3>
+            <p>Tenemos un número limitado de becas que entregaremos en el orden en que las personas sean aceptadas. Entre antes apliques y completes el proceso de selección, mayor la probabilidad de recibir la beca.</p>
+          </div>
+
+          <div class="question">
+            <h3>¿En qué lugar se dictan las clases?</h3>
+            <p>El programa es completamente remoto y las clases se realizan a través de video llamada.</p>
+          </div>
+
+          <div class="question">
+            <h3>¿Cuánto puedo aspirar a ganar cuando termine el programa?</h3>
+            <p>Depende de tus conocimientos previos. El salario promedio de un egresado está en Gs. 3M incluyendo prestaciones sociales de ley.</p>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="question">
+            <h3>¿Puedo volver a aplicar si no soy aceptado(a)?</h3>
+            <p>Si. Puedes volver a aplicar.</p>
+          </div>
+
+          <div class="question">
+            <h3>¿Cuáles son los requisitos para aplicar?</h3>
+            <ul>
+              <li>Ser nacional o residente paraguayo mayor de edad.</li>
+              <li>Contar con educación secundaria completa.</li>
+              <li>Tener conocimientos básicos de programación. Debes saber conceptos como variables, ciclos, condicionales, arreglos y funciones (en cualquier lenguaje), y entender cómo funcionan.</li>
+              <li>Disponer del tiempo para dedicar al programa.</li>
+              <li>Manejar un nivel básico de Inglés.</li>
+              <li>Contar con un computador personal y conexión a Internet.</li>
+            </ul>
+          </div>
+
+          <div class="question">
+            <h3>No soy residente paraguayo. ¿Aún así puedo aplicar?</h3>
+            <p>Este programa es sólo para nacionales y residentes paraguayos. Sin embargo, te invitamos a conocer nuestro <%= link_to "Programa TOP", top_path %>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%= render "pages/footer" %>
+
+ 
+</div>
+
+<script type="text/javascript">
+  $(document).on("turbolinks:load", function() {
+    new InnovateProgramView();
+  });
+</script>
