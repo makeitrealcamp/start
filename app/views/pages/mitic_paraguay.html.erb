@@ -5,7 +5,7 @@
   <meta property="og:image" content="<%= image_url('top-hero.jpg') %>" />
 <% end %>
 
-<div class="innovate-program">
+<div class="mitic-program">
   <div class="intro">
     <%= render "layouts/navbar/pages_white", hide_login: true, hide_programs: true, show_apply: true %>
 
@@ -13,9 +13,11 @@
       <div class="row">
         <div class="col-md-6 intro-info">
           <h1>Desarrollo Full Stack JavaScript</h1>
-          <p>Mejora tus habilidades y encuentra empleo como desarrollador(a) Web o móvil. Becas hasta del 100%.</p>
+          <p>Conviértete en Desarrollador Web Full Stack junto a mentores experimentados y sesiones en vivo que te ayudarán a acelerar tu aprendizaje y encontrar los mejores empleos de la industria. Becas del 100%</p>
+          <div class="text-center">
+            <button type="button" class="pbtn pbtn-secondary apply-now-btn">Aplica Ahora</button>
+          </div>
           <div class="partners" style="margin: 20px 0 15px;">
-            <small>Con el apoyo de</small>
             <div>
               <a href="https://www.mitic.gov.py/" target="_blank"><%= image_tag "companies/logo-mitic.png"%></a>
             </div>
@@ -86,7 +88,7 @@
           <h2>¿Cómo funciona?</h2>
           <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
-              <p class="lead">Aplica para iniciar el proceso de selección. Si eres aceptado(a) comenzarás el entrenamiento de acuerdo a la modalidad que escojas. Por último, te acompañamos en la búsqueda de empleo.</p>
+              <p class="lead">Aplica para iniciar el proceso de selección. Si eres aceptado(a) comenzarás la nivelación de 3 semanas, luego la fase principal. Por último, tendrás acceso a nuestra plataforma de recursos para que tu aprendizaje continúe.</p>
             </div>
           </div>
 
@@ -96,7 +98,7 @@
                 <%= image_tag "icon-proceso-top.png", srcset: { "icon-proceso-top@2x.png" => "2x", "icon-proceso-top@3x.png" => "3x" } %>
                 <div class="item-info">
                   <h3>Proceso de selección</h3>
-                  <p>Los candidatos completan una serie de entrevistas técnicas y personales para identificar a las personas con aptitudes técnicas sin importar sus estudios previos.</p>
+                  <p>Luego de completar el formulario de aplicación (lo más completo posible), si tienes el perfil tendrás  una entrevista 1:1 (de sólo 10 min) para conocer mejor tus motivaciones y expectativas y ver si eres un candidat@ para la beca!</p>
                 </div>
               </div>
             </div>
@@ -308,40 +310,50 @@
       <div class="row">
         <div class="col-sm-6">
           <div class="question">
-            <h3>¿Cómo es el proceso de selección?</h3>
-            <p>Si cumples los requisitos y el perfil te enviaremos una prueba de programación que podrás resolver en tu lenguaje de preferencia (JavaScript, Ruby, Python, PHP, Java, C++ o C#).</p>
-            <p>Luego tendrás una llamada no técnica, entre otras cosas para medir tu nivel de Inglés. Por último, deberás presentar una prueba técnica en vivo para validar tus conocimientos.</p>
+            <h3>¿Qué es un programa financiado por MITIC?</h3>
+            <p>Este bootcamp es financiado por el MITIC y forma parte de la primera convocatoria de BECAS TIC, enmarcado en el producto "Personas certificadas en competencias digitales avanzadas" del <a href="https://www.iadb.org/es/project/PR-L1153" target="_blank">Programa de Apoyo a la Agenda Digital</a> (PAAD). El objetivo de este producto es mejorar el talento digital del país otorgando becas a la ciudadanía.</p>
+            <p> Más información sobre esta convocatoria podrás encontrar en <a href="https://www.mitic.gov.py/convocatoria1" target="_blank">https://www.mitic.gov.py/convocatoria1</a></p>
+          </div>
+          <div class="question">
+            <h3>¿Cómo es el proceso de admisión?</h3>
+            <p>Si cumples los requisitos (completar el form) te enviaremos un correo con un link para que agendes una llamada 1:1 de sólo 15 min para conocerte más y entender cuales son tus motivaciones y expectativas.</p>
+            <p>Luego de máximo 1 semana, recibirás un correo donde te comunicaremos si eres admitid@ en el programa y una carta donde te lo haremos saber para que continúes tu proceso de postulación en MITIC.</p>
+          </div>
+
+          <div class="question">
+            <h3>¿Cómo debo pagar el 10% inicial?</h3>
+            <p>Recuerda que inicialmente debes pagar un 10% del valor del programa (200USD) que podrás pagar una vez seas admitido y aceptado vía tarjetas de crédito o transferencias.</p>
+            <p>Este monto se te devolverá por MITIC una vez que culmines satisfactoriamente el Bootcamp.</p>
+          </div>
+
+          <div class="question">
+            <h3>¿Qué tiempo debo dedicarle al programa?</h3>
+            <p>Necesitarás estar disponible 6 horas semanales para tener clases sincrónicas, por las noches, 2 o 3 veces a la semana y otras 6 horas más que deberás disponer de trabajo autónomo por semana.</p>
           </div>
 
           <div class="question">
             <h3>¿Cómo obtengo una beca?</h3>
             <p>Tenemos un número limitado de becas que entregaremos en el orden en que las personas sean aceptadas. Entre antes apliques y completes el proceso de selección, mayor la probabilidad de recibir la beca.</p>
           </div>
-
+        </div>
+        <div class="col-sm-6">
           <div class="question">
             <h3>¿En qué lugar se dictan las clases?</h3>
             <p>El programa es completamente remoto y las clases se realizan a través de video llamada.</p>
           </div>
-
           <div class="question">
             <h3>¿Cuánto puedo aspirar a ganar cuando termine el programa?</h3>
             <p>Depende de tus conocimientos previos. El salario promedio de un egresado está en Gs. 3M incluyendo prestaciones sociales de ley.</p>
           </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="question">
-            <h3>¿Puedo volver a aplicar si no soy aceptado(a)?</h3>
-            <p>Si. Puedes volver a aplicar.</p>
-          </div>
-
           <div class="question">
             <h3>¿Cuáles son los requisitos para aplicar?</h3>
             <ul>
-              <li>Ser nacional o residente paraguayo mayor de edad.</li>
-              <li>Contar con educación secundaria completa.</li>
-              <li>Tener conocimientos básicos de programación. Debes saber conceptos como variables, ciclos, condicionales, arreglos y funciones (en cualquier lenguaje), y entender cómo funcionan.</li>
+              <li>Ser de nacionalidad paraguaya.</li>
+              <li>Tener mayoría de edad, 18 años cumplidos al momento de la postulación.</li>
+              <li>Haber culminado la etapa de Educación Escolar Media.</li>
+              <li>Haber sido admitido por el programa de capacitación ofrecido por la Prestadora.</li>
+              <li>Contar con formación o experiencia técnica comprobable en TIC.</li>
               <li>Disponer del tiempo para dedicar al programa.</li>
-              <li>Manejar un nivel básico de Inglés.</li>
               <li>Contar con un computador personal y conexión a Internet.</li>
             </ul>
           </div>
@@ -350,18 +362,152 @@
             <h3>No soy residente paraguayo. ¿Aún así puedo aplicar?</h3>
             <p>Este programa es sólo para nacionales y residentes paraguayos. Sin embargo, te invitamos a conocer nuestro <%= link_to "Programa TOP", top_path %>.</p>
           </div>
+
+          <div class="question">
+            <h3>¿Cuáles son los recursos necesarios para el desarrollo del programa?</h3>
+            <p>Debes contar con un computador personal y una conexión a Internet.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <%= render "pages/footer" %>
+  <div class="modal fade" id="application-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Formulario de aplicación</h4>
+        </div>
 
+        <div class="header-step">
+          <div class="header-step-1 active"></div>
+          <div class="header-step-2"></div>
+          <div class="header-step-3"></div>
+        </div>
+
+        <form id="application-form" action="/application/top" method="post">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+          <div class="modal-body">
+          <div class="step-1">
+            <p style="margin-bottom: 18px;"><strong>¡Gracias por tu interés en el programa Desarrollo Full Stack de MITIC Paraguay!</strong> Antes de empezar asegúrate que cumples con los siguientes requisitos:</p>
+            <ul>
+              <li>
+                Ser de nacionalidad paraguaya.
+              </li>
+              <li>
+                Tener mayoría de edad, 18 años cumplidos al momento de la postulación.
+              </li>
+              <li>
+                Haber culminado la etapa de Educación Escolar Media.
+              </li>
+              <li>
+                Haber sido admitido por el programa de capacitación ofrecido por la Prestadora.
+              </li>
+              <li>
+                Contar con formación o experiencia técnica comprobable en TIC.
+              </li>
+              <li>
+                Disponer del tiempo para dedicar al programa.
+              </li>
+              <li>
+              Contar con un computador personal y conexión a Internet.
+              </li>
+            </ul>
+          <div class="checkbox" style="margin-top: 30px;">
+            <label>
+              <input type="checkbox" id="terms" name="applicant[accepted_terms]"> He leído y afirmo que cumplo con los requisitos para aplicar
+            </label>
+          </div>
+        </div>
+            <div class="step-2" style="display: none">
+              <p style="margin-bottom: 20px;">Completa la siguiente información:</p>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <input type="text" id="first-name" name="applicant[first_name]" class="form-control" placeholder="Nombres">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <input type="text" id="last-name" name="applicant[last_name]" class="form-control" placeholder="Apellidos">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="email" id="email" name="applicant[email]" class="form-control" placeholder="Email" data-epayco="card[email]">
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="birthday">Fecha de nacimiento</label>
+                    <input type="text" id="birthday" name="applicant[birthday]" class="form-control" placeholder="dd/mm/aaaa" data-datetimepicker="true">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="gender">Género</label>
+                    <select id="gender" class="form-control" name="applicant[gender]">
+                      <option value="">Selecciona</option>
+                      <option value="male">Hombre</option>
+                      <option value="female">Mujer</option>
+                      <option value="other">Otro</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group" id="mobile-wrapper">
+                    <label for="mobile">&nbsp;</label>
+                    <div class="input-group">
+                      <span class="input-group-addon" id="mobile-code">+595</span>
+                      <input type="tel" class="form-control" id="mobile" name="applicant[mobile]" placeholder="Número móvil">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="form-group">
+                <input type="text" name="applicant[url]" class="form-control" placeholder="LinkedIn URL">
+              </div>
+              <hr>
+            </div>
+
+            <div class="step-3" style="display: none;">
+              <p style="margin-bottom: 20px;">Please provide us with answers to the following questions in <strong>English</strong>:</p>
+              <div class="form-group">
+                <label for="goal">Why are you interested in applying to the program?</label>
+                <textarea id="goal" name="applicant[goal]" class="form-control" rows="3" placeholder="What's your motivation? What's your goal?"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="experience">What is your current programming knowledge?</label>
+                <textarea id="experience" name="applicant[experience]" class="form-control" rows="3" placeholder="Tell us what is your profession, courses you have completed, previous knowledge, personal projects, etc."></textarea>
+              </div>
+              <div class="form-group">
+                <label for="additional">Is there anything else we should know about you?</label>
+                <textarea id="additional" name="applicant[additional]" class="form-control" rows="3" placeholder="A hobby, an anecdote or a personal achivement"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default back">&lt;&lt; Atrás</button>
+            <button type="button" class="btn btn-primary btn-lg next">Continuar</button>
+            <button type="button" class="btn btn-primary btn-lg finish" style="display: none;">FINALIZAR</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
  
 </div>
 
 <script type="text/javascript">
   $(document).on("turbolinks:load", function() {
-    new InnovateProgramView();
+    new MiticProgramView();
   });
 </script>
