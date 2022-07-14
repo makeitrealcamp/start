@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
   post "application/top", to: "pages#create_top_applicant"
   post "application/innovate-peru", to: "pages#create_innovate_applicant"
+  post "application/mitic-paraguay", to: "pages#create_mitic_applicant"
 
   get "faq", to: "pages#faq"
   get "makers", to: "pages#makers"
@@ -229,6 +230,7 @@ Rails.application.routes.draw do
 
     resources :top_applicants, only: [:index, :show, :edit, :update]
     resources :innovate_applicants, only: [:index, :show]
+    resources :mitic_applicants, only: [:index, :show]
 
     resources :applicants, only: [] do
       resources :note_applicant_activities, only: [:create]

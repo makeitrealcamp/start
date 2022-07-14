@@ -195,7 +195,10 @@ class PagesController < ApplicationController
       },
       metadata: {
         linkedin: top_applicant_params[:url],
-        ip: request.remote_ip
+        ip: request.remote_ip,
+        goal: top_applicant_params[:goal],
+        experience: top_applicant_params[:experience],
+        more_info: top_applicant_params[:additional]
       }
     }
     ConvertLoopJob.perform_later(data)
@@ -372,6 +375,6 @@ class PagesController < ApplicationController
     end
 
     def mitic_applicant_params
-      params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :linkedin)
+      params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :linkedin, :goal, :experience, :additional)
     end
 end
