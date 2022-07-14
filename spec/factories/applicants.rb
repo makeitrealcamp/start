@@ -37,4 +37,8 @@ FactoryGirl.define do
   factory :innovate_applicant, parent: :applicant, class: "InnovateApplicant" do
 
   end
+
+  factory :mitic_applicant, parent: :applicant, class: "MiticApplicant" do
+
+  end
 end
