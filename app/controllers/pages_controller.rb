@@ -179,6 +179,32 @@ class PagesController < ApplicationController
     redirect_to "/thanks-innovate"
   end
 
+  def create_mitic_applicant
+    MiticApplicant.create!(mitic_applicant_params)
+
+    data = {
+      name: "filled-mitic-application",
+      person: {
+        pid: cookies[:dp_pid],
+        email: top_applicant_params[:email],
+        first_name: top_applicant_params[:first_name],
+        last_name: top_applicant_params[:last_name],
+        birthday: top_applicant_params[:birthday],
+        country_code: top_applicant_params[:country],
+        mobile: top_applicant_params[:mobile]
+      },
+      metadata: {
+        linkedin: top_applicant_params[:url],
+        ip: request.remote_ip
+      }
+    }
+    ConvertLoopJob.perform_later(data)
+    AdminMailer.new_lead("Mitic", data[:person][:first_name], data[:person][:last_name], data[:person][:email], data[:person][:country_code],
+        data[:person][:mobile], "").deliver_later
+
+    redirect_to "/thanks-mitic"
+  end
+
   def full_stack_online_seat
     @course = Billing::Charge::COURSES[:fullstack]
     @currency = params[:currency] || "COP"
@@ -343,5 +369,9 @@ class PagesController < ApplicationController
 
     def innovate_applicant_params
       params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :linkedin, :goal, :experience, :additional, :format)
+    end
+
+    def mitic_applicant_params
+      params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :linkedin)
     end
 end

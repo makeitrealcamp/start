@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   get "thanks-full-stack-online", to: "pages#thanks_online"
   get "thanks-top", to: "pages#thanks_top"
   get "thanks-innovate", to: "pages#thanks_top"
+  get "thanks-mitic", to: "pages#thanks_top"
   get "thanks-data-science-online", to: "pages#thanks_online"
   get "thanks-ruby-on-rails", to: "pages#thanks_online"
   get "thanks-agile-tester", to: "pages#thanks_online"
