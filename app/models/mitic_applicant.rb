@@ -21,7 +21,7 @@
 #
 
 class MiticApplicant < Applicant
-  enum status: [:applied, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :accepted, :enrolled, :not_enrolled, :rejected, :interviews_completed, :preselected, :gave_up, :graduated, :placed]
+  enum status: [:applied, :first_interview_scheduled, :accepted, :not_enrolled, :rejected, :interviews_completed, :preselected, :gave_up, :graduated, :placed]
 
   before_create :generate_uid
 
@@ -45,13 +45,8 @@ class MiticApplicant < Applicant
   def self.status_to_human(status)
     mappings = {
       applied: "aplicó",
-      test_sent: "prueba enviada",
-      test_received: "prueba recibida",
-      test_graded: "prueba calificada",
       first_interview_scheduled: "primera entrevista",
-      second_interview_held: "segunda entrevista",
       accepted: "Beca mkr",
-      enrolled: "Beca otros",
       not_enrolled: "no matriculado",
       rejected: "rechazado",
       preselected: "preseleccionado",
