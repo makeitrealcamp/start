@@ -31,7 +31,7 @@ class MiticApplicant < Applicant
     accepted_terms: :boolean,
     birthday: :string,
     gender: :string,
-    linkedin: :string,
+    url: :string,
     goal: :string,
     experience: :string,
     additional: :string,
