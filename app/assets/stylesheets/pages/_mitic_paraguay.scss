@@ -1,4 +1,12 @@
 .pages-layout .mitic-program {
+  .apply-img {
+    @media (max-width: $screen-md-min) {
+      img {
+        width: 80%;
+        max-width: 380px;
+      }
+    }
+  }
   .intro {
     background: white;
     padding-bottom: 0;
