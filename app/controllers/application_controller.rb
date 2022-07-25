@@ -71,7 +71,7 @@ class ApplicationController < ActionController::Base
     end
 
     def admin_access
-      unless (signed_in? && current_user.is_admin?) || (admin_signed_in? && current_admin && (current_admin.has_role?(controller_name) || controller_name == "dashboard"))
+      unless (signed_in? && current_user.is_admin?) || (admin_signed_in? && current_admin)
         redirect_to :admin_login
       end
     end
