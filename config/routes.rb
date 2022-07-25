@@ -222,6 +222,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :new, :create, :show, :edit, :update] do
       post 'activation/resend-email', action: 'resend_activation_email', on: :member
     end
+    resources :nominapp, only: [:index, :show]
     resources :solutions, only: [:index]
     resources :comments, only: [:index, :destroy]
     resources :project_solutions, only: [:index] do

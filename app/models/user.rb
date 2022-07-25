@@ -16,9 +16,11 @@
 #  password_digest :string
 #  access_type     :integer          default("slack")
 #  current_points  :integer          default(0)
+#  group_id        :bigint
 #
 # Indexes
 #
+#  index_users_on_group_id  (group_id)
 #  index_users_on_level_id  (level_id)
 #
 
@@ -29,6 +31,7 @@ class User < ApplicationRecord
   attr_accessor :notifier
 
   belongs_to :level
+  belongs_to :group, optional: true
   has_many :solutions, dependent: :destroy
   has_many :challenges, -> { distinct }, through: :solutions
   has_many :auth_providers, dependent: :destroy

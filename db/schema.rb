@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_25_133332) do
+ActiveRecord::Schema.define(version: 2022_07_25_104937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -218,6 +218,12 @@ ActiveRecord::Schema.define(version: 2021_12_25_133332) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "innovate_applicant_tests", force: :cascade do |t|
@@ -479,6 +485,8 @@ ActiveRecord::Schema.define(version: 2021_12_25_133332) do
     t.string "password_digest"
     t.integer "access_type", default: 0
     t.integer "current_points", default: 0
+    t.bigint "group_id"
+    t.index ["group_id"], name: "index_users_on_group_id"
     t.index ["level_id"], name: "index_users_on_level_id"
   end
 
@@ -567,6 +575,7 @@ ActiveRecord::Schema.define(version: 2021_12_25_133332) do
   add_foreign_key "solutions", "users"
   add_foreign_key "subscriptions", "users"
   add_foreign_key "top_applicant_tests", "applicants"
+  add_foreign_key "users", "groups", on_delete: :cascade
   add_foreign_key "users", "levels"
   add_foreign_key "webinars_participants", "webinars_webinars", column: "webinar_id", on_delete: :cascade
   add_foreign_key "webinars_speakers", "webinars_webinars", column: "webinar_id", on_delete: :cascade

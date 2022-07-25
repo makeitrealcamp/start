@@ -16,9 +16,11 @@
 #  password_digest :string
 #  access_type     :integer          default("slack")
 #  current_points  :integer          default(0)
+#  group_id        :bigint
 #
 # Indexes
 #
+#  index_users_on_group_id  (group_id)
 #  index_users_on_level_id  (level_id)
 #
 
