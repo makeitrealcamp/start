@@ -50,6 +50,9 @@
                 <% if has_admin_access?("users") %>
                   <li><%= link_to "Usuarios", admin_users_path %></li>
                 <% end %>
+                <% if has_admin_access?("nominapp") %>
+                  <li><%= link_to "Estudiantes (Nominapp)", admin_nominapp_index_path %></li>
+                <% end %>
                 <% if has_admin_access?("curriculum") %>
                   <li><%= link_to "Insignias", admin_badges_path %></li>
                   <li><%= link_to "Niveles", admin_levels_path %></li>

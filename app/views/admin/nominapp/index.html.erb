@@ -1,0 +1,54 @@
+<div class="container users-list">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="users-list-header">
+        <h1>Estudiantes (Nominapp)</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table users" id="table-users">
+        <thead>
+          <tr>
+            <th>Alumno</th>
+            <th>Estado</th>
+            <th>Programa</th>
+            <th class="text-center">Última Actividad</th>
+            <th class="text-center">Avance</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <tr id="user-<%= user.id %>" class="<%= status_class(user) %>">
+            <td>
+              <span class="name"><%= link_to full_name(user), admin_nominapp_path(id: user.id) %></span>
+              <span class="email">
+                <%= user.email %>
+              </span>
+            </td>
+            <td class="user-status">
+              <span><%= status(user) %></span>
+              <% if user.activated_at %>
+                <span class="date">Desde <%= l user.activated_at, format: "%d/%m/%Y" %></span>
+              <% end %>
+            </td>
+          
+            <td><%= user.paths.pluck(:name).join(", ") %></td>
+            <td class="text-center"><%= distance_of_time_in_words_to_now(user.last_active_at) unless user.last_active_at.nil? %></td>
+            <td class="text-center">
+              <span class="points"><%= user.current_points %></span>
+              <span class="level"><%= user.level.name %></span>
+            </td>
+            <td class="text-right">
+              <%= link_to '<span class="glyphicon glyphicon-user"></span>'.html_safe, user_profile_path(user.nickname), class: "btn btn-primary btn-xs", data: { toggle: "tooltip", placement: "bottom" }, title: "Página de perfil" %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

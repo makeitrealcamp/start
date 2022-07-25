@@ -1,0 +1,229 @@
+<div class="container profile-page default-top-padding">
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="box clearfix">
+        <div class="row">
+          <div class="col-sm-9">
+            <div class="img-wrapper">
+              <img src="<%= Gravatar.new("#{@user.email}").image_url(s: 200) %>" class="gravatar" />
+            </div>
+            <div class="info">
+              <div class="first-name"><%= @user.name %></div>
+              <div class="info-value"><span class="glyphicon glyphicon-envelope"></span> <%= @user.email %></div>
+              <div class="info-value">
+                <% if @user.github_username? %>
+                  <%= link_to "http://github.com/#{@user.github_username}", class:"profile-github" do %>
+                    <i class="fa fa-github"></i> <%= "github.com/#{@user.github_username}" %>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="info-value"><span class="glyphicon glyphicon-time"></span> Se unió el <%= l @user.created_at, format: '%d %b, %Y' %></div>
+            </div>
+          </div>
+          <div class="col-sm-3 text-right">
+            <div class="level text-center">
+              <%= image_tag @user.level.image_url, class: "level-image" %>
+              <div class="level-points"><%= @user.stats.total_points %> puntos</div>
+            </div>
+          </div>
+        </div>
+        <div class="row summary">
+          <div class="col-sm-12">
+            <p>El estudiante se encuentra <strong><%= status(@user).downcase %></strong>.
+              <% if @user.last_active_at.nil? %>
+                No ha ingresado a la plataforma.
+              <% else %>
+                Su último acceso fue hace <strong><%= distance_of_time_in_words_to_now(@user.last_active_at) %></strong>, su última actividad hace <strong><%= distance_of_time_in_words_to_now(@user.activity_logs.order('created_at DESC').take.created_at) %></strong>. En total ha completado <strong><%= @user.stats.completed_challenges_count %> retos</strong> y ha publicado <strong><%= @user.stats.completed_projects_count %> proyectos</strong>.
+              <% end %>
+              </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="box">
+            <h2>Progreso</h2>
+            <div id="progress-chart" style="height: 250px;" data-chart='<%= progress_data(@user) %>'></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="box-tabs">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#activity" aria-controls="activity" role="tab" data-toggle="tab">Actividad</a></li>
+              <li role="presentation"><a href="#projects" aria-controls="projects" role="tab" data-toggle="tab">Proyectos</a></li>
+              <li role="presentation"><a href="#challenges" aria-controls="challenges" role="tab" data-toggle="tab">Retos</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="activity">
+                <table class="table">
+                  <thead>
+                    <th>Fecha</th>
+                    <th>Descripción</th>
+                  </thead>
+                  <tbody>
+                    <% @user.activity_logs.order('created_at DESC').limit(200).each do |activity| %>
+                      <tr>
+                        <td><%= l activity.created_at, format: '%d %h, %Y %H:%M' %></td>
+                        <td><%= activity.description.html_safe %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="projects">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Publicado</th>
+                      <th>Proyecto</th>
+                      <th>URL</th>
+                      <th>Estado</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @user.project_solutions.each do |solution| %>
+                      <tr>
+                        <td><%= l solution.created_at, format: '%d %h, %Y %H:%M' %></td>
+                        <td>
+                          <%= link_to solution.project.name, subject_project_project_solution_path(solution.project.subject, solution.project, solution) %>
+                          <span class="course-name"><%= solution.project.subject.name %></span>
+                        </td>
+                        <td>
+                          <%= link_to "https://github.com/#{solution.repository}", class: "link" do %>
+                            <i class="fa fa-github"></i>
+                            <%= solution.repository %>
+                          <% end %><br>
+                          <% unless solution.url.blank? %>
+                            <%= link_to solution.url do %>
+                              <i class="fa fa-globe"></i>
+                              <%= solution.url %>
+                            <% end %>
+                          <% end %>
+                        </td>
+                        <td><%= project_solution_status(solution) %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="challenges">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Reto</th>
+                      <th class="text-center">Iniciado</th>
+                      <th class="text-center">Completado</th>
+                      <th class="text-center">Intentos</th>
+                      <th>Solución</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @user.solutions.order('updated_at DESC').each do |solution| %>
+                      <tr>
+                        <td>
+                          <%= link_to solution.challenge.name, subject_challenge_path(solution.challenge.subject, solution.challenge) %>
+                          <span class="course-name"><%= solution.challenge.subject.name %></span>
+                        </td>
+                        <td class="text-center"><%= l solution.created_at, format: '%d %h, %Y %H:%M' %></td>
+                        <td class="text-center"><%= solution.completed_at.nil? ? "" : l(solution.completed_at, format: '%d %h, %Y %H:%M') %></td>
+                        <td class="text-center"><%= solution.attempts %></td>
+                        <td>
+                          <% if solution.challenge.is_github_repo? %>
+                            <a href="https://github.com/<%= solution.repository %>" target="_blank"><i class="fa fa-github"></i> Ir al Repo</a>
+                          <% elsif solution.challenge.is_github_pr? %>
+                            <a href="https://github.com/<%= solution.repository %>/pull/<%= solution.pull_request %>" target="_blank"><i class="fa fa-github"></i> Ir al PR</a>
+                          <% else %>
+                            <a href="#" class="solution-files" data-id="<%= solution.id %>">Ver archivos</a>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-3">
+      <% @subjects.each_with_index do |subject, i| %>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="course">
+              <div class="title"><%= subject.name %></div>
+              <%= progress_bar(progress: @user.stats.progress_by_subject(subject)) %>
+            </div>
+          </div>
+        </div>
+        <% if i != @subjects.size - 1 %>
+          <div class="course-divider"><div></div></div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="x/template" id="files-template">
+<div id="files-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <ul class="nav nav-tabs" role="tablist">
+          {{ _.each(documents, function(document, index) { }}
+            <li class="{{ if (index == 0) { }}active{{ } }} file-tab">
+              <a href="#document-{{= document.id }}" role="tab" data-toggle="tab">{{= document.name }}</a>
+            <li>
+          {{ }); }}
+        </ul>
+        <div class="tab-content">
+        {{ _.each(documents, function(document, index) { }}
+          <div id="document-{{= document.id }}" role="tabpanel" class="tab-pane {{ if (index == 0) { }}active{{ } }} expand">
+            <textarea id="editor-{{= document.id }}">{{= document.content }}</textarea>
+          </div>
+        {{ }); }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</script>
+<script>
+  var editorModes = <%= codemirror_modes.to_json.html_safe %>;
+  $('.solution-files').click(function(e) {
+    e.preventDefault();
+    $.ajax({
+      url: "/solutions/" + $(this).data("id"),
+      contentType: "application/json",
+      dataType: "json"
+    }).done(function(data) {
+      var template = _.template($('#files-template').html());
+      $(template(data)).on('shown.bs.modal', function() {
+        _.each(data.documents, function(document) {
+          var ext = /(?:\.([^.]+))?$/.exec(document.name)[1];
+          editors.configure({ el: 'editor-' + document.id, opts: { mode: editorModes[ext] } });
+        });
+      }).on('hidden.bs.modal', function() {
+        $('#files-modal').remove();
+      }).modal();
+    });
+  });
+
+  CanvasJS.addColorSet('mir', ["#ff3300"]);
+  new CanvasJS.Chart('progress-chart', {
+    colorSet: "mir",
+    data: [{
+      type: "area",
+      dataPoints: eval($('#progress-chart').data('chart'))
+    }]
+  }).render();
+</script>
