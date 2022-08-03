@@ -53,7 +53,20 @@
         </div>
       </div>
       <hr>
-      <input type="hidden" id="format" name="applicant[format]" value="format-full">
+      
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="format">Modalidad</label>
+            <select id="format" class="form-control" name="applicant[format]">
+              <option value="">Selecciona</option>
+              <option value="format-full" selected>Tiempo completo</option>
+              <option value="format-partial">Tiempo parcial</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
       <div class="row" id="fulltime-scheme">
         <div class="col-sm-12">
           <div class="form-group">
