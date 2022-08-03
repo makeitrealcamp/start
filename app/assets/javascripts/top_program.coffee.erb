@@ -192,8 +192,6 @@ class TopRegistrationView extends Backbone.View
     "click .application-step-btn": "application_next_step"
     "change #country": "change_country_code"
     "change #format": "show_scheme_options"
-    "change #payment-method-fulltime": "show_can_work_full_time"
-    "change #payment-method-partime": "show_can_work_part_time"
     "click .submit": "submit_form"
 
   accept_terms: (e) ->
@@ -305,26 +303,5 @@ class TopRegistrationView extends Backbone.View
       @.$('#partime-scheme').show()
     else
       @.$('#partime-scheme').hide()
-
-  show_can_work_full_time: (e) ->
-    elem = e.currentTarget
-    if(elem.value == "scheme-1")
-      @.$('#can-work').show()
-      @.$('#stipend').show()
-    else if (elem.value == "scheme-2")
-      @.$('#can-work').show()
-      @.$('#stipend').hide()
-      @.$("#stipendCheckBox").prop("checked", false)
-     else
-      @.$('#can-work').hide()
-      @.$('#stipend').hide()
-      @.$("#stipendCheckBox").prop("checked", false)
-
-  show_can_work_part_time: (e) ->
-    elem = e.currentTarget
-    if(elem.value == "scheme-1")
-      @.$('#can-work').show()
-    else
-      @.$('#can-work').hide()
 
 window.TopProgramView = TopProgramView

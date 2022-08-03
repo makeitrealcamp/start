@@ -70,9 +70,9 @@ module Admin::TopApplicantsHelper
     elsif payment_method == "scheme-3" && format == "partial"
       "Pagar el total de #{country[:scheme5Cost]} #{country[:currency]} al inicio"
     elsif payment_method == "scheme-2" && format == "partial"
-      "8 cuotas + 17% de ingresos por 2 años"
-    elsif payment_method == "scheme-1" && format == "partial"
       "Pagar por cuotas (de 2 a 24 cuotas)"
+    elsif payment_method == "scheme-1" && format == "partial"
+      "Pagar 0 #{country[:currency]} al inicio + 17% de tus ingresos al encontrar trabajo (durante 3 años)"
     else
       "Sin definir"
     end 
