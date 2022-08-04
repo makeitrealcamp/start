@@ -82,7 +82,7 @@ RSpec.feature "Pages", type: :feature do
 
     fill_in "first-name", with: "Pedro"
     fill_in "last-name", with: "Perez"
-    fill_in "birthday", with: "12/05/2016"
+    fill_in "birthday", with: "12/05/2000"
     select "Otro", from: 'gender'
     select "Colombia", from: 'country'
     expect(page).to have_selector '#mobile'
