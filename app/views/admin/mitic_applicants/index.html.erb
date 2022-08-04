@@ -35,6 +35,24 @@
                 </ul>
               </div>
             </div>
+            <% if  params[:status].present? and ChangeStatusApplicantActivity.substatus(params[:status]) %>
+              <div class="filter-dropdown">
+                <label>Subestado:</label>
+                <div class="dropdown" id="filter_substatus_applicant_activity">
+                  <a role="button" data-toggle="dropdown" class="btn btn-default" data-target="#" href="/page.html"><%= params[:substate].present? ? ChangeStatusApplicantActivity.get_substatus_to_human(params[:substate]) : "Todos" %> <span class="caret"></span> </a>
+                  <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                  <li>
+                    <%= link_to 'Todos', request.params.except(:substate) %>
+                  </li>
+                  <li>
+                    <% ChangeStatusApplicantActivity.substatus(params[:status]).each do |substate| %>
+                      <%= link_to ChangeStatusApplicantActivity.get_substatus_to_human(substate), request.params.merge(substate: substate) %>
+                    <% end %>
+                  </li>
+                  </ul>
+                </div>
+              </div>
+            <% end %>
             <div class="filter-dropdown">
               <label>Ordenar por:</label>
               <div class="dropdown">
@@ -59,6 +77,9 @@
                 </td>
                 <td class="text-right">
                   <div class="cell-main"><%= MiticApplicant.status_to_human(applicant.status).capitalize %></div>
+                  <% if applicant.change_status_activities.last and applicant.change_status_activities.last!.to_status %>
+                    <div class="cell-detail"><%= ChangeStatusApplicantActivity.get_substatus(applicant.change_status_activities.last) %></div>
+                  <% end %>
                   <div class="cell-detail"><%= applicant.updated_at.strftime("%b %d %I:%M %p")%></div>
                   <div class="cell-detail"><%= applicant.note_activities.count %> notas</div>
                 </td>

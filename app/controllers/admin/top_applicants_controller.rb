@@ -15,7 +15,7 @@ class Admin::TopApplicantsController < ApplicationController
     end
 
     if params[:status].present? and params[:substate].present?
-      @applicants = @applicants.find_applicant_by_substate(params[:status], params[:substate])
+      @applicants = @applicants.find_applicant_by_substate(TopApplicant, params[:status], params[:substate])
     end
 
     @applicants = @applicants.order('created_at DESC')
