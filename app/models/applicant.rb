@@ -48,8 +48,8 @@ class Applicant < ApplicationRecord
     mappings[status.to_sym]
   end
 
-  def self.find_applicant_by_substate(status, substate)
-    results = all.where(status: TopApplicant.statuses[status])
+  def self.find_applicant_by_substate(model, status, substate)
+    results = all.where(status: model.statuses[status])
     results = results.joins('left join applicant_activities t on t.applicant_id = applicants.id AND t.id = (SELECT MAX(id) FROM applicant_activities WHERE applicant_activities.applicant_id = t.applicant_id)')
     .where("t.info -> '#{self.info_fields_substatus(status)}' = ?", substate)
     results

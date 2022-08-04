@@ -224,7 +224,8 @@ class TopRegistrationView extends Backbone.View
     valid = false if !@input_text_is_valid($('#mobile'))
     valid = false if !@input_text_is_valid($('#format'))
     valid = false if !@input_text_is_valid($('#payment-method-partime')) && !@input_text_is_valid($('#payment-method-fulltime'))
-
+    
+    valid = false if !@is_adult($('#birthday'))
     if valid
       @show_application_questions()
 
@@ -256,6 +257,17 @@ class TopRegistrationView extends Backbone.View
 
   input_text_is_valid: (field, message) ->
     if field.val().replace(/\s+/, '').length == 0
+      field.closest('.form-group').addClass('has-error')
+      return false
+    return true
+
+  is_adult: (field, message) ->
+    birthday_arr = field.val().split("/")
+    birthday_date = new Date(birthday_arr[2], birthday_arr[1] - 1, birthday_arr[0]);
+    ageDifMs = Date.now() - birthday_date.getTime();
+    ageDate = new Date(ageDifMs)
+    age = Math.abs(ageDate.getUTCFullYear() - 1970)
+    if (age < 18)
       field.closest('.form-group').addClass('has-error')
       return false
     return true
