@@ -23,7 +23,18 @@ class Admin::InnovateApplicantsController < ApplicationController
     @applicant = InnovateApplicant.find(params[:id])
   end
 
+  def edit
+    @applicant = InnovateApplicant.find(params[:id])
+  end
+
+  def update
+    @applicant = InnovateApplicant.find(params[:id])
+    @applicant.update_column(:info, @applicant.info.merge(aplication_params[:info]) )
+    # @applicant.update({ cohort_id: applicant_params[:cohort_id] })
+  end
+
   def aplication_params
-    params.require(:top_applicant).permit(:comment)
+    params.require(:applicant).permit( info: [ :prev_salary, :new_salary, :company, :start_date, :contract_type, :socioeconomic_level, :referred_by])
+    #params.require(:applicant).permit(:comment)
   end
 end

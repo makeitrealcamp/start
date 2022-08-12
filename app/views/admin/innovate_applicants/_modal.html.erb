@@ -1,0 +1,47 @@
+<div class="modal fade" id="applicant-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Aplicación</h4>
+      </div>
+      <%= form_for [:admin, @applicant], url: admin_innovate_applicant_path(@applicant), remote: true do |f| %>
+        <div class="modal-body">
+          <%= f.fields_for :info, @applicant do |p| %>
+            <div class="form-group">
+              <%= p.label :prev_salary, "Salario anterior" %>
+              <%= p.text_field :prev_salary, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= p.label :new_salary, "Salario nuevo" %>
+              <%= p.text_field :new_salary, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= p.label :company, "Empresa" %>
+              <%= p.text_field :company, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= p.label :start_date, "Fecha de inicio" %>
+              <%= p.text_field :start_date, data: { datetimepicker: true }, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= p.label :contract_type, "Tipo de contrato" %>
+              <%= p.text_field :contract_type, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= p.label :socioeconomic_level, "Nivel socioeconomico" %>
+              <%= p.select :socioeconomic_level, options_for_select([nil, 1, 2, 3, 4, 5], @applicant.info["socioeconomic_level"]), { :selected => nil }, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= p.label :referred_by, "Referido por" %>
+              <%= p.text_field :referred_by, class: "form-control" %>
+            </div>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "Guardar Aplicación", class:"btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

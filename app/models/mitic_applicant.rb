@@ -36,7 +36,17 @@ class MiticApplicant < Applicant
     experience: :string,
     additional: :string,
     format: :string,
-    payment_method: :string
+    payment_method: :string,
+    format: :string,
+    stipend: :string,
+    version: :integer,
+    prev_salary: :integer,
+    new_salary: :integer,
+    company: :string,
+    start_date: :string,
+    contract_type: :string,
+    socioeconomic_level: :integer,
+    referred_by: :string
 
   def self.model_name
     Applicant.model_name

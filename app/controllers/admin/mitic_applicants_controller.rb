@@ -27,7 +27,18 @@ class Admin::MiticApplicantsController < ApplicationController
     @applicant = MiticApplicant.find(params[:id])
   end
 
+  def edit
+    @applicant = MiticApplicant.find(params[:id])
+  end
+
+  def update
+    @applicant = MiticApplicant.find(params[:id])
+    @applicant.update_column(:info, @applicant.info.merge(aplication_params[:info]) )
+    # @applicant.update({ cohort_id: aplication_params[:cohort_id] })
+  end
+
   def aplication_params
-    params.require(:top_applicant).permit(:comment)
+    params.require(:applicant).permit( info: [ :prev_salary, :new_salary, :company, :start_date, :contract_type, :socioeconomic_level, :referred_by])
+    # params.require(:top_applicant).permit(:comment)
   end
 end

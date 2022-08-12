@@ -230,8 +230,8 @@ Rails.application.routes.draw do
     end
 
     resources :top_applicants, only: [:index, :show, :edit, :update]
-    resources :innovate_applicants, only: [:index, :show]
-    resources :mitic_applicants, only: [:index, :show]
+    resources :innovate_applicants, only: [:index, :show, :edit, :update]
+    resources :mitic_applicants, only: [:index, :show, :edit, :update]
 
     resources :applicants, only: [] do
       resources :note_applicant_activities, only: [:create]
