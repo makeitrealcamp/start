@@ -21,6 +21,7 @@ jobs:
       CONVERTLOOP_APP_ID: ${{ secrets.CONVERTLOOP_APP_ID }}
       CONVERTLOOP_KEY: ${{ secrets.CONVERTLOOP_KEY }}
       CONVERTLOOP_HOST: ${{ secrets.CONVERTLOOP_HOST }}
+      REDISCLOUD_URL: ${{ secrets.REDIS_URL }}
     steps:
     - uses: actions/checkout@v2
     - name: Cache Ruby Gems
@@ -32,6 +33,8 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.5.7
+    - name: Start Redis
+      uses: supercharge/redis-github-action@1.4.0
     - name: Install dependencies
       run: |
         bundle config path vendor/bundle

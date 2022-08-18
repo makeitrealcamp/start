@@ -4,6 +4,10 @@ class PagesController < ApplicationController
   def home
   end
 
+  def top_full_and_part_time
+    @ab_test = ab_test(:hero_top, 'control', 'variant')
+  end
+
   def handbook
     client = Octokit::Client.new(
       client_id:     ENV['GITHUB_KEY'],
@@ -111,6 +115,8 @@ class PagesController < ApplicationController
 
     cohort = TopCohort.order(created_at: :desc).take
     TopApplicant.create!(top_applicant_params_updated.merge(email: top_invitation.email, version: 2, cohort: cohort))
+
+    ab_finished(:hero_top)
 
     data = {
       name: "filled-top-application",

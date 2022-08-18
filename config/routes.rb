@@ -1,5 +1,9 @@
+require 'split/dashboard'
+
 Rails.application.routes.draw do
   root 'pages#home'
+
+  mount Split::Dashboard, at: 'split-stats'
 
   get "sitemap.xml", to: "pages#sitemap"
   get "programas-web-movil", to: "pages#web_mobile_programs", as: :web_mobile_programs
