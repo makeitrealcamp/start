@@ -34,7 +34,6 @@ class TopProgramController < ApplicationController
 
   def test
     applicant = TopApplicant.where("info -> 'uid' = ?", params[:uid]).take
-    puts "Applicant: #{applicant.nil?}"
     render :applicant_not_found and return if applicant.nil?
 
     if !has_completed_challenge(applicant)

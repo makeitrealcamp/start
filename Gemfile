@@ -73,6 +73,7 @@ gem 'xmlrpc'
 gem 'aws-sdk-s3', '~> 1.67', '>= 1.67.1'
 gem 'image_processing', '~> 1.11'
 gem 'icalendar', '~> 2.6', '>= 2.6.1'
+gem 'split', '~> 4.0', '>= 4.0.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

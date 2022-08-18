@@ -18,6 +18,12 @@
       z-index: 9;
       margin-bottom: 55px;
     }
+
+    .intro-video {
+      @media(min-width: $screen-md-min) {
+        padding: 70px 0 20px;
+      }
+    }
   }
 
   .section-details {
