@@ -71,7 +71,7 @@ gem 'httparty'
 gem 'lograge', '~> 0.10.0'
 gem 'xmlrpc'
 gem 'aws-sdk-s3', '~> 1.67', '>= 1.67.1'
-gem 'image_processing', '~> 1.11'
+gem 'image_processing', '~> 1.12'
 gem 'icalendar', '~> 2.6', '>= 2.6.1'
 gem 'split', '~> 4.0', '>= 4.0.1'
 
