@@ -29,6 +29,8 @@ class PagesController < ApplicationController
       event: "filled-full-stack-form-#{suffix}",
       first_name: params['first-name'],
       last_name: params['last-name'],
+      docType: params['docType'],
+      docNumber: params['docNumber'],
       email: params['email'],
       country: params['country'],
       mobile: params['mobile'],
