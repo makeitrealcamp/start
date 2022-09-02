@@ -283,7 +283,7 @@ class PagesController < ApplicationController
     data = {
       pid: cookies[:dp_pid],
       program: "Intro to JavaScript Innpulsa",
-      event: "filled-intro-to-js-2021-nov-form",
+      event: "filled-intro-to-js-2022-sep-form",
       first_name: params['first-name'],
       last_name: params['last-name'],
       docType: params['docType'],
