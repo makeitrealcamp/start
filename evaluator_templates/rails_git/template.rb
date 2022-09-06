@@ -1,5 +1,5 @@
 gem_group :test do
-  gem 'rspec-rails', '~> 3.5.2'
+  gem 'rspec-rails', '~> 4.1.2'
   gem 'shoulda-matchers', '3.1.3'
   if Gem::Specification.find_all_by_name("capybara").empty?
     gem 'capybara', '~> 2.12.1'
