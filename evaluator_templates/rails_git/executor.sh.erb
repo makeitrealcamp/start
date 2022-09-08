@@ -19,7 +19,8 @@ if [ -f Gemfile.lock ]; then
   rm Gemfile.lock
 fi
 
-NOKOGIRI_USE_SYSTEM_LIBRARIES=true bundle install --path=/ukku/bundler-cache -j4 --binstubs=vendor/bundle/bin 2> <%= error_file_path %>
+bundle config set --local path '/ukku/bundler-cache'
+NOKOGIRI_USE_SYSTEM_LIBRARIES=true bundle install -j4 --binstubs=vendor/bundle/bin 2> <%= error_file_path %>
 if [ -f yarn.lock ]; then
   yarn install --check-files
 fi
@@ -27,7 +28,7 @@ RAILS_ENV=test bundle exec rails db:migrate 2> <%= error_file_path %>
 
 # run template
 bundle exec rails app:template LOCATION=/ukku/data/rails_template.rb 2> <%= error_file_path %>
-NOKOGIRI_USE_SYSTEM_LIBRARIES=true bundle install --path=/ukku/bundler-cache -j4 --binstubs=vendor/bundle/bin 2> <%= error_file_path %>
+NOKOGIRI_USE_SYSTEM_LIBRARIES=true bundle install -j4 --binstubs=vendor/bundle/bin 2> <%= error_file_path %>
 
 # setup spec
 if [ -d "spec" ]; then
