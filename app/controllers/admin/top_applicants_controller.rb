@@ -9,6 +9,10 @@ class Admin::TopApplicantsController < ApplicationController
       @applicants = @applicants.where(status: TopApplicant.statuses[params[:status]])
     end
 
+    if params[:program].present?
+      @applicants = @applicants.where("info -> 'format' = ?", params[:program])
+    end
+
     if params[:q].present?
       @applicants = TopApplicant.order('created_at DESC')
       @applicants = @applicants.where("first_name ILIKE :q OR last_name ILIKE :q OR email ILIKE :q", q: "%#{params[:q]}%")
@@ -39,6 +43,6 @@ class Admin::TopApplicantsController < ApplicationController
 
   private
     def applicant_params
-      params.require(:applicant).permit(:cohort_id, info: [ :prev_salary, :new_salary, :company, :start_date, :contract_type, :socioeconomic_level, :referred_by])
+      params.require(:applicant).permit(:cohort_id, info: [ :format, :prev_salary, :new_salary, :company, :start_date, :contract_type, :socioeconomic_level, :referred_by])
     end
 end

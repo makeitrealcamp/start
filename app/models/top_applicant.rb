@@ -22,6 +22,7 @@
 
 class TopApplicant < Applicant
   enum status: [:applied, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :accepted, :enrolled, :not_enrolled, :rejected, :interviews_completed, :gave_up, :graduated, :placed]
+  enum program: [:full, :partial]
 
   before_create :generate_uid
 

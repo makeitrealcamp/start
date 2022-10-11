@@ -8,10 +8,15 @@
       <%= form_for [:admin, @applicant], url: admin_top_applicant_path(@applicant), remote: true do |f| %>
         <div class="modal-body">
           <div class="form-group">
-            <%= f.label :cohort_id, "Nombre" %>
+            <%= f.label :cohort_id, "Convocatoria" %>
             <%= f.select :cohort_id, options_from_collection_for_select(TopCohort.order(created_at: :desc), :id, :name, @applicant.cohort.id), {}, class: "form-control" %>
           </div>
+          
           <%= f.fields_for :info, @applicant do |p| %>
+            <div class="form-group">
+              <%= p.label :format, "Modalidad" %>
+              <%= p.select :format, options_for_select(TopApplicant.programs.keys, @applicant.info["format"]), { :selected => nil }, class: "form-control" %>
+            </div>
             <div class="form-group">
               <%= p.label :prev_salary, "Salario anterior" %>
               <%= p.text_field :prev_salary, class: "form-control" %>
