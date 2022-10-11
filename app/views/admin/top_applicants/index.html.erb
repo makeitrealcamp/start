@@ -32,6 +32,22 @@
 
           <div class="filters-right">
             <div class="filter-dropdown" >
+              <label>Programa:</label>
+              <div class="dropdown" id="filter_status_applicant_activity">
+                <a role="button" data-toggle="dropdown" class="btn btn-default" data-target="#" href="/page.html"><%= params[:program].present? ? format_to_human(params[:program]).capitalize : "Todos" %> <span class="caret"></span> </a>
+                <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                  <li>
+                    <%= link_to 'Todos', request.params.except(:program) %>
+                  </li>
+                  <li>
+                    <% TopApplicant.programs.keys.each do |program| %>
+                      <%= link_to format_to_human(program).capitalize, request.params.merge(program: program) %>
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="filter-dropdown" >
               <label>Filtrar por estado:</label>
               <div class="dropdown" id="filter_status_applicant_activity">
                 <a role="button" data-toggle="dropdown" class="btn btn-default" data-target="#" href="/page.html"><%= params[:status].present? ? TopApplicant.status_to_human(params[:status]).capitalize : "Todos" %> <span class="caret"></span> </a>
