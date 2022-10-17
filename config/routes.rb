@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get "sitemap.xml", to: "pages#sitemap"
   get "programas-web-movil", to: "pages#web_mobile_programs", as: :web_mobile_programs
-  get "full-stack-online", to: "pages#top_full_and_part_time", as: :full_stack_online
+  get "full-stack-online", to: "pages#full_stack_online", as: :full_stack_online
   post "full-stack-online", to: "pages#create_full_stack_online_lead"
   get "full-stack-online/cupo", to: "pages#full_stack_online_seat"
   get "full-stack-online/becas-mujeres", to: redirect('/top')
