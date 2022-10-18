@@ -26,10 +26,10 @@ class Billing::Charge < ApplicationRecord
     fullstack: {
       description: "Separación curso Desarrollador Web Full Stack",
       price: {
-        "COP" => 500_000,
-        "MXN" => 3_100,
-        "PEN" => 475,
-        "USD" => 150
+        "COP" => 766_000,
+        "MXN" => 3_250,
+        "PEN" => 645,
+        "USD" => 166
       }
     },
     datascience: {
