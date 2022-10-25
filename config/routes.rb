@@ -208,6 +208,8 @@ Rails.application.routes.draw do
     resources :charges, only: [:create, :update, :show]
     get 'payu/response', to: 'payu#result'
     post 'payu/confirm', to: 'payu#confirm'
+    get 'stripe/success', to: 'stripe#success'
+    get 'stripe/cancel', to: 'stripe#cancel'
   end
 
   get "webinars", to: redirect('/events')
