@@ -8,10 +8,35 @@ class Billing::ChargesController < ApplicationController
     data[:customer_email] = data[:email] if data[:customer_email].nil?
 
     @charge = Billing::Charge.create!(data)
-    @signature = signature(@charge)
-
     ConvertLoopJob.perform_later(name: "completed-course-charge", person: { pid: cookies['dp_pid'] }, metadata: { course: @charge.description, amount: @charge.amount.to_f, currency: @charge.currency, payment_method: @charge.payment_method })
-    render layout: false
+    
+    if @charge.currency == 'USD'
+      session = Stripe::Checkout::Session.create({
+        line_items: [
+          {
+              price_data: {
+              currency: @charge.currency,
+              product_data: {
+                name: @charge.description,
+              },
+              unit_amount: (@charge.amount * 100).to_i,
+            },
+            quantity: 1,
+          }
+        ],
+        mode: 'payment',
+        metadata: {
+          chargeId: @charge.id
+        },
+        success_url: billing_stripe_success_url + "?session_id={CHECKOUT_SESSION_ID}",
+        cancel_url: billing_stripe_cancel_url,
+      })
+
+      redirect_to session.url
+    else
+      @signature = signature(@charge)
+      render layout: false
+    end
   end
 
   def update
