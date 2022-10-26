@@ -1,7 +1,7 @@
 class Billing::StripeController < ApplicationController
   def success
-    @stripeTransaction = Stripe::Checkout::Session.retrieve(params[:session_id])
-    @charge = Billing::Charge.find(@stripeTransaction.metadata.chargeId)
+    @stripe_transaction = Stripe::Checkout::Session.retrieve(params[:session_id])
+    @charge = Billing::Charge.find(@stripe_transaction.metadata.chargeId)
     render "billing/charges/stripe/show", layout: "pages"
   end
 
