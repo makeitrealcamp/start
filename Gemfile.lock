@@ -515,7 +515,7 @@ DEPENDENCIES
   split (~> 4.0, >= 4.0.1)
   spring
   spring-watcher-listen (~> 2.0.0)
-  stripe
+  stripe (~> 7.1)
   subprocess
   table_print
   turbolinks (~> 5)

@@ -33,7 +33,35 @@
               </div>
               <div class="field">
                 <span class="field-label">Medio de Pago</span>
-                <span class="field-value">PayU</span>
+                <span class="field-value">
+                  <% if @stripe_transaction %>
+                    Stripe
+                  <% else %>
+                    Payu
+                  <% end %>
+                </span>
+              </div>
+              <div class="field">
+                <span class="field-label">Estado</span>
+                <span class="field-value"><%= @charge.status %></span>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="field">
+                <span class="field-label">Fecha</span>
+                <span class="field-value"><%= @charge.created_at.strftime("%d/%m/%Y") %></span>
+              </div>
+              <div class="field">
+                <span class="field-label">Hora</span>
+                <span class="field-value"><%= @charge.created_at.strftime("%H:%M") %></span>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="row charge
+                </span>
               </div>
             </div>
             <div class="col-sm-6 text-right">
