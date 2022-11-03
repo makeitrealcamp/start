@@ -25,7 +25,11 @@
               <li class="<%= 'active' if params[:action] == 'top' %>">
                 <%= link_to top_path do %>
                   <span class="icon-menu"><%= image_tag "full-stack-blue.png", height: 28 %></span>
-                  <span class="text-menu">Top (Full Stack Developer)</span>
+                  <span class="text-menu">TOP</span>
+                <% end %>
+                <%= link_to full_stack_online_path do %>
+                  <span class="icon-menu"><%= image_tag "full-stack-red.png", height: 28 %></span>
+                  <span class="text-menu">Full Stack Developer</span>
                 <% end %>
               </li>
             </ul>
