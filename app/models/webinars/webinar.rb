@@ -20,6 +20,8 @@ class Webinars::Webinar < ApplicationRecord
   scope :upcoming, -> { where('date >= ?', Time.current + 1.hour).order(:date) }
   scope :past, -> { where('date <= ?', Time.current + 1.hour).order(date: :desc) }
 
+  enum category: [:webinar, :workshop]
+
   def is_past?
     date < Time.current
   end

@@ -42,6 +42,6 @@ class Admin::WebinarsController < ApplicationController
 
   private
     def webinar_params
-      params.require(:webinars_webinar).permit(:title, :slug, :date, :description, :image, :event_url)
+      params.require(:webinars_webinar).permit(:title, :slug, :date, :description, :image, :event_url, :category)
     end
 end
