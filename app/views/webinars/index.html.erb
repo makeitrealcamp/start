@@ -40,7 +40,9 @@
             </div>
             <div class="webinar-actions">
               <%= render "speakers", webinar: webinar %>
-              <%= link_to "Ver Ahora", webinar_path(webinar.slug), class: "btn btn-primary" %>
+              <% if webinar.webinar? %>
+                <%= link_to "Ver Ahora", webinar_path(webinar.slug), class: "btn btn-primary" %>
+              <% end %>
             </div>
           </div>
         <% end %>

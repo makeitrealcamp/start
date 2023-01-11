@@ -215,3 +215,7 @@ es:
       game: "juego"
       tutorial: "tutorial"
       documentation: "documentación"
+  webinars:
+    categories:
+      webinar: "Webinar"
+      workshop: "Taller"

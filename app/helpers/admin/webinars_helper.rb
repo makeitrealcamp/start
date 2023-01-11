@@ -11,4 +11,10 @@ module Admin::WebinarsHelper
 
     options_for_select(options, selected_time.strftime("%H:%M"))
   end
+
+  def webinar_categories
+    Webinars::Webinar.categories.keys.map do |category|
+      [ I18n.t("webinars.categories.#{category.to_s}"),category]
+    end
+  end
 end
