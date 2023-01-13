@@ -18,7 +18,7 @@ class Webinars::Webinar < ApplicationRecord
   has_one_attached :image
 
   scope :upcoming, -> { where('date >= ?', Time.current + 1.hour).order(:date) }
-  scope :past, -> { where('date <= ? AND category = 0', Time.current + 1.hour).order(date: :desc) }
+  scope :past, -> { where('date <= ? AND category = ?', Time.current + 1.hour, categories[:webinar]).order(date: :desc) }
 
   enum category: [:webinar, :workshop]
 
