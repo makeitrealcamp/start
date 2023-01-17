@@ -138,11 +138,13 @@ class PagesController < ApplicationController
         ip: request.remote_ip,
         goal: top_applicant_params[:goal],
         experience: top_applicant_params[:experience],
-        more_info: top_applicant_params[:additional],
-        cohort_id: cohort.id,
-        cohort_name: cohort.name
+        more_info: top_applicant_params[:additional]
       }
     }
+    if cohort
+      data[:metadata][:cohort_id] = cohort.id
+      data[:metadata][:cohort_name] = cohort.name
+    end
     ConvertLoopJob.perform_later(data)
     AdminMailer.new_lead("Top", data[:person][:first_name], data[:person][:last_name], data[:person][:email], data[:person][:country_code],
         data[:person][:mobile], "").deliver_later
