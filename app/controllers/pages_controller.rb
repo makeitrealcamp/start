@@ -139,7 +139,8 @@ class PagesController < ApplicationController
         goal: top_applicant_params[:goal],
         experience: top_applicant_params[:experience],
         more_info: top_applicant_params[:additional],
-        cohort_id: cohort.id
+        cohort_id: cohort.id,
+        cohort_name: cohort.name
       }
     }
     ConvertLoopJob.perform_later(data)
