@@ -138,7 +138,8 @@ class PagesController < ApplicationController
         ip: request.remote_ip,
         goal: top_applicant_params[:goal],
         experience: top_applicant_params[:experience],
-        more_info: top_applicant_params[:additional]
+        more_info: top_applicant_params[:additional],
+        cohort_id: cohort.id
       }
     }
     ConvertLoopJob.perform_later(data)
