@@ -21,6 +21,7 @@ class Webinars::Webinar < ApplicationRecord
   scope :past, -> { where('date <= ? AND category = ?', Time.current + 1.hour, categories[:webinar]).order(date: :desc) }
 
   enum category: [:webinar, :workshop]
+  validates :title, :slug, :description, :date, :event_url, :category, presence: true
 
   def is_past?
     date < Time.current
