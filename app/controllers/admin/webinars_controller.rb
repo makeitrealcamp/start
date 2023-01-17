@@ -12,9 +12,12 @@ class Admin::WebinarsController < ApplicationController
 
   def create
     date = DateTime.parse("#{webinar_params[:date]} #{params[:time]} -05").utc
-    @webinar = Webinars::Webinar.create(webinar_params.merge(date: date))
-
-    redirect_to admin_webinars_path
+    @webinar = Webinars::Webinar.new(webinar_params.merge(date: date))
+    if @webinar.save
+      redirect_to admin_webinars_path
+    else
+      render :new
+    end
   end
 
   def edit
