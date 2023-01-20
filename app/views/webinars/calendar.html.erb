@@ -16,7 +16,7 @@
             </div>
 
             <div class="webinar-calendars">
-              <a class="btn btn-primary" href="http://www.google.com/calendar/event?action=TEMPLATE&dates=<%= l @webinar.date_in_timezone, format: '%Y%m%dT%H%M00' %>%2F<%= l @webinar.date_in_timezone + 45.minutes, format: '%Y%m%dT%H%M00' %>&text=Webinar Make it Real&location=<%= CGI.escape attend_webinar_url(@webinar.slug) %>&details=<%= @webinar.url_encoded_title %>"><%= fa_icon "google" %> Calendar</a>
+              <a class="btn btn-primary" href="http://www.google.com/calendar/event?action=TEMPLATE&dates=<%= l @webinar.date_in_timezone, format: '%Y%m%dT%H%M00' %>%2F<%= l @webinar.date_in_timezone + 45.minutes, format: '%Y%m%dT%H%M00' %>&text=Webinar Make it Real&location=<%= CGI.escape attend_webinar_url(@webinar.slug, token: params[:token] ) %>&details=<%= @webinar.url_encoded_title %>"><%= fa_icon "google" %> Calendar</a>
               <%= link_to "#{fa_icon "apple"} iCal".html_safe, ical_webinar_path(@webinar.slug, token: params[:token]), class: "btn btn-primary", data: { turbolinks: false }  %>
               <%= link_to "#{fa_icon "windows"} Outlook".html_safe, ical_webinar_path(@webinar.slug, token: params[:token], format: "vcs"), class: "btn btn-primary", data: { turbolinks: false }  %>
             </div>
