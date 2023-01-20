@@ -36,7 +36,7 @@ class WebinarsController < ApplicationController
     participant = webinar.participants.where(token: params[:token]).take
 
     if participant
-      redirect_to "https://www.youtube.com/watch?v=#{webinar.event_url}"
+      redirect_to "#{webinar.event_url}"
     end
   end
 
