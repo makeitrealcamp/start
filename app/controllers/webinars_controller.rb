@@ -67,8 +67,8 @@ class WebinarsController < ApplicationController
       e.dtend       = Icalendar::Values::DateTime.new(webinar.date_in_timezone + 45.minutes)
       e.summary     = "Webinar Make it Real"
       e.description = webinar.title
-      e.url         = attend_webinar_url(webinar.slug)
-      e.location    = "YouTube Live"
+      e.url         = attend_webinar_url(webinar.slug, token: participant.token)
+      e.location    = "Event"
     end
 
     send_data cal.to_ical, type: 'text/calendar', disposition: 'attachment', filename: filename

@@ -215,10 +215,10 @@ Rails.application.routes.draw do
   get "webinars", to: redirect('/events')
   resources :webinars, only: [:index, :show], path: 'events' do
     post 'register', on: :member
-    get 'watch', on: :member
-    get 'attend', on: :member
-    get 'calendar', on: :member
-    get 'ical', on: :member
+    get :watch, on: :member, path: 'watch/:token'
+    get :attend, on: :member, path: 'attend/:token'
+    get :calendar, on: :member, path: 'calendar/:token'
+    get :ical, on: :member, path: 'ical/:token'
   end
 
   namespace :admin do
