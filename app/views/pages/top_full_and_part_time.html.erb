@@ -17,13 +17,9 @@
           <p><small>Clases en vivo, remotas, con mentores de la industria</small></p>
         </div>
         <div class="col-md-6 intro-img">
-          <% if @ab_test == 'control' %>
-            <%= image_tag "inclusion-diversity-top-hero.png", srcset: { "image-header-top@2x.png" => "2x", "image-header-top@3x.png" => "3x" } %>
-          <% else %>
-            <div class="intro-video">
-              <script src="https://fast.wistia.com/embed/medias/zno6ra0w59.jsonp" async></script><script src="https://fast.wistia.com/assets/external/E-v1.js" async></script><div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><div class="wistia_embed wistia_async_zno6ra0w59 videoFoam=true" style="height:100%;position:relative;width:100%"><div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;"><img src="https://fast.wistia.com/embed/medias/zno6ra0w59/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;" /></div></div></div></div>
-            </div>
-          <% end %>
+          <div class="intro-video">
+            <script src="https://fast.wistia.com/embed/medias/ixg7rv2y15.jsonp" async></script><script src="https://fast.wistia.com/assets/external/E-v1.js" async></script><div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><div class="wistia_embed wistia_async_ixg7rv2y15 videoFoam=true" style="height:100%;position:relative;width:100%"><div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;"><img src="https://fast.wistia.com/embed/medias/ixg7rv2y15/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;" /></div></div></div></div>
+          </div>
         </div>
       </div>
     </div>
@@ -590,6 +586,10 @@
     </div>
   </div>
 </div>
+
+<% if params[:video] %>
+  <script src="https://fast.wistia.com/embed/medias/ixg7rv2y15.jsonp" async></script><script src="https://fast.wistia.com/assets/external/E-v1.js" async></script><span class="wistia_embed wistia_async_ixg7rv2y15 popover=true popoverShowOnLoad=true popoverContent=link" style="display:inline;position:relative"><a href="#">&nbsp;</a></span>
+<% end %>
 
 
 <script type="text/javascript">
