@@ -5,7 +5,7 @@
   <meta property="og:image" content="<%= image_url('top-inclusion-diversidad.png') %>" />
 <% end %>
 
-<div class="innovate-program">
+<div class="top-program">
   <div class="intro">
   <%= render "layouts/navbar/pages_white" %>
 
@@ -79,33 +79,45 @@
   <div class="section section-white section-how-it-works">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12 ">
           <%= render "pages/companies2" %>
           <h2>¿Cómo funciona?</h2>
-          <div class="row">
-            <div class="col-sm-10 col-sm-offset-1">
-              <p class="lead">Aplica para iniciar el proceso de selección. Si eres aceptado(a) comenzarás el entrenamiento de acuerdo a la modalidad que escojas. Por último, te acompañamos en la búsqueda de empleo.</p>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="works-item">
-                <%= image_tag "icon-proceso-top.png", srcset: { "icon-proceso-top@2x.png" => "2x", "icon-proceso-top@3x.png" => "3x" } %>
-                <div class="item-info">
-                  <h3>Proceso de selección</h3>
-                  <p>Los candidatos completan una serie de entrevistas técnicas y personales para identificar a las personas con aptitudes técnicas sin importar sus estudios previos.</p>
+          <div class="steps">
+            <div class="row">
+              <div class="col-sm-6 step-item">
+                <div class="circle">1</div>
+                <div class="item-description">
+                  <h3>Aplica</h3>
+                  <p>Cuéntanos en detalle acerca de ti y las razones por las que quieres convertirte en Full Stack Developer.</p>
+                </div>
+              </div>
+              <div class="col-sm-6 step-item">
+                <div class="circle">2</div>
+                <div class="item-description">
+                  <h3>Prepárate</h3>
+                  <p>Si tienes el perfil, te invitaremos al curso de <strong>Aspirantes TOP</strong>, donde pondrás a prueba tu capacidad de aprendizaje para participar en el Programa TOP.</p>
+                  <small>No se requiere de conocimientos previos. *</small>
                 </div>
               </div>
             </div>
-            <div class="col-sm-6">
-              <div class="works-item">
-                <%= image_tag "icon-entrenamiento-top.png", srcset: { "icon-entrenamiento-top@2x.png" => "2x", "icon-entrenamiento-top@3x.png" => "3x" } %>
-                <div class="item-info">
-                  <h3>Entrenamiento</h3>
-                  <p>A través de una metodología basada en proyectos los estudiantes aceleran su aprendizaje para convertirse en desarrolladores Web. El post-programa los prepara para la siguiente fase de sus vidas.</p>
+            <div class="row">
+              <div class="col-sm-6 step-item">
+                <div class="circle">3</div>
+                <div class="item-description">
+                  <h3>Entrena</h3>
+                  <p>Si superas el curso de Aspirantes TOP, <strong>iniciarás tu entrenamieto</strong> para acelerar tu carrera como Full Stack Developer de la mano de los mentores técnicos, de habilidades blandas e inglés.</p>
                 </div>
               </div>
+              <div class="col-sm-6 step-item">
+                <div class="circle">4</div>
+                <div class="item-description">
+                  <h3>Empléate</h3>
+                  <p>Al terminar tu acompañamiento técnico, encuentra tu mejor empleo para ti con el apoyo de expertos de la industria en colocacion laboral y habilidades blandas.</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <p>Desde el 2014 Formamos e invertimos en las personas que quieren convertirse en developers profesionales.</p>
             </div>
           </div>
         </div>
@@ -544,22 +556,38 @@
         <div class="modal-wrapper">
           <div class="accept-terms-step">
             <div class="modal-body">
-              <p style="margin-bottom: 18px;"><strong>¡Gracias por tu interés en el programa TOP!</strong> Antes de empezar asegúrate de que cumples con los siguientes requisitos:</p>
-              <ul>
-                <li>
-                  Tienes la lógica de programación y conoces las bases de JavaScript, HTML y CSS.
-                  <small>Conoces conceptos de programación como variables, condicionales, ciclos, arreglos y funciones, entre otros. Si aún no tienes las bases visita <a href="https://aprendedesarrolloweb.com/" target="_blank">aprendedesarrolloweb.com</a></small>
-              </li>
-                <li>
-                  Dispones del tiempo para realizar el programa.
-                  <small>Necesitarás dedicar 60 horas/semana durante 15 semanas para la modalidad tiempo completo y 30 semanas para la modalidad tiempo parcial.</small>
-                </li>
-                <li>
-                  Manejas un nivel intermedio de Inglés.
-                  <small>Al menos debes entenderlo hablado y escrito.</small>
-                </li>
-              </ul>
-              <div class="checkbox" style="margin-top: 30px;">
+              <div class="roadmap">
+                <div class="roadmap-item">
+                  <div class="circle">1</div>
+                  <div class="item-description">
+                    <h4>Aplica</h4>
+                    <p>Cuéntanos en detalle acerca de ti y las razones por las que quieres convertirte en Full Stack Developer.</p>
+                  </div>
+                </div>
+                <div class="roadmap-item">
+                  <div class="circle">2</div>
+                  <div class="item-description">
+                    <h4>Prepárate</h4>
+                    <p>Si tienes el perfil, te invitaremos al curso de <strong>Aspirantes TOP</strong>, donde pondrás a prueba tu capacidad de aprendizaje para participar en el Programa TOP.</p>
+                    <small>No se requiere de conocimientos previos. *</small>
+                  </div>
+                </div>
+                <div class="roadmap-item">
+                  <div class="circle">3</div>
+                  <div class="item-description">
+                    <h4>Entrena</h4>
+                    <p>Si superas el curso de Aspirantes TOP, <strong>iniciarás tu entrenamieto</strong> para acelerar tu carrera como Full Stack Developer de la mano de los mentores técnicos, de habilidades blandas e inglés.</p>
+                  </div>
+                </div>
+                <div class="roadmap-item">
+                  <div class="circle">4</div>
+                  <div class="item-description">
+                    <h4>Empléate</h4>
+                    <p>Al terminar tu acompañamiento técnico, encuentra tu mejor empleo para ti con el apoyo de expertos de la industria en colocacion laboral y habilidades blandas.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="checkbox" style="margin-top: 50px;">
                 <label>
                   <input type="checkbox" id="terms" name="applicant[accepted_terms]"> He leído y afirmo que cumplo con los requisitos para aplicar
                 </label>
