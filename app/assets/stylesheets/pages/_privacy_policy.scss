@@ -1,0 +1,13 @@
+.pages-layout .privacy-policy {
+  h1 { 
+    font-size: 2rem; 
+    margin: 60px 0 40px;
+    text-align: center;
+
+    @media (min-width: $screen-sm-min) { margin: 80px 0 60px; }
+  }
+
+  p, ul { line-height: 1.6; }
+
+  footer { margin-top: 40px; }
+}
