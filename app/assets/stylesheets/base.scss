@@ -1,6 +1,11 @@
 html.pages-layout {
   font-size: 16px;
+  
   @media(min-width: $screen-sm-min) {
+    font-size: 19px;
+  }
+
+  @media(min-width: $screen-md-min) {
     font-size: 21px;
   }
 
