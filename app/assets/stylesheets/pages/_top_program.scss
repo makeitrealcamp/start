@@ -435,9 +435,9 @@
         padding-bottom: 20px;
       }
       
-      // .roadmap-item:not(:first-child) {
-      //   filter: grayscale(0.20);
-      // }
+      .roadmap-item:not(:first-child) {
+        filter: grayscale(2);
+      }
         
     }
 
@@ -603,9 +603,9 @@
   }
 
   .circle {
-    width: 70px;
-    height: 70px;
-    border-radius: 70px;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 3rem;
     background-color: #fff;
     color: $color-orange;
     display: flex;
@@ -625,7 +625,7 @@
 
   .item-description h3 {
     margin-bottom: 10px !important;
-    font-size: 28px;
+    font-size: 1.15rem;
   }
 }
 
