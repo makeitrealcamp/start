@@ -434,7 +434,7 @@
         <div class="col-sm-6">
           <div class="question">
             <h3>¿Cómo es el proceso de selección?</h3>
-            <p>Primero debes llenar el formulario de aplicación en <a href="#" class="apply-now-btn">este enlace</a>.</p>
+            <p>Primero debes llenar el formulario de aplicación en <a href="javascript:void(0);" class="apply-now-btn">este enlace</a>.</p>
             <p>Si cumples con el perfil te invitaremos a nuestro curso de <strong>Aspirantes TOP</strong>, donde pondrás a prueba tu capacidad para participar en el programa TOP.</p>
             <p>Luego tendrás una llamada no técnica. Por último, deberás presentar una prueba técnica en vivo para validar tus conocimientos.</p>
           </div>
@@ -559,7 +559,7 @@
         </div>
 
         <div class="modal-wrapper">
-          <div class="accept-terms-step">
+          <div class="show-application-proccess-step">
             <div class="modal-body">
               <div class="roadmap">
                 <div class="roadmap-item">
@@ -592,14 +592,9 @@
                   </div>
                 </div>
               </div>
-              <div class="checkbox" style="margin-top: 50px;">
-                <label>
-                  <input type="checkbox" id="terms" name="applicant[accepted_terms]"> Autorizo el uso de mis datos de acuerdo a la <a href="<%= privacy_policy_path %>">Política de Tratamiento de Información</a>
-                </label>
-              </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary btn-lg accept-terms-btn">Siguiente</button>
+              <button type="button" class="btn btn-primary btn-lg app-next-steps">Siguiente</button>
             </div>
           </div>
             
@@ -609,7 +604,13 @@
               <div class="form-group">
                 <%= f.email_field :email, class: "form-control", placeholder: "Email" %>
               </div>
+              <div class="checkbox" style="margin-top: 50px;">
+                <label>
+                  <input type="checkbox" id="terms" name="applicant[accepted_terms]"> Autorizo el uso de mis datos de acuerdo a la <a href="<%= privacy_policy_path %>">Política de Tratamiento de Información</a>
+                </label>
+              </div>
             </div>
+            
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary btn-lg send-email-btn">Siguiente</button>
             </div>
