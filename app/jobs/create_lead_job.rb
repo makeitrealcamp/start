@@ -20,10 +20,12 @@ class CreateLeadJob < ActiveJob::Base
     stipend = data[:stipend]
     user_id_type = data[:docType]
     user_id = data[:docNumber]
+    studies = data[:studies]
+    working = data[:working]
 
     person = { pid: pid, email: email, first_name: first_name, last_name: last_name,
         country_code: country, mobile: mobile, birthday: birthday, gender: gender ,source: source, 
-        linkedin: linkedin, goal: goal, experience: experience, additional: additional, format: format,
+        linkedin: linkedin, goal: goal, experience: experience, additional: additional, studies: studies, working: working, format: format,
         payment_method: payment_method, stipend: stipend, user_id_type: user_id_type, user_id: user_id }
     begin
       ConvertLoop.event_logs.send(name: data[:event], person: person, metadata: { ip: data[:ip] })
