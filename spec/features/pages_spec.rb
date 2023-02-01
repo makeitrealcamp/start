@@ -77,11 +77,13 @@ RSpec.feature "Pages", type: :feature do
     first('button.apply-now-btn').click
     expect(page).to have_css("#application-modal")
 
+    find('.app-next-steps[type="button"]').click
+
     sleep 0.5 # hack to wait for the animations of the modal
-    find('#terms').click
-    find('.accept-terms-btn[type="button"]').click
+    
     
     fill_in "Email", with: "lead@example.com"
+    find('#terms').click
     find('.send-email-btn[type="submit"]').click
     expect(page).to have_css("#application-modal .verification-step")
 
@@ -109,9 +111,6 @@ RSpec.feature "Pages", type: :feature do
     expect(page).to have_selector '#mobile'
     fill_in "mobile", with: "3131234567"
     fill_in "applicant[url]", with: "www.davidcillo.com"
-    find('#format').find('option[value="format-partial"]').select_option
-    find('#payment-method-partime').find('option[value="scheme-3"]').select_option
-
     find('.application-step-btn[type="button"]').click
 
     expect(page).to have_css("#application-modal .application-2")
@@ -119,6 +118,8 @@ RSpec.feature "Pages", type: :feature do
     expect(page).to have_css("#application-modal .application-2 .form-group.has-error")
 
     fill_in "goal", with: "mi motivación es aprender"
+    find('#studies').find('option[value="Ninguno"]').select_option
+    find('#working').find('option[value="Si, trabajo Full-Time"]').select_option
     fill_in "experience", with: "1 año"
     fill_in "additional", with: "me gustan los animales"
     find('.submit[type="button"]').click

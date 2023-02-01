@@ -139,6 +139,11 @@
         }
       }
     }
+    .history-copy p {
+      text-align: center;
+      color: #212f65;
+      margin-top: 15px;
+    }
   }
 
   .section-formats {
@@ -384,6 +389,7 @@
         display: flex;
         flex-direction: column;
         margin-top: 50px;
+        margin-bottom: 50px;
       }
       
       .roadmap-item {
