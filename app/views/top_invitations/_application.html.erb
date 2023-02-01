@@ -53,48 +53,6 @@
         </div>
       </div>
       <hr>
-      
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="form-group">
-            <label for="format">Modalidad</label>
-            <select id="format" class="form-control" name="applicant[format]">
-              <option value="">Selecciona</option>
-              <option value="format-full" selected>Tiempo completo</option>
-              <option value="format-partial">Tiempo parcial</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div class="row" id="fulltime-scheme">
-        <div class="col-sm-12">
-          <div class="form-group">
-            <label for="payment-method-fulltime">Esquema de pago</label>
-            <select id="payment-method-fulltime" class="form-control" name="applicant[payment_method]">
-              <option value="">Selecciona</option>
-              <option value="scheme-3"></option>
-              <option value="scheme-1"></option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="row" id="partime-scheme" style="display: none;">
-        <div class="col-sm-12">
-          <div class="form-group">
-            <label for="payment-method-partime">Esquema de pago</label>
-            <select id="payment-method-partime" class="form-control" name="applicant[payment_method_2]" >
-              <option value="">Selecciona</option>
-              <option value="scheme-3"></option>
-              <option value="scheme-2"></option>
-              <option value="scheme-1"></option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div id="can-work" style="display: none;">
-        <small><strong>Esquema de pago válido sólo para nacionales/residentes de Colombia, México, Perú, Costa Rica o Chile. Si no cumples con el requisito, selecciona otra opción</strong></small>
-      </div>
     </div>
     
 
@@ -109,6 +67,24 @@
         <label for="experience">¿Cuál es tu nivel actual de conocimiento en programación?</label>
         <textarea id="experience" name="applicant[experience]" class="form-control" rows="3" placeholder="Cuéntanos cuál es tu profesión, cursos que hayas completado, conocimientos previos, proyectos personales, etc."></textarea>
         <span class="help-block"></span>
+      </div>
+      <div class="form-group">
+        <label for="studies">¿Cuál es tu nivel de estudios máximo completado?</label>
+        <select id="studies" class="form-control" name="applicant[studies]">
+          <option value="">Ninguno</option>
+          <option value="Secundaria/bachillerato/preparatoria">Secundaria/bachillerato/preparatoria</option>
+          <option value="técnico/terciario">técnico/terciario</option>
+          <option value="Carrera universitaria">Carrera universitaria</option>
+          <option value="postgrado">postgrado</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="working">¿Actualmente trabajas?</label>
+        <select id="working" class="form-control" name="applicant[studies]">
+          <option value="Si, trabajo Full-Time">Si, trabajo Full-Time</option>
+          <option value="Si, trabajo Part Time">Si, trabajo Part Time</option>
+          <option value="No estoy trabajando">No estoy trabajando</option>
+        </select>
       </div>
       <div class="form-group">
         <label for="additional">¿Hay algo más que debamos saber de ti?</label>

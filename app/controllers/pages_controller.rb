@@ -112,6 +112,7 @@ class PagesController < ApplicationController
     top_applicant_params_updated.delete(:payment_method_2)
     top_applicant_params_updated[:format] = program_format
     top_applicant_params_updated[:payment_method] = payment_method
+    top_applicant_params_updated[:accepted_terms] = true
 
     cohort = TopCohort.order(created_at: :desc).take
     TopApplicant.create!(top_applicant_params_updated.merge(email: top_invitation.email, version: 2, cohort: cohort))
@@ -138,7 +139,9 @@ class PagesController < ApplicationController
         ip: request.remote_ip,
         goal: top_applicant_params[:goal],
         experience: top_applicant_params[:experience],
-        more_info: top_applicant_params[:additional]
+        more_info: top_applicant_params[:additional],
+        studies: top_applicant_params[:studies],
+        working: top_applicant_params[:working]
       }
     }
     if cohort
@@ -379,7 +382,7 @@ class PagesController < ApplicationController
     end
 
     def top_applicant_params
-      params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :url, :goal, :experience, :additional, :payment_method, :payment_method_2, :format, :stipend)
+      params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :url, :goal, :experience, :additional, :payment_method, :payment_method_2, :format, :stipend, :working, :studies)
     end
 
     def innovate_applicant_params

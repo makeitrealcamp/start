@@ -187,24 +187,25 @@ class TopRegistrationView extends Backbone.View
     ).modal()
 
   events: ->
-    "click .accept-terms-btn": "accept_terms"
+    "click .app-next-steps": "show_enter_email"
+    "click .send-email-btn": "terms_verification"
     "click .verification-back-btn": "navigate_back_to_enter_email"
     "click .application-step-btn": "application_next_step"
     "change #country": "change_country_code"
     "change #format": "show_scheme_options"
     "click .submit": "submit_form"
 
-  accept_terms: (e) ->
-    @.$('.accept-terms-step .form-group, .accept-terms-step .checkbox').removeClass('has-error')
+  terms_verification: (e) ->
+    @.$('.enter-email-step, .checkbox').removeClass('has-error')
 
     valid = true
     valid = false if !@checkbox_is_selected($('#terms'))
 
-    if valid
-      @show_enter_email()
+    if !valid
+      e.preventDefault()
 
   show_enter_email: () ->
-    @.$('.accept-terms-step').hide()
+    @.$('.show-application-proccess-step').hide()
     @.$('.enter-email-step').show()
     @.$('#top_invitation_email').focus()
 
@@ -222,9 +223,6 @@ class TopRegistrationView extends Backbone.View
     valid = false if !@input_text_is_valid($('#gender'))
     valid = false if !@input_text_is_valid($('#country'))
     valid = false if !@input_text_is_valid($('#mobile'))
-    valid = false if !@input_text_is_valid($('#format'))
-    valid = false if !@input_text_is_valid($('#payment-method-partime')) && !@input_text_is_valid($('#payment-method-fulltime'))
-    
     valid = false if !@is_adult($('#birthday'))
     if valid
       @show_application_questions()
@@ -242,6 +240,8 @@ class TopRegistrationView extends Backbone.View
     valid = false if @input_text_too_short($('#goal'), "¿Puedes contarnos un poco más?")
     valid = false if @input_text_too_short($('#experience'), "¿Puedes contarnos un poco más?")
     valid = false if @input_text_too_short($('#additional'), "¿Puedes contarnos un poco más?")
+    valid = false if !@input_text_is_valid($('#studies'))
+    valid = false if !@input_text_is_valid($('#working'))
 
     if valid
       @.$('.finish').attr('disabled', true)
