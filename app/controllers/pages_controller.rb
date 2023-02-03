@@ -130,7 +130,7 @@ class PagesController < ApplicationController
         country_code: top_applicant_params[:country],
         mobile: top_applicant_params[:mobile],
         gender: top_applicant_params[:gender],
-        format: program_format,
+        # format: program_format,
         stipend: top_applicant_params[:stipend],
         payment_method: payment_method
       },
