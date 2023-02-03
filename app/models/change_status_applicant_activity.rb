@@ -12,7 +12,7 @@
 #
 
 class ChangeStatusApplicantActivity < ApplicantActivity
-  enum rejected_reason: [:superficial_response, :no_experience, :technical_test_failed, :first_interview_failed, :low_english_level, :tecnical_interview_failed, :no_jointly_responsible]
+  enum rejected_reason: [:superficial_response, :no_experience, :technical_test_failed, :first_interview_failed, :low_english_level, :tecnical_interview_failed, :no_jointly_responsible, :unfinish_course]
   enum second_interview_substate: [:pending, :scheduled, :finished, :pending_exercises, :sent_exercises]
 
   hstore_accessor :info,
@@ -35,7 +35,8 @@ class ChangeStatusApplicantActivity < ApplicantActivity
       first_interview_failed: "No pasó primera entrevista",
       low_english_level: "Inglés muy bajo",
       tecnical_interview_failed: "No pasó entrevista técnica",
-      no_jointly_responsible: "No tiene responsable solidario"
+      no_jointly_responsible: "No tiene responsable solidario",
+      unfinish_course: "No finalizó el curso"
     }
 
     value && mappings[value.to_sym]

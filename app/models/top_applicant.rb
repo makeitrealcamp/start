@@ -21,7 +21,8 @@
 #
 
 class TopApplicant < Applicant
-  enum status: [:applied, :aspiring_course, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :accepted, :enrolled, :not_enrolled, :rejected, :interviews_completed, :gave_up, :graduated, :placed]
+  # enum status: [:applied, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :accepted, :enrolled, :not_enrolled, :rejected, :interviews_completed, :gave_up, :graduated, :placed]
+  enum status: [:applied, :aspiring_course, :first_interview_scheduled, :second_interview_held, :interviews_completed, :accepted, :rejected, :enrolled, :not_enrolled, :gave_up, :graduated, :placed]
   enum program: [:full, :partial]
 
   before_create :generate_uid
@@ -74,6 +75,7 @@ class TopApplicant < Applicant
       gave_up: "desistió del proceso",
       graduated: "graduado",
       placed: "ubicado laboralmente",
+      aspiring_course: "curso aspirante"
     }
 
     mappings[status.to_sym]
