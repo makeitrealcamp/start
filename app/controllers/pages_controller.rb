@@ -106,11 +106,11 @@ class PagesController < ApplicationController
     top_invitation = TopInvitation.find(params[:top_invitation_id])
     raise ActiveRecord::RecordNotFound unless top_invitation
 
-    program_format = top_applicant_params[:format] == "format-full" ? "full" : "partial"
+    # program_format = top_applicant_params[:format] == "format-full" ? "full" : "partial"
     payment_method = top_applicant_params[:payment_method] == "" ? top_applicant_params[:payment_method_2] : top_applicant_params[:payment_method]
 
     top_applicant_params_updated.delete(:payment_method_2)
-    top_applicant_params_updated[:format] = program_format
+    # top_applicant_params_updated[:format] = program_format
     top_applicant_params_updated[:payment_method] = payment_method
     top_applicant_params_updated[:accepted_terms] = true
 
