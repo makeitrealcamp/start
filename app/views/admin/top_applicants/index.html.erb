@@ -56,7 +56,7 @@
                   <%= link_to 'Todos', request.params.except(:status) %>
                   </li>
                   <li>
-                    <% TopApplicant.cohort_application_status(@cohort).each do |status| %>
+                    <% cohort_application_status(@cohort).each do |status| %>
                       <%= link_to TopApplicant.status_to_human(status).capitalize, request.params.merge(status: status).except(:substate) %>
                     <% end %>
                   </li>

@@ -59,14 +59,6 @@ class TopApplicant < Applicant
     Applicant.model_name
   end
 
-  def self.cohort_application_status(cohort)
-    if cohort.id >= 8
-      [:applied, :aspiring_course, :first_interview_scheduled, :second_interview_held, :interviews_completed, :accepted, :rejected, :enrolled, :not_enrolled, :gave_up, :graduated, :placed]
-    else
-      [:applied, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :accepted, :enrolled, :not_enrolled, :rejected, :interviews_completed, :gave_up, :graduated, :placed]
-    end
-  end
-
   def self.status_to_human(status)
     mappings = {
       applied: "aplicó",
