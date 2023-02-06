@@ -15,7 +15,7 @@ class Admin::ChangeStatusApplicantActivitiesController < ApplicationController
       if activity_params[:to_status] == 'rejected'
         metadata[:rejection_reason] = activity_params[:rejected_reason]
       end
-      notify_convertloop(applicant.class.status_segments(activity_params[:to_status].to_sym), applicant, metadata)
+      notify_convertloop(applicant.class.status_segments(activity_params[:to_status]), applicant, metadata)
     end
 
     data = { user: current_user, from_status: from_status }
