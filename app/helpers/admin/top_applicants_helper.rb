@@ -115,7 +115,7 @@ module Admin::TopApplicantsHelper
   end
 
   def applicant_status_options(applicant)
-    data_to_merge = applicant.type == "TopApplicant" ? applicant.class.cohort_application_status(applicant.cohort) : applicant.class.statuses.keys
+    data_to_merge = applicant.type == "TopApplicant" ? cohort_application_status(applicant.cohort) : applicant.class.statuses.keys
     data_to_merge.inject([]) do |memo, s|
       memo << [applicant.class.status_to_human(s).capitalize, s]
     end
@@ -130,6 +130,14 @@ module Admin::TopApplicantsHelper
   def applicant_second_interview_substate_options(applicant)
     ChangeStatusApplicantActivity.second_interview_substates.keys.inject([]) do |memo, s|
       memo << [ChangeStatusApplicantActivity.get_substatus_to_human(s).capitalize, s]
+    end
+  end
+
+  def cohort_application_status(cohort)
+    if cohort.id >= 8
+      [:applied, :aspiring_course, :first_interview_scheduled, :second_interview_held, :interviews_completed, :accepted, :rejected, :enrolled, :not_enrolled, :gave_up, :graduated, :placed]
+    else
+      [:applied, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :accepted, :enrolled, :not_enrolled, :rejected, :interviews_completed, :gave_up, :graduated, :placed]
     end
   end
 end
