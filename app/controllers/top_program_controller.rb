@@ -72,7 +72,7 @@ class TopProgramController < ApplicationController
      @applicant.update(status: :aspiring_course, aspiring_course_accepted: true)
 
       data = { user: current_user, from_status: from_status }
-      @activity = @applicant.change_status_activities.create(activity_params.merge(data))
+      @activity = @applicant.change_status_activities.create(data.merge(to_status: "aspiring_course", comment: "Aceptó el curso de Aspirantes TOP"))
       notify_converloop({ name: "Accepted to  Aspirantes TOP", email: @applicant.email })
     else
       render :already_applied
