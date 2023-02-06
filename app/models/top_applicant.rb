@@ -21,8 +21,7 @@
 #
 
 class TopApplicant < Applicant
-  # enum status: [:applied, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :accepted, :enrolled, :not_enrolled, :rejected, :interviews_completed, :gave_up, :graduated, :placed]
-  enum status: [:applied, :aspiring_course, :first_interview_scheduled, :second_interview_held, :interviews_completed, :accepted, :rejected, :enrolled, :not_enrolled, :gave_up, :graduated, :placed]
+  enum status: [:applied, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :accepted, :enrolled, :not_enrolled, :rejected, :interviews_completed, :gave_up, :graduated, :placed, :aspiring_course]
   enum program: [:full, :partial]
 
   before_create :generate_uid
@@ -53,10 +52,19 @@ class TopApplicant < Applicant
     socioeconomic_level: :integer,
     referred_by: :string,
     studies: :string,
-    working: :string
+    working: :string,
+    aspiring_course_accepted: :boolean
 
   def self.model_name
     Applicant.model_name
+  end
+
+  def self.cohort_application_status(cohort)
+    if cohort.id >= 8
+      [:applied, :aspiring_course, :first_interview_scheduled, :second_interview_held, :interviews_completed, :accepted, :rejected, :enrolled, :not_enrolled, :gave_up, :graduated, :placed]
+    else
+      [:applied, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :accepted, :enrolled, :not_enrolled, :rejected, :interviews_completed, :gave_up, :graduated, :placed]
+    end
   end
 
   def self.status_to_human(status)
@@ -76,6 +84,28 @@ class TopApplicant < Applicant
       graduated: "graduado",
       placed: "ubicado laboralmente",
       aspiring_course: "curso aspirante"
+    }
+
+    mappings[status.to_sym]
+  end
+
+  def self.status_segments(status)
+    mappings = {
+      applied: "Filled Top Application",
+      test_sent: "Test Sent to Top Applicant",
+      test_received: "Test Recieved from Top Applicant",
+      test_graded: "Test graded of Top Applicant",
+      first_interview_scheduled: "Booked  TOP personal  Interview",
+      second_interview_held: "Booked TOP tech interview",
+      accepted: "Accepted to TOP",
+      enrolled: "Erolled to TOP",
+      not_enrolled: "Not enrolled to TOP",
+      rejected: "Rejected from TOP",
+      interviews_completed: "Ended TOP interviews",
+      gave_up: "Desisted from TOP application",
+      graduated: "Graduated from TOP",
+      placed: "Placed from TOP",
+      aspiring_course: "Accepted to  Aspirantes TOP"
     }
 
     mappings[status.to_sym]

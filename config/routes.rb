@@ -88,6 +88,7 @@ Rails.application.routes.draw do
     get :test, to: "top_program#test"
     post :test, to: "top_program#submit_test"
     get :submitted, to: "top_program#submitted"
+    get :confirm_aspiring_course, to: "top_program#confirm_aspiring_course"
   end
 
   scope 'innovate-peru', as: "innovate_program" do

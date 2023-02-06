@@ -115,7 +115,8 @@ module Admin::TopApplicantsHelper
   end
 
   def applicant_status_options(applicant)
-    applicant.class.statuses.keys.inject([]) do |memo, s|
+    data_to_merge = applicant.type == "TopApplicant" ? applicant.class.cohort_application_status(applicant.cohort) : applicant.class.statuses.keys
+    data_to_merge.inject([]) do |memo, s|
       memo << [applicant.class.status_to_human(s).capitalize, s]
     end
   end
