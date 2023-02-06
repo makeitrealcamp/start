@@ -40,6 +40,7 @@ RSpec.feature "top_applicant", type: :feature do
   scenario "admin can change the status of an applicant", js: true do
     login(admin)
     visit admin_top_applicants_path
+    sleep 0.5
 
     find("#applicant-#{applicant.id} .cell-action a").click
 
@@ -211,6 +212,7 @@ RSpec.feature "top_applicant", type: :feature do
     end
     
     visit admin_top_applicants_path
+    sleep 0.5
 
     expect(page.all("table.table tr").count).to eq(TopApplicant.count)
     expect(page).to have_no_css("#filter_substatus_applicant_activity")
