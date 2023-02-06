@@ -62,6 +62,23 @@ class TopProgramController < ApplicationController
     end
   end
 
+  def confirm_aspiring_course
+    @title = "Curso Aspirantes TOP"
+    @applicant = TopApplicant.where("info -> 'uid' = ?", params[:uid]).take
+    render :applicant_not_found and return if @applicant.nil?
+
+    if @applicant and !@applicant.aspiring_course_accepted?
+      from_status = @applicant.status
+     @applicant.update(status: :aspiring_course, aspiring_course_accepted: true)
+
+      data = { user: current_user, from_status: from_status }
+      @activity = @applicant.change_status_activities.create(activity_params.merge(data))
+      notify_converloop({ name: "Accepted to  Aspirantes TOP", email: @applicant.email })
+    else
+      render :already_applied
+    end
+  end
+
   protected
     def test_params
       params.require(:top_applicant_test).permit(:a1, :a2, :a3, :a4, :lang)
