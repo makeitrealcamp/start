@@ -56,6 +56,6 @@ class Applicant < ApplicationRecord
   end
 
   def previous_applications
-    self.class.where(email: email).where.not(id: self.id)
+    self.class.where(email: email).where("id < ?", self.id)
   end
 end

@@ -29,16 +29,7 @@ class Admin::TopApplicantsController < ApplicationController
 
   def show
     @applicant = TopApplicant.find(params[:id])
-    prev_applications = @applicant.previous_applications
-      
-    if prev_applications.count > 0
-      body = "Sus aplicaciones anteriores son:\n\n"
-      prev_applications.each do |prev_application|
-        body += "- #{prev_application.cohort.name} (**#{@applicant.class.status_to_human(prev_application.status).capitalize}**)"
-        body += " Link: #{admin_top_applicant_url(prev_application.id)}\n"
-      end
-    end
-    @prev_application_body = body
+    @prev_applications = @applicant.previous_applications
   end
 
   def edit
