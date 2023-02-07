@@ -54,4 +54,8 @@ class Applicant < ApplicationRecord
       .where(status: model.statuses[status])
       .where("t.info->'#{info_fields_substatus(status)}' = '#{substate}'")
   end
+
+  def previous_applications
+    self.class.where(email: email).where.not(id: self.id)
+  end
 end

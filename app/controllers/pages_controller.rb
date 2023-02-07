@@ -115,8 +115,8 @@ class PagesController < ApplicationController
     top_applicant_params_updated[:accepted_terms] = true
 
     cohort = TopCohort.order(created_at: :desc).take
-    TopApplicant.create!(top_applicant_params_updated.merge(email: top_invitation.email, version: 2, cohort: cohort))
-
+    applicant = TopApplicant.create!(top_applicant_params_updated.merge(email: top_invitation.email, version: 2, cohort: cohort))
+    
     ab_finished(:hero_top)
 
     data = {
@@ -145,7 +145,7 @@ class PagesController < ApplicationController
       }
     }
     if cohort
-      data[:metadata][:cohort_id] = cohort.id
+      data[:metadata][:cohort_id] = "#{cohort.id}"
       data[:metadata][:cohort_name] = cohort.name
     end
     ConvertLoopJob.perform_later(data)
