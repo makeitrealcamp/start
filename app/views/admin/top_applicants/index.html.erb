@@ -14,7 +14,7 @@
         <div style="padding: 0 0 15px;"><%= link_to "Administrar Convocatorias", admin_top_cohorts_path %></div>
 
         <ul class="list-group">
-          <% TopApplicant.statuses.keys.each do |status| %>
+          <% cohort_application_status(@cohort).each do |status| %>
             <li class="list-group-item"><%= TopApplicant.status_to_human(status).capitalize %> <span class="badge badge-primary badge-pill"><%= @cohort.applicants.find_by_status_and_cohort(status, params[:cohort]).count %></span></li>
           <% end %>
         </ul>
