@@ -75,6 +75,12 @@
                 <% end %>
 
                 <hr>
+                <% if @prev_application_body.present? %>
+                  <div class="activity">
+                    <div class="activity-date"><%= @applicant.created_at.strftime("%b %d %I:%M %p") %></div>
+                    <div class="activity-detail"><%= markdown @prev_application_body %></div>
+                  </div>
+                <% end %>
                 <div class="activity">
                   <div class="activity-date"><%= @applicant.created_at.strftime("%b %d %I:%M %p") %></div>
                   <div class="activity-detail"><%= @applicant.first_name %> <strong>aplicó</strong> al programa TOP</div>

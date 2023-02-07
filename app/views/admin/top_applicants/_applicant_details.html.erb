@@ -86,3 +86,8 @@
     <div class="detail-value"><%= applicant.referred_by %></div>
   </div>
 <% end %>
+
+<div class="applicant-detail">
+  <div class="detail-label">Numero de aplicaciones:</div>
+  <div class="detail-value"><%= applicant.previous_applications.count %></div>
+</div>
