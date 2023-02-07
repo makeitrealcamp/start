@@ -76,7 +76,7 @@ class TopApplicant < Applicant
       graduated: "graduado",
       placed: "ubicado laboralmente",
       aspiring_course: "curso aspirante",
-      confirmed_aspiring_course: "curso aspirante confirmado"
+      confirmed_aspiring_course: "confirmó curso"
     }
 
     mappings[status.to_sym]
