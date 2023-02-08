@@ -6,6 +6,7 @@ namespace :aspiring_course do
     @applicants = Applicant.where("info -> 'aspiring_course_accepted' = ?", "true").where.not(status: 15)
     
     @applicants.each do |applicant|
+      p applicant.email
       ConvertLoopJob.perform_later({ name: "Confirmed to Aspirantes TOP", email: applicant.email })
     end
     @applicants.update_all("status = 15")
