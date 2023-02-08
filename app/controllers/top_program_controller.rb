@@ -69,7 +69,7 @@ class TopProgramController < ApplicationController
 
     if @applicant and !@applicant.aspiring_course_accepted?
       from_status = @applicant.status
-     @applicant.update(status: :aspiring_course, aspiring_course_accepted: true)
+     @applicant.update(status: :aspiring_course_confirmed, aspiring_course_accepted: true)
 
       data = { user: current_user, from_status: from_status }
       @activity = @applicant.change_status_activities.create(data.merge(to_status: "aspiring_course_confirmed", comment: "Confirmó el curso de Aspirantes TOP"))
