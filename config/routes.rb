@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   post "application/mitic-paraguay", to: "pages#create_mitic_applicant"
 
   get "faq", to: "pages#faq"
+  get "aspirantes-top", to: "pages#aspirantes_top"
   get "makers", to: "pages#makers"
 
   get "thanks-full-stack-online", to: "pages#thanks_online"
