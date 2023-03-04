@@ -281,4 +281,8 @@ Rails.application.routes.draw do
 
   # routes to evaluate forms
   match 'forms/hello', to: 'forms#hello', via: [:get, :post]
+
+  post 'api/top_invitations', to: 'top_invitations#create'
+  post 'api/top_invitations/:id/validate', to: 'top_invitations#validate'
+  post 'api/application/top', to: 'pages#create_top_applicant'
 end
