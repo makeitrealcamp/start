@@ -1,4 +1,6 @@
 class TopInvitationsController < ApplicationController
+  include Authenticable
+
   def create
     @top_invitation = TopInvitation.where(email: top_invitation_params[:email]).first_or_create
     if @top_invitation.valid?
@@ -12,7 +14,10 @@ class TopInvitationsController < ApplicationController
         }
       }
       ConvertLoopJob.perform_later(data)
+
     end
+
+    render_api_response(@top_invitation, :create, nil)
   end
 
   def validate
@@ -23,6 +28,7 @@ class TopInvitationsController < ApplicationController
       @applicant = TopApplicant.where(email: @top_invitation.email).order(created_at: :desc).take
       @applicant = TopApplicant.new(email: @top_invitation.email) unless @applicant
       ConvertLoopJob.perform_later(name: "validated-top-token", person: { email: @top_invitation.email })
+      render_api_response(@top_invitation, :validate, nil)
     end
   end
 

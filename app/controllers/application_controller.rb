@@ -22,6 +22,19 @@ class ApplicationController < ActionController::Base
     @current_admin = nil
   end
 
+  def render_api_response(resource, method = nil, redirect = nil)
+    if request.path.start_with?('/api')
+      if resource.errors.any?
+        render json: { message: resource.errors.full_messages.join(', ') }, status: :unprocessable_entity
+      else
+        render json: { data: resource, message: 'Success' }, status: :ok
+      end
+    else
+      render method if method
+      redirect_to redirect if redirect
+    end
+  end
+
   protected
     def signed_in?
       !current_user.nil?

@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  include Authenticable
   before_action :save_referer, except: [:handbook]
 
   def home
@@ -76,7 +77,7 @@ class PagesController < ApplicationController
     respond_to do |format|
       format.html do
         @email_sent = true
-        render :web_developer_guide
+        render_api_response(subscriber, :web_developer_guide, nil)
       end
       format.js
     end
@@ -115,7 +116,7 @@ class PagesController < ApplicationController
     top_applicant_params_updated[:accepted_terms] = true
 
     cohort = TopCohort.order(created_at: :desc).take
-    TopApplicant.create!(top_applicant_params_updated.merge(email: top_invitation.email, version: 2, cohort: cohort))
+    @top_appliciant = TopApplicant.create!(top_applicant_params_updated.merge(email: top_invitation.email, version: 2, cohort: cohort))
     
     ab_finished(:hero_top)
 
@@ -153,7 +154,7 @@ class PagesController < ApplicationController
         data[:person][:mobile], "").deliver_later
 
     top_invitation.destroy
-    redirect_to "/thanks-top"
+    render_api_response(@top_appliciant, nil, "/thanks-top")
   end
 
   def create_innovate_applicant
