@@ -77,7 +77,7 @@ class PagesController < ApplicationController
     respond_to do |format|
       format.html do
         @email_sent = true
-        render :web_developer_guide
+        render_api_response(subscriber, :web_developer_guide, nil)
       end
       format.js
     end
