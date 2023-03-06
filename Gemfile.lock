@@ -268,6 +268,8 @@ GEM
     pygments.rb (2.2.0)
     racc (1.5.2)
     rack (2.2.3)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-protection (2.2.2)
       rack
     rack-test (1.1.0)
@@ -495,6 +497,7 @@ DEPENDENCIES
   pg (~> 0.21.0)
   pusher
   pygments.rb (~> 2.2)
+  rack-cors (~> 1.1)
   rails (~> 5.2, >= 5.2.5)
   rails-controller-testing (~> 1.0, >= 1.0.2)
   rails_server_timings (~> 1.0, >= 1.0.8)
