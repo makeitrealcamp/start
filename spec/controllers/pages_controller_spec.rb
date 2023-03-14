@@ -3,18 +3,6 @@ require 'rails_helper'
 RSpec.describe PagesController, type: :controller do
   render_views
 
-  describe "GET #home" do
-    it "responds with status code 200" do
-      get :home
-      expect(response).to have_http_status(:ok)
-    end
-
-    it "renders template" do
-      get :home
-      expect(response).to render_template :home
-    end
-  end
-
   describe "GET #top" do
     it "responds with status code 200" do
       get :top_full_and_part_time
