@@ -1,7 +1,7 @@
 require 'split/dashboard'
 
 Rails.application.routes.draw do
-  root 'pages#home'
+  root 'dashboard#index'
 
   mount Split::Dashboard, at: 'split-stats'
 
