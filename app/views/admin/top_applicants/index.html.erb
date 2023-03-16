@@ -48,6 +48,20 @@
               </div>
             </div>
             <div class="filter-dropdown" >
+              <label>Ordenar Por:</label>
+              <div class="dropdown" id="filter_status_applicant_activity">
+                <a role="button" data-toggle="dropdown" class="btn btn-default" data-target="#" href="/page.html"><%= params[:orderby] == 'updated_at' ? "Última actualización" : "Fecha de Aplicación" %> <span class="caret"></span> </a>
+                <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                  <li>
+                    <%= link_to "Fecha de Aplicación", request.params.merge(orderby: "created_at") %>
+                  </li>
+                  <li>
+                    <%= link_to "Última actualización", request.params.merge(orderby: "updated_at") %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="filter-dropdown" >
               <label>Filtrar por estado:</label>
               <div class="dropdown" id="filter_status_applicant_activity">
                 <a role="button" data-toggle="dropdown" class="btn btn-default" data-target="#" href="/page.html"><%= params[:status].present? ? TopApplicant.status_to_human(params[:status]).capitalize : "Todos" %> <span class="caret"></span> </a>

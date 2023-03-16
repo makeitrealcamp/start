@@ -3,7 +3,7 @@ class Admin::TopApplicantsController < ApplicationController
 
   def index
     @cohort = params[:cohort] ? TopCohort.find(params[:cohort]) : TopCohort.order(created_at: :desc).take
-    @applicants = @cohort.applicants.order('created_at DESC')
+    @applicants = @cohort.applicants
     
     if params[:status].present?
       @applicants = @applicants.where(status: TopApplicant.statuses[params[:status]])
@@ -13,17 +13,21 @@ class Admin::TopApplicantsController < ApplicationController
       @applicants = @applicants.where("info -> 'format' = ?", params[:program])
     end
 
+    if params[:orderby].present?
+      @applicants = @applicants.order("#{params[:orderby]} DESC")
+    else
+      @applicants = @applicants.order('created_at DESC')
+    end
+
     if params[:q].present?
-      @applicants = TopApplicant.order('created_at DESC')
-      @applicants = @applicants.where("first_name ILIKE :q OR last_name ILIKE :q OR email ILIKE :q", q: "%#{params[:q]}%")
+      @applicants = TopApplicant.where("first_name ILIKE :q OR last_name ILIKE :q OR email ILIKE :q", q: "%#{params[:q]}%")
     end
 
     if params[:status].present? and params[:substate].present?
       @applicants = @applicants.find_applicant_by_substate(TopApplicant, params[:status], params[:substate])
     end
 
-    @applicants = @applicants.order('created_at DESC')
-      .paginate(page: params[:page], per_page: 100)
+    @applicants = @applicants.paginate(page: params[:page], per_page: 100)
     @applicants_count = @applicants.count
   end
 
