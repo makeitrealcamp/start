@@ -48,6 +48,6 @@ class Admin::TopApplicantsController < ApplicationController
 
   private
     def applicant_params
-      params.require(:applicant).permit(:cohort_id, info: [ :format, :prev_salary, :new_salary, :company, :start_date, :contract_type, :socioeconomic_level, :referred_by])
+      params.require(:applicant).permit(:cohort_id, info: [ :format, :prev_salary, :new_salary, :company, :start_date, :contract_type, :socioeconomic_level, :referred_by, :payment_method])
     end
 end

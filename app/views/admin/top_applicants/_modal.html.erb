@@ -17,6 +17,11 @@
               <%= p.label :format, "Modalidad" %>
               <%= p.select :format, options_for_select(TopApplicant.programs.keys, @applicant.info["format"]), { :selected => nil }, class: "form-control" %>
             </div>
+
+            <div class="form-group" id="fulltime-scheme">
+              <%= p.label :payment_method, "Esquema de pago" %>
+              <%= p.select :payment_method, options_for_select([["ISA (17% salario) cuando encuentran trabajo", "scheme-1"], ["CONTADO: En un pago con un descuento del 20% con nosotros", "scheme-3"], ["CREDITO: En cuotas (hasta 24 cuotas) con flevo (sólo colombia y chile)", "scheme-2"]], @applicant.info["payment_method"]), { :selected => nil }, class: "form-control" %>
+            </div>
             <div class="form-group">
               <%= p.label :prev_salary, "Salario anterior" %>
               <%= p.text_field :prev_salary, class: "form-control" %>
