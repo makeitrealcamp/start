@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get "full-stack-online/becas-mujeres", to: redirect('/top')
   get "full-stack-online/patrocina-una-beca", to: redirect('/top')
   post "full-stack-becas-mujeres", to: "pages#create_fs_becas_mujeres_lead"
+  get "bootcamp-mujeres/cupo", to: "pages#bootcamp_mujeres_seat"
   get "ruby-on-rails", to: 'pages#ruby_on_rails'
   get "ruby-on-rails/cupo", to: 'pages#ruby_on_rails_seat'
   post "ruby-on-rails", to: 'pages#create_ruby_on_rails_lead'
