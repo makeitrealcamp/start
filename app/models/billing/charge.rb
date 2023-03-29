@@ -32,6 +32,13 @@ class Billing::Charge < ApplicationRecord
         "USD" => 166
       }
     },
+    bootcamp_mujeres: {
+      description: "Separación Bootcamp Mujeres",
+      price: {
+        "COP" => 112_000,
+        "USD" => 25
+      }
+    },
     datascience: {
       description: "Separación curso Data Science",
       price: {
