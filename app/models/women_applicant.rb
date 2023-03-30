@@ -53,13 +53,13 @@ class WomenApplicant < Applicant
 
   def self.status_segments(status)
     mappings = {
-      applied: "Filled Top Application",
-      accepted: "Accepted to TOP",
-      enrolled: "Erolled to TOP",
-      not_enrolled: "Not enrolled to TOP",
-      rejected: "Rejected from TOP",
-      gave_up: "Desisted from TOP application",
-      graduated: "Graduated from TOP"
+      applied: "Filled Nesst Women Bootcamp Application",
+      accepted: "Accepted to Nesst Women Bootcamp",
+      enrolled: "Erolled to Nesst Women Bootcamp",
+      not_enrolled: "Not enrolled to Nesst Women Bootcamp",
+      rejected: "Rejected from Nesst Women Bootcamp",
+      gave_up: "Desisted from Nesst Women Bootcamp application",
+      graduated: "Graduated from Nesst Women Bootcamp"
     }
 
     mappings[status.to_sym]
