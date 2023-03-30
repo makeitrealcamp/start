@@ -1,0 +1,12 @@
+$('<%= j render "modal" %>').on('shown.bs.modal', function (e) {
+  $("[data-datetimepicker]").datepicker({
+    language: "es",
+    format: "dd/mm/yyyy",
+    orientation: 'bottom'
+  });
+}).on('hidden.bs.modal', function (e) {
+  $(this).remove();
+  $('.modal-backdrop').remove();
+}).modal();
+
+

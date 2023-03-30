@@ -41,6 +41,9 @@
                 <% if has_admin_access?("top_applicants") %>
                   <li><%= link_to "Aplicaciones TOP", admin_top_applicants_path %></li>
                 <% end %>
+                <% if has_admin_access?("top_applicants") %>
+                  <li><%= link_to "Aplicaciones Bootcamp Mujeres", admin_women_applicants_path %></li>
+                <% end %>
                 <% if has_admin_access?("mitic_applicants") %>
                   <li><%= link_to "Aplicaciones Mitic", admin_mitic_applicants_path %></li>
                 <% end %>
