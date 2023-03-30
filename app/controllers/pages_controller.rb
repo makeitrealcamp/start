@@ -222,6 +222,35 @@ class PagesController < ApplicationController
     redirect_to "/thanks-mitic"
   end
 
+  def create_women_applicant
+    @women_applicant = WomenApplicant.create!(mitic_applicant_params)
+
+    data = {
+      name: "filled-women-application",
+      person: {
+        pid: cookies[:dp_pid],
+        email: top_applicant_params[:email],
+        first_name: top_applicant_params[:first_name],
+        last_name: top_applicant_params[:last_name],
+        birthday: top_applicant_params[:birthday],
+        country_code: top_applicant_params[:country],
+        mobile: top_applicant_params[:mobile]
+      },
+      metadata: {
+        linkedin: top_applicant_params[:url],
+        ip: request.remote_ip,
+        goal: top_applicant_params[:goal],
+        experience: top_applicant_params[:experience],
+        more_info: top_applicant_params[:additional]
+      }
+    }
+    ConvertLoopJob.perform_later(data)
+    AdminMailer.new_lead("Women", data[:person][:first_name], data[:person][:last_name], data[:person][:email], data[:person][:country_code],
+        data[:person][:mobile], "").deliver_later
+
+    render_api_response(@women_applicant, nil, "/thanks-top")
+  end
+
   def full_stack_online_seat
     @course = Billing::Charge::COURSES[:fullstack]
     @currency = params[:currency] || "COP"
