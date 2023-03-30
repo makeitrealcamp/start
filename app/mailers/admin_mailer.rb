@@ -10,13 +10,13 @@ class AdminMailer < ApplicationMailer
     @mobile = mobile
     @source = source
 
-    mail to: "nicolas.rodriguez@makeitreal.camp", subject: "[Nuevo Lead #{program}] #{first_name} #{last_name} (#{country})"
+    mail to: "angie.vanegas@makeitreal.camp", subject: "[Nuevo Lead #{program}] #{first_name} #{last_name} (#{country})"
   end
 
   def new_scholarship(data)
     @data = data
 
-    mail to: "nicolas.rodriguez@makeitreal.camp", subject: "[Beca Mujeres] #{@data[:person][:first_name]} #{@data[:person][:last_name]}"
+    mail to: "angie.vanegas@makeitreal.camp", subject: "[Beca Mujeres] #{@data[:person][:first_name]} #{@data[:person][:last_name]}"
   end
 
   def new_comment(email, admin, comment)

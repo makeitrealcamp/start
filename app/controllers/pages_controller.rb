@@ -226,26 +226,26 @@ class PagesController < ApplicationController
     @women_applicant = WomenApplicant.create!(mitic_applicant_params)
 
     data = {
-      name: "filled-women-application",
+      name: "Filled-Nesst-Women-Bootcamp-Application",
       person: {
         pid: cookies[:dp_pid],
-        email: top_applicant_params[:email],
-        first_name: top_applicant_params[:first_name],
-        last_name: top_applicant_params[:last_name],
-        birthday: top_applicant_params[:birthday],
-        country_code: top_applicant_params[:country],
-        mobile: top_applicant_params[:mobile]
+        email: women_applicant_params[:email],
+        first_name: women_applicant_params[:first_name],
+        last_name: women_applicant_params[:last_name],
+        birthday: women_applicant_params[:birthday],
+        country_code: women_applicant_params[:country],
+        mobile: women_applicant_params[:mobile]
       },
       metadata: {
-        linkedin: top_applicant_params[:url],
+        linkedin: women_applicant_params[:url],
         ip: request.remote_ip,
-        goal: top_applicant_params[:goal],
-        experience: top_applicant_params[:experience],
-        more_info: top_applicant_params[:additional]
+        goal: women_applicant_params[:goal],
+        experience: women_applicant_params[:experience],
+        more_info: women_applicant_params[:additional]
       }
     }
     ConvertLoopJob.perform_later(data)
-    AdminMailer.new_lead("Women", data[:person][:first_name], data[:person][:last_name], data[:person][:email], data[:person][:country_code],
+    AdminMailer.new_lead("Nesst Women Bootcamp", data[:person][:first_name], data[:person][:last_name], data[:person][:email], data[:person][:country_code],
         data[:person][:mobile], "").deliver_later
 
     render_api_response(@women_applicant, nil, "/thanks-top")
@@ -421,5 +421,9 @@ class PagesController < ApplicationController
 
     def mitic_applicant_params
       params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :url, :goal, :experience, :additional)
+    end
+
+    def women_applicant_params
+      params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :url, :goal, :experience, :additional, :payment_method, :payment_method_2, :format, :stipend, :working, :studies)
     end
 end
