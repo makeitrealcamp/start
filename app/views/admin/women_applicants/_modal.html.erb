@@ -5,7 +5,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Aplicación</h4>
       </div>
-      <%= form_for [:admin, @applicant], url: admin_mitic_applicant_path(@applicant), remote: true do |f| %>
+      <%= form_for [:admin, @applicant], url: admin_women_applicant_path(@applicant), remote: true do |f| %>
         <div class="modal-body">
           <%= f.fields_for :info, @applicant do |p| %>
             <div class="form-group">
