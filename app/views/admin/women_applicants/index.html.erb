@@ -12,7 +12,7 @@
       </div>
       <div class="col-sm-9">
         <div class="filters">
-          <form action="/admin/mitic_applicants" class="search-form">
+          <form action="/admin/women_applicants" class="search-form">
             <div class="form-group has-feedback">
               <label for="search" class="sr-only">Buscar</label>
               <input type="text" class="form-control" name="q" id="search-input" placeholder="Buscar por nombre o email" value="<%= params[:q] %>">
@@ -26,10 +26,10 @@
               <div class="dropdown">
                 <a role="button" data-toggle="dropdown" class="btn btn-default" data-target="#" href="/page.html"><%= params[:status].present? ? WomenApplicant.status_to_human(params[:status]).capitalize : "Todos" %> <span class="caret"></span> </a>
                 <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                  <li><a href="/admin/mitic_applicants">Todos</a></li>
+                  <li><a href="/admin/women_applicants">Todos</a></li>
                   <li>
                     <% WomenApplicant.statuses.keys.each do |status| %>
-                      <a href="/admin/mitic_applicants?status=<%= status %>&order_by=<%= params[:order_by] %>"><%= WomenApplicant.status_to_human(status).capitalize %></a>
+                      <a href="/admin/women_applicants?status=<%= status %>&order_by=<%= params[:order_by] %>"><%= WomenApplicant.status_to_human(status).capitalize %></a>
                     <% end %>
                   </li>
                 </ul>
@@ -83,7 +83,7 @@
                   <div class="cell-detail"><%= applicant.updated_at.strftime("%b %d %I:%M %p")%></div>
                   <div class="cell-detail"><%= applicant.note_activities.count %> notas</div>
                 </td>
-                <td class="cell-action text-center"><%=link_to '<span class="glyphicon glyphicon-search"></span>'.html_safe, admin_mitic_applicant_path(applicant.id), class: "btn btn-primary"%></td>
+                <td class="cell-action text-center"><%=link_to '<span class="glyphicon glyphicon-search"></span>'.html_safe, admin_women_applicant_path(applicant.id), class: "btn btn-primary"%></td>
               </tr>
             <% end %>
           </tbody>
