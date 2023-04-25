@@ -134,13 +134,13 @@ module Admin::TopApplicantsHelper
   end
 
   def applicant_first_interview_substatus_options(applicant)
-    ChangeStatusApplicantActivity.first_interview_substatus.keys.inject([]) do |memo, s|
+    ChangeStatusApplicantActivity.first_interview_substatuses.keys.inject([]) do |memo, s|
       memo << [ChangeStatusApplicantActivity.get_substatus_to_human(s).capitalize, s]
     end
   end
 
   def applicant_gave_up_substatus_options(applicant)
-    ChangeStatusApplicantActivity.gave_up_reason.keys.inject([]) do |memo, s|
+    ChangeStatusApplicantActivity.gave_up_reasons.keys.inject([]) do |memo, s|
       memo << [ChangeStatusApplicantActivity.get_substatus_to_human(s).capitalize, s]
     end
   end

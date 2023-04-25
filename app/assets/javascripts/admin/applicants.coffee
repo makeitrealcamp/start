@@ -61,7 +61,7 @@ class ChangeFistInterviewSubstatusView
   handle_change_reason: =>
     status = $("#change_status_applicant_activity_to_status").val()
     
-    if status == 'first_interview_held'
+    if status == 'first_interview_scheduled'
       $('#first_interview_substatus_group').show()
       $('#change_status_applicant_activity_first_interview_substatus').prop( "disabled", false );
     else
@@ -79,9 +79,9 @@ class ChangeGaveUpSubstatusView
     
     if status == 'gave_up'
       $('#gave_up_substatus_group').show()
-      $('#change_status_applicant_activity_gave_up_substatus').prop( "disabled", false );
+      $('#change_status_applicant_activity_gave_up_reason').prop( "disabled", false );
     else
       $('#gave_up_substatus_group').hide()
-      $('#change_status_applicant_activity_gave_up_substatus').prop( "disabled", true );
+      $('#change_status_applicant_activity_gave_up_reason').prop( "disabled", true );
 
 window.ChangeGaveUpSubstatusView = ChangeGaveUpSubstatusView
