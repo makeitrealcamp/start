@@ -24,7 +24,7 @@ class Admin::ChangeStatusApplicantActivitiesController < ApplicationController
 
   private
     def activity_params
-      params.require(:change_status_applicant_activity).permit(:to_status, :comment, :rejected_reason, :second_interview_substate)
+      params.require(:change_status_applicant_activity).permit(:to_status, :comment, :rejected_reason, :second_interview_substate, :first_interview_substatus, :gave_up_reason)
     end
 
     def notify_convertloop(event, applicant, metadata)

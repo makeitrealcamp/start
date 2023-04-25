@@ -20,7 +20,7 @@
 
             <div class="form-group" id="fulltime-scheme">
               <%= p.label :payment_method, "Esquema de pago" %>
-              <%= p.select :payment_method, options_for_select([["ISA (17% salario) cuando encuentran trabajo", "scheme-1"], ["CONTADO: En un pago con un descuento del 20% con nosotros", "scheme-3"], ["CREDITO: En cuotas (hasta 24 cuotas) con flevo (sólo colombia y chile)", "scheme-2"]], @applicant.info["payment_method"]), { :selected => nil }, class: "form-control" %>
+              <%= p.select :payment_method, options_for_select([nil, ["ISA (17% salario) cuando encuentran trabajo", "scheme-1"], ["CONTADO: En un pago con un descuento del 20% con nosotros", "scheme-3"], ["CREDITO: En cuotas (hasta 24 cuotas) con flevo (sólo colombia y chile)", "scheme-2"]], @applicant.info["payment_method"]), { :selected => nil }, class: "form-control" %>
             </div>
             <div class="form-group">
               <%= p.label :prev_salary, "Salario anterior" %>
@@ -44,7 +44,23 @@
             </div>
             <div class="form-group">
               <%= p.label :socioeconomic_level, "Nivel socioeconomico" %>
-              <%= p.select :socioeconomic_level, options_for_select([nil, 1, 2, 3, 4, 5], @applicant.info["socioeconomic_level"]), { :selected => nil }, class: "form-control" %>
+              <%= p.select :socioeconomic_level, options_for_select([nil, 1, 2, 3, 4, 5, 6], @applicant.info["socioeconomic_level"]), { :selected => nil }, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= p.label :applicant_level, "Nivel del perfil" %>
+              <%= p.select :applicant_level, [nil, ["1: He trabajado en programación, mi nivel es avanzado o actualmente trabajo en programación", 1], ["2: He realizado cursos, MINTIC, Platzi, con MIR en YT", 2], ["3: No tengo conocimiento en programación y/o desarrollo web , Tengo conocimiento nulo o no sé nada", 3]], { :selected => @applicant.info["applicant_level"] }, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= p.label :tech_level, "Calificación técnica" %>
+              <%= p.select :tech_level, [nil, ["1: No pudo hacer nada.", 1], ["2: No completó el ejercicio y no contestó bien las preguntas.", 2], ["3: No pudo completar el ejercicio o lo completó pero no contestó bien las preguntas.", 3], ["4: Buen candidato pero no sería nuestra primera opción. Quizá se complicó en el ejercicio o algo mal en las preguntas.", 4], ["5: Es un candidato ideal para el programa. Logró realizar el ejercicio en el tiempo y respondió bien las preguntas.", 5]] , { :selected =>  @applicant.info["tech_level"] }, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= p.label :profile_level, "Calificación Perfilamiento" %>
+              <%= p.select :profile_level, options_for_select([nil, 1, 2, 3, 4, 5], @applicant.info["profile_level"]), { :selected => @applicant.info["profile_level"] }, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= p.label :english_level, "Nivel de inglés" %>
+              <%= p.select :english_level, [nil, ["A1: Beginner", "A1"], ["A2: Pre Intermediate", "A2"], ["B1: Intermediate", "B1"], ["B2: Upper Intermediate", "B2"], ["C1: Advanced", "C1"], ["C2: Proficient", "C2"] ], { :selected =>  @applicant.info["english_level"] }, class: "form-control" %>
             </div>
             <div class="form-group">
               <%= p.label :referred_by, "Referido por" %>
