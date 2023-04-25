@@ -116,7 +116,7 @@ class PagesController < ApplicationController
     top_applicant_params_updated[:accepted_terms] = true
 
     cohort = TopCohort.order(created_at: :desc).take
-    @top_appliciant = TopApplicant.create!(top_applicant_params_updated.merge(email: top_invitation.email, version: 2, cohort: cohort))
+    @top_applicant = TopApplicant.create!(top_applicant_params_updated.merge(email: top_invitation.email, version: 2, cohort: cohort))
 
     ab_finished(:hero_top)
 
@@ -154,7 +154,7 @@ class PagesController < ApplicationController
         data[:person][:mobile], "").deliver_later
 
     top_invitation.destroy
-    render_api_response(@top_appliciant, nil, "/thanks-top")
+    render_api_response(@top_applicant, nil, "/thanks-top")
   end
 
   def create_innovate_applicant
