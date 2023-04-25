@@ -43,7 +43,9 @@ class Applicant < ApplicationRecord
   def self.info_fields_substatus(status)
     mappings = {
       rejected: 'rejected_reason',
-      second_interview_held: 'second_interview_substate'
+      second_interview_held: 'second_interview_substate',
+      first_interview_scheduled: 'first_interview_substatus',
+      gave_up: 'gave_up_reason',
     }
     mappings[status.to_sym]
   end

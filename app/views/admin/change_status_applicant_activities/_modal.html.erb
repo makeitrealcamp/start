@@ -16,6 +16,12 @@
           <div class="form-group" id="second_interview_substate_group">
             <%= f.select :second_interview_substate, options_for_select(applicant_second_interview_substate_options(@activity.applicant)), {}, class: "form-control", disabled: true %>
           </div>
+          <div class="form-group" id="first_interview_substatus_group">
+            <%= f.select :first_interview_substatus, options_for_select(applicant_first_interview_substatus_options(@activity.applicant)), {}, class: "form-control", disabled: true %>
+          </div>
+          <div class="form-group" id="gave_up_substatus_group">
+            <%= f.select :gave_up_reason, options_for_select(applicant_gave_up_substatus_options(@activity.applicant)), {}, class: "form-control", disabled: true %>
+          </div>
           <div class="form-group">
             <%= f.text_area :comment, class:"form-control", placeholder: "Ingresa un comentario" %>
           </div>

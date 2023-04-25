@@ -105,14 +105,14 @@
                 <td>
                   <div class="cell-main"><%= applicant.full_name %></div>
                   <div class="cell-detail"><%= applicant.email%></div>
-                  <div class="cell-detail">Aplicó <%= applicant.created_at.strftime("%b %d %I:%M %p")%></div>
+                  <div class="cell-detail">Aplicó <%= applicant.created_at.strftime("%b %d %I:%M %p %Y")%></div>
                 </td>
                 <td class="text-right">
                   <div class="cell-main"><%= TopApplicant.status_to_human(applicant.status).capitalize %></div>
                   <% if applicant.change_status_activities.last and applicant.change_status_activities.last!.to_status %>
                     <div class="cell-detail"><%= ChangeStatusApplicantActivity.get_substatus(applicant.change_status_activities.last) %></div>
                   <% end %>
-                  <div class="cell-detail"><%= applicant.updated_at.strftime("%b %d %I:%M %p")%></div>
+                  <div class="cell-detail"><%= applicant.updated_at.strftime("%b %d %I:%M %p %Y")%></div>
                   <div class="cell-detail"><%= applicant.note_activities.count %> notas</div>
                 </td>
                 <td class="cell-action text-center"><%=link_to '<span class="glyphicon glyphicon-search"></span>'.html_safe, admin_top_applicant_path(applicant.id), class: "btn btn-primary"%></td>

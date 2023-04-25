@@ -133,6 +133,18 @@ module Admin::TopApplicantsHelper
     end
   end
 
+  def applicant_first_interview_substatus_options(applicant)
+    ChangeStatusApplicantActivity.first_interview_substatus.keys.inject([]) do |memo, s|
+      memo << [ChangeStatusApplicantActivity.get_substatus_to_human(s).capitalize, s]
+    end
+  end
+
+  def applicant_gave_up_substatus_options(applicant)
+    ChangeStatusApplicantActivity.gave_up_reason.keys.inject([]) do |memo, s|
+      memo << [ChangeStatusApplicantActivity.get_substatus_to_human(s).capitalize, s]
+    end
+  end
+
   def cohort_application_status(cohort)
     if cohort.id >= 8
       [:applied, :aspiring_course, :aspiring_course_confirmed, :first_interview_scheduled, :second_interview_held, :interviews_completed, :accepted, :rejected, :enrolled, :not_enrolled, :gave_up, :graduated, :placed]

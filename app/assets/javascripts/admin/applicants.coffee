@@ -53,3 +53,35 @@ class ChangeSecondInterviewSubstateView
       $('#change_status_applicant_activity_second_interview_substate').prop( "disabled", true );
 
 window.ChangeSecondInterviewSubstateView = ChangeSecondInterviewSubstateView
+
+class ChangeFistInterviewSubstatusView
+  constructor: () ->
+    $("#change_status_applicant_activity_to_status").change(@handle_change_reason)
+
+  handle_change_reason: =>
+    status = $("#change_status_applicant_activity_to_status").val()
+    
+    if status == 'first_interview_held'
+      $('#first_interview_substatus_group').show()
+      $('#change_status_applicant_activity_first_interview_substatus').prop( "disabled", false );
+    else
+      $('#first_interview_substatus_group').hide()
+      $('#change_status_applicant_activity_first_interview_substatus').prop( "disabled", true );
+
+window.ChangeFistInterviewSubstatusView = ChangeFistInterviewSubstatusView
+
+class ChangeGaveUpSubstatusView
+  constructor: () ->
+    $("#change_status_applicant_activity_to_status").change(@handle_change_reason)
+
+  handle_change_reason: =>
+    status = $("#change_status_applicant_activity_to_status").val()
+    
+    if status == 'gave_up'
+      $('#gave_up_substatus_group').show()
+      $('#change_status_applicant_activity_gave_up_substatus').prop( "disabled", false );
+    else
+      $('#gave_up_substatus_group').hide()
+      $('#change_status_applicant_activity_gave_up_substatus').prop( "disabled", true );
+
+window.ChangeGaveUpSubstatusView = ChangeGaveUpSubstatusView

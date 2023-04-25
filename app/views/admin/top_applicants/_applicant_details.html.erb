@@ -80,6 +80,35 @@
   </div>
 <% end %>
 
+
+<% if applicant.applicant_level and applicant.applicant_level > 0 %>
+  <div class="applicant-detail">
+    <div class="detail-label">Nivel del perfil:</div>
+    <div class="detail-value"><%= applicant.applicant_level %></div>
+  </div>
+<% end %>
+
+<% if applicant.tech_level and applicant.tech_level > 0 %>
+  <div class="applicant-detail">
+    <div class="detail-label">Calificación técnica:</div>
+    <div class="detail-value"><%= applicant.tech_level %></div>
+  </div>
+<% end %>
+
+<% if applicant.profile_level and applicant.profile_level > 0 %>
+  <div class="applicant-detail">
+    <div class="detail-label">Calificación Perfilamiento:</div>
+    <div class="detail-value"><%= applicant.profile_level %></div>
+  </div>
+<% end %>
+
+<% if applicant.english_level and applicant.english_level.length > 0 %>
+  <div class="applicant-detail">
+    <div class="detail-label">Nivel de Inglés:</div>
+    <div class="detail-value"><%= applicant.english_level %></div>
+  </div>
+<% end %>
+
 <% if applicant.referred_by and applicant.referred_by.length > 0 %>
   <div class="applicant-detail">
     <div class="detail-label">Referido por:</div>

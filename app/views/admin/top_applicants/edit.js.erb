@@ -7,6 +7,7 @@ $('<%= j render "modal" %>').on('shown.bs.modal', function (e) {
 }).on('hidden.bs.modal', function (e) {
   $(this).remove();
   $('.modal-backdrop').remove();
+  location.reload();
 }).modal();
 
 
