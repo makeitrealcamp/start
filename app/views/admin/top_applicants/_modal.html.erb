@@ -56,7 +56,7 @@
             </div>
             <div class="form-group">
               <%= p.label :profile_level, "Calificación Perfilamiento" %>
-              <%= p.select :profile_level, options_for_select([nil, 1, 2, 3, 4, 5], @applicant.info["profile_level"]), { :selected => @applicant.info["profile_level"] }, class: "form-control" %>
+              <%= p.select :profile_level, [nil, ["1: No califica para el programa", 1], ["2: No tiene tiempo para el programa", 2], ["3: Sus espectativas son diferentes para el programa", 3], ["Tiene actitud, le falta inglés", 4], ["Es un cadidato ideal", 5]], { :selected => @applicant.info["profile_level"] }, class: "form-control" %>
             </div>
             <div class="form-group">
               <%= p.label :english_level, "Nivel de inglés" %>
