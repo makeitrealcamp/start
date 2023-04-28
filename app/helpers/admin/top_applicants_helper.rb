@@ -146,7 +146,9 @@ module Admin::TopApplicantsHelper
   end
 
   def cohort_application_status(cohort)
-    if cohort.id >= 8
+    if cohort.id >= 9
+      [:applied, :aspiring_course, :aspiring_course_confirmed, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :interviews_completed, :accepted, :rejected, :enrolled, :not_enrolled, :gave_up, :graduated, :placed]
+    elsif cohort.id >= 8
       [:applied, :aspiring_course, :aspiring_course_confirmed, :first_interview_scheduled, :second_interview_held, :interviews_completed, :accepted, :rejected, :enrolled, :not_enrolled, :gave_up, :graduated, :placed]
     else
       [:applied, :test_sent, :test_received, :test_graded, :first_interview_scheduled, :second_interview_held, :accepted, :enrolled, :not_enrolled, :rejected, :interviews_completed, :gave_up, :graduated, :placed]
