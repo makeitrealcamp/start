@@ -133,7 +133,8 @@ class PagesController < ApplicationController
         gender: top_applicant_params[:gender],
         # format: program_format,
         stipend: top_applicant_params[:stipend],
-        payment_method: payment_method
+        payment_method: payment_method,
+        top_uid: @top_applicant.uid
       },
       metadata: {
         linkedin: top_applicant_params[:url],
