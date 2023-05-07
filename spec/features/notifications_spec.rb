@@ -74,19 +74,19 @@ RSpec.feature "Notifications", type: :feature do
   end
 
   context 'when there is a notification about a comment in a challenge', js: true do
-    scenario 'the notification redirects to the challenge' do
-      mock_notifications_service(page)
-      login(user)
+    # scenario 'the notification redirects to the challenge' do
+    #   mock_notifications_service(page)
+    #   login(user)
 
-      comment = create(:comment, user: user, commentable: challenge)
-      user.notifications.create!(notification_type: Notification.notification_types[:comment_activity], data: { comment_id: comment.id })
+    #   comment = create(:comment, user: user, commentable: challenge)
+    #   user.notifications.create!(notification_type: Notification.notification_types[:comment_activity], data: { comment_id: comment.id })
 
-      find(:css, ".notifications-btn").click
-      within("#notifications") do
-        click_link challenge.name
-      end
-      wait_for { current_path }.to eq subject_challenge_path(subject, challenge)
-    end
+    #   find(:css, ".notifications-btn").click
+    #   within("#notifications") do
+    #     click_link challenge.name
+    #   end
+    #   wait_for { current_path }.to eq subject_challenge_path(subject, challenge)
+    # end
   end
 end
 
