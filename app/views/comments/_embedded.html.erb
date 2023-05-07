@@ -46,7 +46,7 @@
        <h4 class="modal-title" id="myModalLabel">Markdown</h4>
       </div>
       <div class="modal-body">
-        <%= markdown render file: 'comments/explain_markdown.md' %>
+        <%= markdown render file: Rails.root.join('app/views/comments/explain_markdown.md') %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>

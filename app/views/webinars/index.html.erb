@@ -11,12 +11,12 @@
           <% @upcoming.each do |webinar| %>
             <div class="webinar" id="webinar-<%= webinar.id %>">
               <div class="webinar-info">
-                <div class="webinar-title"><%= link_to webinar.title, webinar_path(webinar.slug) %></div>
+                <div class="webinar-title"><%= link_to webinar.title, webinar_path(id: webinar.slug) %></div>
                 <div class="webinar-date"><%= l webinar.date_in_timezone, format: '%A %e de %B, %Y %I:%M %P' %> (-05) <span class="bullet">&bull;</span> 45 minutos</div>
               </div>
               <div class="webinar-actions">
                 <%= render "speakers", webinar: webinar %>
-                <%= link_to "Registrarse", webinar_path(webinar.slug), class: "btn btn-primary" %>
+                <%= link_to "Registrarse", webinar_path(id: webinar.slug), class: "btn btn-primary" %>
               </div>
             </div>
           <% end %>
@@ -35,12 +35,12 @@
         <% @past.each do |webinar| %>
           <div class="webinar" id="webinar-<%= webinar.id %>">
             <div class="webinar-info">
-              <div class="webinar-title"><%= link_to webinar.title, webinar_path(webinar.slug) %></div>
+              <div class="webinar-title"><%= link_to webinar.title, webinar_path(id: webinar.slug) %></div>
               <div class="webinar-date"><%= l webinar.date_in_timezone, format: '%A %e de %B, %Y %I:%M %P' %> (-05) <span class="bullet">&bull;</span> 45 minutos</div>
             </div>
             <div class="webinar-actions">
               <%= render "speakers", webinar: webinar %>
-              <%= link_to "Ver Ahora", webinar_path(webinar.slug), class: "btn btn-primary" %>
+              <%= link_to "Ver Ahora", webinar_path(id: webinar.slug), class: "btn btn-primary" %>
             </div>
           </div>
         <% end %>
