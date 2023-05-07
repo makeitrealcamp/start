@@ -26,7 +26,7 @@ RSpec.describe Comment, type: :model do
   context "associations" do
     it { should belong_to(:commentable) }
     it { should belong_to(:user) }
-    it { should belong_to(:response_to).class_name('Comment') }
+    it { should belong_to(:response_to).class_name('Comment').optional }
   end
 
   context "validations" do

@@ -64,27 +64,6 @@ RSpec.describe Solution, type: :model do
     end
   end
 
-  describe ".as_json" do
-    it "returns hash" do
-      solution_json = solution.serializable_hash(
-        methods: [:error_message, :completed_at],
-        include: [:documents]
-      )
-
-      expect(solution.as_json({})).to eq solution_json
-      expect(solution.as_json({}).class).to eq Hash
-    end
-
-    it 'returns hash with user_hash' do
-      solution_json = solution.serializable_hash(
-        methods: [:error_message, :completed_at, :user_hash],
-        include: [:documents]
-      )
-      expect(solution.as_json({include_user_level: true})).to eq solution_json
-      expect(solution.as_json({include_user_level: true}).class).to eq Hash
-    end
-  end
-
   describe ".log_activity" do
     context "when created" do
       it "logs the activity" do

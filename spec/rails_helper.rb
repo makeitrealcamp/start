@@ -98,3 +98,10 @@ RSpec.configure do |config|
 end
 
 OmniAuth.config.test_mode = true
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
