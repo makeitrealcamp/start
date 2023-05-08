@@ -417,11 +417,10 @@ GEM
       rubyzip (>= 1.2.2)
     shoulda-matchers (4.1.0)
       activesupport (>= 4.2.0)
-    sidekiq (7.1.0)
-      concurrent-ruby (< 2)
-      connection_pool (>= 2.3.0)
-      rack (>= 2.2.4)
-      redis-client (>= 0.14.0)
+    sidekiq (6.5.5)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.5.0)
     simple_timeout (0.0.1)
     simplecov (0.13.0)
       docile (~> 1.1.0)
@@ -556,7 +555,7 @@ DEPENDENCIES
   selenium-webdriver (= 3.142.7)
   shareable!
   shoulda-matchers (= 4.1.0)
-  sidekiq
+  sidekiq (~> 6.2)
   simple_timeout
   split (~> 4.0, >= 4.0.1)
   spring
