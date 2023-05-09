@@ -13,22 +13,40 @@ class Admin::TopApplicantsController < ApplicationController
       @applicants = @applicants.where("info -> 'format' = ?", params[:program])
     end
 
+    if params[:q].present?
+      @applicants = @applicants.where("first_name ILIKE :q OR last_name ILIKE :q OR email ILIKE :q", q: "%#{params[:q]}%")
+    end
+
     if params[:orderby].present?
       @applicants = @applicants.order("#{params[:orderby]} DESC")
     else
       @applicants = @applicants.order('created_at DESC')
     end
 
-    if params[:q].present?
-      @applicants = TopApplicant.where("first_name ILIKE :q OR last_name ILIKE :q OR email ILIKE :q", q: "%#{params[:q]}%")
-    end
-
     if params[:status].present? and params[:substate].present?
       @applicants = @applicants.find_applicant_by_substate(TopApplicant, params[:status], params[:substate])
     end
 
-    @applicants = @applicants.paginate(page: params[:page], per_page: 100)
-    @applicants_count = @applicants.count
+    respond_to do |format|
+      format.html do
+        @applicants = @applicants.paginate(page: params[:page], per_page: 100)
+        @applicants_count = @applicants.count
+      end
+
+      format.csv do
+        response.headers['Content-Type'] = 'text/csv'
+        response.headers['Content-Disposition'] = "attachment; filename=applicants.csv"
+
+        result = CSV.generate(headers: true) do |csv|
+          csv << ["email", "first_name", "last_name", "country", "birthday", "gender", "mobile", "url", "applied_at", "status", "payment_method", "goal", "experience", "additional"] 
+          @applicants.each do |applicant|
+            csv << [applicant.email, applicant.first_name, applicant.last_name, applicant.country, applicant.birthday, applicant.gender, applicant.gender, applicant.mobile, applicant.url, applicant.created_at.strftime("%d/%m/%Y %H:%M"), applicant.status, applicant.payment_method, applicant.goal, applicant.experience, applicant.additional]
+          end
+        end
+
+        send_data result, filename: "applicants-#{DateTime.now.strftime("%d%m%Y%H%M")}.csv"
+      end
+    end
   end
 
   def show
