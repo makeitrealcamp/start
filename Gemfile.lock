@@ -290,9 +290,11 @@ GEM
       omniauth (~> 1.2)
     omniauth-slack (2.3.0)
       omniauth-oauth2 (~> 1.3.1)
-    paper_trail (10.3.1)
-      activerecord (>= 4.2)
+    paper_trail (11.1.0)
+      activerecord (>= 5.2)
       request_store (~> 1.1)
+    paper_trail-association_tracking (2.1.3)
+      paper_trail (< 12.0)
     pg (1.1.4)
     psych (3.3.4)
     public_suffix (5.0.1)
@@ -534,7 +536,8 @@ DEPENDENCIES
   nested_form_fields
   octokit
   omniauth-slack (~> 2.3.0)
-  paper_trail (~> 10.0)
+  paper_trail (~> 11.0)
+  paper_trail-association_tracking (~> 2.1, >= 2.1.1)
   pg (~> 1.1.0)
   psych (< 4)
   pusher
