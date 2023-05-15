@@ -38,7 +38,8 @@ gem 'bootsnap', '>= 1.9.3', require: false
 
 gem 'gravatar-ultimate'
 gem 'ranked-model'
-gem 'paper_trail', '~>10.0'
+gem 'paper_trail', '~>11.0'
+gem 'paper_trail-association_tracking', '~> 2.1', '>= 2.1.1'
 gem 'redcarpet'
 gem 'pygments.rb', '~> 2.2'
 gem 'friendly_id', '~> 5.5.0'

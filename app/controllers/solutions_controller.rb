@@ -51,11 +51,11 @@ class SolutionsController < ApplicationController
 
   private
     def update_solution_without_versioning(solution)
-      Solution.paper_trail.disable
+      PaperTrail.request.disable_model(Solution)
       solution.status = :evaluating
       solution.attempts = solution.attempts + 1 if solution.completed_at.nil?
       solution.save!
-      Solution.paper_trail.enable
+      PaperTrail.request.enable_model(Solution)
     end
 
     def save_documents
