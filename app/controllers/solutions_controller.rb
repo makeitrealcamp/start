@@ -63,11 +63,11 @@ class SolutionsController < ApplicationController
     end
 
     def save_documents_with_no_versioning
-      Document.paper_trail.disable
+      PaperTrail.request.disable_model(Document)
       @solution.documents.each do |doc|
         doc.update(content: params["content-#{doc.id}"])
       end
-      Document.paper_trail.enable
+      PaperTrail.request.enable_model(Document)
     end
 
     def evaluate_solution
