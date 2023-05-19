@@ -11,7 +11,8 @@ module Authenticable
 
   def authenticate
     token = request.headers['Authorization'].split(' ').last
-    decoded_token = JWT.decode(token, ENV['JWT_SECRET_KEY'], true, { algorithm: 'HS256' })
+    p token
+    decoded_token = JWT.decode(token, ENV['JWT_SECRET_KEY'] || 'secret', true, { algorithm: 'HS256' })
   rescue JWT::VerificationError, JWT::DecodeError
     render json: { error: 'Unauthorized' }, status: :unauthorized
   end
