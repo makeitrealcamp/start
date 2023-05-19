@@ -22,6 +22,27 @@ class PagesController < ApplicationController
     render layout: "application"
   end
 
+  def create_lead
+    suffix = ['CO'].include?(params['country']) ? params['country'].downcase : "other"
+    data = {
+      pid: cookies[:dp_pid],
+      program: params['program-name'],
+      event: "#{params['convertloop-event']}-#{suffix}",
+      first_name: params['first-name'],
+      last_name: params['last-name'],
+      email: params['email'],
+      country: params['country'],
+      mobile: params['mobile'],
+      ip: request.remote_ip
+    }
+    data[:birthday] = params['birthday'] if params['birthday']
+    data[:gender] = params['gender'] if params['gender']
+
+    CreateLeadJob.perform_later(data)
+    
+    render json: { message: 'Success' }, status: :ok
+  end
+
   def create_full_stack_online_lead
     suffix = ['MX', 'CO', 'PE'].include?(params['country']) ? params['country'].downcase : "other"
     data = {

@@ -290,4 +290,5 @@ Rails.application.routes.draw do
   post 'api/application/top', to: 'pages#create_top_applicant'
   post "api/application/women-bootcamp", to: "pages#create_women_applicant"
   post "api/como-convertirte-en-web-developer", to: "pages#send_web_developer_guide"
+  post "api/courses/registration", to: "pages#create_lead"
 end
