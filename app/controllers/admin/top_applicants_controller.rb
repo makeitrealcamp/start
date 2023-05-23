@@ -3,7 +3,7 @@ class Admin::TopApplicantsController < ApplicationController
 
   def index
     @cohort = params[:cohort] ? TopCohort.find(params[:cohort]) : TopCohort.order(created_at: :desc).take
-    @applicants = @cohort.applicants
+    @applicants = params[:q].present? ? TopApplicant.all : @cohort.applicants
     
     if params[:status].present?
       @applicants = @applicants.where(status: TopApplicant.statuses[params[:status]])
