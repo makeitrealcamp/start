@@ -303,6 +303,11 @@ class PagesController < ApplicationController
     @currency = params[:currency] || "PEN"
   end
 
+  def qa_manual_testing_seat
+    @course = Billing::Charge::COURSES[:qa_manual_testing]
+    @currency = params[:currency] || "COP"
+  end
+
   def create_ruby_on_rails_lead
     suffix = ['MX', 'CO', 'PE'].include?(params['country']) ? params['country'].downcase : "other"
     data = {

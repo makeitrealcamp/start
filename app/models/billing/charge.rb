@@ -81,6 +81,13 @@ class Billing::Charge < ApplicationRecord
         "PEN" => 704,
       }
     },
+    qa_manual_testing: {
+      description: "Separación curso QA Manual Testing",
+      price: {
+        "COP" => 667_000,
+        "USD" => 184
+      }
+    },
   }
 
   enum payment_method: [:unknown, :credit_card, :debit_card, :pse, :cash, :referenced, :transfer]
