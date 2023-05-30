@@ -4,14 +4,8 @@
   <div class="container wrapper">
     <div class="row">
       <div class="col-md-6">
-        <div class="card">
-          <div class="card-header">
-            <h3>Bootcamp Mujeres - Separación cupo</h3>
-            <div class="price"><%= number_to_currency(@course[:price][@currency], precision: 0) %> <small><%= @currency%></small></div>
-          </div>
-
-          <%= render "seat_form", course: "bootcamp_mujeres" %>
-        </div>
+        <div class="alert alert-info">¡<strong>No contamos con más cupos disponibles</strong> por el momento, muchas gracias por tu interés! Síguenos en redes sociales para conocer las próximas convocatorias.</div>
+        
       </div>
       <div class="col-md-6">
         <div class="audience-quote">
