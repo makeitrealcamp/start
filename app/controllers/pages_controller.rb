@@ -35,6 +35,8 @@ class PagesController < ApplicationController
       mobile: params['mobile'],
       ip: request.remote_ip
     }
+    data[:document_type] = params['document-type'] if params['document-type']
+    data[:document_number] = params['document-number'] if params['document-number']
     data[:birthday] = params['birthday'] if params['birthday']
     data[:gender] = params['gender'] if params['gender']
 
