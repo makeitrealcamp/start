@@ -37,6 +37,7 @@ class PagesController < ApplicationController
     }
     data[:document_type] = params['document-type'] if params['document-type']
     data[:document_number] = params['document-number'] if params['document-number']
+    data[:accepted_terms] = params['accepted-terms'] if params['accepted-terms']
     data[:birthday] = params['birthday'] if params['birthday']
     data[:gender] = params['gender'] if params['gender']
 
