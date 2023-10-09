@@ -123,7 +123,6 @@ Rails.application.routes.draw do
   resources :phases, only: [:new,:create,:edit,:update]
 
   resources :subjects, except: [:destroy] do
-
     resources :challenges, only: [:show] do
       get :discussion, on: :member
       resources :solutions, only: [:create]
@@ -172,6 +171,10 @@ Rails.application.routes.draw do
     resources :quizzes, only:[] do
       patch 'update_position', on: :member
     end
+  end
+
+  resources :chats, only: [:create] do
+    resources :chat_messages, only: [:create, :update]
   end
 
   # to create a comment we need the commentable resource

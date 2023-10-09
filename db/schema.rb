@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_07_133526) do
+ActiveRecord::Schema.define(version: 2023_10_08_022924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -169,6 +169,25 @@ ActiveRecord::Schema.define(version: 2023_05_07_133526) do
     t.integer "difficulty_bonus"
     t.integer "timeout"
     t.index ["subject_id"], name: "index_challenges_on_subject_id"
+  end
+
+  create_table "chat_messages", force: :cascade do |t|
+    t.bigint "chat_id", null: false
+    t.text "request"
+    t.text "response"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chat_id"], name: "index_chat_messages_on_chat_id"
+  end
+
+  create_table "chats", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "challenge_id", null: false
+    t.text "instructions"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["challenge_id"], name: "index_chats_on_challenge_id"
+    t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
   create_table "cohorts", force: :cascade do |t|
@@ -561,6 +580,9 @@ ActiveRecord::Schema.define(version: 2023_05_07_133526) do
   add_foreign_key "challenge_completions", "challenges"
   add_foreign_key "challenge_completions", "users"
   add_foreign_key "challenges", "subjects"
+  add_foreign_key "chat_messages", "chats", on_delete: :cascade
+  add_foreign_key "chats", "challenges"
+  add_foreign_key "chats", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "innovate_applicant_tests", "applicants"
   add_foreign_key "lesson_completions", "lessons"

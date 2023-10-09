@@ -11,7 +11,7 @@ module ApplicationHelper
 
   def markdown(text, opts={})
     renderer = HtmlWithPygments.new({ hard_wrap: true, filter_html: false }.merge(opts))
-    options = {
+    extensions = {
       autolink: true,
       no_intra_emphasis: true,
       fenced_code_blocks: true,
@@ -20,7 +20,7 @@ module ApplicationHelper
       superscript: true
     }
 
-    Redcarpet::Markdown.new(renderer, options).render(text).html_safe
+    Redcarpet::Markdown.new(renderer, extensions).render(text).html_safe
   end
 
   def simple_markdown(text, opts={})

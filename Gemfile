@@ -38,7 +38,7 @@ gem 'bootsnap', '>= 1.9.3', require: false
 
 gem 'gravatar-ultimate'
 gem 'ranked-model'
-gem 'paper_trail', '~>11.0'
+gem 'paper_trail', '>= 12.0'
 gem 'paper_trail-association_tracking', '~> 2.1', '>= 2.1.1'
 gem 'redcarpet'
 gem 'pygments.rb', '~> 2.2'
@@ -78,6 +78,7 @@ gem 'rack-cors', '~> 1.1'
 gem 'webrick', '~> 1.8'
 gem 'rexml', '~> 3.2'
 gem 'psych', '< 4'
+gem 'ruby-openai', '~> 5.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -104,8 +105,7 @@ group :test do
   gem 'capybara', '>= 3.33'
   gem 'database_cleaner'
   gem 'launchy'
-  gem 'selenium-webdriver', '3.142.7'
-  gem 'webdrivers', '~> 3.9'
+  gem 'selenium-webdriver', '4.13.1'
   gem 'codeclimate-test-reporter', require: nil
   gem 'rspec-wait', '0.0.9'
   gem 'rspec-retry', '0.5.2'
