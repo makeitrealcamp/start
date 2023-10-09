@@ -54,6 +54,26 @@
       </div>
     </div>
   </div>
+
+  <div class="artificial-tutor-chat hide">
+    <header class="main">
+      <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </header>
+    <div class="messages">
+      <div class="message">
+        <header>
+          <div class="role">Hashy (Tutor Virtual)</div>
+        </header>
+        <div class="text">Hola, en qué te puedo ayudar?</div>
+      </div>
+    </div>
+    <div class="input">
+      <div class="tutor-typing">Hashy está escribiendo ... </div>
+      <span placeholder="Ingresa tu pregunta" id="chat-input" contenteditable>
+    </div>
+  </div>
+
+  <div class="robo-tutor"><%= image_tag 'robo-tutor.png' %></div>
 </div>
 
 <!-- Modal to zoom images -->
@@ -112,6 +132,13 @@
     var instructionsView = new InstructionsView();
     var solutionView = new SolutionView();
 
+    var pusher = new Pusher('<%= Pusher.key %>', {
+      encrypted: true
+    });
+    $(document).on("turbolinks:click", function() {
+      pusher.disconnect();
+    });
+
     // refresh editors when tab changes
     $('a[data-toggle="tab"]').on('shown.bs.tab', editors.refresh);
 
@@ -119,5 +146,92 @@
       instructionsView.remove();
       solutionView.remove();
     });
+
+    var chatId
+    function addMessage(message) {
+      var role = message.role === "user" ? "You" : "Hashy (Tutor Virtual)"
+      var id = message.id ? 'id="msg-' + message.id + '"' : ''
+      $('.messages').append('<div class="message" ' + id + '><header><div class="role">' + role + '</div></header><div class="text">' + message.content + '</div></div>')
+      var lastMessage = $('.messages .message:last-child')[0]
+      $('.messages').scrollTop($('.messages')[0].scrollHeight - lastMessage.scrollHeight - 35)
+      $('#chat-input').html('')
+    }
+
+    function sendMessage(question) {
+      var csrfToken = document.querySelector("[name='csrf-token']").content
+      fetch('/chats/' + chatId + '/chat_messages', {
+        method: "POST",
+        headers: {
+          "X-CSRF-Token": csrfToken,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ request: question })
+      }).then(function(response) {
+        return response.json()
+      }).then(function(message) {
+        var channel = pusher.subscribe('chat-message-' + message.id);
+        // channel.bind('chat-message:chunk', function(data) {
+        //   updateMessage(data.message_id, data.chunk)
+        // });
+        channel.bind('chat-message:end', function(data) {
+          addMessage({ id: message.id, role: "assistant", content: data.text })
+          $('.tutor-typing').hide()
+          $('#chat-input').attr('contenteditable', true).focus()
+          pusher.unsubscribe('chat-message-' + message.id)
+        });
+        channel.bind('chat-message:error', function(data) {
+          alert("Ocurrió un error con Hashy (Tutor Virtual), inténtalo nuevamente.")
+          $('#chat-input').attr('contenteditable', true)
+          $('.tutor-typing').hide()
+          pusher.unsubscribe('chat-message-' + message.id)
+        });
+      })
+    }
+
+    $('.robo-tutor').on('click', function(e) {
+      if ($('.artificial-tutor-chat').hasClass('hide')) {
+        $('.artificial-tutor-chat').removeClass('hide')
+        $('.artificial-tutor-chat #chat-input').focus()
+      } else {
+        $('.artificial-tutor-chat').addClass('hide')
+      }
+    })
+
+    $('.artificial-tutor-chat .close').on('click', function(e) {
+      $('.artificial-tutor-chat').addClass('hide')
+    })
+
+    $('#chat-input').on('keypress', function(e) {
+      if (e.keyCode === 13) {
+        var question = $(this).html()
+        var csrfToken = document.querySelector("[name='csrf-token']").content
+        addMessage({ role: "user", content: question })
+        $('.tutor-typing').show()
+        $('#chat-input').removeAttr('contenteditable').blur()
+
+        if (!chatId) {
+          var data = { challenge_id: <%= @challenge.id %> }
+          fetch('/chats', {
+            method: "POST",
+            headers: {
+              "X-CSRF-Token": csrfToken,
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          }).then(function(response) {
+            return response.json()
+          }).then(function(chat) {
+            chatId = chat.id
+            sendMessage(question)
+          })
+        } else {
+          sendMessage(question)
+        }
+
+        return false
+      }
+    })
   })();
 </script>

@@ -11,6 +11,7 @@
 #  event_url   :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  category    :integer          default("webinar")
 #
 class Webinars::Webinar < ApplicationRecord
   has_many :speakers
