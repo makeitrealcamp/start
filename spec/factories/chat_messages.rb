@@ -14,10 +14,4 @@
 #  index_chat_messages_on_chat_id  (chat_id)
 #
 FactoryGirl.define do
-  factory :chat_message do
-    chat nil
-request "MyText"
-response "MyText"
-  end
-
 end

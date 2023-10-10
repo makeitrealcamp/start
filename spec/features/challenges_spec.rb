@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.feature "Challenges", type: :feature do
+  include ActiveJob::TestHelper
+  
   let!(:user)         { create(:user_with_path) }
   let!(:path)         { user.paths.first }
   let!(:phase)        { create(:phase, path: path) }
@@ -63,5 +65,20 @@ RSpec.feature "Challenges", type: :feature do
       expect(page.current_path).to eq(preview_solution_path(id: solution.id, file: document.name))
     end
     new_window.close
+  end
+
+  scenario "shows virtual tutor", js: true do
+    login(user)
+    visit subject_challenge_path(subject, challenge)
+
+    find('.virtual-tutor-icon').click
+
+    expect(page).to have_selector('.virtual-tutor-chat')
+
+    find('.virtual-tutor #chat-input').send_keys "hola mundo\n"
+    sleep 10
+    # find('.virtual-tutor #chat-input').send_keys :return
+    expect(TextGenerationJob).to have_been_enqueued
+    expect(page).to have_content("Hashy está escribiendo ...")
   end
 end
