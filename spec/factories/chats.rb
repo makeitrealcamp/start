@@ -15,9 +15,4 @@
 #  index_chats_on_user_id       (user_id)
 #
 FactoryGirl.define do
-  factory :chat do
-    user nil
-challenge nil
-  end
-
 end
