@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
-  include Authenticable
   before_action :save_referer, except: [:handbook]
+  protect_from_forgery with: :null_session
 
   def home
   end
@@ -209,10 +209,47 @@ class PagesController < ApplicationController
         typical_day: innovate_applicant_params[:typical_day],
         vision: innovate_applicant_params[:vision],
         more_info: innovate_applicant_params[:additional]
-      }
+      } 
     }
     ConvertLoopJob.perform_later(data)
     AdminMailer.new_lead("Innovate", data[:person][:first_name], data[:person][:last_name], data[:person][:email], data[:person][:country_code],
+        data[:person][:mobile], "").deliver_later
+
+    redirect_to "/thanks-innovate"
+  end
+
+  def create_proinnovate_2024_applicant
+    ProinnovateApplicant.create!(innovate_applicant_params)
+
+    data = {
+      event: innovate_applicant_params[:convertloop_event],
+      program_name: innovate_applicant_params[:program_name],
+      person: {
+        pid: cookies[:dp_pid],
+        email: innovate_applicant_params[:email],
+        first_name: innovate_applicant_params[:first_name],
+        second_name: innovate_applicant_params[:second_name],
+        last_name: innovate_applicant_params[:last_name],
+        second_last_name: innovate_applicant_params[:second_last_name],
+        birthday: innovate_applicant_params[:birthday],
+        country_code: innovate_applicant_params[:country],
+        mobile: innovate_applicant_params[:mobile],
+        gender: innovate_applicant_params[:gender],
+        document_type: innovate_applicant_params[:document_type],
+        document_number: innovate_applicant_params[:document_number],
+        project_code: innovate_applicant_params[:project_code]
+      },
+      metadata: {
+        linkedin: innovate_applicant_params[:url],
+        ip: request.remote_ip,
+        goal: innovate_applicant_params[:goal],
+        experience: innovate_applicant_params[:experience],
+        studies: innovate_applicant_params[:studies],
+        working: innovate_applicant_params[:working]
+      }
+    }
+    ConvertLoopJob.perform_later(data)
+    AdminMailer.new_lead("Proinnovate Becas 2024", data[:person][:first_name], data[:person][:last_name], data[:person][:email], data[:person][:country_code],
         data[:person][:mobile], "").deliver_later
 
     redirect_to "/thanks-innovate"
@@ -451,7 +488,7 @@ class PagesController < ApplicationController
     end
 
     def innovate_applicant_params
-      params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :linkedin, :goal, :experience, :additional, :format)
+      params.permit(:accepted_terms, :email, :first_name, :second_name, :last_name, :second_last_name, :country, :mobile, :birthday, :gender, :url, :goal, :experience, :additional, :studies, :working, :format, :document_type, :document_number, :project_code, :program_name, :convertloop_event)
     end
 
     def mitic_applicant_params

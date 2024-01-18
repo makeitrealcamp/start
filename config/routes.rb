@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   get "innovate-peru/cupo-tiempo-parcial", to: "pages#innovate_part_time_seat"
 
   post "application/top", to: "pages#create_top_applicant"
+  post "application/proinnovate-peru-2024", to: "pages#create_proinnovate_2024_applicant"
   post "application/innovate-peru", to: "pages#create_innovate_applicant"
   post "application/mitic-paraguay", to: "pages#create_mitic_applicant"
   post "application/women-bootcamp", to: "pages#create_women_applicant"
@@ -245,6 +246,7 @@ Rails.application.routes.draw do
 
     resources :top_applicants, only: [:index, :show, :edit, :update]
     resources :innovate_applicants, only: [:index, :show, :edit, :update]
+    resources :proinnovate_applicants, only: [:index, :show, :edit, :update]
     resources :mitic_applicants, only: [:index, :show, :edit, :update]
     resources :women_applicants, only: [:index, :show, :edit, :update]
 
@@ -293,6 +295,7 @@ Rails.application.routes.draw do
   post 'api/top_invitations/:id/validate', to: 'top_invitations#validate'
   post 'api/application/top', to: 'pages#create_top_applicant'
   post "api/application/women-bootcamp", to: "pages#create_women_applicant"
+  post "api/application/proinnovate-peru-2024", to: "pages#create_proinnovate_2024_applicant"
   post "api/como-convertirte-en-web-developer", to: "pages#send_web_developer_guide"
   post "api/courses/registration", to: "pages#create_lead"
 end

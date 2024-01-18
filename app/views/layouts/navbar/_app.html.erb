@@ -47,6 +47,9 @@
                 <% if has_admin_access?("mitic_applicants") %>
                   <li><%= link_to "Aplicaciones Mitic", admin_mitic_applicants_path %></li>
                 <% end %>
+                <% if has_admin_access?("proinnovate_applicants") %>
+                  <li><%= link_to "Aplicaciones Proinnovate 2024", admin_proinnovate_applicants_path %></li>
+                <% end %>
                 <% if has_admin_access?("innovate_applicants") %>
                   <li><%= link_to "Aplicaciones Innovate", admin_innovate_applicants_path %></li>
                 <% end %>
