@@ -255,6 +255,39 @@ class PagesController < ApplicationController
     redirect_to "/thanks-innovate"
   end
 
+  def create_proinnovate_2024_lead
+    data = {
+      event: innovate_applicant_params[:convertloop_event],
+      program_name: innovate_applicant_params[:program_name],
+      person: {
+        pid: cookies[:dp_pid],
+        email: innovate_applicant_params[:email],
+        first_name: innovate_applicant_params[:first_name],
+        second_name: innovate_applicant_params[:second_name],
+        last_name: innovate_applicant_params[:last_name],
+        second_last_name: innovate_applicant_params[:second_last_name],
+        birthday: innovate_applicant_params[:birthday],
+        country_code: innovate_applicant_params[:country],
+        mobile: innovate_applicant_params[:mobile],
+        gender: innovate_applicant_params[:gender],
+        document_type: innovate_applicant_params[:document_type],
+        document_number: innovate_applicant_params[:document_number],
+        project_code: innovate_applicant_params[:project_code]
+      },
+      metadata: {
+        linkedin: innovate_applicant_params[:url],
+        ip: request.remote_ip,
+        goal: innovate_applicant_params[:goal],
+        experience: innovate_applicant_params[:experience],
+        studies: innovate_applicant_params[:studies],
+        working: innovate_applicant_params[:working]
+      }
+    }
+    ConvertLoopJob.perform_later(data)
+
+    redirect_to "/thanks-innovate"
+  end
+
   def create_mitic_applicant
     MiticApplicant.create!(mitic_applicant_params)
 
