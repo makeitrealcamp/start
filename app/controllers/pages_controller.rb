@@ -219,11 +219,10 @@ class PagesController < ApplicationController
   end
 
   def create_proinnovate_2024_applicant
-    ProinnovateApplicant.create!(innovate_applicant_params)
-
+    ProinnovateApplicant.create!(innovate_applicant_params) 
+        
     data = {
-      event: innovate_applicant_params[:convertloop_event],
-      program_name: innovate_applicant_params[:program_name],
+      name: innovate_applicant_params[:convertloop_event],
       person: {
         pid: cookies[:dp_pid],
         email: innovate_applicant_params[:email],
@@ -237,7 +236,8 @@ class PagesController < ApplicationController
         gender: innovate_applicant_params[:gender],
         document_type: innovate_applicant_params[:document_type],
         document_number: innovate_applicant_params[:document_number],
-        project_code: innovate_applicant_params[:project_code]
+        project_code: innovate_applicant_params[:project_code],
+        program_name: innovate_applicant_params[:program_name],
       },
       metadata: {
         linkedin: innovate_applicant_params[:url],
@@ -251,14 +251,12 @@ class PagesController < ApplicationController
     ConvertLoopJob.perform_later(data)
     AdminMailer.new_lead("Proinnovate Becas 2024", data[:person][:first_name], data[:person][:last_name], data[:person][:email], data[:person][:country_code],
         data[:person][:mobile], "").deliver_later
-
     render json: { message: 'Success' }, status: :ok
   end
 
   def create_proinnovate_2024_lead
     data = {
-      event: innovate_applicant_params[:convertloop_event],
-      program_name: innovate_applicant_params[:program_name],
+      name: innovate_applicant_params[:convertloop_event],
       person: {
         pid: cookies[:dp_pid],
         email: innovate_applicant_params[:email],
@@ -272,7 +270,8 @@ class PagesController < ApplicationController
         gender: innovate_applicant_params[:gender],
         document_type: innovate_applicant_params[:document_type],
         document_number: innovate_applicant_params[:document_number],
-        project_code: innovate_applicant_params[:project_code]
+        project_code: innovate_applicant_params[:project_code],
+        program_name: innovate_applicant_params[:program_name],
       },
       metadata: {
         linkedin: innovate_applicant_params[:url],
@@ -520,7 +519,7 @@ class PagesController < ApplicationController
     end
 
     def innovate_applicant_params
-      params.permit(:accepted_terms, :email, :first_name, :second_name, :last_name, :second_last_name, :country, :mobile, :birthday, :gender, :url, :goal, :experience, :additional, :studies, :working, :format, :document_type, :document_number, :project_code, :program_name, :convertloop_event)
+      params.require(:applicant).permit(:accepted_terms, :email, :first_name, :second_name, :last_name, :second_last_name, :country, :mobile, :birthday, :gender, :url, :goal, :experience, :additional, :studies, :working, :format, :document_type, :document_number, :project_code, :program_name, :convertloop_event)
     end
 
     def mitic_applicant_params
