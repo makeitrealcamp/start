@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
   post "application/top", to: "pages#create_top_applicant"
   post "application/proinnovate-peru-2024", to: "pages#create_proinnovate_2024_applicant"
+  post "application/proinnovate-peru-2024-lead", to: "pages#create_proinnovate_2024_lead"
   post "application/innovate-peru", to: "pages#create_innovate_applicant"
   post "application/mitic-paraguay", to: "pages#create_mitic_applicant"
   post "application/women-bootcamp", to: "pages#create_women_applicant"
@@ -296,6 +297,7 @@ Rails.application.routes.draw do
   post 'api/application/top', to: 'pages#create_top_applicant'
   post "api/application/women-bootcamp", to: "pages#create_women_applicant"
   post "api/application/proinnovate-peru-2024", to: "pages#create_proinnovate_2024_applicant"
+  post "api/application/proinnovate-peru-2024-lead", to: "pages#create_proinnovate_2024_lead"
   post "api/como-convertirte-en-web-developer", to: "pages#send_web_developer_guide"
   post "api/courses/registration", to: "pages#create_lead"
 end
