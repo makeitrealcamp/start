@@ -41,8 +41,6 @@ Rails.application.routes.draw do
   get "innovate-peru/cupo-tiempo-parcial", to: "pages#innovate_part_time_seat"
 
   post "application/top", to: "pages#create_top_applicant"
-  post "application/proinnovate-peru-2024", to: "pages#create_proinnovate_2024_applicant"
-  post "application/proinnovate-peru-2024-lead", to: "pages#create_proinnovate_2024_lead"
   post "application/innovate-peru", to: "pages#create_innovate_applicant"
   post "application/mitic-paraguay", to: "pages#create_mitic_applicant"
   post "application/women-bootcamp", to: "pages#create_women_applicant"

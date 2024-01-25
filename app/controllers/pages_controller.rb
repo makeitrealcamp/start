@@ -252,7 +252,7 @@ class PagesController < ApplicationController
     AdminMailer.new_lead("Proinnovate Becas 2024", data[:person][:first_name], data[:person][:last_name], data[:person][:email], data[:person][:country_code],
         data[:person][:mobile], "").deliver_later
 
-    redirect_to "/thanks-innovate"
+    render json: { message: 'Success' }, status: :ok
   end
 
   def create_proinnovate_2024_lead
@@ -284,8 +284,7 @@ class PagesController < ApplicationController
       }
     }
     ConvertLoopJob.perform_later(data)
-
-    redirect_to "/thanks-innovate"
+    render json: { message: 'Success' }, status: :ok
   end
 
   def create_mitic_applicant
