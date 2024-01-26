@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
   before_action :save_referer, except: [:handbook]
-  protect_from_forgery with: :null_session
 
   def home
   end
@@ -274,12 +273,12 @@ class PagesController < ApplicationController
         program_name: params[:program_name],
       },
       metadata: {
-        linkedin: innovate_applicant_params[:url],
+        linkedin: params[:url],
         ip: request.remote_ip,
-        goal: innovate_applicant_params[:goal],
-        experience: innovate_applicant_params[:experience],
-        studies: innovate_applicant_params[:studies],
-        working: innovate_applicant_params[:working]
+        goal: params[:goal],
+        experience: params[:experience],
+        studies: params[:studies],
+        working: params[:working]
       }
     }
     ConvertLoopJob.perform_later(data)
