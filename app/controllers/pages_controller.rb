@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   before_action :save_referer, except: [:handbook]
+  protect_from_forgery with: :null_session
 
   def home
   end
