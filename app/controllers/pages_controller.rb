@@ -288,32 +288,47 @@ class PagesController < ApplicationController
   end
 
   def create_mitic_applicant
-    MiticApplicant.create!(mitic_applicant_params)
+    program_name = mitic_applicant_params[:program_name]
+
+    case program_name
+    when "AI"
+      MiticAiApplicant.create!(mitic_applicant_params)
+    when "Serverless"
+      MiticServerlessApplicant.create!(mitic_applicant_params)
+    when "Data-Analysis"
+      MiticDataAnalysisApplicant.create!(mitic_applicant_params)
+    when "Web3"
+      MiticWeb3Applicant.create!(mitic_applicant_params)
+    else
+      MiticApplicant.create!(mitic_applicant_params)
+    end
 
     data = {
-      name: "filled-mitic-application",
+      name: "applied-to-mitic-#{program_name}",
       person: {
         pid: cookies[:dp_pid],
-        email: top_applicant_params[:email],
-        first_name: top_applicant_params[:first_name],
-        last_name: top_applicant_params[:last_name],
-        birthday: top_applicant_params[:birthday],
-        country_code: top_applicant_params[:country],
-        mobile: top_applicant_params[:mobile]
+        email: mitic_applicant_params[:email],
+        first_name: mitic_applicant_params[:first_name],
+        last_name: mitic_applicant_params[:last_name],
+        birthday: mitic_applicant_params[:birthday],
+        country_code: mitic_applicant_params[:country],
+        mobile: mitic_applicant_params[:mobile],
+        resubscribe: true
       },
       metadata: {
-        linkedin: top_applicant_params[:url],
+        linkedin: mitic_applicant_params[:url],
         ip: request.remote_ip,
-        goal: top_applicant_params[:goal],
-        experience: top_applicant_params[:experience],
-        more_info: top_applicant_params[:additional]
+        goal: mitic_applicant_params[:goal],
+        experience: mitic_applicant_params[:experience],
+        more_info: mitic_applicant_params[:additional]
       }
     }
+    
     ConvertLoopJob.perform_later(data)
     AdminMailer.new_lead("Mitic", data[:person][:first_name], data[:person][:last_name], data[:person][:email], data[:person][:country_code],
-        data[:person][:mobile], "").deliver_later
+        data[:person][:mobile], data[:person][:program_name], "").deliver_later
 
-    redirect_to "/thanks-mitic"
+    render json: { message: 'Success' }, status: :ok
   end
 
   def create_women_applicant
@@ -524,7 +539,7 @@ class PagesController < ApplicationController
     end
 
     def mitic_applicant_params
-      params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :url, :goal, :experience, :additional)
+      params.require(:applicant).permit(:accepted_terms, :program_name, :email, :first_name, :last_name, :country_code, :mobile, :birthday, :gender, :url, :goal, :experience, :additional, :studies, :working, :resubscribe)
     end
 
     def women_applicant_params

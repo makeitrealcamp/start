@@ -1,0 +1,83 @@
+<div class="applicant-detail">
+  <div class="detail-label">Fecha de aplicación:</div>
+  <div class="detail-value"><%= applicant.created_at %></div>
+</div>
+
+<div class="applicant-detail">
+  <div class="detail-label">Última actualización:</div>
+  <div class="detail-value"><%= applicant.updated_at %></div>
+</div>
+
+<div class="applicant-detail">
+  <div class="detail-label">País:</div>
+  <div class="detail-value"><%= applicant.country %></div>
+</div>
+
+<div class="applicant-detail">
+  <div class="detail-label">Fecha de nacimiento:</div>
+  <div class="detail-value"><%= applicant.birthday %></div>
+</div>
+
+<div class="applicant-detail">
+  <div class="detail-label">Género:</div>
+  <div class="detail-value"><%= applicant.gender %></div>
+</div>
+
+<div class="applicant-detail">
+  <div class="detail-label">Movil:</div>
+  <div class="detail-value"><%= applicant.mobile %></div>
+</div>
+
+<div class="applicant-detail">
+  <div class="detail-label">Url:</div>
+  <div class="detail-value"><%= applicant.url %></div>
+</div>
+
+<% if applicant.prev_salary and applicant.prev_salary > 0 %>
+  <div class="applicant-detail">
+    <div class="detail-label">Salario Anterior:</div>
+    <div class="detail-value"><%= applicant.prev_salary %></div>
+  </div>
+<% end %>
+
+<% if applicant.new_salary and applicant.new_salary > 0 %>
+  <div class="applicant-detail">
+    <div class="detail-label">Salario nuevo:</div>
+    <div class="detail-value"><%= applicant.new_salary %></div>
+  </div>
+<% end %>
+
+<% if applicant.company and applicant.company.length > 0 %>
+  <div class="applicant-detail">
+    <div class="detail-label">Empresa:</div>
+    <div class="detail-value"><%= applicant.company %></div>
+  </div>
+<% end %>
+
+<% if applicant.start_date and applicant.start_date.length > 0 %>
+  <div class="applicant-detail">
+    <div class="detail-label">Fecha de inicio:</div>
+    <div class="detail-value"><%= applicant.start_date %></div>
+  </div>
+<% end %>
+
+<% if applicant.contract_type and applicant.contract_type.length > 0 %>
+  <div class="applicant-detail">
+    <div class="detail-label">Tipo de contrato:</div>
+    <div class="detail-value"><%= applicant.contract_type %></div>
+  </div>
+<% end %>
+
+<% if applicant.socioeconomic_level and applicant.socioeconomic_level > 0 %>
+  <div class="applicant-detail">
+    <div class="detail-label">Nivel socioeconomico:</div>
+    <div class="detail-value"><%= applicant.socioeconomic_level %></div>
+  </div>
+<% end %>
+
+<% if applicant.referred_by and applicant.referred_by.length > 0 %>
+  <div class="applicant-detail">
+    <div class="detail-label">Referido por:</div>
+    <div class="detail-value"><%= applicant.referred_by %></div>
+  </div>
+<% end %>

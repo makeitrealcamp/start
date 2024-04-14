@@ -1,0 +1,99 @@
+<div class="applicants-page">
+  <div class="container">
+    <h1>Programa Mitic Data Analysis</h1>
+    <div class="row">
+      <div class="col-sm-3">
+        <ul class="list-group">
+          <% MiticDataAnalysisApplicant.statuses.keys.each do |status| %>
+            <li class="list-group-item"><%= MiticDataAnalysisApplicant.status_to_human(status).capitalize %> <span class="badge badge-primary badge-pill"><%= MiticDataAnalysisApplicant.where(status: MiticDataAnalysisApplicant.statuses[status]).count %></span></li>
+          <% end %>
+        </ul>
+         <div><%= link_to "Administrar plantillas", admin_email_templates_path %></div>
+      </div>
+      <div class="col-sm-9">
+        <div class="filters">
+          <form action="/admin/mitic_data_analysis_applicants" class="search-form">
+            <div class="form-group has-feedback">
+              <label for="search" class="sr-only">Buscar</label>
+              <input type="text" class="form-control" name="q" id="search-input" placeholder="Buscar por nombre o email" value="<%= params[:q] %>">
+              <span class="glyphicon glyphicon-search form-control-feedback"></span>
+            </div>
+          </form>
+
+          <div class="filters-right">
+            <div class="filter-dropdown">
+              <label>Filtrar por estado:</label>
+              <div class="dropdown">
+                <a role="button" data-toggle="dropdown" class="btn btn-default" data-target="#" href="/page.html"><%= params[:status].present? ? MiticDataAnalysisApplicant.status_to_human(params[:status]).capitalize : "Todos" %> <span class="caret"></span> </a>
+                <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                  <li><a href="/admin/mitic_data_analysis_applicants">Todos</a></li>
+                  <li>
+                    <% MiticDataAnalysisApplicant.statuses.keys.each do |status| %>
+                      <a href="/admin/mitic_data_analysis_applicants?status=<%= status %>&order_by=<%= params[:order_by] %>"><%= MiticDataAnalysisApplicant.status_to_human(status).capitalize %></a>
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <% if  params[:status].present? and ChangeStatusApplicantActivity.substatus(params[:status]) %>
+              <div class="filter-dropdown">
+                <label>Subestado:</label>
+                <div class="dropdown" id="filter_substatus_applicant_activity">
+                  <a role="button" data-toggle="dropdown" class="btn btn-default" data-target="#" href="/page.html"><%= params[:substate].present? ? ChangeStatusApplicantActivity.get_substatus_to_human(params[:substate]) : "Todos" %> <span class="caret"></span> </a>
+                  <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                  <li>
+                    <%= link_to 'Todos', request.params.except(:substate) %>
+                  </li>
+                  <li>
+                    <% ChangeStatusApplicantActivity.substatus(params[:status]).each do |substate| %>
+                      <%= link_to ChangeStatusApplicantActivity.get_substatus_to_human(substate), request.params.merge(substate: substate) %>
+                    <% end %>
+                  </li>
+                  </ul>
+                </div>
+              </div>
+            <% end %>
+            <div class="filter-dropdown">
+              <label>Ordenar por:</label>
+              <div class="dropdown">
+                <a role="button" data-toggle="dropdown" class="btn btn-default" data-target="#" href="/page.html"><%= params[:order_by].present? ? innovate_order_by_to_human(params[:order_by]) : "Fecha de Aplicación" %> <span class="caret"></span> </a>
+                <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                  <li><a href="?status=<%= params[:status] %>&order_by=created_at">Fecha de Aplicación</a></li>
+                  <li><a href="?status=<%= params[:status] %>&order_by=updated_at">Última actualización</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <table class="table">
+          <tbody>
+            <% @applicants.each do |applicant| %>
+              <tr id="applicant-<%= applicant.id %>">
+                <td>
+                  <div class="cell-main"><%= applicant.full_name %></div>
+                  <div class="cell-detail"><%= applicant.email%></div>
+                  <div class="cell-detail">Aplicó <%= applicant.created_at.strftime("%b %d %I:%M %p")%></div>
+                </td>
+                <td class="text-right">
+                  <div class="cell-main"><%= MiticDataAnalysisApplicant.status_to_human(applicant.status).capitalize %></div>
+                  <% if applicant.change_status_activities.last and applicant.change_status_activities.last!.to_status %>
+                    <div class="cell-detail"><%= ChangeStatusApplicantActivity.get_substatus(applicant.change_status_activities.last) %></div>
+                  <% end %>
+                  <div class="cell-detail"><%= applicant.updated_at.strftime("%b %d %I:%M %p")%></div>
+                  <div class="cell-detail"><%= applicant.note_activities.count %> notas</div>
+                </td>
+                <td class="cell-action text-center"><%=link_to '<span class="glyphicon glyphicon-search"></span>'.html_safe, admin_mitic_data_analysis_applicant_path(applicant.id), class: "btn btn-primary"%></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <div class="top-applicants-list-footer">
+          <%= will_paginate @applicants, previous_label: "&laquo;".html_safe, next_label: "&raquo;".html_safe, class:"pagination" %>
+          <div class="records"><%= @applicants_count %> registros</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -47,6 +47,18 @@
                 <% if has_admin_access?("mitic_applicants") %>
                   <li><%= link_to "Aplicaciones Mitic", admin_mitic_applicants_path %></li>
                 <% end %>
+                <% if has_admin_access?("mitic_serverless_applicants") %>
+                  <li><%= link_to "Aplicaciones Mitic Serverless", admin_mitic_serverless_applicants_path %></li>
+                <% end %>
+                <% if has_admin_access?("mitic_applicants_data_analysis") %>
+                  <li><%= link_to "Aplicaciones Mitic Data Analysis", admin_mitic_data_analysis_applicants_path %></li>
+                <% end %>
+                <% if has_admin_access?("mitic_ai_applicants") %>
+                  <li><%= link_to "Aplicaciones Mitic AI", admin_mitic_ai_applicants_path %></li>
+                <% end %>
+                <% if has_admin_access?("mitic_web3_applicants") %>
+                  <li><%= link_to "Aplicaciones Mitic Web3", admin_mitic_web3_applicants_path %></li>
+                <% end %>
                 <% if has_admin_access?("proinnovate_applicants") %>
                   <li><%= link_to "Aplicaciones Proinnovate 2024", admin_proinnovate_applicants_path %></li>
                 <% end %>
