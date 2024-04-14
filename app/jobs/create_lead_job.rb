@@ -31,7 +31,7 @@ class CreateLeadJob < ActiveJob::Base
     person = { pid: pid, email: email, first_name: first_name, second_name: second_name, last_name: last_name, second_last_name: second_last_name,
         country_code: country, mobile: mobile, birthday: birthday, gender: gender ,source: source, 
         linkedin: linkedin, goal: goal, experience: experience, additional: additional, studies: studies, working: working, format: format,
-        payment_method: payment_method, stipend: stipend, user_id_type: user_id_type, user_id: user_id, document_type: document_type, document_number: document_number, accepted_terms: accepted_terms }
+        payment_method: payment_method, stipend: stipend, user_id_type: user_id_type, user_id: user_id, document_type: document_type, document_number: document_number, accepted_terms: accepted_terms, resubscribe: resubscribe }
     begin
       ConvertLoop.event_logs.send(name: data[:event], person: person, metadata: { ip: data[:ip] })
     rescue => e

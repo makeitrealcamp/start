@@ -44,7 +44,6 @@ Rails.application.routes.draw do
   post "application/innovate-peru", to: "pages#create_innovate_applicant"
   post "application/mitic-paraguay", to: "pages#create_mitic_applicant"
   post "application/women-bootcamp", to: "pages#create_women_applicant"
-
   get "faq", to: "pages#faq"
   get "aspirantes-top", to: "pages#aspirantes_top"
   get "makers", to: "pages#makers"
@@ -247,6 +246,10 @@ Rails.application.routes.draw do
     resources :innovate_applicants, only: [:index, :show, :edit, :update]
     resources :proinnovate_applicants, only: [:index, :show, :edit, :update]
     resources :mitic_applicants, only: [:index, :show, :edit, :update]
+    resources :mitic_ai_applicants, only: [:index, :show, :edit, :update]
+    resources :mitic_serverless_applicants, only: [:index, :show, :edit, :update]
+    resources :mitic_web3_applicants, only: [:index, :show, :edit, :update]
+    resources :mitic_data_analysis_applicants, only: [:index, :show, :edit, :update]
     resources :women_applicants, only: [:index, :show, :edit, :update]
 
     resources :applicants, only: [] do
@@ -295,6 +298,7 @@ Rails.application.routes.draw do
   post 'api/application/top', to: 'pages#create_top_applicant'
   post "api/application/women-bootcamp", to: "pages#create_women_applicant"
   post "api/application/proinnovate-peru-2024", to: "pages#create_proinnovate_2024_applicant"
+  post "api/application/mitic-2024", to: "pages#create_mitic_applicant"
   post "api/application/proinnovate-peru-2024-lead", to: "pages#create_proinnovate_2024_lead"
   post "api/como-convertirte-en-web-developer", to: "pages#send_web_developer_guide"
   post "api/courses/registration", to: "pages#create_lead"

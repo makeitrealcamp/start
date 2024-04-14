@@ -16,19 +16,19 @@
 #  cohort_id  :bigint
 #
 # Indexes
-#
+# 
 #  index_applicants_on_cohort_id  (cohort_id)
 #
 
-class MiticApplicant < Applicant
-  enum status: [:applied, :first_interview_scheduled, :accepted, :not_enrolled, :rejected, :interviews_completed, :preselected, :gave_up, :graduated, :placed]
+class MiticWeb3Applicant < Applicant
+
+  enum status: [:applied, :test_sent, :test_received, :first_interview_scheduled, :interviews_completed, :preselected, :accepted, :rejected, :enrolled, :not_enrolled, :gave_up, :graduated, :placed]
 
   before_create :generate_uid
 
   hstore_accessor :info,
     uid: :string,
     country_code: :string,
-    valid_code: :boolean,
     accepted_terms: :boolean,
     birthday: :string,
     gender: :string,
@@ -36,6 +36,10 @@ class MiticApplicant < Applicant
     goal: :string,
     experience: :string,
     additional: :string,
+    studies: :string,
+    working: :string,
+    document_type: :string,
+    document_number: :string,
     format: :string,
     payment_method: :string,
     format: :string,
@@ -47,9 +51,10 @@ class MiticApplicant < Applicant
     start_date: :string,
     contract_type: :string,
     socioeconomic_level: :integer,
+    referred_by: :string,
     program_name: :string,
-    referred_by: :string
-
+    convertloop_event: :string
+    
   def self.model_name
     Applicant.model_name
   end
@@ -57,12 +62,15 @@ class MiticApplicant < Applicant
   def self.status_to_human(status)
     mappings = {
       applied: "aplicó",
+      test_sent: "TestGorilla eviado",
+      test_received: "TestGorilla recibido",
       first_interview_scheduled: "primera entrevista",
-      accepted: "Beca mkr",
-      not_enrolled: "no matriculado",
-      rejected: "rechazado",
-      preselected: "preseleccionado",
       interviews_completed: "entrevistas finalizadas",
+      preselected: "preseleccionado",
+      accepted: "Aceptado",
+      rejected: "Rechazado",
+      enrolled: "Inscrito",
+      not_enrolled: "no matriculado",
       gave_up: "desistió del proceso",
       graduated: "graduado",
       placed: "ubicado laboralmente",
