@@ -70,8 +70,8 @@ RSpec.describe PagesController, type: :controller do
   describe "POST #create_proinnovate_2024_applicant" do
     it "responds with status 200" do
       request.headers.merge!({ 'Authorization': "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.XbPfbIHMI6arZ3Y922BhjWgQzWXcXNrz0ogtVhfEd2o" })
-      post :create_lead, 
-          params: { program_name: "", convertloop_event: "qa-tester", first_name: "Pedro", last_name: "Perez", email: "pedro@example.com" }
+      post :create_proinnovate_2024_applicant, 
+          params: { applicant:{ program_name: "", convertloop_event: "qa-tester", first_name: "Pedro", last_name: "Perez", email: "pedro@example.com" }}  
       expect(response).to have_http_status(:ok)
     end
   end
@@ -81,6 +81,15 @@ RSpec.describe PagesController, type: :controller do
       request.headers.merge!({ 'Authorization': "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.XbPfbIHMI6arZ3Y922BhjWgQzWXcXNrz0ogtVhfEd2o" })
       post :create_lead, 
           params: { program_name: "Proinnovate", convertloop_event: "nueva-aplicacion-otra-beca-2024", first_name: "Nayib", last_name: "Abdala", email: "nayib@example.com" }
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
+  describe "POST #create_mitic_applicant" do
+    it "responds with status 200" do
+      request.headers.merge!({ 'Authorization': "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.XbPfbIHMI6arZ3Y922BhjWgQzWXcXNrz0ogtVhfEd2o" })
+      post :create_mitic_applicant, 
+          params: { applicant: {program_name: "AI", first_name: "Pedro", last_name: "Perez", email: "pedro@example.com" }}
       expect(response).to have_http_status(:ok)
     end
   end
