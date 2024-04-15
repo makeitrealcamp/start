@@ -311,7 +311,7 @@ class PagesController < ApplicationController
         first_name: mitic_applicant_params[:first_name],
         last_name: mitic_applicant_params[:last_name],
         birthday: mitic_applicant_params[:birthday],
-        country_code: mitic_applicant_params[:country],
+        country: mitic_applicant_params[:country],
         mobile: mitic_applicant_params[:mobile],
         resubscribe: true
       },
@@ -325,7 +325,7 @@ class PagesController < ApplicationController
     }
     
     ConvertLoopJob.perform_later(data)
-    AdminMailer.new_lead("Mitic", data[:person][:first_name], data[:person][:last_name], data[:person][:email], data[:person][:country_code],
+    AdminMailer.new_lead("Mitic", data[:person][:first_name], data[:person][:last_name], data[:person][:email], data[:person][:country],
         data[:person][:mobile], data[:person][:program_name], "").deliver_later
 
     render json: { message: 'Success' }, status: :ok
@@ -539,7 +539,7 @@ class PagesController < ApplicationController
     end
 
     def mitic_applicant_params
-      params.require(:applicant).permit(:accepted_terms, :program_name, :email, :first_name, :last_name, :country_code, :mobile, :birthday, :gender, :url, :goal, :experience, :additional, :studies, :working, :resubscribe)
+      params.require(:applicant).permit(:accepted_terms, :program_name, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :url, :goal, :experience, :additional, :studies, :working, :resubscribe)
     end
 
     def women_applicant_params

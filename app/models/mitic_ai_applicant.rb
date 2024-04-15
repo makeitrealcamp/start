@@ -28,7 +28,7 @@ class MiticAiApplicant < Applicant
 
   hstore_accessor :info,
     uid: :string,
-    country_code: :string,
+    country: :string,
     accepted_terms: :boolean,
     birthday: :string,
     gender: :string,
