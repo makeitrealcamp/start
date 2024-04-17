@@ -29,6 +29,8 @@ class MiticWeb3Applicant < Applicant
   hstore_accessor :info,
     uid: :string,
     country: :string,
+    country_code: :string,
+    city: :string,
     accepted_terms: :boolean,
     birthday: :string,
     gender: :string,

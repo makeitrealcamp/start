@@ -312,6 +312,8 @@ class PagesController < ApplicationController
         last_name: mitic_applicant_params[:last_name],
         birthday: mitic_applicant_params[:birthday],
         country: mitic_applicant_params[:country],
+        country_code: mitic_applicant_params[:country_code],
+        city: mitic_applicant_params[:city],
         mobile: mitic_applicant_params[:mobile],
         resubscribe: true
       },
@@ -539,10 +541,10 @@ class PagesController < ApplicationController
     end
 
     def mitic_applicant_params
-      params.require(:applicant).permit(:accepted_terms, :program_name, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :url, :goal, :experience, :additional, :studies, :working, :resubscribe)
+      params.require(:applicant).permit(:accepted_terms, :program_name, :email, :first_name, :last_name, :country, :city, :country_code, :mobile, :birthday, :gender, :url, :goal, :experience, :additional, :studies, :working, :resubscribe)
     end
 
     def women_applicant_params
-      params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :mobile, :birthday, :gender, :url, :goal, :experience, :additional, :payment_method, :payment_method_2, :format, :stipend, :working, :studies)
+      params.require(:applicant).permit(:accepted_terms, :email, :first_name, :last_name, :country, :city, :mobile, :birthday, :gender, :url, :goal, :experience, :additional, :payment_method, :payment_method_2, :format, :stipend, :working, :studies)
     end
 end
