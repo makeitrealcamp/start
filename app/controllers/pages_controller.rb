@@ -541,7 +541,7 @@ class PagesController < ApplicationController
     end
 
     def mitic_applicant_params
-      params.require(:applicant).permit(:accepted_terms, :program_name, :email, :first_name, :last_name, :country, :city, :country_code, :mobile, :birthday, :gender, :url, :goal, :experience, :additional, :studies, :working, :resubscribe)
+      params.require(:applicant).permit(:accepted_terms, :program_name, :email, :first_name, :last_name, :country, :city, :country_code, :mobile, :birthday, :gender, :url, :goal, :experience, :additional, :studies, :working, :resubscribe, :document_number, :document_type)
     end
 
     def women_applicant_params
