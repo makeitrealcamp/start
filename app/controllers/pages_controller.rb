@@ -315,6 +315,8 @@ class PagesController < ApplicationController
         country_code: mitic_applicant_params[:country_code],
         city: mitic_applicant_params[:city],
         mobile: mitic_applicant_params[:mobile],
+        document_type: mitic_applicant_params[:document_type],
+        document_number: mitic_applicant_params[:document_number],
         resubscribe: true
       },
       metadata: {
