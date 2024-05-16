@@ -320,7 +320,7 @@ class PagesController < ApplicationController
         gender: mitic_applicant_params[:gender],
         resubscribe: true
       },
-      metadata: {
+      metadata: { 
         linkedin: mitic_applicant_params[:url],
         ip: request.remote_ip,
         goal: mitic_applicant_params[:goal],
