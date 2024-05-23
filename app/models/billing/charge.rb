@@ -70,9 +70,9 @@ class Billing::Charge < ApplicationRecord
       price: { "COP" => 750_000 }
     },
     innovate_full_time: {
-      description: "Separación programa Innóvate (Tiempo Completo)",
+      description: "Separación Programa TOP Full Stack Developer ProInnovate 2024",
       price: {
-        "PEN" => 1230,
+        "PEN" => 1263,
       }
     },
     innovate_part_time: {
