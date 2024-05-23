@@ -4,14 +4,13 @@
   <div class="container wrapper">
     <div class="row">
       <div class="col-md-6">
-        <div class="alert alert-info"><strong>Próximamente anunciaremos más becas</strong>. Debes estar atento a tu correo electrónico y redes sociales para más información!</div>
         <div class="card">
           <div class="card-header">
-            <h3>Cupo Innóvate - Tiempo Completo</h3>
+            <h3>Separación de cupo TOP Full Stack Developer Beca Parcial del 80%</h3>
             <div class="price"><%= number_to_currency(@course[:price][@currency], precision: 0) %> <small><%= @currency%></small></div>
           </div>
 
-          <%= render "innovate_seat_form", course: "innovate_full_time", disable: true %>
+          <%= render "innovate_seat_form", course: "innovate_full_time", disable: false %>
         </div>
       </div>
       <div class="col-md-6">
@@ -34,8 +33,12 @@
             <p>Puedes pagar con tarjeta de crédito o débito.</p>
           </div>
           <div class="question">
-            <h3>Si separo mi cupo y no puedo tomar el curso ¿me devuelven el dinero?</h3>
-            <p>El valor del cupo no es reembolsable a menos de que por alguna razón el curso no se lleve a cabo en la fecha prevista. Si vas a separar tu cupo asegúrate que lo puedas tomar.</p>
+            <h3>Si separo mi cupo y no puedo tomar el programa ¿me devuelven el dinero?</h3>
+            <p>El valor del cupo no es reembolsable a menos de que por alguna razón el programa no se lleve a cabo en la fecha prevista. Si vas a separar tu cupo asegúrate que lo puedas tomar.</p>
+          </div>
+          <div class="question">
+            <h3>Quién puede tomar este programa?</h3>
+            <p>Cualquier persona interesada en el cursar el Programa TOP Full Stack Developer y que no haya obtenido una beca del Gobierno de Perú. debes haber tomado la prueba de admisión de Make It Real para el Programa TOP Full Stack Developer y haber sido invitad@ por correo a realizar el Bootcamp. Si no has tomado la prueba escribe a admisiones@makeitreal.camp pidiendo que te la enviemos.</p>
           </div>
         </div>
       </div>
